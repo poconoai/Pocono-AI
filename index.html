@@ -3,256 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocono AI | Secure, On-Premises RAG Solutions</title>
-    <meta name="description" content="Pocono AI provides air-gapped, on-premises AI and RAG solutions for medical and legal professionals. 100% data sovereignty by Marcus O'Dell.">
-    
-    <meta property="og:title" content="Pocono AI: Data Sovereignty Solved">
-    <meta property="og:description" content="Secure, localized AI workstations for high-compliance industries. No cloud. No leaks. No compromise.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poconoai.com">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>Pocono AI, LLC</title>
     <style>
-        :root {
-            --bg-color: #0b0e14;
-            --text-color: #e0e0e0;
-            --accent-color: #3b82f6; /* A slightly sharper, modern blue */
-            --card-bg: #161b22;
-            --border-color: #30363d;
-        }
-
-        * { box-sizing: border-box; }
-
+        /* General Reset & Body Styles */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
             margin: 0;
-            scroll-behavior: smooth;
+            padding: 0;
+            background-color: #000000; /* Deep black background */
+            color: #ffffff; /* White text for contrast */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
         }
 
-        /* Header & Logo */
+        /* Header containing the Logo */
         header {
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            background: rgba(11, 14, 20, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            padding: 30px 50px;
+            background-color: #0a0a0a; /* Slightly offset black for depth */
+            border-bottom: 1px solid #222222;
+            text-align: center; 
         }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-        }
-
-        /* Hero Section */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        
-        .hero {
-            padding: 8rem 0 5rem 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: #fff;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #8b949e;
-            max-width: 700px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        .badge {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
+        /* The low-code logo integration */
+        .site-logo {
+            max-width: 250px;
+            height: auto;
             display: inline-block;
         }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
+        /* Main Content Container */
+        main {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px;
         }
 
-        .cta-button:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        /* Grid Sections */
-        .section { padding: 6rem 0; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        
-        .card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: border-color 0.3s;
-        }
-
-        .card:hover { border-color: var(--accent-color); }
-
-        .card h3 { color: #fff; margin-top: 0; }
-
-        .founder-box {
-            background: linear-gradient(145deg, #1c2128, #161b22);
-            padding: 4rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+        /* CEO Profile Section */
+        .profile-section {
             display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
             align-items: center;
+            gap: 50px;
+            padding: 20px;
         }
 
-        .founder-text { flex: 2; min-width: 300px; }
-
-        /* Form Styling */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        input, select, textarea {
+        .profile-image {
             width: 100%;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            background: #0d1117;
-            border: 1px solid var(--border-color);
-            color: #fff;
-            border-radius: 6px;
-            font-family: inherit;
+            max-width: 350px;
         }
 
-        footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: #8b949e;
-            font-size: 0.85rem;
+        .profile-info h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 2.5rem;
+            color: #ffffff;
         }
 
-        .footer-links { margin-bottom: 1rem; }
-        .footer-links a { color: #8b949e; text-decoration: none; margin: 0 10px; }
-        .footer-links a:hover { color: var(--accent-color); }
+        .profile-info h2 {
+            font-size: 1.2rem;
+            color: #aaaaaa; /* Professional grey for the title */
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        .profile-info p {
+            font-size: 1.1rem;
+            color: #cccccc;
+        }
 
+        /* Responsive Design for Mobile Devices */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo-box">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="8" fill="#3b82f6"/>
-                <path d="M12 28V12H18C21.3137 12 24 14.6863 24 18C24 21.3137 21.3137 24 18 24H14V28H12ZM14 22H18C20.2091 22 22 20.2091 22 18C22 15.7909 20.2091 14 18 14H14V22Z" fill="white"/>
-                <path d="M22 28L28 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <span>POCONO AI</span>
-        </a>
-        <nav>
-            <a href="#contact" class="cta-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Get Started</a>
-        </nav>
+        <img src="logo.jpg" alt="Pocono AI, LLC Logo" class="site-logo">
     </header>
 
-    <div class="container">
-        
-        <section class="hero">
-            <span class="badge">Enterprise Data Sovereignty</span>
-            <h1>The Privacy Paradox: Solved.</h1>
-            <p>Secure, “plug-and-play” on-premises AI workstations for medical, legal, and financial professionals. Keep your most sensitive data off the cloud and under your roof.</p>
-            <a href="#contact" class="cta-button">Book a Live Demonstration</a>
-        </section>
-
-        <section class="grid section">
-            <div class="card">
-                <h3>100% Data Sovereignty</h3>
-                <p>Your inputs, prompts, and client data never leave your physical premises. We eliminate the liabilities inherent in public cloud platforms.</p>
-            </div>
-            <div class="card">
-                <h3>The Physical Air-Gap</h3>
-                <p>Our edge-compute nodes can operate entirely offline, making them immune to external breaches, scraping, and third-party API vulnerabilities.</p>
-            </div>
-            <div class="card">
-                <h3>Regulatory Compliance</h3>
-                <p>Engineered for HIPAA and attorney-client privilege. Featuring transparent audit logs for rigorous internal security requirements.</p>
+    <main>
+        <section class="profile-section">
+            <img src="hero.jpg" alt="Marcus Brett O'Dell" class="profile-image">
+            
+            <div class="profile-info">
+                <h1>Marcus Brett O'Dell</h1>
+                <h2>Founder, CEO, and Chief Technologist | Pocono AI, LLC</h2>
+                <p>
+                    Delivering secure, on-premises artificial intelligence and data solutions. Specializing in advanced Retrieval-Augmented Generation (RAG) and local AI system optimization for medical and legal practices.
+                </p>
             </div>
         </section>
-
-        <section class="section">
-            <div class="founder-box">
-                <div class="founder-text">
-                    <h2 style="color:#fff; margin-top:0;">Meet the Founder</h2>
-                    <p><strong>Marcus O'Dell</strong> is the Founder, CEO, and Chief Technologist of Pocono AI, LLC. With over 15 years in Enterprise IT and a decade as a Senior MySQL Database Administrator, Marcus specializes in high-stakes data architecture.</p>
-                    <p>Holding a Master’s Degree in Psychology from Duquesne University, he ensures that Pocono AI's localized infrastructures are not just cryptographically secure, but intuitively designed for high-pressure professional workflows.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="contact-form">
-                <h2 style="text-align: center; color: #fff; margin-top: 0;">Secure Your Practice</h2>
-                <p style="text-align: center; color: #8b949e; margin-bottom: 2rem;">Schedule a live, off-grid demonstration.</p>
-                <form action="#" method="POST">
-                    <input type="text" name="name" placeholder="Full Name" required>
-                    <input type="email" name="email" placeholder="Professional Email" required>
-                    <select name="industry">
-                        <option value="" disabled selected>Select Industry</option>
-                        <option value="legal">Legal Practice</option>
-                        <option value="medical">Medical / Healthcare</option>
-                        <option value="finance">Financial Services</option>
-                        <option value="other">Other High-Compliance</option>
-                    </select>
-                    <textarea name="message" rows="4" placeholder="Briefly describe your data security requirements..."></textarea>
-                    <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">Send Request</button>
-                </form>
-            </div>
-        </section>
-
-    </div>
-
-    <footer>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="mailto:marcus@poconoai.com">Contact Support</a>
-        </div>
-        <p>&copy; 2026 Pocono AI, LLC. All Rights Reserved. | East Stroudsburg, PA</p>
-        <p style="font-size: 0.7rem; margin-top: 1rem; opacity: 0.5;">Protected by Enterprise-Grade Security Standards.</p>
-    </footer>
+    </main>
 
 </body>
 </html>
