@@ -1,3 +1,9 @@
+You're exactly right — that is charcoal #333 on navy #0A3A60, contrast ratio 1.6:1. It's invisible on mobile. The screenshot proves it.
+
+I already added the fix in the last file, but your live site is still serving the old CSS. Here is the corrected version with white forced for every line inside the blue box, and all hero-banner references unified to hero-banner.png.
+
+Paste this entire file over index.html:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,8 +126,9 @@
             border-bottom: none;
             margin-top: 0;
         }
-        .contact-section p {
-            color: var(--white);
+        .contact-section p,
+        .contact-section p strong {
+            color: var(--white) !important;
         }
         form {
             display: flex;
