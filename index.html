@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,27 +81,25 @@
             color: var(--charcoal);
         }
         
-        /* FIX 1: Tighter Sentinel Node Sizing (Centered Smaller) */
         .product-spotlight-section {
             text-align: center;
-            margin: 40px auto; /* Reduced margin slightly */
+            margin: 40px auto;
             max-width: 100%;
         }
         .product-spotlight-section img {
             width: 100%;
-            max-width: 500px; /* Reduced from 800px for a tighter, centered look */
+            max-width: 500px;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* FIX 2: Added margin for Mobile Integration Section pacing */
         .two-column-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
-            margin-top: 60px; /* Added more space above after the Capabilities grid */
+            margin-top: 60px;
             background-color: var(--white);
         }
         .two-column-section h2 {
@@ -233,22 +232,40 @@
             text-decoration: underline;
         }
         
-        /* FIX 3: Mobile responsiveness spacing/framing for image column */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--teal);
+            color: var(--white);
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #136a73;
+        }
+        .cta-button-light {
+            background-color: var(--light-gray);
+            color: var(--navy-blue);
+            border: 2px solid var(--white);
+        }
+
         @media (max-width: 768px) {
             .two-column-section {
                 grid-template-columns: 1fr;
             }
-            /* Add breathing room to the stacked image on mobile */
             .two-column-section .image-column {
                 margin-top: 20px;
-                padding: 0 10px; /* Slight framing offset on phones */
+                padding: 0 10px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="hero-banner.png" alt="Pocono AI company banner featuring a professional portrait of the CEO, the company logo, and the text: Secure. Local. Intelligent." width="1200" height="400">
+        <img src="hero-banner.png" alt="Pocono AI company banner" width="1200" height="400">
     </header>
     <main>
         <section>
@@ -257,75 +274,100 @@
             <p style="text-align: center; max-width: 800px; margin: 20px auto 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
         </section>
 
-        <section class="product-spotlight-section">
-            <img src="sentinel-node.png" alt="Detailed product spotlight for the Pocono AI Sentinel Node, explaining how it solves the problem of cloud risk and PHI leakage using local sentinel infrastructure based on Dell hardware." width="1000" height="1000">
+        <section id="insights">
+            <h2>Founder Insights & Industry Briefings</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Direct analysis from Marcus O'Dell on sovereign AI and the ethical necessity of local computation.</p>
+            <div class="value-grid">
+                <article class="value-card" style="border-top: 4px solid var(--teal);">
+                    <h3 style="font-size: 1.2em; color: var(--navy-blue);">Building AI for the Ignored: Why Local is an Ethical Necessity</h3>
+                    <p style="font-size: 0.95em; color: var(--charcoal);">Most AI is built for people without cognitive fog, ignoring vulnerable populations. We engineer private, local systems that reclaim "good hours" from chronic illness without compromising privacy.</p>
+                    <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_disabilityinclusion-accessibilitytech-localai-activity-7450476082220130305-ak4-?utm_source=share&utm_medium=member_android&rcm=ACoAAAs1RK8BtDikeO4yCiYgoV2y-OnW1tynvnw" target="_blank" style="color: var(--teal); font-weight: bold; text-decoration: none;">Read on LinkedIn &rarr;</a>
+                </article>
+                <article class="value-card" style="border-top: 4px solid var(--teal);">
+                    <h3 style="font-size: 1.2em; color: var(--navy-blue);">The Privacy Paradox</h3>
+                    <p style="font-size: 0.95em; color: var(--charcoal);">Medical practices need AI to survive administrative crush, but public cloud servers create unacceptable liability. The solution is zero-telemetry hardware behind your own firewall.</p>
+                    <a href="https://www.linkedin.com/in/marcus-o-dell-7a7b8352" target="_blank" style="color: var(--teal); font-weight: bold; text-decoration: none;">View Profile &rarr;</a>
+                </article>
+                <article class="value-card" style="border-top: 4px solid var(--teal);">
+                    <h3 style="font-size: 1.2em; color: var(--navy-blue);">The 90-Day ROI of Local CapEx</h3>
+                    <p style="font-size: 0.95em; color: var(--charcoal);">Cloud subscriptions bleed budgets dry. By investing in local turnkey assets like the Sentinel Node, practices achieve 100% ROI in under three months by offsetting scribe costs.</p>
+                    <a href="https://www.linkedin.com/in/marcus-o-dell-7a7b8352" target="_blank" style="color: var(--teal); font-weight: bold; text-decoration: none;">View Profile &rarr;</a>
+                </article>
+            </div>
         </section>
+
+        <section class="product-spotlight-section">
+            <img src="sentinel-node.png" alt="Pocono AI Sentinel Node Specifications" width="500" height="500">
+        </section>
+
         <section>
             <h2>Strategic Value & Core Capabilities</h2>
             <div class="value-grid">
                 <article class="value-card">
                     <h3>Absolute Data Sovereignty</h3>
-                    <p>Our localized large language models operate entirely on-premise with a zero-PHI-exfiltration architecture. Eliminate external data leakage risks while maintaining full SOC 2 Type 1 and HIPAA compliance readiness.</p>
+                    <p>Localized large language models operating entirely on-premise with zero-PHI-exfiltration. Maintain full SOC 2 and HIPAA compliance readiness.</p>
                 </article>
                 <article class="value-card">
                     <h3>The Sentinel Node Hardware</h3>
-                    <p>Turnkey hardware delivery featuring our proprietary Sentinel Node. A secure, plug-and-play local computation environment that eliminates public cloud dependency and scales seamlessly with your practice.</p>
+                    <p>Turnkey Hardware-as-a-Service on Dell Precision workstations. A secure, plug-and-play environment that scales with your practice.</p>
                 </article>
                 <article class="value-card">
                     <h3>Managed SLA & Deployment</h3>
-                    <p>Continuous model optimization and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
+                    <p>Continuous model optimization and 4-hour on-site hardware swap support tailored for high-liability corporate environments.</p>
                 </article>
             </div>
         </section>
+
         <section class="two-column-section">
             <div class="text-column">
                 <h2>Seamless Local Integration</h2>
-                <p>Experience the power of the Sentinel Node directly from your mobile device. Our optimized infrastructure utilizes robust local hardware—featuring powerful Dell workstations operating securely under your desk—to deliver a fluid, professional interface via Anything LLM. Secure your practice's workflow without ever relying on external cloud providers.</p>
+                <p>Experience the power of the Sentinel Node directly from your mobile device. Our infrastructure utilizes robust Dell workstations operating securely under your desk to deliver a fluid, professional interface via Anything LLM.</p>
             </div>
             <div class="image-column">
-                <img src="integration-demo.png" alt="A professional viewing clinical data on a smartphone, bridged locally to a Dell workstation running Pocono AI software and Anything LLM." width="500" height="500">
+                <img src="integration-demo.png" alt="Mobile AI Interface Integration" width="500" height="500">
             </div>
         </section>
 
         <section class="trust-section">
             <h3>Why Trust Pocono AI, LLC?</h3>
-            <p>Healthcare and legal IT requires immense trust and bulletproof infrastructure. With over a decade of engineering high-concurrency, zero-downtime relational databases, our systems are built from the ground up for absolute reliability, security, and performance. We bridge the gap between technical rigor and human-centric systems.</p>
+            <p>Healthcare and legal IT requires bulletproof infrastructure. With over a decade of DBA expertise, we bridge technical rigor with human-centric systems to ensure absolute reliability and data protection.</p>
         </section>
 
         <section class="contact-section">
-            <h2>Sales, Acquisitions & Executive Inquiries</h2>
-            <p>To schedule a clinical node deployment consultation, request full financial pro formas, or discuss acquisition viability, please contact the executive team below.</p>
-            <p style="margin-top:10px;"><strong>Call:</strong> <a href="tel:+14845424769" style="color: var(--white); text-decoration: underline;">484-542-4769</a> | <strong>Location:</strong> East Stroudsburg, Pennsylvania</p>
+            <h2 style="text-align: center;">Take the Next Step</h2>
+            <p style="text-align: center;">Choose the path that works best for your practice.</p>
             
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="#" class="cta-button cta-button-light">Download Sentinel Node Spec Sheet</a>
+                <a href="#" class="cta-button">Book 15-Min Feasibility Call</a>
+            </div>
+
+            <div style="background-color: rgba(255,255,255,0.1); padding: 25px; border-radius: 8px; margin: 30px auto; max-width: 600px;">
+                <h3 style="color: var(--white); margin-top: 0; font-size: 1.2em;">Direct Executive Access</h3>
+                <p><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: var(--white); text-decoration: underline;">484-542-4769</a><br>
+                <small><em>No PHI by text. Calls returned within business hours.</em></small></p>
+                <p><strong>Secure Email:</strong> <a href="mailto:marcus@poconoai.com" style="color: var(--white); text-decoration: underline;">marcus@poconoai.com</a> (via Proton)</p>
+            </div>
+
+            <h3 style="color: var(--white); margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; text-align: center;">Formal Inquiries</h3>
             <form action="https://formspree.io/f/mgorojey" method="POST">
-                <label for="contact-name" class="sr-only">Full Name and Title</label>
-                <input type="text" id="contact-name" name="name" placeholder="Full Name & Title" required autocomplete="name">
-                
-                <label for="contact-org" class="sr-only">Organization or Firm Name</label>
-                <input type="text" id="contact-org" name="organization" placeholder="Organization / Firm" required autocomplete="organization">
-                
-                <label for="contact-email" class="sr-only">Professional Email Address</label>
-                <input type="email" id="contact-email" name="_replyto" placeholder="Professional Email Address" required autocomplete="email">
-                
-                <label for="inquiry-type" class="sr-only">Type of Inquiry</label>
-                <select id="inquiry-type" name="inquiry_type" required>
+                <input type="text" name="name" placeholder="Full Name & Title" required>
+                <input type="text" name="organization" placeholder="Organization / Firm" required>
+                <input type="email" name="_replyto" placeholder="Professional Email Address" required>
+                <select name="inquiry_type" required>
                     <option value="" disabled selected>Select Inquiry Type...</option>
-                    <option value="Hardware/Node Sales">Hardware / Node Sales</option>
-                    <option value="Investment/Acquisition">Investment / Acquisition</option>
-                    <option value="MSP Partnership">MSP Partnership</option>
-                    <option value="Other Executive Inquiry">Other Executive Inquiry</option>
+                    <option value="Hardware Sales">Hardware / Node Sales</option>
+                    <option value="Investment">Investment / Acquisition</option>
+                    <option value="Partnership">MSP Partnership</option>
                 </select>
-                
-                <label for="contact-message" class="sr-only">Nature of inquiry</label>
-                <textarea id="contact-message" name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
-                
+                <textarea name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
                 <input type="text" name="_gotcha" style="display:none">
                 <button type="submit">Submit Secure Inquiry</button>
             </form>
             
             <div class="legal-disclaimer">
                 <div class="compliance-badge">HIPAA Compliant Architecture | BAA Ready | SOC 2 Type 1 Posture</div>
-                <p>All communications are routed directly to the Founder & CEO. Information submitted is subject to strict confidentiality and data protection protocols.</p>
+                <p>Information submitted is subject to strict confidentiality protocols. All data remains within the Pocono AI secure network.</p>
             </div>
         </section>
     </main>
@@ -339,3 +381,5 @@
     </footer>
 </body>
 </html>
+
+```
