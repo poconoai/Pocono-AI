@@ -211,7 +211,6 @@
             border-color: var(--accent-color);
         }
         
-        /* Dropdown specific styling */
         select.form-control {
             cursor: pointer;
             appearance: auto;
@@ -244,7 +243,7 @@
             background-color: #005a9e;
         }
 
-        /* --- Footer --- */
+        /* --- Footer & Legal Nav Styles --- */
         footer {
             background-color: var(--surface-color);
             border-top: 1px solid var(--border-color);
@@ -253,6 +252,25 @@
             margin-top: 40px;
             color: var(--text-muted);
             font-size: 0.9rem;
+        }
+
+        .footer-legal-nav {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal-nav a {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-legal-nav a:hover {
+            color: var(--text-main);
         }
 
         /* --- Responsive Design --- */
@@ -375,6 +393,11 @@
     </main>
 
     <footer>
+        <div class="footer-legal-nav">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="conditions.html">Conditions of Use</a>
+        </div>
         <p>&copy; 2026 Pocono AI, LLC. All Rights Reserved.</p>
         <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">A Reeferee Digital Project</p>
     </footer>
