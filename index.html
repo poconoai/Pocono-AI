@@ -1,3 +1,12 @@
+I have incorporated this new image into your website code. You are right; it looks very professional.
+The filename you should use for this image is **sentinel-node.png**.
+### Instructions:
+ 1. Save the generated image above to your computer.
+ 2. Name the image file exactly: **sentinel-node.png**
+ 3. Place this image file in the same folder as your index.html file.
+ 4. Copy and paste the entire code block below to replace your existing index.html.
+I have placed the image in a new spotlight section right after the opening "Sovereign AI Infrastructure" paragraph, as it perfectly introduces your primary product (the Sentinel Node) before the deeper capability sections.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +89,21 @@
             color: var(--charcoal);
         }
         
-        /* New CSS for the Two-Column Integration Section */
+        /* CSS for the Sentinel Node Spotlight Image */
+        .product-spotlight-section {
+            text-align: center;
+            margin: 50px auto;
+            max-width: 100%;
+        }
+        .product-spotlight-section img {
+            width: 100%;
+            max-width: 800px; /* Limits size on desktop */
+            height: auto; /* Maintains aspect ratio */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* CSS for the Two-Column Integration Section */
         .two-column-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -219,7 +242,7 @@
             text-decoration: underline;
         }
         
-        /* Mobile responsiveness for the new section */
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .two-column-section {
                 grid-template-columns: 1fr;
@@ -238,6 +261,9 @@
             <p style="text-align: center; max-width: 800px; margin: 20px auto 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
         </section>
 
+        <section class="product-spotlight-section">
+            <img src="sentinel-node.png" alt="Detailed product spotlight for the Pocono AI Sentinel Node, explaining how it solves the problem of cloud risk and PHI leakage using local sentinel infrastructure based on Dell hardware." width="1000" height="1000">
+        </section>
         <section class="two-column-section">
             <div class="text-column">
                 <h2>Seamless Local Integration</h2>
@@ -247,6 +273,7 @@
                 <img src="integration-demo.png" alt="A professional viewing clinical data on a smartphone, bridged locally to a Dell workstation running Pocono AI software and Anything LLM." width="500" height="500">
             </div>
         </section>
+
         <section>
             <h2>Strategic Value & Core Capabilities</h2>
             <div class="value-grid">
@@ -317,3 +344,5 @@
     </footer>
 </body>
 </html>
+
+```
