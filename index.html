@@ -1,271 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pocono AI, LLC provides secure, local, and intelligent on-premise AI infrastructure for high-liability medical and legal practices.">
-    <title>Pocono AI, LLC | Secure. Local. Intelligent.</title>
-    <link rel="canonical" href="https://poconoai.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pocono AI, LLC provides secure, local, and intelligent on-premise AI infrastructure for high-liability medical and legal practices.">
+<title>Pocono AI, LLC | Secure. Local. Intelligent.</title>
+<style>
+/* Modern, Clean Corporate Palette */
+:root {
+  --navy-blue: #0A3A60;
+  --teal: #188B96;
+  --charcoal: #333333;
+  --light-gray: #F5F7FA;
+  --white: #FFFFFF;
+}
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--white);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
 
-    <!-- Open Graph for LinkedIn and Facebook -->
-    <meta property="og:title" content="Pocono AI, LLC | Secure On-Premise AI for Medical & Legal">
-    <meta property="og:description" content="Local RAG infrastructure that never touches the public cloud.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poconoai.com/">
-    <meta property="og:image" content="https://poconoai.com/hero-banner.webp">
-    <meta name="twitter:card" content="summary_large_image">
+/* Screen Reader Only Class for Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 
-    <!-- LocalBusiness Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Pocono AI, LLC",
-      "url": "https://poconoai.com",
-      "logo": "https://poconoai.com/hero-banner.webp",
-      "image": "https://poconoai.com/hero-banner.webp",
-      "telephone": "+1-484-542-4769",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "East Stroudsburg",
-        "addressRegion": "PA",
-        "postalCode": "18301",
-        "addressCountry": "US"
-      },
-      "description": "On-premise Retrieval-Augmented Generation solutions for medical and legal practices requiring HIPAA and data sovereignty."
-    }
-    </script>
+/* Hero Image Section */
+header {
+  width: 100%;
+  background-color: var(--white);
+  text-align: center;
+}
+header img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
-    <style>
-        :root {
-            --navy-blue: #0A3A60;
-            --teal: #188B96;
-            --charcoal: #333333;
-            --light-gray: #F5F7FA;
-            --white: #FFFFFF;
-        }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--white);
-            color: var(--charcoal);
-            line-height: 1.6;
-        }
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-        header {
-            width: 100%;
-            background-color: var(--white);
-            text-align: center;
-        }
-        header img {
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        main {
-            display: block;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        h1 {
-            color: var(--navy-blue);
-            font-size: 2.2em;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: var(--teal);
-            font-size: 1.5em;
-            border-bottom: 2px solid var(--light-gray);
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        p {
-            font-size: 1.1em;
-            color: var(--charcoal);
-        }
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .value-card {
-            background-color: var(--light-gray);
-            padding: 25px;
-            border-radius: 8px;
-            border-top: 4px solid var(--navy-blue);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .value-card h3 {
-            margin-top: 0;
-            color: var(--navy-blue);
-        }
-        .contact-section {
-            background-color: var(--navy-blue);
-            color: var(--white);
-            padding: 40px;
-            border-radius: 8px;
-            margin-top: 50px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .contact-section h2 {
-            color: var(--white);
-            border-bottom: none;
-            margin-top: 0;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1em;
-            box-sizing: border-box;
-            background-color: var(--white);
-            color: var(--charcoal);
-        }
-        button {
-            background-color: var(--teal);
-            color: var(--white);
-            border: none;
-            padding: 15px 20px;
-            font-size: 1.1em;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #136a73;
-        }
-        .legal-disclaimer {
-            font-size: 0.85em;
-            color: #D0DDE6;
-            margin-top: 15px;
-            text-align: center;
-            line-height: 1.4;
-        }
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background-color: var(--light-gray);
-            color: #666;
-            margin-top: 50px;
-            font-size: 0.9em;
-            border-top: 1px solid #E0E0E0;
-        }
-        .footer-links {
-            margin-top: 10px;
-            font-size: 0.85em;
-        }
-        .footer-links a {
-            color: var(--navy-blue);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
+/* Main Content Container */
+main {
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Typography */
+h1 {
+  color: var(--navy-blue);
+  font-size: 2.2em;
+  text-align: center;
+  margin-bottom: 5px;
+}
+h2 {
+  color: var(--teal);
+  font-size: 1.5em;
+  border-bottom: 2px solid var(--light-gray);
+  padding-bottom: 10px;
+  margin-top: 40px;
+}
+p {
+  font-size: 1.1em;
+  color: var(--charcoal);
+}
+
+/* Value Proposition Grid */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+.value-card {
+  background-color: var(--light-gray);
+  padding: 25px;
+  border-radius: 8px;
+  border-top: 4px solid var(--navy-blue);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.value-card h3 {
+  margin-top: 0;
+  color: var(--navy-blue);
+}
+
+/* Trust Section */
+.trust-section {
+  background-color: var(--light-gray);
+  padding: 30px;
+  border-left: 5px solid var(--teal);
+  margin-top: 40px;
+  border-radius: 4px;
+}
+.trust-section h3 {
+  color: var(--navy-blue);
+  margin-top: 0;
+}
+
+/* Contact Section */
+.contact-section {
+  background-color: var(--navy-blue);
+  color: var(--white);
+  padding: 40px;
+  border-radius: 8px;
+  margin-top: 50px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.contact-section h2 {
+  color: var(--white);
+  border-bottom: none;
+  margin-top: 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: var(--white);
+  color: var(--charcoal);
+}
+
+/* WCAG Keyboard Focus Accessibility */
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+button {
+  background-color: var(--teal);
+  color: var(--white);
+  border: none;
+  padding: 15px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #136a73;
+}
+.legal-disclaimer {
+  font-size: 0.85em;
+  color: #A0B2C1;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 1.5;
+}
+.compliance-badge {
+  color: var(--teal);
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: var(--light-gray);
+  color: #666;
+  margin-top: 50px;
+  font-size: 0.9em;
+  border-top: 1px solid #E0E0E0;
+}
+.footer-links {
+  margin-top: 10px;
+  font-size: 0.85em;
+}
+.footer-links a {
+  color: var(--navy-blue);
+  text-decoration: none;
+  margin: 0 10px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
 <body>
+<header>
+  <img src="hero-banner.png" alt="Pocono AI company banner featuring a professional portrait of the CEO, the company logo, and the text: Secure. Local. Intelligent.">
+</header>
+<main>
+  <section>
+    <h1>Sovereign AI Infrastructure for High-Liability Practices</h1>
+    <p style="text-align: center; font-weight: bold; color: var(--teal); margin-top: 0; font-size: 1.3em;">Zero cloud risk. Maximum billable efficiency.</p>
+    <p style="text-align: center; max-width: 800px; margin: 20px auto 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
+  </section>
 
-    <header>
-        <img src="hero-banner.webp" alt="Pocono AI company banner featuring a professional portrait of the CEO, the company logo, and the text: Secure. Local. Intelligent." width="1200" height="400">
-    </header>
+  <section>
+    <h2>Strategic Value & Core Capabilities</h2>
+    <div class="value-grid">
+      <article class="value-card">
+        <h3>Absolute Data Sovereignty</h3>
+        <p>Our localized large language models operate entirely on-premise with a zero-PHI-exfiltration architecture. Eliminate external data leakage risks while maintaining full SOC 2 Type 1 and HIPAA compliance readiness.</p>
+      </article>
+      <article class="value-card">
+        <h3>The Sentinel Node Hardware</h3>
+        <p>Turnkey hardware delivery featuring our proprietary Sentinel Node. A secure, plug-and-play local computation environment that eliminates public cloud dependency and scales seamlessly with your practice.</p>
+      </article>
+      <article class="value-card">
+        <h3>Managed SLA & Deployment</h3>
+        <p>Continuous model optimization and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
+      </article>
+    </div>
+  </section>
 
-    <main>
-        <section>
-            <h1>Sovereign AI Infrastructure for High-Liability Practices</h1>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
-            <p style="text-align: center; font-size: 0.95em; color: #555; margin-top: 10px;">Founded in East Stroudsburg, serving Monroe County practices since 2024</p>
-        </section>
+  <section class="trust-section">
+    <h3>Why Trust Pocono AI, LLC?</h3>
+    <p>Healthcare and legal IT requires immense trust and bulletproof infrastructure. With over a decade of engineering high-concurrency, zero-downtime relational databases, our systems are built from the ground up for absolute reliability, security, and performance. We bridge the gap between technical rigor and human-centric systems.</p>
+  </section>
 
-        <section>
-            <h2>Strategic Value & Core Capabilities</h2>
-            
-            <div class="value-grid">
-                <article class="value-card">
-                    <h3>Absolute Data Sovereignty</h3>
-                    <p>Hardware and localized large language models operate entirely on-premise. Eliminate external data leakage risks while maintaining full SOC 2 Type 1 and HIPAA compliance readiness.</p>
-                </article>
-                <article class="value-card">
-                    <h3>Managed SLA & Deployment</h3>
-                    <p>Turnkey hardware delivery, continuous model optimization, and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
-                </article>
-                <article class="value-card">
-                    <h3>Scalable Node Architecture</h3>
-                    <p>We install a local AI node in your office in one day, and your MSP can manage it. Simple expansion for clinics and firms across the Poconos.</p>
-                </article>
-            </div>
-        </section>
+  <section class="contact-section">
+    <h2>Sales, Acquisitions & Executive Inquiries</h2>
+    <p>To schedule a clinical node deployment consultation, request full financial pro formas, or discuss acquisition viability, please contact the executive team below.</p>
+    
+    <form action="https://formspree.io/f/mgorojey" method="POST">
+      <label for="contact-name" class="sr-only">Full Name and Title</label>
+      <input type="text" id="contact-name" name="name" placeholder="Full Name & Title" required>
+      
+      <label for="contact-org" class="sr-only">Organization or Firm Name</label>
+      <input type="text" id="contact-org" name="organization" placeholder="Organization / Firm" required>
+      
+      <label for="contact-email" class="sr-only">Professional Email Address</label>
+      <input type="email" id="contact-email" name="_replyto" placeholder="Professional Email Address" required>
+      
+      <label for="inquiry-type" class="sr-only">Type of Inquiry</label>
+      <select id="inquiry-type" name="inquiry_type" required>
+        <option value="" disabled selected>Select Inquiry Type...</option>
+        <option value="Hardware/Node Sales">Hardware / Node Sales</option>
+        <option value="Investment/Acquisition">Investment / Acquisition</option>
+        <option value="MSP Partnership">MSP Partnership</option>
+        <option value="Other Executive Inquiry">Other Executive Inquiry</option>
+      </select>
+      
+      <label for="contact-message" class="sr-only">Nature of inquiry</label>
+      <textarea id="contact-message" name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
+      
+      <button type="submit">Submit Secure Inquiry</button>
+    </form>
+    
+    <div class="legal-disclaimer">
+      <div class="compliance-badge">HIPAA Compliant Architecture | BAA Ready | SOC 2 Type 1 Posture</div>
+      <p>All communications are routed directly to the Founder & CEO. Information submitted is subject to strict confidentiality and data protection protocols.</p>
+    </div>
+  </section>
+</main>
 
-        <section class="contact-section">
-            <h2>Sales, Acquisitions & Executive Inquiries</h2>
-            <p>To schedule a clinical node deployment consultation, request full financial pro formas, or discuss acquisition viability, please contact the executive team below.</p>
-            <p style="margin-top:10px;"><strong>Phone:</strong> <a href="tel:+14845424769" style="color: var(--white); text-decoration: underline;">484-542-4769</a> | <strong>Location:</strong> East Stroudsburg, Pennsylvania</p>
-            
-            <form action="https://formspree.io/f/mgorojey" method="POST">
-                
-                <label for="contact-name" class="sr-only">Full Name and Title</label>
-                <input type="text" id="contact-name" name="name" placeholder="Full Name & Title" required autocomplete="name">
-                
-                <label for="contact-org" class="sr-only">Organization or Firm Name</label>
-                <input type="text" id="contact-org" name="organization" placeholder="Organization / Firm" required autocomplete="organization">
-                
-                <label for="contact-email" class="sr-only">Professional Email Address</label>
-                <input type="email" id="contact-email" name="_replyto" placeholder="Professional Email Address" required autocomplete="email">
-                
-                <label for="inquiry-type" class="sr-only">Type of Inquiry</label>
-                <select id="inquiry-type" name="inquiry_type" required>
-                    <option value="" disabled selected>Select Inquiry Type...</option>
-                    <option value="Hardware/Node Sales">Hardware / Node Sales</option>
-                    <option value="Investment/Acquisition">Investment / Acquisition</option>
-                    <option value="MSP Partnership">MSP Partnership</option>
-                    <option value="Other Executive Inquiry">Other Executive Inquiry</option>
-                </select>
-
-                <label for="contact-message" class="sr-only">Nature of inquiry</label>
-                <textarea id="contact-message" name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
-                
-                <button type="submit">Submit Secure Inquiry</button>
-            </form>
-            
-            <div class="legal-disclaimer">
-                <p>All communications are routed directly to the Founder & CEO. Information submitted is subject to strict confidentiality and data protection protocols.</p>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved. <br>
-        East Stroudsburg, Pennsylvania, USA</p>
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
-        </div>
-    </footer>
-
+<footer>
+  <p>&copy; 2026 Pocono AI, LLC. All rights reserved. <br>
+  East Stroudsburg, Pennsylvania, USA</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+  </div>
+</footer>
 </body>
 </html>
