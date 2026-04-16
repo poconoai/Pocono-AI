@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pocono AI, LLC | Secure. Local. Intelligent.</title>
+    <style>
+        /* Modern, Clean Corporate Palette */
+        :root {
+            --navy-blue: #0A3A60;
+            --teal: #188B96;
+            --charcoal: #333333;
+            --light-gray: #F5F7FA;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        /* Hero Image Section */
+        .hero-section {
+            width: 100%;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .hero-section img {
+            width: 100%;
+            max-width: 1200px; /* Keeps it from getting too stretched on huge monitors */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Typography */
+        h1 {
+            color: var(--navy-blue);
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--teal);
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: var(--charcoal);
+        }
+
+        /* Value Proposition Grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .value-card {
+            background-color: var(--light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid var(--navy-blue);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .value-card h3 {
+            margin-top: 0;
+            color: var(--navy-blue);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-section h2 {
+            color: var(--white);
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--teal);
+            color: var(--white);
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #136a73;
+        }
+
+        .legal-disclaimer {
+            font-size: 0.8em;
+            color: #A0B2C1;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--light-gray);
+            color: #666;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <img src="hero-banner.png" alt="Pocono AI, LLC - Secure. Local. Intelligent.">
+    </div>
+
+    <div class="container">
+
+        <h1>Sovereign AI Infrastructure for High-Liability Practices</h1>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
+
+        <h2>Strategic Value & Acquisition Highlights</h2>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <h3>Absolute Data Sovereignty</h3>
+                <p>Hardware and localized large language models operate entirely on-premise. Eliminate external data leakage risks while maintaining full SOC 2 Type 1 and HIPAA compliance readiness.</p>
+            </div>
+            <div class="value-card">
+                <h3>Managed SLA & Deployment</h3>
+                <p>Turnkey hardware delivery, continuous model optimization, and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
+            </div>
+            <div class="value-card">
+                <h3>Scalable Node Architecture</h3>
+                <p>Strategic expansion model currently targeting the PA/NJ/NY corridor via MSP channel partnerships, with a proven operational blueprint for rapid regional scaling.</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Acquisition & Executive Inquiries</h2>
+            <p>To request full financial pro formas, executive summaries, or to discuss acquisition viability, please contact the executive team below.</p>
+
+            <form action="https://formspree.io/f/mgorojey" method="POST">
+                <input type="text" name="name" placeholder="Full Name & Title" required>
+                <input type="text" name="organization" placeholder="Organization / Firm" required>
+                <input type="email" name="_replyto" placeholder="Professional Email Address" required>
+                <textarea name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
+                <button type="submit">Submit Inquiry</button>
+            </form>
+            <div class="legal-disclaimer">
+                All communications are routed directly to the Founder & CEO. Information submitted is subject to confidentiality protocols.
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Pocono AI, LLC. All rights reserved. <br>
+        East Stroudsburg, Pennsylvania
+    </footer>
+
+</body>
+</html>
