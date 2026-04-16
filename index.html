@@ -1,12 +1,3 @@
-I have incorporated this new image into your website code. You are right; it looks very professional.
-The filename you should use for this image is **sentinel-node.png**.
-### Instructions:
- 1. Save the generated image above to your computer.
- 2. Name the image file exactly: **sentinel-node.png**
- 3. Place this image file in the same folder as your index.html file.
- 4. Copy and paste the entire code block below to replace your existing index.html.
-I have placed the image in a new spotlight section right after the opening "Sovereign AI Infrastructure" paragraph, as it perfectly introduces your primary product (the Sentinel Node) before the deeper capability sections.
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,27 +80,27 @@ I have placed the image in a new spotlight section right after the opening "Sove
             color: var(--charcoal);
         }
         
-        /* CSS for the Sentinel Node Spotlight Image */
+        /* FIX 1: Tighter Sentinel Node Sizing (Centered Smaller) */
         .product-spotlight-section {
             text-align: center;
-            margin: 50px auto;
+            margin: 40px auto; /* Reduced margin slightly */
             max-width: 100%;
         }
         .product-spotlight-section img {
             width: 100%;
-            max-width: 800px; /* Limits size on desktop */
-            height: auto; /* Maintains aspect ratio */
+            max-width: 500px; /* Reduced from 800px for a tighter, centered look */
+            height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* CSS for the Two-Column Integration Section */
+        /* FIX 2: Added margin for Mobile Integration Section pacing */
         .two-column-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
-            margin-top: 50px;
+            margin-top: 60px; /* Added more space above after the Capabilities grid */
             background-color: var(--white);
         }
         .two-column-section h2 {
@@ -242,10 +233,15 @@ I have placed the image in a new spotlight section right after the opening "Sove
             text-decoration: underline;
         }
         
-        /* Mobile responsiveness */
+        /* FIX 3: Mobile responsiveness spacing/framing for image column */
         @media (max-width: 768px) {
             .two-column-section {
                 grid-template-columns: 1fr;
+            }
+            /* Add breathing room to the stacked image on mobile */
+            .two-column-section .image-column {
+                margin-top: 20px;
+                padding: 0 10px; /* Slight framing offset on phones */
             }
         }
     </style>
@@ -264,16 +260,6 @@ I have placed the image in a new spotlight section right after the opening "Sove
         <section class="product-spotlight-section">
             <img src="sentinel-node.png" alt="Detailed product spotlight for the Pocono AI Sentinel Node, explaining how it solves the problem of cloud risk and PHI leakage using local sentinel infrastructure based on Dell hardware." width="1000" height="1000">
         </section>
-        <section class="two-column-section">
-            <div class="text-column">
-                <h2>Seamless Local Integration</h2>
-                <p>Experience the power of the Sentinel Node directly from your mobile device. Our optimized infrastructure utilizes robust local hardware—featuring powerful Dell workstations operating securely under your desk—to deliver a fluid, professional interface via Anything LLM. Secure your practice's workflow without ever relying on external cloud providers.</p>
-            </div>
-            <div class="image-column">
-                <img src="integration-demo.png" alt="A professional viewing clinical data on a smartphone, bridged locally to a Dell workstation running Pocono AI software and Anything LLM." width="500" height="500">
-            </div>
-        </section>
-
         <section>
             <h2>Strategic Value & Core Capabilities</h2>
             <div class="value-grid">
@@ -289,6 +275,15 @@ I have placed the image in a new spotlight section right after the opening "Sove
                     <h3>Managed SLA & Deployment</h3>
                     <p>Continuous model optimization and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
                 </article>
+            </div>
+        </section>
+        <section class="two-column-section">
+            <div class="text-column">
+                <h2>Seamless Local Integration</h2>
+                <p>Experience the power of the Sentinel Node directly from your mobile device. Our optimized infrastructure utilizes robust local hardware—featuring powerful Dell workstations operating securely under your desk—to deliver a fluid, professional interface via Anything LLM. Secure your practice's workflow without ever relying on external cloud providers.</p>
+            </div>
+            <div class="image-column">
+                <img src="integration-demo.png" alt="A professional viewing clinical data on a smartphone, bridged locally to a Dell workstation running Pocono AI software and Anything LLM." width="500" height="500">
             </div>
         </section>
 
@@ -344,5 +339,3 @@ I have placed the image in a new spotlight section right after the opening "Sove
     </footer>
 </body>
 </html>
-
-```
