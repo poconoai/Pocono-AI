@@ -79,6 +79,28 @@
             font-size: 1.1em;
             color: var(--charcoal);
         }
+        
+        /* New CSS for the Two-Column Integration Section */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+            background-color: var(--white);
+        }
+        .two-column-section h2 {
+            margin-top: 0;
+            border-bottom: none;
+        }
+        .image-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: block;
+        }
+
         .value-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -196,6 +218,13 @@
         .footer-links a:hover {
             text-decoration: underline;
         }
+        
+        /* Mobile responsiveness for the new section */
+        @media (max-width: 768px) {
+            .two-column-section {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -209,6 +238,15 @@
             <p style="text-align: center; max-width: 800px; margin: 20px auto 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
         </section>
 
+        <section class="two-column-section">
+            <div class="text-column">
+                <h2>Seamless Local Integration</h2>
+                <p>Experience the power of the Sentinel Node directly from your mobile device. Our optimized infrastructure utilizes robust local hardware—featuring powerful Dell workstations operating securely under your desk—to deliver a fluid, professional interface via Anything LLM. Secure your practice's workflow without ever relying on external cloud providers.</p>
+            </div>
+            <div class="image-column">
+                <img src="integration-demo.png" alt="A professional viewing clinical data on a smartphone, bridged locally to a Dell workstation running Pocono AI software and Anything LLM." width="500" height="500">
+            </div>
+        </section>
         <section>
             <h2>Strategic Value & Core Capabilities</h2>
             <div class="value-grid">
