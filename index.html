@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pocono AI, LLC provides secure, local, and intelligent on-premise AI infrastructure for high-liability medical and legal practices.">
     <title>Pocono AI, LLC | Secure. Local. Intelligent.</title>
     <style>
         /* Modern, Clean Corporate Palette */
@@ -23,23 +24,37 @@
             line-height: 1.6;
         }
 
+        /* Screen Reader Only Class for Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
         /* Hero Image Section */
-        .hero-section {
+        header {
             width: 100%;
             background-color: var(--white);
             text-align: center;
         }
-
-        .hero-section img {
+        
+        header img {
             width: 100%;
-            max-width: 1200px; /* Keeps it from getting too stretched on huge monitors */
+            max-width: 1200px;
             height: auto;
             display: block;
             margin: 0 auto;
         }
 
         /* Main Content Container */
-        .container {
+        main {
+            display: block;
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -110,7 +125,7 @@
             margin-top: 20px;
         }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 14px;
             border: none;
@@ -118,6 +133,8 @@
             font-family: inherit;
             font-size: 1em;
             box-sizing: border-box;
+            background-color: var(--white);
+            color: var(--charcoal);
         }
 
         button {
@@ -137,10 +154,11 @@
         }
 
         .legal-disclaimer {
-            font-size: 0.8em;
+            font-size: 0.85em;
             color: #A0B2C1;
             margin-top: 15px;
             text-align: center;
+            line-height: 1.4;
         }
 
         /* Footer */
@@ -151,59 +169,101 @@
             color: #666;
             margin-top: 50px;
             font-size: 0.9em;
+            border-top: 1px solid #E0E0E0;
+        }
+        
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+        
+        .footer-links a {
+            color: var(--navy-blue);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-section">
-        <img src="hero-banner.png" alt="Pocono AI, LLC - Secure. Local. Intelligent.">
-    </div>
+    <header>
+        <img src="hero-banner.png" alt="Pocono AI company banner featuring a professional portrait of the CEO, the company logo, and the text: Secure. Local. Intelligent.">
+    </header>
 
-    <div class="container">
+    <main>
+        <section>
+            <h1>Sovereign AI Infrastructure for High-Liability Practices</h1>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
+        </section>
 
-        <h1>Sovereign AI Infrastructure for High-Liability Practices</h1>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
-
-        <h2>Strategic Value & Acquisition Highlights</h2>
-
-        <div class="value-grid">
-            <div class="value-card">
-                <h3>Absolute Data Sovereignty</h3>
-                <p>Hardware and localized large language models operate entirely on-premise. Eliminate external data leakage risks while maintaining full SOC 2 Type 1 and HIPAA compliance readiness.</p>
+        <section>
+            <h2>Strategic Value & Core Capabilities</h2>
+            
+            <div class="value-grid">
+                <article class="value-card">
+                    <h3>Absolute Data Sovereignty</h3>
+                    <p>Hardware and localized large language models operate entirely on-premise. Eliminate external data leakage risks while maintaining full SOC 2 Type 1 and HIPAA compliance readiness.</p>
+                </article>
+                <article class="value-card">
+                    <h3>Managed SLA & Deployment</h3>
+                    <p>Turnkey hardware delivery, continuous model optimization, and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
+                </article>
+                <article class="value-card">
+                    <h3>Scalable Node Architecture</h3>
+                    <p>Strategic expansion model targeting rapid regional scaling via MSP channel partnerships, providing a robust operational blueprint for enterprise integration.</p>
+                </article>
             </div>
-            <div class="value-card">
-                <h3>Managed SLA & Deployment</h3>
-                <p>Turnkey hardware delivery, continuous model optimization, and managed service level agreements tailored for medical clinics, legal firms, and high-liability corporate environments.</p>
-            </div>
-            <div class="value-card">
-                <h3>Scalable Node Architecture</h3>
-                <p>Strategic expansion model currently targeting the PA/NJ/NY corridor via MSP channel partnerships, with a proven operational blueprint for rapid regional scaling.</p>
-            </div>
-        </div>
+        </section>
 
-        <div class="contact-section">
-            <h2>Acquisition & Executive Inquiries</h2>
-            <p>To request full financial pro formas, executive summaries, or to discuss acquisition viability, please contact the executive team below.</p>
-
+        <section class="contact-section">
+            <h2>Sales, Acquisitions & Executive Inquiries</h2>
+            <p>To schedule a clinical node deployment consultation, request full financial pro formas, or discuss acquisition viability, please contact the executive team below.</p>
+            
             <form action="https://formspree.io/f/mgorojey" method="POST">
-                <input type="text" name="name" placeholder="Full Name & Title" required>
-                <input type="text" name="organization" placeholder="Organization / Firm" required>
-                <input type="email" name="_replyto" placeholder="Professional Email Address" required>
-                <textarea name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
-                <button type="submit">Submit Inquiry</button>
-            </form>
-            <div class="legal-disclaimer">
-                All communications are routed directly to the Founder & CEO. Information submitted is subject to confidentiality protocols.
-            </div>
-        </div>
+                
+                <label for="contact-name" class="sr-only">Full Name and Title</label>
+                <input type="text" id="contact-name" name="name" placeholder="Full Name & Title" required>
+                
+                <label for="contact-org" class="sr-only">Organization or Firm Name</label>
+                <input type="text" id="contact-org" name="organization" placeholder="Organization / Firm" required>
+                
+                <label for="contact-email" class="sr-only">Professional Email Address</label>
+                <input type="email" id="contact-email" name="_replyto" placeholder="Professional Email Address" required>
+                
+                <label for="inquiry-type" class="sr-only">Type of Inquiry</label>
+                <select id="inquiry-type" name="inquiry_type" required>
+                    <option value="" disabled selected>Select Inquiry Type...</option>
+                    <option value="Hardware/Node Sales">Hardware / Node Sales</option>
+                    <option value="Investment/Acquisition">Investment / Acquisition</option>
+                    <option value="MSP Partnership">MSP Partnership</option>
+                    <option value="Other Executive Inquiry">Other Executive Inquiry</option>
+                </select>
 
-    </div>
+                <label for="contact-message" class="sr-only">Nature of inquiry</label>
+                <textarea id="contact-message" name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
+                
+                <button type="submit">Submit Secure Inquiry</button>
+            </form>
+            
+            <div class="legal-disclaimer">
+                <p>All communications are routed directly to the Founder & CEO. Information submitted is subject to strict confidentiality and data protection protocols.</p>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        &copy; 2026 Pocono AI, LLC. All rights reserved. <br>
-        East Stroudsburg, Pennsylvania
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved. <br>
+        East Stroudsburg, Pennsylvania, USA</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
     </footer>
 
 </body>
 </html>
+
