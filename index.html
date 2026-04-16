@@ -3,77 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocono AI, LLC</title>
+    <meta name="description" content="Pocono AI, LLC - Secure, on-premises artificial intelligence and data solutions for medical and legal practices.">
+    <title>Pocono AI, LLC | Local AI & RAG Solutions</title>
+    
     <style>
-        /* General Reset & Body Styles */
-        body {
+        /* --- CSS Variables for Easy Theming --- */
+        :root {
+            --bg-color: #000000;
+            --surface-color: #0a0a0a;
+            --surface-light: #161616;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --accent-color: #0078D4; /* Professional blue accent */
+            --border-color: #222222;
+        }
+
+        /* --- General Reset & Typography --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #000000; /* Deep black background */
-            color: #ffffff; /* White text for contrast */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header containing the Logo */
+        h1, h2, h3 {
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        /* --- Navigation & Header --- */
         header {
-            padding: 30px 50px;
-            background-color: #0a0a0a; /* Slightly offset black for depth */
-            border-bottom: 1px solid #222222;
-            text-align: center; 
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* The low-code logo integration */
         .site-logo {
-            max-width: 250px;
+            max-width: 200px;
             height: auto;
-            display: inline-block;
+            display: block;
         }
 
-        /* Main Content Container */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- Main Content Layout --- */
         main {
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* CEO Profile Section */
-        .profile-section {
+        section {
+            margin-bottom: 80px;
+            padding: 40px;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        /* --- Hero / Profile Section --- */
+        .hero-section {
             display: flex;
             align-items: center;
-            gap: 50px;
+            gap: 60px;
+            background: linear-gradient(145deg, var(--surface-color) 0%, var(--bg-color) 100%);
+            border: none;
             padding: 20px;
+        }
+
+        .profile-image-container {
+            flex: 0 0 350px;
         }
 
         .profile-image {
             width: 100%;
-            max-width: 350px;
+            height: auto;
+            display: block;
+            /* The image edges fade to black naturally */
         }
 
         .profile-info h1 {
-            margin-top: 0;
-            margin-bottom: 5px;
-            font-size: 2.5rem;
-            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
 
         .profile-info h2 {
-            font-size: 1.2rem;
-            color: #aaaaaa; /* Professional grey for the title */
-            margin-bottom: 25px;
-            font-weight: 400;
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
         
         .profile-info p {
-            font-size: 1.1rem;
-            color: #cccccc;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
         }
 
-        /* Responsive Design for Mobile Devices */
-        @media (max-width: 768px) {
-            .profile-section {
+        /* --- Expertise & Services Grids --- */
+        .section-header {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--surface-light);
+            padding: 30px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .hero-section {
                 flex-direction: column;
                 text-align: center;
+            }
+            .profile-image-container {
+                flex: 0 0 auto;
+                max-width: 300px;
             }
         }
     </style>
@@ -82,21 +210,70 @@
 
     <header>
         <img src="logo.jpg" alt="Pocono AI, LLC Logo" class="site-logo">
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#services">Services</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section class="profile-section">
-            <img src="hero.jpg" alt="Marcus Brett O'Dell" class="profile-image">
+        <section id="about" class="hero-section">
+            <div class="profile-image-container">
+                <img src="hero.jpg" alt="Marcus Brett O'Dell" class="profile-image">
+            </div>
             
             <div class="profile-info">
                 <h1>Marcus Brett O'Dell</h1>
-                <h2>Founder, CEO, and Chief Technologist | Pocono AI, LLC</h2>
+                <h2>Founder, CEO, & Chief Technologist</h2>
                 <p>
-                    Delivering secure, on-premises artificial intelligence and data solutions. Specializing in advanced Retrieval-Augmented Generation (RAG) and local AI system optimization for medical and legal practices.
+                    Bringing over a decade of enterprise-grade database administration into the future of local artificial intelligence.
+                </p>
+                <p>
+                    At Pocono AI, LLC, we specialize in delivering highly secure, fully on-premises AI solutions designed specifically for environments where data privacy is non-negotiable.
                 </p>
             </div>
         </section>
+
+        <section id="expertise">
+            <h2 class="section-header">Technical Architecture & Engineering</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Retrieval-Augmented Generation (RAG)</h3>
+                    <p>Optimizing large language models with dynamic, localized knowledge bases to ensure accurate, context-aware responses without sending proprietary data to the cloud.</p>
+                </div>
+                <div class="card">
+                    <h3>Database Infrastructure</h3>
+                    <p>Leveraging 10+ years of experience as a Senior MySQL DBA to architect, scale, and maintain high-performance relational and modern vector databases.</p>
+                </div>
+                <div class="card">
+                    <h3>Local AI Deployment</h3>
+                    <p>Specializing in high-performance hardware configurations and external GPU setups to run powerful models locally and securely.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-header">Industry Solutions</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Medical Practices</h3>
+                    <p>HIPAA-compliant, on-premises data solutions that allow medical professionals to query patient histories, research, and documentation securely behind their own firewall.</p>
+                </div>
+                <div class="card">
+                    <h3>Legal Firms</h3>
+                    <p>Secure document indexing and AI-assisted case analysis, ensuring that highly sensitive client confidentiality is maintained at the local hardware level.</p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">A Reeferee Digital Project</p>
+    </footer>
 
 </body>
 </html>
