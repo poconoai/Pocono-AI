@@ -3,461 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pocono AI, LLC - Secure, on-premises artificial intelligence and data solutions for medical and legal practices.">
-    <title>Pocono AI, LLC | Local AI & RAG Solutions</title>
+    <meta name="description" content="Pocono AI, LLC provides secure, local, and intelligent on-premise AI infrastructure for high-liability medical and legal practices.">
+    <title>Pocono AI, LLC | Secure. Local. Intelligent.</title>
+    
+    <link rel="canonical" href="https://poconoai.com/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/favicon-180x180.png">
+    
+    <meta property="og:title" content="Pocono AI, LLC | Secure On-Premise AI for Medical & Legal">
+    <meta property="og:description" content="Zero cloud risk. Maximum billable efficiency with local Sentinel Node hardware.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/">
+    <meta property="og:image" content="https://poconoai.com/hero-banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <script defer data-domain="poconoai.com" src="https://plausible.io/js/script.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Pocono AI, LLC",
+        "url": "https://poconoai.com",
+        "logo": "https://poconoai.com/hero-banner.png",
+        "image": "https://poconoai.com/hero-banner.png",
+        "telephone": "+1-484-542-4769",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "East Stroudsburg",
+            "addressRegion": "PA",
+            "postalCode": "18301",
+            "addressCountry": "US"
+        },
+        "description": "On-premise Retrieval-Augmented Generation solutions for medical and legal practices requiring HIPAA and data sovereignty"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CSS Variables for Easy Theming --- */
+        /* Modern Enterprise CSS Polish */
         :root {
-            --bg-color: #000000;
-            --surface-color: #0a0a0a;
-            --surface-light: #161616;
-            --text-main: #ffffff;
-            --text-muted: #aaaaaa;
-            --accent-color: #0078D4;
-            --border-color: #222222;
-            --warning-color: #ffb84d;
+            --navy-blue: #0A2540;
+            --teal: #007A8A;
+            --teal-hover: #005F6B;
+            --white: #FFFFFF;
+            --light-gray: #F6F9FC;
+            --charcoal: #32325D;
+            --text-muted: #6B7C93;
+            --border-color: #E6EBF1;
         }
 
-        /* --- General Reset & Typography --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        html { scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Inter', "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--light-gray); 
+            color: var(--charcoal); 
+            line-height: 1.7; 
         }
 
-        html {
-            scroll-behavior: smooth;
+        /* Navigation */
+        nav {
+            position: sticky; 
+            top: 0; 
+            background-color: rgba(255, 255, 255, 0.98); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+            z-index: 1000; 
+            padding: 15px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+        .nav-logo {
+            font-size: 1.5em; 
+            font-weight: 700; 
+            color: var(--navy-blue); 
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-logo span { color: var(--teal); }
+
+        .nav-links {
+            display: flex; 
+            gap: 25px; 
+            font-weight: 600; 
+            font-size: 0.95em;
+            align-items: center;
         }
 
-        h1, h2, h3 {
-            line-height: 1.2;
-            font-weight: 600;
-        }
-
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
+        .nav-links a {
+            color: var(--charcoal); 
+            text-decoration: none; 
             transition: color 0.3s ease;
         }
 
-        a:hover {
-            color: #ffffff;
+        .nav-links a:hover, .nav-links a.highlight { color: var(--teal); }
+
+        .nav-cta-btn {
+            background-color: var(--teal);
+            color: var(--white) !important;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .nav-cta-btn:hover { background-color: var(--teal-hover); }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: var(--navy-blue);
+            user-select: none;
         }
 
-        /* --- Navigation & Header --- */
-        header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .site-logo {
-            max-width: 250px;
-            height: auto;
-            display: block;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        nav ul li a {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        nav ul li a:hover {
-            color: var(--text-main);
-        }
-
-        /* --- Main Content Layout --- */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        section {
-            margin-bottom: 80px;
-            padding: 40px;
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
+        /* Layout */
+        main { 
+            display: block; 
+            max-width: 1200px; 
+            margin: 40px auto; 
+            padding: 60px 40px; 
+            background-color: var(--white);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.04); 
             border-radius: 8px;
         }
 
-        /* --- Hero / Profile Section --- */
-        .hero-section {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            background: linear-gradient(145deg, var(--surface-color) 0%, var(--bg-color) 100%);
-            border: none;
-            padding: 20px;
-        }
+        section { margin-bottom: 80px; }
+        h1, h2, h3 { color: var(--navy-blue); margin-top: 0; }
+        h1 { font-size: 2.8em; line-height: 1.2; letter-spacing: -1px; margin-bottom: 15px; text-align: center; }
+        h2 { font-size: 2.2em; text-align: center; border-bottom: 2px solid var(--light-gray); padding-bottom: 10px; margin-bottom: 20px; }
+        h3 { font-size: 1.3em; margin-bottom: 10px; }
+        p { font-size: 1.1em; color: var(--text-muted); }
 
-        .profile-image-container {
-            flex: 0 0 350px;
-        }
-
-        .profile-image {
+        /* Hero Section */
+        .hero { text-align: center; padding: 20px 0 60px 0; }
+        .hero-image {
             width: 100%;
+            max-width: 1000px;
             height: auto;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
             display: block;
+            margin: 0 auto 40px auto;
         }
+        .hero p.tagline { font-size: 1.4em; font-weight: 700; color: var(--teal); margin: 0 0 15px 0; }
 
-        .profile-info h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .profile-info h2 {
-            font-size: 1.25rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        
-        .profile-info p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        /* --- Expertise & Services Grids --- */
-        .section-header {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .grid-container {
+        /* Grids & Cards */
+        .value-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-        }
-
-        .card {
-            background-color: var(--surface-light);
-            padding: 30px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* --- Contact Form Styles --- */
-        .contact-form {
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: var(--surface-light);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            color: var(--text-main);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-        
-        select.form-control {
-            cursor: pointer;
-            appearance: auto;
-        }
-        
-        select.form-control option {
-            background-color: var(--surface-light);
-            color: var(--text-main);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            background-color: var(--accent-color);
-            color: #ffffff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background-color: #005a9e;
-        }
-
-        /* --- Direct Contact & Scheduling Styles --- */
-        .direct-contact {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: var(--surface-light);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .direct-contact h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .direct-contact p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .sms-btn {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--text-main);
-            border: 2px solid var(--text-muted);
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            margin-bottom: 15px;
-        }
-
-        .sms-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .phi-warning {
-            font-size: 0.9rem !important;
-            color: var(--warning-color) !important;
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        /* --- Footer & Legal Nav Styles --- */
-        footer {
-            background-color: var(--surface-color);
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            padding: 40px 20px;
             margin-top: 40px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        }
+        .value-card {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 4px solid var(--teal);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .value-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        /* Two Column Image Sections */
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        .two-column-section h2 { border: none; text-align: left; }
+        .image-column img, .center-spotlight img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: block;
+            margin: 0 auto;
+        }
+        .center-spotlight { text-align: center; margin: 60px 0; }
+
+        /* Strategic Pivot / Investor Section */
+        #strategic-pivot {
+            background-color: var(--navy-blue); 
+            color: var(--white); 
+            padding: 60px 40px; 
+            border-radius: 12px; 
+            margin: 60px 0;
+        }
+        #strategic-pivot h2, #strategic-pivot p { color: var(--white); }
+        #strategic-pivot h2 { border-bottom-color: rgba(255,255,255,0.1); }
+        .pivot-card {
+            background: rgba(255,255,255,0.05); 
+            padding: 25px; 
+            border-left: 4px solid var(--teal); 
+            border-radius: 6px;
         }
 
-        .footer-legal-nav {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        /* Contact Section */
+        .contact-section { max-width: 800px; margin: 0 auto; }
+        .executive-access {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px auto;
+            text-align: center;
         }
-
-        .footer-legal-nav a {
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+        .executive-access h3, .executive-access p, .executive-access a { color: var(--white); }
+        .executive-access a { text-decoration: underline; font-weight: 600; }
+        
+        form { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        input, textarea, select {
+            width: 100%; padding: 14px; border: 1px solid var(--border-color);
+            border-radius: 4px; font-family: inherit; font-size: 1em;
+            background-color: var(--light-gray); color: var(--charcoal);
         }
-
-        .footer-legal-nav a:hover {
-            color: var(--text-main);
+        input:focus, textarea:focus, select:focus { outline: 2px solid var(--teal); }
+        
+        /* Buttons */
+        .cta-button { 
+            display: inline-block; background-color: var(--teal); color: var(--white); 
+            padding: 14px 28px; text-decoration: none; font-weight: 600; 
+            border-radius: 4px; border: none; cursor: pointer; transition: 0.3s; font-size: 1.1em; text-align: center;
         }
+        .cta-button:hover { background-color: var(--teal-hover); transform: translateY(-2px); color: var(--white); }
+        .cta-button-light { background-color: var(--light-gray); color: var(--navy-blue); border: 2px solid var(--border-color); }
+        .cta-button-light:hover { background-color: var(--white); color: var(--teal); }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 900px) {
-            header {
-                flex-direction: column;
-                gap: 20px;
+        /* Footer */
+        footer { 
+            text-align: center; padding: 40px 20px; background-color: var(--light-gray); 
+            border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9em; 
+        }
+        .compliance-badge { color: var(--teal); font-weight: 700; font-size: 1.1em; margin-bottom: 10px; }
+        .footer-links a { color: var(--navy-blue); text-decoration: none; margin: 0 10px; font-weight: 600; }
+        .footer-links a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0;
+                width: 100%; background-color: rgba(255, 255, 255, 0.98); padding: 10px 0 20px 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
             }
-            .hero-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .profile-image-container {
-                flex: 0 0 auto;
-                max-width: 300px;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            .nav-links.active { display: flex; }
+            .nav-links a { padding: 15px 20px; width: 100%; box-sizing: border-box; text-align: left; }
+            h1 { font-size: 2.2em; }
+            main { padding: 30px 20px; margin: 20px; }
+            .two-column-section { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" alt="Pocono AI, LLC Logo" class="site-logo">
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <a href="#" class="nav-logo" style="text-decoration: none;">Pocono <span>AI</span></a>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+        <div class="nav-links" id="navLinks">
+            <a href="#insights" onclick="toggleMenu()">Insights</a>
+            <a href="#capabilities" onclick="toggleMenu()">Capabilities</a>
+            <a href="#strategic-pivot" class="highlight" onclick="toggleMenu()">Investment & Operations</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
+            <a href="mailto:marcus@poconoai.com?subject=Inquiry: 15-Minute Sentinel Offering Discussion" class="nav-cta-btn" onclick="toggleMenu()">Book a Call</a>
+        </div>
+    </nav>
 
     <main>
-        <section id="about" class="hero-section">
-            <div class="profile-image-container">
-                <img src="hero.jpg" alt="Marcus Brett O'Dell" class="profile-image">
+        <section class="hero" id="mission">
+            <img src="hero-banner.png" alt="Pocono AI Sovereign AI Infrastructure" class="hero-image" onerror="this.style.display='none'">
+            <h1>Sovereign AI Infrastructure for High-Liability Practices</h1>
+            <p class="tagline">Zero cloud risk. Maximum billable efficiency.</p>
+            <p style="max-width: 800px; margin: 0 auto;">Pocono AI, LLC specializes in deploying entirely local, on-premise Retrieval-Augmented Generation (RAG) solutions. We ensure that your most sensitive legal and medical data never touches the public cloud.</p>
+        </section>
+
+        <section id="insights">
+            <h2>Founder Insights & Industry Briefings</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Direct analysis from Marcus O'Dell—Founder, Strategic Visionary, and Chief Technologist—on sovereign AI and the ethical necessity of local computation.</p>
+            <div class="value-grid">
+                <article class="value-card">
+                    <h3 style="color: var(--navy-blue);">Building AI for the Ignored</h3>
+                    <p>Most AI is built for people without cognitive fog, ignoring vulnerable populations. We engineer private, local systems that reclaim "good hours" from chronic illness without compromising privacy.</p>
+                    <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_disabilityinclusion-accessibilitytech-localai-activity-7450476082220130305-ak4-" target="_blank" style="color: var(--teal); font-weight: bold; text-decoration: none;">Read on LinkedIn →</a>
+                </article>
+                <article class="value-card">
+                    <h3 style="color: var(--navy-blue);">The Privacy Paradox</h3>
+                    <p>Medical practices need AI to survive administrative crush, but public cloud servers create unacceptable liability. The solution is zero-telemetry hardware behind your own firewall.</p>
+                    <a href="https://www.linkedin.com/in/marcus-o-dell-7a7b8352" target="_blank" style="color: var(--teal); font-weight: bold; text-decoration: none;">View Profile →</a>
+                </article>
+                <article class="value-card">
+                    <h3 style="color: var(--navy-blue);">The 90-Day ROI of Local CapEx</h3>
+                    <p>Cloud subscriptions bleed budgets dry. By investing in local turnkey assets like the Sentinel Node, practices achieve 100% ROI in under three months by offsetting scribe costs.</p>
+                    <a href="https://www.linkedin.com/in/marcus-o-dell-7a7b8352" target="_blank" style="color: var(--teal); font-weight: bold; text-decoration: none;">View Profile →</a>
+                </article>
             </div>
+        </section>
+
+        <div class="center-spotlight">
+            <img src="sentinel-node.png" alt="Pocono AI Sentinel Node Specifications" onerror="this.style.display='none'">
+        </div>
+
+        <section id="capabilities">
+            <h2>Strategic Value & Core Capabilities</h2>
+            <div class="value-grid">
+                <article class="value-card" style="border-top: none;">
+                    <h3>Absolute Data Sovereignty</h3>
+                    <p>Localized large language models operating entirely on-premise with zero-PHI-exfiltration. Maintain full SOC 2 and HIPAA compliance readiness.</p>
+                </article>
+                <article class="value-card" style="border-top: none;">
+                    <h3>The Sentinel Node Hardware</h3>
+                    <p>Turnkey Hardware-as-a-Service on Dell Precision workstations. A secure, plug-and-play environment that scales with your practice.</p>
+                </article>
+                <article class="value-card" style="border-top: none;">
+                    <h3>Managed SLA & Deployment</h3>
+                    <p>Continuous model optimization and 4-hour on-site hardware swap support tailored for high-liability corporate environments.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="two-column-section">
+            <div>
+                <h2>Seamless Local Integration</h2>
+                <p>Experience the power of the Sentinel Node directly from your mobile device. Our infrastructure utilizes robust Dell workstations operating securely under your desk to deliver a fluid, professional interface via Anything LLM.</p>
+                <p>Healthcare and legal IT requires bulletproof infrastructure. With over a decade of DBA expertise, we bridge technical rigor with human-centric systems to ensure absolute reliability and data protection.</p>
+            </div>
+            <div class="image-column">
+                <img src="integration-demo.png" alt="Mobile AI Interface Integration" onerror="this.style.display='none'">
+            </div>
+        </section>
+
+        <section id="strategic-pivot">
+            <h2 style="border: none;">The Next Phase: Scale & Deployment</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px auto; color: #A3B8CC;">The proprietary RAG stack is built, stress-tested, and ready for deployment. To accelerate our Go-To-Market strategy, Pocono AI, LLC is actively exploring two primary paths:</p>
             
-            <div class="profile-info">
-                <h1>Marcus Brett O'Dell</h1>
-                <h2>Founder, CEO, & Chief Technologist</h2>
-                <p>
-                    Bringing over a decade of enterprise-grade database administration into the future of local artificial intelligence.
-                </p>
-                <p>
-                    At Pocono AI, LLC, we specialize in delivering highly secure, fully on-premises AI solutions designed specifically for environments where data privacy is non-negotiable.
-                </p>
-            </div>
-        </section>
-
-        <section id="expertise">
-            <h2 class="section-header">Technical Architecture & Engineering</h2>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>Retrieval-Augmented Generation (RAG)</h3>
-                    <p>Optimizing large language models with dynamic, localized knowledge bases to ensure accurate, context-aware responses without sending proprietary data to the cloud.</p>
+            <div class="value-grid" style="margin-top: 0;">
+                <div class="pivot-card">
+                    <h3 style="color: var(--teal);">1. Strategic Operating Partner</h3>
+                    <p style="font-size: 0.95em;">Seeking a dedicated, high-energy operator to take over business development, client acquisition, and day-to-day scaling, fully backed by our finalized technical architecture.</p>
                 </div>
-                <div class="card">
-                    <h3>Database Infrastructure</h3>
-                    <p>Leveraging 10+ years of experience as a Senior MySQL DBA to architect, scale, and maintain high-performance relational and modern vector databases.</p>
-                </div>
-                <div class="card">
-                    <h3>Local AI Deployment</h3>
-                    <p>Specializing in high-performance hardware configurations and external GPU setups to run powerful models locally and securely.</p>
+                <div class="pivot-card">
+                    <h3 style="color: var(--teal);">2. Pre-Seed Investment & Acquisition</h3>
+                    <p style="font-size: 0.95em;">Opening conversations for pre-seed capital (SAFE notes) or potential IP/Asset acquisition by enterprise entities equipped to take our localized AI infrastructure to a national market.</p>
                 </div>
             </div>
         </section>
 
-        <section id="services">
-            <h2 class="section-header">Industry Solutions</h2>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>Medical Practices</h3>
-                    <p>HIPAA-compliant, on-premises data solutions that allow medical professionals to query patient histories, research, and documentation securely behind their own firewall.</p>
-                </div>
-                <div class="card">
-                    <h3>Legal Firms</h3>
-                    <p>Secure document indexing and AI-assisted case analysis, ensuring that highly sensitive client confidentiality is maintained at the local hardware level.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-header">Secure Consultation Request</h2>
+        <section id="contact" class="contact-section">
+            <h2>Take the Next Step</h2>
+            <p style="text-align: center;">Choose the path that works best for your practice.</p>
             
-            <form class="contact-form" action="https://formspree.io/f/mgorojey" method="POST">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Professional Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required placeholder="name@practice.com">
-                </div>
+            <div style="text-align: center; margin: 30px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Sentinel Node Spec Sheet</a>
+                <a href="mailto:marcus@poconoai.com?subject=Request:%2015-Min%20Feasibility%20Call%20-%20Pocono%20AI" class="cta-button">Book 15-Min Feasibility Call</a>
+            </div>
 
-                <div class="form-group">
-                    <label for="subject">Inquiry Type</label>
-                    <select id="subject" name="subject" class="form-control" required>
-                        <option value="" disabled selected>Select an inquiry category...</option>
-                        <option value="medical">Medical Practice Solutions</option>
-                        <option value="legal">Legal Firm Solutions</option>
-                        <option value="acquisition_partner">Acquisition / Founding Partner Inquiry</option>
-                        <option value="other">Other Inquiry</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Project Overview</label>
-                    <textarea id="message" name="message" class="form-control" required placeholder="Please provide a brief overview of your infrastructure needs or partnership inquiry..."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Submit Request</button>
+            <div class="executive-access">
+                <h3 style="margin-top: 0;">Direct Executive Access</h3>
+                <p><strong>Text the Founder:</strong> <a href="tel:+14845424769">484-542-4769</a><br>
+                <small style="color: #A3B8CC;"><em>No PHI by text. Calls returned within business hours.</em></small></p>
+                <p style="margin-bottom: 0;"><strong>Secure Email:</strong> <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a> (via Proton)</p>
+            </div>
+
+            <h3 style="margin-top: 50px; text-align: center;">Formal Inquiries</h3>
+            <form action="https://formspree.io/f/mgorojey" method="POST">
+                <input type="text" name="name" placeholder="Full Name & Title" required>
+                <input type="text" name="organization" placeholder="Organization / Firm" required>
+                <input type="email" name="_replyto" placeholder="Professional Email Address" required>
+                <select name="inquiry_type" required>
+                    <option value="" disabled selected>Select Inquiry Type...</option>
+                    <option value="Hardware Sales">Hardware / Node Sales</option>
+                    <option value="Investment">Investment / Acquisition</option>
+                    <option value="Partnership">MSP Partnership</option>
+                </select>
+                <textarea name="message" rows="5" placeholder="Nature of inquiry..." required></textarea>
+                <input type="text" name="_gotcha" style="display:none">
+                <button type="submit" class="cta-button" style="width: 100%; border-radius: 4px;">Submit Secure Inquiry</button>
             </form>
-
-            <div class="direct-contact">
-                <h3>Prefer to speak directly?</h3>
-                <p>Let's schedule a 15-minute introductory chat to discuss your infrastructure needs.</p>
-                
-                <a href="sms:+14845424769" class="sms-btn">Text to Schedule: (484) 542-4769</a>
-                
-                <p class="phi-warning"><strong>Security Notice:</strong> To ensure strict compliance, please do not include any Protected Health Information (PHI) or sensitive legal details in your text message. I will call you back on a secure line.</p>
-            </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-legal-nav">
-            <a href="privacy.html">Privacy Policy</a>
+        <div class="compliance-badge">HIPAA Compliant Architecture | BAA Ready | SOC 2 Type 1 Posture</div>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved. <br>East Stroudsburg, Pennsylvania, USA</p>
+        
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> | 
             <a href="terms.html">Terms of Service</a>
-            <a href="conditions.html">Conditions of Use</a>
         </div>
-        <p>&copy; 2026 Pocono AI, LLC. All Rights Reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">A Reeferee Digital Project</p>
+        <p style="font-size: 0.85em; max-width: 800px; margin: 20px auto 0 auto;">Information submitted is subject to strict confidentiality protocols. All data remains within the Pocono AI secure network.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById("navLinks");
+            if (navLinks.className === "nav-links") {
+                navLinks.className += " active";
+            } else {
+                navLinks.className = "nav-links";
+            }
+        }
+    </script>
 
 </body>
 </html>
