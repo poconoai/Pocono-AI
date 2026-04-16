@@ -14,7 +14,7 @@
             --surface-light: #161616;
             --text-main: #ffffff;
             --text-muted: #aaaaaa;
-            --accent-color: #0078D4; /* Professional blue accent */
+            --accent-color: #0078D4;
             --border-color: #222222;
         }
 
@@ -67,7 +67,7 @@
         }
 
         .site-logo {
-            max-width: 250px; /* Adjust logo size */
+            max-width: 250px;
             height: auto;
             display: block;
         }
@@ -177,6 +177,73 @@
             font-size: 1rem;
         }
 
+        /* --- Contact Form Styles --- */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        /* Dropdown specific styling */
+        select.form-control {
+            cursor: pointer;
+            appearance: auto;
+        }
+        
+        select.form-control option {
+            background-color: var(--surface-light);
+            color: var(--text-main);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #005a9e;
+        }
+
         /* --- Footer --- */
         footer {
             background-color: var(--surface-color);
@@ -202,18 +269,23 @@
                 flex: 0 0 auto;
                 max-width: 300px;
             }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="Pocono AI, LLC Logo" class="site-logo">
+        <img src="logo.jpg" alt="Pocono AI, LLC Logo" class="site-logo">
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#expertise">Expertise</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -266,6 +338,39 @@
                     <p>Secure document indexing and AI-assisted case analysis, ensuring that highly sensitive client confidentiality is maintained at the local hardware level.</p>
                 </div>
             </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-header">Secure Consultation Request</h2>
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Professional Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required placeholder="name@practice.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Inquiry Type</label>
+                    <select id="subject" name="subject" class="form-control" required>
+                        <option value="" disabled selected>Select an inquiry category...</option>
+                        <option value="medical">Medical Practice Solutions</option>
+                        <option value="legal">Legal Firm Solutions</option>
+                        <option value="acquisition_partner">Acquisition / Founding Partner Inquiry</option>
+                        <option value="other">Other Inquiry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Project Overview</label>
+                    <textarea id="message" name="message" class="form-control" required placeholder="Please provide a brief overview of your infrastructure needs or partnership inquiry..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
         </section>
     </main>
 
