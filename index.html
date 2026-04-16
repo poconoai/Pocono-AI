@@ -231,24 +231,31 @@
             text-decoration: underline;
         }
         
+        /* CTA Button Styling */
         .cta-button {
             display: inline-block;
             background-color: var(--teal);
             color: var(--white);
-            padding: 12px 20px;
+            padding: 12px 24px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 4px;
             margin: 10px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
         .cta-button:hover {
             background-color: #136a73;
+            transform: translateY(-2px);
         }
         .cta-button-light {
             background-color: var(--light-gray);
             color: var(--navy-blue);
             border: 2px solid var(--white);
+        }
+        .cta-button-light:hover {
+            background-color: var(--white);
+            color: var(--teal);
         }
 
         @media (max-width: 768px) {
@@ -337,7 +344,7 @@
             <p style="text-align: center;">Choose the path that works best for your practice.</p>
             
             <div style="text-align: center; margin: 30px 0;">
-                <a href="#" class="cta-button cta-button-light">Download Sentinel Node Spec Sheet</a>
+                <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Sentinel Node Spec Sheet</a>
                 <a href="#" class="cta-button">Book 15-Min Feasibility Call</a>
             </div>
 
@@ -380,5 +387,3 @@
     </footer>
 </body>
 </html>
-
-```
