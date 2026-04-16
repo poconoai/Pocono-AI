@@ -16,6 +16,7 @@
             --text-muted: #aaaaaa;
             --accent-color: #0078D4;
             --border-color: #222222;
+            --warning-color: #ffb84d;
         }
 
         /* --- General Reset & Typography --- */
@@ -180,7 +181,7 @@
         /* --- Contact Form Styles --- */
         .contact-form {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 40px auto;
         }
 
         .form-group {
@@ -243,6 +244,52 @@
             background-color: #005a9e;
         }
 
+        /* --- Direct Contact & Scheduling Styles --- */
+        .direct-contact {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: var(--surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .direct-contact h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .direct-contact p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .sms-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--text-muted);
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .sms-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .phi-warning {
+            font-size: 0.9rem !important;
+            color: var(--warning-color) !important;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
         /* --- Footer & Legal Nav Styles --- */
         footer {
             background-color: var(--surface-color);
@@ -297,7 +344,7 @@
 <body>
 
     <header>
-        <img src="logo.png" alt="Pocono AI, LLC Logo" class="site-logo">
+        <img src="logo.jpg" alt="Pocono AI, LLC Logo" class="site-logo">
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
@@ -360,7 +407,8 @@
 
         <section id="contact">
             <h2 class="section-header">Secure Consultation Request</h2>
-            <form class="contact-form" action="#" method="POST">
+            
+            <form class="contact-form" action="https://formspree.io/f/mgorojey" method="POST">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
@@ -389,6 +437,15 @@
                 
                 <button type="submit" class="submit-btn">Submit Request</button>
             </form>
+
+            <div class="direct-contact">
+                <h3>Prefer to speak directly?</h3>
+                <p>Let's schedule a 15-minute introductory chat to discuss your infrastructure needs.</p>
+                
+                <a href="sms:+1YOUR-PHONE-NUMBER-HERE" class="sms-btn">Text to Schedule: (XXX) XXX-XXXX</a>
+                
+                <p class="phi-warning"><strong>Security Notice:</strong> To ensure strict compliance, please do not include any Protected Health Information (PHI) or sensitive legal details in your text message. I will call you back on a secure line.</p>
+            </div>
         </section>
     </main>
 
