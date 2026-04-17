@@ -4,56 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pocono AI, LLC - Secure, on-premises AI solutions for medical and legal practices.">
-    <title>Pocono AI, LLC | Local AI & RAG Solutions</title>
+    <title>Pocono AI, LLC | Secure On-Premises RAG Solutions</title>
     <style>
-        :root { --bg-color: #000; --surface-color: #0a0a0a; --surface-light: #161616; --text-main: #fff; --text-muted: #aaa; --accent-color: #0078D4; --border-color: #222; }
+        /* --- Premium Enterprise Dark Theme --- */
+        :root {
+            --bg-base: #050505;
+            --bg-surface: #121212;
+            --bg-elevated: #1e1e1e;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #0078D4;
+            --accent-hover: #005a9e;
+            --border-subtle: #2a2a2a;
+            --border-focus: #444;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Reset & Base --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        h1, h2, h3 { line-height: 1.2; font-weight: 600; }
-        a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-primary); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 { font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; }
+        a { color: var(--accent-blue); text-decoration: none; transition: var(--transition-smooth); }
         a:hover { color: #fff; }
-        header { position: sticky; top: 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; }
-        .site-logo { max-width: 250px; height: auto; display: block; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav ul li a { color: var(--text-muted); font-size: 1rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-        nav ul li a:hover { color: var(--text-main); }
-        main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        section { margin-bottom: 80px; padding: 40px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; }
-        .hero-section { display: flex; align-items: center; gap: 60px; background: linear-gradient(145deg, var(--surface-color) 0%, var(--bg-color) 100%); border: none; padding: 20px; }
-        .profile-image-container { flex: 0 0 350px; }
-        .profile-image { width: 100%; height: auto; border-radius: 8px; display: block; }
-        .profile-info h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: -0.5px; }
-        .profile-info h2 { font-size: 1.25rem; color: var(--accent-color); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; }
-        .profile-info p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 15px; }
-        .section-header { font-size: 2rem; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; text-align: center; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--surface-light); padding: 30px; border-radius: 6px; border: 1px solid var(--border-color); }
-        .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); text-align: center; }
-        .card p { color: var(--text-muted); font-size: 1rem; }
-        .contact-section { max-width: 800px; margin: 0 auto; }
-        .direct-contact { background: var(--surface-light); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color); text-align: center; margin-bottom: 30px; }
-        .direct-contact p { color: var(--text-muted); font-size: 1.1rem; }
-        .direct-contact a { font-weight: 600; }
-        .security-notice { font-size: 0.9rem; margin-top: 15px; color: var(--accent-color); padding: 10px; background: rgba(0, 120, 212, 0.1); border-radius: 4px; border-left: 3px solid var(--accent-color); text-align: left; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-weight: 500; }
-        .form-control { width: 100%; padding: 12px 15px; background: var(--surface-light); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease; }
-        .form-control:focus { outline: none; border-color: var(--accent-color); }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+        /* --- Header (Glassmorphism) --- */
+        header { 
+            position: sticky; top: 0; z-index: 1000; 
+            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle); 
+            padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; 
+        }
+        .site-logo { max-width: 220px; height: auto; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav ul li a { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        nav ul li a:hover { color: var(--text-primary); }
+
+        /* --- Layout --- */
+        main { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+        section { margin-bottom: 6rem; scroll-margin-top: 100px; }
+        
+        .section-header { 
+            font-size: 2.2rem; margin-bottom: 3rem; text-align: center; 
+            padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); 
+        }
+
+        /* --- Hero Section --- */
+        .hero-section { 
+            display: grid; grid-template-columns: minmax(300px, 400px) 1fr; gap: 4rem; align-items: center; 
+            background: var(--bg-surface); padding: 3rem; border-radius: var(--radius-lg); 
+            border: 1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .profile-image { width: 100%; height: auto; border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .profile-info h1 { font-size: 3.5rem; margin-bottom: 0.5rem; }
+        .profile-info h2 { font-size: 1.2rem; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+        .profile-info p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+        /* --- Cards & Grids --- */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .card { 
+            background: var(--bg-surface); padding: 2.5rem; border-radius: var(--radius-md); 
+            border: 1px solid var(--border-subtle); transition: var(--transition-smooth); 
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--border-focus); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .card p { color: var(--text-secondary); font-size: 1rem; }
+
+        /* --- Contact & Forms --- */
+        .contact-wrapper { max-width: 700px; margin: 0 auto; }
+        .direct-contact { 
+            background: var(--bg-elevated); padding: 2rem; border-radius: var(--radius-md); 
+            text-align: center; margin-bottom: 3rem; border: 1px solid var(--border-subtle); 
+        }
+        .direct-contact p { font-size: 1.1rem; margin-bottom: 1rem; }
+        .security-notice { 
+            font-size: 0.9rem; color: var(--text-secondary); padding: 1rem; 
+            background: rgba(0, 120, 212, 0.05); border-left: 3px solid var(--accent-blue); text-align: left; 
+        }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        .form-control { 
+            width: 100%; padding: 1rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); 
+            border-radius: var(--radius-md); color: var(--text-primary); font-family: inherit; font-size: 1rem; 
+            transition: var(--transition-smooth); 
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.15); }
+        textarea.form-control { min-height: 150px; resize: vertical; }
         select.form-control { cursor: pointer; appearance: auto; }
-        select.form-control option { background: var(--surface-light); color: var(--text-main); }
-        textarea.form-control { resize: vertical; min-height: 150px; }
-        .submit-btn { background: var(--accent-color); color: #fff; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background 0.3s ease; width: 100%; }
-        .submit-btn:hover { background: #005a9e; }
-        footer { background: var(--surface-color); border-top: 1px solid var(--border-color); text-align: center; padding: 40px 20px; margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; }
-        .footer-links { margin-bottom: 15px; }
-        .footer-links a { color: var(--text-muted); margin: 0 10px; font-weight: 500; }
-        .footer-links a:hover { color: var(--accent-color); }
+        
+        .submit-btn { 
+            display: inline-block; width: 100%; padding: 1rem 2rem; background: var(--accent-blue); 
+            color: #fff; font-size: 1.1rem; font-weight: 600; border: none; border-radius: var(--radius-md); 
+            cursor: pointer; transition: var(--transition-smooth); text-align: center;
+        }
+        .submit-btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+        /* --- Footer --- */
+        footer { 
+            background: var(--bg-surface); border-top: 1px solid var(--border-subtle); 
+            text-align: center; padding: 3rem 2rem; color: var(--text-secondary); font-size: 0.9rem; 
+        }
+        .footer-links { margin-bottom: 1rem; }
+        .footer-links a { color: var(--text-secondary); margin: 0 1rem; }
+        .footer-links a:hover { color: var(--accent-blue); }
+
+        /* --- Responsive --- */
         @media (max-width: 900px) {
-            header { flex-direction: column; gap: 20px; }
-            .hero-section { flex-direction: column; text-align: center; }
-            .profile-image-container { flex: 0 0 auto; max-width: 300px; }
-            nav ul { flex-wrap: wrap; justify-content: center; }
+            header { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
+            .hero-section { grid-template-columns: 1fr; text-align: center; padding: 2rem; }
+            .profile-image { max-width: 300px; margin: 0 auto; }
+            .profile-info h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -71,7 +149,7 @@
     </header>
 
     <main>
-        <section id="about" class="hero-section">
+        <section id="about" class="hero-section animate-up">
             <div class="profile-image-container">
                 <img src="hero.jpg" alt="Marcus Brett O'Dell" class="profile-image">
             </div>
@@ -83,7 +161,7 @@
             </div>
         </section>
 
-        <section id="expertise">
+        <section id="expertise" class="animate-up" style="animation-delay: 0.1s;">
             <h2 class="section-header">Technical Architecture & Engineering</h2>
             <div class="grid-container">
                 <div class="card">
@@ -101,7 +179,7 @@
             </div>
         </section>
 
-        <section id="services">
+        <section id="services" class="animate-up" style="animation-delay: 0.2s;">
             <h2 class="section-header">Industry Solutions</h2>
             <div class="grid-container">
                 <div class="card">
@@ -115,52 +193,54 @@
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="contact" class="animate-up" style="animation-delay: 0.3s;">
             <h2 class="section-header">Secure Consultation Request</h2>
-            <div class="direct-contact">
-                <p><strong>Direct Executive Access</strong><br>
-                Text Me: <a href="tel:+14845424769">484-542-4769</a> | Email: <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a></p>
-                <div class="security-notice">
-                    <strong>Security Notice:</strong> To ensure compliance, please refrain from sharing Protected Health Information (PHI) or sensitive client case details in initial inquiries. Secure transfer protocols will be established upon consultation.
+            <div class="contact-wrapper">
+                <div class="direct-contact">
+                    <p><strong>Direct Executive Access</strong><br>
+                    Text Me: <a href="tel:+14845424769">484-542-4769</a> | Email: <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a></p>
+                    <div class="security-notice">
+                        <strong>Security Notice:</strong> To ensure compliance, please refrain from sharing Protected Health Information (PHI) or sensitive client case details in initial inquiries. Secure transfer protocols will be established upon consultation.
+                    </div>
                 </div>
-            </div>
 
-            <form action="https://formspree.io/f/mgorojey" method="POST">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                    <label for="email">Professional Email</label>
-                    <input type="email" id="email" name="_replyto" class="form-control" required placeholder="name@practice.com">
-                </div>
-                <div class="form-group">
-                    <label for="subject">Inquiry Type</label>
-                    <select id="subject" name="inquiry_type" class="form-control" required>
-                        <option value="" disabled selected>Select an inquiry category...</option>
-                        <option value="medical">Medical Practice Solutions</option>
-                        <option value="legal">Legal Firm Solutions</option>
-                        <option value="acquisition_partner">Acquisition / Founding Partner Inquiry</option>
-                        <option value="other">Other Inquiry</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Project Overview</label>
-                    <textarea id="message" name="message" class="form-control" required placeholder="Please provide a brief overview of your infrastructure needs or partnership inquiry..."></textarea>
-                </div>
-                <input type="text" name="_gotcha" style="display:none">
-                <button type="submit" class="submit-btn">Submit Request</button>
-            </form>
+                <form action="https://formspree.io/f/mgorojey" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Professional Email</label>
+                        <input type="email" id="email" name="_replyto" class="form-control" required placeholder="name@practice.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Inquiry Type</label>
+                        <select id="subject" name="inquiry_type" class="form-control" required>
+                            <option value="" disabled selected>Select an inquiry category...</option>
+                            <option value="medical">Medical Practice Solutions</option>
+                            <option value="legal">Legal Firm Solutions</option>
+                            <option value="acquisition_partner">Acquisition / Founding Partner Inquiry</option>
+                            <option value="other">Other Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Overview</label>
+                        <textarea id="message" name="message" class="form-control" required placeholder="Please provide a brief overview of your infrastructure needs or partnership inquiry..."></textarea>
+                    </div>
+                    <input type="text" name="_gotcha" style="display:none">
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </form>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-links">
-            <a href="./privacy.html">Privacy Policy</a> | 
+            <a href="./privacy.html">Privacy Policy</a>
             <a href="./terms.html">Terms of Service</a>
         </div>
         <p>© 2026 Pocono AI, LLC. All Rights Reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">A Reeferee Digital Project</p>
+        <p style="margin-top: 10px; opacity: 0.5;">A Reeferee Digital Project</p>
     </footer>
 </body>
 </html>
