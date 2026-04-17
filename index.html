@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pocono AI, LLC - Secure, on-premises artificial intelligence and data solutions for medical and legal practices.">
     <title>Pocono AI, LLC | Local AI &amp; RAG Solutions</title>
@@ -121,6 +122,7 @@
         .profile-image {
             width: 100%;
             height: auto;
+            border-radius: 8px;
             display: block;
         }
 
@@ -177,9 +179,27 @@
         }
 
         /* --- Contact Form Styles --- */
-        .contact-form {
+        .contact-section {
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        .direct-contact {
+            background-color: var(--surface-light);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .direct-contact p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .direct-contact a {
+            font-weight: 600;
         }
 
         .form-group {
@@ -210,7 +230,6 @@
             border-color: var(--accent-color);
         }
         
-        /* Dropdown specific styling */
         select.form-control {
             cursor: pointer;
             appearance: auto;
@@ -254,6 +273,20 @@
             font-size: 0.9rem;
         }
 
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            margin: 0 10px;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
         /* --- Responsive Design --- */
         @media (max-width: 900px) {
             header {
@@ -281,10 +314,10 @@
         <img src="logo.png" alt="Pocono AI, LLC Logo" class="site-logo">
         <nav>
             <ul>
-                <li><a href="https://poconoai.com/#about">About</a></li>
-                <li><a href="https://poconoai.com/#expertise">Expertise</a></li>
-                <li><a href="https://poconoai.com/#services">Services</a></li>
-                <li><a href="https://poconoai.com/#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -292,12 +325,12 @@
     <main>
         <section id="about" class="hero-section">
             <div class="profile-image-container">
-                <img src="hero.jpg" alt="Marcus Brett O&#39;Dell" class="profile-image">
+                <img src="hero.jpg" alt="Marcus Brett O'Dell" class="profile-image">
             </div>
             
             <div class="profile-info">
                 <h1>Marcus Brett O'Dell</h1>
-                <h2>Founder, CEO, &amp; Chief Technologist</h2>
+                <h2>Founder & Chief Technologist</h2>
                 <p>
                     Bringing over a decade of enterprise-grade database administration into the future of local artificial intelligence.
                 </p>
@@ -339,9 +372,15 @@
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="contact-section">
             <h2 class="section-header">Secure Consultation Request</h2>
-            <form class="contact-form" action="https://poconoai.com/#" method="POST">
+            
+            <div class="direct-contact">
+                <p><strong>Direct Executive Access</strong><br>
+                Text/Call: <a href="tel:+14845424769">484-542-4769</a> | Email: <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a></p>
+            </div>
+
+            <form action="https://formspree.io/f/mgorojey" method="POST">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" class="form-control" required="" placeholder="John Doe">
@@ -349,12 +388,12 @@
                 
                 <div class="form-group">
                     <label for="email">Professional Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required="" placeholder="name@practice.com">
+                    <input type="email" id="email" name="_replyto" class="form-control" required="" placeholder="name@practice.com">
                 </div>
 
                 <div class="form-group">
                     <label for="subject">Inquiry Type</label>
-                    <select id="subject" name="subject" class="form-control" required="">
+                    <select id="subject" name="inquiry_type" class="form-control" required="">
                         <option value="" disabled="" selected="">Select an inquiry category...</option>
                         <option value="medical">Medical Practice Solutions</option>
                         <option value="legal">Legal Firm Solutions</option>
@@ -368,14 +407,20 @@
                     <textarea id="message" name="message" class="form-control" required="" placeholder="Please provide a brief overview of your infrastructure needs or partnership inquiry..."></textarea>
                 </div>
                 
+                <input type="text" name="_gotcha" style="display:none">
                 <button type="submit" class="submit-btn">Submit Request</button>
             </form>
         </section>
     </main>
 
     <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a>
+        </div>
         <p>© 2026 Pocono AI, LLC. All Rights Reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">A Reeferee Digital Project</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">A Marcus O'Dell Digital Project</p>
     </footer>
 
-</body></html>
+</body>
+</html>
