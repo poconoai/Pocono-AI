@@ -12,8 +12,10 @@
     
     <style>
         :root {
-            --bg-dark: #051622; /* The master black/navy from index.html */
+            --bg-black: #000000; /* True black for the header */
+            --bg-dark: #051622;  /* Deep navy/black for the body */
             --card-dark: #0A2635;
+            --ai-blue: #00A3FF;  /* The vibrant blue from your screenshot */
             --teal: #188B96;
             --white: #FFFFFF;
             --light-text: #D0DDE6;
@@ -27,36 +29,42 @@
             line-height: 1.6;
         }
 
-        /* FULL BLACK STYLE HEADER */
+        /* MASTER HEADER: BLACK BACKGROUND + TEXT LOGO */
         nav {
-            background-color: var(--bg-dark); /* Reverted to black style */
+            background-color: var(--bg-black);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%;
+            padding: 15px 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            height: 65px;
-            border-bottom: 1px solid var(--card-dark); /* Subtle separation */
-        }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-        .nav-brand img {
-            height: 40px; 
-            width: auto;
-            /* If your SVG is dark, use 'filter: invert(1);' to make it white */
-            /* filter: invert(1); */ 
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* THREE DOTS MENU ICON (White for Black Style) */
+        /* TEXT LOGO FORMATTING */
+        .nav-brand {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800; /* Extra bold like the screenshot */
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+        }
+        .pocono-text {
+            color: var(--white);
+            margin-right: 8px;
+        }
+        .ai-text {
+            color: var(--ai-blue);
+        }
+
+        /* MOBILE MENU ICON (Hamburger Style from Screenshot) */
         .mobile-menu-btn {
             background: none;
             border: none;
-            font-size: 32px;
+            font-size: 30px;
             color: var(--white);
             cursor: pointer;
             padding: 5px;
@@ -68,14 +76,15 @@
             display: none;
             flex-direction: column;
             position: absolute;
-            top: 65px;
+            top: 70px;
             right: 5%;
-            background: var(--card-dark); /* Match the dark theme */
+            background: var(--bg-black);
             width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             border-radius: 0 0 4px 4px;
             padding: 10px;
             margin: 0;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .nav-links.active {
             display: flex;
@@ -183,12 +192,12 @@
 
     <nav>
         <a href="index.html" class="nav-brand">
-            <img src="logo.svg" alt="Pocono AI, LLC Logo">
+            <span class="pocono-text">Pocono</span><span class="ai-text">AI</span>
         </a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#8942;</button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
-            <li><a href="index.html#insights" onclick="toggleMenu()">Insights</a></li>
+            <li><a href="index.html#insights" onclick="toggleMenu()">Founder Insights</a></li>
             <li><a href="#solutions" onclick="toggleMenu()">Sentinel Node</a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </ul>
@@ -197,7 +206,7 @@
     <main>
         <section style="text-align:center;">
             <h1>Sentinel Node Architecture</h1>
-            <p style="color: var(--teal); font-weight: bold; font-size: 1.2em;">Absolute Data Sovereignty. Local Computation.</p>
+            <p style="color: var(--ai-blue); font-weight: bold; font-size: 1.2em;">Absolute Data Autonomy.</p>
         </section>
 
         <section id="solutions">
@@ -217,7 +226,7 @@
                 <tbody>
                     <tr><td>Hardware Base</td><td>Enterprise Dell Precision Foundation</td></tr>
                     <tr><td>Compliance</td><td>BAA-Ready / HIPAA & SOC 2 Compliant</td></tr>
-                    <tr><td>Response Rate</td><td>< 800ms Retrieval-Augmented Generation</td></tr>
+                    <tr><td>Response Rate</td><td>&lt; 800ms Retrieval-Augmented Generation</td></tr>
                     <tr><td>SLA Support</td><td>Dell ProSupport Plus (4-Hour Response)</td></tr>
                 </tbody>
             </table>
