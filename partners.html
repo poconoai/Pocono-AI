@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSP Partners | Pocono AI, LLC</title>
+    <style>
+        /* SAME CSS AS ABOVE TO ENSURE CONSISTENCY */
+        :root {
+            --bg-color: #000000;
+            --surface-color: #0a0a0a;
+            --text-main: #ffffff;
+            --accent-color: #0078D4;
+            --border-color: #27272a;
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; }
+        header { position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .logo span { color: var(--accent-color); }
+        main { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+        .partnership-card { background: var(--surface-color); border: 1px solid var(--border-color); padding: 4rem; border-radius: 12px; text-align: center; }
+        .btn { display: inline-block; padding: 1rem 2.5rem; background: var(--accent-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 700; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Pocono <span>AI</span></div>
+        <nav>
+            <ul style="list-style:none; display:flex; gap:2rem;">
+                <li><a href="index.html" style="color:#b4b4b8; text-decoration:none; font-size:0.85rem; text-transform:uppercase;">Home</a></li>
+                <li><a href="pricing.html" style="color:#b4b4b8; text-decoration:none; font-size:0.85rem; text-transform:uppercase;">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="partnership-card">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Sentinel Partner Program</h1>
+            <p style="font-size: 1.25rem; color: #b4b4b8; max-width: 700px; margin: 0 auto;">Enable your medical and legal clients with local AI while adding a high-margin revenue stream to your MSP stack.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; text-align: left;">
+                <div>
+                    <h3 style="color: var(--accent-color);">Hardware Margins</h3>
+                    <p>Earn upfront commissions on every Sentinel Node™ deployment in the PA/NJ/NY corridor.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-color);">Recurring MRR</h3>
+                    <p>Participate in the Sovereign Security Subscription lifecycle for the life of the hardware.</p>
+                </div>
+            </div>
+
+            <a href="mailto:marcus@poconoai.com?subject=MSP Partner Inquiry" class="btn">Apply for Partnership</a>
+        </div>
+    </main>
+</body>
+</html>
