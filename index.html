@@ -5,111 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pocono AI, LLC - Sovereign, on-premises AI infrastructure. Total data autonomy for high-liability medical and legal practices.">
     <title>Pocono AI, LLC | Absolute Data Autonomy & Local RAG</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="logo.png">
     <link rel="canonical" href="https://poconoai.com/">
+    
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    <style>
-        :root {
-            --bg-color: #000000;
-            --surface-color: #0a0a0a;
-            --surface-light: #161616;
-            --text-main: #ffffff;
-            --text-muted: #b4b4b8;
-            --accent-color: #0078D4;
-            --border-color: #27272a;
-            --success-color: #22c55e;
-            --warning-color: #f87171;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg-color); color: var(--text-main);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        header {
-            position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
-            z-index: 1000; padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 0.6rem; }
-        .logo span { color: var(--accent-color); }
-        
-        nav ul { list-style: none; display: flex; gap: 2rem; }
-        nav ul li a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; transition: 0.3s; }
-        nav ul li a:hover { color: #fff; }
-
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: #fff; border-radius: 2px; transition: 0.3s; }
-
-        .hero {
-            height: 70vh; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpg');
-            background-size: cover; background-position: center; text-align: center;
-        }
-        .hero-content h1 { font-size: 4rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
-        .hero-content p { font-size: 1.5rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; }
-        
-        main { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 6rem; }
-        .feature-card {
-            background: var(--surface-color); padding: 3rem; border-radius: 12px;
-            border: 1px solid var(--border-color); transition: 0.3s;
-        }
-        .feature-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-        .feature-card h2 { margin-bottom: 1rem; color: var(--accent-color); }
-
-        /* Contact Form Styles */
-        #contact { margin-top: 4rem; padding: 4rem 2rem; background: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); }
-        .contact-container { max-width: 600px; margin: 0 auto; text-align: center; }
-        .contact-container h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .contact-form { text-align: left; margin-top: 2rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 1rem; background: var(--surface-light); border: 1px solid var(--border-color);
-            color: #fff; border-radius: 6px; font-family: inherit;
-        }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); outline: none; }
-        .btn-submit {
-            width: 100%; padding: 1.25rem; background: var(--accent-color); color: #fff;
-            border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: 0.3s;
-        }
-        .btn-submit:hover { background: #005a9e; }
-        
-        .direct-info { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-muted); }
-        .direct-info strong { color: #fff; font-size: 1.2rem; display: block; margin-bottom: 0.5rem; }
-        .phi-warning { color: var(--warning-color); font-weight: 600; font-size: 0.85rem; margin-top: 1.5rem; border: 1px solid var(--warning-color); padding: 1rem; border-radius: 6px; }
-
-        @media (max-width: 968px) {
-            header { padding: 1.25rem 1.5rem; }
-            .menu-toggle { display: flex; }
-            nav {
-                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
-                background: var(--surface-color); border-left: 1px solid var(--border-color);
-                transition: 0.4s ease-in-out; padding: 80px 2rem;
-            }
-            nav.active { right: 0; }
-            nav ul { flex-direction: column; gap: 2rem; }
-            .hero-content h1 { font-size: 2.5rem; }
-            #contact { padding: 3rem 1rem; }
-        }
-        footer { padding: 4rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-muted); }
-    </style>
 </head>
 <body>
     <header>
         <div class="logo">Pocono <span>AI</span></div>
-        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
-        <nav id="nav-menu">
-            <ul>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="trust.html">Trust & Math</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu"></nav>
     </header>
 
     <div class="hero">
@@ -146,7 +61,7 @@
                 <form action="https://formspree.io/f/mpzvqvay" method="POST" class="contact-form">
                     <div class="form-group">
                         <label>Full Name</label>
-                        <input type="text" name="name" required placeholder="Marcus O'Dell">
+                        <input type="text" name="name" required placeholder="Full Name">
                     </div>
                     <div class="form-group">
                         <label>Professional Email</label>
@@ -159,14 +74,14 @@
                     <button type="submit" class="btn-submit">Submit Inquiry</button>
                 </form>
 
-                <div class="direct-info">
+                <div class="direct-info" style="text-align: center; margin-top: 3rem;">
                     <strong>Direct Strategic Access</strong>
                     <p>Please <strong>text first</strong> to coordinate a secure consultation.</p>
                     <p style="font-size: 1.5rem; color: #fff; margin: 0.5rem 0;">(484) 542-4769</p>
                     <p>Email: <a href="mailto:marcus@poconoai.com" style="color: var(--accent-color);">marcus@poconoai.com</a></p>
                     
                     <div class="phi-warning">
-                        CRITICAL NOTICE: Do not include Protected Health Information (PHI) or Electronic Protected Health Information (EPHI) in initial texts or form submissions. All HIPAA-compliant data review occurs solely via air-gapped hardware post-consultation.
+                        CRITICAL NOTICE: Do not include PHI/EPHI in initial texts or forms. All HIPAA-compliant review occurs solely via air-gapped hardware post-consultation.
                     </div>
                 </div>
             </div>
@@ -189,5 +104,7 @@
             spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
         });
     </script>
+
+    <script src="nav.js"></script>
 </body>
 </html>
