@@ -34,9 +34,28 @@
         }
         .logo { font-size: 1.5rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 0.6rem; }
         .logo span { color: var(--accent-color); }
+        
+        /* Navigation Styles */
         nav ul { list-style: none; display: flex; gap: 2rem; }
         nav ul li a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; transition: 0.3s; }
         nav ul li a:hover { color: #fff; }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
         .hero {
             height: 80vh; display: flex; align-items: center; justify-content: center;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpg');
@@ -44,33 +63,51 @@
         }
         .hero-content h1 { font-size: 4rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .hero-content p { font-size: 1.5rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; }
+        
         main { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
-        .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 6rem; }
         .feature-card {
             background: var(--surface-color); padding: 3rem; border-radius: 12px;
             border: 1px solid var(--border-color); transition: 0.3s;
         }
         .feature-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-        .feature-card h2 { margin-bottom: 1rem; color: var(--accent-color); }
-        .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-        .insight-card {
-            background: var(--surface-light); padding: 2rem; border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
+        
+        /* Mobile Viewport Adjustments */
+        @media (max-width: 968px) {
+            header { padding: 1.25rem 1.5rem; }
+            .menu-toggle { display: flex; }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--surface-color);
+                border-left: 1px solid var(--border-color);
+                transition: 0.4s ease-in-out;
+                padding: 80px 2rem;
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; gap: 2rem; }
+            .hero-content h1 { font-size: 2.5rem; }
         }
-        .insight-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; color: #fff; }
-        .insight-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .btn-link { color: var(--accent-color); font-weight: 700; text-decoration: none; display: inline-block; font-size: 0.85rem; }
-        .btn-link:hover { text-decoration: underline; }
-        section#contact { margin-top: 6rem; padding: 4rem; background: var(--surface-light); border-radius: 12px; text-align: center; }
+
+        section#contact { margin-top: 6rem; padding: 4rem 1.5rem; background: var(--surface-light); border-radius: 12px; text-align: center; }
         footer { padding: 4rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-muted); }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">Pocono <span>AI</span></div>
-        <nav>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu">
             <ul>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="trust.html">Trust & Math</a></li>
@@ -93,54 +130,28 @@
             <div class="feature-card">
                 <h2>Local RAG</h2>
                 <p>Ground your intelligence in private data without cloud exfiltration. The Sentinel Node™ keeps your records on-site.</p>
-                <a href="architecture.html" class="btn-link">Hardware Specs →</a>
+                <a href="architecture.html" style="color:var(--accent-color); font-weight:700; text-decoration:none;">Hardware Specs →</a>
             </div>
-            <div class="feature-card">
-                <h2>Verified Logic</h2>
-                <p>We solve "Invisible Authority." Using Displacement Consistency, we mathematically suppress hallucinations before they reach counsel.</p>
-                <a href="trust.html" class="btn-link">Learn the Math →</a>
             </div>
-            <div class="feature-card">
-                <h2>Zero Telemetry</h2>
-                <p>Designed for HIPAA and legal privilege. No data sharing. No cloud BAAs. Just pure, localized cognitive power.</p>
-                <a href="solutions.html" class="btn-link">Industry Use Cases →</a>
-            </div>
-        </div>
-
-        <div class="section-title">
-            <h2>Strategic Intelligence</h2>
-            <p style="color: var(--text-muted);">Real-world Field Notes on Enterprise AI Deployment</p>
-        </div>
-
-        <div class="insight-grid">
-            <div class="insight-card">
-                <h3>The Power Grid Crisis</h3>
-                <p>How utility giants like PPL can utilize localized, air-gapped RAG to prevent infrastructure failure while maintaining 100% data security.</p>
-                <a href="https://www.linkedin.com/in/marcusodell/" class="btn-link">Read Thread on LinkedIn →</a>
-            </div>
-            <div class="insight-card">
-                <h3>The Legal Quandary</h3>
-                <p>Solving the "Invisible Authority" problem in legal practices by shifting from probabilistic cloud guessing to mathematical grounding.</p>
-                <a href="https://www.linkedin.com/in/marcusodell/" class="btn-link">Read Thread on LinkedIn →</a>
-            </div>
-            <div class="insight-card">
-                <h3>Absolute Data Autonomy</h3>
-                <p>Why local hardware is the only legally defensible path for MedTech and LegalTech in a multi-tenant cloud world.</p>
-                <a href="https://www.linkedin.com/in/marcusodell/" class="btn-link">Read Thread on LinkedIn →</a>
-            </div>
-        </div>
 
         <section id="contact">
             <h2>Secure Inquiry</h2>
-            <p style="margin-bottom: 2rem;">Discuss your deployment with our Chief Technologist.</p>
-            <p>Direct Access: <a href="tel:+14845424769" style="color: #fff; font-weight: 700;">(484) 542-4769</a></p>
             <p>Email: <a href="mailto:marcus@poconoai.com" style="color: var(--accent-color);">marcus@poconoai.com</a></p>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania</p>
-    </footer>
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Animate the hamburger icon if desired
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+        });
+    </script>
 </body>
 </html>
