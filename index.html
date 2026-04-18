@@ -6,7 +6,6 @@
     <meta name="description" content="Pocono AI, LLC - Sovereign, on-premises AI infrastructure. Total data autonomy for high-liability medical and legal practices.">
     <title>Pocono AI, LLC | Absolute Data Autonomy & Local RAG</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="logo.png">
     <link rel="canonical" href="https://poconoai.com/">
     <meta property="og:title" content="Pocono AI, LLC | Absolute Data Autonomy">
     <meta property="og:description" content="Sovereign, on-premises AI infrastructure. Zero telemetry for high-liability medical and legal practices.">
@@ -14,7 +13,6 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preload" as="image" href="hero.jpg">
-    <link rel="preload" as="image" href="logo.png">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     <script type="application/ld+json">
     {
@@ -22,7 +20,6 @@
       "@type": "Organization",
       "name": "Pocono AI, LLC",
       "url": "https://poconoai.com",
-      "logo": "https://poconoai.com/logo.png",
       "image": "https://poconoai.com/hero.jpg",
       "address": {
         "@type": "PostalAddress",
@@ -77,9 +74,18 @@
             padding: 1.25rem 3rem;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 0.6rem; }
-        .logo img { height: 32px; width: auto; display: block; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; }
         .logo span { color: var(--accent-color); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+        }
         nav ul { list-style: none; display: flex; gap: 2rem; }
         nav ul li a {
             color: var(--text-muted); font-size: 0.85rem;
@@ -160,10 +166,14 @@
         footer { text-align: center; padding: 5rem 0; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem; }
         .compliance-tag { color: var(--success-color); font-weight: 700; letter-spacing: 0.1em; margin: 0 1rem; }
         @media (max-width: 968px) {
+            header { padding: 1rem 1.5rem; flex-wrap: wrap; }
+            .menu-toggle { display: block; position: absolute; right: 1.25rem; top: 1.1rem; z-index: 1100; }
+            nav { display: none; width: 100%; order: 3; background: rgba(0,0,0,0.95); border-top: 1px solid var(--border-color); margin-top: 1rem; }
+            nav.open { display: block; }
+            nav ul { flex-direction: column; gap: 0; }
+            nav ul li a { display: block; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
             .hero, .strategic-grid, .stats-bar { grid-template-columns: 1fr; text-align: center; }
             .hero-img-box { max-width: 400px; margin: 0 auto; }
-            header { padding: 1.5rem; flex-direction: column; gap: 1.5rem; }
-            nav ul { flex-direction: column; gap: 0.75rem; }
             section { padding: 2.5rem 1.5rem; }
             .hero-text h1 { font-size: 2.75rem; }
         }
@@ -172,11 +182,9 @@
 <body>
     <a href="#main" class="skip">Skip to content</a>
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="Pocono AI logo">
-            Pocono <span>AI</span>
-        </div>
-        <nav>
+        <div class="logo">Pocono <span>AI</span></div>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">⋮</button>
+        <nav id="site-nav">
             <ul>
                 <li><a href="#insights">Insights</a></li>
                 <li><a href="#leadership">Leadership</a></li>
@@ -299,5 +307,21 @@
             <a href="terms.html" style="font-size: 0.75rem; color: var(--text-muted); margin: 0 1rem;">Terms of Service</a>
         </div>
     </footer>
+    <script>
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('site-nav');
+      btn.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+      });
+      document.querySelectorAll('#site-nav a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (window.innerWidth <= 968) {
+            nav.classList.remove('open');
+            btn.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    </script>
 </body>
 </html>
