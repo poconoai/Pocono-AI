@@ -3,55 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms of Service for Pocono AI, LLC hardware and infrastructure deployments.">
     <title>Terms of Service | Pocono AI, LLC</title>
-    <link rel="canonical" href="https://poconoai.com/terms.html">
+    
+    <meta property="og:title" content="Terms of Service | Pocono AI, LLC">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/terms.html">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    
     <style>
-        :root { --navy: #0A3A60; --teal: #188B96; --charcoal: #333; --light: #F5F7FA; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; color: var(--charcoal); line-height: 1.7; background: white; }
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        h1 { color: var(--navy); font-size: 2em; border-bottom: 3px solid var(--teal); padding-bottom: 10px; }
-        h2 { color: var(--navy); margin-top: 30px; font-size: 1.3em; }
-        a { color: var(--teal); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 0.9em; color: #666; text-align: center; }
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+        }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+        
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-links li:last-child a { border-bottom: none; }
+        @media (min-width: 768px) {
+            .menu-toggle { display: none; }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        main { max-width: 800px; margin: 60px auto; padding: 40px; background-color: var(--card-dark); border-radius: 8px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: var(--white); margin-top: 0; font-size: 2.2em; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+        h2 { color: var(--teal); margin-top: 30px; font-size: 1.4em; }
+        p, li { color: var(--light-text); margin-bottom: 15px; }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <header>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
         <h1>Terms of Service</h1>
-        <p><strong>Effective Date:</strong> April 16, 2026<br>
-        <strong>Pocono AI, LLC</strong> — East Stroudsburg, Pennsylvania</p>
+        <p><strong>Effective Date:</strong> April 2026</p>
 
-        <h2>1. Services</h2>
-        <p>Pocono AI, LLC provides on-premise AI infrastructure, including the Sentinel Node hardware and managed Retrieval-Augmented Generation (RAG) deployment services for medical, legal, and high-liability practices. All deployments are designed to operate without transmitting Protected Health Information (PHI) or client confidential data to public cloud services.</p>
+        <h2>1. Nature of the Service</h2>
+        <p>Pocono AI, LLC provides physical hardware (The Sentinel Node) and the configuration of localized, open-weight Large Language Models (LLMs) and Vector Databases. We are an infrastructure and systems architecture provider, not a cloud service provider or Software-as-a-Service (SaaS) entity.</p>
 
-        <h2>2. No Medical or Legal Advice</h2>
-        <p>Our technology provides information retrieval and workflow automation. It does not constitute medical advice, legal advice, or a substitute for professional judgment. Clients remain solely responsible for clinical and legal decisions.</p>
+        <h2>2. Data Sovereignty & Liability</h2>
+        <p>Because the Sentinel Node operates entirely on-premises with zero telemetry, the Client retains 100% physical and digital custody of their data. Consequently, Pocono AI, LLC bears no liability for data breaches, unauthorized internal access, or PHI exposure resulting from the Client's internal network security, physical premises security, or misuse of the local hardware.</p>
 
-        <h2>3. Client Responsibilities</h2>
-        <p>Clients are responsible for maintaining physical security of on-premise hardware, providing appropriate network segmentation, and ensuring compliance with HIPAA, state privacy laws, and professional ethics rules applicable to their practice.</p>
+        <h2>3. Intellectual Property</h2>
+        <p>Pocono AI, LLC retains rights to our proprietary integration methodologies, deployment scripts, and specific hardware-software configurations. The underlying LLM weights remain subject to their respective open-source licenses (e.g., Llama, Gemma). The Client retains all intellectual property rights to any data, documents, or prompts processed through the Sentinel Node.</p>
 
-        <h2>4. Confidentiality</h2>
-        <p>All inquiries, pro formas, and deployment discussions are treated as confidential. We will execute mutual NDAs and Business Associate Agreements (BAAs) upon request prior to sharing sensitive data.</p>
+        <h2>4. Hardware Warranties</h2>
+        <p>Sentinel Node compute engines are backed by the underlying manufacturer's enterprise SLA (e.g., Dell ProSupport Plus). Pocono AI, LLC facilitates the architectural integration but does not independently manufacture the silicon components.</p>
 
-        <h2>5. Intellectual Property</h2>
-        <p>The Sentinel Node architecture, deployment methodologies, and website content are the property of Pocono AI, LLC. No license is granted except as explicitly stated in a signed Master Services Agreement.</p>
+        <h2>5. Medical and Legal Disclaimer</h2>
+        <p>The generative models deployed by Pocono AI, LLC are tools for augmenting professional workflows. They do not replace licensed medical diagnostics or professional legal counsel. The Client is solely responsible for verifying the accuracy of any retrieval-augmented output before utilizing it in a clinical or legal capacity.</p>
 
-        <h2>6. Limitation of Liability</h2>
-        <p>Services are provided on an "as-is" basis for enterprise deployment. To the maximum extent permitted by law, Pocono AI, LLC disclaims warranties and limits liability to amounts paid in the preceding 12 months under a formal contract.</p>
+    </main>
 
-        <h2>7. Governing Law</h2>
-        <p>These terms are governed by the laws of the Commonwealth of Pennsylvania. Venue for any disputes shall be Monroe County, Pennsylvania.</p>
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, PA. | <a href="privacy.html" style="color: var(--teal);">Privacy Policy</a></p>
+    </footer>
 
-        <h2>8. Contact</h2>
-        <p>For questions regarding these terms:<br>
-        Pocono AI, LLC<br>
-        Email: <a href="mailto:info@poconoai.com">info@poconoai.com</a><br>
-        Phone: <a href="tel:+14845424769">484-542-4769</a></p>
-
-        <div class="footer">
-            <p>&copy; 2026 Pocono AI, LLC | <a href="/">Return Home</a> | <a href="privacy.html">Privacy Policy</a></p>
-        </div>
-    </div>
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
