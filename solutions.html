@@ -3,254 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Technical specifications for the Sentinel Node: Sovereign on-premise AI by Pocono AI, LLC.">
-    <title>Solutions | Sentinel Node | Pocono AI, LLC</title>
+    <meta name="description" content="Pocono AI, LLC provides secure, local, and intelligent on-premise AI infrastructure for high-liability medical and legal practices.">
+    <title>Solutions | Pocono AI, LLC</title>
     
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    <link rel="stylesheet" href="styles.css">
     
+    <link rel="canonical" href="https://poconoai.com/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     
-    <style>
-        :root {
-            --bg-black: #000000; /* True black for the header */
-            --bg-dark: #051622;  /* Deep navy/black for the body */
-            --card-dark: #0A2635;
-            --ai-blue: #00A3FF;  /* The vibrant blue from your screenshot */
-            --teal: #188B96;
-            --white: #FFFFFF;
-            --light-text: #D0DDE6;
-        }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--white);
-            line-height: 1.6;
-        }
-
-        /* MASTER HEADER: BLACK BACKGROUND + TEXT LOGO */
-        nav {
-            background-color: var(--bg-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* TEXT LOGO FORMATTING */
-        .nav-brand {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800; /* Extra bold like the screenshot */
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-        }
-        .pocono-text {
-            color: var(--white);
-            margin-right: 8px;
-        }
-        .ai-text {
-            color: var(--ai-blue);
-        }
-
-        /* MOBILE MENU ICON (Hamburger Style from Screenshot) */
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            font-size: 30px;
-            color: var(--white);
-            cursor: pointer;
-            padding: 5px;
-            line-height: 1;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 70px;
-            right: 5%;
-            background: var(--bg-black);
-            width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border-radius: 0 0 4px 4px;
-            padding: 10px;
-            margin: 0;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .nav-links.active {
-            display: flex;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        h1 {
-            color: var(--white);
-            font-size: 2.5em;
-            text-align: center;
-        }
-        h2 {
-            color: var(--teal);
-            font-size: 1.8em;
-            margin-top: 50px;
-            border-bottom: 2px solid var(--card-dark);
-            padding-bottom: 10px;
-        }
-
-        .dots-separator {
-            text-align: center;
-            font-size: 2em;
-            letter-spacing: 15px;
-            color: var(--teal);
-            margin: 60px 0;
-            opacity: 0.6;
-        }
-
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background-color: var(--card-dark);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .spec-table td {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: var(--light-text);
-        }
-        .spec-table td:first-child {
-            font-weight: bold;
-            color: var(--white);
-            width: 35%;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .feature-card {
-            background-color: var(--card-dark);
-            padding: 25px;
-            border-radius: 8px;
-            border-top: 4px solid var(--teal);
-        }
-
-        .cta-container {
-            text-align: center;
-            margin: 60px 0;
-            padding: 50px;
-            background: rgba(24, 139, 150, 0.1);
-            border-radius: 8px;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--teal);
-            color: var(--white);
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin: 10px;
-        }
-        .cta-button-light {
-            background-color: transparent;
-            border: 2px solid var(--white);
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            font-size: 0.85em;
-            color: var(--light-text);
-            border-top: 1px solid var(--card-dark);
-        }
-    </style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 </head>
 <body>
+    <header>
+        <div class="logo">Pocono <span>AI</span></div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-    <nav>
-        <a href="index.html" class="nav-brand">
-            <span class="pocono-text">Pocono</span><span class="ai-text">AI</span>
-        </a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
-            <li><a href="index.html#insights" onclick="toggleMenu()">Founder Insights</a></li>
-            <li><a href="#solutions" onclick="toggleMenu()">Sentinel Node</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </ul>
-    </nav>
+        <nav id="nav-menu"></nav>
+    </header>
 
     <main>
-        <section style="text-align:center;">
-            <h1>Sentinel Node Architecture</h1>
-            <p style="color: var(--ai-blue); font-weight: bold; font-size: 1.2em;">Absolute Data Autonomy.</p>
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Sovereign AI Infrastructure</h1>
+            <p style="font-weight: bold; color: var(--accent-color); font-size: 1.3em;">Zero cloud risk. Maximum billable efficiency.</p>
+            <p style="max-width: 800px; margin: 20px auto 0 auto; color: var(--text-muted);">
+                Pocono AI, LLC deploys entirely local, on-premise RAG solutions for medical and legal practices requiring absolute data sovereignty.
+            </p>
         </section>
 
-        <section id="solutions">
+        <section id="insights">
+            <h2 style="border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 2rem;">Executive Insights</h2>
             <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Zero-Cloud Risk</h3>
-                    <p>Every byte of sensitive PHI or legal data remains on-premise. We eliminate the risk of cloud exfiltration entirely.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>High-Liability Precision</h3>
-                    <p>Engineered for medical and legal workflows where privacy isn't just a preference—it's a legal mandate.</p>
-                </div>
+                <article class="feature-card">
+                    <h3>Building AI for the Ignored</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Why local AI is an ethical necessity for managing chronic illness and executive dysfunction.</p>
+                    <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_disabilityinclusion-accessibilitytech-localai-activity-7450476082220130305-ak4-?utm_source=share" target="_blank" style="color: var(--accent-color); font-weight: bold; text-decoration: none;">Read on LinkedIn &rarr;</a>
+                </article>
+                <article class="feature-card">
+                    <h3>The Privacy Paradox</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Why cloud-based LLMs are an unacceptable risk for high-liability medical and legal data.</p>
+                    <a href="https://www.linkedin.com/in/marcus-o-dell-7a7b8352" target="_blank" style="color: var(--accent-color); font-weight: bold; text-decoration: none;">View Analysis &rarr;</a>
+                </article>
+                <article class="feature-card">
+                    <h3>90-Day ROI Roadmap</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Transitioning from recurring cloud OpEx to permanent local CapEx assets for 100% cost offset.</p>
+                    <a href="https://www.linkedin.com/in/marcus-o-dell-7a7b8352" target="_blank" style="color: var(--accent-color); font-weight: bold; text-decoration: none;">View Roadmap &rarr;</a>
+                </article>
             </div>
-
-            <h2>Technical Specifications</h2>
-            <table class="spec-table">
-                <tbody>
-                    <tr><td>Hardware Base</td><td>Enterprise Dell Precision Foundation</td></tr>
-                    <tr><td>Compliance</td><td>BAA-Ready / HIPAA & SOC 2 Compliant</td></tr>
-                    <tr><td>Response Rate</td><td>&lt; 800ms Retrieval-Augmented Generation</td></tr>
-                    <tr><td>SLA Support</td><td>Dell ProSupport Plus (4-Hour Response)</td></tr>
-                </tbody>
-            </table>
         </section>
 
-        <div class="dots-separator">...</div>
+        <section id="solutions" style="text-align: center; margin: 60px 0;">
+            <img src="sentinel-node.png" alt="Pocono AI Sentinel Node Hardware Specs" style="max-width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        </section>
 
-        <section id="contact" class="cta-container">
-            <h2 style="color: white; border-bottom: none; margin-top: 0;">Request Deployment Briefing</h2>
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Spec Sheet</a>
-            <a href="mailto:marcus@poconoai.com?subject=Sentinel Node Inquiry&body=Hi Marcus,%0D%0A%0D%0AI'd like to discuss the technical deployment of a Sentinel Node." class="cta-button">Request Callback</a>
-            <p style="margin-top: 30px;"><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">484-542-4769</a></p>
+        <section id="contact" style="background: var(--surface-color); padding: 4rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;">
+            <h2 style="margin-bottom: 1rem;">Secure Consultation</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Direct access for sales, technical specifications, and executive inquiries.</p>
+            
+            <div style="margin-bottom: 2rem;">
+                <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit" style="display: inline-block; width: auto; padding: 1rem 2rem; margin: 10px; background: #fff; color: #000; text-decoration: none;">Download Spec Sheet</a>
+                <a href="mailto:marcus@poconoai.com?subject=Inquiry: 15-Minute Sentinel Offering Discussion" class="btn-submit" style="display: inline-block; width: auto; padding: 1rem 2rem; margin: 10px; text-decoration: none;">Request Callback</a>
+            </div>
+            
+            <p><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: #fff; text-decoration: underline;">484-542-4769</a></p>
+            <p style="font-size: 0.85em; color: var(--text-muted); margin-top: 1rem;">Zero-telemetry communication. Calls returned within standard business hours.</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, PA.</p>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, PA. <br> HIPAA Compliant Infrastructure | BAA Ready</p>
     </footer>
 
     <script>
-        function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
-        }
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+        });
     </script>
+
+    <script src="nav.js"></script>
 </body>
 </html>

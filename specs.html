@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Technical specifications for the Sentinel Node™ - Secure, on-premises AI infrastructure for high-compliance environments.">
+    <title>Technical Specifications | Pocono AI, LLC</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="canonical" href="https://poconoai.com/specs.html">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Pocono <span>AI</span></div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu"></nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <p style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem;">
+                Sovereign System Specifications
+            </p>
+            <h1 style="font-size: 3.5rem; line-height: 1.1;">The Sentinel Node™</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">
+                Detailed hardware and logic constraints for air-gapped AI environments.
+            </p>
+        </div>
+    </div>
+
+    <main>
+        <section style="margin-bottom: 6rem;">
+            <h2 style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 2.5rem;">Hardware Infrastructure</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3 style="color: var(--accent-color);">Processing Core</h3>
+                    <ul style="list-style: none; margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem;"><strong>Chassis:</strong> Dell Latitude 5420 Series Integration</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Memory:</strong> 32GB DDR4 High-Bandwidth RAM</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Compute:</strong> Dedicated Tensor-Core Acceleration</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: var(--accent-color);">GPU Architecture</h3>
+                    <ul style="list-style: none; margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem;"><strong>Configuration:</strong> High-Bandwidth eGPU Interconnect</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Chipset:</strong> NVIDIA RTX / 5080-Ready Protocol</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Cooling:</strong> Active thermal management for 24/7 inference</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: var(--accent-color);">Physical Sovereignty</h3>
+                    <ul style="list-style: none; margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 0.75rem;"><strong>Isolation:</strong> Physical Kill-Switch for external telemetry</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Storage:</strong> Fully Encrypted Local NVMe Arrays</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>Auditability:</strong> Localized immutable hardware logs</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 6rem; background: var(--surface-color); padding: 4rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <h2 style="margin-bottom: 2rem;">Retrieval & Logic Engine</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                <div>
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Vector Database Specifications</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
+                        The Sentinel Node utilizes a localized vector database optimized for high-dimensional semantic search. Documents are parsed and embedded entirely on-site using specialized mathematical weights that prioritize factual recall over stochastic creativity.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">The RAG + SQL Hybrid</h4>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
+                        To solve the speed-vs-accuracy dilemma, our architecture integrates a deterministic SQL verification layer. This allows the system to cross-reference AI-generated insights against structured fact-tables in real-time before finalizing an audit response.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 4rem;">
+            <h2 style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 2.5rem;">Compliance Protocols</h2>
+            <div class="feature-grid">
+                <div class="math-card" style="border-left: 4px solid var(--success-color);">
+                    <h4 style="margin-bottom: 1rem;">HIPAA/Legal Privilege</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Zero data exfiltration. All Protected Health Information (PHI) remains physically localized. No third-party API calls are ever permitted.</p>
+                </div>
+                <div class="math-card" style="border-left: 4px solid var(--success-color);">
+                    <h4 style="margin-bottom: 1rem;">Evidentiary Citations</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">The logic engine is structurally prohibited from providing an answer without a corresponding document ID and paragraph citation from the internal record.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 6rem;">
+            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit" style="display: inline-block; width: auto; padding: 1.25rem 3rem; text-decoration: none;">Download Official Spec Sheet (PDF)</a>
+            <p style="margin-top: 1.5rem;"><a href="index.html#contact" style="color: var(--accent-color); text-decoration: none; font-weight: 700;">Request Hardware Deployment Audit →</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
+        <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+        });
+    </script>
+
+    <script src="nav.js"></script>
+</body>
+</html>

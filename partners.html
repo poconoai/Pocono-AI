@@ -3,54 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSP Partners | Pocono AI, LLC</title>
-    <style>
-        /* SAME CSS AS ABOVE TO ENSURE CONSISTENCY */
-        :root {
-            --bg-color: #000000;
-            --surface-color: #0a0a0a;
-            --text-main: #ffffff;
-            --accent-color: #0078D4;
-            --border-color: #27272a;
-        }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; }
-        header { position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; }
-        .logo span { color: var(--accent-color); }
-        main { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
-        .partnership-card { background: var(--surface-color); border: 1px solid var(--border-color); padding: 4rem; border-radius: 12px; text-align: center; }
-        .btn { display: inline-block; padding: 1rem 2.5rem; background: var(--accent-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 700; margin-top: 2rem; }
-    </style>
+    <meta name="description" content="Strategic partnership opportunities with Pocono AI, LLC for medical, legal, and hardware infrastructure integration.">
+    <title>Partners | Pocono AI, LLC</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="canonical" href="https://poconoai.com/partners.html">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 </head>
 <body>
     <header>
         <div class="logo">Pocono <span>AI</span></div>
-        <nav>
-            <ul style="list-style:none; display:flex; gap:2rem;">
-                <li><a href="index.html" style="color:#b4b4b8; text-decoration:none; font-size:0.85rem; text-transform:uppercase;">Home</a></li>
-                <li><a href="pricing.html" style="color:#b4b4b8; text-decoration:none; font-size:0.85rem; text-transform:uppercase;">Pricing</a></li>
-            </ul>
-        </nav>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu"></nav>
     </header>
 
+    <div class="hero">
+        <div class="hero-content">
+            <p style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem;">
+                Strategic Alliances
+            </p>
+            <h1 style="font-size: 3.5rem; line-height: 1.1;">Ecosystem Partners</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">
+                Building the "Fortress" through collaborative engineering and high-compliance distribution.
+            </p>
+        </div>
+    </div>
+
     <main>
-        <div class="partnership-card">
-            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Sentinel Partner Program</h1>
-            <p style="font-size: 1.25rem; color: #b4b4b8; max-width: 700px; margin: 0 auto;">Enable your medical and legal clients with local AI while adding a high-margin revenue stream to your MSP stack.</p>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; text-align: left;">
-                <div>
-                    <h3 style="color: var(--accent-color);">Hardware Margins</h3>
-                    <p>Earn upfront commissions on every Sentinel Node™ deployment in the PA/NJ/NY corridor.</p>
-                </div>
-                <div>
-                    <h3 style="color: var(--accent-color);">Recurring MRR</h3>
-                    <p>Participate in the Sovereign Security Subscription lifecycle for the life of the hardware.</p>
-                </div>
+        <section style="margin-bottom: 4rem; text-align: center;">
+            <h2>The Sovereign Network</h2>
+            <p style="max-width: 800px; margin: 1rem auto; color: var(--text-muted);">
+                Pocono AI, LLC collaborates with hardware manufacturers, legal consultants, and medical compliance experts to ensure the Sentinel Node™ remains the gold standard for on-premises autonomy.
+            </p>
+        </section>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Infrastructure Partners</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    We work with enterprise hardware providers to ensure the Sentinel Node™ substrate—standardized on Dell chassis and NVIDIA acceleration—is optimized for long-term localized inference.
+                </p>
             </div>
 
-            <a href="mailto:marcus@poconoai.com?subject=MSP Partner Inquiry" class="btn">Apply for Partnership</a>
+            <div class="feature-card">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Strategic Integration</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    For firms with existing on-site data centers, we provide strategic integration support to deploy our hybrid RAG+SQL logic layer within your current secure perimeter.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Channel Distribution</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    Partnering with specialized IT providers in the medical and legal sectors to bring localized AI sovereignty to highly regulated practices nationwide.
+                </p>
+            </div>
         </div>
+
+        <section style="margin-top: 6rem; background: var(--surface-color); padding: 4rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;">
+            <h2 style="margin-bottom: 1rem;">Become a Strategic Partner</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                If your organization provides infrastructure or consulting for high-liability sectors, let's discuss how the Sentinel Node™ can add a layer of absolute data autonomy to your client offerings.
+            </p>
+            <a href="index.html#contact" class="btn-submit" style="display: inline-block; width: auto; padding: 1.25rem 3rem; text-decoration: none;">Inquire About Partnership</a>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
+        <p>East Stroudsburg, Pennsylvania</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+        });
+    </script>
+
+    <script src="nav.js"></script>
 </body>
 </html>

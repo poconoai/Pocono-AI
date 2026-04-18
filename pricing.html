@@ -3,95 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing | Pocono AI, LLC</title>
-    <style>
-        /* INHERITED FROM YOUR INDEX.HTML */
-        :root {
-            --bg-color: #000000;
-            --surface-color: #0a0a0a;
-            --surface-light: #161616;
-            --text-main: #ffffff;
-            --text-muted: #b4b4b8;
-            --accent-color: #0078D4;
-            --border-color: #27272a;
-        }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.6; margin: 0; }
-        
-        /* YOUR EXACT BLACK HEADER */
-        header {
-            position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
-            z-index: 1000; padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #fff; }
-        .logo span { color: var(--accent-color); }
-        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; }
-        nav ul li a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; text-decoration: none; letter-spacing: 0.1em; }
-
-        main { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .card { 
-            background: var(--surface-color); padding: 3rem; border-radius: 12px; 
-            border: 1px solid var(--border-color); transition: 0.3s;
-        }
-        .card:hover { border-color: var(--accent-color); }
-        .card h2 { color: var(--accent-color); margin-bottom: 1rem; }
-        .price { font-size: 3rem; font-weight: 800; margin: 1.5rem 0; }
-        .price span { font-size: 1rem; color: var(--text-muted); }
-        
-        .vault-box { 
-            margin-top: 4rem; padding: 3rem; background: var(--surface-light); 
-            border-left: 4px solid var(--accent-color); border-radius: 0 12px 12px 0;
-        }
-    </style>
+    <meta name="description" content="Pocono AI, LLC - Pricing and ROI models for the Sentinel Node™ on-premises AI infrastructure.">
+    <title>Pricing & ROI | Pocono AI, LLC</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="canonical" href="https://poconoai.com/pricing.html">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 </head>
 <body>
     <header>
         <div class="logo">Pocono <span>AI</span></div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu"></nav>
     </header>
 
+    <div class="hero">
+        <div class="hero-content">
+            <p style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem;">
+                From OpEx to CapEx
+            </p>
+            <h1 style="font-size: 3.5rem; line-height: 1.1;">Investment & ROI</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">
+                Eliminate recurring cloud liabilities. Own your intelligence infrastructure.
+            </p>
+        </div>
+    </div>
+
     <main>
-        <div style="text-align:center; margin-bottom: 4rem;">
-            <h1 style="font-size: 3.5rem;">Sovereign Investment</h1>
-            <p style="color:var(--text-muted); font-size: 1.25rem;">CapEx Assets for Permanent Data Autonomy.</p>
-        </div>
+        <section style="margin-bottom: 4rem; text-align: center;">
+            <h2>Fixed-Asset Intelligence</h2>
+            <p style="max-width: 800px; margin: 1rem auto; color: var(--text-muted);">
+                Traditional AI models rely on "taxing" every interaction via token costs and monthly seats. Pocono AI, LLC shifts your firm to a fixed-asset model. Once the Sentinel Node™ is deployed, your cost per inference is zero.
+            </p>
+        </section>
 
-        <div class="grid">
-            <div class="card">
-                <h2>The Sentinel Node™</h2>
-                <div class="price">$17,999 <span>/ CapEx</span></div>
-                <p>One-time acquisition of a dedicated, air-gapped AI fortress. You own the hardware.</p>
-                <ul style="color:var(--text-muted); margin-top: 1.5rem;">
-                    <li>High-Performance Dell Precision base</li>
-                    <li>Localized Vector Geometry</li>
-                    <li>Zero Cloud Telemetry</li>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Strategic Audit</h3>
+                <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Phase I: Verification</p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">A comprehensive review of your firm’s data structure, compliance requirements, and hardware readiness.</p>
+                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.5rem;">✓ Infrastructure stress test</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Vector database mapping</li>
+                    <li style="margin-bottom: 0.5rem;">✓ 90-Day ROI Roadmap</li>
                 </ul>
             </div>
 
-            <div class="card" style="border-color: var(--accent-color);">
-                <h2>Sovereign Protocol</h2>
-                <div class="price">$300 <span>/ Month</span></div>
-                <p>The "Invisible Maintenance" SLA that keeps your fortress intelligent without internet exposure.</p>
-                <ul style="color:var(--text-muted); margin-top: 1.5rem;">
-                    <li><strong>Vault Key Delivery:</strong> Physical model updates</li>
-                    <li>Vector Database Tuning</li>
-                    <li>Priority Regional Support</li>
+            <div class="feature-card" style="border-color: var(--accent-color);">
+                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Sentinel Node™ Deployment</h3>
+                <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Phase II: Sovereignty</p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Full on-premises installation of the air-gapped hardware and hybrid RAG+SQL logic engine.</p>
+                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.5rem;">✓ Customized Dell Chassis</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Local Vector Grounding</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Zero-Telemetry Security</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Managed Autonomy</h3>
+                <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Phase III: Optimization</p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Ongoing strategic oversight to ensure the logic engine evolves with your firm’s growing dataset.</p>
+                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
+                    <li style="margin-bottom: 0.5rem;">✓ Logic weight balancing</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Quarterly hardware audits</li>
+                    <li style="margin-bottom: 0.5rem;">✓ Priority architectural updates</li>
                 </ul>
             </div>
         </div>
 
-        <div class="vault-box">
-            <h3>The Vault Key Protocol</h3>
-            <p>For high-liability practices, cloud updates are a vulnerability. Our Sovereign tier utilizes physical, hardware-encrypted Vault Keys to update your models locally, maintaining a 100% air-gapped environment.</p>
-        </div>
+        <section style="margin-top: 6rem; background: var(--surface-color); padding: 4rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;">
+            <h2 style="margin-bottom: 1rem;">Request a Custom ROI Analysis</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Every legal and medical practice has a unique data footprint. We provide a deterministic cost-offset analysis to show exactly how quickly your local hardware pays for itself in eliminated cloud fees.
+            </p>
+            <a href="#contact" class="btn-submit" style="display: inline-block; width: auto; padding: 1.25rem 3rem; text-decoration: none;">Inquire About Pricing</a>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
+        <p>East Stroudsburg, Pennsylvania</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+        });
+    </script>
+
+    <script src="nav.js"></script>
 </body>
 </html>

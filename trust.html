@@ -3,245 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Data sovereignty and Cloud Obviation: The Zero-Trust architecture of Pocono AI, LLC.">
-    <title>Trust & Security | EAA Ready | Pocono AI, LLC</title>
+    <meta name="description" content="Pocono AI, LLC - Mathematically constraining AI hallucinations through Displacement Consistency and vector geometry.">
+    <title>Trust & Mathematics | Pocono AI, LLC</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="canonical" href="https://poconoai.com/trust.html">
     
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    
-    <style>
-        :root {
-            --bg-black: #000000; /* Solid Black for Header */
-            --bg-dark: #051622;  /* Deep Navy for Body */
-            --card-dark: #0A2635;
-            --ai-blue: #00A3FF;  /* Vibrant Blue from Dashboard */
-            --teal: #188B96;
-            --white: #FFFFFF;
-            --light-text: #D0DDE6;
-        }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--white);
-            line-height: 1.6;
-        }
-
-        /* THE BLACK HEADER */
-        nav {
-            background-color: var(--bg-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* TEXT LOGO: POCONO (White) AI (Blue) */
-        .nav-brand {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-        }
-        .pocono-text { color: var(--white); margin-right: 8px; }
-        .ai-text { color: var(--ai-blue); }
-
-        /* THE THREE DOTS (Vertical Kebab) */
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            font-size: 32px;
-            color: var(--white);
-            cursor: pointer;
-            padding: 5px;
-            line-height: 1;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 70px;
-            right: 5%;
-            background: var(--bg-black);
-            width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border-radius: 0 0 4px 4px;
-            padding: 10px;
-            margin: 0;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .nav-links.active { display: flex; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-links a:last-child { border-bottom: none; }
-
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        /* HERO.JPG SPOTLIGHT */
-        .hero-spotlight {
-            width: 100%;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        .hero-spotlight img {
-            width: 100%;
-            max-width: 900px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-            border: 1px solid var(--card-dark);
-        }
-
-        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-top: 20px; }
-        .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: 1.2em; margin-bottom: 40px; }
-
-        h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; }
-
-        .obviation-section {
-            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%);
-            padding: 35px;
-            border-radius: 8px;
-            margin: 40px 0;
-            border-left: 5px solid var(--ai-blue);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .trust-card {
-            background-color: var(--card-dark);
-            padding: 25px;
-            border-radius: 8px;
-            border-top: 4px solid var(--ai-blue);
-        }
-        .trust-card h3 { margin-top: 0; color: var(--white); }
-
-        /* THE FLOOR (Footer) */
-        .footer-cta {
-            text-align: center;
-            margin: 60px 0;
-            padding: 50px;
-            background: rgba(24, 139, 150, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--teal);
-            color: var(--white);
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-        .cta-button-light {
-            background-color: transparent;
-            border: 2px solid var(--white);
-        }
-        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.85em;
-            color: var(--light-text);
-            border-top: 1px solid var(--card-dark);
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-        }
-    </style>
 </head>
 <body>
-
-    <nav>
-        <a href="index.html" class="nav-brand">
-            <span class="pocono-text">Pocono</span><span class="ai-text">AI</span>
-        </a>
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">&#8942;</button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
-            <li><a href="solutions.html" onclick="toggleMenu()">Solutions</a></li>
-            <li><a href="architecture.html" onclick="toggleMenu()">Architecture</a></li>
-            <li><a href="trust.html" onclick="toggleMenu()">Trust & Security</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section class="hero-spotlight">
-            <img src="hero.jpg" alt="Pocono AI Sovereign Technology Interface">
-        </section>
-
-        <section style="text-align:center;">
-            <h1>Zero-Trust Sovereignty</h1>
-            <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation.</p>
-        </section>
-
-        <div class="obviation-section">
-            <h2>EAA Ready: Beyond the BAA</h2>
-            <p>By implementing **Enterprise Autonomy Architecture (EAA)**, we eliminate the cloud from the clinical and legal loop entirely. If the data never leaves your premises, the liability surface area drops to zero. We don't just secure the cloud; we obviate it.</p>
+    <header>
+        <div class="logo">Pocono <span>AI</span></div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-        <section>
-            <h2>The Security Posture</h2>
-            <div class="trust-grid">
-                <div class="trust-card">
-                    <h3>Zero-Trust Local Access</h3>
-                    <p>Internal access is gated by rigorous local authentication. No external backdoors and zero telemetry pings to foreign servers.</p>
-                </div>
-                <div class="trust-card">
-                    <h3>Physical Data Sovereignty</h3>
-                    <p>Your hardware is your vault. All vector databases and model weights are encrypted at rest on local NVMe storage behind your firewall.</p>
-                </div>
-                <div class="trust-card">
-                    <h3>DBA-Grade Integrity</h3>
-                    <p>Leveraging over a decade of Senior MySQL Database Administration experience to ensure every system is deployed with corporate-grade technical rigor.</p>
-                </div>
-            </div>
+        <nav id="nav-menu"></nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <p style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem;">
+                Traceability is Non-Negotiable
+            </p>
+            <h1 style="font-size: 3.5rem; line-height: 1.1;">Trust & Mathematics</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">
+                We mathematically constrain hallucinations before they reach human counsel.
+            </p>
+        </div>
+    </div>
+
+    <main>
+        <section class="feature-card" style="margin-bottom: 4rem;">
+            <h2>The "Invisible Authority" Problem</h2>
+            <p>Public Large Language Models (LLMs) process information within a "black box." When these models are asked to synthesize complex data, they occasionally bridge knowledge gaps with highly plausible, yet entirely fabricated, assertions. In legal and medical environments, submitting an AI-generated hallucination into a court filing or a patient record carries catastrophic liability.</p>
+            <p>You cannot mitigate this risk with basic software prompting. It requires a structural, mathematical solution applied directly to the database architecture.</p>
         </section>
 
-        <section id="contact" class="footer-cta">
-            <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Spec Sheet</a>
-            <a href="mailto:marcus@poconoai.com?subject=Security Posture Inquiry&body=Hi Marcus,%0D%0A%0D%0AI would like to discuss the Enterprise Autonomy Architecture (EAA) for our practice." class="cta-button">Request Callback</a>
-            <p style="margin-top: 30px;"><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">484-542-4769</a></p>
+        <section class="feature-card" style="border-color: var(--accent-color); margin-bottom: 4rem;">
+            <h2>The Pocono AI Vector Engine</h2>
+            <p>Pocono AI, LLC replaces probabilistic guessing with strict mathematical rigorousness. Our Local RAG (Retrieval-Augmented Generation) pipeline relies on advanced linear algebra and high-dimensional vector geometry to enforce absolute truth boundaries.</p>
+            
+            <div class="feature-grid" style="margin-top: 3rem;">
+                <div class="math-card" style="background-color: var(--surface-light);">
+                    <h3 style="color: #fff; margin-bottom: 1rem;">1. Vector Grounding</h3>
+                    <p style="font-size: 1rem; color: var(--text-muted);">Your firm’s verified, internal documents are mathematically mapped into high-dimensional vector space. The AI is only permitted to pull context from this precise, localized geometry.</p>
+                </div>
+                <div class="math-card" style="background-color: var(--surface-light);">
+                    <h3 style="color: #fff; margin-bottom: 1rem;">2. The Dynamic Safety Dial</h3>
+                    <p style="font-size: 1rem; color: var(--text-muted);">Our proprietary vector engine allows counsel to set a <strong>Dynamic Confidence Threshold</strong>. For final evidentiary verification, the threshold can be tightened to 95%+, mathematically forcing the AI to only present data that is a near-identical match to your verified records.</p>
+                </div>
+                <div class="math-card" style="background-color: var(--surface-light);">
+                    <h3 style="color: #fff; margin-bottom: 1rem;">3. Automated Suppression</h3>
+                    <p style="font-size: 1rem; color: var(--text-muted);">If an insight cannot be definitively mapped back to a specific node in your proprietary dataset, our system physically suppresses the output. The AI is structurally prohibited from presenting unverified data.</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(90deg, rgba(34, 197, 94, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-left: 4px solid var(--success-color); padding: 2.5rem; margin-top: 3rem; border-radius: 0 8px 8px 0;">
+                <h3 style="color: var(--success-color); margin-bottom: 0.75rem;">The Evidentiary Trail</h3>
+                <p style="color: var(--text-muted);">Because our system only synthesizes explicitly approved data, every single output maps directly back to the exact internal document, paragraph, and human author in your records. The Sentinel Node™ surfaces a 100% auditable evidentiary trail.</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, PA. <br> Sovereign AI Infrastructure | Cloud Obviation Specialists</p>
+        <div style="margin-bottom: 1.5rem;">
+            <span style="color: var(--success-color); font-weight: 700; letter-spacing: 0.1em; margin: 0 1rem;">ZERO TELEMETRY</span>
+            <span style="color: var(--success-color); font-weight: 700; letter-spacing: 0.1em; margin: 0 1rem;">MATHEMATICALLY AUDITABLE</span>
+            <span style="color: var(--success-color); font-weight: 700; letter-spacing: 0.1em; margin: 0 1rem;">ABSOLUTE AUTONOMY</span>
+        </div>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
+        <p>East Stroudsburg, Pennsylvania, USA</p>
     </footer>
 
     <script>
-        function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
-        }
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+        });
     </script>
+
+    <script src="nav.js"></script>
 </body>
 </html>
