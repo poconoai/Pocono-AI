@@ -3,294 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Data sovereignty and Cloud Obviation: The Zero-Trust architecture of Pocono AI, LLC.">
+    <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of on-premises AI: The Zero-Trust architecture of Pocono AI, LLC.">
+    <meta name="date" content="2026-04-19">
     <title>Trust & Security | EAA Ready | Pocono AI, LLC</title>
     
-    <meta property="og:title" content="Trust & Security | EAA Ready | Pocono AI, LLC">
-    <meta property="og:description" content="Data sovereignty and Cloud Obviation. We don't just secure the cloud; we obviate it entirely.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poconoai.com/trust.html">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    
     <link rel="icon" href="/favicon.ico" sizes="any">
     
     <style>
         :root {
-            --bg-black: #000000;
-            --bg-dark: #051622;
-            --card-dark: #0A2635;
-            --ai-blue: #00A3FF;
-            --teal: #188B96;
-            --white: #FFFFFF;
-            --light-text: #D0DDE6;
+            --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635;
+            --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6;
         }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--white);
-            line-height: 1.6;
-        }
-
-        /* MASTER HEADER */
-        header {
-            background-color: var(--bg-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .logo {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-        }
-        .logo span {
-            color: var(--ai-blue);
-            margin-left: 5px;
-        }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
         
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        #nav-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 5%;
-            background: var(--bg-black);
-            width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border-radius: 0 0 4px 4px;
-            padding: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        #nav-menu.active { display: block; }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-links li a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-links li:last-child a { border-bottom: none; }
-
-        @media (min-width: 768px) {
-            .menu-toggle { display: none; }
-            #nav-menu {
-                display: flex;
-                position: static;
-                width: auto;
-                background: transparent;
-                box-shadow: none;
-                border: none;
-                padding: 0;
-            }
-            .nav-links { display: flex; gap: 25px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
-            .nav-links li a:hover { color: var(--ai-blue); }
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .hero-spotlight {
-            width: 100%;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        .hero-spotlight img {
-            width: 100%;
-            max-width: 900px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-            border: 1px solid var(--card-dark);
-        }
-
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-top: 20px; }
         .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: 1.2em; margin-bottom: 40px; }
 
-        h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.8em; }
+        .glossary-section { margin: 60px 0; }
+        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); }
+        .glossary-card h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
+        .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
 
-        .obviation-section {
-            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%);
-            padding: 35px;
-            border-radius: 8px;
-            margin: 40px 0;
-            border-left: 5px solid var(--ai-blue);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .trust-card {
-            background-color: var(--card-dark);
-            padding: 25px;
-            border-radius: 8px;
-            border-top: 4px solid var(--ai-blue);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .trust-card h3 { margin-top: 0; color: var(--white); }
-        .trust-card p { color: var(--light-text); }
-
-        .cta-container {
-            text-align: center;
-            margin: 60px 0;
-            padding: 50px;
-            background: rgba(24, 139, 150, 0.1);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 8px;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--teal);
-            color: var(--white);
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-        .cta-button-light {
-            background-color: transparent;
-            border: 2px solid var(--white);
-        }
-        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+        .founder-section { background: rgba(10, 38, 53, 0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0, 163, 255, 0.1); }
+        .founder-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+        .founder-bio { flex: 2; min-width: 300px; }
+        .founder-bio h2 { margin-top: 0; color: var(--white); border-bottom: none; }
+        .founder-bio p { color: var(--light-text); font-size: 1.05rem; margin-bottom: 20px; }
+        
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <nav id="nav-menu">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
-            </ul>
-        </nav>
+        <nav><ul style="list-style:none; display:flex; gap:20px;">
+            <li><a href="solutions.html" style="color:white; text-decoration:none;">Solutions</a></li>
+            <li><a href="trust.html" style="color:var(--ai-blue); text-decoration:none;">Trust</a></li>
+            <li><a href="pricing.html" style="color:white; text-decoration:none;">Pricing</a></li>
+        </ul></nav>
     </header>
 
     <main>
-        <section class="hero-spotlight">
-            <img src="hero.jpg" alt="Pocono AI Sovereign Technology Interface">
-        </section>
+        <h1>Zero-Trust Sovereignty</h1>
+        <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation.</p>
 
-        <section style="text-align:center;">
-            <h1>Zero-Trust Sovereignty</h1>
-            <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation.</p>
-        </section>
-
-        <div class="obviation-section">
-            <h2 style="margin-top: 0; color: white; border-bottom: none;">EAA Ready: Beyond the BAA</h2>
-            <p style="color: var(--light-text);">Traditional AI relies on the Business Associate Agreement (BAA) to manage the legal risk of sending data to the cloud. <strong>Pocono AI, LLC obviates this need.</strong></p>
-            <p style="color: var(--light-text);">By implementing <strong>Enterprise Autonomy Architecture (EAA)</strong>, we eliminate the cloud from the clinical and legal loop entirely. If the data never leaves your premises, the liability surface area drops to zero. We don't just secure the cloud; we obviate it.</p>
-        </div>
-
-        <section>
-            <h2>The Security Posture</h2>
-            <div class="trust-grid">
-                <div class="trust-card">
-                    <h3>Zero-Trust Local Access</h3>
-                    <p>Internal access is gated by rigorous local authentication. No external backdoors, no "third-party support" tunneling, and zero telemetry pings to foreign servers.</p>
+        <section class="glossary-section">
+            <h2 style="color:var(--teal); text-align:center;">The Pillars of Sovereignty</h2>
+            <div class="glossary-grid">
+                <div class="glossary-card">
+                    <h3>The Privacy Paradox</h3>
+                    [span_2](start_span)<p>The operational bottleneck where organizations require AI efficiency but cannot risk the HIPAA violations or loss of privilege inherent in third-party cloud processing[span_2](end_span).</p>
                 </div>
-                <div class="trust-card">
-                    <h3>Physical Data Sovereignty</h3>
-                    <p>Your hardware is your vault. All vector databases and model weights are encrypted at rest on high-performance local NVMe storage behind your firewall.</p>
+                <div class="glossary-card">
+                    <h3>Managed-On-Premise (MOP)</h3>
+                    [span_3](start_span)[span_4](start_span)<p>A deployment architecture that ensures 100% of patient data stays within your physical walls, providing total security with zero internet telemetry[span_3](end_span)[span_4](end_span).</p>
                 </div>
-                <div class="trust-card">
-                    <h3>DBA-Grade Integrity</h3>
-                    <p>Leveraging over a decade of Senior MySQL Database Administration experience to ensure every system is deployed with corporate-grade technical rigor.</p>
+                <div class="glossary-card">
+                    <h3>Human-in-the-Loop (HITL)</h3>
+                    [span_5](start_span)<p>A mandatory workflow where every AI output is cited and requires a digital sign-off from a licensed professional, eliminating hallucination liability[span_5](end_span).</p>
+                </div>
+                <div class="glossary-card">
+                    <h3>Force Multiplier Protocol</h3>
+                    [span_6](start_span)<p>AI-augmented management infrastructure that bridges operational gaps, ensuring service continuity regardless of individual bandwidth or physical constraints[span_6](end_span).</p>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="cta-container">
-            <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
-            
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Spec Sheet</a>
-            <a href="mailto:marcus@poconoai.com?subject=Security Posture Inquiry&body=Hi Marcus,%0D%0A%0D%0AI would like to discuss the Enterprise Autonomy Architecture (EAA) for our practice." class="cta-button">Request Callback</a>
-            
-            <p style="margin-top: 30px;"><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
-
-            <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 600px; margin-left: auto; margin-right: auto;">
-                <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
-                    <strong>Security Notice:</strong> No PHI/EPHI by text or initial email. All HIPAA-compliant review occurs strictly via secure or air-gapped channels post-consultation.
-                </p>
+        <section class="founder-section">
+            <div class="founder-content">
+                <div class="founder-bio">
+                    <h2>Meet Marc: The Architect of Sovereignty</h2>
+                    [span_7](start_span)[span_8](start_span)<p>Marc’s technical philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>[span_7](end_span)[span_8](end_span). A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
+                    <p>After being disabled for 5 years due to neurological spinal issues, Marc utilized AI as the ultimate equalizer to bridge the gap and enable his return to work. Today, he builds that same resilience into every Sentinel Node, often engineering high-performance architectures directly from bed to ensure mission-critical reliability for his clients.</p>
+                </div>
             </div>
+        </section>
+
+        <section class="cta-container">
+            <h2 style="color:white;">Establish Your Perimeter</h2>
+            <a href="mailto:marcus@poconoai.com" class="cta-button">Email Direct Inquiry</a>
+            <p style="margin-top:20px;"><strong>Direct Strategic Access:</strong> (484) 542-4769</p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania | Cloud Obviation Specialists</p>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved. | East Stroudsburg, Pennsylvania</p>
     </footer>
-
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
