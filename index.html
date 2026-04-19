@@ -24,15 +24,16 @@
             --teal: #188B96;
             --white: #FFFFFF;
             --light-text: #D0DDE6;
+            --critical-red: #ff3b3b;
         }
 
-        /* Standardized 70px Header & Side-Nav Logic */
+        /* Standardized Header & Side-Nav */
         header {
             background-color: var(--bg-black);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%;
+            padding: 0 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -47,26 +48,11 @@
             display: flex;
             align-items: center;
         }
-        .logo span {
-            color: var(--ai-blue);
-            margin-left: 5px;
-        }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
         
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
-        }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
 
-        /* Mobile Side Dropdown */
         #nav-menu {
             display: none;
             position: absolute;
@@ -80,11 +66,7 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         #nav-menu.active { display: block; }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a {
             text-decoration: none;
             color: var(--white);
@@ -93,9 +75,8 @@
             display: block;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-links li:last-child a { border-bottom: none; }
 
-        @media (min-width: 768px) {
+        @media (min-width: 992px) {
             .menu-toggle { display: none; }
             #nav-menu {
                 display: flex;
@@ -111,28 +92,44 @@
             .nav-links li a:hover { color: var(--ai-blue); }
         }
 
-        /* Ensure main content doesn't collide with sticky header */
-        main {
-            padding-top: 0;
+        /* Restoration of Body Styling */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(5, 22, 34, 0.8), rgba(5, 22, 34, 0.8)), url('hero.jpg');
+            background-size: cover;
+            padding: 0 20px;
         }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; color: var(--white); }
+        .hero-content p { font-size: 1.25rem; color: var(--light-text); max-width: 800px; margin: 0 auto 30px; }
+        
+        .section-padding { padding: 80px 5%; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .card { background: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 3px solid var(--ai-blue); }
+        .card h3 { color: var(--ai-blue); margin-bottom: 15px; }
+        
+        .proof-box { background: rgba(24, 139, 150, 0.1); border: 1px solid var(--teal); padding: 40px; border-radius: 12px; margin-top: 40px; }
+        .critical-notice { border: 2px solid var(--critical-red); padding: 30px; border-radius: 8px; margin-top: 50px; background: rgba(255, 59, 59, 0.05); }
+        
+        .contact-form { max-width: 600px; margin: 40px auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--card-dark); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; }
+        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="trust.html">Trust</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
@@ -145,14 +142,71 @@
             <div class="hero-content">
                 <h1>Absolute Data Autonomy</h1>
                 <p>Architected by veteran database administrators to eliminate cloud liability. We don't just secure the cloud; we obviate it entirely.</p>
-                <div class="cta-group">
-                    <a href="pricing.html" class="btn-primary">View Deployment Tiers</a>
-                    <a href="#contact" class="btn-secondary">Request Audit</a>
+                <div style="display: flex; gap: 20px; justify-content: center;">
+                    <a href="pricing.html" class="btn-submit" style="width: auto; text-decoration: none;">View Deployment Tiers</a>
+                    <a href="#contact" class="btn-submit" style="width: auto; background: transparent; border: 1px solid white; text-decoration: none;">Request Audit</a>
                 </div>
             </div>
         </section>
 
-        </main>
+        <section class="section-padding">
+            <h2 style="text-align: center; margin-bottom: 50px;">Operational Deployment Model</h2>
+            <div class="grid-4">
+                <div class="card">
+                    <h3>1. Strategic Assessment</h3>
+                    <p>Scoping of internal relational databases and localized ingestion requirements.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Hardware Configuration</h3>
+                    <p>On-site provisioning of Sentinel Node architecture with dual RAID 1 storage arrays.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Localized Tuning</h3>
+                    <p>Model weight quantization and vector indexing of internal clinical/legal records.</p>
+                </div>
+                <div class="card">
+                    <h3>4. Ongoing Compliance</h3>
+                    <p>Offline update delivery via "Data on a Stick" protocols to maintain the air gap.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" style="background: var(--bg-black);">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 style="color: var(--ai-blue);">Clinical Validation: Sub-Second Recall</h2>
+                <div class="proof-box">
+                    <p><strong>Raw Document Size:</strong> 76-Page Clinical Record</p>
+                    <p><strong>Inference Engine:</strong> Gemma 3 (Quantized / Localized)</p>
+                    <p><strong>Retrieval Latency:</strong> &lt; 1 Second</p>
+                    <p style="margin-top: 20px; color: var(--light-text); font-style: italic;">"Verified logic. The system identifies specific clinical contradictions across thousands of pages without a single packet leaving your building."</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="critical-notice">
+                <h2 style="color: var(--critical-red); margin-top: 0;">CRITICAL NOTICE</h2>
+                <p>Pocono AI, LLC operates on a <strong>Zero-SaaS</strong> philosophy. We do not store your data. We do not provide a "Login." We provide the hardware and the architecture that allows you to own your intelligence.</p>
+                <p style="font-weight: bold; margin-top: 20px;">HIPAA & Legal Privilege Security:</p>
+                <p>No PHI/EPHI is ever permitted to be sent via web forms. All deep-structure review occurs strictly via secure, air-gapped hardware post-consultation.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding" style="background: var(--bg-black);">
+            <h2 style="text-align: center;">Secure Inquiry</h2>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/mqakvpyo" method="POST">
+                    <input type="email" name="email" placeholder="Professional Email" required>
+                    <textarea name="message" rows="5" placeholder="Deployment Scoping Details" required></textarea>
+                    <button type="submit" class="btn-submit">Submit Scoping Request</button>
+                </form>
+                <p style="text-align: center; margin-top: 30px; color: var(--light-text);">
+                    Or text first to coordinate a secure consultation:<br>
+                    <a href="tel:+14845424769" style="color: white; font-weight: bold;">(484) 542-4769</a>
+                </p>
+            </div>
+        </section>
+    </main>
 
     <footer style="text-align: center; padding: 40px 20px; background-color: #000000; border-top: 1px solid rgba(255,255,255,0.1);">
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
@@ -170,8 +224,6 @@
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             const spans = menuToggle.querySelectorAll('span');
-            
-            // Side-drop transition logic matches trust.html
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
                 spans[1].style.opacity = '0';
