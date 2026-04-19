@@ -1,14 +1,14 @@
-/* Pocono AI, LLC - Enterprise Stylesheet */
+/* Pocono AI, LLC - Synchronized Enterprise Stylesheet */
 
 :root {
     --bg-black: #000000;
-    --bg-dark: #051622;
+    --bg-dark: #051622;  /* Signature Navy Blue */
     --card-dark: #0A2635;
     --ai-blue: #00A3FF;
     --teal: #188B96;
     --white: #FFFFFF;
     --light-text: #D0DDE6;
-    --accent-color: #188B96; /* Teal */
+    --accent-color: #188B96;
     --text-muted: #b4b4b8;
 }
 
@@ -19,6 +19,7 @@
 }
 
 body {
+    /* Standardized Enterprise Font Stack */
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-dark);
     color: var(--white);
@@ -26,9 +27,9 @@ body {
     overflow-x: hidden;
 }
 
-/* Header & Navigation */
+/* Header & Navigation - Fully Synchronized */
 header {
-    background-color: var(--bg-black);
+    background-color: var(--bg-dark); 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,14 +52,45 @@ header {
     color: var(--ai-blue);
 }
 
-/* Hero Section */
+#nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensures fonts across the top look identical on every page */
+.nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600; /* Balanced, professional weight */
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--ai-blue);
+}
+
+/* Specific styling for the Specs PDF link */
+.nav-specs {
+    color: var(--teal) !important;
+}
+
+/* Hero Section - Centered focal point */
 .hero {
     position: relative;
-    height: 65vh; /* Prevents excessive vertical zoom on large monitors */
+    height: 70vh;
     min-height: 500px;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpg');
     background-size: cover;
-    background-position: center 10%; /* Anchors the crop to the top of the image */
+    background-position: center 40%; 
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -111,7 +143,7 @@ main {
     color: var(--white);
 }
 
-/* Form Styles */
+/* Form & UI Elements */
 .contact-container {
     max-width: 800px;
     margin: 0 auto;
@@ -138,6 +170,7 @@ main {
     border: 1px solid rgba(255,255,255,0.1);
     color: white;
     border-radius: 4px;
+    font-family: inherit;
 }
 
 .btn-submit {
@@ -149,6 +182,7 @@ main {
     font-weight: bold;
     cursor: pointer;
     width: 100%;
+    font-family: inherit;
 }
 
 .btn-submit:hover {
@@ -163,7 +197,7 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Toggle */
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -179,25 +213,17 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-    
+    .menu-toggle { display: block; }
     #nav-menu {
         display: none;
         width: 100%;
         position: absolute;
         top: 70px;
         left: 0;
-        background-color: var(--bg-black);
+        background-color: var(--bg-dark);
         padding: 20px;
     }
-
-    #nav-menu.active {
-        display: block;
-    }
-
-    .hero-content h1 {
-        font-size: 2.2rem;
-    }
+    #nav-menu.active { display: block; }
+    .nav-links { flex-direction: column; gap: 15px; }
+    .hero-content h1 { font-size: 2.2rem; }
 }
