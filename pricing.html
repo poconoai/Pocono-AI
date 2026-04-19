@@ -3,91 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pocono AI, LLC - Pricing and ROI models for the Sentinel Node™ on-premises AI infrastructure.">
-    <title>Pricing & ROI | Pocono AI, LLC</title>
+    <meta name="description" content="Deployment pricing and Capital Expenditure modeling for Pocono AI Sentinel Nodes.">
+    <title>Pricing & Deployment | Pocono AI, LLC</title>
     
-    <link rel="stylesheet" href="styles.css">
-    
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="canonical" href="https://poconoai.com/pricing.html">
-    
+    <meta property="og:title" content="Deployment Pricing | Pocono AI, LLC">
+    <meta property="og:description" content="Enterprise CapEx modeling for the Sentinel Node sovereign architecture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/pricing.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+        }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-links li:last-child a { border-bottom: none; }
+
+        @media (min-width: 768px) {
+            .menu-toggle { display: none; }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
+        .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 700px; margin: 0 auto 40px auto; }
+
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+        .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .pricing-card h2 { margin-top: 0; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); }
+        .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
+        .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
+
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: all 0.3s ease; }
+        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Pocono <span>AI</span></div>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
 
-        <nav id="nav-menu"></nav>
+    <header>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="hero">
-        <div class="hero-content">
-            <p style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem;">
-                From OpEx to CapEx
-            </p>
-            <h1 style="font-size: 3.5rem; line-height: 1.1;">Investment & ROI</h1>
-            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">
-                Eliminate recurring cloud liabilities. Own your intelligence infrastructure.
-            </p>
-        </div>
-    </div>
-
     <main>
-        <section style="margin-bottom: 4rem; text-align: center;">
-            <h2>Fixed-Asset Intelligence</h2>
-            <p style="max-width: 800px; margin: 1rem auto; color: var(--text-muted);">
-                Traditional AI models rely on "taxing" every interaction via token costs and monthly seats. Pocono AI, LLC shifts your firm to a fixed-asset model. Once the Sentinel Node™ is deployed, your cost per inference is zero.
-            </p>
-        </section>
+        <h1>Deployment Models</h1>
+        <p class="intro-text">Sovereign AI is an infrastructure investment, not a cloud subscription.</p>
 
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Strategic Audit</h3>
-                <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Phase I: Verification</p>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">A comprehensive review of your firm’s data structure, compliance requirements, and hardware readiness.</p>
-                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ Infrastructure stress test</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Vector database mapping</li>
-                    <li style="margin-bottom: 0.5rem;">✓ 90-Day ROI Roadmap</li>
+        <p style="color: var(--light-text); text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC architects turnkey, localized compute environments. Rather than charging per-query API fees or monthly SaaS seats, we operate on a CapEx (Capital Expenditure) model for hardware acquisition, coupled with specialized implementation and tuning contracts.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h2>1. Hardware Acquisition (CapEx)</h2>
+                <p style="color: var(--light-text); font-size: 0.9em;">Customized directly to your facility's vector processing and concurrent user requirements.</p>
+                <ul>
+                    <li>Dell Precision Foundation (OEM Tier)</li>
+                    <li>NVIDIA Tensor Core Arrays (A-Series / RTX)</li>
+                    <li>Encrypted Local NVMe Storage (RAID configurations)</li>
+                    <li>Direct Dell ProSupport Hardware Warranties</li>
                 </ul>
             </div>
 
-            <div class="feature-card" style="border-color: var(--accent-color);">
-                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Sentinel Node™ Deployment</h3>
-                <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Phase II: Sovereignty</p>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Full on-premises installation of the air-gapped hardware and hybrid RAG+SQL logic engine.</p>
-                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ Customized Dell Chassis</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Local Vector Grounding</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Zero-Telemetry Security</li>
-                </ul>
-            </div>
-
-            <div class="feature-card">
-                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Managed Autonomy</h3>
-                <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Phase III: Optimization</p>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Ongoing strategic oversight to ensure the logic engine evolves with your firm’s growing dataset.</p>
-                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ Logic weight balancing</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Quarterly hardware audits</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Priority architectural updates</li>
+            <div class="pricing-card">
+                <h2>2. Implementation & Tuning</h2>
+                <p style="color: var(--light-text); font-size: 0.9em;">Architectural engineering to bridge your data to the localized LLM engine safely.</p>
+                <ul>
+                    <li>Local Vector Database Schema Design</li>
+                    <li>Model Weight Quantization & Deployment (e.g., Gemma, Llama)</li>
+                    <li>Read-Only EHR / Legal Database Bridging</li>
+                    <li>Hallucination Suppression Configuration</li>
                 </ul>
             </div>
         </div>
 
-        <section style="margin-top: 6rem; background: var(--surface-color); padding: 4rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;">
-            <h2 style="margin-bottom: 1rem;">Request a Custom ROI Analysis</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Every legal and medical practice has a unique data footprint. We provide a deterministic cost-offset analysis to show exactly how quickly your local hardware pays for itself in eliminated cloud fees.
-            </p>
-            <a href="#contact" class="btn-submit" style="display: inline-block; width: auto; padding: 1.25rem 3rem; text-decoration: none;">Inquire About Pricing</a>
+        <section id="contact" class="cta-container">
+            <h2 style="color: white; border-bottom: none; margin-top: 0;">Request a Custom Assessment</h2>
+            <p style="color: var(--light-text); margin-bottom: 30px;">Every Sentinel Node is engineered to fit the exact ingestion demands of your practice.</p>
+            
+            <a href="mailto:marcus@poconoai.com?subject=Deployment Quote Request" class="cta-button">Request Architectural Quote</a>
+            <p style="margin-top: 30px;"><strong>Text to Schedule Scoping:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
+
+            <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
+                    <strong>Security Notice:</strong> No PHI/EPHI by text or initial email. All compliance requirements will be addressed via secure channels during the scoping phase.
+                </p>
+            </div>
         </section>
     </main>
 
@@ -99,15 +137,7 @@
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
-        });
+        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
     </script>
-
-    <script src="nav.js"></script>
 </body>
 </html>

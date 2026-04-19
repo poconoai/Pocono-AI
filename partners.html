@@ -3,79 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Strategic partnership opportunities with Pocono AI, LLC for medical, legal, and hardware infrastructure integration.">
-    <title>Partners | Pocono AI, LLC</title>
+    <meta name="description" content="Strategic alliances and integration partners for Pocono AI, LLC.">
+    <title>Partners | Sovereign Integrations | Pocono AI, LLC</title>
     
-    <link rel="stylesheet" href="styles.css">
-    
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="canonical" href="https://poconoai.com/partners.html">
-    
+    <meta property="og:title" content="Strategic Partners | Pocono AI, LLC">
+    <meta property="og:description" content="Explore integration partnerships and strategic alliances with Pocono AI's Sentinel Node architecture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/partners.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+        }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-links li:last-child a { border-bottom: none; }
+
+        @media (min-width: 768px) {
+            .menu-toggle { display: none; }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
+        h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.8em; }
+        .intro-text { text-align: center; font-size: 1.2em; color: var(--light-text); max-width: 700px; margin: 0 auto 40px auto; }
+
+        .partner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        .partner-card { background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; }
+        .partner-card h3 { color: var(--white); margin-top: 0; font-size: 1.4em; }
+        .partner-card p { color: var(--light-text); font-size: 0.95em; }
+
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: all 0.3s ease; }
+        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">Pocono <span>AI</span></div>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
 
-        <nav id="nav-menu"></nav>
+    <header>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="hero">
-        <div class="hero-content">
-            <p style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem;">
-                Strategic Alliances
-            </p>
-            <h1 style="font-size: 3.5rem; line-height: 1.1;">Ecosystem Partners</h1>
-            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 800px; margin: 1.5rem auto 0;">
-                Building the "Fortress" through collaborative engineering and high-compliance distribution.
-            </p>
-        </div>
-    </div>
-
     <main>
-        <section style="margin-bottom: 4rem; text-align: center;">
-            <h2>The Sovereign Network</h2>
-            <p style="max-width: 800px; margin: 1rem auto; color: var(--text-muted);">
-                Pocono AI, LLC collaborates with hardware manufacturers, legal consultants, and medical compliance experts to ensure the Sentinel Node™ remains the gold standard for on-premises autonomy.
-            </p>
+        <h1>Strategic Alliances</h1>
+        <p class="intro-text">Building the sovereign infrastructure ecosystem. We partner with industry leaders to deploy the Sentinel Node in high-liability environments.</p>
+
+        <section>
+            <h2>Integration Partners</h2>
+            <div class="partner-grid">
+                <div class="partner-card">
+                    <h3>Clinical Systems (EHR)</h3>
+                    <p>We are actively developing read-only bridging protocols for major Electronic Health Record providers. If you are an EHR integrator seeking a local-RAG solution for your clients without BAA cloud risks, contact our engineering team.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Legal Tech & eDiscovery</h3>
+                    <p>Law firms require absolute attorney-client privilege. We align with legal technology consultants to deploy the Sentinel Node for massive, localized document review and retrieval operations.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Regional MSPs</h3>
+                    <p>We supply the AI hardware architecture; you supply the localized IT support. Partnering with Managed Service Providers to bring enterprise-grade generative AI to regional medical practices.</p>
+                </div>
+            </div>
         </section>
 
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Infrastructure Partners</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                    We work with enterprise hardware providers to ensure the Sentinel Node™ substrate—standardized on Dell chassis and NVIDIA acceleration—is optimized for long-term localized inference.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Strategic Integration</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                    For firms with existing on-site data centers, we provide strategic integration support to deploy our hybrid RAG+SQL logic layer within your current secure perimeter.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <h3 style="color: var(--accent-color); margin-bottom: 1rem;">Channel Distribution</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                    Partnering with specialized IT providers in the medical and legal sectors to bring localized AI sovereignty to highly regulated practices nationwide.
-                </p>
-            </div>
-        </div>
-
-        <section style="margin-top: 6rem; background: var(--surface-color); padding: 4rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;">
-            <h2 style="margin-bottom: 1rem;">Become a Strategic Partner</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                If your organization provides infrastructure or consulting for high-liability sectors, let's discuss how the Sentinel Node™ can add a layer of absolute data autonomy to your client offerings.
-            </p>
-            <a href="index.html#contact" class="btn-submit" style="display: inline-block; width: auto; padding: 1.25rem 3rem; text-decoration: none;">Inquire About Partnership</a>
+        <section id="contact" class="cta-container">
+            <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish a Partnership</h2>
+            <p style="color: var(--light-text); margin-bottom: 30px;">Discuss strategic alignment and co-deployment opportunities.</p>
+            <a href="mailto:marcus@poconoai.com?subject=Strategic Partnership Inquiry" class="cta-button">Email the Founder</a>
+            <p style="margin-top: 30px;"><strong>Direct Access:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
         </section>
     </main>
 
@@ -87,15 +121,7 @@
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
-        });
+        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
     </script>
-
-    <script src="nav.js"></script>
 </body>
 </html>
