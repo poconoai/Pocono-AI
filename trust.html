@@ -13,39 +13,23 @@
     <meta property="og:url" content="https://poconoai.com/trust.html">
     <meta property="og:image" content="https://poconoai.com/hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     
     <link rel="icon" href="/favicon.ico" sizes="any">
     
     <style>
-        :root {
-            --bg-black: #000000;
-            --bg-dark: #051622;
-            --card-dark: #0A2635;
-            --ai-blue: #00A3FF;
-            --teal: #188B96;
-            --white: #FFFFFF;
-            --light-text: #D0DDE6;
-        }
-        
+        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
         *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
-
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-
         header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
-        
         .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
-
         #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
         #nav-menu.active { display: block; }
         .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .nav-links li:last-child a { border-bottom: none; }
-
         @media (min-width: 992px) {
             .menu-toggle { display: none; }
             #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
@@ -53,43 +37,33 @@
             .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
-
         main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        
         h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-top: 20px; }
         .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: 1.2em; margin-bottom: 40px; }
-
         .glossary-section { margin: 60px 0; }
         .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .glossary-card h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
         .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
-
-        /* AUDIT SECTION */
         .audit-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.1) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .audit-section h2 { margin-top: 0; color: var(--white); border-bottom: none; margin-bottom: 15px; }
         .audit-section p { color: var(--light-text); font-size: 1.05rem; }
         .audit-list { margin-top: 20px; background: rgba(0,0,0,0.4); padding: 20px 20px 20px 40px; border-radius: 6px; border-left: 3px solid var(--teal); }
         .audit-list li { color: var(--white); font-weight: 500; margin-bottom: 10px; }
-
-        /* FOUNDER SECTION */
         .founder-section { background: rgba(10, 38, 53, 0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0, 163, 255, 0.1); }
         .founder-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
         .founder-bio { flex: 2; min-width: 300px; }
         .founder-bio h2 { margin-top: 0; color: var(--white); border-bottom: none; }
         .founder-bio p { color: var(--light-text); font-size: 1.05rem; margin-bottom: 20px; }
         .passion-badge { display: inline-block; background: var(--teal); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; }
-        
         .dba-stack { flex: 1; min-width: 250px; background: var(--bg-black); padding: 25px; border-radius: 6px; border-right: 4px solid var(--teal); }
         .dba-stack h3 { margin-top: 0; font-size: 0.9rem; text-transform: uppercase; color: var(--ai-blue); letter-spacing: 1px; }
         .dba-stack ul { list-style: none; padding: 0; margin: 0; color: var(--light-text); font-size: 0.9rem; }
         .dba-stack li { margin-bottom: 8px; padding-left: 15px; position: relative; }
         .dba-stack li::before { content: "›"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
-
         .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s ease; }
         .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
         footer a { color: var(--light-text); text-decoration: underline; }
     </style>
@@ -152,7 +126,10 @@
 
         <section class="founder-section">
             <div class="founder-content">
-                <div class="founder-bio">
+                <div class="founder-image" style="flex: 1; min-width: 300px;">
+                    <img src="hero.jpg" alt="Marc, Founder of Pocono AI" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(0, 163, 255, 0.2);">
+                </div>
+                <div class="founder-bio" style="flex: 2; min-width: 300px;">
                     <span class="passion-badge">Founder & Chief Technologist</span>
                     <h2>Meet Marc: The Architect of Sovereignty</h2>
                     <p>Marc’s technical philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
@@ -176,7 +153,7 @@
         <section id="contact" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
             <a href="mailto:marcus@poconoai.com?subject=Strategic Trust Inquiry" class="cta-button">Email Direct Inquiry</a>
-            <p style="margin-top: 30px;"><strong>Direct Strategic Access:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
+            <p style="margin-top: 30px;"><strong>Direct Strategic Access:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
         </section>
     </main>
 
