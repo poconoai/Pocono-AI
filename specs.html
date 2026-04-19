@@ -4,155 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical specifications for the Sentinel Node™ - Secure, auditable, on-premises AI infrastructure.">
-    <meta name="date" content="2026-04-19">
-    <title>Technical Specifications | Pocono AI, LLC</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Master Specifications | Sentinel Node™ | Pocono AI, LLC</title>
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+        }
+
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
         
-        header {
-            background-color: var(--bg-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
 
-        .logo {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: var(--ai-blue);
-            margin-left: 5px;
-        }
-
-        /* Nav & Hamburger */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: 0.3s;
-        }
-
-        #nav-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 5%;
-            background: var(--bg-black);
-            width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border-radius: 0 0 4px 4px;
-            padding: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        #nav-menu.active {
-            display: block;
-        }
-
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-links li a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .nav-links li:last-child a {
-            border-bottom: none;
-        }
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
         @media (min-width: 992px) {
-            .menu-toggle {
-                display: none;
-            }
-            #nav-menu {
-                display: flex;
-                position: static;
-                width: auto;
-                background: transparent;
-                box-shadow: none;
-                border: none;
-                padding: 0;
-            }
-            .nav-links {
-                display: flex;
-                gap: 25px;
-                align-items: center;
-            }
-            .nav-links li a {
-                border: none;
-                padding: 0;
-                transition: color 0.3s ease;
-            }
-            .nav-links li a:hover {
-                color: var(--ai-blue);
-            }
+            .menu-toggle { display: none; }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
+            .nav-links { display: flex; gap: 25px; align-items: center; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
         }
 
-        main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5em; color: var(--white); margin-bottom: 10px; text-align: center; }
-        .subtitle { font-size: 1.1rem; color: var(--light-text); margin-bottom: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;}
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
+        .intro-subtext { text-align: center; color: var(--ai-blue); font-weight: bold; margin-bottom: 40px; }
+
+        .spec-container { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); margin-bottom: 50px; }
         
-        .roi-banner { background: rgba(24, 139, 150, 0.1); border: 1px solid var(--teal); padding: 20px; border-radius: 8px; margin: 0 auto 50px auto; text-align: center; max-width: 800px;}
-        
-        .tier-section { margin-bottom: 60px; }
-        .tier-section h2 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; color: var(--white); margin-bottom: 30px; }
-        .tier-price { font-size: 1.5rem; color: var(--teal); font-weight: bold; margin-bottom: 20px; }
-        
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .feature-card { background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-left: 4px solid var(--ai-blue); }
-        .feature-card.enterprise { border-left-color: var(--teal); }
-        .feature-card.plus { border-left-color: var(--white); background-color: #0d3246; }
-        
-        .feature-card h3 { color: var(--ai-blue); margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
-        .feature-card.enterprise h3 { color: var(--teal); }
-        .feature-card.plus h3 { color: var(--white); }
-        
-        .feature-card ul { color: var(--light-text); padding-left: 20px; margin-top: 15px; }
-        .feature-card li { margin-bottom: 10px; font-size: 0.95rem; }
-        
+        h2 { color: var(--teal); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-top: 30px; }
+        .tier-card { border-left: 3px solid var(--ai-blue); padding-left: 20px; margin: 30px 0; }
+        .tier-card h3 { color: var(--white); margin-bottom: 5px; }
+        .tier-card p { color: var(--light-text); font-style: italic; margin-top: 0; }
+        .tier-card ul { list-style: none; padding: 0; color: var(--light-text); }
+        .tier-card ul li { margin-bottom: 8px; }
+        .tier-card ul li strong { color: var(--white); }
+
+        .compliance-box { background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin-top: 50px; }
+        .compliance-box h2 { border: none; color: var(--white); margin-top: 0; }
+
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: 0.3s; }
-        
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
+        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -161,87 +79,78 @@
                 <li><a href="trust.html">Trust & Security</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
+                <li><a href="specs.html" style="color: var(--ai-blue);">Specs</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
-        <p style="color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0; text-align: center;">Master Hardware Specifications</p>
-        <h1>The Sentinel Node™ Architecture</h1>
-        <p class="subtitle">Enterprise Autonomy Architecture (EAA), DBA-grade RAID storage, and fully isolated, auditable telemetry.</p>
+        <h1>Master Specifications</h1>
+        <p class="intro-subtext">Enterprise Autonomy Architecture (EAA) Deployment Tiers</p>
 
-        <div class="roi-banner">
-            <h3>Verified Economic Impact</h3>
-            <p>The Sentinel Node achieves a <strong>100% ROI in under 90 days</strong> when benchmarked against traditional human scribes.</p>
-        </div>
+        <section class="spec-container">
+            <h2>System Overview</h2>
+            [span_2](start_span)<p>The Sentinel Node™ is a fully localized, zero-telemetry hardware appliance designed for high-liability medical and legal practices.[span_2](end_span) [span_3](start_span)By utilizing independent Hardware RAID arrays, the architecture isolates Operating System processes from Vector Database I/O, providing optimized, sub-second retrieval accuracy for complex RAG workflows.[span_3](end_span)</p>
 
-        <div class="tier-section">
-            <h2>Phase I: Intro Sentinel Node</h2>
-            <div class="tier-price">$15,000 CapEx <span style="font-size: 1rem; font-weight: normal; color: var(--light-text);">+ $300/mo Subscription</span></div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Processing & Network</h3>
-                    <ul>
-                        <li><strong>Chassis:</strong> Dell 5400 Series Architecture</li>
-                        <li><strong>Memory:</strong> 64GB High-Bandwidth ECC RAM</li>
-                        <li><strong>Integrity:</strong> Zero-Exfiltration Logic Core</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3>Neural Engine</h3>
-                    <ul>
-                        <li><strong>GPU:</strong> NVIDIA RTX A4500</li>
-                        <li><strong>VRAM:</strong> 20GB GDDR6</li>
-                        <li><strong>Optimization:</strong> Sub-second Retrieval Benchmarks</li>
-                    </ul>
-                </div>
+            <h2>Deployment Tiers</h2>
+
+            <div class="tier-card">
+                <h3>Phase I: Intro Sentinel Node</h3>
+                [span_4](start_span)<p>Clinical Validation & Small Practice Inference[span_4](end_span)</p>
+                <ul>
+                    [span_5](start_span)<li><strong>Neural Engine:</strong> 1x NVIDIA RTX A4500 (20GB GDDR6 VRAM)[span_5](end_span)</li>
+                    <li><strong>Compute Core:</strong> Intel Xeon W-2400 Series | [span_6](start_span)64GB DDR5 ECC RAM[span_6](end_span)</li>
+                    <li><strong>Storage Array 1 (OS):</strong> Hardware RAID 1 | [span_7](start_span)2x 512GB NVMe Enterprise SSD[span_7](end_span)</li>
+                    <li><strong>Storage Array 2 (Data):</strong> Hardware RAID 1 | [span_8](start_span)2x 2TB NVMe Enterprise SSD[span_8](end_span)</li>
+                </ul>
             </div>
-        </div>
 
-        <div class="tier-section">
-            <h2>Phase III: Sentinel Node Plus</h2>
-            <div class="tier-price">Starts $29,999 CapEx <span style="font-size: 1rem; font-weight: normal; color: var(--light-text);">+ $600/mo Base SLA (+$150 per additional GPU)</span></div>
-            <div class="feature-grid">
-                <div class="feature-card plus">
-                    <h3>Processing & Network</h3>
-                    <ul>
-                        <li><strong>Chassis:</strong> Dell 7960 Series Architecture (2200W PSU)</li>
-                        <li><strong>Memory:</strong> 256GB - 512GB ECC RAM</li>
-                        <li><strong>Network:</strong> Mellanox ConnectX-6 25GbE/10GbE</li>
-                    </ul>
-                </div>
-                <div class="feature-card plus">
-                    <h3>Neural Engine</h3>
-                    <ul>
-                        <li><strong>GPU:</strong> 1x to 4x NVIDIA RTX A6000</li>
-                        <li><strong>VRAM:</strong> 48GB to 192GB Total GDDR6</li>
-                        <li><strong>Red Team SLA:</strong> Active security audits & retrieval verification protocols</li>
-                    </ul>
-                </div>
-                <div class="feature-card plus">
-                    <h3>RAID Storage Arrays</h3>
-                    <ul>
-                        <li><strong>Array 1:</strong> RAID 1 - 2x 2TB NVMe SSD</li>
-                        <li><strong>Array 2:</strong> RAID 10 - 4x 4TB U.2 NVMe SSD</li>
-                        <li><strong>Integrity:</strong> DBA-Grade Indexing for Enterprise RAG</li>
-                    </ul>
-                </div>
+            <div class="tier-card">
+                <h3>Phase II: Enterprise Sentinel Node</h3>
+                [span_9](start_span)<p>Standard Enterprise Deployment & Concurrent RAG[span_9](end_span)</p>
+                <ul>
+                    [span_10](start_span)<li><strong>Neural Engine:</strong> 1x NVIDIA RTX A5000 (24GB GDDR6 VRAM)[span_10](end_span)</li>
+                    <li><strong>Compute Core:</strong> Intel Xeon W-2400 Series | [span_11](start_span)128GB DDR5 ECC RAM[span_11](end_span)</li>
+                    <li><strong>Storage Array 1 (OS):</strong> Hardware RAID 1 | [span_12](start_span)2x 1TB NVMe Enterprise SSD[span_12](end_span)</li>
+                    <li><strong>Storage Array 2 (Data):</strong> Hardware RAID 1 | [span_13](start_span)2x 4TB NVMe Enterprise SSD[span_13](end_span)</li>
+                </ul>
             </div>
-        </div>
 
-        <div style="text-align: center; margin-top: 60px;">
-            <a href="Total_Sentinel_Specs.pdf" target="_blank" class="cta-button">Download Master Spec Sheet (PDF)</a>
-        </div>
+            <div class="tier-card">
+                <h3>Phase III: Sentinel Node Plus</h3>
+                <p>Maximum Concurrency & Large Parameter Modeling</p>
+                <ul>
+                    [span_14](start_span)<li><strong>Neural Engine:</strong> 1x to 4x NVIDIA RTX A6000 (Up to 192GB Total VRAM)[span_14](end_span)</li>
+                    <li><strong>Compute Core:</strong> Dual Intel Xeon Scalable Processors | [span_15](start_span)256GB–512GB ECC RAM[span_15](end_span)</li>
+                    <li><strong>Storage Array 2 (Data):</strong> Hardware RAID 10 | [span_16](start_span)4x 4TB U.2 NVMe[span_16](end_span)</li>
+                    <li><strong>Telemetry:</strong> Mellanox ConnectX-6 Dual Port 25GbE/10GbE | [span_17](start_span)Absolute Air-Gap[span_17](end_span)</li>
+                </ul>
+            </div>
+
+            <div class="compliance-box">
+                <h2>Economic Impact & Compliance</h2>
+                [span_18](start_span)<p><strong>Verified ROI:</strong> The Sentinel Node is designed to achieve a complete potential return on investment in under 90 days when benchmarked against traditional human scribe and cloud-based API fees.[span_18](end_span)</p>
+                [span_19](start_span)<p><strong>Mandatory Verification:</strong> This system is strictly an infrastructure asset for professional discovery.[span_19](end_span) [span_20](start_span)[span_21](start_span)The licensed professional operating the Sentinel Node assumes total liability for final work products and must verify all AI-generated outputs against the explicitly cited local data chunks provided in the audit log.[span_20](end_span)[span_21](end_span)</p>
+            </div>
+        </section>
+
+        <section id="contact" class="cta-container">
+            <h2 style="color: white; border-bottom: none; margin-top: 0;">Download Master Technical Data</h2>
+            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button">Download Spec Sheet (PDF)</a>
+            <p style="margin-top: 30px; font-size: 0.85em; color: var(--light-text);">
+                Confidential – Disclosure Prohibited | [span_22](start_span)Subject to Pocono AI, LLC Terms of Service[span_22](end_span)
+            </p>
+        </section>
     </main>
+
     <footer>
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
+        <p>East Stroudsburg, Pennsylvania | [span_23](start_span)Founder & Chief Technologist: Marcus O'Dell[span_23](end_span)</p>
     </footer>
 
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
-        
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             const spans = menuToggle.querySelectorAll('span');
