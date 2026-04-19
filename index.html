@@ -288,43 +288,6 @@
         }
         .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        /* ─── CONTACT FORM ─────────────────────────── */
-        .contact-form {
-            max-width: 560px;
-            margin: 0 auto 30px;
-            text-align: left;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 4px;
-            padding: 12px 14px;
-            color: var(--white);
-            font-family: inherit;
-            font-size: 0.95em;
-            margin-bottom: 14px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus { border-color: var(--ai-blue); }
-        .contact-form textarea { min-height: 110px; resize: vertical; }
-        .contact-form button {
-            width: 100%;
-            background: var(--teal);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            padding: 14px;
-            font-size: 1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .contact-form button:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
         /* ─── FOOTER ───────────────────────────────── */
         footer {
             text-align: center;
@@ -361,7 +324,6 @@
 
     <main>
 
-        <!-- HERO -->
         <section class="hero-section">
             <span class="hero-tagline">Absolute Data Sovereignty</span>
             <h1>Zero Data Exfiltration</h1>
@@ -372,7 +334,6 @@
             </div>
         </section>
 
-        <!-- FOUR PILLARS -->
         <section>
             <h2>Operational Deployment Model</h2>
             <div class="feature-grid">
@@ -395,7 +356,6 @@
             </div>
         </section>
 
-        <!-- CLINICAL SANDBOX -->
         <div class="highlight-section">
             <h2>Clinical Validation Sandbox</h2>
             <p>Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a <strong>76-page raw clinical document</strong> — including complex diagnostics, medications, and MRI results — into an isolated local vector database.</p>
@@ -416,7 +376,6 @@
             <p>Using AnythingLLM and LM Studio, the RAG pipeline was intentionally constrained to baseline hardware (32GB RAM / 11GB VRAM). The system maintained sub-second retrieval accuracy for complex medical history. When scaled to production Sentinel Nodes utilizing Tensor Core architecture, ingestion bottlenecks vanish and inference becomes effectively instantaneous.</p>
         </div>
 
-        <!-- DEPLOYMENT PATHWAY -->
         <section>
             <h2>The Deployment Pathway</h2>
             <div class="pipeline-grid">
@@ -443,17 +402,24 @@
             </div>
         </section>
 
-        <!-- CONTACT -->
         <section id="contact" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Secure Inquiry</h2>
             <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a consultation regarding your local AI deployment.</p>
 
-            <div class="contact-form">
-                <input type="text" placeholder="Full Name" autocomplete="name">
-                <input type="email" placeholder="Professional Email" autocomplete="email">
-                <textarea placeholder="Message"></textarea>
-                <button type="button">Submit Inquiry</button>
-            </div>
+            <form action="mailto:marcus@poconoai.com?subject=Strategic Inquiry via PoconoAI.com" method="post" enctype="text/plain" style="text-align: left; max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
+                <label for="name" style="color: var(--light-text); font-weight: bold; display: block; margin-bottom: 5px;">Name / Organization:</label>
+                <input type="text" id="name" name="Name" required style="width: 100%; padding: 12px; margin-bottom: 20px; background: var(--bg-black); color: white; border: 1px solid var(--ai-blue); border-radius: 4px; box-sizing: border-box;">
+
+                <label for="interest" style="color: var(--light-text); font-weight: bold; display: block; margin-bottom: 5px;">Area of Interest:</label>
+                <select id="interest" name="Interest" style="width: 100%; padding: 12px; margin-bottom: 25px; background: var(--bg-black); color: white; border: 1px solid var(--ai-blue); border-radius: 4px; box-sizing: border-box;">
+                    <option value="Clinical Architecture">Clinical Architecture</option>
+                    <option value="Legal Discovery">Legal Discovery Node</option>
+                    <option value="General Consultation">General Consultation</option>
+                </select>
+
+                <input type="submit" value="Open Secure Email Client" class="cta-button" style="width: 100%; cursor: pointer; border: none; font-size: 1.1em; margin: 0;">
+            </form>
 
             <div class="phi-notice">
                 <p><strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI, sensitive medical records, or confidential legal details via this web form. All HIPAA-compliant review occurs solely via air-gapped hardware post-consultation.</p>
@@ -492,3 +458,4 @@
     </script>
 </body>
 </html>
+
