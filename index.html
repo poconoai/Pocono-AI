@@ -1,47 +1,154 @@
-From: <Saved by Blink>
-Snapshot-Content-Location: https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/index-fixed.html?_nc_ht=scontent.xx.fbcdn.net&_nc_cat=111&_nc_ohc=YuTphLDfi7MQ7kNvwFvbNWw&ccb=14-4&oh=00_Af1HaQU1UCy15gSxe1IJSkjJTV3tAJZH3emNSzNkbSsZEQ&oe=69E625E4&_nc_sid=4ee932
-Subject: Pocono AI, LLC | Absolute Data Autonomy & Local RAG
-Date: Sun, 19 Apr 2026 00:38:35 -0400
-MIME-Version: 1.0
-Content-Type: multipart/related;
-	type="text/html";
-	boundary="----MultipartBoundary--6k9zIZjZvAiTMNfH271tr8V98LXLyyIZLjfoVpsEoI----"
-
-
-------MultipartBoundary--6k9zIZjZvAiTMNfH271tr8V98LXLyyIZLjfoVpsEoI----
-Content-Type: text/html
-Content-ID: <frame-94BAD5D23DA27D7F9D28778FC2F147BB@mhtml.blink>
-Content-Transfer-Encoding: binary
-Content-Location: https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/index-fixed.html?_nc_ht=scontent.xx.fbcdn.net&_nc_cat=111&_nc_ohc=YuTphLDfi7MQ7kNvwFvbNWw&ccb=14-4&oh=00_Af1HaQU1UCy15gSxe1IJSkjJTV3tAJZH3emNSzNkbSsZEQ&oe=69E625E4&_nc_sid=4ee932
-
-<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-0a3d1076-1168-40cf-9102-9b41f6a8a607@mhtml.blink" />
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="description" content="Pocono AI, LLC - Sovereign, on-premises AI infrastructure. 0x filtration, local RAG, and absolute data sovereignty for high-liability medical and legal practices.">
     <meta name="keywords" content="0x filtration, Local RAG, Sovereign AI, Data Sovereignty, Private LLM, Medical AI Security, Legal AI Infrastructure, On-premises AI">
-    <title>Pocono AI, LLC | Absolute Data Autonomy &amp; Local RAG</title>
+    <title>Pocono AI, LLC | Sovereign Data Autonomy & Local RAG</title>
     
-    <meta property="og:title" content="Pocono AI, LLC | 0x Filtration &amp; Private RAG">
+    <meta property="og:title" content="Pocono AI, LLC | 0x Filtration & Private RAG">
     <meta property="og:description" content="Absolute Data Sovereignty. On-premises AI infrastructure architected to obviate cloud liability entirely.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/">
     
-    <link rel="icon" href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="logo.png">
 
-    
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+            --critical-red: #ff3b3b;
+        }
+
+        /* 0.0 FIX: NO ORANGE/YELLOW FOCUS ISSUES */
+        *:focus {
+            outline: 2px solid var(--ai-blue) !important;
+            outline-offset: 2px;
+        }
+
+        /* MASTER HEADER: EXACT REPLICA OF TRUST.HTML */
+        header {
+            background-color: var(--bg-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px; /* Standardized 70px height */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        
+        /* THE CLEAN HAMBURGER MENU */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* THE NICE SIDE-DROPDOWN BOX */
+        #nav-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 5%;
+            background: var(--bg-black);
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-radius: 0 0 4px 4px;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        #nav-menu.active { display: block; }
+        
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            padding: 12px;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-links li:last-child a { border-bottom: none; }
+
+        @media (min-width: 992px) {
+            .menu-toggle { display: none; }
+            #nav-menu {
+                display: flex;
+                position: static;
+                width: auto;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        /* RESTORED CONTENT STYLING */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(5, 22, 34, 0.85), rgba(5, 22, 34, 0.85)), url('hero.jpg');
+            background-size: cover;
+            padding: 0 20px;
+        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; color: var(--white); }
+        .hero-content p { font-size: 1.25rem; color: var(--light-text); max-width: 800px; margin: 0 auto 30px; }
+        
+        .section-padding { padding: 80px 5%; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .card { background: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 3px solid var(--ai-blue); }
+        .card h3 { color: var(--ai-blue); margin-bottom: 15px; }
+        
+        .proof-box { background: rgba(24, 139, 150, 0.1); border: 1px solid var(--teal); padding: 40px; border-radius: 12px; margin-top: 40px; }
+        .critical-notice { border: 1px solid var(--critical-red); padding: 30px; border-radius: 8px; margin-top: 50px; background: rgba(255, 59, 59, 0.05); }
+        
+        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .btn-submit:hover { background: #136a73; }
+
+        .contact-form { max-width: 600px; margin: 40px auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--card-dark); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; }
+    </style>
 </head>
 <body>
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="cursor-glow" id="cursorGlow"></div>
 
     <header>
-        <a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" role="button" tabindex="0">
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <div class="menu-toggle" id="mobile-menu">
             <span></span>
             <span></span>
             <span></span>
@@ -49,13 +156,13 @@ Content-Location: https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_12824715
         
         <nav id="nav-menu">
             <ul class="nav-links">
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/index.html">Home</a></li>
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/solutions.html">Solutions</a></li>
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/architecture.html">Architecture</a></li>
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/trust.html">Trust &amp; Security</a></li>
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/partners.html">Partners</a></li>
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/pricing.html">Pricing</a></li>
-                <li><a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/specs.html" style="color: var(--teal);">Specs</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
             </ul>
         </nav>
     </header>
@@ -63,491 +170,102 @@ Content-Location: https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_12824715
     <main>
         <section class="hero" aria-label="Portrait of Marcus O'Dell, Founder of Pocono AI, LLC">
             <div class="hero-content">
-                <div class="eyebrow">0x Filtration • Local RAG • Air-Gapped</div>
                 <h1>Absolute Data Autonomy</h1>
                 <p>Architected by veteran database administrators to eliminate cloud liability. We don't just secure the cloud; we obviate it entirely.</p>
-                <div class="hero-cta">
-                    <a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/pricing.html" class="btn-submit">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-                        View Deployment Tiers
-                    </a>
-                    <a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/index-fixed.html?_nc_ht=scontent.xx.fbcdn.net&amp;_nc_cat=111&amp;_nc_ohc=YuTphLDfi7MQ7kNvwFvbNWw&amp;ccb=14-4&amp;oh=00_Af1HaQU1UCy15gSxe1IJSkjJTV3tAJZH3emNSzNkbSsZEQ&amp;oe=69E625E4&amp;_nc_sid=4ee932#contact" class="btn-submit" style="background: transparent; border: 1px solid var(--border); box-shadow: none; backdrop-filter: blur(10px);">
-                        Request Audit
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-value blue">0</span>
-                        <span class="stat-label">Packets Exfiltrated</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value teal">&lt;1s</span>
-                        <span class="stat-label">Recall Latency</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100%</span>
-                        <span class="stat-label">On-Premises</span>
-                    </div>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="pricing.html" class="btn-submit" style="width: auto;">View Deployment Tiers</a>
+                    <a href="#contact" class="btn-submit" style="width: auto; background: transparent; border: 1px solid white;">Request Audit</a>
                 </div>
             </div>
         </section>
 
         <section class="section-padding">
-            <div class="section-header reveal">
-                <div class="section-eyebrow">Deployment</div>
-                <h2 class="section-title">Operational Deployment Model</h2>
-                <p class="section-desc">Four phases from assessment to air-gapped autonomy, executed entirely within your physical perimeter.</p>
-            </div>
+            <h2 style="text-align: center; margin-bottom: 50px;">Operational Deployment Model</h2>
             <div class="grid-4">
-                <div class="card reveal">
-                    <span class="card-step">01</span>
-                    <div class="card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect x="9" y="3" width="6" height="4" rx="2"></rect><path d="M9 14l2 2 4-4"></path></svg>
-                    </div>
-                    <h3>Strategic Assessment</h3>
+                <div class="card">
+                    <h3>1. Strategic Assessment</h3>
                     <p>Scoping of internal relational databases and localized ingestion requirements.</p>
                 </div>
-                <div class="card reveal">
-                    <span class="card-step">02</span>
-                    <div class="card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                    </div>
-                    <h3>Hardware Configuration</h3>
+                <div class="card">
+                    <h3>2. Hardware Configuration</h3>
                     <p>On-site provisioning of Sentinel Node architecture with dual RAID 1 storage arrays.</p>
                 </div>
-                <div class="card reveal">
-                    <span class="card-step">03</span>
-                    <div class="card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 16z"></path><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path><path d="M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
-                    </div>
-                    <h3>Localized Tuning</h3>
+                <div class="card">
+                    <h3>3. Localized Tuning</h3>
                     <p>Model weight quantization and vector indexing of internal clinical/legal records.</p>
                 </div>
-                <div class="card reveal">
-                    <span class="card-step">04</span>
-                    <div class="card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
-                    </div>
-                    <h3>Ongoing Compliance</h3>
+                <div class="card">
+                    <h3>4. Ongoing Compliance</h3>
                     <p>Offline update delivery via cryptographically signed "Data on a Stick" protocols to maintain the air gap.</p>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding proof-section">
+        <section class="section-padding" style="background: var(--bg-black);">
             <div style="max-width: 900px; margin: 0 auto;">
-                <div class="section-header reveal">
-                    <div class="section-eyebrow" style="color: var(--teal);">Verified Performance</div>
-                    <h2 class="section-title" style="color: var(--white);">Clinical Validation: Sub-Second Recall</h2>
-                </div>
-                <div class="proof-box reveal">
-                    <div class="proof-header">
-                        <div class="proof-dot"></div>
-                        <div class="proof-dot"></div>
-                        <div class="proof-dot"></div>
-                        <div class="proof-title">sentinel-node://local-rag</div>
-                    </div>
-                    <div class="proof-content">
-                        <div class="proof-metric">
-                            <span class="proof-label">Raw Document Size</span>
-                            <span class="proof-value">76-Page Clinical Record</span>
-                        </div>
-                        <div class="proof-metric">
-                            <span class="proof-label">Inference Engine</span>
-                            <span class="proof-value">Gemma 3 (Quantized / Localized)</span>
-                        </div>
-                        <div class="proof-metric">
-                            <span class="proof-label">Retrieval Latency</span>
-                            <span class="proof-value highlight" id="latencyValue" style="opacity: 1;">&lt; 1 Second</span>
-                        </div>
-                        <div class="proof-quote">
-                            "Verified logic. The system identifies specific clinical contradictions across thousands of pages without a single packet leaving your building."
-                        </div>
-                    </div>
+                <h2 style="color: var(--ai-blue); text-align: center;">Clinical Validation: Sub-Second Recall</h2>
+                <div class="proof-box">
+                    <p><strong>Raw Document Size:</strong> 76-Page Clinical Record</p>
+                    <p><strong>Inference Engine:</strong> Gemma 3 (Quantized / Localized)</p>
+                    <p><strong>Retrieval Latency:</strong> &lt; 1 Second</p>
+                    <p style="margin-top: 20px; color: var(--light-text); font-style: italic;">"Verified logic. The system identifies specific clinical contradictions across thousands of pages without a single packet leaving your building."</p>
                 </div>
             </div>
         </section>
 
         <section class="section-padding">
-            <div class="critical-notice reveal">
-                <div class="critical-header">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--critical-red)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                    <h2>CRITICAL NOTICE</h2>
-                </div>
-                <div class="critical-body">
-                    <p><strong>Pocono AI, LLC</strong> operates on a <strong>Zero-SaaS</strong> philosophy. We do not store your data. We do not provide a "Login." We provide the hardware and the architecture that allows you to own your intelligence.</p>
-                    <p style="font-weight: 600; margin-top: 20px; color: var(--white);">HIPAA &amp; Legal Privilege Security:</p>
-                    <p>No PHI/EPHI is ever permitted to be sent via web forms. All deep-structure review occurs strictly via secure, air-gapped hardware post-consultation.</p>
-                </div>
+            <div class="critical-notice">
+                <h2 style="color: var(--critical-red); margin-top: 0; font-size: 1.2rem;">CRITICAL NOTICE</h2>
+                <p><strong>Pocono AI, LLC</strong> operates on a <strong>Zero-SaaS</strong> philosophy. We do not store your data. We do not provide a "Login." We provide the hardware and the architecture that allows you to own your intelligence.</p>
+                <p style="font-weight: bold; margin-top: 20px; color: var(--white);">HIPAA & Legal Privilege Security:</p>
+                <p>No PHI/EPHI is ever permitted to be sent via web forms. All deep-structure review occurs strictly via secure, air-gapped hardware post-consultation.</p>
             </div>
         </section>
 
-        <section id="contact" class="section-padding" style="background: linear-gradient(180deg, rgba(0,0,0,0.4), transparent); border-top: 1px solid var(--border);">
-            <div class="section-header reveal">
-                <div class="section-eyebrow">Initialize</div>
-                <h2 class="section-title">Secure Inquiry</h2>
-                <p class="section-desc">Start with a scoping assessment. No data transmitted, no cloud accounts required.</p>
-            </div>
-            <div class="contact-form reveal">
+        <section id="contact" class="section-padding" style="background: var(--bg-black);">
+            <h2 style="text-align: center;">Secure Inquiry</h2>
+            <div class="contact-form">
                 <form action="https://formspree.io/f/mqakvpyo" method="POST">
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Professional Email" required="" autocomplete="email">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" rows="5" placeholder="Deployment Scoping Details (practice type, data volume, compliance requirements)" required=""></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit" style="width: 100%; justify-content: center;">
-                        Submit Scoping Request
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                    </button>
+                    <input type="email" name="email" placeholder="Professional Email" required>
+                    <textarea name="message" rows="5" placeholder="Deployment Scoping Details" required></textarea>
+                    <button type="submit" class="btn-submit">Submit Scoping Request</button>
                 </form>
-                <p style="text-align: center; margin-top: 28px; color: var(--light-text); font-size: 0.9rem;">
+                <p style="text-align: center; margin-top: 30px; color: var(--light-text);">
                     Or text first to coordinate a secure consultation:<br>
-                    <a href="tel:+14845424769" style="color: white; font-weight: 600; text-decoration: none; font-family: 'JetBrains Mono', monospace; margin-top: 6px; display: inline-block;">(484) 542-4769</a>
+                    <a href="tel:+14845424769" style="color: white; font-weight: bold; text-decoration: none;">(484) 542-4769</a>
                 </p>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 Pocono AI, LLC. All rights reserved.</p>
+    <footer style="text-align: center; padding: 40px 20px; background-color: #000000; border-top: 1px solid rgba(255,255,255,0.1);">
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
         <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
         <div style="margin-top: 15px;">
-            <a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/privacy.html">Privacy Policy</a> | 
-            <a href="https://scontent.xx.fbcdn.net/v/t58.90637-6/550584080_1282471583280743_4604624827007154685_n.jpg/terms.html">Terms of Service</a>
+            <a href="privacy.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Privacy Policy</a> | 
+            <a href="terms.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Terms of Service</a>
         </div>
     </footer>
 
-    
-
-</body></html>
-------MultipartBoundary--6k9zIZjZvAiTMNfH271tr8V98LXLyyIZLjfoVpsEoI----
-Content-Type: text/css
-Content-Transfer-Encoding: binary
-Content-Location: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap
-
-@charset "utf-8";
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 300; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: Inter; font-style: normal; font-weight: 800; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwgknk-6nFg.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwgknk-6nFg.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwgknk-6nFg.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwgknk-6nFg.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwgknk-6nFg.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwgknk-6nFg.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwgknk-6nFg.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwgknk-6nFg.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwgknk-6nFg.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwgknk-6nFg.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-
-@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-------MultipartBoundary--6k9zIZjZvAiTMNfH271tr8V98LXLyyIZLjfoVpsEoI----
-Content-Type: text/css
-Content-Transfer-Encoding: binary
-Content-Location: cid:css-0a3d1076-1168-40cf-9102-9b41f6a8a607@mhtml.blink
-
-@charset "utf-8";
-
-:root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --critical-red: #ff3b3b; --border: rgba(255,255,255,0.08); }
-
-* { box-sizing: border-box; margin: 0px; padding: 0px; }
-
-html { scroll-behavior: smooth; }
-
-body { font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; background-image: radial-gradient(800px 600px at 15% -10%, rgba(0, 163, 255, 0.18), transparent 60%), radial-gradient(600px 500px at 85% 10%, rgba(24, 139, 150, 0.15), transparent 60%), radial-gradient(700px 500px at 50% 120%, rgba(0, 163, 255, 0.1), transparent 50%); background-attachment: fixed; }
-
-body::before { content: ""; position: fixed; inset: 0px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 1; }
-
-:focus { outline-offset: 3px; border-radius: 4px; outline: 2px solid var(--ai-blue) !important; }
-
-.scroll-progress { position: fixed; top: 0px; left: 0px; height: 3px; width: 0%; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); z-index: 3000; box-shadow: rgba(0, 163, 255, 0.5) 0px 0px 10px; transition: width 0.1s linear; }
-
-.cursor-glow { position: fixed; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 163, 255, 0.12), transparent 60%); pointer-events: none; z-index: 0; transform: translate(-50%, -50%); filter: blur(60px); opacity: 0; transition: opacity 0.3s; }
-
-@media (min-width: 1024px) {
-  .cursor-glow { opacity: 1; }
-}
-
-header { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(16px) saturate(180%); display: flex; justify-content: space-between; align-items: center; padding: 0px 5%; position: sticky; top: 0px; z-index: 1000; height: 72px; border-bottom: 1px solid var(--border); }
-
-.logo { text-decoration: none; font-size: 1.5rem; font-weight: 800; color: var(--white); display: flex; align-items: center; letter-spacing: -0.02em; position: relative; z-index: 2; }
-
-.logo::before { content: ""; width: 8px; height: 8px; background: var(--ai-blue); border-radius: 50%; margin-right: 10px; box-shadow: 0 0 12px var(--ai-blue); animation: 2s ease 0s infinite normal none running pulse; }
-
-.logo span { color: var(--ai-blue); margin-left: 4px; }
-
-.menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; padding: 8px; border-radius: 6px; transition: background 0.2s; }
-
-.menu-toggle:hover { background: rgba(255, 255, 255, 0.05); }
-
-.menu-toggle span { width: 24px; height: 2px; background-color: var(--white); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 2px; }
-
-#nav-menu { position: absolute; top: 72px; right: 5%; background: rgba(5, 22, 34, 0.95); backdrop-filter: blur(20px); width: 240px; box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--border); border-radius: 12px; padding: 8px; border: 1px solid var(--border); opacity: 0; transform: translateY(-10px) scale(0.96); pointer-events: none; transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-
-#nav-menu.active { opacity: 1; transform: translateY(0px) scale(1); pointer-events: auto; }
-
-.nav-links { list-style: none; padding: 0px; margin: 0px; }
-
-.nav-links li a { text-decoration: none; color: var(--light-text); font-weight: 500; padding: 12px 14px; display: block; border-radius: 8px; transition: 0.2s; font-size: 0.95rem; }
-
-.nav-links li a:hover { background: rgba(255, 255, 255, 0.05); color: var(--white); transform: translateX(2px); }
-
-@media (min-width: 768px) {
-  .menu-toggle { display: none; }
-  #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 0px; opacity: 1; transform: none; pointer-events: auto; backdrop-filter: none; }
-  .nav-links { display: flex; gap: 4px; align-items: center; }
-  .nav-links li a { padding: 8px 14px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; }
-  .nav-links li a:hover { transform: none; color: var(--ai-blue); background: rgba(0, 163, 255, 0.08); }
-}
-
-.hero { min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 80px; position: relative; overflow: hidden; }
-
-.hero-content { max-width: 1000px; position: relative; z-index: 2; }
-
-.eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: linear-gradient(rgba(0, 163, 255, 0.15), rgba(0, 163, 255, 0.05)); border: 1px solid rgba(0, 163, 255, 0.25); border-radius: 999px; font-size: 0.75rem; font-weight: 600; color: rgb(125, 211, 252); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 28px; box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 0px inset, rgba(0, 163, 255, 0.15) 0px 4px 20px; }
-
-.eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--ai-blue); border-radius: 50%; box-shadow: 0 0 8px var(--ai-blue); }
-
-.hero-content h1 { font-size: clamp(2.8rem, 7vw, 5rem); margin-bottom: 24px; color: var(--white); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; background: linear-gradient(rgb(255, 255, 255) 30%, rgb(184, 230, 255) 70%, rgb(125, 211, 252)) text; -webkit-text-fill-color: transparent; }
-
-.hero-content p { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--light-text); max-width: 760px; margin: 0px auto 40px; font-weight: 400; line-height: 1.7; }
-
-.hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 70px; }
-
-.btn-submit { background: linear-gradient(180deg, var(--teal), #137983); color: white; padding: 14px 28px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: rgba(24, 139, 150, 0.3) 0px 4px 20px, rgba(255, 255, 255, 0.15) 0px 1px 0px inset; position: relative; overflow: hidden; }
-
-.btn-submit::before { content: ""; position: absolute; inset: 0px; background: linear-gradient(rgba(255, 255, 255, 0.15), transparent); opacity: 0; transition: opacity 0.25s; }
-
-.btn-submit:hover { transform: translateY(-2px); box-shadow: rgba(24, 139, 150, 0.4) 0px 8px 30px, rgba(255, 255, 255, 0.2) 0px 1px 0px inset; }
-
-.btn-submit:hover::before { opacity: 1; }
-
-.btn-submit:active { transform: translateY(0px); }
-
-.hero-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 40px; justify-content: center; padding-top: 40px; border-top: 1px solid var(--border); max-width: 700px; margin: 0px auto; }
-
-.stat { text-align: center; }
-
-.stat-value { font-family: "JetBrains Mono", monospace; font-size: 1.8rem; font-weight: 600; color: var(--white); display: block; line-height: 1; }
-
-.stat-label { font-size: 0.8rem; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 6px; opacity: 0.8; }
-
-.stat-value.blue { color: var(--ai-blue); text-shadow: rgba(0, 163, 255, 0.5) 0px 0px 20px; }
-
-.stat-value.teal { color: var(--teal); text-shadow: rgba(24, 139, 150, 0.5) 0px 0px 20px; }
-
-.section-padding { padding: 100px 5%; position: relative; z-index: 2; }
-
-.section-header { text-align: center; max-width: 700px; margin: 0px auto 60px; }
-
-.section-eyebrow { color: var(--ai-blue); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
-
-.section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
-
-.section-desc { color: var(--light-text); font-size: 1.1rem; }
-
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0px auto; }
-
-.card { background: linear-gradient(rgba(10, 38, 53, 0.8), rgba(10, 38, 53, 0.4)); backdrop-filter: blur(12px); padding: 32px 28px; border-radius: 16px; border: 1px solid var(--border); position: relative; transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; }
-
-.card::before { content: ""; position: absolute; top: 0px; left: 0px; right: 0px; height: 2px; background: linear-gradient(90deg, transparent, var(--ai-blue), transparent); opacity: 0; transition: opacity 0.35s; }
-
-.card:hover { transform: translateY(-6px); border-color: rgba(0, 163, 255, 0.3); box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 40px, rgba(0, 163, 255, 0.1) 0px 0px 0px 1px inset; background: linear-gradient(rgba(10, 38, 53, 0.95), rgba(10, 38, 53, 0.6)); }
-
-.card:hover::before { opacity: 1; }
-
-.card-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, rgba(0, 163, 255, 0.2), rgba(24, 139, 150, 0.2)); border: 1px solid rgba(0, 163, 255, 0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--ai-blue); }
-
-.card h3 { color: var(--white); margin-bottom: 12px; font-size: 1.15rem; font-weight: 700; }
-
-.card p { color: var(--light-text); font-size: 0.95rem; line-height: 1.6; }
-
-.card-step { position: absolute; top: 20px; right: 20px; font-family: "JetBrains Mono", monospace; font-size: 0.75rem; color: rgba(255, 255, 255, 0.25); font-weight: 500; }
-
-.proof-section { background: linear-gradient(transparent, rgba(0, 0, 0, 0.4), transparent); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-.proof-box { background: linear-gradient(rgba(5, 22, 34, 0.9), rgba(5, 22, 34, 0.6)); border: 1px solid rgba(24, 139, 150, 0.3); padding: 0px; border-radius: 20px; margin-top: 40px; max-width: 900px; margin-left: auto; margin-right: auto; overflow: hidden; box-shadow: rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(255, 255, 255, 0.05) 0px 1px 0px inset; position: relative; }
-
-.proof-box::before { content: ""; position: absolute; inset: -1px; background: linear-gradient(90deg, transparent, var(--teal), transparent); border-radius: 20px; z-index: -1; opacity: 0.5; filter: blur(20px); }
-
-.proof-header { padding: 20px 28px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-
-.proof-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--critical-red); box-shadow: rgba(255, 59, 59, 0.5) 0px 0px 10px; }
-
-.proof-dot:nth-child(2) { background: rgb(255, 176, 32); box-shadow: rgba(255, 176, 32, 0.5) 0px 0px 10px; }
-
-.proof-dot:nth-child(3) { background: rgb(0, 211, 127); box-shadow: rgba(0, 211, 127, 0.5) 0px 0px 10px; }
-
-.proof-title { margin-left: auto; font-family: "JetBrains Mono", monospace; font-size: 0.8rem; color: var(--light-text); opacity: 0.7; }
-
-.proof-content { padding: 36px 32px; display: grid; gap: 24px; }
-
-.proof-metric { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 1px dashed rgba(255, 255, 255, 0.08); }
-
-.proof-metric:last-child { border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; padding-bottom: 0px; }
-
-.proof-label { color: var(--light-text); font-size: 0.9rem; }
-
-.proof-value { font-family: "JetBrains Mono", monospace; font-weight: 600; color: var(--white); font-size: 1.05rem; }
-
-.proof-value.highlight { color: var(--ai-blue); text-shadow: rgba(0, 163, 255, 0.4) 0px 0px 15px; }
-
-.proof-quote { margin-top: 12px; padding: 20px; background: rgba(0, 163, 255, 0.05); border-left: 3px solid var(--ai-blue); border-radius: 8px; color: var(--light-text); font-style: italic; font-size: 0.95rem; line-height: 1.6; }
-
-.critical-notice { border: 1px solid rgba(255, 59, 59, 0.3); padding: 0px; border-radius: 16px; margin-top: 50px; background: linear-gradient(rgba(255, 59, 59, 0.08), rgba(255, 59, 59, 0.03)); max-width: 900px; margin-left: auto; margin-right: auto; overflow: hidden; position: relative; }
-
-.critical-notice::before { content: ""; position: absolute; inset: 0px; background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.1), transparent); animation: 3s linear 0s infinite normal none running scan; }
-
-.critical-header { background: rgba(255, 59, 59, 0.1); padding: 20px 28px; border-bottom: 1px solid rgba(255, 59, 59, 0.2); display: flex; align-items: center; gap: 12px; }
-
-.critical-header h2 { color: var(--critical-red); margin: 0px; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
-
-.critical-body { padding: 28px; position: relative; z-index: 1; }
-
-.critical-body p { color: var(--light-text); margin-bottom: 16px; }
-
-.critical-body p:last-child { margin-bottom: 0px; }
-
-.critical-body strong { color: var(--white); font-weight: 600; }
-
-.contact-form { max-width: 560px; margin: 40px auto 0px; }
-
-.form-group { margin-bottom: 20px; }
-
-.contact-form input, .contact-form textarea { width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); color: white; border-radius: 10px; font-family: inherit; font-size: 0.95rem; transition: 0.2s; }
-
-.contact-form input:focus, .contact-form textarea:focus { background: rgba(255, 255, 255, 0.04); border-color: var(--ai-blue); box-shadow: rgba(0, 163, 255, 0.15) 0px 0px 0px 3px; outline: none; }
-
-.contact-form textarea { resize: vertical; min-height: 120px; }
-
-footer { text-align: center; padding: 50px 20px 40px; background-color: rgba(0, 0, 0, 0.8); border-top: 1px solid var(--border); position: relative; z-index: 2; }
-
-footer p { color: var(--light-text); font-size: 0.9rem; margin: 6px 0px; }
-
-footer a { color: var(--light-text); text-decoration: none; transition: color 0.2s; }
-
-footer a:hover { color: var(--ai-blue); }
-
-.reveal { opacity: 0; transform: translateY(24px); transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-
-.reveal.visible { opacity: 1; transform: translateY(0px); }
-
-@keyframes pulse { 
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.1); }
-}
-
-@keyframes scan { 
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
-}
-
-@keyframes float { 
-  0% { transform: translate(0px, 0px) rotate(0deg); }
-  100% { transform: translate(30px, -30px) rotate(5deg); }
-}
-
-@media (max-width: 768px) {
-  .hero { min-height: 85vh; padding: 100px 20px 60px; }
-  .hero-cta { flex-direction: column; align-items: stretch; max-width: 300px; margin-left: auto; margin-right: auto; }
-  .btn-submit { justify-content: center; }
-  .hero-stats { grid-template-columns: 1fr; gap: 24px; max-width: 280px; }
-  .section-padding { padding: 70px 5%; }
-  .proof-content { padding: 28px 22px; }
-  .proof-metric { flex-direction: column; align-items: flex-start; gap: 6px; }
-}
-------MultipartBoundary--6k9zIZjZvAiTMNfH271tr8V98LXLyyIZLjfoVpsEoI------
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            
+            // ANIMATION AND TOGGLE MATCHING TRUST.HTML
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
