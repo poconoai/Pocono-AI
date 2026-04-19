@@ -20,10 +20,39 @@
     <link rel="canonical" href="https://poconoai.com/">
     
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        .hero {
+            background-position: center 15% !important; /* Locks the eyes into the frame */
+        }
+        .form-group {
+            width: 100% !important;
+            clear: both !important;
+        }
+        .form-group label {
+            display: block !important;
+            margin-bottom: 8px !important;
+            font-weight: bold !important;
+            color: #D0DDE6 !important;
+        }
+        .form-group input, .form-group textarea {
+            display: block !important;
+            width: 100% !important;
+            padding: 12px !important;
+            background-color: #051622 !important;
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+            border-radius: 6px !important;
+            box-sizing: border-box !important;
+            font-family: inherit !important;
+            margin-bottom: 15px !important;
+            font-size: 1rem !important;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+    <header style="background-color: #000000 !important;">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Pocono <span style="color: #00A3FF;">AI</span></a>
         
         <div class="menu-toggle" id="mobile-menu">
             <span></span>
@@ -32,14 +61,14 @@
         </div>
 
         <nav id="nav-menu">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" class="nav-specs">Specs (PDF)</a></li>
+            <ul class="nav-links" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; flex-wrap: wrap;">
+                <li><a href="index.html" style="color: #FFFFFF; text-decoration: none; font-weight: bold;">Home</a></li>
+                <li><a href="solutions.html" style="color: #FFFFFF; text-decoration: none; font-weight: bold;">Solutions</a></li>
+                <li><a href="architecture.html" style="color: #FFFFFF; text-decoration: none; font-weight: bold;">Architecture</a></li>
+                <li><a href="trust.html" style="color: #FFFFFF; text-decoration: none; font-weight: bold;">Trust & Security</a></li>
+                <li><a href="partners.html" style="color: #FFFFFF; text-decoration: none; font-weight: bold;">Partners</a></li>
+                <li><a href="pricing.html" style="color: #FFFFFF; text-decoration: none; font-weight: bold;">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: #188B96; text-decoration: none; font-weight: bold;">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -56,129 +85,145 @@
             <div class="feature-card">
                 <h2>Local RAG</h2>
                 <p>Ground your intelligence in private data without cloud exfiltration. The Sentinel Node™ keeps your records on-site.</p>
-                <a href="architecture.html" style="color:var(--accent-color); font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Hardware Specs →</a>
+                <a href="architecture.html" style="color:#188B96; font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Hardware Specs →</a>
             </div>
             <div class="feature-card">
                 <h2>Verified Logic</h2>
                 <p>We solve "Invisible Authority." Using Displacement Consistency, we mathematically suppress hallucinations.</p>
-                <a href="trust.html" style="color:var(--accent-color); font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Learn the Math →</a>
+                <a href="trust.html" style="color:#188B96; font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Learn the Math →</a>
             </div>
             <div class="feature-card">
                 <h2>Zero Telemetry</h2>
                 <p>Designed for HIPAA and legal privilege. No data sharing. No cloud BAAs. Just pure, localized power.</p>
-                <a href="solutions.html" style="color:var(--accent-color); font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Use Cases →</a>
+                <a href="solutions.html" style="color:#188B96; font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Use Cases →</a>
             </div>
         </div>
 
-        <section style="background-color: var(--card-dark); padding: 40px; border-radius: 8px; margin: 60px 0; border-left: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <h2 style="color: #ffffff; margin-top: 0;">Clinical Validation Sandbox</h2>
-            <p style="color: var(--ai-blue); font-weight: bold; margin-bottom: 25px;">Proving the Architecture: High-Fidelity Local Retrieval</p>
-            <p style="color: var(--light-text); margin-bottom: 30px; line-height: 1.6;">
-                Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a 76-page raw clinical document into an isolated local vector database.
+        <section style="background-color: #0A2635; padding: 40px; border-radius: 8px; margin: 60px 0; border-left: 4px solid #188B96; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <h2 style="color: #ffffff; margin-top: 0; border-bottom: none; padding-bottom: 0;">Clinical Validation Sandbox</h2>
+            <p style="color: #00A3FF; font-weight: bold; margin-bottom: 25px;">Proving the Architecture: High-Fidelity Local Retrieval</p>
+            
+            <p style="color: #D0DDE6; margin-bottom: 30px; line-height: 1.6;">
+                Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--light-text); text-transform: uppercase; margin: 0;">Exfiltration Events</p>
+                    <p style="font-size: 0.9em; color: #D0DDE6; text-transform: uppercase; margin: 0;">Exfiltration Events</p>
                     <p style="font-size: 1.8em; color: #ffffff; font-weight: bold; margin: 5px 0;">0 (Air-Gapped)</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--light-text); text-transform: uppercase; margin: 0;">Query Response</p>
+                    <p style="font-size: 0.9em; color: #D0DDE6; text-transform: uppercase; margin: 0;">Query Response</p>
                     <p style="font-size: 1.8em; color: #ffffff; font-weight: bold; margin: 5px 0;">&lt; 1 Second</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--light-text); text-transform: uppercase; margin: 0;">Model Engine</p>
+                    <p style="font-size: 0.9em; color: #D0DDE6; text-transform: uppercase; margin: 0;">Model Engine</p>
                     <p style="font-size: 1.2em; color: #ffffff; font-weight: bold; margin: 5px 0;">Gemma 3 (Local)</p>
                 </div>
             </div>
         </section>
 
         <section style="margin: 60px 0;">
-            <h2 style="color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px;">Operational Deployment: How It Connects</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue);">
-                    <div style="background-color: var(--ai-blue); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">1</div>
+            <h2 style="color: #188B96; border-bottom: 2px solid #0A2635; padding-bottom: 10px; text-align: left;">Operational Deployment: How It Connects</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; position: relative;">
+                
+                <div style="background-color: #0A2635; padding: 30px; border-radius: 8px; border-top: 4px solid #00A3FF;">
+                    <div style="background-color: #00A3FF; color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">1</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Hardware Delivery</h3>
-                    <p style="color: var(--light-text); font-size: 0.9em;">Installed directly behind your facility's firewall. It operates on your LAN with all outbound telemetry physically severed.</p>
+                    <p style="color: #D0DDE6; font-size: 0.9em;">Installed directly behind your facility's firewall. It operates on your local area network (LAN) with all outbound telemetry physically or logically severed.</p>
                 </div>
 
-                <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid var(--teal);">
-                    <div style="background-color: var(--teal); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">2</div>
+                <div style="background-color: #0A2635; padding: 30px; border-radius: 8px; border-top: 4px solid #188B96;">
+                    <div style="background-color: #188B96; color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">2</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Phase I: Isolated Terminal</h3>
-                    <p style="color: var(--light-text); font-size: 0.9em;">Manual ingestion via secure local interface. Zero EHR API integration required, ensuring absolute control over data from Day One.</p>
+                    <p style="color: #D0DDE6; font-size: 0.9em;"><strong>Immediate Zero-Risk Utility.</strong> Manual ingestion via secure local interface. Zero EHR API integration required, ensuring absolute control over data.</p>
                 </div>
 
-                <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid rgba(255,255,255,0.2);">
+                <div style="background-color: #0A2635; padding: 30px; border-radius: 8px; border-top: 4px solid rgba(255,255,255,0.2);">
                     <div style="background-color: rgba(255,255,255,0.2); color: #fff; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">3</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Phase II: Legacy Systems Bridging</h3>
-                    <p style="color: var(--light-text); font-size: 0.9em;">Automated pipeline build-out for custom, read-only API bridges directly into legacy EHR or practice management software.</p>
+                    <p style="color: #D0DDE6; font-size: 0.9em;"><strong>Automated Pipeline.</strong> Future build-out of custom, read-only API bridges directly into your legacy EHR or practice management software.</p>
                 </div>
+
             </div>
         </section>
 
-        <section style="margin: 60px 0; padding: 40px; background-color: var(--card-dark); border-radius: 8px; border-left: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <h2 style="color: #ffffff; margin-top: 0;">The Deployment Pathway</h2>
+        <section style="margin: 60px 0; padding: 40px; background-color: #0A2635; border-radius: 8px; border-left: 4px solid #00A3FF; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <h2 style="color: #ffffff; margin-top: 0; border-bottom: none; padding-bottom: 0;">The Deployment Pathway</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 01</p>
-                    <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Executive Briefing</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Secure consultation with the Chief Technologist to align on liability and sovereignty.</p>
+                    <p style="font-size: 0.9em; color: #188B96; text-transform: uppercase; margin: 0; font-weight: bold;">Step 01</p>
+                    <h4 style="color: #ffffff; margin: 5px 0; font-size: 1.1em;">Executive Briefing</h4>
+                    <p style="font-size: 0.9em; color: #D0DDE6; margin: 0;">Secure consultation with the Chief Technologist to align on specific liability constraints.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 02</p>
-                    <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Architectural Scoping</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Analysis of document ingestion scale to spec required hardware arrays.</p>
+                    <p style="font-size: 0.9em; color: #188B96; text-transform: uppercase; margin: 0; font-weight: bold;">Step 02</p>
+                    <h4 style="color: #ffffff; margin: 5px 0; font-size: 1.1em;">Architectural Scoping</h4>
+                    <p style="font-size: 0.9em; color: #D0DDE6; margin: 0;">Analysis of ingestion scale to spec required Tensor Core arrays.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 03</p>
-                    <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">CapEx Procurement</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Hardware is ordered and benchmarked upon approval of procurement proposal.</p>
+                    <p style="font-size: 0.9em; color: #188B96; text-transform: uppercase; margin: 0; font-weight: bold;">Step 03</p>
+                    <h4 style="color: #ffffff; margin: 5px 0; font-size: 1.1em;">CapEx Procurement</h4>
+                    <p style="font-size: 0.9em; color: #D0DDE6; margin: 0;">Bespoke foundation is ordered and benchmarked upon approval.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 04</p>
-                    <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Air-Gapped Installation</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Physical node deployment behind your firewall. Local vectorization begins.</p>
+                    <p style="font-size: 0.9em; color: #188B96; text-transform: uppercase; margin: 0; font-weight: bold;">Step 04</p>
+                    <h4 style="color: #ffffff; margin: 5px 0; font-size: 1.1em;">Air-Gapped Installation</h4>
+                    <p style="font-size: 0.9em; color: #D0DDE6; margin: 0;">Physical node deployment. Local vectorization begins immediately.</p>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <div class="contact-container">
-                <h2>Secure Inquiry</h2>
-                <form action="https://formspree.io/f/mpzvqvay" method="POST" class="contact-form">
+            <div class="contact-container" style="background-color: #0A2635; padding: 40px; border-radius: 8px; max-width: 800px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <h2 style="color: #ffffff; margin-top: 0;">Secure Inquiry</h2>
+                <p style="color: #b4b4b8; margin-bottom: 20px;">Initiate a consultation regarding your local AI deployment.</p>
+                
+                <form action="https://formspree.io/f/mpzvqvay" method="POST" style="width: 100%; display: block;">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required placeholder="Full Name">
                     </div>
+                    
                     <div class="form-group">
                         <label for="email">Professional Email</label>
                         <input type="email" id="email" name="_replyto" required placeholder="email@firm.com">
                     </div>
+                    
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Describe your needs..."></textarea>
+                        <textarea id="message" name="message" rows="5" required placeholder="Describe your infrastructure needs..." style="resize: vertical;"></textarea>
                     </div>
-                    <button type="submit" class="btn-submit">Submit Inquiry</button>
+                    
+                    <button type="submit" style="background-color: #188B96; color: white; padding: 15px 30px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1.1rem; display: block; margin-top: 10px;">Submit Inquiry</button>
                 </form>
 
-                <div class="direct-info" style="text-align: center; margin-top: 3rem;">
-                    <strong>Direct Strategic Access</strong>
-                    <p style="font-size: 1.5rem; color: #fff; margin: 0.5rem 0;">(484) 542-4769</p>
-                    <p>Email: <a href="mailto:marcus@poconoai.com" style="color: var(--accent-color);">marcus@poconoai.com</a></p>
+                <div style="margin-top: 30px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3);">
+                    <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: #D0DDE6; text-align: left; line-height: 1.5;">
+                        <strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI, sensitive medical records, or confidential legal details via this web form. 
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <strong style="color: #ffffff; font-size: 1.1rem;">Direct Strategic Access</strong>
+                    <p style="color: #D0DDE6; margin-top: 5px;">Please <strong>text first</strong> to coordinate a secure consultation.</p>
+                    <p style="font-size: 1.5rem; color: #ffffff; font-weight: bold; margin: 0.5rem 0;">(484) 542-4769</p>
+                    <p style="color: #D0DDE6;">Email: <a href="mailto:marcus@poconoai.com" style="color: #188B96; text-decoration: none; font-weight: bold;">marcus@poconoai.com</a></p>
                     
-                    <div class="phi-warning" style="margin-top: 15px; font-weight: bold; color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 4px;">
-                        CRITICAL NOTICE: Do not include PHI/EPHI in initial communications.
+                    <div style="margin-top: 20px; font-weight: bold; color: #ff4d4d; border: 1px solid #ff4d4d; padding: 12px; border-radius: 4px; background-color: rgba(255, 77, 77, 0.05);">
+                        CRITICAL NOTICE: Do not include PHI/EPHI in initial texts or forms. All HIPAA-compliant review occurs solely via air-gapped hardware post-consultation.
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer style="text-align: center; padding: 40px 20px; background-color: #000000; border-top: 1px solid rgba(255,255,255,0.1);">
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <div style="margin-top: 10px;">
-            <a href="privacy.html" style="color: var(--light-text); text-decoration: none; font-size: 0.9em; margin: 0 10px;">Privacy Policy</a> | 
-            <a href="terms.html" style="color: var(--light-text); text-decoration: none; font-size: 0.9em; margin: 0 10px;">Terms of Service</a>
+        <p>East Stroudsburg, Pennsylvania</p>
+        <div style="margin-top: 15px;">
+            <a href="privacy.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Privacy Policy</a> | 
+            <a href="terms.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Terms of Service</a>
         </div>
     </footer>
 
@@ -187,6 +232,10 @@
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
         });
     </script>
 </body>
