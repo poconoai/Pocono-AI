@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of on-premises AI: The Zero-Trust architecture of Pocono AI, LLC.">
+    <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of auditable on-premises AI: The Zero-Trust architecture of Pocono AI, LLC.">
     <meta name="date" content="2026-04-19">
-    <title>Trust & Security | EAA Ready | Pocono AI, LLC</title>
+    <title>Trust & Security | Auditable AI | Pocono AI, LLC</title>
     
-    <meta property="og:title" content="Trust & Security | EAA Ready | Pocono AI, LLC">
-    <meta property="og:description" content="Data sovereignty and Cloud Obviation. We don't just secure the cloud; we obviate it entirely.">
+    <meta property="og:title" content="Trust & Security | Auditable AI | Pocono AI, LLC">
+    <meta property="og:description" content="Data sovereignty and Cloud Obviation. We don't just secure the cloud; we obviate it entirely with auditable, local AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/trust.html">
     <meta property="og:image" content="https://poconoai.com/hero.jpg">
@@ -33,7 +33,6 @@
 
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
 
-        /* REPAIRED HEADER MATCHING PRICING.HTML */
         header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
@@ -65,6 +64,13 @@
         .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .glossary-card h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
         .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
+
+        /* AUDIT SECTION */
+        .audit-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.1) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .audit-section h2 { margin-top: 0; color: var(--white); border-bottom: none; margin-bottom: 15px; }
+        .audit-section p { color: var(--light-text); font-size: 1.05rem; }
+        .audit-list { margin-top: 20px; background: rgba(0,0,0,0.4); padding: 20px 20px 20px 40px; border-radius: 6px; border-left: 3px solid var(--teal); }
+        .audit-list li { color: var(--white); font-weight: 500; margin-bottom: 10px; }
 
         /* FOUNDER SECTION */
         .founder-section { background: rgba(10, 38, 53, 0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0, 163, 255, 0.1); }
@@ -108,7 +114,7 @@
 
     <main>
         <h1>Zero-Trust Sovereignty</h1>
-        <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation.</p>
+        <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation and Transparent Auditability.</p>
 
         <section class="glossary-section">
             <h2 style="color:var(--teal); text-align:center; border-bottom: none; margin-bottom: 30px;">The Pillars of Sovereignty</h2>
@@ -123,7 +129,7 @@
                 </div>
                 <div class="glossary-card">
                     <h3>Human-in-the-Loop (HITL)</h3>
-                    <p>A mandatory workflow where every AI output is cited and requires a digital sign-off from a licensed professional, eliminating hallucination liability.</p>
+                    <p>A mandatory workflow designed for probabilistic LLMs, where every AI output provides explicitly cited local data for review, mitigating hallucination risk through transparent verification.</p>
                 </div>
                 <div class="glossary-card">
                     <h3>Force Multiplier Protocol</h3>
@@ -132,10 +138,22 @@
             </div>
         </section>
 
+        <section class="audit-section">
+            <h2>Immutable Auditability</h2>
+            <p>Large Language Models are fundamentally probabilistic—they predict the next most likely token. Even with highly optimized local vector databases and mathematical constraints, the generation of plausible false citations (hallucinations) remains an architectural reality of generative AI.</p>
+            <p>Pocono AI, LLC does not claim to magically eliminate this core mechanism. Instead, the Sentinel Node serves strictly as a high-powered <strong>research and discovery engine</strong>. We mitigate inherent risk by forcing absolute transparency. For every inference, the system captures a permanent, immutable log consisting of:</p>
+            <ul class="audit-list">
+                <li>The exact semantic prompt issued by the user.</li>
+                <li>The specific, physical data chunks retrieved from your local RAG index.</li>
+                <li>The final generated response from the local LLM.</li>
+            </ul>
+            <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. However, the system is not an oracle. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid, frictionless verification against actual source documents.</p>
+        </section>
+
         <section class="founder-section">
             <div class="founder-content">
                 <div class="founder-bio">
-                    <span class="passion-badge">Founder & Chief Technologist</span>
+                    <span class="passion-badge">Founder, CEO, Chief Technologist</span>
                     <h2>Meet Marc: The Architect of Sovereignty</h2>
                     <p>Marc’s technical philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
                     <p>After being disabled for 5 years due to neurological spinal issues, Marc utilized AI as the ultimate equalizer to bridge the gap and enable his return to work. Today, he builds that same resilience into every Sentinel Node, often engineering high-performance architectures directly from bed to ensure mission-critical reliability for his clients.</p>
