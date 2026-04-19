@@ -4,21 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical specifications for the Sentinel Node™ - Secure, on-premises AI infrastructure.">
+    <meta name="date" content="2026-04-19">
     <title>Technical Specifications | Pocono AI, LLC</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); }
-        .logo span { color: var(--ai-blue); }
+        
+        header {
+            background-color: var(--bg-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--ai-blue);
+            margin-left: 5px;
+        }
+
+        /* Nav & Hamburger */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: 0.3s;
+        }
+
+        #nav-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 5%;
+            background: var(--bg-black);
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-radius: 0 0 4px 4px;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        #nav-menu.active {
+            display: block;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            padding: 12px;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-links li:last-child a {
+            border-bottom: none;
+        }
+
+        @media (min-width: 992px) {
+            .menu-toggle {
+                display: none;
+            }
+            #nav-menu {
+                display: flex;
+                position: static;
+                width: auto;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            .nav-links {
+                display: flex;
+                gap: 25px;
+                align-items: center;
+            }
+            .nav-links li a {
+                border: none;
+                padding: 0;
+                transition: color 0.3s ease;
+            }
+            .nav-links li a:hover {
+                color: var(--ai-blue);
+            }
+        }
+
         main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5em; color: var(--white); margin-bottom: 10px; text-align: center; }
         .subtitle { font-size: 1.1rem; color: var(--light-text); margin-bottom: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;}
         
         .roi-banner { background: rgba(24, 139, 150, 0.1); border: 1px solid var(--teal); padding: 20px; border-radius: 8px; margin: 0 auto 50px auto; text-align: center; max-width: 800px;}
-        .roi-banner h3 { margin-top: 0; color: var(--white); }
-        .roi-banner p { color: var(--light-text); margin-bottom: 0; }
         
         .tier-section { margin-bottom: 60px; }
         .tier-section h2 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; color: var(--white); margin-bottom: 30px; }
@@ -37,7 +141,6 @@
         .feature-card li { margin-bottom: 10px; font-size: 0.95rem; }
         
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: 0.3s; }
-        .cta-button:hover { background-color: #136a73; }
         
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
     </style>
@@ -45,28 +148,43 @@
 <body>
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <p style="color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0; text-align: center;">Master Hardware Specifications</p>
         <h1>The Sentinel Node™ Architecture</h1>
-        <p class="subtitle">Complete Enterprise Autonomy Architecture (EAA), DBA-grade RAID storage arrays, and fully isolated telemetry.</p>
+        <p class="subtitle">Enterprise Autonomy Architecture (EAA), DBA-grade RAID storage, and fully isolated telemetry.</p>
 
         <div class="roi-banner">
-            <h3>Economic Impact Verified</h3>
-            <p>The Sentinel Node hardware CapEx achieves a <strong>100% Return on Investment in under 90 days</strong> when benchmarked against traditional human scribes and recurring cloud-diagnostic fees.</p>
+            <h3>Verified Economic Impact</h3>
+            <p>The Sentinel Node achieves a <strong>100% ROI in under 90 days</strong> when benchmarked against traditional human scribes.</p>
         </div>
 
         <div class="tier-section">
             <h2>Phase I: Intro Sentinel Node</h2>
-            <div class="tier-price">$15,000 CapEx</div>
+            <div class="tier-price">$15,000 CapEx <span style="font-size: 1rem; font-weight: normal; color: var(--light-text);">+ $300/mo Subscription</span></div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>Processing & Network</h3>
                     <ul>
                         <li><strong>Chassis:</strong> Dell 5400 Series Architecture</li>
-                        <li><strong>Compute:</strong> Intel Xeon W-2400 Series</li>
                         <li><strong>Memory:</strong> 64GB High-Bandwidth ECC RAM</li>
-                        <li><strong>Network:</strong> Intel X710 Dual 10GbE RJ45</li>
+                        <li><strong>Integrity:</strong> Zero-Exfiltration Logic Core</li>
                     </ul>
                 </div>
                 <div class="feature-card">
@@ -74,47 +192,7 @@
                     <ul>
                         <li><strong>GPU:</strong> NVIDIA RTX A4500</li>
                         <li><strong>VRAM:</strong> 20GB GDDR6</li>
-                        <li><strong>Optimization:</strong> Dedicated Tensor Core Acceleration</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3>RAID 1 Storage Arrays</h3>
-                    <ul>
-                        <li><strong>Array 1 (OS/Weights):</strong> 2x 512GB NVMe Enterprise SSD</li>
-                        <li><strong>Array 2 (SQL/Vector):</strong> 2x 2TB NVMe Enterprise SSD</li>
-                        <li><strong>Integrity:</strong> Dell PERC Hardware Controllers</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="tier-section">
-            <h2>Phase II: Enterprise Sentinel Node</h2>
-            <div class="tier-price">$17,999 CapEx <span style="font-size: 1rem; font-weight: normal; color: var(--light-text);">+ $300/mo Value Subscription</span></div>
-            <div class="feature-grid">
-                <div class="feature-card enterprise">
-                    <h3>Processing & Network</h3>
-                    <ul>
-                        <li><strong>Chassis:</strong> Dell 5400 Series Architecture</li>
-                        <li><strong>Compute:</strong> Intel Xeon W-2400 Series</li>
-                        <li><strong>Memory:</strong> 128GB High-Bandwidth ECC RAM</li>
-                        <li><strong>Network:</strong> Intel X710 Dual 10GbE RJ45</li>
-                    </ul>
-                </div>
-                <div class="feature-card enterprise">
-                    <h3>Neural Engine</h3>
-                    <ul>
-                        <li><strong>GPU:</strong> NVIDIA RTX A5000</li>
-                        <li><strong>VRAM:</strong> 24GB GDDR6</li>
-                        <li><strong>Optimization:</strong> Extended Context Processing</li>
-                    </ul>
-                </div>
-                <div class="feature-card enterprise">
-                    <h3>RAID 1 Storage Arrays</h3>
-                    <ul>
-                        <li><strong>Array 1 (OS/Weights):</strong> 2x 1TB NVMe Enterprise SSD</li>
-                        <li><strong>Array 2 (SQL/Vector):</strong> 2x 4TB NVMe Enterprise SSD</li>
-                        <li><strong>Integrity:</strong> High-Volume RAG Retrieval</li>
+                        <li><strong>Optimization:</strong> Sub-second Retrieval Benchmarks</li>
                     </ul>
                 </div>
             </div>
@@ -122,13 +200,12 @@
 
         <div class="tier-section">
             <h2>Phase III: Sentinel Node Plus</h2>
-            <div class="tier-price">Starts at $29,999 CapEx <span style="font-size: 1rem; font-weight: normal; color: var(--light-text);">(1x A6000 Base Config)</span></div>
+            <div class="tier-price">Starts $29,999 CapEx <span style="font-size: 1rem; font-weight: normal; color: var(--light-text);">+ $600/mo Base SLA (+$150 per additional GPU)</span></div>
             <div class="feature-grid">
                 <div class="feature-card plus">
                     <h3>Processing & Network</h3>
                     <ul>
                         <li><strong>Chassis:</strong> Dell 7960 Series Architecture (2200W PSU)</li>
-                        <li><strong>Compute:</strong> Dual Intel Xeon Scalable Processors</li>
                         <li><strong>Memory:</strong> 256GB - 512GB ECC RAM</li>
                         <li><strong>Network:</strong> Mellanox ConnectX-6 25GbE/10GbE</li>
                     </ul>
@@ -137,28 +214,47 @@
                     <h3>Neural Engine</h3>
                     <ul>
                         <li><strong>GPU:</strong> 1x to 4x NVIDIA RTX A6000</li>
-                        <li><strong>VRAM:</strong> 48GB per card (Up to 192GB Total)</li>
-                        <li><strong>Optimization:</strong> Multi-Provider Concurrency</li>
+                        <li><strong>VRAM:</strong> 48GB to 192GB Total GDDR6</li>
+                        <li><strong>Red Team SLA:</strong> Active security audits & hallucination suppression</li>
                     </ul>
                 </div>
                 <div class="feature-card plus">
                     <h3>RAID Storage Arrays</h3>
                     <ul>
-                        <li><strong>Array 1 (OS/Weights):</strong> RAID 1 - 2x 2TB NVMe SSD</li>
-                        <li><strong>Array 2 (SQL/Vector):</strong> RAID 10 - 4x 4TB U.2 NVMe SSD</li>
-                        <li><strong>Integrity:</strong> Massive IOPS for DBA-Grade Indexing</li>
+                        <li><strong>Array 1:</strong> RAID 1 - 2x 2TB NVMe SSD</li>
+                        <li><strong>Array 2:</strong> RAID 10 - 4x 4TB U.2 NVMe SSD</li>
+                        <li><strong>Integrity:</strong> DBA-Grade Indexing for Enterprise RAG</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div style="text-align: center; margin-top: 60px;">
-            <a href="Total_Sentinel_Specs.pdf" target="_blank" class="cta-button">Download Master Spec Sheet & ROI (PDF)</a>
+            <a href="Total_Sentinel_Specs.pdf" target="_blank" class="cta-button">Download Master Spec Sheet (PDF)</a>
         </div>
     </main>
     <footer>
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
         <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

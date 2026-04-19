@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="description" content="Pocono AI, LLC Pricing: On-premises Local AI infrastructure with Zero Data Exfiltration and absolute Data Sovereignty.">
     <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, 0x Exfiltration, Private RAG Pricing, Sovereign AI Infrastructure">
+    <meta name="date" content="2026-04-19">
     <title>Pricing & Deployment | Data Sovereignty | Pocono AI, LLC</title>
     
-    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
         :root {
@@ -29,7 +29,15 @@
             box-shadow: 0 0 0 2px var(--ai-blue) !important;
         }
 
-        /* MASTER STANDARDIZED HEADER [70PX] */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
         header {
             background-color: var(--bg-black);
             display: flex;
@@ -42,19 +50,36 @@
             height: 70px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .logo { 
-            text-decoration: none; 
-            font-size: 1.6rem; 
-            font-weight: 800; 
-            color: var(--white); 
-            display: flex; 
-            align-items: center; 
+
+        .logo {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
         }
-        .logo span { color: var(--ai-blue); margin-left: 5px; }
-        
-        /* CLEAN SIDE-DROP MOBILE NAV [Matches trust.html] */
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
+
+        .logo span {
+            color: var(--ai-blue);
+            margin-left: 5px;
+        }
+
+        /* Nav & Hamburger */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: 0.3s;
+        }
 
         #nav-menu {
             display: none;
@@ -68,9 +93,17 @@
             padding: 10px;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        #nav-menu.active { display: block; }
-        
-        .nav-links { list-style: none; padding: 0; margin: 0; }
+
+        #nav-menu.active {
+            display: block;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
         .nav-links li a {
             text-decoration: none;
             color: var(--white);
@@ -79,10 +112,15 @@
             display: block;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-links li:last-child a { border-bottom: none; }
+
+        .nav-links li:last-child a {
+            border-bottom: none;
+        }
 
         @media (min-width: 992px) {
-            .menu-toggle { display: none; }
+            .menu-toggle {
+                display: none;
+            }
             #nav-menu {
                 display: flex;
                 position: static;
@@ -92,45 +130,170 @@
                 border: none;
                 padding: 0;
             }
-            .nav-links { display: flex; gap: 25px; align-items: center; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
-            .nav-links li a:hover { color: var(--ai-blue); }
+            .nav-links {
+                display: flex;
+                gap: 25px;
+                align-items: center;
+            }
+            .nav-links li a {
+                border: none;
+                padding: 0;
+                transition: color 0.3s ease;
+            }
+            .nav-links li a:hover {
+                color: var(--ai-blue);
+            }
         }
 
-        /* PRICING PAGE CONTENT */
-        main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
-        .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 800px; margin: 0 auto 40px auto; }
-
-        .roi-section { 
-            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); 
-            padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid #00A3FF; 
-            text-align: center; max-width: 1000px;
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
-        .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; }
 
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
-        .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column;}
-        .pricing-card.enterprise { border-top-color: var(--teal); }
-        .pricing-card.plus { border-top-color: var(--white); background-color: #0d3246; }
-        
-        .pricing-card h2 { margin-top: 0; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; font-size: 1.4em;}
-        .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); flex-grow: 1;}
-        .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
-        .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
-        
-        .subscription-banner { 
-            background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); 
-            padding: 30px; border-radius: 8px; margin: 40px 0; 
-            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 10px;
         }
-        .sub-text { flex: 1; min-width: 300px;}
-        .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 200px;}
 
-        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
-        .btn-submit:hover { background-color: #136a73; }
-        
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px;}
+        .intro-text {
+            text-align: center;
+            font-size: 1.2em;
+            color: var(--ai-blue);
+            font-weight: bold;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        .roi-section {
+            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%);
+            padding: 40px;
+            border-radius: 8px;
+            margin: 60px auto;
+            border-left: 5px solid #00A3FF;
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .roi-metric {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: var(--teal);
+            margin: 15px 0;
+            display: block;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background-color: var(--card-dark);
+            padding: 40px;
+            border-radius: 8px;
+            border-top: 4px solid var(--ai-blue);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.enterprise {
+            border-top-color: var(--teal);
+        }
+
+        .pricing-card.plus {
+            border-top-color: var(--white);
+            background-color: #0d3246;
+        }
+
+        .pricing-card h2 {
+            margin-top: 0;
+            color: var(--white);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            color: var(--light-text);
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .pricing-card ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        .subscription-banner {
+            background: rgba(0, 163, 255, 0.05);
+            border: 1px solid var(--ai-blue);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sub-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .sub-price {
+            background: var(--bg-black);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            min-width: 250px;
+        }
+
+        .btn-submit {
+            background: var(--teal);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .btn-submit:hover {
+            background-color: #136a73;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.85em;
+            color: var(--light-text);
+            border-top: 1px solid var(--card-dark);
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
@@ -138,7 +301,9 @@
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
         <div class="menu-toggle" id="mobile-menu">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         <nav id="nav-menu">
             <ul class="nav-links">
@@ -156,7 +321,6 @@
     <main>
         <h1>Deployment Models</h1>
         <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty.</p>
-        <p style="color: var(--light-text); text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC architects turnkey, on-premises compute environments. We eliminate the liability of third-party cloud processing by ensuring <strong>Zero Data Exfiltration</strong> for all mission-critical records.</p>
 
         <div class="roi-section">
             <h2 style="color: white; margin-top: 0;">Verified Economic Impact</h2>
@@ -168,50 +332,47 @@
         <div class="pricing-grid">
             <div class="pricing-card">
                 <h2>Phase I: Intro Node</h2>
-                <p style="color: var(--light-text); font-size: 0.9em;">Clinical Validation & Small Practices</p>
                 <h3 style="color: var(--ai-blue); font-size: 1.8em; margin: 10px 0;">$15,000 CapEx</h3>
+                <p style="color: var(--teal); font-weight: bold; margin-bottom: 0;">$300/mo Baseline SLA</p>
                 <ul>
-                    <li>Dell 5400 Series Chassis</li>
                     <li>NVIDIA RTX A4500 (20GB VRAM)</li>
                     <li>64 GB High-Bandwidth RAM</li>
                     <li>Dual Hardware RAID 1 Storage</li>
-                    <li><strong>Zero Data Exfiltration</strong> Pipeline</li>
+                    <li>Zero-Exfiltration Logic Core</li>
                 </ul>
             </div>
             <div class="pricing-card enterprise">
                 <h2 style="color: var(--teal);">Phase II: Sentinel Node</h2>
-                <p style="color: var(--light-text); font-size: 0.9em;">High-Volume & Multi-Provider Facilities</p>
                 <h3 style="color: var(--teal); font-size: 1.8em; margin: 10px 0;">$17,999 CapEx</h3>
+                <p style="color: var(--teal); font-weight: bold; margin-bottom: 0;">$300/mo Baseline SLA</p>
                 <ul>
-                    <li>Dell 5400 Series Chassis</li>
                     <li>NVIDIA RTX A5000 (24GB VRAM)</li>
                     <li>128 GB High-Bandwidth RAM</li>
-                    <li>Dual Hardware RAID 1 Storage</li>
-                    <li>Absolute <strong>Data Sovereignty</strong></li>
+                    <li>Enterprise RAG Logic Engine</li>
+                    <li>Dedicated Vector DB Integrity</li>
                 </ul>
             </div>
             <div class="pricing-card plus">
                 <h2 style="color: var(--white);">Phase III: Sentinel Plus</h2>
-                <p style="color: var(--light-text); font-size: 0.9em;">Maximum Concurrency & Enterprise Scale</p>
-                <h3 style="color: var(--white); font-size: 1.8em; margin: 10px 0;">Starts at $29,999</h3>
+                <h3 style="color: var(--white); font-size: 1.8em; margin: 10px 0;">Starts $29,999</h3>
+                <p style="color: var(--ai-blue); font-weight: bold; margin-bottom: 0;">$600/mo Base + $150/per extra GPU</p>
                 <ul>
-                    <li>Dell 7960 Series Chassis</li>
-                    <li>1x to 4x NVIDIA RTX A6000 (48GB+)</li>
+                    <li>Up to 4x NVIDIA RTX A6000</li>
                     <li>256GB - 512GB ECC RAM</li>
-                    <li>RAID 10 Massive IOPS Array</li>
-                    <li><strong>Air-Gapped Security</strong> Standard</li>
+                    <li>Massive IOPS RAID 10 Array</li>
+                    <li>Expert Red Team Oversight</li>
                 </ul>
             </div>
         </div>
 
         <div class="subscription-banner">
             <div class="sub-text">
-                <h2 style="margin-top: 0; color: var(--white);">Air-Gapped Compliance Subscription</h2>
-                <p style="color: var(--light-text); margin-bottom: 0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Our highly recommended protocol delivers <strong>Local AI</strong> weight updates and logic engine enhancements via cryptographically signed USB media ("data on a stick"). No internet connection to the server is ever required, ensuring an unbroken air gap.</p>
+                <h2 style="margin-top: 0; color: var(--white);">Sovereignty & Red Team SLA</h2>
+                <p style="color: var(--light-text); margin-bottom: 0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Our protocol delivers updates via cryptographically signed USB media. For Plus-tier nodes, this includes active <strong>Red Team oversight</strong> and hallucination audits to ensure mission-critical reliability.</p>
             </div>
             <div class="sub-price">
-                <div style="font-size: 1.8em; color: var(--ai-blue); font-weight: bold;">$300 / mo</div>
-                <div style="color: var(--light-text); font-size: 0.9em; margin-top: 5px;">Sovereignty & Air-Gap SLA</div>
+                <div style="font-size: 1.8em; color: var(--ai-blue); font-weight: bold;">$300 — $1,050 / mo</div>
+                <div style="color: var(--light-text); font-size: 0.85em; margin-top: 5px;">Scalable by Compute Density</div>
             </div>
         </div>
         
