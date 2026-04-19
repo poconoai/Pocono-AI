@@ -12,180 +12,46 @@
     <meta property="og:url" content="https://poconoai.com/solutions.html">
     <meta property="og:image" content="https://poconoai.com/sentinel-node.png">
     <meta name="twitter:card" content="summary_large_image">
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     
     <link rel="icon" href="/favicon.ico" sizes="any">
     
     <style>
-        :root {
-            --bg-black: #000000; 
-            --bg-dark: #051622;
-            --card-dark: #0A2635;
-            --ai-blue: #00A3FF;
-            --teal: #188B96;
-            --white: #FFFFFF;
-            --light-text: #D0DDE6;
-        }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--white);
-            line-height: 1.6;
-        }
-
-        /* MASTER HEADER: MATCHES INDEX.HTML EXACTLY */
-        header {
-            background-color: var(--bg-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 70px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .logo {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-        }
-        .logo span {
-            color: var(--ai-blue);
-            margin-left: 5px;
-        }
-        
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        #nav-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 5%;
-            background: var(--bg-black);
-            width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border-radius: 0 0 4px 4px;
-            padding: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
         #nav-menu.active { display: block; }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-links li a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .nav-links li:last-child a { border-bottom: none; }
-
         @media (min-width: 768px) {
             .menu-toggle { display: none; }
-            #nav-menu {
-                display: flex;
-                position: static;
-                width: auto;
-                background: transparent;
-                box-shadow: none;
-                border: none;
-                padding: 0;
-            }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
             .nav-links { display: flex; gap: 25px; }
             .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
-
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         h1 { color: var(--white); font-size: 2.5em; text-align: center; margin-bottom: 10px; }
         h2 { color: var(--teal); font-size: 1.8em; margin-top: 50px; border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; }
-
         .solutions-hero { text-align: center; padding: 20px 0 40px 0; }
         .solutions-hero p { font-size: 1.2em; color: var(--light-text); max-width: 700px; margin: 0 auto; }
-
-        .spec-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background-color: var(--card-dark);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        .spec-table { width: 100%; border-collapse: collapse; margin: 30px 0; background-color: var(--card-dark); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .spec-table th, .spec-table td { text-align: left; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .spec-table th { color: var(--teal); font-weight: bold; text-transform: uppercase; font-size: 0.85em; }
         .spec-table td:first-child { font-weight: bold; color: var(--white); width: 30%; }
         .spec-table td { color: var(--light-text); }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .feature-card {
-            background-color: var(--card-dark);
-            padding: 25px;
-            border-radius: 8px;
-            border-top: 4px solid var(--ai-blue);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        .feature-card { background-color: var(--card-dark); padding: 25px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .feature-card h3 { color: var(--white); margin-top: 0; }
-
-        /* STANDARDIZED FLOOR / CTA */
-        .cta-container {
-            text-align: center;
-            margin: 60px 0;
-            padding: 50px;
-            background: rgba(24, 139, 150, 0.1);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 8px;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--teal);
-            color: var(--white);
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin: 10px;
-            transition: all 0.3s ease;
-        }
-        .cta-button-light {
-            background-color: transparent;
-            border: 2px solid var(--white);
-        }
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: all 0.3s ease; }
+        .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
         .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
     </style>
 </head>
@@ -275,7 +141,7 @@
             <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Spec Sheet</a>
             <a href="mailto:marcus@poconoai.com?subject=Technical Inquiry: Sentinel Node Offering" class="cta-button">Email Direct Inquiry</a>
             
-            <p style="margin-top: 30px;"><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
+            <p style="margin-top: 30px;"><strong>Text the Founder:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
 
             <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 600px; margin-left: auto; margin-right: auto;">
                 <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
@@ -291,7 +157,6 @@
     </footer>
 
     <script>
-        // Javascript kept strictly for the mobile toggle to ensure Google bots index the static links
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
