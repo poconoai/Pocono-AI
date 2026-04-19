@@ -23,7 +23,7 @@
 </head>
 <body>
     <header>
-        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">Pocono <span style="color: var(--ai-blue, #00A3FF);">AI</span></a>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
         
         <div class="menu-toggle" id="mobile-menu">
             <span></span>
@@ -32,14 +32,14 @@
         </div>
 
         <nav id="nav-menu">
-            <ul class="nav-links" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 20px; flex-wrap: wrap;">
-                <li><a href="index.html" style="color: var(--white); text-decoration: none; font-weight: bold;">Home</a></li>
-                <li><a href="solutions.html" style="color: var(--white); text-decoration: none; font-weight: bold;">Solutions</a></li>
-                <li><a href="architecture.html" style="color: var(--white); text-decoration: none; font-weight: bold;">Architecture</a></li>
-                <li><a href="trust.html" style="color: var(--white); text-decoration: none; font-weight: bold;">Trust & Security</a></li>
-                <li><a href="partners.html" style="color: var(--white); text-decoration: none; font-weight: bold;">Partners</a></li>
-                <li><a href="pricing.html" style="color: var(--white); text-decoration: none; font-weight: bold;">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal, #188B96); text-decoration: none; font-weight: bold;">Specs (PDF)</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" class="nav-specs">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -107,19 +107,19 @@
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; position: relative;">
                 
-                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue, #00A3FF); position: relative; z-index: 2;">
+                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue, #00A3FF);">
                     <div style="background-color: var(--ai-blue, #00A3FF); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">1</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Hardware Delivery</h3>
                     <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em;">The physical Sentinel Node (Dell Precision array) is delivered and installed directly behind your facility's firewall. It operates on your local area network (LAN) with all outbound telemetry physically or logically severed.</p>
                 </div>
 
-                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid var(--teal, #188B96); position: relative; z-index: 2;">
+                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid var(--teal, #188B96);">
                     <div style="background-color: var(--teal, #188B96); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">2</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Phase I: Isolated Terminal</h3>
                     <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em;"><strong>Immediate Zero-Risk Utility.</strong> Staff utilize our secure, browser-based local interface to manually ingest specific clinical notes, legal briefs, or patient histories. This "air-gapped clipboard" approach requires zero EHR API integration, ensuring absolute control over what the model sees from Day One.</p>
                 </div>
 
-                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid rgba(255,255,255,0.2); position: relative; z-index: 2;">
+                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid rgba(255,255,255,0.2);">
                     <div style="background-color: rgba(255,255,255,0.2); color: #fff; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">3</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Phase II: Legacy Systems Bridging</h3>
                     <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em;"><strong>Automated Pipeline.</strong> Once the local RAG utility is proven via isolated terminal mode, our architecture allows for the future build-out of custom, read-only API bridges directly into your legacy EHR or practice management software.</p>
