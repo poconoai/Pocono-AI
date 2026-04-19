@@ -3,55 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Deployment pricing and Capital Expenditure modeling for Pocono AI Sentinel Nodes.">
+    <meta name="description" content="Deployment pricing and Capital Expenditure modeling for Pocono AI Sentinel Nodes. 0x filtration and data sovereignty.">
     <title>Pricing & Deployment | Pocono AI, LLC</title>
+    
     <link rel="icon" href="/favicon.ico" sizes="any">
+    
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); }
-        .logo span { color: var(--ai-blue); }
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* MASTER STANDARDIZED HEADER - 70PX */
+        header {
+            background-color: var(--bg-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        
+        /* SIDE-DROP MOBILE NAVIGATION */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        #nav-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 5%;
+            background: var(--bg-black);
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-radius: 0 0 4px 4px;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            padding: 12px;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-links li:last-child a { border-bottom: none; }
+
+        @media (min-width: 992px) {
+            .menu-toggle { display: none; }
+            #nav-menu {
+                display: flex;
+                position: static;
+                width: auto;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        /* PRICING CONTENT STYLING */
         main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
         .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 700px; margin: 0 auto 40px auto; }
+
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
         .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column;}
         .pricing-card.enterprise { border-top-color: var(--teal); }
         .pricing-card.plus { border-top-color: var(--white); background-color: #0d3246; }
+        
         .pricing-card h2 { margin-top: 0; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; font-size: 1.4em;}
         .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); flex-grow: 1;}
         .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
         .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
-        .pricing-card.plus ul li::before { color: var(--white); }
         
-        .subscription-banner { background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin: 40px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;}
-        .sub-text { flex: 1; min-width: 300px;}
-        .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 200px;}
-        
-        .roi-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid #00A3FF; text-align: center; max-width: 1000px;}
+        .roi-section { 
+            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); 
+            padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid #00A3FF; 
+            text-align: center; max-width: 1000px;
+        }
         .roi-section h2 { color: #FFFFFF; margin-top: 0; font-size: 2em; }
         .roi-metric { font-size: 3em; font-weight: bold; color: #188B96; margin: 15px 0; display: block; }
+
+        .subscription-banner { 
+            background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); 
+            padding: 30px; border-radius: 8px; margin: 40px 0; 
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+        .sub-text { flex: 1; min-width: 300px;}
+        .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 200px;}
+
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; }
         .cta-button:hover { background-color: #136a73; }
+        
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px;}
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html" style="color: var(--ai-blue);">Pricing</a></li>
+                <li><a href="specs.html">Specs</a></li>
+            </ul>
+        </nav>
     </header>
+    
     <main>
         <h1>Deployment Models</h1>
         <p class="intro-text">Sovereign AI is an infrastructure investment, not a cloud subscription.</p>
-        <p style="color: var(--light-text); text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC architects turnkey, localized compute environments. Rather than charging per-query API fees or monthly SaaS seats, we operate on a CapEx (Capital Expenditure) model for hardware acquisition.</p>
 
         <div class="roi-section">
             <h2>The Economic Impact</h2>
             <p style="color: var(--light-text); font-size: 1.1em; max-width: 600px; margin: 0 auto;">When evaluating infrastructure CapEx against perpetual operational expenses, the mathematics heavily favor localized sovereignty.</p>
             <span class="roi-metric">< 90 Days</span>
             <p style="color: var(--white); font-weight: bold; font-size: 1.2em; margin-bottom: 0;">100% Return on Investment (ROI)</p>
-            <p style="color: var(--light-text); font-size: 0.95em; margin-top: 5px;">When benchmarked against the recurring cost of traditional human scribes and cloud-based per-query data diagnostics.</p>
+            [span_1](start_span)<p style="color: var(--light-text); font-size: 0.95em; margin-top: 5px;">When benchmarked against the recurring cost of traditional human scribes and cloud-based per-query data diagnostics[span_1](end_span).</p>
         </div>
 
         <div class="pricing-grid">
@@ -67,7 +188,7 @@
                 </ul>
             </div>
             <div class="pricing-card enterprise">
-                <h2 style="color: var(--teal);">Phase II: Enterprise Node</h2>
+                <h2 style="color: var(--teal);">Phase II: Sentinel Node</h2>
                 <p style="color: var(--light-text); font-size: 0.9em;">High-Volume & Multi-Provider Facilities</p>
                 <h3 style="color: var(--teal); font-size: 1.8em; margin: 10px 0;">$17,999 CapEx</h3>
                 <ul>
@@ -93,27 +214,42 @@
         <div class="subscription-banner">
             <div class="sub-text">
                 <h2 style="margin-top: 0; color: var(--white);">The Air-Gapped Update Protocol</h2>
-                <p style="color: var(--light-text); margin-bottom: 0;">Maintaining absolute zero-telemetry requires physical isolation. Our highly recommended Compliance Subscription delivers the latest LLM weight updates and logic engine enhancements via a cryptographically signed, encrypted physical USB drive ("data on a stick"). No internet connection to the server is ever required, ensuring 100% data sovereignty and an unbroken air gap.</p>
+                [span_2](start_span)<p style="color: var(--light-text); margin-bottom: 0;">Maintaining absolute zero-telemetry requires physical isolation. Our highly recommended Compliance Subscription delivers the latest LLM weight updates via a cryptographically signed, encrypted physical USB drive ("data on a stick"). No internet connection to the server is ever required[span_2](end_span).</p>
             </div>
             <div class="sub-price">
                 <div style="font-size: 1.8em; color: var(--ai-blue); font-weight: bold;">$300 / mo</div>
-                <div style="color: var(--light-text); font-size: 0.9em; margin-top: 5px;">Optional SLA Subscription<br>Available across all Tiers</div>
+                <div style="color: var(--light-text); font-size: 0.9em; margin-top: 5px;">Optional SLA Subscription</div>
             </div>
         </div>
         
-        <div style="text-align: center; margin-top: 60px; padding: 40px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-            <h2 style="color: white; margin-top: 0;">Request a Custom Assessment</h2>
-            <p style="color: var(--light-text); margin-bottom: 30px;">Every Sentinel Node is engineered to fit the exact ingestion demands of your practice.</p>
+        <div style="text-align: center; margin-top: 60px;">
             <a href="Total_Sentinel_Specs.pdf" target="_blank" class="cta-button">Download Master Spec Sheet & ROI (PDF)</a>
             <p style="margin-top: 30px;"><strong>Text to Schedule Scoping:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
-            <p style="font-size: 0.85em; opacity: 0.8; margin-top: 20px; color: var(--light-text);">
-                <strong>Security Notice:</strong> No PHI/EPHI by text or initial email. All compliance requirements will be addressed via secure channels.
-            </p>
         </div>
     </main>
+
     <footer>
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
         <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
