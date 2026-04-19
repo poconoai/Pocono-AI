@@ -6,14 +6,12 @@
     
     <meta name="description" content="Pocono AI, LLC - Sovereign, on-premises AI infrastructure. 0x filtration, local RAG, and absolute data sovereignty for high-liability medical and legal practices.">
     <meta name="keywords" content="0x filtration, Local RAG, Sovereign AI, Data Sovereignty, Private LLM, Medical AI Security, Legal AI Infrastructure, On-premises AI">
-    <title>Pocono AI, LLC | Sovereign Data Autonomy & Local RAG</title>
+    <title>Pocono AI, LLC | Absolute Data Autonomy & Local RAG</title>
     
     <meta property="og:title" content="Pocono AI, LLC | 0x Filtration & Private RAG">
-    <meta property="og:description" content="Absolute Data Sovereignty. On-premises AI infrastructure built to obviate cloud liability entirely.">
+    <meta property="og:description" content="Absolute Data Sovereignty. On-premises AI infrastructure architected to obviate cloud liability entirely.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
-    <meta name="twitter:card" content="summary_large_image">
     
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -31,7 +29,7 @@
             --critical-red: #ff3b3b;
         }
 
-        /* IDENTICAL HEADER LOGIC FROM TRUST.HTML */
+        /* MASTER HEADER: EXACT REPLICA OF TRUST.HTML */
         header {
             background-color: var(--bg-black);
             display: flex;
@@ -41,7 +39,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            height: 70px; /* Hardcoded 70px height for zero-jump navigation */
+            height: 70px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .logo {
@@ -54,6 +52,7 @@
         }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
         
+        /* THE CLEAN HAMBURGER MENU */
         .menu-toggle {
             display: flex;
             flex-direction: column;
@@ -68,7 +67,7 @@
             transition: all 0.3s ease;
         }
 
-        /* SIDE-DROP NAVIGATION MENU */
+        /* THE NICE SIDE-DROPDOWN BOX */
         #nav-menu {
             display: none;
             position: absolute;
@@ -82,11 +81,8 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         #nav-menu.active { display: block; }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        
+        .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a {
             text-decoration: none;
             color: var(--white);
@@ -113,13 +109,15 @@
             .nav-links li a:hover { color: var(--ai-blue); }
         }
 
-        /* CONTENT STYLING RECONSTRUCTION */
+        /* RESTORED CONTENT STYLING */
         .hero {
             height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            background: linear-gradient(rgba(5, 22, 34, 0.8), rgba(5, 22, 34, 0.8)), url('hero.jpg');
+            background-size: cover;
             padding: 0 20px;
         }
         .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; color: var(--white); }
@@ -135,8 +133,7 @@
         
         .contact-form { max-width: 600px; margin: 40px auto; }
         .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--card-dark); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; }
-        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
-        .btn-submit:hover { background: #136a73; }
+        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
     </style>
 </head>
 <body>
@@ -154,7 +151,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="trust.html">Trust</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
@@ -166,7 +163,7 @@
         <section class="hero" aria-label="Portrait of Marcus O'Dell, Founder of Pocono AI, LLC">
             <div class="hero-content">
                 <h1>Absolute Data Autonomy</h1>
-                [span_2](start_span)<p>Architected by veteran database administrators to eliminate cloud liability[span_2](end_span). [span_3](start_span)[span_4](start_span)We don't just secure the cloud; we obviate it entirely[span_3](end_span)[span_4](end_span).</p>
+                <p>Architected by veteran database administrators to eliminate cloud liability. We don't just secure the cloud; we obviate it entirely.</p>
                 <div style="display: flex; gap: 20px; justify-content: center;">
                     <a href="pricing.html" class="btn-submit" style="width: auto; text-decoration: none;">View Deployment Tiers</a>
                     <a href="#contact" class="btn-submit" style="width: auto; background: transparent; border: 1px solid white; text-decoration: none;">Request Audit</a>
@@ -191,7 +188,7 @@
                 </div>
                 <div class="card">
                     <h3>4. Ongoing Compliance</h3>
-                    [span_5](start_span)[span_6](start_span)<p>Offline update delivery via cryptographically signed "Data on a Stick" protocols to maintain the air gap[span_5](end_span)[span_6](end_span).</p>
+                    <p>Offline update delivery via cryptographically signed "Data on a Stick" protocols to maintain the air gap.</p>
                 </div>
             </div>
         </section>
@@ -202,7 +199,7 @@
                 <div class="proof-box">
                     <p><strong>Raw Document Size:</strong> 76-Page Clinical Record</p>
                     <p><strong>Inference Engine:</strong> Gemma 3 (Quantized / Localized)</p>
-                    <p><strong>Retrieval Latency:</strong> &lt; [span_7](start_span)1 Second[span_7](end_span)</p>
+                    <p><strong>Retrieval Latency:</strong> &lt; 1 Second</p>
                     <p style="margin-top: 20px; color: var(--light-text); font-style: italic;">"Verified logic. The system identifies specific clinical contradictions across thousands of pages without a single packet leaving your building."</p>
                 </div>
             </div>
@@ -211,9 +208,9 @@
         <section class="section-padding">
             <div class="critical-notice">
                 <h2 style="color: var(--critical-red); margin-top: 0;">CRITICAL NOTICE</h2>
-                <p><strong>Pocono AI, LLC</strong> operates on a <strong>Zero-SaaS</strong> philosophy. We do not store your data. We do not provide a "Login." [span_8](start_span)[span_9](start_span)We provide the hardware and the architecture that allows you to own your intelligence[span_8](end_span)[span_9](end_span).</p>
+                <p><strong>Pocono AI, LLC</strong> operates on a <strong>Zero-SaaS</strong> philosophy. We do not store your data. We do not provide a "Login." We provide the hardware and the architecture that allows you to own your intelligence.</p>
                 <p style="font-weight: bold; margin-top: 20px;">HIPAA & Legal Privilege Security:</p>
-                [span_10](start_span)<p>No PHI/EPHI is ever permitted to be sent via web forms[span_10](end_span). All deep-structure review occurs strictly via secure, air-gapped hardware post-consultation.</p>
+                <p>No PHI/EPHI is ever permitted to be sent via web forms. All deep-structure review occurs strictly via secure, air-gapped hardware post-consultation.</p>
             </div>
         </section>
 
@@ -250,7 +247,7 @@
             navMenu.classList.toggle('active');
             const spans = menuToggle.querySelectorAll('span');
             
-            // ANIMATION MATCHING TRUST.HTML
+            // ANIMATION AND TOGGLE MATCHING TRUST.HTML
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
                 spans[1].style.opacity = '0';
