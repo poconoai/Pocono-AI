@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HTML Sitemap for Pocono AI, LLC.">
+    <meta name="description" content="HTML Sitemap for Pocono AI, LLC. Full site directory.">
     <title>Sitemap | Pocono AI, LLC</title>
     
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -26,91 +26,114 @@
             color: var(--white);
             line-height: 1.6;
         }
-        nav {
+        header {
             background-color: var(--bg-black);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 5%;
+            padding: 20px 5%;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            height: 70px;
+            text-align: center;
         }
-        .nav-brand {
+        .logo {
             text-decoration: none;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 800;
+            color: var(--white);
         }
-        .pocono-text { color: var(--white); }
-        .ai-text { color: var(--ai-blue); }
+        .logo span { color: var(--ai-blue); }
         
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: 60px auto;
-            padding: 40px;
-            background-color: var(--card-dark);
-            border-radius: 8px;
-            border-top: 4px solid var(--teal);
+            padding: 0 20px;
         }
-        h1 { color: var(--white); margin-top: 0; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 15px; }
-        a {
-            color: var(--ai-blue);
+        h1 { border-bottom: 2px solid var(--teal); padding-bottom: 10px; margin-bottom: 40px; }
+        
+        .sitemap-list {
+            list-style: none;
+            padding: 0;
+        }
+        .sitemap-list li {
+            background-color: var(--card-dark);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--ai-blue);
+            transition: transform 0.2s ease;
+        }
+        .sitemap-list li:hover {
+            transform: translateX(10px);
+            background-color: #0d2f42;
+        }
+        .sitemap-list a {
+            color: var(--white);
             text-decoration: none;
-            font-size: 1.1em;
+            font-size: 1.2rem;
             font-weight: bold;
         }
-        a:hover { text-decoration: underline; color: var(--teal); }
-        p.desc {
+        .sitemap-list a:hover { color: var(--teal); }
+        .desc {
             color: var(--light-text);
-            font-size: 0.9em;
-            margin-top: 5px;
-            margin-bottom: 25px;
+            font-size: 0.9rem;
+            margin: 5px 0 0 0;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: var(--light-text);
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="nav-brand">
-            <span class="pocono-text">Pocono</span><span class="ai-text">AI</span>
-        </a>
-    </nav>
+    <header>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+    </header>
 
     <main>
-        <h1>Website Directory</h1>
-        
-        <ul>
+        <h1>Site Directory</h1>
+        <ul class="sitemap-list">
             <li>
-                <a href="index.html">Home / Executive Summary</a>
-                <p class="desc">The main portal for Pocono AI, LLC, featuring executive insights and immediate contact access.</p>
+                <a href="index.html">Home Portal</a>
+                <p class="desc">Core gateway featuring the Clinical Validation Sandbox and Deployment Pathway.</p>
             </li>
             <li>
                 <a href="solutions.html">Sentinel Node Solutions</a>
-                <p class="desc">Hardware specifications, deployment features, and technical details for the Sentinel Node.</p>
+                <p class="desc">Detailed breakdown of clinical and legal application hardware.</p>
             </li>
             <li>
                 <a href="architecture.html">Sovereign Architecture</a>
-                <p class="desc">The data flow blueprint, detailing ingestion, vectorization, and local inference.</p>
+                <p class="desc">The blueprint of our local ingestion and private inference pipeline.</p>
             </li>
             <li>
                 <a href="trust.html">Trust & Security (EAA)</a>
-                <p class="desc">Enterprise Autonomy Architecture, zero-trust protocols, and our cloud obviation strategy.</p>
+                <p class="desc">Our Enterprise Autonomy Architecture and zero-telemetry protocols.</p>
             </li>
             <li>
-                <a href="sentinel-node-spec-sheet.pdf" target="_blank">Hardware Spec Sheet (PDF)</a>
-                <p class="desc">Direct download for the technical spec sheet of our local processing arrays.</p>
+                <a href="partners.html">Strategic Alliances</a>
+                <p class="desc">Partnership models for EHR vendors, legal tech, and MSPs.</p>
+            </li>
+            <li>
+                <a href="pricing.html">Pricing & Deployment</a>
+                <p class="desc">CapEx modeling and implementation scoping for localized compute.</p>
+            </li>
+            <li>
+                <a href="sentinel-node-spec-sheet.pdf" target="_blank">Hardware Specs (PDF)</a>
+                <p class="desc">Technical data sheet for our Dell Precision-based processing nodes.</p>
             </li>
             <li>
                 <a href="privacy.html">Privacy Policy</a>
-                <p class="desc">Legal documentation regarding data handling and site tracking.</p>
+                <p class="desc">Airtight documentation separating marketing from air-gapped hardware.</p>
             </li>
             <li>
                 <a href="terms.html">Terms of Service</a>
-                <p class="desc">Standard operating terms and legal disclosures.</p>
+                <p class="desc">Governing law (PA) and absolute clinical/legal liability disclaimers.</p>
             </li>
         </ul>
     </main>
+
+    <footer>
+        &copy; 2026 Pocono AI, LLC. | East Stroudsburg, PA
+    </footer>
 
 </body>
 </html>
