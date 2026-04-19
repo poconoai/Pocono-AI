@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Pocono AI, LLC - Sovereign, on-premises AI infrastructure. 0x filtration, local RAG, and absolute data sovereignty for high-liability medical and legal practices.">
-    <meta name="keywords" content="0x filtration, Local RAG, Sovereign AI, Data Sovereignty, Private LLM, Medical AI Security, Legal AI Infrastructure, On-premises AI">
-    <title>Pocono AI, LLC | Sovereign Data Autonomy & Local RAG</title>
-    
-    <meta property="og:title" content="Pocono AI, LLC | 0x Filtration & Private RAG">
-    <meta property="og:description" content="Absolute Data Sovereignty. On-premises AI infrastructure architected to obviate cloud liability entirely.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poconoai.com/">
+    <meta name="description" content="Pocono AI, LLC - Sovereign, on-premises Local AI infrastructure. Zero Data Exfiltration and Air-Gapped Security for absolute Data Sovereignty.">
+    <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, 0x Exfiltration, Private RAG, Sovereign AI Infrastructure">
+    <title>Pocono AI, LLC | Zero Data Exfiltration & Local AI</title>
     
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="logo.png">
 
     <style>
         :root {
@@ -29,51 +23,32 @@
             --critical-red: #ff3b3b;
         }
 
-        /* 0.0 FIX: NO ORANGE/YELLOW FOCUS ISSUES */
+        /* KILL ALL ORANGE/YELLOW FOCUS ARTIFACTS */
         *:focus {
-            outline: 2px solid var(--ai-blue) !important;
-            outline-offset: 2px;
+            outline: none !important;
+            box-shadow: 0 0 0 2px var(--ai-blue) !important;
         }
 
-        /* MASTER HEADER: EXACT REPLICA OF TRUST.HTML */
+        /* MASTER STANDARDIZED HEADER [70PX] */
         header {
             background-color: var(--bg-black);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%;
+            padding: 0 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            height: 70px; /* Standardized 70px height */
+            height: 70px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .logo {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-        }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
         
-        /* THE CLEAN HAMBURGER MENU */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
-        }
+        /* CLEAN SIDE-DROP MOBILE NAV [Matches trust.html] */
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
 
-        /* THE NICE SIDE-DROPDOWN BOX */
         #nav-menu {
             display: none;
             position: absolute;
@@ -87,79 +62,38 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         #nav-menu.active { display: block; }
-        
         .nav-links { list-style: none; padding: 0; margin: 0; }
-        .nav-links li a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-links li:last-child a { border-bottom: none; }
+        .nav-links li a { text-decoration: none; color: var(--white); padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
         @media (min-width: 992px) {
             .menu-toggle { display: none; }
-            #nav-menu {
-                display: flex;
-                position: static;
-                width: auto;
-                background: transparent;
-                box-shadow: none;
-                border: none;
-                padding: 0;
-            }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; border: none; padding: 0; box-shadow: none; }
             .nav-links { display: flex; gap: 25px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
-            .nav-links li a:hover { color: var(--ai-blue); }
+            .nav-links li a { border: none; padding: 0; }
         }
 
-        /* RESTORED CONTENT STYLING */
-        .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(5, 22, 34, 0.85), rgba(5, 22, 34, 0.85)), url('hero.jpg');
-            background-size: cover;
-            padding: 0 20px;
-        }
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; color: var(--white); }
+        /* HERO: SIGNALING DATA SOVEREIGNTY */
+        .hero { height: 85vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 15px; color: var(--white); line-height: 1.1; }
+        .hero-content .tagline { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 20px; display: block; }
         .hero-content p { font-size: 1.25rem; color: var(--light-text); max-width: 800px; margin: 0 auto 30px; }
         
         .section-padding { padding: 80px 5%; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .card { background: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 3px solid var(--ai-blue); }
-        .card h3 { color: var(--ai-blue); margin-bottom: 15px; }
-        
-        .proof-box { background: rgba(24, 139, 150, 0.1); border: 1px solid var(--teal); padding: 40px; border-radius: 12px; margin-top: 40px; }
-        .critical-notice { border: 1px solid var(--critical-red); padding: 30px; border-radius: 8px; margin-top: 50px; background: rgba(255, 59, 59, 0.05); }
-        
-        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; text-decoration: none; display: inline-block; }
-        .btn-submit:hover { background: #136a73; }
-
-        .contact-form { max-width: 600px; margin: 40px auto; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--card-dark); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; }
+        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="trust.html">Trust</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
@@ -168,13 +102,14 @@
     </header>
 
     <main>
-        <section class="hero" aria-label="Portrait of Marcus O'Dell, Founder of Pocono AI, LLC">
+        <section class="hero">
             <div class="hero-content">
-                <h1>Absolute Data Autonomy</h1>
-                <p>Architected by veteran database administrators to eliminate cloud liability. We don't just secure the cloud; we obviate it entirely.</p>
+                <span class="tagline">Absolute Data Sovereignty</span>
+                <h1>Zero Data Exfiltration</h1>
+                <p>Architected by veteran database administrators to eliminate cloud liability through **Local AI** and **Air-Gapped Security**.</p>
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                    <a href="pricing.html" class="btn-submit" style="width: auto;">View Deployment Tiers</a>
-                    <a href="#contact" class="btn-submit" style="width: auto; background: transparent; border: 1px solid white;">Request Audit</a>
+                    <a href="pricing.html" class="btn-submit">View Deployment Tiers</a>
+                    <a href="#contact" class="btn-submit" style="background: transparent; border: 1px solid white;">Request Audit</a>
                 </div>
             </div>
         </section>
@@ -183,79 +118,31 @@
             <h2 style="text-align: center; margin-bottom: 50px;">Operational Deployment Model</h2>
             <div class="grid-4">
                 <div class="card">
-                    <h3>1. Strategic Assessment</h3>
-                    <p>Scoping of internal relational databases and localized ingestion requirements.</p>
+                    <h3>0x Exfiltration</h3>
+                    <p>Total prevention of PHI exfiltration by obviating all outbound cloud connections.</p>
                 </div>
                 <div class="card">
-                    <h3>2. Hardware Configuration</h3>
-                    <p>On-site provisioning of Sentinel Node architecture with dual RAID 1 storage arrays.</p>
+                    <h3>Local AI Engine</h3>
+                    <p>Turnkey, on-premises Large Language Models (LLM) processing documents in your physical building.</p>
                 </div>
                 <div class="card">
-                    <h3>3. Localized Tuning</h3>
-                    <p>Model weight quantization and vector indexing of internal clinical/legal records.</p>
+                    <h3>Air-Gapped Security</h3>
+                    <p>Physical isolation of mission-critical weights. Updates delivered via encrypted media only.</p>
                 </div>
                 <div class="card">
-                    <h3>4. Ongoing Compliance</h3>
-                    <p>Offline update delivery via cryptographically signed "Data on a Stick" protocols to maintain the air gap.</p>
+                    <h3>Data Sovereignty</h3>
+                    <p>You own the hardware, the weights, and the records. No third-party data access, ever.</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="section-padding" style="background: var(--bg-black);">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <h2 style="color: var(--ai-blue); text-align: center;">Clinical Validation: Sub-Second Recall</h2>
-                <div class="proof-box">
-                    <p><strong>Raw Document Size:</strong> 76-Page Clinical Record</p>
-                    <p><strong>Inference Engine:</strong> Gemma 3 (Quantized / Localized)</p>
-                    <p><strong>Retrieval Latency:</strong> &lt; 1 Second</p>
-                    <p style="margin-top: 20px; color: var(--light-text); font-style: italic;">"Verified logic. The system identifies specific clinical contradictions across thousands of pages without a single packet leaving your building."</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding">
-            <div class="critical-notice">
-                <h2 style="color: var(--critical-red); margin-top: 0; font-size: 1.2rem;">CRITICAL NOTICE</h2>
-                <p><strong>Pocono AI, LLC</strong> operates on a <strong>Zero-SaaS</strong> philosophy. We do not store your data. We do not provide a "Login." We provide the hardware and the architecture that allows you to own your intelligence.</p>
-                <p style="font-weight: bold; margin-top: 20px; color: var(--white);">HIPAA & Legal Privilege Security:</p>
-                <p>No PHI/EPHI is ever permitted to be sent via web forms. All deep-structure review occurs strictly via secure, air-gapped hardware post-consultation.</p>
-            </div>
-        </section>
-
-        <section id="contact" class="section-padding" style="background: var(--bg-black);">
-            <h2 style="text-align: center;">Secure Inquiry</h2>
-            <div class="contact-form">
-                <form action="https://formspree.io/f/mqakvpyo" method="POST">
-                    <input type="email" name="email" placeholder="Professional Email" required>
-                    <textarea name="message" rows="5" placeholder="Deployment Scoping Details" required></textarea>
-                    <button type="submit" class="btn-submit">Submit Scoping Request</button>
-                </form>
-                <p style="text-align: center; margin-top: 30px; color: var(--light-text);">
-                    Or text first to coordinate a secure consultation:<br>
-                    <a href="tel:+14845424769" style="color: white; font-weight: bold; text-decoration: none;">(484) 542-4769</a>
-                </p>
             </div>
         </section>
     </main>
 
-    <footer style="text-align: center; padding: 40px 20px; background-color: #000000; border-top: 1px solid rgba(255,255,255,0.1);">
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
-        <div style="margin-top: 15px;">
-            <a href="privacy.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Privacy Policy</a> | 
-            <a href="terms.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Terms of Service</a>
-        </div>
-    </footer>
-
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
-        
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             const spans = menuToggle.querySelectorAll('span');
-            
-            // ANIMATION AND TOGGLE MATCHING TRUST.HTML
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
                 spans[1].style.opacity = '0';

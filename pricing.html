@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Deployment pricing and Capital Expenditure modeling for Pocono AI Sentinel Nodes. 0x filtration and data sovereignty.">
-    <title>Pricing & Deployment | Pocono AI, LLC</title>
     
-    <link rel="icon" href="/favicon.ico" sizes="any">
+    <meta name="description" content="Pocono AI, LLC Pricing: On-premises Local AI infrastructure with Zero Data Exfiltration and absolute Data Sovereignty.">
+    <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, 0x Exfiltration, Private RAG Pricing, Sovereign AI Infrastructure">
+    <title>Pricing & Deployment | Data Sovereignty | Pocono AI, LLC</title>
     
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <style>
         :root {
             --bg-black: #000000;
@@ -17,18 +20,16 @@
             --teal: #188B96;
             --white: #FFFFFF;
             --light-text: #D0DDE6;
+            --critical-red: #ff3b3b;
         }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--white);
-            line-height: 1.6;
+        /* HARD FIX: KILL ALL ORANGE/YELLOW FOCUS ARTIFACTS */
+        *:focus {
+            outline: none !important;
+            box-shadow: 0 0 0 2px var(--ai-blue) !important;
         }
 
-        /* MASTER STANDARDIZED HEADER - 70PX */
+        /* MASTER STANDARDIZED HEADER [70PX] */
         header {
             background-color: var(--bg-black);
             display: flex;
@@ -41,30 +42,19 @@
             height: 70px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .logo {
-            text-decoration: none;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--white);
-            display: flex;
-            align-items: center;
+        .logo { 
+            text-decoration: none; 
+            font-size: 1.6rem; 
+            font-weight: 800; 
+            color: var(--white); 
+            display: flex; 
+            align-items: center; 
         }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
         
-        /* SIDE-DROP MOBILE NAVIGATION */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
-        }
+        /* CLEAN SIDE-DROP MOBILE NAV [Matches trust.html] */
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
 
         #nav-menu {
             display: none;
@@ -79,6 +69,7 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
         #nav-menu.active { display: block; }
+        
         .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a {
             text-decoration: none;
@@ -101,15 +92,22 @@
                 border: none;
                 padding: 0;
             }
-            .nav-links { display: flex; gap: 25px; }
+            .nav-links { display: flex; gap: 25px; align-items: center; }
             .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
 
-        /* PRICING CONTENT STYLING */
+        /* PRICING PAGE CONTENT */
         main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
-        .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 700px; margin: 0 auto 40px auto; }
+        .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 800px; margin: 0 auto 40px auto; }
+
+        .roi-section { 
+            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); 
+            padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid #00A3FF; 
+            text-align: center; max-width: 1000px;
+        }
+        .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; }
 
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
         .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column;}
@@ -121,14 +119,6 @@
         .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
         .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
         
-        .roi-section { 
-            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); 
-            padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid #00A3FF; 
-            text-align: center; max-width: 1000px;
-        }
-        .roi-section h2 { color: #FFFFFF; margin-top: 0; font-size: 2em; }
-        .roi-metric { font-size: 3em; font-weight: bold; color: #188B96; margin: 15px 0; display: block; }
-
         .subscription-banner { 
             background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); 
             padding: 30px; border-radius: 8px; margin: 40px 0; 
@@ -137,8 +127,8 @@
         .sub-text { flex: 1; min-width: 300px;}
         .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 200px;}
 
-        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; }
-        .cta-button:hover { background-color: #136a73; }
+        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
+        .btn-submit:hover { background-color: #136a73; }
         
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px;}
     </style>
@@ -158,21 +148,21 @@
                 <li><a href="trust.html">Trust & Security</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html" style="color: var(--ai-blue);">Pricing</a></li>
-                <li><a href="specs.html">Specs</a></li>
+                <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
         <h1>Deployment Models</h1>
-        <p class="intro-text">Sovereign AI is an infrastructure investment, not a cloud subscription.</p>
+        <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty.</p>
+        <p style="color: var(--light-text); text-align: center; max-width: 800px; margin: 0 auto;">Pocono AI, LLC architects turnkey, on-premises compute environments. We eliminate the liability of third-party cloud processing by ensuring <strong>Zero Data Exfiltration</strong> for all mission-critical records.</p>
 
         <div class="roi-section">
-            <h2>The Economic Impact</h2>
-            <p style="color: var(--light-text); font-size: 1.1em; max-width: 600px; margin: 0 auto;">When evaluating infrastructure CapEx against perpetual operational expenses, the mathematics heavily favor localized sovereignty.</p>
+            <h2 style="color: white; margin-top: 0;">Verified Economic Impact</h2>
+            <p style="color: var(--light-text); font-size: 1.1em; max-width: 600px; margin: 0 auto;">When benchmarked against the recurring cost of traditional human scribes, the Sentinel Node CapEx achieves a complete return on investment in:</p>
             <span class="roi-metric">< 90 Days</span>
-            <p style="color: var(--white); font-weight: bold; font-size: 1.2em; margin-bottom: 0;">100% Return on Investment (ROI)</p>
-            [span_1](start_span)<p style="color: var(--light-text); font-size: 0.95em; margin-top: 5px;">When benchmarked against the recurring cost of traditional human scribes and cloud-based per-query data diagnostics[span_1](end_span).</p>
+            <p style="color: var(--white); font-weight: bold; font-size: 1.25em;">100% ROI & Zero-Exfiltration Compliance</p>
         </div>
 
         <div class="pricing-grid">
@@ -184,7 +174,8 @@
                     <li>Dell 5400 Series Chassis</li>
                     <li>NVIDIA RTX A4500 (20GB VRAM)</li>
                     <li>64 GB High-Bandwidth RAM</li>
-                    <li>Dual Hardware RAID 1 Storage Arrays</li>
+                    <li>Dual Hardware RAID 1 Storage</li>
+                    <li><strong>Zero Data Exfiltration</strong> Pipeline</li>
                 </ul>
             </div>
             <div class="pricing-card enterprise">
@@ -195,35 +186,37 @@
                     <li>Dell 5400 Series Chassis</li>
                     <li>NVIDIA RTX A5000 (24GB VRAM)</li>
                     <li>128 GB High-Bandwidth RAM</li>
-                    <li>Dual Hardware RAID 1 Storage Arrays</li>
+                    <li>Dual Hardware RAID 1 Storage</li>
+                    <li>Absolute <strong>Data Sovereignty</strong></li>
                 </ul>
             </div>
             <div class="pricing-card plus">
                 <h2 style="color: var(--white);">Phase III: Sentinel Plus</h2>
-                <p style="color: var(--light-text); font-size: 0.9em;">Maximum Concurrency & Large Models</p>
+                <p style="color: var(--light-text); font-size: 0.9em;">Maximum Concurrency & Enterprise Scale</p>
                 <h3 style="color: var(--white); font-size: 1.8em; margin: 10px 0;">Starts at $29,999</h3>
                 <ul>
                     <li>Dell 7960 Series Chassis</li>
                     <li>1x to 4x NVIDIA RTX A6000 (48GB+)</li>
                     <li>256GB - 512GB ECC RAM</li>
-                    <li>RAID 10 Massive IOPS Storage Array</li>
+                    <li>RAID 10 Massive IOPS Array</li>
+                    <li><strong>Air-Gapped Security</strong> Standard</li>
                 </ul>
             </div>
         </div>
 
         <div class="subscription-banner">
             <div class="sub-text">
-                <h2 style="margin-top: 0; color: var(--white);">The Air-Gapped Update Protocol</h2>
-                [span_2](start_span)<p style="color: var(--light-text); margin-bottom: 0;">Maintaining absolute zero-telemetry requires physical isolation. Our highly recommended Compliance Subscription delivers the latest LLM weight updates via a cryptographically signed, encrypted physical USB drive ("data on a stick"). No internet connection to the server is ever required[span_2](end_span).</p>
+                <h2 style="margin-top: 0; color: var(--white);">Air-Gapped Compliance Subscription</h2>
+                <p style="color: var(--light-text); margin-bottom: 0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Our highly recommended protocol delivers <strong>Local AI</strong> weight updates and logic engine enhancements via cryptographically signed USB media ("data on a stick"). No internet connection to the server is ever required, ensuring an unbroken air gap.</p>
             </div>
             <div class="sub-price">
                 <div style="font-size: 1.8em; color: var(--ai-blue); font-weight: bold;">$300 / mo</div>
-                <div style="color: var(--light-text); font-size: 0.9em; margin-top: 5px;">Optional SLA Subscription</div>
+                <div style="color: var(--light-text); font-size: 0.9em; margin-top: 5px;">Sovereignty & Air-Gap SLA</div>
             </div>
         </div>
         
         <div style="text-align: center; margin-top: 60px;">
-            <a href="Total_Sentinel_Specs.pdf" target="_blank" class="cta-button">Download Master Spec Sheet & ROI (PDF)</a>
+            <a href="Total_Sentinel_Specs.pdf" target="_blank" class="btn-submit">Download Master Spec Sheet & ROI (PDF)</a>
             <p style="margin-top: 30px;"><strong>Text to Schedule Scoping:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
         </div>
     </main>
