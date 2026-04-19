@@ -14,20 +14,128 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="logo.png">
+
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
+        }
+
+        /* Standardized 70px Header & Side-Nav Logic */
+        header {
+            background-color: var(--bg-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo {
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+        .logo span {
+            color: var(--ai-blue);
+            margin-left: 5px;
+        }
+        
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Side Dropdown */
+        #nav-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 5%;
+            background: var(--bg-black);
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-radius: 0 0 4px 4px;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        #nav-menu.active { display: block; }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            padding: 12px;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-links li:last-child a { border-bottom: none; }
+
+        @media (min-width: 768px) {
+            .menu-toggle { display: none; }
+            #nav-menu {
+                display: flex;
+                position: static;
+                width: auto;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        /* Ensure main content doesn't collide with sticky header */
+        main {
+            padding-top: 0;
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust</a></li>
+                <li><a href="trust.html">Trust & Security</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="specs.html">Specs</a></li>
+                <li><a href="specs.html" style="color: var(--teal);">Specs</a></li>
             </ul>
         </nav>
     </header>
@@ -48,7 +156,7 @@
 
     <footer style="text-align: center; padding: 40px 20px; background-color: #000000; border-top: 1px solid rgba(255,255,255,0.1);">
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania</p>
+        <p>East Stroudsburg, Pennsylvania | (484) 542-4769</p>
         <div style="margin-top: 15px;">
             <a href="privacy.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Privacy Policy</a> | 
             <a href="terms.html" style="color: #D0DDE6; text-decoration: none; font-size: 0.9em; margin: 0 10px;">Terms of Service</a>
@@ -58,12 +166,21 @@
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
+        
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             const spans = menuToggle.querySelectorAll('span');
-            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+            
+            // Side-drop transition logic matches trust.html
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
         });
     </script>
 </body>
