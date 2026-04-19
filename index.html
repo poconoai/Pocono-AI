@@ -70,88 +70,86 @@
             </div>
         </div>
 
-        <section style="background-color: var(--card-dark, #0A2635); padding: 40px; border-radius: 8px; margin: 60px 0; border-left: 4px solid var(--teal, #188B96); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <h2 style="color: #ffffff; margin-top: 0; border-bottom: none; padding-bottom: 0;">Clinical Validation Sandbox</h2>
-            <p style="color: var(--ai-blue, #00A3FF); font-weight: bold; margin-bottom: 25px;">Proving the Architecture: High-Fidelity Local Retrieval</p>
+        <section style="background-color: var(--card-dark); padding: 40px; border-radius: 8px; margin: 60px 0; border-left: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <h2 style="color: #ffffff; margin-top: 0;">Clinical Validation Sandbox</h2>
+            <p style="color: var(--ai-blue); font-weight: bold; margin-bottom: 25px;">Proving the Architecture: High-Fidelity Local Retrieval</p>
             
-            <p style="color: var(--light-text, #D0DDE6); margin-bottom: 30px; line-height: 1.6;">
-                Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a <strong>76-page raw clinical document</strong> (including complex diagnostics, medications, and MRI results) into an isolated local vector database.
+            <p style="color: var(--light-text); margin-bottom: 30px; line-height: 1.6;">
+                Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); text-transform: uppercase; margin: 0;">Exfiltration Events</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); text-transform: uppercase; margin: 0;">Exfiltration Events</p>
                     <p style="font-size: 1.8em; color: #ffffff; font-weight: bold; margin: 5px 0;">0 (Air-Gapped)</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); text-transform: uppercase; margin: 0;">Query Response</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); text-transform: uppercase; margin: 0;">Query Response</p>
                     <p style="font-size: 1.8em; color: #ffffff; font-weight: bold; margin: 5px 0;">&lt; 1 Second</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); text-transform: uppercase; margin: 0;">Model Engine</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); text-transform: uppercase; margin: 0;">Model Engine</p>
                     <p style="font-size: 1.2em; color: #ffffff; font-weight: bold; margin: 5px 0;">Gemma 3 (Local)</p>
                 </div>
             </div>
 
             <div style="background-color: rgba(0,0,0,0.3); padding: 20px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
-                <h4 style="color: var(--teal, #188B96); margin-top: 0; margin-bottom: 10px;">The Engineering Takeaway</h4>
-                <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em; margin: 0; line-height: 1.6;">
-                    Using AnythingLLM and LM Studio, the RAG pipeline was intentionally constrained to baseline hardware (32GB RAM / 11GB VRAM). The system maintained sub-second retrieval accuracy for complex medical history. When scaled up to our production Sentinel Nodes utilizing Tensor Core architecture, ingestion bottlenecks vanish and inference becomes effectively instantaneous.
+                <h4 style="color: var(--teal); margin-top: 0; margin-bottom: 10px;">The Engineering Takeaway</h4>
+                <p style="color: var(--light-text); font-size: 0.9em; margin: 0; line-height: 1.6;">
+                    Using AnythingLLM and LM Studio, the RAG pipeline was intentionally constrained to baseline hardware. When scaled up to our production Sentinel Nodes utilizing Tensor Core architecture, ingestion bottlenecks vanish and inference becomes effectively instantaneous.
                 </p>
             </div>
         </section>
 
         <section style="margin: 60px 0;">
-            <h2 style="color: var(--teal, #188B96); border-bottom: 2px solid var(--card-dark, #0A2635); padding-bottom: 10px; text-align: left;">Operational Deployment: How It Connects</h2>
-            <p style="color: var(--light-text, #D0DDE6); margin-bottom: 40px; font-size: 1.1em;">The Sentinel Node is designed for immediate operational utility without compromising your existing network security. We deploy in two distinct phases to manage risk and integration costs.</p>
+            <h2 style="color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px;">Operational Deployment: How It Connects</h2>
+            <p style="color: var(--light-text); margin-bottom: 40px; font-size: 1.1em;">The Sentinel Node is designed for immediate operational utility without compromising network security. We deploy in two distinct phases.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; position: relative;">
-                
-                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue, #00A3FF);">
-                    <div style="background-color: var(--ai-blue, #00A3FF); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">1</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue);">
+                    <div style="background-color: var(--ai-blue); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">1</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Hardware Delivery</h3>
-                    <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em;">The physical Sentinel Node (Dell Precision array) is delivered and installed directly behind your facility's firewall. It operates on your local area network (LAN) with all outbound telemetry physically or logically severed.</p>
+                    <p style="color: var(--light-text); font-size: 0.9em;">Installed directly behind your facility's firewall. It operates on your LAN with all outbound telemetry physically severed.</p>
                 </div>
 
-                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid var(--teal, #188B96);">
-                    <div style="background-color: var(--teal, #188B96); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">2</div>
+                <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid var(--teal);">
+                    <div style="background-color: var(--teal); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">2</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Phase I: Isolated Terminal</h3>
-                    <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em;"><strong>Immediate Zero-Risk Utility.</strong> Staff utilize our secure, browser-based local interface to manually ingest specific clinical notes, legal briefs, or patient histories. This "air-gapped clipboard" approach requires zero EHR API integration, ensuring absolute control over what the model sees from Day One.</p>
+                    <p style="color: var(--light-text); font-size: 0.9em;">Manual ingestion via secure local interface. Zero EHR API integration required, ensuring absolute control over data from Day One.</p>
                 </div>
 
-                <div style="background-color: var(--card-dark, #0A2635); padding: 30px; border-radius: 8px; border-top: 4px solid rgba(255,255,255,0.2);">
+                <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid rgba(255,255,255,0.2);">
                     <div style="background-color: rgba(255,255,255,0.2); color: #fff; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">3</div>
                     <h3 style="color: #ffffff; margin-top: 0;">Phase II: Legacy Systems Bridging</h3>
-                    <p style="color: var(--light-text, #D0DDE6); font-size: 0.9em;"><strong>Automated Pipeline.</strong> Once the local RAG utility is proven via isolated terminal mode, our architecture allows for the future build-out of custom, read-only API bridges directly into your legacy EHR or practice management software.</p>
+                    <p style="color: var(--light-text); font-size: 0.9em;">Automated pipeline build-out for custom, read-only API bridges directly into legacy EHR or practice management software.</p>
                 </div>
-
             </div>
         </section>
 
-        <section style="margin: 60px 0; padding: 40px; background-color: var(--card-dark, #0A2635); border-radius: 8px; border-left: 4px solid var(--ai-blue, #00A3FF); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <h2 style="color: #ffffff; margin-top: 0; border-bottom: none; padding-bottom: 0;">The Deployment Pathway</h2>
-            <p style="color: var(--light-text, #D0DDE6); margin-bottom: 30px; font-size: 1.1em;">Enterprise acquisitions require precision. We do not sell off-the-shelf software; we architect sovereign infrastructure. Here is the exact timeline from your initial inquiry to your live Sentinel Node.</p>
+        <section style="margin: 60px 0; padding: 40px; background-color: var(--card-dark); border-radius: 8px; border-left: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <h2 style="color: #ffffff; margin-top: 0;">The Deployment Pathway</h2>
+            <p style="color: var(--light-text); margin-bottom: 30px; font-size: 1.1em;">We architect sovereign infrastructure through a professional, transparent timeline.</p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal, #188B96); text-transform: uppercase; margin: 0; font-weight: bold;">Step 01</p>
+                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 01</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Executive Briefing</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); margin: 0;">A 15-minute secure consultation with our Chief Technologist to align on your specific liability constraints and data sovereignty requirements.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Secure consultation with the Chief Technologist to align on liability and sovereignty requirements.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal, #188B96); text-transform: uppercase; margin: 0; font-weight: bold;">Step 02</p>
+                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 02</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Architectural Scoping</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); margin: 0;">We analyze your concurrent user volume and document ingestion scale to spec the exact NVIDIA Tensor Core arrays and NVMe storage required.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Analysis of document ingestion scale to spec required NVIDIA Tensor Core arrays.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal, #188B96); text-transform: uppercase; margin: 0; font-weight: bold;">Step 03</p>
+                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 03</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">CapEx Procurement</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); margin: 0;">A transparent capital expenditure proposal is delivered. Upon approval, your bespoke Dell Precision foundation is ordered and benchmarked.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Bespoke hardware foundation is ordered and benchmarked upon approval of procurement proposal.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                    <p style="font-size: 0.9em; color: var(--teal, #188B96); text-transform: uppercase; margin: 0; font-weight: bold;">Step 04</p>
+                    <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 04</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Air-Gapped Installation</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text, #D0DDE6); margin: 0;">The Sentinel Node is physically deployed behind your firewall. Local vectorization begins immediately in Phase I Terminal Mode.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Physical node deployment behind your firewall. Local vectorization begins immediately.</p>
                 </div>
             </div>
         </section>
@@ -178,10 +176,8 @@
                 </form>
 
                 <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3);">
-                    <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text, #D0DDE6); text-align: left; line-height: 1.5;">
-                        <strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI, sensitive medical records, or confidential legal details via this web form. 
-                        <br><br>
-                        <em>Note: While poconoai.com utilizes privacy-first web analytics for site performance, all physical Sentinel Node deployments are 100% air-gapped with zero telemetry.</em>
+                    <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left; line-height: 1.5;">
+                        <strong>Security Notice:</strong> Do not submit PHI, sensitive medical records, or confidential legal details via this web form.
                     </p>
                 </div>
 
@@ -192,7 +188,7 @@
                     <p>Email: <a href="mailto:marcus@poconoai.com" style="color: var(--accent-color);">marcus@poconoai.com</a></p>
                     
                     <div class="phi-warning" style="margin-top: 15px; font-weight: bold; color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 4px;">
-                        CRITICAL NOTICE: Do not include PHI/EPHI in initial texts or forms. All HIPAA-compliant review occurs solely via air-gapped hardware post-consultation.
+                        CRITICAL NOTICE: Do not include PHI/EPHI in initial communications. Review occurs post-consultation on air-gapped hardware.
                     </div>
                 </div>
             </div>
