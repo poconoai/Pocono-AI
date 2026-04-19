@@ -36,7 +36,7 @@
             line-height: 1.6;
         }
 
-        /* MASTER HEADER: MATCHES INDEX.HTML EXACTLY */
+        /* MASTER HEADER */
         header {
             background-color: var(--bg-black);
             display: flex;
@@ -165,7 +165,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* STANDARDIZED FLOOR / CTA */
         .cta-container {
             text-align: center;
             margin: 60px 0;
@@ -203,12 +202,16 @@
             <span></span>
             <span></span>
         </div>
+        
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -267,7 +270,6 @@
     </footer>
 
     <script>
-        // Javascript kept strictly for the mobile toggle to ensure Google bots index the static links
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
