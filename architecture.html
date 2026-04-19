@@ -70,61 +70,28 @@
             z-index: 1001;
         }
         .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            transition: all 0.3s ease;
+            width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease;
         }
 
         #nav-menu {
-            display: none;
-            position: absolute;
-            top: 70px;
-            right: 5%;
-            background: var(--bg-black);
-            width: 220px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border-radius: 0 0 4px 4px;
-            padding: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1);
         }
         #nav-menu.active { display: block; }
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .nav-links li:last-child a { border-bottom: none; }
 
         @media (min-width: 768px) {
             .menu-toggle { display: none; }
-            #nav-menu {
-                display: flex;
-                position: static;
-                width: auto;
-                background: transparent;
-                box-shadow: none;
-                border: none;
-                padding: 0;
-            }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
             .nav-links { display: flex; gap: 25px; }
             .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
 
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
         h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.8em; }
 
@@ -132,62 +99,28 @@
         .arch-hero p { font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 700px; margin: 0 auto; }
 
         .arch-step-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;
         }
         .arch-card {
-            background-color: var(--card-dark);
-            padding: 25px;
-            border-radius: 8px;
-            border-top: 4px solid var(--teal);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background-color: var(--card-dark); padding: 25px; border-radius: 8px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .step-number {
-            font-size: 0.85em;
-            color: var(--ai-blue);
-            font-weight: bold;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-size: 0.85em; color: var(--ai-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 10px; letter-spacing: 1px;
         }
         .arch-card h3 { margin-top: 0; color: var(--white); }
         .arch-card p { color: var(--light-text); }
 
         .air-gap-section {
-            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%);
-            padding: 35px;
-            border-radius: 8px;
-            margin: 40px 0;
-            border-left: 5px solid var(--teal);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 35px; border-radius: 8px; margin: 40px 0; border-left: 5px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .cta-container {
-            text-align: center;
-            margin: 60px 0;
-            padding: 50px;
-            background: rgba(24, 139, 150, 0.1);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 8px;
+            text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;
         }
         .cta-button {
-            display: inline-block;
-            background-color: var(--teal);
-            color: var(--white);
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            margin: 10px;
-            transition: all 0.3s ease;
+            display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: all 0.3s ease;
         }
-        .cta-button-light {
-            background-color: transparent;
-            border: 2px solid var(--white);
-        }
+        .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
         .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
@@ -197,17 +130,12 @@
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="architecture.html" style="color: var(--ai-blue);">Architecture</a></li>
                 <li><a href="trust.html">Trust & Security</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
@@ -233,12 +161,12 @@
                 <div class="arch-card">
                     <span class="step-number">Phase 02</span>
                     <h3>Vectorization & RAG</h3>
-                    <p>Information is converted into mathematical vectors and stored in a local, encrypted vector database. No data is routed to OpenAI or external embedding APIs.</p>
+                    <p>Information is converted into mathematical vectors and stored in a local, encrypted vector database. No data is routed to external embedding APIs.</p>
                 </div>
                 <div class="arch-card">
                     <span class="step-number">Phase 03</span>
                     <h3>Private Inference</h3>
-                    <p>Our custom-tuned LLMs process your queries on high-performance NVIDIA hardware inside the node. The "thinking" happens inches away from your data, governed by strict retrieval verification protocols and transparent audit logs.</p>
+                    <p>Our tuned LLMs process queries on high-performance local hardware. Inference is governed by strict retrieval verification protocols and transparent audit logs to mitigate risk.</p>
                 </div>
             </div>
         </section>
@@ -250,12 +178,9 @@
 
         <section id="contact" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Review the Deployment Specs</h2>
-            
             <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Spec Sheet</a>
             <a href="mailto:marcus@poconoai.com?subject=Architecture Inquiry: Sentinel Node" class="cta-button">Email Engineering</a>
-            
-            <p style="margin-top: 30px;"><strong>Text the Founder:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
-
+            <p style="margin-top: 30px;"><strong>Direct Access:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
             <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 600px; margin-left: auto; margin-right: auto;">
                 <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
                     <strong>Security Notice:</strong> No PHI/EPHI by text or initial email. All HIPAA-compliant architectural review occurs strictly via secure or air-gapped channels post-consultation.
@@ -280,9 +205,7 @@
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                spans[0].style.transform = 'none'; spans[1].style.opacity = '1'; spans[2].style.transform = 'none';
             }
         });
     </script>
