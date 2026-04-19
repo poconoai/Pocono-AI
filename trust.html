@@ -7,48 +7,103 @@
     <meta name="date" content="2026-04-19">
     <title>Trust & Security | EAA Ready | Pocono AI, LLC</title>
     
+    <meta property="og:title" content="Trust & Security | EAA Ready | Pocono AI, LLC">
+    <meta property="og:description" content="Data sovereignty and Cloud Obviation. We don't just secure the cloud; we obviate it entirely.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/trust.html">
+    <meta property="og:image" content="https://poconoai.com/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    
     <link rel="icon" href="/favicon.ico" sizes="any">
     
     <style>
         :root {
-            --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635;
-            --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6;
+            --bg-black: #000000;
+            --bg-dark: #051622;
+            --card-dark: #0A2635;
+            --ai-blue: #00A3FF;
+            --teal: #188B96;
+            --white: #FFFFFF;
+            --light-text: #D0DDE6;
         }
+        
+        *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
+
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+
+        /* REPAIRED HEADER MATCHING PRICING.HTML */
         header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
         
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-links li:last-child a { border-bottom: none; }
+
+        @media (min-width: 992px) {
+            .menu-toggle { display: none; }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
+            .nav-links { display: flex; gap: 25px; align-items: center; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
         main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        
         h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-top: 20px; }
         .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: 1.2em; margin-bottom: 40px; }
 
         .glossary-section { margin: 60px 0; }
         .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); }
+        .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .glossary-card h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
         .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
 
+        /* FOUNDER SECTION */
         .founder-section { background: rgba(10, 38, 53, 0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0, 163, 255, 0.1); }
         .founder-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
         .founder-bio { flex: 2; min-width: 300px; }
         .founder-bio h2 { margin-top: 0; color: var(--white); border-bottom: none; }
         .founder-bio p { color: var(--light-text); font-size: 1.05rem; margin-bottom: 20px; }
+        .passion-badge { display: inline-block; background: var(--teal); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; }
         
-        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; }
-        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; }
+        .dba-stack { flex: 1; min-width: 250px; background: var(--bg-black); padding: 25px; border-radius: 6px; border-right: 4px solid var(--teal); }
+        .dba-stack h3 { margin-top: 0; font-size: 0.9rem; text-transform: uppercase; color: var(--ai-blue); letter-spacing: 1px; }
+        .dba-stack ul { list-style: none; padding: 0; margin: 0; color: var(--light-text); font-size: 0.9rem; }
+        .dba-stack li { margin-bottom: 8px; padding-left: 15px; position: relative; }
+        .dba-stack li::before { content: "›"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
+
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s ease; }
+        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
+        footer a { color: var(--light-text); text-decoration: underline; }
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <nav><ul style="list-style:none; display:flex; gap:20px;">
-            <li><a href="solutions.html" style="color:white; text-decoration:none;">Solutions</a></li>
-            <li><a href="trust.html" style="color:var(--ai-blue); text-decoration:none;">Trust</a></li>
-            <li><a href="pricing.html" style="color:white; text-decoration:none;">Pricing</a></li>
-        </ul></nav>
+        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html" style="color: var(--ai-blue);">Trust & Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -56,23 +111,23 @@
         <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation.</p>
 
         <section class="glossary-section">
-            <h2 style="color:var(--teal); text-align:center;">The Pillars of Sovereignty</h2>
+            <h2 style="color:var(--teal); text-align:center; border-bottom: none; margin-bottom: 30px;">The Pillars of Sovereignty</h2>
             <div class="glossary-grid">
                 <div class="glossary-card">
                     <h3>The Privacy Paradox</h3>
-                    [span_2](start_span)<p>The operational bottleneck where organizations require AI efficiency but cannot risk the HIPAA violations or loss of privilege inherent in third-party cloud processing[span_2](end_span).</p>
+                    <p>The operational bottleneck where organizations require AI efficiency but cannot risk the HIPAA violations or loss of privilege inherent in third-party cloud processing.</p>
                 </div>
                 <div class="glossary-card">
                     <h3>Managed-On-Premise (MOP)</h3>
-                    [span_3](start_span)[span_4](start_span)<p>A deployment architecture that ensures 100% of patient data stays within your physical walls, providing total security with zero internet telemetry[span_3](end_span)[span_4](end_span).</p>
+                    <p>A deployment architecture that ensures 100% of patient data stays within your physical walls, providing total security with zero internet telemetry.</p>
                 </div>
                 <div class="glossary-card">
                     <h3>Human-in-the-Loop (HITL)</h3>
-                    [span_5](start_span)<p>A mandatory workflow where every AI output is cited and requires a digital sign-off from a licensed professional, eliminating hallucination liability[span_5](end_span).</p>
+                    <p>A mandatory workflow where every AI output is cited and requires a digital sign-off from a licensed professional, eliminating hallucination liability.</p>
                 </div>
                 <div class="glossary-card">
                     <h3>Force Multiplier Protocol</h3>
-                    [span_6](start_span)<p>AI-augmented management infrastructure that bridges operational gaps, ensuring service continuity regardless of individual bandwidth or physical constraints[span_6](end_span).</p>
+                    <p>AI-augmented management infrastructure that bridges operational gaps, ensuring service continuity regardless of individual bandwidth or physical constraints.</p>
                 </div>
             </div>
         </section>
@@ -80,22 +135,54 @@
         <section class="founder-section">
             <div class="founder-content">
                 <div class="founder-bio">
+                    <span class="passion-badge">Founder & Chief Technologist</span>
                     <h2>Meet Marc: The Architect of Sovereignty</h2>
-                    [span_7](start_span)[span_8](start_span)<p>Marc’s technical philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>[span_7](end_span)[span_8](end_span). A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
+                    <p>Marc’s technical philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
                     <p>After being disabled for 5 years due to neurological spinal issues, Marc utilized AI as the ultimate equalizer to bridge the gap and enable his return to work. Today, he builds that same resilience into every Sentinel Node, often engineering high-performance architectures directly from bed to ensure mission-critical reliability for his clients.</p>
+                    <p><em>"AI bridged the gap for me. I build these systems to empower professionals to reclaim their time and their data, no matter the physical or logistical constraints."</em></p>
+                </div>
+                <div class="dba-stack">
+                    <h3>Enterprise Data Stack</h3>
+                    <ul>
+                        <li><strong>Core:</strong> MySQL & MariaDB Expert</li>
+                        <li><strong>NoSQL:</strong> MongoDB & Cassandra</li>
+                        <li><strong>Relational:</strong> PostgreSQL & Oracle</li>
+                        <li><strong>Enterprise:</strong> Microsoft SQL Server</li>
+                        <li><strong>Systems:</strong> Linux Hardening & Air-Gaps</li>
+                    </ul>
+                    <p style="font-size: 0.75rem; margin-top: 15px; opacity: 0.7;">*Experienced in building massive architectures for storage, retrieval, and cloud-to-local migration.</p>
                 </div>
             </div>
         </section>
 
-        <section class="cta-container">
-            <h2 style="color:white;">Establish Your Perimeter</h2>
-            <a href="mailto:marcus@poconoai.com" class="cta-button">Email Direct Inquiry</a>
-            <p style="margin-top:20px;"><strong>Direct Strategic Access:</strong> (484) 542-4769</p>
+        <section id="contact" class="cta-container">
+            <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
+            <a href="mailto:marcus@poconoai.com?subject=Strategic Trust Inquiry" class="cta-button">Email Direct Inquiry</a>
+            <p style="margin-top: 30px;"><strong>Direct Strategic Access:</strong> <a href="tel:+14845424769" style="color: white; text-decoration: underline;">(484) 542-4769</a></p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved. | East Stroudsburg, Pennsylvania</p>
+        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
+        <p>East Stroudsburg, Pennsylvania | <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></p>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const spans = menuToggle.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
