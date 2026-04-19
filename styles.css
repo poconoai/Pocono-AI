@@ -27,7 +27,7 @@ body {
 
 /* Header & Navigation - RESTORED TO BLACK & BOLD */
 header {
-    background-color: var(--bg-black) !important; /* Force Black Consistency */
+    background-color: var(--bg-black) !important; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,7 +61,7 @@ header {
 .nav-links li a {
     color: var(--white);
     text-decoration: none;
-    font-weight: bold; /* Standardized Boldness */
+    font-weight: bold; 
     font-size: 0.95rem;
     transition: color 0.2s ease;
 }
@@ -74,14 +74,14 @@ header {
     color: var(--teal) !important;
 }
 
-/* Hero Section - EYE-LEVEL FOCUS */
+/* Hero Section - FIXED PHOTO CENTERING */
 .hero {
     position: relative;
     height: 70vh;
     min-height: 500px;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpg');
     background-size: cover;
-    background-position: center 50%; /* Pulls eyes and bridge of nose into the frame */
+    background-position: center 35%; /* The "Sweet Spot" to show eyes and face */
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -89,4 +89,17 @@ header {
     text-align: center;
     padding: 0 20px;
 }
-/* ... rest of your styles stay identical ... */
+
+/* ... Feature grid, forms, and footer remain unchanged ... */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
+.feature-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); }
+.contact-container { max-width: 800px; margin: 0 auto; background-color: var(--card-dark); padding: 40px; border-radius: 8px; }
+.btn-submit { background-color: var(--teal); color: white; padding: 15px 30px; border: none; font-weight: bold; cursor: pointer; width: 100%; }
+footer { text-align: center; padding: 40px 20px; background-color: var(--bg-black); border-top: 1px solid rgba(255,255,255,0.1); }
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    #nav-menu { display: none; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--bg-black); padding: 20px; }
+    #nav-menu.active { display: block; }
+    .nav-links { flex-direction: column; }
+}
