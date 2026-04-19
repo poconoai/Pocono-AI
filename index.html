@@ -73,9 +73,8 @@
         <section style="background-color: var(--card-dark); padding: 40px; border-radius: 8px; margin: 60px 0; border-left: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <h2 style="color: #ffffff; margin-top: 0;">Clinical Validation Sandbox</h2>
             <p style="color: var(--ai-blue); font-weight: bold; margin-bottom: 25px;">Proving the Architecture: High-Fidelity Local Retrieval</p>
-            
             <p style="color: var(--light-text); margin-bottom: 30px; line-height: 1.6;">
-                Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.
+                Before deploying on enterprise nodes, our local architecture undergoes extreme optimization stress-testing. In our latest internal sandbox, we ingested a 76-page raw clinical document into an isolated local vector database.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
@@ -92,19 +91,10 @@
                     <p style="font-size: 1.2em; color: #ffffff; font-weight: bold; margin: 5px 0;">Gemma 3 (Local)</p>
                 </div>
             </div>
-
-            <div style="background-color: rgba(0,0,0,0.3); padding: 20px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
-                <h4 style="color: var(--teal); margin-top: 0; margin-bottom: 10px;">The Engineering Takeaway</h4>
-                <p style="color: var(--light-text); font-size: 0.9em; margin: 0; line-height: 1.6;">
-                    Using AnythingLLM and LM Studio, the RAG pipeline was intentionally constrained to baseline hardware. When scaled up to our production Sentinel Nodes utilizing Tensor Core architecture, ingestion bottlenecks vanish and inference becomes effectively instantaneous.
-                </p>
-            </div>
         </section>
 
         <section style="margin: 60px 0;">
             <h2 style="color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px;">Operational Deployment: How It Connects</h2>
-            <p style="color: var(--light-text); margin-bottom: 40px; font-size: 1.1em;">The Sentinel Node is designed for immediate operational utility without compromising network security. We deploy in two distinct phases.</p>
-
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                 <div style="background-color: var(--card-dark); padding: 30px; border-radius: 8px; border-top: 4px solid var(--ai-blue);">
                     <div style="background-color: var(--ai-blue); color: #000; font-weight: bold; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">1</div>
@@ -128,28 +118,26 @@
 
         <section style="margin: 60px 0; padding: 40px; background-color: var(--card-dark); border-radius: 8px; border-left: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <h2 style="color: #ffffff; margin-top: 0;">The Deployment Pathway</h2>
-            <p style="color: var(--light-text); margin-bottom: 30px; font-size: 1.1em;">We architect sovereign infrastructure through a professional, transparent timeline.</p>
-
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
                     <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 01</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Executive Briefing</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Secure consultation with the Chief Technologist to align on liability and sovereignty requirements.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Secure consultation with the Chief Technologist to align on liability and sovereignty.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
                     <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 02</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Architectural Scoping</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Analysis of document ingestion scale to spec required NVIDIA Tensor Core arrays.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Analysis of document ingestion scale to spec required hardware arrays.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
                     <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 03</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">CapEx Procurement</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Bespoke hardware foundation is ordered and benchmarked upon approval of procurement proposal.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Hardware is ordered and benchmarked upon approval of procurement proposal.</p>
                 </div>
                 <div style="border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;">
                     <p style="font-size: 0.9em; color: var(--teal); text-transform: uppercase; margin: 0; font-weight: bold;">Step 04</p>
                     <h4 style="color: var(--white); margin: 5px 0; font-size: 1.1em;">Air-Gapped Installation</h4>
-                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Physical node deployment behind your firewall. Local vectorization begins immediately.</p>
+                    <p style="font-size: 0.9em; color: var(--light-text); margin: 0;">Physical node deployment behind your firewall. Local vectorization begins.</p>
                 </div>
             </div>
         </section>
@@ -157,8 +145,6 @@
         <section id="contact">
             <div class="contact-container">
                 <h2>Secure Inquiry</h2>
-                <p style="color: var(--text-muted);">Initiate a consultation regarding your local AI deployment.</p>
-                
                 <form action="https://formspree.io/f/mpzvqvay" method="POST" class="contact-form">
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -170,25 +156,18 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Describe your infrastructure needs..."></textarea>
+                        <textarea id="message" name="message" rows="5" required placeholder="Describe your needs..."></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Submit Inquiry</button>
                 </form>
 
-                <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3);">
-                    <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left; line-height: 1.5;">
-                        <strong>Security Notice:</strong> Do not submit PHI, sensitive medical records, or confidential legal details via this web form.
-                    </p>
-                </div>
-
                 <div class="direct-info" style="text-align: center; margin-top: 3rem;">
                     <strong>Direct Strategic Access</strong>
-                    <p>Please <strong>text first</strong> to coordinate a secure consultation.</p>
                     <p style="font-size: 1.5rem; color: #fff; margin: 0.5rem 0;">(484) 542-4769</p>
                     <p>Email: <a href="mailto:marcus@poconoai.com" style="color: var(--accent-color);">marcus@poconoai.com</a></p>
                     
                     <div class="phi-warning" style="margin-top: 15px; font-weight: bold; color: #ff4d4d; border: 1px solid #ff4d4d; padding: 10px; border-radius: 4px;">
-                        CRITICAL NOTICE: Do not include PHI/EPHI in initial communications. Review occurs post-consultation on air-gapped hardware.
+                        CRITICAL NOTICE: Do not include PHI/EPHI in initial communications.
                     </div>
                 </div>
             </div>
@@ -197,8 +176,7 @@
 
     <footer>
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania</p>
-        <div style="margin-top: 15px;">
+        <div style="margin-top: 10px;">
             <a href="privacy.html" style="color: var(--light-text); text-decoration: none; font-size: 0.9em; margin: 0 10px;">Privacy Policy</a> | 
             <a href="terms.html" style="color: var(--light-text); text-decoration: none; font-size: 0.9em; margin: 0 10px;">Terms of Service</a>
         </div>
@@ -209,10 +187,6 @@
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
         });
     </script>
 </body>

@@ -1,4 +1,4 @@
-/* Pocono AI, LLC - Enterprise Stylesheet */
+/* Pocono AI, LLC - Synchronized Enterprise Stylesheet */
 
 :root {
     --bg-black: #000000;
@@ -25,22 +25,22 @@ body {
     overflow-x: hidden;
 }
 
-/* Header & Navigation - RESTORED TO BLACK & BOLD */
+/* Header & Navigation - FIXED THIN PROFILE */
 header {
-    background-color: var(--bg-black) !important; 
+    background-color: var(--bg-black) !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
+    padding: 0 5%; /* Removed vertical padding to lock height */
     position: sticky;
     top: 0;
     z-index: 1000;
-    height: 70px;
+    height: 60px; /* Reduced from 70px for a thinner, cleaner look */
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .logo {
-    font-size: 1.6rem;
+    font-size: 1.4rem; /* Adjusted for thinner header */
     font-weight: 800;
     color: var(--white);
     text-decoration: none;
@@ -62,7 +62,7 @@ header {
     color: var(--white);
     text-decoration: none;
     font-weight: bold; 
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: color 0.2s ease;
 }
 
@@ -74,14 +74,14 @@ header {
     color: var(--teal) !important;
 }
 
-/* Hero Section - FIXED PHOTO CENTERING */
+/* Hero Section - CALIBRATED FACE POSITION */
 .hero {
     position: relative;
     height: 70vh;
     min-height: 500px;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero.jpg');
     background-size: cover;
-    background-position: center 35%; /* The "Sweet Spot" to show eyes and face */
+    background-position: center 42%; /* Moved from 35% to bring the nose/eyes down */
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -90,16 +90,63 @@ header {
     padding: 0 20px;
 }
 
-/* ... Feature grid, forms, and footer remain unchanged ... */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
-.feature-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); }
-.contact-container { max-width: 800px; margin: 0 auto; background-color: var(--card-dark); padding: 40px; border-radius: 8px; }
-.btn-submit { background-color: var(--teal); color: white; padding: 15px 30px; border: none; font-weight: bold; cursor: pointer; width: 100%; }
-footer { text-align: center; padding: 40px 20px; background-color: var(--bg-black); border-top: 1px solid rgba(255,255,255,0.1); }
+/* Feature Grid & Content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.feature-card {
+    background-color: var(--card-dark);
+    padding: 40px;
+    border-radius: 8px;
+    border-top: 4px solid var(--ai-blue);
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--card-dark);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.btn-submit {
+    background-color: var(--teal);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--bg-black);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
 
 @media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    #nav-menu { display: none; width: 100%; position: absolute; top: 70px; left: 0; background-color: var(--bg-black); padding: 20px; }
+    .menu-toggle { display: block; cursor: pointer; }
+    .menu-toggle span { display: block; width: 25px; height: 3px; background-color: white; margin: 5px 0; }
+    #nav-menu {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: var(--bg-black);
+        padding: 20px;
+    }
     #nav-menu.active { display: block; }
-    .nav-links { flex-direction: column; }
 }
