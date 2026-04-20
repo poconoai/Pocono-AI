@@ -7,15 +7,6 @@
     <meta name="date" content="2026-04-19">
     <title>Trust & Security | Auditable AI | Pocono AI, LLC</title>
     
-    <meta property="og:title" content="Trust & Security | Auditable AI | Pocono AI, LLC">
-    <meta property="og:description" content="Data sovereignty and Cloud Obviation. We don't just secure the cloud; we obviate it entirely with auditable, local AI.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poconoai.com/trust.html">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    
     <style>
         :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
         *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
@@ -47,8 +38,12 @@
         .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
         
         .audit-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.1) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .audit-section h2 { margin-top: 0; color: var(--white); border-bottom: none; margin-bottom: 15px; }
-        .audit-section p { color: var(--light-text); font-size: 1.05rem; }
+        .audit-section-blue { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 40px; border: 1px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        
+        .audit-section h2, .audit-section-blue h2 { margin-top: 0; border-bottom: none; margin-bottom: 15px; }
+        .audit-section h2 { color: var(--white); }
+        .audit-section-blue h2 { color: var(--ai-blue); }
+        .audit-section p, .audit-section-blue p { color: var(--light-text); font-size: 1.05rem; }
         .audit-list { margin-top: 20px; background: rgba(0,0,0,0.4); padding: 20px 20px 20px 40px; border-radius: 6px; border-left: 3px solid var(--teal); }
         .audit-list li { color: var(--white); font-weight: 500; margin-bottom: 10px; }
         
@@ -124,13 +119,13 @@
                 <li>The specific, physical data chunks retrieved from your local RAG index.</li>
                 <li>The final generated response from the local LLM.</li>
             </ul>
-            <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. However, the system is not an oracle. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid, frictionless verification against actual source documents.</p>
+            <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid verification. To meet compliance standards, all interactions enforce a <strong>strict 90-day immutable local log retention policy</strong>, securely queryable by internal compliance officers.</p>
         </section>
 
-        <section class="audit-section" style="border-color: var(--ai-blue); margin-top: 40px;">
-            <h2 style="color: var(--ai-blue);">Vector Architecture & Synthetic Stress Testing</h2>
-            <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant’s Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry.</p>
-            <p>Database integrity is not left to chance or manual intervention. Drawing on deep enterprise DBA expertise, we have developed and tuned custom automated indexing scripts. As data ingestion grows, these scripts autonomously re-index and optimize the vector space during off-peak hours. This ensures the system remains continuously performant without requiring clinical staff to manage database health.</p>
+        <section class="audit-section-blue">
+            <h2>Vector Architecture & Synthetic Stress Testing</h2>
+            <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant’s Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry. We utilize a highly tuned <strong>semantic chunking strategy</strong> to preserve diagnostic context boundaries, rather than arbitrary fixed-size chunking.</p>
+            <p>Database integrity is not left to chance or manual intervention. Drawing on deep enterprise DBA expertise, we have developed custom automated indexing scripts. As data ingestion scales—capable of handling indexes exceeding 10,000+ complex clinical documents seamlessly—these scripts autonomously re-index and optimize the vector space during off-peak hours.</p>
             <p>To definitively validate this architecture before deployment, we stress-test the RAG pipeline by generating massive volumes of complex, <strong>synthetic patient data</strong>. This rigorous testing protocol proves that our Qdrant implementation handles extreme enterprise loads highly effectively—all while maintaining absolute zero-trust security by never exposing real Protected Health Information (PHI) during system validation.</p>
         </section>
 
@@ -175,19 +170,7 @@
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
+        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
     </script>
 </body>
 </html>
