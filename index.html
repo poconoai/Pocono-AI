@@ -75,6 +75,9 @@
 
         input, textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--bg-black); color: white; border: 1px solid var(--ai-blue); border-radius: 4px; box-sizing: border-box; font-family: inherit; }
 
+        .transparency-note { margin-top: 50px; padding: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        .transparency-note p { font-size: 0.85em; color: var(--light-text); max-width: 800px; margin: 0 auto; opacity: 0.8; }
+
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
     </style>
 </head>
@@ -179,6 +182,13 @@
             </div>
             <p style="margin-top: 35px;"><strong>Text the Founder to coordinate:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
         </section>
+
+        <div class="transparency-note">
+            <p>
+                <strong>Web Telemetry Transparency Note:</strong> The Sentinel Node hardware operates with absolute zero outbound telemetry. For this public marketing brochure, we temporarily utilize <strong>Umami</strong>—an open-source, cookie-less, privacy-first analytics tracker—to monitor basic traffic. It is the only exterior script permitted on this domain. Once our dedicated bare-metal web server is provisioned, this single script will be permanently removed in favor of zero-client, server-side log analysis.
+            </p>
+        </div>
+
     </main>
 
     <footer>
