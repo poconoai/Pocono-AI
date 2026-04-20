@@ -45,11 +45,13 @@
         .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .glossary-card h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
         .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
+        
         .audit-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.1) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .audit-section h2 { margin-top: 0; color: var(--white); border-bottom: none; margin-bottom: 15px; }
         .audit-section p { color: var(--light-text); font-size: 1.05rem; }
         .audit-list { margin-top: 20px; background: rgba(0,0,0,0.4); padding: 20px 20px 20px 40px; border-radius: 6px; border-left: 3px solid var(--teal); }
         .audit-list li { color: var(--white); font-weight: 500; margin-bottom: 10px; }
+        
         .founder-section { background: rgba(10, 38, 53, 0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0, 163, 255, 0.1); }
         .founder-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
         .founder-bio { flex: 2; min-width: 300px; }
@@ -61,6 +63,7 @@
         .dba-stack ul { list-style: none; padding: 0; margin: 0; color: var(--light-text); font-size: 0.9rem; }
         .dba-stack li { margin-bottom: 8px; padding-left: 15px; position: relative; }
         .dba-stack li::before { content: "›"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
+        
         .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s ease; }
         .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
@@ -124,13 +127,20 @@
             <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. However, the system is not an oracle. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid, frictionless verification against actual source documents.</p>
         </section>
 
+        <section class="audit-section" style="border-color: var(--ai-blue); margin-top: 40px;">
+            <h2 style="color: var(--ai-blue);">Vector Architecture & Synthetic Stress Testing</h2>
+            <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant’s Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry.</p>
+            <p>Database integrity is not left to chance or manual intervention. Drawing on deep enterprise DBA expertise, we have developed and tuned custom automated indexing scripts. As data ingestion grows, these scripts autonomously re-index and optimize the vector space during off-peak hours. This ensures the system remains continuously performant without requiring clinical staff to manage database health.</p>
+            <p>To definitively validate this architecture before deployment, we stress-test the RAG pipeline by generating massive volumes of complex, <strong>synthetic patient data</strong>. This rigorous testing protocol proves that our Qdrant implementation handles extreme enterprise loads highly effectively—all while maintaining absolute zero-trust security by never exposing real Protected Health Information (PHI) during system validation.</p>
+        </section>
+
         <section class="founder-section">
             <div class="founder-content">
                 <div class="founder-image" style="flex: 1; min-width: 300px;">
                     <img src="hero.jpg" alt="Marc, Founder of Pocono AI" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(0, 163, 255, 0.2);">
                 </div>
                 <div class="founder-bio" style="flex: 2; min-width: 300px;">
-                    <span class="passion-badge">Founder & Chief Technologist</span>
+                    <span class="passion-badge">Founder, CEO & Chief Technologist</span>
                     <h2>Meet Marc: The Architect of Sovereignty</h2>
                     <p>Marc’s technical philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
                     <p>After being disabled for 5 years due to neurological spinal issues, Marc utilized AI as the ultimate equalizer to bridge the gap and enable his return to work. Today, he builds that same resilience into every Sentinel Node, often engineering high-performance architectures directly from bed to ensure mission-critical reliability for his clients.</p>
