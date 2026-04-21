@@ -14,6 +14,9 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
@@ -62,7 +65,7 @@
         }
         .logo {
             text-decoration: none;
-            font-family: 'Syne', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 1.6rem;
             font-weight: 800;
             color: var(--white);
@@ -150,7 +153,7 @@
         }
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(2.4rem, 7vw, 4.2rem);
+            font-size: clamp(1.8rem, 8vw, 4.2rem);
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.1;
@@ -158,6 +161,8 @@
             margin-bottom: 20px;
             opacity: 0;
             animation: fadeUp 0.6s ease forwards 0.25s;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
         h1 em {
             font-style: normal;
@@ -629,7 +634,6 @@
         </nav>
     </header>
 
-    <!-- ── HERO ── -->
     <section class="arch-hero">
         <div class="hero-eyebrow">Sentinel Node · Technical Architecture</div>
         <h1>Sovereign by <em>Design</em></h1>
@@ -648,7 +652,6 @@
 
     <main>
 
-        <!-- ── PIPELINE ── -->
         <section class="reveal">
             <div class="section-label">01 · Data Sovereignty Pipeline</div>
             <h2>How Your Data Moves — And Where It Stays</h2>
@@ -659,12 +662,11 @@
             <div class="pipeline-wrap">
                 <div class="pipeline">
 
-                    <!-- Phase 01 -->
                     <div class="pipe-card reveal reveal-delay-1">
                         <span class="phase-num">Phase 01</span>
                         <h3>Local Ingestion</h3>
                         <p>
-                            Documents, EHR exports, case files, and structured records are ingested directly from
+                            Documents, EHR exports, eDiscovery case files, and structured records are ingested directly from
                             your local network via read-only bridges. Nothing touches the public internet.
                         </p>
                         <div class="stack-tags">
@@ -674,14 +676,12 @@
                         </div>
                     </div>
 
-                    <!-- Arrow -->
                     <div class="pipe-arrow">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M4 10h12M12 6l4 4-4 4" stroke="#188B96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
 
-                    <!-- Phase 02 -->
                     <div class="pipe-card active-card reveal reveal-delay-2">
                         <span class="phase-num">Phase 02</span>
                         <h3>Local Vectorization &amp; RAG Index</h3>
@@ -696,14 +696,12 @@
                         </div>
                     </div>
 
-                    <!-- Arrow -->
                     <div class="pipe-arrow">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M4 10h12M12 6l4 4-4 4" stroke="#188B96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
 
-                    <!-- Phase 03 -->
                     <div class="pipe-card reveal reveal-delay-3">
                         <span class="phase-num">Phase 03</span>
                         <h3>Private Inference</h3>
@@ -724,7 +722,6 @@
 
         <hr class="section-divider">
 
-        <!-- ── HARDWARE SPECS ── -->
         <section class="reveal">
             <div class="section-label">02 · Sentinel Node Hardware</div>
             <h2>What We Deploy</h2>
@@ -737,12 +734,12 @@
                 <div class="spec-card reveal reveal-delay-1">
                     <span class="spec-icon">⚡</span>
                     <div class="spec-label">GPU Compute · By Tier</div>
-                    <div class="spec-value">NVIDIA RTX A4500 · Entry</div>
-                    <div class="spec-note" style="margin-bottom:10px;">20 GB GDDR6 ECC — handles 7B–13B models at production speed. Ideal for single-practice deployments.</div>
-                    <div class="spec-value" style="font-size:0.9rem;">NVIDIA RTX A5000 · Professional</div>
-                    <div class="spec-note" style="margin-bottom:10px;">24 GB GDDR6 ECC — supports larger models and multi-user concurrent queries. Mid-size practice or law firm.</div>
-                    <div class="spec-value" style="font-size:0.9rem;">NVIDIA RTX A6000 · Enterprise</div>
-                    <div class="spec-note">48 GB GDDR6 ECC · 1–4 GPU via NVLink — scales to full 70B models and multi-department simultaneous inference.</div>
+                    <div class="spec-value">NVIDIA RTX 4500 Ada · Entry</div>
+                    <div class="spec-note" style="margin-bottom:10px;">24 GB GDDR6 ECC — highly efficient architecture handling 7B–14B models natively. Ideal for single-practice deployments.</div>
+                    <div class="spec-value" style="font-size:0.9rem;">NVIDIA RTX 5000 Ada · Professional</div>
+                    <div class="spec-note" style="margin-bottom:10px;">32 GB GDDR6 ECC — the perfect sweet spot for concurrent queries and robust 32B model serving. Mid-size practice or law firm.</div>
+                    <div class="spec-value" style="font-size:0.9rem;">NVIDIA RTX 6000 Ada · Enterprise</div>
+                    <div class="spec-note">48 GB GDDR6 ECC · Multi-GPU scaling capable — powers full 70B models and multi-department simultaneous inference.</div>
                 </div>
                 <div class="spec-card reveal reveal-delay-2">
                     <span class="spec-icon">🧠</span>
@@ -779,7 +776,6 @@
 
         <hr class="section-divider">
 
-        <!-- ── AIR GAP ── -->
         <section class="reveal">
             <div class="section-label">03 · Update &amp; Maintenance Protocol</div>
 
@@ -796,7 +792,6 @@
 
         <hr class="section-divider">
 
-        <!-- ── NETWORK POLICY TABLE ── -->
         <section class="reveal">
             <div class="section-label">04 · Network Egress Policy</div>
             <h2>What Leaves Your Network</h2>
@@ -856,7 +851,6 @@
 
         <hr class="section-divider">
 
-        <!-- ── COMPLIANCE CHECKLIST ── -->
         <section class="reveal">
             <div class="section-label">05 · Compliance &amp; Auditability</div>
             <h2>Built for High-Liability Environments</h2>
@@ -916,7 +910,6 @@
             </ul>
         </section>
 
-        <!-- ── CTA ── -->
         <section class="cta-container reveal">
             <h2>Review the Deployment Specs</h2>
             <p>Download the Sentinel Node spec sheet or reach out directly to discuss your environment.</p>
