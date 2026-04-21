@@ -5,28 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical architecture and data flow of the Sentinel Node local AI system by Pocono AI, LLC.">
     <title>Architecture | Sentinel Node | Pocono AI, LLC</title>
-    
+
     <meta property="og:title" content="Sovereign Architecture | Pocono AI, LLC">
     <meta property="og:description" content="Explore the Data Sovereignty Pipeline. Local ingestion, encrypted vectorization, and private RAG inference.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/architecture.html">
     <meta property="og:image" content="https://poconoai.com/hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    
+
     <link rel="icon" href="/favicon.ico" sizes="any">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        :root {
+            --bg-black:   #000000;
+            --bg-dark:    #051622;
+            --card-dark:  #0A2635;
+            --card-mid:   #0d2e42;
+            --ai-blue:    #00A3FF;
+            --teal:       #188B96;
+            --teal-glow:  rgba(24,139,150,0.18);
+            --blue-glow:  rgba(0,163,255,0.12);
+            --white:      #FFFFFF;
+            --light-text: #D0DDE6;
+            --muted:      #5a7a8a;
+            --border:     rgba(255,255,255,0.07);
+            --border-teal:rgba(24,139,150,0.35);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER (matches site) ── */
+        header {
+            background-color: var(--bg-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo {
+            text-decoration: none;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
         .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
-        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu {
+            display: none;
+            position: absolute;
+            top: 70px; right: 5%;
+            background: var(--bg-black);
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-radius: 0 0 4px 4px;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
         #nav-menu.active { display: block; }
-        .nav-links { list-style: none; padding: 0; margin: 0; }
-        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-links { list-style: none; }
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 12px;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
         .nav-links li:last-child a { border-bottom: none; }
         @media (min-width: 768px) {
             .menu-toggle { display: none; }
@@ -35,35 +103,525 @@
             .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
-        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
-        h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.8em; }
-        .arch-hero { text-align: center; padding: 20px 0 40px 0; }
-        .arch-hero p { font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 700px; margin: 0 auto; }
-        .arch-step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
-        .arch-card { background-color: var(--card-dark); padding: 25px; border-radius: 8px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .step-number { font-size: 0.85em; color: var(--ai-blue); font-weight: bold; text-transform: uppercase; display: block; margin-bottom: 10px; letter-spacing: 1px; }
-        .arch-card h3 { margin-top: 0; color: var(--white); }
-        .arch-card p { color: var(--light-text); }
-        .air-gap-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 35px; border-radius: 8px; margin: 40px 0; border-left: 5px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
-        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: all 0.3s ease; }
-        .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
-        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+
+        /* ── HERO ── */
+        .arch-hero {
+            position: relative;
+            text-align: center;
+            padding: 90px 20px 80px;
+            overflow: hidden;
+        }
+        .arch-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,163,255,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(24,139,150,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        /* Animated grid lines */
+        .arch-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,163,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,163,255,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
+            pointer-events: none;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .hero-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.1s;
+        }
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.4rem, 7vw, 4.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.25s;
+        }
+        h1 em {
+            font-style: normal;
+            color: var(--ai-blue);
+        }
+        .hero-sub {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--light-text);
+            max-width: 620px;
+            margin: 0 auto 36px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.4s;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.55s;
+        }
+        .badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            padding: 5px 14px;
+            border: 1px solid var(--border-teal);
+            border-radius: 2px;
+            color: var(--teal);
+            background: rgba(24,139,150,0.06);
+            text-transform: uppercase;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── MAIN LAYOUT ── */
+        main { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+
+        /* ── SECTION TITLES ── */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        .section-intro {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 640px;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 64px 0 56px;
+        }
+
+        /* ── PIPELINE DIAGRAM ── */
+        .pipeline-wrap {
+            position: relative;
+            margin: 48px 0 20px;
+        }
+
+        /* Horizontal flow on desktop */
+        .pipeline {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr 40px 1fr;
+            align-items: center;
+            gap: 0;
+        }
+
+        .pipe-card {
+            background: var(--card-dark);
+            border: 1px solid var(--border-teal);
+            border-top: 3px solid var(--teal);
+            padding: 28px 24px;
+            border-radius: 4px;
+            position: relative;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .pipe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--border-teal);
+        }
+        .pipe-card.active-card { border-top-color: var(--ai-blue); border-color: rgba(0,163,255,0.3); }
+
+        .pipe-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-size: 1.4rem;
+            position: relative;
+        }
+        .pipe-arrow::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--teal), rgba(24,139,150,0.3));
+            transform: translateY(-50%);
+        }
+        .pipe-arrow svg { position: relative; z-index: 1; background: var(--bg-dark); padding: 0 4px; }
+
+        .phase-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--ai-blue);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .pipe-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .pipe-card p {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .stack-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .stack-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            padding: 3px 8px;
+            background: rgba(0,163,255,0.08);
+            border: 1px solid rgba(0,163,255,0.2);
+            border-radius: 2px;
+            color: var(--ai-blue);
+            letter-spacing: 0.05em;
+        }
+        .stack-tag.teal-tag {
+            background: rgba(24,139,150,0.08);
+            border-color: rgba(24,139,150,0.25);
+            color: var(--teal);
+        }
+
+        @media (max-width: 720px) {
+            .pipeline {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .pipe-arrow {
+                transform: rotate(90deg);
+                height: 32px;
+            }
+            .pipe-arrow::before {
+                left: 50%; right: 50%;
+                top: 0; bottom: 0;
+                width: 1px;
+                height: auto;
+                background: linear-gradient(180deg, var(--teal), rgba(24,139,150,0.3));
+                transform: none;
+            }
+        }
+
+        /* ── AIR GAP SECTION ── */
+        .air-gap {
+            background: linear-gradient(135deg, rgba(0,163,255,0.04) 0%, rgba(5,22,34,1) 100%);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--teal);
+            border-radius: 4px;
+            padding: 36px 36px 36px 40px;
+            margin: 48px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .air-gap::before {
+            content: 'AIR-GAPPED';
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            color: rgba(24,139,150,0.2);
+            white-space: nowrap;
+        }
+        .air-gap h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .air-gap p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            max-width: 700px;
+        }
+        .air-gap strong { color: var(--white); }
+
+        /* ── HARDWARE SPECS ── */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .spec-card {
+            background: var(--card-dark);
+            border: 1px solid var(--border);
+            padding: 22px 20px;
+            border-radius: 4px;
+            transition: border-color 0.2s;
+        }
+        .spec-card:hover { border-color: var(--border-teal); }
+        .spec-icon {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .spec-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+        .spec-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .spec-note {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ── NETWORK POLICY TABLE ── */
+        .policy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 28px;
+            font-size: 0.9rem;
+        }
+        .policy-table th {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: left;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .policy-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--light-text);
+            vertical-align: top;
+        }
+        .policy-table tr:last-child td { border-bottom: none; }
+        .policy-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .status-yes {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #2ecc71;
+            font-weight: 500;
+        }
+        .status-no {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        .status-limited {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--ai-blue);
+            font-weight: 500;
+        }
+
+        /* ── COMPLIANCE CHECKLIST ── */
+        .checklist {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--card-dark);
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            line-height: 1.5;
+        }
+        .check-icon {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            background: rgba(46,204,113,0.12);
+            border: 1px solid rgba(46,204,113,0.3);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+        .check-icon svg { width: 10px; height: 10px; }
+
+        /* ── CTA ── */
+        .cta-container {
+            text-align: center;
+            margin: 64px 0 0;
+            padding: 56px 40px;
+            background: rgba(24,139,150,0.05);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--teal);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(24,139,150,0.08), transparent 70%);
+            pointer-events: none;
+        }
+        .cta-container h2 {
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .cta-container p {
+            position: relative;
+            color: var(--muted);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            position: relative;
+        }
+        .cta-button {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.25s ease;
+        }
+        .cta-primary {
+            background-color: var(--teal);
+            color: var(--white);
+            border: 2px solid var(--teal);
+        }
+        .cta-primary:hover {
+            background-color: transparent;
+            color: var(--teal);
+        }
+        .cta-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.25);
+        }
+        .cta-secondary:hover {
+            border-color: var(--white);
+        }
+
+        .security-notice {
+            margin-top: 28px;
+            padding: 14px 20px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 4px;
+            background: rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.82rem;
+            color: var(--muted);
+            text-align: left;
+            position: relative;
+        }
+        .security-notice strong { color: var(--light-text); }
+        .direct-contact {
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--muted);
+            position: relative;
+        }
+        .direct-contact a { color: var(--white); text-decoration: underline; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.85em;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="architecture.html" style="color: var(--ai-blue);">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
@@ -71,57 +629,320 @@
         </nav>
     </header>
 
-    <main>
-        <section class="arch-hero">
-            <h1>Sovereign Architecture</h1>
-            <p>Local Hardware. Global Intelligence. Zero Cloud Risk.</p>
-        </section>
+    <!-- ── HERO ── -->
+    <section class="arch-hero">
+        <div class="hero-eyebrow">Sentinel Node · Technical Architecture</div>
+        <h1>Sovereign by <em>Design</em></h1>
+        <p class="hero-sub">
+            Every component of the Sentinel Node runs inside your building, on your hardware,
+            under your control. No cloud APIs. No data egress. No exceptions.
+        </p>
+        <div class="hero-badges">
+            <span class="badge">Zero Cloud Exposure</span>
+            <span class="badge">HIPAA-Native</span>
+            <span class="badge">LAN-Only Inference</span>
+            <span class="badge">Open-Weight Models</span>
+            <span class="badge">Audit-Traceable RAG</span>
+        </div>
+    </section>
 
-        <section>
-            <h2>The Data Sovereignty Pipeline</h2>
-            <div class="arch-step-grid">
-                <div class="arch-card">
-                    <span class="step-number">Phase 01</span>
-                    <h3>Local Ingestion</h3>
-                    <p>The Sentinel Node pulls data directly from your local EHR or legal database via secure read-only bridges. Data remains strictly within your LAN.</p>
-                </div>
-                <div class="arch-card">
-                    <span class="step-number">Phase 02</span>
-                    <h3>Vectorization & RAG</h3>
-                    <p>Information is converted into mathematical vectors and stored in a local, encrypted vector database. No data is routed to external embedding APIs.</p>
-                </div>
-                <div class="arch-card">
-                    <span class="step-number">Phase 03</span>
-                    <h3>Private Inference</h3>
-                    <p>Our tuned LLMs process queries on high-performance local hardware. Inference is governed by strict retrieval verification protocols and transparent audit logs to mitigate risk.</p>
+    <main>
+
+        <!-- ── PIPELINE ── -->
+        <section class="reveal">
+            <div class="section-label">01 · Data Sovereignty Pipeline</div>
+            <h2>How Your Data Moves — And Where It Stays</h2>
+            <p class="section-intro">
+                Three isolated phases, all on-premises. At no point does your data cross a network boundary outside your LAN.
+            </p>
+
+            <div class="pipeline-wrap">
+                <div class="pipeline">
+
+                    <!-- Phase 01 -->
+                    <div class="pipe-card reveal reveal-delay-1">
+                        <span class="phase-num">Phase 01</span>
+                        <h3>Local Ingestion</h3>
+                        <p>
+                            Documents, EHR exports, case files, and structured records are ingested directly from
+                            your local network via read-only bridges. Nothing touches the public internet.
+                        </p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">LAN-only bridge</span>
+                            <span class="stack-tag">PDF · DOCX · HL7</span>
+                            <span class="stack-tag teal-tag">Read-only access</span>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="pipe-arrow">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12M12 6l4 4-4 4" stroke="#188B96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- Phase 02 -->
+                    <div class="pipe-card active-card reveal reveal-delay-2">
+                        <span class="phase-num">Phase 02</span>
+                        <h3>Local Vectorization &amp; RAG Index</h3>
+                        <p>
+                            Text is chunked and converted into embeddings by a locally-running model. Vectors are
+                            stored in an encrypted on-disk vector database — no external embedding API calls.
+                        </p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">Qdrant (local)</span>
+                            <span class="stack-tag">nomic-embed-text</span>
+                            <span class="stack-tag teal-tag">AES-256 at rest</span>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="pipe-arrow">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12M12 6l4 4-4 4" stroke="#188B96" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- Phase 03 -->
+                    <div class="pipe-card reveal reveal-delay-3">
+                        <span class="phase-num">Phase 03</span>
+                        <h3>Private Inference</h3>
+                        <p>
+                            Queries retrieve relevant document chunks from the local index, which are passed to an
+                            open-weight LLM running entirely on-device. Every response is source-cited and logged.
+                        </p>
+                        <div class="stack-tags">
+                            <span class="stack-tag">Ollama runtime</span>
+                            <span class="stack-tag">Llama 3 / Mistral</span>
+                            <span class="stack-tag teal-tag">Immutable audit log</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <div class="air-gap-section">
-            <h2 style="margin-top: 0; color: white; border-bottom: none;">Air-Gapped Maintenance</h2>
-            <p style="color: var(--light-text);">Our <strong>Outbound-Only Update Protocol</strong> ensures the system stays current without creating a backdoor. System health and model weights are updated via cryptographically signed packets. We never pull PHI or sensitive case files back to our servers. Ever.</p>
-        </div>
+        <hr class="section-divider">
 
-        <section id="contact" class="cta-container">
-            <h2 style="color: white; border-bottom: none; margin-top: 0;">Review the Deployment Specs</h2>
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-button-light">Download Spec Sheet</a>
-            <a href="mailto:marcus@poconoai.com?subject=Architecture Inquiry: Sentinel Node" class="cta-button">Email Engineering</a>
-            <p style="margin-top: 30px;"><strong>Direct Access:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
-            <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 600px; margin-left: auto; margin-right: auto;">
-                <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
-                    <strong>Security Notice:</strong> No PHI/EPHI by text or initial email. All HIPAA-compliant architectural review occurs strictly via secure or air-gapped channels post-consultation.
+        <!-- ── HARDWARE SPECS ── -->
+        <section class="reveal">
+            <div class="section-label">02 · Sentinel Node Hardware</div>
+            <h2>What We Deploy</h2>
+            <p class="section-intro">
+                The Sentinel Node is a purpose-configured workstation delivered, installed, and validated on-site.
+                No cloud dependency — ever.
+            </p>
+
+            <div class="specs-grid">
+                <div class="spec-card reveal reveal-delay-1">
+                    <span class="spec-icon">⚡</span>
+                    <div class="spec-label">GPU Compute · By Tier</div>
+                    <div class="spec-value">NVIDIA RTX A4500 · Entry</div>
+                    <div class="spec-note" style="margin-bottom:10px;">20 GB GDDR6 ECC — handles 7B–13B models at production speed. Ideal for single-practice deployments.</div>
+                    <div class="spec-value" style="font-size:0.9rem;">NVIDIA RTX A5000 · Professional</div>
+                    <div class="spec-note" style="margin-bottom:10px;">24 GB GDDR6 ECC — supports larger models and multi-user concurrent queries. Mid-size practice or law firm.</div>
+                    <div class="spec-value" style="font-size:0.9rem;">NVIDIA RTX A6000 · Enterprise</div>
+                    <div class="spec-note">48 GB GDDR6 ECC · 1–4 GPU via NVLink — scales to full 70B models and multi-department simultaneous inference.</div>
+                </div>
+                <div class="spec-card reveal reveal-delay-2">
+                    <span class="spec-icon">🧠</span>
+                    <div class="spec-label">System RAM</div>
+                    <div class="spec-value">64–128 GB DDR5</div>
+                    <div class="spec-note">Supports large context windows and simultaneous multi-user RAG queries without bottleneck.</div>
+                </div>
+                <div class="spec-card reveal reveal-delay-3">
+                    <span class="spec-icon">💾</span>
+                    <div class="spec-label">Local Storage</div>
+                    <div class="spec-value">4 TB NVMe SSD</div>
+                    <div class="spec-note">Encrypted vector index, model weights, and document archive stored entirely on-device.</div>
+                </div>
+                <div class="spec-card reveal reveal-delay-1">
+                    <span class="spec-icon">🔌</span>
+                    <div class="spec-label">Network Footprint</div>
+                    <div class="spec-value">Static LAN IP · 1 Port</div>
+                    <div class="spec-note">Single static IP on your existing network. No open inbound ports. Firewall-transparent.</div>
+                </div>
+                <div class="spec-card reveal reveal-delay-2">
+                    <span class="spec-icon">🖥️</span>
+                    <div class="spec-label">Management Interface</div>
+                    <div class="spec-value">Local Web UI · Port 11434</div>
+                    <div class="spec-note">Browser-based dashboard accessible from your LAN only. No remote admin access.</div>
+                </div>
+                <div class="spec-card reveal reveal-delay-3">
+                    <span class="spec-icon">📦</span>
+                    <div class="spec-label">Deployment</div>
+                    <div class="spec-value">On-Site · 1–2 Days</div>
+                    <div class="spec-note">Marc installs, configures, and validates the system on your premises before going live.</div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ── AIR GAP ── -->
+        <section class="reveal">
+            <div class="section-label">03 · Update &amp; Maintenance Protocol</div>
+
+            <div class="air-gap">
+                <h3>Outbound-Only Update Protocol</h3>
+                <p>
+                    The Sentinel Node never receives unsolicited inbound connections. Model weight updates and system patches
+                    are delivered as <strong>cryptographically signed packages</strong> initiated from within your network — not pulled
+                    from our servers. Your PHI, case files, and document index are <strong>never transmitted outbound. Ever.</strong>
+                    Maintenance can also be performed fully offline via physical media on request.
                 </p>
             </div>
         </section>
+
+        <hr class="section-divider">
+
+        <!-- ── NETWORK POLICY TABLE ── -->
+        <section class="reveal">
+            <div class="section-label">04 · Network Egress Policy</div>
+            <h2>What Leaves Your Network</h2>
+            <p class="section-intro">
+                This table is designed for your network administrator or IT security team.
+            </p>
+
+            <table class="policy-table">
+                <thead>
+                    <tr>
+                        <th>Traffic Type</th>
+                        <th>Direction</th>
+                        <th>Exits LAN?</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Patient / client documents</td>
+                        <td>Inbound (ingestion)</td>
+                        <td><span class="status-no">NEVER</span></td>
+                        <td>Read-only from local share, stored locally</td>
+                    </tr>
+                    <tr>
+                        <td>User queries</td>
+                        <td>Local only</td>
+                        <td><span class="status-no">NEVER</span></td>
+                        <td>Processed entirely on-device</td>
+                    </tr>
+                    <tr>
+                        <td>AI inference calls</td>
+                        <td>Local only</td>
+                        <td><span class="status-no">NEVER</span></td>
+                        <td>No OpenAI / Anthropic / Google API calls</td>
+                    </tr>
+                    <tr>
+                        <td>Vector database</td>
+                        <td>Local only</td>
+                        <td><span class="status-no">NEVER</span></td>
+                        <td>Qdrant runs fully on-device, AES-256 encrypted</td>
+                    </tr>
+                    <tr>
+                        <td>System health telemetry</td>
+                        <td>Outbound (optional)</td>
+                        <td><span class="status-limited">OPT-IN ONLY</span></td>
+                        <td>CPU / RAM / uptime only — zero document content</td>
+                    </tr>
+                    <tr>
+                        <td>Model weight updates</td>
+                        <td>Outbound-initiated</td>
+                        <td><span class="status-limited">SIGNED PACKAGES</span></td>
+                        <td>Cryptographically verified, can be disabled entirely</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- ── COMPLIANCE CHECKLIST ── -->
+        <section class="reveal">
+            <div class="section-label">05 · Compliance &amp; Auditability</div>
+            <h2>Built for High-Liability Environments</h2>
+            <p class="section-intro">
+                Every response is source-cited. Every query is logged. Nothing is a black box.
+            </p>
+
+            <ul class="checklist">
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>Source-cited responses</strong> — every AI answer references the exact document and page it was drawn from</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>Immutable query audit log</strong> — who asked what, when, and what source documents were retrieved</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>HIPAA-native architecture</strong> — no PHI leaves your network at any layer of the stack</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>BAA available</strong> — Business Associate Agreement provided prior to deployment</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>Attorney-client privilege preserved</strong> — case documents never transmitted to third-party AI infrastructure</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>No hallucinated citations</strong> — RAG retrieval grounds all answers in your actual documents</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>EHR-agnostic ingestion</strong> — works alongside Epic, AthenaHealth, and major practice management systems</span>
+                </li>
+                <li>
+                    <span class="check-icon">
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5L4 8l4.5-5" stroke="#2ecc71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span><strong>Offline-capable</strong> — full functionality with zero internet connection if required</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ── CTA ── -->
+        <section class="cta-container reveal">
+            <h2>Review the Deployment Specs</h2>
+            <p>Download the Sentinel Node spec sheet or reach out directly to discuss your environment.</p>
+            <div class="cta-buttons">
+                <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-secondary">Download Spec Sheet</a>
+                <a href="mailto:marcus@poconoai.com?subject=Architecture Inquiry: Sentinel Node" class="cta-button cta-primary">Email Engineering</a>
+            </div>
+            <div class="direct-contact">
+                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;·&nbsp; Direct line to Marc
+            </div>
+            <div class="security-notice">
+                <strong>Security Notice:</strong> No PHI or EPHI via initial email or text.
+                All HIPAA-compliant architectural review occurs via secure or air-gapped channels post-consultation.
+                A Business Associate Agreement is available upon request before any document ingestion begins.
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania | Enterprise Autonomy Architecture</p>
+        <p style="margin-top: 6px;">East Stroudsburg, Pennsylvania &nbsp;·&nbsp; Enterprise Autonomy Architecture</p>
     </footer>
 
     <script>
+        // Mobile nav
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
@@ -132,9 +953,23 @@
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
             } else {
-                spans[0].style.transform = 'none'; spans[1].style.opacity = '1'; spans[2].style.transform = 'none';
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
             }
         });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
