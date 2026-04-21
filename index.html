@@ -10,9 +10,12 @@
     <meta property="og:description" content="Sovereign, on-premises AI infrastructure. Zero cloud. Built for the sectors where privacy isn't optional.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/index.html">
+    <meta property="og:image" content="https://poconoai.com/hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
         :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
@@ -23,7 +26,7 @@
         .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
 
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
         .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
 
         #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
@@ -85,7 +88,9 @@
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html" style="color: var(--ai-blue);">Home</a></li>
@@ -200,8 +205,13 @@
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            
+            // Accessibility update: Toggle the aria-expanded attribute
+            const isExpanded = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+
             const spans = menuToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
+            if (isExpanded) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
