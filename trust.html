@@ -139,6 +139,18 @@
             <p>To definitively validate this architecture before deployment, we stress-test the RAG pipeline by generating massive volumes of complex, <strong>synthetic patient data</strong>. This rigorous testing protocol proves that our Qdrant implementation handles extreme enterprise loads highly effectively—all while maintaining absolute zero-trust security by never exposing real Protected Health Information (PHI) during system validation.</p>
         </section>
 
+        <section class="audit-section">
+            <h2>How We Test for Zero Exfiltration</h2>
+            <p>We do not ask customers to accept "trust us" for data security. Each Sentinel Node is validated with a repeatable, observable test you can run with standard IT tools.</p>
+            <ul class="audit-list">
+                <li><strong>Default-deny firewall:</strong> The node is provisioned on an isolated VLAN with outbound traffic blocked at the switch. All ports except local LAN are closed by default.</li>
+                <li><strong>Packet capture verification:</strong> During a full inference workload (ingestion, embedding, retrieval, generation), we run continuous tcpdump and Wireshark captures for 24 hours. In our lab validation, zero packets are observed leaving the subnet.</li>
+                <li><strong>Signed update only:</strong> The only data path into the box is manual USB delivery of cryptographically signed update packages, verified by SHA-256 before install. No automatic phoning home.</li>
+                <li><strong>Customer-repeatable:</strong> We provide the capture scripts and firewall rules so your IT team can reproduce the test on day one. Results are logged locally, never uploaded.</li>
+            </ul>
+            <p style="margin-top: 15px;">This protocol demonstrates architectural zero exfiltration during normal operation in our test environment. It does not constitute a HIPAA certification or guarantee against misconfiguration by the customer. Your team maintains physical control and audit logs.</p>
+        </section>
+
         <section id="founder-bio" class="founder-section">
             <div class="founder-content">
                 <div class="founder-image" style="flex: 1; min-width: 300px;">
