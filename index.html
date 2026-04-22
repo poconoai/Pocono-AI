@@ -78,8 +78,16 @@
         .insight-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center; }
         .insight-section h2 { border-bottom: none; color: white; margin-top: 0; }
 
+        /* ── FOUNDER TEASER ── */
+        .founder-teaser { text-align: center; margin: 60px auto; padding: 35px 20px; background: rgba(0, 0, 0, 0.3); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); max-width: 500px; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .founder-teaser:hover { transform: translateY(-3px); border-color: var(--teal); }
+        .founder-teaser a { text-decoration: none; display: block; }
+        .founder-teaser img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--ai-blue); margin-bottom: 15px; box-shadow: 0 8px 25px rgba(0, 163, 255, 0.3); }
+        .founder-teaser .title { color: var(--white); font-size: 1.3em; font-weight: bold; }
+        .founder-teaser .link-text { color: var(--teal); font-size: 0.95em; margin-top: 8px; font-weight: 600; }
+
         /* ── CTA ── */
-        .cta-container { text-align: center; margin: 60px 0; padding: 50px 20px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; border: 1px solid rgba(24, 139, 150, 0.2); }
+        .cta-container { text-align: center; margin: 40px 0 60px 0; padding: 50px 20px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; border: 1px solid rgba(24, 139, 150, 0.2); }
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; cursor: pointer; border: none; }
         .cta-button:hover { filter: brightness(1.1); transform: translateY(-2px); }
         .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
@@ -186,17 +194,19 @@
             <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">The system maintained sub-second retrieval accuracy. Crucially, the architecture logs the prompt, the generation, and the retrieved data chunks to ensure total auditability.</p>
         </div>
 
-        <section class="pilot-section">
-            <h2 style="margin-top: 0; color: var(--teal); border: none;">Inaugural Pilot Partnership</h2>
-            <p style="color: var(--light-text); max-width: 700px; margin: 0 auto 20px;">We are currently seeking 1-2 visionary regional medical or legal practices to serve as our Inaugural Pilot Partners. Pilot partners receive the Sentinel Node hardware at cost and a lifetime enterprise SLA.</p>
-            <a href="partners.html" class="cta-button" style="background: transparent; border: 2px solid var(--teal); color: var(--teal);">View Pilot Roadmap</a>
-        </section>
-
         <section class="insight-section">
             <h2>Technical Brief: Achieving Zero Telemetry</h2>
             <p>The conversation around AI safety often misses a structural reality: If you want to stop an AI model from "phoning home," you have to engineer an environment where it physically cannot.</p>
             <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">At Pocono AI, we enforce strict hardware and network firewalls. A proper sovereign deployment places the AI infrastructure on a physically isolated network—routing traffic <em>in</em> to cordon the system off from outbound access.</p>
             <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_datasovereignty-localai-networkarchitecture-share-7451776847400415232-s6bd" target="_blank" class="cta-button linkedin-btn">Read the Full Discussion on LinkedIn</a>
+        </section>
+
+        <section class="founder-teaser">
+            <a href="trust.html#founder-bio">
+                <img src="hero.jpg" alt="Marcus O'Dell">
+                <div class="title">Meet the Founder &amp; Chief Technologist</div>
+                <div class="link-text">Read Marc's Story &rarr;</div>
+            </a>
         </section>
 
         <section id="contact" class="cta-container">
