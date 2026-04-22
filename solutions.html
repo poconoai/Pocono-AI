@@ -6,39 +6,49 @@
     <meta name="description" content="Technical specifications and solution overview for the Sentinel Node: Sovereign on-premises AI by Pocono AI, LLC.">
     <title>Solutions | Sentinel Node Sovereign AI | Pocono AI, LLC</title>
     
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
     <style>
         :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
+
         header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
         .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+
         #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
         #nav-menu.active { display: block; }
         .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .nav-links li:last-child a { border-bottom: none; }
+
         @media (min-width: 768px) {
             .menu-toggle { display: none; }
             #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 25px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links { display: flex; gap: 20px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; font-size: 0.9em; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
+
         main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
         h1 { color: var(--white); font-size: 2.5em; text-align: center; margin-bottom: 10px; }
         h2 { color: var(--teal); font-size: 1.8em; margin-top: 50px; border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; }
         .solutions-hero { text-align: center; padding: 20px 0 40px 0; }
         .solutions-hero p { font-size: 1.2em; color: var(--light-text); max-width: 700px; margin: 0 auto; }
+        
         .spec-table { width: 100%; border-collapse: collapse; margin: 30px 0; background-color: var(--card-dark); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .spec-table th, .spec-table td { text-align: left; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .spec-table th { color: var(--teal); font-weight: bold; text-transform: uppercase; font-size: 0.85em; }
         .spec-table td:first-child { font-weight: bold; color: var(--white); width: 30%; }
         .spec-table td { color: var(--light-text); }
+        
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
         .feature-card { background-color: var(--card-dark); padding: 25px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .feature-card h3 { color: var(--white); margin-top: 0; }
+        .feature-card h3 { margin-top: 0; color: var(--white); }
         
         .legal-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 35px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .legal-section h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.4em; }
@@ -49,9 +59,10 @@
         .legal-list li { margin-bottom: 8px; }
 
         .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
-        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: all 0.3s ease; }
-        .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; cursor: pointer; border: none; }
         .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
+        
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
     </style>
 </head>
@@ -59,16 +70,18 @@
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html" style="color: var(--ai-blue);">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust & Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
+                <li><a href="partners.html">Partners & Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -92,7 +105,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>Displacement Consistency</h3>
-                    <p>We mitigate the "Invisible Authority" hallucination risk by grounding the generative model in your explicitly provided EHR files or legal briefs, forcing transparent data citations for mandatory human verification.</p>
+                    <p>We mitigate the "Invisible Authority" hallucination risk by grounding generative models in your explicitly provided EHR files, forcing transparent data citations for mandatory human verification.</p>
                 </div>
             </div>
 
@@ -107,11 +120,11 @@
                 <tbody>
                     <tr>
                         <td>Compute Engine</td>
-                        <td>Dell Precision Foundation (Configured with NVIDIA Tensor Core Architecture)</td>
+                        <td>Dell Precision Foundation (Configured with NVIDIA Ada Generation Architecture)</td>
                     </tr>
                     <tr>
                         <td>Inference Layer</td>
-                        <td>Ollama Enterprise Backend / Open WebUI localized deployment</td>
+                        <td>Ollama / Gemma / Llama 3 & 4 Backend (Localized Deployment)</td>
                     </tr>
                     <tr>
                         <td>Foundation Weights</td>
@@ -131,23 +144,22 @@
 
         <section class="legal-section">
             <h2>Legal & Compliance Framework</h2>
-            <p style="color: var(--light-text); font-size: 1.05em;">Connecting advanced AI to internal EHR networks (such as Epic or MyChart) requires rigorous adherence to HIPAA compliance. Because our Sentinel Node integrates with your data environment, a Business Associate Agreement (BAA) is required. However, our architecture fundamentally changes the scope of vendor liability.</p>
+            <p style="color: var(--light-text); font-size: 1.05em;">Connecting advanced AI to internal EHR networks requires rigorous adherence to HIPAA compliance. Because our Sentinel Node integrates with your data environment, our architecture fundamentally changes the scope of vendor liability.</p>
             
             <div class="legal-box">
                 <h4>Defining EAA (Enterprise Autonomy Architecture)</h4>
-                <p><strong>Enterprise Autonomy Architecture (EAA)</strong> is a hardware-enforced custody model. Under EAA, the AI infrastructure physically resides entirely within the Covered Entity’s Local Area Network (LAN). EAA ensures that while Pocono AI, LLC provides the hardware, software tuning, and cryptographic updates, the Covered Entity retains absolute physical, network, and cryptographic custody of all PHI. We do not host, process, or transmit your patient data on external cloud servers.</p>
+                <p><strong>Enterprise Autonomy Architecture (EAA)</strong> is a hardware-enforced custody model. Under EAA, the AI infrastructure physically resides entirely within the Covered Entity’s LAN. EAA ensures the Covered Entity retains absolute physical, network, and cryptographic custody of all PHI.</p>
             </div>
 
             <div class="legal-box">
-                <h4>Sample BAA Structural Outline (For Legal Counsel Review)</h4>
-                <p style="margin-bottom: 10px;">Our specialized EAA-compliant BAA template is strictly scoped to local infrastructure maintenance, specifically limiting vendor liability to incidental access. <em>Note: Pocono AI, LLC carries comprehensive commercial general liability insurance.</em></p>
+                <h4>Sample BAA Structural Outline</h4>
+                <p style="margin-bottom: 10px;">Our specialized EAA-compliant BAA template is strictly scoped to local infrastructure maintenance, specifically limiting vendor liability to incidental access.</p>
                 <ul class="legal-list">
-                    <li><strong>Scope of Services:</strong> Limited to hardware provisioning, local RAG tuning, and execution of the Outbound-Only Update Protocol.</li>
-                    <li><strong>Data Custody Clause:</strong> Explicitly states that the Covered Entity retains 100% custody of PHI. Pocono AI, LLC operates zero off-site data processing facilities for client workloads.</li>
-                    <li><strong>Incidental Access Limitation:</strong> Limits BAA applicability to potential, incidental exposure during authorized on-site hardware maintenance or secured remote-bridge troubleshooting.</li>
-                    <li><strong>Audit & Telemetry:</strong> Asserts that all inference and vector databases run completely devoid of outbound internet telemetry, architected to eliminate third-party data exfiltration risks.</li>
+                    <li><strong>Scope of Services:</strong> Limited to hardware provisioning, local RAG tuning, and Outbound-Only update protocols.</li>
+                    <li><strong>Data Custody Clause:</strong> Explicitly states that the Covered Entity retains 100% custody of PHI.</li>
+                    <li><strong>Incidental Access Limitation:</strong> Limits BAA applicability to authorized on-site maintenance or secured troubleshooting.</li>
+                    <li><strong>Audit & Telemetry:</strong> Asserts that all inference runs completely devoid of outbound internet telemetry.</li>
                 </ul>
-                <p style="margin-top: 15px; font-size: 0.85em; font-style: italic;">Note: This structural outline is provided for legal review and integration planning. Formal BAAs are executed post-consultation in conjunction with client legal representation.</p>
             </div>
         </section>
 

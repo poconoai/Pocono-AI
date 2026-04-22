@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Time Reclamation in Practice: Vetted AI workflows for medical and legal professionals by Pocono AI, LLC.">
+    <title>Use Cases | Time Reclamation | Pocono AI, LLC</title>
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        :root {
+            --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF;
+            --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --muted: #5a7a8a;
+        }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
+        .logo span { color: var(--ai-blue); margin-left: 5px; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
+        
+        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        #nav-menu.active { display: block; }
+        .nav-links { list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        @media (min-width: 768px) {
+            .menu-toggle { display: none; }
+            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
+            .nav-links { display: flex; gap: 25px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links li a:hover { color: var(--ai-blue); }
+        }
+
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { font-size: 2.8em; margin-bottom: 10px; }
+        .hero h1 span { color: var(--ai-blue); }
+        .hero p { color: var(--light-text); font-size: 1.2em; max-width: 700px; margin: 0 auto; }
+
+        .use-case-card { background: var(--card-dark); border-radius: 12px; padding: 30px; margin-bottom: 40px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .case-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .case-num { font-size: 0.8em; text-transform: uppercase; color: var(--ai-blue); font-weight: bold; letter-spacing: 1px; }
+        .case-title { font-size: 1.8em; margin: 0; color: var(--white); }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .stat-val { font-size: 1.5em; font-weight: bold; color: var(--ai-blue); display: block; }
+        .stat-lbl { font-size: 0.8em; color: var(--muted); }
+
+        .timeline-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .time-label { font-weight: bold; color: var(--teal); margin-bottom: 10px; display: block; }
+        .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .before, .after { padding: 15px; border-radius: 6px; font-size: 0.95em; }
+        .before { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+        .after { background: rgba(0, 163, 255, 0.05); border: 1px solid rgba(0, 163, 255, 0.2); }
+        .label { display: block; font-size: 0.7em; text-transform: uppercase; font-weight: 800; margin-bottom: 5px; }
+        .before .label { color: #888; }
+        .after .label { color: var(--ai-blue); }
+
+        .reclaimed { background: linear-gradient(90deg, var(--teal), var(--ai-blue)); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; text-align: center; margin-top: 20px; }
+
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <button class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></button>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html" style="color: var(--ai-blue);">Use Cases</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Time Reclamation <span>in Practice</span></h1>
+            <p>Three vetted workflows where the Sentinel Node reclaims hours daily.</p>
+        </section>
+
+        <section class="use-case-card">
+            <div class="case-header">
+                <div>
+                    <span class="case-num">Use Case 1</span>
+                    <h2 class="case-title">Family Medicine Physician</h2>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box"><span class="stat-val">5.9 hrs</span><span class="stat-lbl">Daily EHR Baseline</span></div>
+                <div class="stat-box"><span class="stat-val">44%</span><span class="stat-lbl">Clerical Task Load</span></div>
+                <div class="stat-box"><span class="stat-val">Zero</span><span class="stat-lbl">Pajama Time Goal</span></div>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-label">8:00 AM - Chart Prep</span>
+                <div class="flow-grid">
+                    <div class="before"><span class="label">Before</span>Review 20 charts manually. 45-60 mins.</div>
+                    <div class="after"><span class="label">With Sentinel</span>Auto-generated overnight summaries. 5 min review.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="time-label">1:00 PM - Inbox & Refills</span>
+                <div class="flow-grid">
+                    <div class="before"><span class="label">Before</span>30-50 messages. 60 mins over lunch.</div>
+                    <div class="after"><span class="label">With Sentinel</span>Triage & pre-drafted refills. 15 min review.</div>
+                </div>
+            </div>
+            <div class="reclaimed">Reclaimed: 4 to 5 hours per day redirected to patient care.</div>
+        </section>
+
+        <section class="use-case-card">
+            <div class="case-header">
+                <div>
+                    <span class="case-num">Use Case 2</span>
+                    <h2 class="case-title">Neurology Practice Assistant</h2>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box"><span class="stat-val">36 hrs</span><span class="stat-lbl">Weekly Admin Load</span></div>
+                <div class="stat-box"><span class="stat-val">49%</span><span class="stat-lbl">Manual Data Entry</span></div>
+                <div class="stat-box"><span class="stat-val">70%</span><span class="stat-lbl">Prep Reduction</span></div>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-label">9:00 AM - Referral Intake</span>
+                <div class="flow-grid">
+                    <div class="before"><span class="label">Before</span>Manual fax entry. 20 mins per referral.</div>
+                    <div class="after"><span class="label">With Sentinel</span>OCR extraction & auto-population. 3 min verification.</div>
+                </div>
+            </div>
+            <div class="reclaimed">Reclaimed: 3 hours of daily chart prep reduced to under 1 hour.</div>
+        </section>
+
+        <section class="use-case-card" style="border-top-color: var(--ai-blue);">
+            <div class="case-header">
+                <div>
+                    <span class="case-num">Use Case 3</span>
+                    <h2 class="case-title">Solo Law Practice Partner</h2>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box"><span class="stat-val">2.3 hrs</span><span class="stat-lbl">Avg. Daily Billable</span></div>
+                <div class="stat-box"><span class="stat-val">40%</span><span class="stat-lbl">Non-Practice Tasks</span></div>
+                <div class="stat-box"><span class="stat-val">2/3</span><span class="stat-lbl">Review Reduction</span></div>
+            </div>
+
+            <div class="timeline-item">
+                <span class="time-label">10:00 AM - Discovery Review</span>
+                <div class="flow-grid">
+                    <div class="before"><span class="label">Before</span>Manual 400-page review. 4-5 hours.</div>
+                    <div class="after"><span class="label">With Sentinel</span>Local extraction of timelines. 12 minutes.</div>
+                </div>
+            </div>
+            <div class="reclaimed">Reclaimed: 15 to 18 hours per week converted to billable time.</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
+    </script>
+</body>
+</html>

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pocono AI, LLC — Sovereign, on-premises Local AI infrastructure. Architected for Zero Data Exfiltration and Managed Data Sovereignty in healthcare and legal environments.">
-    <title>Pocono AI, LLC | Managed Data Sovereignty & Local AI</title>
+    <meta name="description" content="Pocono AI, LLC — Sovereign, on-premises Local AI infrastructure. Reclaiming 5 hours of daily documentation time for physicians and legal professionals through Zero Data Exfiltration architecture.">
+    <title>Pocono AI, LLC | Managed Data Sovereignty & Time Reclamation</title>
 
-    <meta property="og:title" content="Pocono AI, LLC | Local AI Infrastructure">
-    <meta property="og:description" content="Sovereign, on-premises AI infrastructure. Zero cloud. Built for the sectors where privacy isn't optional.">
+    <meta property="og:title" content="Pocono AI, LLC | Reclaiming Professional Time">
+    <meta property="og:description" content="Zero cloud AI infrastructure. Designed to reclaim up to 5 hours of daily EHR and discovery work using local Ollama and Gemma models.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/index.html">
     <meta property="og:image" content="https://poconoai.com/hero.jpg">
@@ -18,8 +18,8 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --muted: #5a7a8a; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
         *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
 
         header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -37,69 +37,78 @@
         @media (min-width: 768px) {
             .menu-toggle { display: none; }
             #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 25px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links { display: flex; gap: 20px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; font-size: 0.9em; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
 
         main { max-width: 1000px; margin: 0 auto; padding: 40px 10px; }
         .hero-section { text-align: center; padding: 60px 10px 50px; }
         .hero-tagline { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.9em; margin-bottom: 20px; display: block; }
-        .hero-section h1 { font-size: 3rem; color: var(--white); line-height: 1.1; margin: 0 0 20px 0; }
+        .hero-section h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); color: var(--white); line-height: 1.1; margin: 0 0 20px 0; }
         .hero-section p { font-size: 1.2em; color: var(--light-text); max-width: 700px; margin: 0 auto 35px; }
-        
-        h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.8em; }
 
+        /* ── PROBLEM / SOLUTION BOX ── */
+        .problem-solution-box { background: linear-gradient(135deg, rgba(0, 163, 255, 0.08) 0%, rgba(5, 22, 34, 1) 100%); border: 1px solid var(--ai-blue); border-radius: 12px; margin: 40px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .side { padding: 40px; }
+        .problem-side { background: rgba(255, 255, 255, 0.03); border-right: 1px solid rgba(0, 163, 255, 0.2); }
+        .side h2 { margin-top: 0; font-size: 1.6em; border-bottom: 2px solid var(--ai-blue); padding-bottom: 10px; margin-bottom: 20px; }
+        .problem-side h2 { color: var(--white); border-color: #444; }
+        .stat-highlight { font-size: 3.5rem; font-weight: 800; color: var(--ai-blue); display: block; line-height: 1; }
+        .stat-sub { color: var(--muted); text-transform: uppercase; font-size: 0.8em; letter-spacing: 1px; font-weight: bold; }
+        .solution-side h2 { color: var(--teal); border-color: var(--teal); }
+        .reclaim-stat { color: var(--teal); font-size: 3.5rem; font-weight: 800; display: block; line-height: 1; }
+
+        /* ── FEATURE GRID ── */
+        h2.section-header { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; margin-top: 50px; font-size: 1.8em; }
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
-        .feature-card { background-color: var(--card-dark); padding: 20px 15px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .feature-card h3 { margin-top: 0; color: var(--white); }
-        .feature-card p { color: var(--light-text); }
+        .feature-card { background-color: var(--card-dark); padding: 25px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .feature-card h3 { margin-top: 0; color: var(--white); font-size: 1.2em; margin-bottom: 15px; }
+        .feature-card p { color: var(--light-text); font-size: 0.95em; }
 
-        .highlight-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 35px 15px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--ai-blue); }
-        
-        .pilot-section { background: rgba(0,0,0,0.4); padding: 35px 15px; border-radius: 8px; margin: 50px 0; border: 1px solid var(--teal); text-align: center; }
-        
-        .insight-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 35px 15px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center; }
-        .insight-section h2 { margin-top: 0; color: white; border-bottom: none; }
-        .insight-section p { color: var(--light-text); font-size: 0.95em; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .insight-section .linkedin-btn { background-color: #0077b5; margin: 10px auto 0; display: inline-block; }
-        
-        @media (min-width: 768px) { .insight-section p { font-size: 1.05em; margin-bottom: 25px; } }
-        
+        /* ── HIGHLIGHT SECTION ── */
+        .highlight-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--ai-blue); }
         .stat-row { display: flex; gap: 15px; margin: 25px 0 10px; flex-wrap: wrap; }
-        .stat-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,163,255,0.2); border-radius: 6px; padding: 16px 15px; text-align: center; flex: 1; min-width: 120px; }
-        .stat-value { font-size: 1.6em; font-weight: 800; color: var(--ai-blue); display: block; }
-        .stat-label { font-size: 0.75em; color: var(--light-text); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
+        .stat-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,163,255,0.2); border-radius: 6px; padding: 16px 15px; text-align: center; flex: 1; min-width: 140px; }
+        .stat-value { font-size: 1.5em; font-weight: 800; color: var(--ai-blue); display: block; }
+        .stat-label { font-size: 0.7em; color: var(--light-text); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
 
-        .cta-container { text-align: center; margin: 60px 0; padding: 40px 20px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; border: 1px solid rgba(24, 139, 150, 0.2); }
+        /* ── SECTIONS ── */
+        .pilot-section { background: rgba(0,0,0,0.4); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border: 1px solid var(--teal); text-align: center; }
+        .insight-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center; }
+        .insight-section h2 { border-bottom: none; color: white; margin-top: 0; }
+
+        /* ── CTA ── */
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px 20px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; border: 1px solid rgba(24, 139, 150, 0.2); }
         .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; cursor: pointer; border: none; }
         .cta-button:hover { filter: brightness(1.1); transform: translateY(-2px); }
         .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
+        .linkedin-btn { background-color: #0077b5; }
 
         input, textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--bg-black); color: white; border: 1px solid var(--ai-blue); border-radius: 4px; box-sizing: border-box; font-family: inherit; }
 
-        .transparency-note { margin-top: 50px; padding: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
-        .transparency-note p { font-size: 0.85em; color: var(--light-text); max-width: 800px; margin: 0 auto; opacity: 0.8; }
+        .transparency-note { margin-top: 50px; padding: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.85em; color: var(--light-text); opacity: 0.8; line-height: 1.5; }
 
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+        footer a { color: var(--teal); text-decoration: none; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle mobile menu" aria-expanded="false">
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html" style="color: var(--ai-blue);">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li><a href="partners.html">Partners & Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -107,16 +116,32 @@
     <main>
         <section class="hero-section">
             <span class="hero-tagline">Architected for Data Sovereignty</span>
-            <h1>Zero Data Exfiltration</h1>
-            <p>On-premises infrastructure designed to minimize cloud liability through local AI and air-gapped security protocols.</p>
+            <h1>Reclaim Your Practice</h1>
+            <p>On-premises infrastructure designed to eliminate administrative friction through local AI and air-gapped security.</p>
             <div class="hero-ctas">
-                <a href="pricing.html" class="cta-button">View Deployment Tiers</a>
-                <a href="#contact" class="cta-button cta-button-light">Professional Inquiry</a>
+                <a href="use-cases.html" class="cta-button">View Time Reclamation</a>
+                <a href="pricing.html" class="cta-button cta-button-light">Deployment Tiers</a>
+            </div>
+        </section>
+
+        <section class="problem-solution-box">
+            <div class="side problem-side">
+                <h2>The Problem</h2>
+                <span class="stat-highlight">5.9 hrs</span>
+                <span class="stat-sub">Daily EHR Burden</span>
+                <p style="margin-top: 20px; color: var(--light-text);">Studies show physicians spend an average of 5.9 hours daily in the EHR—nearly 44% of their day spent on clerical tasks rather than patient care.</p>
+            </div>
+            <div class="side solution-side">
+                <h2>The Solution</h2>
+                <span class="reclaim-stat">~5.0 hrs</span>
+                <span class="stat-sub">Reclaimed Daily</span>
+                <p style="margin-top: 20px; color: var(--light-text);">The Sentinel Node is architected to reclaim approximately 5 hours of daily professional time by automating chart prep, document summarization, and clinical triage locally.</p>
+                <p style="font-size: 0.8em; color: var(--muted); font-style: italic; margin-top: 10px;">*Human-in-the-Loop protocol required: Licensed professionals verify all cited local data outputs.</p>
             </div>
         </section>
 
         <section>
-            <h2>Operational Deployment Model</h2>
+            <h2 class="section-header">Operational Deployment Model</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>Reduced Exfiltration</h3>
@@ -124,7 +149,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>Auditable Local AI</h3>
-                    <p>Turnkey models designed for Human-in-the-Loop (HITL) workflows. Every output provides cited local data chunks for mandatory verification.</p>
+                    <p>Turnkey models designed for Human-in-the-Loop workflows. Every output provides cited local data chunks for mandatory verification.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Air-Gapped Security</h3>
@@ -138,7 +163,7 @@
         </section>
 
         <div class="highlight-section">
-            <h2>Clinical Validation Sandbox</h2>
+            <h2 style="color: white; margin-top: 0;">Clinical Validation Sandbox</h2>
             <p>Our local architecture undergoes extreme optimization stress-testing. In our latest sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.</p>
             <div class="stat-row">
                 <div class="stat-box">
@@ -150,50 +175,43 @@
                     <span class="stat-label">Query Response</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-value">Ollama (Gemma 3)</span>
-                    <span class="stat-label">Model Engine (Local)</span>
+                    <span class="stat-value">Ollama / Gemma</span>
+                    <span class="stat-label">Model Engine</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value">Llama 3 / 4</span>
+                    <span class="stat-label">Validated Logic</span>
                 </div>
             </div>
-            <p>The system maintained sub-second retrieval accuracy. Crucially, the architecture logs the prompt, the generation, and the retrieved data chunks to ensure total auditability for professional verification.</p>
+            <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">The system maintained sub-second retrieval accuracy. Crucially, the architecture logs the prompt, the generation, and the retrieved data chunks to ensure total auditability.</p>
         </div>
 
         <section class="pilot-section">
             <h2 style="margin-top: 0; color: var(--teal); border: none;">Inaugural Pilot Partnership</h2>
-            <p style="color: var(--light-text); max-width: 700px; margin: 0 auto 20px;">We are finalizing our core hardware architecture and are actively seeking 1-2 visionary regional medical or legal practices to serve as our Inaugural Pilot Partners. In exchange for collaborating with us to refine the clinical UI and workflow integration, pilot partners receive the Sentinel Node hardware at cost and a significantly reduced, lifetime enterprise SLA.</p>
+            <p style="color: var(--light-text); max-width: 700px; margin: 0 auto 20px;">We are currently seeking 1-2 visionary regional medical or legal practices to serve as our Inaugural Pilot Partners. Pilot partners receive the Sentinel Node hardware at cost and a lifetime enterprise SLA.</p>
             <a href="partners.html" class="cta-button" style="background: transparent; border: 2px solid var(--teal); color: var(--teal);">View Pilot Roadmap</a>
         </section>
 
         <section class="insight-section">
             <h2>Technical Brief: Achieving Zero Telemetry</h2>
-            <p>The conversation around AI safety often misses a fundamental structural reality: If you want to stop an AI model from "phoning home," you can't just ask it nicely not to. You have to engineer an environment where it physically cannot.</p>
-            <p>At Pocono AI, we enforce strict hardware and network firewalls. A proper sovereign deployment places the AI infrastructure on a physically isolated network—such as a dedicated 10.x.x.x subnet—routing traffic <em>in</em> to cordon the system off from outbound access.</p>
+            <p>The conversation around AI safety often misses a structural reality: If you want to stop an AI model from "phoning home," you have to engineer an environment where it physically cannot.</p>
+            <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">At Pocono AI, we enforce strict hardware and network firewalls. A proper sovereign deployment places the AI infrastructure on a physically isolated network—routing traffic <em>in</em> to cordon the system off from outbound access.</p>
             <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_datasovereignty-localai-networkarchitecture-share-7451776847400415232-s6bd" target="_blank" class="cta-button linkedin-btn">Read the Full Discussion on LinkedIn</a>
-            
-            <div style="margin-top: 35px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; background: rgba(0,0,0,0.3); padding: 25px; border-radius: 8px; border: 1px solid rgba(0, 163, 255, 0.2); max-width: 600px; margin-left: auto; margin-right: auto; text-align: left;">
-                <img src="hero.jpg" alt="Marc, Founder of Pocono AI" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--teal); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-                <div>
-                    <h3 style="margin: 0 0 5px 0; color: var(--white); font-size: 1.2em;">Marcus O'Dell</h3>
-                    <p style="margin: 0 0 10px 0; color: var(--ai-blue); font-size: 0.9em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Founder & Chief Technologist</p>
-                    <a href="trust.html#founder-bio" style="color: var(--teal); text-decoration: none; font-weight: bold; border-bottom: 1px solid var(--teal); transition: 0.3s; padding-bottom: 2px;">
-                        Read Full Bio &rarr;
-                    </a>
-                </div>
-            </div>
         </section>
 
         <section id="contact" class="cta-container">
-            <h2 style="color: white; border-bottom: none; margin-top: 0;">Request Technical Briefing</h2>
+            <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
             <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a technical briefing regarding your local AI deployment or Pilot Program participation.</p>
 
             <form action="mailto:marcus@poconoai.com?subject=Strategic Inquiry via PoconoAI.com" method="post" enctype="text/plain" style="text-align: left; max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
                 <label for="name" style="color: var(--light-text); font-weight: bold; display: block; margin-bottom: 5px;">Name / Organization:</label>
-                <input type="text" id="name" name="Name" required style="width: 100%; padding: 12px; margin-bottom: 20px; background: var(--bg-black); color: white; border: 1px solid var(--ai-blue); border-radius: 4px; box-sizing: border-box;" placeholder="Dr. Jane Doe, Regional Health System">
+                <input type="text" id="name" name="Name" required placeholder="Dr. Jane Doe, Regional Health System">
                 <input type="submit" value="Open Secure Email Client" class="cta-button" style="width: 100%; cursor: pointer; border: none; font-size: 1.1em; margin: 0;">
             </form>
 
             <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 500px; margin-left: auto; margin-right: auto;">
                 <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
-                    <strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI or confidential legal details via this web form. All HIPAA-compliant review occurs post-consultation.
+                    <strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI or confidential legal details via this web form.
                 </p>
             </div>
             <p style="margin-top: 35px;"><strong>Text the Founder to coordinate:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
@@ -201,7 +219,7 @@
 
         <div class="transparency-note">
             <p>
-                <strong>Web Telemetry Transparency Note:</strong> The Sentinel Node hardware operates with absolute zero outbound telemetry. For this public marketing brochure, we temporarily utilize <strong>Umami</strong>—an open-source, cookie-less, privacy-first analytics tracker—to monitor basic traffic. It is the only exterior script permitted on this domain. Once our dedicated bare-metal web server is provisioned, this single script will be permanently removed in favor of zero-client, server-side log analysis.
+                <strong>Web Telemetry Transparency Note:</strong> The Sentinel Node hardware operates with absolute zero outbound telemetry. For this marketing brochure, we temporarily utilize <strong>Umami</strong>—an open-source, cookie-less tracker—to monitor basic traffic.
             </p>
         </div>
 
@@ -216,8 +234,6 @@
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            
-            // Accessibility update: Toggle the aria-expanded attribute
             const isExpanded = navMenu.classList.contains('active');
             menuToggle.setAttribute('aria-expanded', isExpanded);
 

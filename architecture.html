@@ -23,23 +23,13 @@
 
     <style>
         :root {
-            --bg-black:   #000000;
-            --bg-dark:    #051622;
-            --card-dark:  #0A2635;
-            --card-mid:   #0d2e42;
-            --ai-blue:    #00A3FF;
-            --teal:       #188B96;
-            --teal-glow:  rgba(24,139,150,0.18);
-            --blue-glow:  rgba(0,163,255,0.12);
-            --white:      #FFFFFF;
-            --light-text: #D0DDE6;
-            --muted:      #5a7a8a;
-            --border:     rgba(255,255,255,0.07);
+            --bg-black:   #000000; --bg-dark:    #051622; --card-dark:  #0A2635;
+            --ai-blue:    #00A3FF; --teal:       #188B96; --white:      #FFFFFF;
+            --light-text: #D0DDE6; --muted:      #5a7a8a; --border:     rgba(255,255,255,0.07);
             --border-teal:rgba(24,139,150,0.35);
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -50,7 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* ── HEADER (Standardized) ── */
         header {
             background-color: var(--bg-black);
             display: flex;
@@ -65,7 +54,6 @@
         }
         .logo {
             text-decoration: none;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 1.6rem;
             font-weight: 800;
             color: var(--white);
@@ -88,16 +76,7 @@
         }
         #nav-menu.active { display: block; }
         .nav-links { list-style: none; }
-        .nav-links li a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 12px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-links li:last-child a { border-bottom: none; }
+        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; font-size: 0.95rem; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
         @media (min-width: 768px) {
             .menu-toggle { display: none; }
             #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
@@ -106,193 +85,57 @@
             .nav-links li a:hover { color: var(--ai-blue); }
         }
 
-        /* ── HERO ── */
-        .arch-hero {
-            position: relative;
-            text-align: center;
-            padding: 90px 20px 80px;
-            overflow: hidden;
-        }
-        .arch-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0,163,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,163,255,0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
-            pointer-events: none;
-            animation: gridPulse 8s ease-in-out infinite;
-        }
-        @keyframes gridPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
-
-        .hero-eyebrow {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--teal);
-            margin-bottom: 18px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease forwards 0.1s;
-        }
-        h1 {
-            font-weight: 800;
-            font-size: clamp(2.2rem, 7vw, 4rem);
-            letter-spacing: -0.01em;
-            line-height: 1.1;
-            color: var(--white);
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease forwards 0.25s;
-            overflow-wrap: break-word;
-        }
+        .arch-hero { position: relative; text-align: center; padding: 90px 20px 80px; overflow: hidden; }
+        .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 18px; }
+        h1 { font-weight: 800; font-size: clamp(2.2rem, 7vw, 4rem); letter-spacing: -0.01em; line-height: 1.1; color: var(--white); margin-bottom: 20px; }
         h1 em { font-style: normal; color: var(--ai-blue); }
-        .hero-sub {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            color: var(--light-text);
-            max-width: 700px;
-            margin: 0 auto 36px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease forwards 0.4s;
-        }
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease forwards 0.55s;
-        }
-        .badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            padding: 5px 14px;
-            border: 1px solid var(--border-teal);
-            border-radius: 2px;
-            color: var(--teal);
-            background: rgba(24,139,150,0.06);
-            text-transform: uppercase;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ── MAIN LAYOUT ── */
+        .hero-sub { font-size: clamp(1.1rem, 2.5vw, 1.3rem); color: var(--light-text); max-width: 700px; margin: 0 auto 36px; }
+        
         main { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
-
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--teal);
-            margin-bottom: 10px;
-        }
-        h2 {
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-        .section-intro {
-            font-size: 1.05rem;
-            color: var(--muted);
-            margin-bottom: 40px;
-            max-width: 640px;
-        }
+        .section-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+        h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 6px; }
+        .section-intro { font-size: 1.05rem; color: var(--muted); margin-bottom: 40px; max-width: 640px; }
         .section-divider { border: none; border-top: 1px solid var(--border); margin: 64px 0 56px; }
 
-        /* ── PIPELINE DIAGRAM ── */
-        .pipeline {
-            display: grid;
-            grid-template-columns: 1fr 40px 1fr 40px 1fr;
-            align-items: center;
-            gap: 0;
-            margin: 48px 0;
-        }
-        .pipe-card {
-            background: var(--card-dark);
-            border: 1px solid var(--border-teal);
-            border-top: 3px solid var(--teal);
-            padding: 28px 24px;
-            border-radius: 4px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .pipe-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+        /* ── PIPELINE ── */
+        .pipeline { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: center; gap: 0; margin: 48px 0; }
+        .pipe-card { background: var(--card-dark); border: 1px solid var(--border-teal); border-top: 3px solid var(--teal); padding: 28px 24px; border-radius: 4px; }
+        .pipe-card h3 { font-size: 1.1rem; color: var(--white); margin-bottom: 10px; }
         .pipe-card.active-card { border-top-color: var(--ai-blue); border-color: rgba(0,163,255,0.3); }
-
-        .pipe-arrow { display: flex; align-items: center; justify-content: center; color: var(--teal); position: relative; }
-        .pipe-arrow::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: linear-gradient(90deg, var(--teal), rgba(24,139,150,0.3)); transform: translateY(-50%); }
-        .pipe-arrow svg { position: relative; z-index: 1; background: var(--bg-dark); padding: 0 4px; }
-
-        .phase-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ai-blue); text-transform: uppercase; display: block; margin-bottom: 10px; }
-        .pipe-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-        .pipe-card p { font-size: 0.95rem; color: var(--light-text); line-height: 1.6; margin-bottom: 14px; }
-        
         .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .stack-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; background: rgba(0,163,255,0.08); border: 1px solid rgba(0,163,255,0.2); border-radius: 2px; color: var(--ai-blue); }
-        .stack-tag.teal-tag { border-color: rgba(24,139,150,0.25); color: var(--teal); }
+        @media (max-width: 720px) { .pipeline { grid-template-columns: 1fr; } }
 
-        @media (max-width: 720px) {
-            .pipeline { grid-template-columns: 1fr; }
-            .pipe-arrow { transform: rotate(90deg); height: 32px; }
-            .pipe-arrow::before { left: 50%; right: 50%; top: 0; bottom: 0; width: 1px; height: auto; transform: none; }
-        }
-
-        /* ── HARDWARE SPECS ── */
+        /* ── HARDWARE & TABLES ── */
         .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 32px; }
         .spec-card { background: var(--card-dark); border: 1px solid var(--border); padding: 22px 20px; border-radius: 4px; }
         .spec-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
         .spec-value { font-weight: 700; color: var(--white); margin-bottom: 4px; }
-        .spec-note { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
-
-        /* ── TABLES ── */
         .policy-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 0.9rem; }
         .policy-table th { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-align: left; padding: 10px 16px; border-bottom: 1px solid var(--border); }
         .policy-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--light-text); }
         .status-no { color: #e74c3c; font-weight: bold; }
-        .status-limited { color: var(--ai-blue); font-weight: bold; }
 
         /* ── CHECKLIST ── */
         .checklist { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 28px; }
-        .checklist li { display: flex; align-items: flex-start; gap: 12px; background: var(--card-dark); border: 1px solid var(--border); padding: 14px 16px; border-radius: 4px; font-size: 0.9rem; color: var(--light-text); }
-        .check-icon { flex-shrink: 0; width: 18px; height: 18px; background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.3); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-
-        /* ── CTA ── */
-        .cta-container { text-align: center; margin-top: 64px; padding: 56px 40px; background: rgba(24,139,150,0.05); border: 1px solid var(--border); border-top: 3px solid var(--teal); border-radius: 4px; }
-        .cta-button { display: inline-block; font-weight: 700; font-size: 0.9rem; padding: 14px 30px; text-decoration: none; border-radius: 3px; transition: 0.3s; margin: 10px; border: none; cursor: pointer; }
-        .cta-primary { background-color: var(--teal); color: var(--white); }
-        .cta-secondary { background-color: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.25); }
-        .cta-primary:hover { filter: brightness(1.1); }
-        .cta-secondary:hover { border-color: var(--white); }
+        .checklist li { background: var(--card-dark); border: 1px solid var(--border); padding: 14px 16px; border-radius: 4px; font-size: 0.9rem; color: var(--light-text); }
 
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--muted); border-top: 1px solid var(--border); }
-        
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></button>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html" style="color: var(--ai-blue);">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li><a href="partners.html">Partners & Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -300,50 +143,24 @@
     <section class="arch-hero">
         <div class="hero-eyebrow">Sentinel Node · Technical Architecture</div>
         <h1>Sovereign by <em>Design</em></h1>
-        <p class="hero-sub">Every component of the Sentinel Node runs inside your building, on your hardware, under your control. No cloud APIs. No data egress. No exceptions.</p>
-        <div class="hero-badges">
-            <span class="badge">Zero Cloud Exposure</span>
-            <span class="badge">HIPAA-Native</span>
-            <span class="badge">LAN-Only Inference</span>
-            <span class="badge">Open-Weight Models</span>
-            <span class="badge">Audit-Traceable RAG</span>
-        </div>
+        <p class="hero-sub">Every component of the Sentinel Node runs inside your building, under your control.</p>
     </section>
 
     <main>
-        <section class="reveal">
+        <section>
             <div class="section-label">01 · Data Sovereignty Pipeline</div>
             <h2>The On-Premises Flow</h2>
-            <p class="section-intro">Three isolated phases. At no point does your data cross a network boundary outside your LAN.</p>
-
             <div class="pipeline">
-                <div class="pipe-card">
-                    <span class="phase-num">Phase 01</span>
-                    <h3>Local Ingestion</h3>
-                    <p>Documents, EHR exports, and case files are ingested directly via read-only bridges.</p>
-                    <div class="stack-tags">
-                        <span class="stack-tag">LAN-only</span>
-                        <span class="stack-tag teal-tag">Read-only</span>
-                    </div>
+                <div class="pipe-card"><h3>Local Ingestion</h3><p>Direct read-only bridges for EHR/Discovery.</p></div>
+                <div style="text-align:center; color:var(--teal);">→</div>
+                <div class="pipe-card active-card"><h3>Local Vectorization</h3><p>Encrypted local DB.</p>
+                    <div class="stack-tags"><span class="stack-tag">Qdrant (Local)</span></div>
                 </div>
-                <div class="pipe-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="#188B96" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                <div class="pipe-card active-card">
-                    <span class="phase-num">Phase 02</span>
-                    <h3>Local Vectorization</h3>
-                    <p>Text is chunked and stored in an encrypted local database. No external APIs used.</p>
+                <div style="text-align:center; color:var(--teal);">→</div>
+                <div class="pipe-card"><h3>Private Inference</h3><p>Processed entirely on-device.</p>
                     <div class="stack-tags">
-                        <span class="stack-tag">Qdrant (Local)</span>
-                        <span class="stack-tag teal-tag">AES-256</span>
-                    </div>
-                </div>
-                <div class="pipe-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="#188B96" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                <div class="pipe-card">
-                    <span class="phase-num">Phase 03</span>
-                    <h3>Private Inference</h3>
-                    <p>Queries are processed by open-weight models on-device. Source-cited and logged.</p>
-                    <div class="stack-tags">
-                        <span class="stack-tag">Ollama</span>
-                        <span class="stack-tag teal-tag">Audit Log</span>
+                        <span class="stack-tag">Ollama / Gemma</span>
+                        <span class="stack-tag">Llama 3 / 4</span>
                     </div>
                 </div>
             </div>
@@ -351,96 +168,59 @@
 
         <hr class="section-divider">
 
-        <section class="reveal">
+        <section>
             <div class="section-label">02 · Sentinel Node Hardware</div>
             <h2>Enterprise Infrastructure</h2>
             <div class="specs-grid">
                 <div class="spec-card">
                     <div class="spec-label">GPU Compute · By Tier</div>
                     <div class="spec-value">NVIDIA RTX 4500 Ada · Entry</div>
-                    <div class="spec-note">24 GB VRAM — 7B-14B models natively.</div>
                     <div class="spec-value" style="font-size:0.9rem; margin-top:10px;">NVIDIA RTX 5000 Ada · Professional</div>
-                    <div class="spec-note">32 GB VRAM — Robust 32B model serving.</div>
                 </div>
                 <div class="spec-card">
                     <div class="spec-label">System RAM</div>
                     <div class="spec-value">64–128 GB DDR5</div>
-                    <div class="spec-note">Supports simultaneous multi-user queries.</div>
                 </div>
                 <div class="spec-card">
                     <div class="spec-label">Local Storage</div>
                     <div class="spec-value">4 TB NVMe SSD</div>
-                    <div class="spec-note">Encrypted vector index and model weights.</div>
-                </div>
-                <div class="spec-card">
-                    <div class="spec-label">Network Footprint</div>
-                    <div class="spec-value">Static LAN IP</div>
-                    <div class="spec-note">Firewall-transparent. No open inbound ports.</div>
                 </div>
             </div>
         </section>
 
         <hr class="section-divider">
 
-        <section class="reveal">
+        <section>
             <div class="section-label">03 · Network Egress Policy</div>
             <h2>Exfiltration Controls</h2>
             <table class="policy-table">
-                <thead>
-                    <tr><th>Traffic Type</th><th>Exits LAN?</th><th>Notes</th></tr>
-                </thead>
+                <thead><tr><th>Traffic Type</th><th>Exits LAN?</th><th>Notes</th></tr></thead>
                 <tbody>
                     <tr><td>Patient / Client Documents</td><td><span class="status-no">NEVER</span></td><td>Stored locally on hardware</td></tr>
                     <tr><td>User Queries</td><td><span class="status-no">NEVER</span></td><td>Processed entirely on-device</td></tr>
-                    <tr><td>AI Inference Calls</td><td><span class="status-no">NEVER</span></td><td>No cloud API dependencies</td></tr>
-                    <tr><td>System Health Telemetry</td><td><span class="status-limited">OPT-IN ONLY</span></td><td>Anonymized CPU/RAM only</td></tr>
                 </tbody>
             </table>
         </section>
 
         <hr class="section-divider">
 
-        <section class="reveal">
-            <div class="section-label">04 · Compliance &amp; Auditability</div>
+        <section>
+            <div class="section-label">04 · Compliance & Auditability</div>
             <h2>High-Liability Safety</h2>
             <ul class="checklist">
-                <li><span class="check-icon">✓</span><span><strong>Source-cited responses</strong> Draw only from your records.</span></li>
-                <li><span class="check-icon">✓</span><span><strong>Immutable audit log</strong> Tracks every query and retrieval.</span></li>
-                <li><span class="check-icon">✓</span><span><strong>HIPAA-native</strong> No PHI leaves your facility network.</span></li>
-                <li><span class="check-icon">✓</span><span><strong>Offline-capable</strong> Full functionality with zero connection.</span></li>
+                <li><strong>Source-cited responses</strong> Draw only from your records.</li>
+                <li><strong>Immutable audit log</strong> Tracks every query and retrieval.</li>
+                <li><strong>HIPAA-native</strong> No PHI leaves your facility network.</li>
             </ul>
-        </section>
-
-        <section class="cta-container reveal">
-            <h2>Review the Deployment Specs</h2>
-            <p>Download the Sentinel Node spec sheet or reach out directly to discuss your facility.</p>
-            <div class="cta-buttons">
-                <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="cta-button cta-secondary">Download Spec Sheet</a>
-                <a href="mailto:marcus@poconoai.com?subject=Architecture Inquiry" class="cta-button cta-primary">Email Engineering</a>
-            </div>
-            <p style="margin-top: 20px; font-size: 0.9rem;"><strong>Text the Founder:</strong> <a href="tel:+15705340602" style="color: white;">(570) 534-0602</a></p>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania | <a href="privacy.html" style="color: var(--muted);">Privacy</a></p>
-    </footer>
+    <footer>&copy; 2026 Pocono AI, LLC. | East Stroudsburg, PA</footer>
 
     <script>
         const menuToggle = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
-
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08 });
-        reveals.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
