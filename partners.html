@@ -57,4 +57,202 @@
         .stat-row { display: flex; gap: 15px; margin: 25px 0 10px; flex-wrap: wrap; }
         .stat-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,163,255,0.2); border-radius: 6px; padding: 16px 15px; text-align: center; flex: 1; min-width: 140px; }
         .stat-value { font-size: 1.5em; font-weight: 800; color: var(--ai-blue); display: block; }
-        .stat-label { font-size: 0.7em; color: var(--light-text); text-transform: uppercase;
+        .stat-label { font-size: 0.7em; color: var(--light-text); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; }
+
+        .pilot-section { background: rgba(0,0,0,0.4); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border: 1px solid var(--teal); text-align: center; }
+        
+        .insight-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center; }
+        .insight-section h2 { margin-top: 0; color: white; border-bottom: none; }
+        .insight-section p { color: var(--light-text); font-size: 0.95em; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .insight-section .linkedin-btn { background-color: #0077b5; margin: 10px auto 0; display: inline-block; }
+        
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px 20px; background: rgba(24, 139, 150, 0.1); border-radius: 8px; border: 1px solid rgba(24, 139, 150, 0.2); }
+        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; cursor: pointer; border: none; }
+        .cta-button:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .cta-button-light { background-color: transparent; border: 2px solid var(--white); }
+
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: var(--bg-black); color: white; border: 1px solid var(--ai-blue); border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+
+        .transparency-note { margin-top: 50px; padding: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.85em; color: var(--light-text); opacity: 0.8; line-height: 1.5; }
+
+        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+        footer a { color: var(--teal); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Pocono <span>AI</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
+                <li><a href="partners.html" style="color: var(--ai-blue);">Partners & Advisory</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <span class="hero-tagline">Architected for Data Sovereignty</span>
+            <h1>Zero Data Exfiltration</h1>
+            <p>On-premises infrastructure designed to minimize cloud liability through local AI and air-gapped security protocols.</p>
+            <div class="hero-ctas">
+                <a href="pricing.html" class="cta-button">View Deployment Tiers</a>
+                <a href="#contact" class="cta-button cta-button-light">Professional Inquiry</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Operational Deployment Model</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Reduced Exfiltration</h3>
+                    <p>Prevents PHI exfiltration by obviating outbound cloud connections for primary inference workflows.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Auditable Local AI</h3>
+                    <p>Turnkey models designed for Human-in-the-Loop (HITL) workflows. Every output provides cited local data chunks for mandatory verification.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Air-Gapped Security</h3>
+                    <p>Physical isolation of mission-critical weights. Updates delivered via cryptographically signed packets only.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Managed Sovereignty</h3>
+                    <p>You retain custody of hardware, weights, and records. No third-party data access during operation.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-section">
+            <h2 style="color: white; margin-top: 0;">Clinical Validation Sandbox</h2>
+            <p>Our local architecture undergoes extreme optimization stress-testing. In our latest sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.</p>
+            <div class="stat-row">
+                <div class="stat-box">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Exfiltration Events</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value">&lt; 1s</span>
+                    <span class="stat-label">Query Response</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value">Ollama (Local)</span>
+                    <span class="stat-label">Model Engine</span>
+                </div>
+            </div>
+            <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">The system maintained sub-second retrieval accuracy. Crucially, the architecture logs the prompt, the generation, and the retrieved data chunks to ensure total auditability for professional verification.</p>
+        </div>
+
+        <section class="pilot-section">
+            <h2 style="margin-top: 0; color: var(--teal); border: none;">Inaugural Pilot Partnership</h2>
+            <p style="color: var(--light-text); max-width: 700px; margin: 0 auto 20px;">We are currently seeking visionary regional medical or legal practices to serve as our Inaugural Pilot Partners. Pilot partners receive the Sentinel Node hardware at cost and a significantly reduced, lifetime enterprise SLA.</p>
+            
+            <details style="text-align: left; background: var(--bg-black); border: 1px solid var(--card-dark); border-radius: 8px; margin: 30px auto 0; max-width: 800px; padding: 0;">
+                <summary style="cursor: pointer; padding: 20px; font-weight: bold; color: var(--ai-blue); outline: none; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                    View the Zero-Integration Clinical Pilot Roadmap (60-Day POC)
+                    <span style="font-size: 1.2em;">▼</span>
+                </summary>
+                <div style="padding: 20px; border-top: 1px solid var(--card-dark); color: var(--light-text);">
+                    <p>Academic medical centers and specialized clinics face a compounding administrative burden: specialists spend upwards of two hours post-clinic parsing dense referral packets, prior notes, and lab histories in Electronic Health Record (EHR) systems like <strong>Epic, Oracle Cerner, Athenahealth, and eClinicalWorks</strong>. While cloud-based LLMs offer summarization, they are fundamentally incompatible with strict data sovereignty and hospital compliance requirements.</p>
+
+                    <p><strong>Pocono AI offers an immediate, isolated solution.</strong> The Sentinel Node provides localized, hardware-accelerated Retrieval-Augmented Generation (RAG) designed to reclaim valuable clinical hours without relying on your EHR interface team or exposing Protected Health Information (PHI) to the cloud.</p>
+                    
+                    <h3 style="color: var(--teal); margin-top: 30px;">The Zero-Integration Workflow</h3>
+                    <p>We do not require FHIR API integration or app marketplace approvals to begin delivering value. The pilot operates entirely adjacent to your existing systems:</p>
+                    
+                    <ol style="margin-bottom: 30px;">
+                        <li style="margin-bottom: 10px;"><strong>EHR Export (No PHI Leaves the Local Network):</strong> The physician or Medical Assistant exports the required chart history (consult notes, labs, referral documents) directly from the EHR (e.g., Epic MyChart, Cerner) as a standard PDF to a local, secure workstation.</li>
+                        <li style="margin-bottom: 10px;"><strong>Local Processing via Sentinel Node:</strong> The PDF is transferred to the Sentinel Node—a dedicated hardware appliance located physically in the clinic. The Node runs a localized AI model to read, parse, and summarize the documents.</li>
+                        <li style="margin-bottom: 10px;"><strong>Instant Synthesis with Citations:</strong> Within seconds, the Node generates a concise, clinically relevant summary. Crucially, every claim is cited directly to the source page numbers of the original PDF, ensuring total physician oversight and dramatically mitigating the risk of AI "hallucinations."</li>
+                        <li style="margin-bottom: 10px;"><strong>Manual EHR Entry:</strong> The physician reviews the localized summary, verifies the citations, and manually copies the required text into their encounter note.</li>
+                    </ol>
+
+                    <h3 style="color: var(--teal); margin-top: 30px;">Why IT, Legal & Compliance Teams Approve This Pilot</h3>
+                    <ul style="margin-bottom: 30px;">
+                        <li style="margin-bottom: 10px;"><strong>Isolated Security Architecture:</strong> The Sentinel Node does not require outbound internet access. It can operate as an entirely offline appliance or as a restricted endpoint on an isolated clinic VLAN.</li>
+                        <li style="margin-bottom: 10px;"><strong>Zero Cloud Exfiltration:</strong> No data is ever sent to OpenAI, Google, or any external API. All inferencing and vector storage happens strictly on the local hardware.</li>
+                        <li style="margin-bottom: 10px;"><strong>Operates Independently of EHR Interfaces:</strong> By operating on standard PDFs, we bypass the 12-18 month queue typical for HL7/FHIR integration approvals and deep IT resource allocation.</li>
+                        <li style="margin-bottom: 10px;"><strong>BAA Ready:</strong> Pocono AI executes a standard Business Associate Agreement (BAA) for the pilot, treating the physical appliance as a secured, localized endpoint under your existing compliance framework.</li>
+                    </ul>
+
+                    <div style="background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(24, 139, 150, 0.3); padding: 15px; border-radius: 6px; margin: 25px 0; text-align: center;">
+                        <strong style="color: var(--white);">The Proof is in the Packets:</strong> We offer a 30-minute technical walkthrough for your IT and security teams, including a live network packet capture ("tcpdump") diagnostic to demonstrate zero network exfiltration during model inference.
+                    </div>
+
+                    <h3 style="color: var(--teal); margin-top: 30px;">Next Steps: The 60-Day Paid Proof of Concept</h3>
+                    <p>To align with strict hospital data custody protocols, we structure our validation as a <strong>60-Day Paid Proof of Concept (POC)</strong>. Rather than loaning equipment, the clinic purchases the Sentinel Node hardware appliance upfront. This ensures your organization retains 100% physical ownership of the infrastructure and any processed data from day one.</p>
+                    <p>During this 60-day period, we actively measure the delta in minutes spent per chart review before and after deployment. If the clinical ROI aligns with your baseline metrics, the hardware is already in place, allowing us to seamlessly transition into a long-term software licensing agreement and broader Epic integration scoping.</p>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" target="_blank" class="cta-button" style="padding: 12px 24px; font-size: 0.9em; background: transparent; border: 2px solid var(--teal); color: var(--teal);">Download 1-Page PDF Brief</a>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <section class="insight-section">
+            <h2>Technical Brief: Achieving Zero Telemetry</h2>
+            <p>The conversation around AI safety often misses a fundamental structural reality: If you want to stop an AI model from "phoning home," you have to engineer an environment where it physically cannot.</p>
+            <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">At Pocono AI, we enforce strict hardware and network firewalls. A proper sovereign deployment places the AI infrastructure on a physically isolated network—routing traffic <em>in</em> to cordon the system off from outbound access.</p>
+            <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_datasovereignty-localai-networkarchitecture-share-7451776847400415232-s6bd" target="_blank" class="cta-button linkedin-btn">Read the Full Discussion on LinkedIn</a>
+        </section>
+
+        <section id="contact" class="cta-container">
+            <h2 style="color: white; border-bottom: none; margin-top: 0;">Request Technical Briefing</h2>
+            <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a technical briefing regarding your local AI deployment or Pilot Program participation.</p>
+
+            <form action="mailto:marcus@poconoai.com?subject=Strategic Inquiry via PoconoAI.com" method="post" enctype="text/plain" style="text-align: left; max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                <label for="name" style="color: var(--light-text); font-weight: bold; display: block; margin-bottom: 5px;">Name / Organization:</label>
+                <input type="text" id="name" name="Name" required placeholder="Dr. Jane Doe, Regional Health System">
+                <input type="submit" value="Open Secure Email Client" class="cta-button" style="width: 100%; cursor: pointer; border: none; font-size: 1.1em; margin: 0;">
+            </form>
+
+            <div style="margin-top: 25px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; background-color: rgba(0,0,0,0.3); max-width: 500px; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 0.85em; opacity: 0.8; margin: 0; color: var(--light-text); text-align: left;">
+                    <strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI or confidential legal details via this web form.
+                </p>
+            </div>
+            <p style="margin-top: 35px;"><strong>Text the Founder to coordinate:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
+        </section>
+
+        <div class="transparency-note">
+            <p>
+                <strong>Web Telemetry Transparency Note:</strong> The Sentinel Node hardware operates with absolute zero outbound telemetry. For this public marketing brochure, we temporarily utilize <strong>Umami</strong>—an open-source, cookie-less tracker—to monitor basic traffic.
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania | <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const isExpanded = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+
+            const spans = menuToggle.querySelectorAll('span');
+            if (isExpanded) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none'; spans[1].style.opacity = '1'; spans[2].style.transform = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
