@@ -12,30 +12,37 @@
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --critical-red: #ff3b3b; }
+        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --critical-red: #ff3b3b; --muted: #5a7a8a; }
         *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        
+        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
         .logo span { color: var(--ai-blue); margin-left: 5px; }
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
+        
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
+        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
+        
         #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
         #nav-menu.active { display: block; }
         .nav-links { list-style: none; padding: 0; margin: 0; }
         .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        @media (min-width: 992px) {
+        
+        @media (min-width: 768px) {
             .menu-toggle { display: none; }
             #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 25px; align-items: center; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
+            .nav-links { display: flex; gap: 20px; }
+            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; font-size: 0.9em; }
             .nav-links li a:hover { color: var(--ai-blue); }
         }
-        main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-bottom: 10px; }
+
+        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: clamp(2.5rem, 6vw, 3rem); text-align: center; color: var(--white); margin-bottom: 10px; line-height: 1.1; }
         .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 800px; margin: 0 auto 40px auto; }
-        .roi-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid #00A3FF; text-align: center; }
-        .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; }
+        
+        .roi-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid var(--ai-blue); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; line-height: 1; }
+        
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
         .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; }
         .pricing-card.enterprise { border-top-color: var(--teal); }
@@ -44,25 +51,33 @@
         .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); flex-grow: 1; }
         .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
         .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
+        
         .subscription-banner { background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin: 40px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
         .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 250px; }
-        .btn-submit { background: var(--teal); color: white; padding: 15px 40px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
+        
+        .btn-submit { background: var(--teal); color: white; padding: 16px 32px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
+        .btn-submit:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        
         footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
+        footer a { color: var(--teal); text-decoration: none; }
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <div class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li><a href="partners.html">Partners & Advisory</a></li>
                 <li><a href="pricing.html" style="color: var(--ai-blue);">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" target="_blank" style="color: var(--teal);">Specs (PDF)</a></li>
             </ul>
         </nav>
     </header>
@@ -72,10 +87,10 @@
         <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty. <br><span style="font-size: 0.85em; font-weight: normal; color: var(--light-text);">*Hardware may qualify for Section 179 CapEx tax deduction.</span></p>
 
         <div class="roi-section">
-            <h2 style="color: white; margin-top: 0;">Verified Economic Impact</h2>
+            <h2 style="color: white; margin-top: 0; border-bottom: none;">Verified Economic Impact</h2>
             <p style="color: var(--light-text); font-size: 1.1em; max-width: 600px; margin: 0 auto;">When benchmarked against the recurring cost of traditional human scribes or paralegals, the Sentinel Node CapEx is designed to achieve a 100% potential return on investment in:</p>
-            <span class="roi-metric">< 90 Days</span>
-            <p style="color: var(--white); font-weight: bold; font-size: 1.25em;">100% ROI & Zero-Exfiltration Compliance</p>
+            <span class="roi-metric">&lt; 90 Days</span>
+            <p style="color: var(--white); font-weight: bold; font-size: 1.25em;">100% ROI &amp; Zero-Exfiltration Compliance</p>
         </div>
 
         <div class="pricing-grid">
@@ -116,7 +131,7 @@
 
         <div class="subscription-banner">
             <div class="sub-text" style="flex: 1; min-width: 300px;">
-                <h2 style="margin-top: 0; color: var(--white);">Sovereignty & Red Team SLA</h2>
+                <h2 style="margin-top: 0; color: var(--white); border-bottom: none;">Sovereignty &amp; Red Team SLA</h2>
                 <p style="color: var(--light-text); margin-bottom: 0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Our protocol delivers updates via cryptographically signed USB media. For Plus-tier nodes, this includes <strong>managed verification protocols</strong> to ensure mission-critical retrieval accuracy.</p>
             </div>
             <div class="sub-price">
@@ -126,14 +141,13 @@
         </div>
         
         <div style="text-align: center; margin-top: 60px;">
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit">Download Master Spec Sheet & ROI (PDF)</a>
+            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit">Download Master Spec Sheet &amp; ROI (PDF)</a>
             <p style="margin-top: 30px;"><strong>Text to Schedule Scoping:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
-        <p>East Stroudsburg, Pennsylvania | (570) 534-0602</p>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania | <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></p>
     </footer>
 
     <script>
@@ -141,8 +155,11 @@
         const navMenu = document.getElementById('nav-menu');
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            const isExpanded = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+
             const spans = menuToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
+            if (isExpanded) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
