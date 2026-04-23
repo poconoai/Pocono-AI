@@ -66,23 +66,32 @@
 </head>
 <body>
 
-    <header>
+        <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <nav id="nav-menu">
-                        <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html" style="color: var(--ai-blue);">Solutions</a></li>
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners &amp; Advisory</a></li>
+                <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html">Specs</a></li>
-                <li><a href="portal.html">Portal</a></li>
-                <li><a href="careers.html">Careers</a></li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">
+                        More <span class="arrow">▾</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="more-menu">
+                        <a href="portal.html">Portal</a>
+                        <a href="careers.html">Careers</a>
+                        <a href="investors.html">Investors</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
@@ -177,13 +186,14 @@
 
     </main>
 
-    <footer>
+        <footer>
         <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
         <p>
             <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
             <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
             <a href="sla.html">Service Level Agreement</a>
         </p>
+        <p><a href="investors.html">Investor Relations</a></p>
     </footer>
 
     <!-- Shared navigation script -->
