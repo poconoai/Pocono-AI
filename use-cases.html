@@ -1,264 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Playables SDK -->
-<script>// Playables SDK v1.0.0
-// Game lifecycle bridge: rAF-based game-ready detection + event communication
-(function() {
-  'use strict';
-
-  // Idempotency: skip if already initialized (e.g., server-side injection
-  // followed by client-side inject-javascript via the Bloks webview component).
-  if (window.playablesSDK) return;
-
-  var HANDLER_NAME = 'playablesGameEventHandler';
-  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
-  var RAF_FRAME_THRESHOLD = 3;
-
-  var gameReadySent = false;
-  var firstInteractionSent = false;
-  var errorSent = false;
-  var frameCount = 0;
-  var originalRAF = window.requestAnimationFrame;
-
-  // --- Transport Layer ---
-
-  function hasIOSBridge() {
-    return !!(window.webkit &&
-              window.webkit.messageHandlers &&
-              window.webkit.messageHandlers[HANDLER_NAME]);
-  }
-
-  function hasAndroidBridge() {
-    return !!(window[ANDROID_BRIDGE_NAME] &&
-              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
-  }
-
-  function isInIframe() {
-    return !!(window.parent && window.parent !== window);
-  }
-
-  function sendEvent(eventName, payload) {
-    var message = {
-      type: eventName,
-      payload: payload || {},
-      timestamp: Date.now()
-    };
-
-    if (hasIOSBridge()) {
-      try {
-        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
-      } catch (e) { /* ignore */ }
-      return;
-    }
-
-    if (hasAndroidBridge()) {
-    try {
-      var p = payload || {};
-      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
-      window[ANDROID_BRIDGE_NAME].postEvent(
-        eventName,
-        JSON.stringify(p)
-      );
-    } catch (e) { /* ignore */ }
-    return;
-  }
-
-    if (isInIframe()) {
-      try {
-        window.parent.postMessage(message, '*');
-      } catch (e) { /* ignore */ }
-      return;
-    }
-  }
-
-  // --- rAF Game-Ready Detection ---
-
-  function onFrame() {
-    if (gameReadySent) return;
-
-    frameCount++;
-    if (frameCount >= RAF_FRAME_THRESHOLD) {
-      gameReadySent = true;
-      sendEvent('game_ready', {
-        frame_count: frameCount,
-        detected_at: Date.now()
-      });
-      return;
-    }
-
-    originalRAF.call(window, onFrame);
-  }
-
-  if (originalRAF) {
-    window.requestAnimationFrame = function(callback) {
-      if (!gameReadySent) {
-        return originalRAF.call(window, function(timestamp) {
-          frameCount++;
-          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
-            gameReadySent = true;
-            sendEvent('game_ready', {
-              frame_count: frameCount,
-              detected_at: Date.now()
-            });
-          }
-          callback(timestamp);
-        });
-      }
-      return originalRAF.call(window, callback);
-    };
-  }
-
-  // --- First User Interaction Detection ---
-
-  function setupFirstInteractionDetection() {
-    var events = ['touchstart', 'mousedown', 'keydown'];
-
-    function onFirstInteraction() {
-      if (firstInteractionSent) return;
-      firstInteractionSent = true;
-      sendEvent('user_interaction_start', null);
-
-      for (var i = 0; i < events.length; i++) {
-        document.removeEventListener(events[i], onFirstInteraction, true);
-      }
-    }
-
-    for (var i = 0; i < events.length; i++) {
-      document.addEventListener(events[i], onFirstInteraction, true);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
-  } else {
-    setupFirstInteractionDetection();
-  }
-
-  // --- Auto Error Capture ---
-
-  window.addEventListener('error', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    sendEvent('error', {
-      message: event.message || 'Unknown error',
-      source: event.filename || '',
-      lineno: event.lineno || 0,
-      colno: event.colno || 0,
-      auto_captured: true
-    });
-  });
-
-  window.addEventListener('unhandledrejection', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    var reason = event.reason;
-    sendEvent('error', {
-      message: (reason instanceof Error) ? reason.message : String(reason),
-      type: 'unhandled_promise_rejection',
-      auto_captured: true
-    });
-  });
-
-  // --- Public API ---
-
-  window.playablesSDK = {
-    complete: function(score) {
-      sendEvent('game_ended', {
-        score: score,
-        completed: true
-      });
-    },
-
-    error: function(message) {
-      if (errorSent) return;
-      errorSent = true;
-      sendEvent('error', {
-        message: message || 'Unknown error',
-        auto_captured: false
-      });
-    },
-
-    sendEvent: function(eventName, payload) {
-      if (!eventName || typeof eventName !== 'string') return;
-      sendEvent(eventName, payload);
-    }
-  };
-
-  // Kick off rAF detection in case no game code calls rAF immediately
-  if (originalRAF) {
-    originalRAF.call(window, onFrame);
-  }
-})();</script>
-<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Time Reclamation in Practice: Vetted AI workflows for medical and legal professionals by Pocono AI, LLC.">
     <title>Use Cases | Time Reclamation | Pocono AI, LLC</title>
-    
+
+    <meta property="og:title" content="Use Cases | Time Reclamation | Pocono AI, LLC">
+    <meta property="og:description" content="Three vetted workflows where the Sentinel Node reclaims hours daily for physicians and attorneys.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/use-cases.html">
+
     <link rel="icon" href="/favicon.ico" sizes="any">
+
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
-        :root {
-            --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF;
-            --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --muted: #5a7a8a;
-        }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
-        .logo span { color: var(--ai-blue); margin-left: 5px; }
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
-        
-        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
-        #nav-menu.active { display: block; }
-        .nav-links { list-style: none; padding: 0; margin: 0; }
-        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        @media (min-width: 768px) {
-            .menu-toggle { display: none; }
-            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 25px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
-            .nav-links li a:hover { color: var(--ai-blue); }
+        /* ── USE-CASES-SPECIFIC STYLES ONLY ── */
+
+        /* System font — matches original */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        /* Hero */
         .hero { text-align: center; padding: 40px 0; }
-        .hero h1 { font-size: 2.8em; margin-bottom: 10px; }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: 10px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
         .hero h1 span { color: var(--ai-blue); }
         .hero p { color: var(--light-text); font-size: 1.2em; max-width: 700px; margin: 0 auto; }
 
+        /* Use case cards */
         .use-case-card { background: var(--card-dark); border-radius: 12px; padding: 30px; margin-bottom: 40px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .case-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
         .case-num { font-size: 0.8em; text-transform: uppercase; color: var(--ai-blue); font-weight: bold; letter-spacing: 1px; }
         .case-title { font-size: 1.8em; margin: 0; color: var(--white); }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 15px; margin-bottom: 30px; }
         .stat-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
         .stat-val { font-size: 1.5em; font-weight: bold; color: var(--ai-blue); display: block; }
         .stat-lbl { font-size: 0.8em; color: var(--muted); }
 
+        /* Timeline */
         .timeline-item { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .time-label { font-weight: bold; color: var(--teal); margin-bottom: 10px; display: block; }
-        .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .before, .after { padding: 15px; border-radius: 6px; font-size: 0.95em; }
+        .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 15px; }
+        .before, .after { padding: 15px; border-radius: 6px; font-size: 0.95em; color: var(--light-text); }
         .before { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
-        .after { background: rgba(0, 163, 255, 0.05); border: 1px solid rgba(0, 163, 255, 0.2); }
+        .after { background: rgba(0,163,255,0.05); border: 1px solid rgba(0,163,255,0.2); }
         .label { display: block; font-size: 0.7em; text-transform: uppercase; font-weight: 800; margin-bottom: 5px; }
         .before .label { color: #888; }
         .after .label { color: var(--ai-blue); }
 
+        /* Reclaimed bar */
         .reclaimed { background: linear-gradient(90deg, var(--teal), var(--ai-blue)); color: white; padding: 15px 20px; border-radius: 8px; font-weight: bold; text-align: center; margin-top: 20px; }
 
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); }
+        /* Pilot box */
+        .pilot-box { background: rgba(0,163,255,0.05); border: 1px solid rgba(0,163,255,0.2); padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .pilot-box h3 { margin-top: 0; color: var(--ai-blue); }
+        .pilot-box p { color: var(--light-text); margin: 10px 0 0; }
+
+        /* Footer */
+        footer a { color: var(--teal); }
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu"><span></span><span></span><span></span></button>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
         <nav id="nav-menu">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -266,18 +81,22 @@
                 <li><a href="use-cases.html" style="color: var(--ai-blue);">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
+                <li><a href="partners.html">Partners &amp; Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="portal.html">Portal</a></li>
+                <li><a href="careers.html">Careers</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+
         <section class="hero">
             <h1>Time Reclamation <span>in Practice</span></h1>
             <p>Three vetted workflows where the Sentinel Node reclaims hours daily.</p>
         </section>
 
+        <!-- USE CASE 1 -->
         <section class="use-case-card">
             <div class="case-header">
                 <div>
@@ -290,7 +109,6 @@
                 <div class="stat-box"><span class="stat-val">44%</span><span class="stat-lbl">Clerical Task Load</span></div>
                 <div class="stat-box"><span class="stat-val">Zero</span><span class="stat-lbl">Pajama Time Goal</span></div>
             </div>
-
             <div class="timeline-item">
                 <span class="time-label">8:00 AM - Chart Prep</span>
                 <div class="flow-grid">
@@ -299,19 +117,20 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <span class="time-label">1:00 PM - Inbox & Refills</span>
+                <span class="time-label">1:00 PM - Inbox &amp; Refills</span>
                 <div class="flow-grid">
                     <div class="before"><span class="label">Before</span>30-50 messages. 60 mins over lunch.</div>
-                    <div class="after"><span class="label">With Sentinel</span>Triage & pre-drafted refills. 15 min review.</div>
+                    <div class="after"><span class="label">With Sentinel</span>Triage &amp; pre-drafted refills. 15 min review.</div>
                 </div>
             </div>
             <div class="reclaimed">Reclaimed: 4 to 5 hours per day redirected to patient care.</div>
-            <div style="background: rgba(0,163,255,0.05); border: 1px solid rgba(0,163,255,0.2); padding: 20px; border-radius: 8px; margin-top: 20px;">
-              <h3 style="margin-top:0; color: var(--ai-blue);">Pilot Program — In Progress</h3>
-              <p style="color: var(--light-text); margin: 10px 0;">We are recruiting regional family medicine practices to validate this workflow. Pilot participants will measure minutes saved per chart, retrieval accuracy, and zero-exfiltration via customer-run packet capture. Results published only with written permission.</p>
+            <div class="pilot-box">
+                <h3>Pilot Program — In Progress</h3>
+                <p>We are recruiting regional family medicine practices to validate this workflow. Pilot participants will measure minutes saved per chart, retrieval accuracy, and zero-exfiltration via customer-run packet capture. Results published only with written permission.</p>
             </div>
         </section>
 
+        <!-- USE CASE 2 -->
         <section class="use-case-card">
             <div class="case-header">
                 <div>
@@ -324,21 +143,21 @@
                 <div class="stat-box"><span class="stat-val">49%</span><span class="stat-lbl">Manual Data Entry</span></div>
                 <div class="stat-box"><span class="stat-val">70%</span><span class="stat-lbl">Prep Reduction</span></div>
             </div>
-
             <div class="timeline-item">
                 <span class="time-label">9:00 AM - Referral Intake</span>
                 <div class="flow-grid">
                     <div class="before"><span class="label">Before</span>Manual fax entry. 20 mins per referral.</div>
-                    <div class="after"><span class="label">With Sentinel</span>OCR extraction & auto-population. 3 min verification.</div>
+                    <div class="after"><span class="label">With Sentinel</span>OCR extraction &amp; auto-population. 3 min verification.</div>
                 </div>
             </div>
             <div class="reclaimed">Reclaimed: 3 hours of daily chart prep reduced to under 1 hour.</div>
-            <div style="background: rgba(0,163,255,0.05); border: 1px solid rgba(0,163,255,0.2); padding: 20px; border-radius: 8px; margin-top: 20px;">
-              <h3 style="margin-top:0; color: var(--ai-blue);">Pilot Program — In Progress</h3>
-              <p style="color: var(--light-text); margin: 10px 0;">We are recruiting neurology practices to validate referral intake and chart prep. Pilot participants will measure time per referral, data entry accuracy, and local-only processing verification. Results published only with written permission.</p>
+            <div class="pilot-box">
+                <h3>Pilot Program — In Progress</h3>
+                <p>We are recruiting neurology practices to validate referral intake and chart prep. Pilot participants will measure time per referral, data entry accuracy, and local-only processing verification. Results published only with written permission.</p>
             </div>
         </section>
 
+        <!-- USE CASE 3 -->
         <section class="use-case-card" style="border-top-color: var(--ai-blue);">
             <div class="case-header">
                 <div>
@@ -351,7 +170,6 @@
                 <div class="stat-box"><span class="stat-val">40%</span><span class="stat-lbl">Non-Practice Tasks</span></div>
                 <div class="stat-box"><span class="stat-val">2/3</span><span class="stat-lbl">Review Reduction</span></div>
             </div>
-
             <div class="timeline-item">
                 <span class="time-label">10:00 AM - Discovery Review</span>
                 <div class="flow-grid">
@@ -360,27 +178,25 @@
                 </div>
             </div>
             <div class="reclaimed">Reclaimed: 15 to 18 hours per week converted to billable time.</div>
-            <div style="background: rgba(0,163,255,0.05); border: 1px solid rgba(0,163,255,0.2); padding: 20px; border-radius: 8px; margin-top: 20px;">
-              <h3 style="margin-top:0; color: var(--ai-blue);">Pilot Program — In Progress</h3>
-              <p style="color: var(--light-text); margin: 10px 0;">We are recruiting solo law practices to validate discovery summarization. Pilot participants will measure review time reduction, citation accuracy, and local data containment. Results published only with written permission.</p>
+            <div class="pilot-box">
+                <h3>Pilot Program — In Progress</h3>
+                <p>We are recruiting solo law practices to validate discovery summarization. Pilot participants will measure review time reduction, citation accuracy, and local data containment. Results published only with written permission.</p>
             </div>
         </section>
+
     </main>
 
-      <footer>
+    <footer>
         <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
         <p>
-            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; 
-            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; 
+            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
             <a href="sla.html">Service Level Agreement</a>
         </p>
     </footer>
 
+    <!-- Shared navigation script -->
+    <script src="nav.js"></script>
 
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
-    </script>
 </body>
 </html>
