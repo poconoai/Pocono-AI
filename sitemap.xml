@@ -43,6 +43,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://poconoai.com/careers.html</loc>
+        <lastmod>2026-04-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://poconoai.com/sentinel-node-spec-sheet.pdf</loc>
         <lastmod>2026-04-23</lastmod>
         <changefreq>yearly</changefreq>
