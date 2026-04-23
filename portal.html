@@ -3,19 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Secure client portal for Pocono AI Sentinel Node management and support.">
+    <meta name="description" content="Client Support Portal — Pocono AI, LLC. Sentinel Node deployment management and enterprise support access.">
     <title>Client Portal | Pocono AI, LLC</title>
-    
+
+    <meta property="og:title" content="Client Portal | Pocono AI, LLC">
+    <meta property="og:description" content="Sentinel Node Management Portal. Enterprise-grade support for Pocono AI deployments.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/portal.html">
+
     <link rel="icon" href="/favicon.ico" sizes="any">
-    
-    <link rel="stylesheet" href="style.css">
-    <script defer src="nav.js"></script>
+
+    <!-- Shared stylesheet — same as index.html and partners.html -->
+    <link rel="stylesheet" href="styles.css">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        /* Portal-specific layout only — everything else comes from styles.css */
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .portal-wrap {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* Page header above card */
+        .portal-eyebrow {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .portal-eyebrow .tagline {
+            color: var(--ai-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Syne', sans-serif;
+        }
+        .portal-eyebrow h1 {
+            font-size: clamp(2rem, 7vw, 3rem);
+            color: var(--white);
+            line-height: 1.1;
+            margin: 0;
+        }
+        .portal-eyebrow h1 span {
+            color: var(--ai-blue);
+        }
+        .portal-eyebrow p {
+            color: var(--light-text);
+            font-size: 0.95em;
+            margin: 12px 0 0;
+            line-height: 1.5;
+        }
+
+        /* Login card */
+        .portal-card {
+            background-color: var(--card-dark);
+            border-radius: 12px;
+            border-top: 5px solid var(--teal);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            padding: 40px 32px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            color: var(--teal);
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.82em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Syne', sans-serif;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: 'DM Mono', monospace;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus {
+            border-color: var(--ai-blue);
+            box-shadow: 0 0 0 2px var(--ai-blue) !important;
+        }
+        .form-group input::placeholder {
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+
+        .portal-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--teal);
+            color: var(--white);
+            padding: 16px;
+            font-size: 1rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 10px;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+        .portal-submit:hover {
+            filter: brightness(1.12);
+            transform: translateY(-2px);
+        }
+
+        /* Status notice */
+        .portal-notice {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(0, 163, 255, 0.06);
+            border: 1px solid rgba(0, 163, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.82em;
+            color: var(--light-text);
+            line-height: 1.6;
+            text-align: center;
+        }
+        .portal-notice strong {
+            color: var(--ai-blue);
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Footer override — match index/partners dark footer */
+        footer {
+            background-color: var(--bg-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">Pocono <span>AI</span></a>
+
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -25,8 +181,8 @@
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust & Security</a></li>
-                <li><a href="partners.html">Partners & Advisory</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
+                <li><a href="partners.html">Partners &amp; Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="portal.html" style="color: var(--ai-blue);">Portal</a></li>
                 <li><a href="careers.html">Careers</a></li>
@@ -34,48 +190,66 @@
         </nav>
     </header>
 
-    <main style="display: flex; justify-content: center; align-items: center; min-height: 75vh;">
-        <div style="background: rgba(0,0,0,0.6); border: 1px solid var(--ai-blue); border-top: 4px solid var(--ai-blue); border-radius: 8px; padding: 40px; max-width: 450px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            
-            <h1 style="font-size: 2rem; margin-top: 0; margin-bottom: 5px; text-align: center; letter-spacing: -1px;">Client Portal</h1>
-            <p style="color: var(--light-text); text-align: center; font-size: 0.9em; margin-bottom: 30px; font-family: 'DM Mono', monospace;">Sentinel Node Management & Support</p>
-            
-            <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
-                <div>
-                    <label for="org-id" style="font-size: 0.85em; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Organization ID</label>
-                    <input type="text" id="org-id" name="org-id" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); border-radius: 4px; font-family: 'DM Mono', monospace; box-sizing: border-box;">
-                </div>
-                
-                <div>
-                    <label for="user-id" style="font-size: 0.85em; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">User ID</label>
-                    <input type="text" id="user-id" name="user-id" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); border-radius: 4px; font-family: 'DM Mono', monospace; box-sizing: border-box;">
-                </div>
-                
-                <div>
-                    <label for="password" style="font-size: 0.85em; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;">Password / Auth Token</label>
-                    <input type="password" id="password" name="password" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); border-radius: 4px; font-family: 'DM Mono', monospace; box-sizing: border-box;">
-                </div>
-                
-                <button type="submit" class="cta-button" style="width: 100%; margin: 10px 0 0 0; text-align: center;">Authenticate</button>
-            </form>
-            
-            <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.8em; color: var(--muted); font-family: 'DM Mono', monospace;">
-                <p>Access is restricted to authorized administrative personnel.</p>
-                <p style="margin-top: 10px;"><a href="mailto:support@poconoai.com" style="color: var(--ai-blue); text-decoration: none;">Contact Support for Out-of-Band Access</a></p>
+    <main>
+        <div class="portal-wrap">
+
+            <div class="portal-eyebrow">
+                <span class="tagline">Sentinel Node Management</span>
+                <h1>Client <span>Portal</span></h1>
+                <p>Secure access for active Pocono AI deployment partners and pilot program participants.</p>
             </div>
-            
+
+            <div class="portal-card">
+                <form
+                    action="#"
+                    method="POST"
+                    onsubmit="event.preventDefault(); alert('Authentication infrastructure is currently being provisioned. Please contact the Chief Technologist directly at marcus@poconoai.com or (570) 534-0602 for out-of-band access.');">
+
+                    <div class="form-group">
+                        <label for="org-id">Organization ID</label>
+                        <input
+                            type="text"
+                            id="org-id"
+                            name="org-id"
+                            required
+                            autocomplete="organization"
+                            placeholder="e.g. ACME-HEALTH-001">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="auth-token">Auth Token / Password</label>
+                        <input
+                            type="password"
+                            id="auth-token"
+                            name="auth-token"
+                            required
+                            autocomplete="current-password"
+                            placeholder="Provided by Chief Technologist">
+                    </div>
+
+                    <button type="submit" class="portal-submit">Authenticate &rarr;</button>
+                </form>
+
+                <div class="portal-notice">
+                    <strong>Access Under Provisioning</strong>
+                    Portal authentication is currently in active development. Pilot program participants receive credentials directly from the Chief Technologist. Contact <a href="mailto:marcus@poconoai.com" style="color:var(--teal);">marcus@poconoai.com</a> or call <a href="tel:+15705340602" style="color:var(--teal);">(570) 534-0602</a>.
+                </div>
+            </div>
+
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
-        <p style="margin-top: 15px;">
-            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; 
-            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; 
+        <p style="margin-bottom: 15px;">
+            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
             <a href="sla.html">Service Level Agreement</a>
         </p>
-        <p style="margin-top: 20px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.3); font-family: 'DM Mono', monospace;">Architect: Marcus Brett O'Dell | Byline: The Reeferee</p>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
     </footer>
+
+    <!-- Shared navigation script -->
+    <script src="nav.js"></script>
 
 </body>
 </html>
