@@ -5,59 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of auditable on-premises AI: The Zero-Trust architecture of Pocono AI, LLC.">
     <meta name="date" content="2026-04-19">
-    <title>Trust & Security | Auditable AI | Pocono AI, LLC</title>
-    
+    <title>Trust &amp; Security | Auditable AI | Pocono AI, LLC</title>
+
+    <meta property="og:title" content="Trust &amp; Security | Pocono AI, LLC">
+    <meta property="og:description" content="Zero-Trust Sovereignty. Trust is a technical byproduct of Cloud Obviation and Transparent Auditability.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/trust.html">
+
     <link rel="icon" href="/favicon.ico" sizes="any">
+
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --muted: #5a7a8a; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
+        /* ── TRUST-SPECIFIC STYLES ONLY ── */
 
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
-        .logo span { color: var(--ai-blue); margin-left: 5px; }
-
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
-
-        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
-        #nav-menu.active { display: block; }
-        .nav-links { list-style: none; padding: 0; margin: 0; }
-        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-        @media (min-width: 768px) {
-            .menu-toggle { display: none; }
-            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 20px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; font-size: 0.9em; }
-            .nav-links li a:hover { color: var(--ai-blue); }
+        /* System font — matches original */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2.5em; text-align: center; color: var(--white); margin-top: 20px; }
-        .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: 1.2em; margin-bottom: 40px; }
+        /* Page title — system font for sharp, professional rendering */
+        h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); text-align: center; color: var(--white); margin-top: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
+        .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+
+        /* Glossary */
         .glossary-section { margin: 60px 0; }
-        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
         .glossary-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 8px; border-left: 3px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .glossary-card h3 { color: var(--ai-blue); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
         .glossary-card p { font-size: 0.95rem; color: var(--light-text); margin-bottom: 0; }
-        
-        .audit-section { background: linear-gradient(135deg, rgba(24, 139, 150, 0.1) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .audit-section-blue { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin-top: 40px; border: 1px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        
-        .audit-section h2, .audit-section-blue h2 { margin-top: 0; border-bottom: none; margin-bottom: 15px; }
-        .audit-section h2 { color: var(--white); }
-        .audit-section-blue h2 { color: var(--ai-blue); }
+
+        /* Audit sections */
+        .audit-section { background: linear-gradient(135deg, rgba(24,139,150,0.1) 0%, rgba(5,22,34,1) 100%); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .audit-section-blue { background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, rgba(5,22,34,1) 100%); padding: 40px; border-radius: 8px; margin-top: 40px; border: 1px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .audit-section h2 { color: var(--white); margin-top: 0; margin-bottom: 15px; }
+        .audit-section-blue h2 { color: var(--ai-blue); margin-top: 0; margin-bottom: 15px; }
         .audit-section p, .audit-section-blue p { color: var(--light-text); font-size: 1.05rem; }
         .audit-list { margin-top: 20px; background: rgba(0,0,0,0.4); padding: 20px 20px 20px 40px; border-radius: 6px; border-left: 3px solid var(--teal); }
         .audit-list li { color: var(--white); font-weight: 500; margin-bottom: 10px; }
-        
-        .founder-section { background: rgba(10, 38, 53, 0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0, 163, 255, 0.1); }
+
+        /* Founder section */
+        .founder-section { background: rgba(10,38,53,0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0,163,255,0.1); }
         .founder-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+        .founder-image { flex: 1; min-width: 300px; }
+        .founder-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(0,163,255,0.2); }
         .founder-bio { flex: 2; min-width: 300px; }
-        .founder-bio h2 { margin-top: 0; color: var(--white); border-bottom: none; }
+        .founder-bio h2 { margin-top: 0; color: var(--white); }
         .founder-bio p { color: var(--light-text); font-size: 1.05rem; margin-bottom: 20px; }
         .passion-badge { display: inline-block; background: var(--teal); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; }
         .dba-stack { flex: 1; min-width: 250px; background: var(--bg-black); padding: 25px; border-radius: 6px; border-right: 4px solid var(--teal); }
@@ -65,12 +61,12 @@
         .dba-stack ul { list-style: none; padding: 0; margin: 0; color: var(--light-text); font-size: 0.9rem; }
         .dba-stack li { margin-bottom: 8px; padding-left: 15px; position: relative; }
         .dba-stack li::before { content: "›"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
-        
-        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24, 139, 150, 0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
-        .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s ease; border: none; cursor: pointer; }
-        .cta-button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
-        footer a { color: var(--teal); text-decoration: none; }
+
+        /* CTA */
+        .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24,139,150,0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+
+        /* Footer */
+        footer a { color: var(--teal); }
         footer a:hover { text-decoration: underline; }
     </style>
 </head>
@@ -87,19 +83,22 @@
                 <li><a href="solutions.html">Solutions</a></li>
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html" style="color: var(--ai-blue);">Trust & Security</a></li>
-                <li><a href="partners.html">Partners & Advisory</a></li>
+                <li><a href="trust.html" style="color: var(--ai-blue);">Trust &amp; Security</a></li>
+                <li><a href="partners.html">Partners &amp; Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="portal.html">Portal</a></li>
+                <li><a href="careers.html">Careers</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+
         <h1>Zero-Trust Sovereignty</h1>
         <p class="trust-intro">Trust is a technical byproduct of Cloud Obviation and Transparent Auditability.</p>
 
         <section class="glossary-section">
-            <h2 style="color:var(--teal); text-align:center; border-bottom: none; margin-bottom: 30px;">The Pillars of Sovereignty</h2>
+            <h2 style="color: var(--teal); text-align: center; border-bottom: none; margin-bottom: 30px;">The Pillars of Sovereignty</h2>
             <div class="glossary-grid">
                 <div class="glossary-card">
                     <h3>The Privacy Paradox</h3>
@@ -133,8 +132,8 @@
         </section>
 
         <section class="audit-section-blue">
-            <h2>Vector Architecture & Synthetic Stress Testing</h2>
-            <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant’s Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry. We utilize a highly tuned <strong>semantic chunking strategy</strong> to preserve diagnostic context boundaries, rather than arbitrary fixed-size chunking.</p>
+            <h2>Vector Architecture &amp; Synthetic Stress Testing</h2>
+            <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant's Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry. We utilize a highly tuned <strong>semantic chunking strategy</strong> to preserve diagnostic context boundaries, rather than arbitrary fixed-size chunking.</p>
             <p>Database integrity is not left to chance or manual intervention. Drawing on deep enterprise DBA expertise, we have developed custom automated indexing scripts. As data ingestion scales—capable of handling indexes exceeding 10,000+ complex clinical documents seamlessly—these scripts autonomously re-index and optimize the vector space during off-peak hours.</p>
             <p>To definitively validate this architecture before deployment, we stress-test the RAG pipeline by generating massive volumes of complex, <strong>synthetic patient data</strong>. This rigorous testing protocol proves that our Qdrant implementation handles extreme enterprise loads highly effectively—all while maintaining absolute zero-trust security by never exposing real Protected Health Information (PHI) during system validation.</p>
         </section>
@@ -153,24 +152,24 @@
 
         <section id="founder-bio" class="founder-section">
             <div class="founder-content">
-                <div class="founder-image" style="flex: 1; min-width: 300px;">
-                    <img src="hero.jpg" alt="Marc, Founder of Pocono AI" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(0, 163, 255, 0.2);">
+                <div class="founder-image">
+                    <img src="hero.jpg" alt="Marc, Founder of Pocono AI">
                 </div>
-                <div class="founder-bio" style="flex: 2; min-width: 300px;">
-                    <span class="passion-badge">Founder, CEO & Chief Technologist</span>
+                <div class="founder-bio">
+                    <span class="passion-badge">Founder, CEO &amp; Chief Technologist</span>
                     <h2>Meet Marc: The Architect of Sovereignty</h2>
-                    <p>An avid reader, a passionate researcher, and a deeply resilient technologist, Marc’s philosophy is rooted in a unique intersection of <strong>Psychology (Master’s Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
+                    <p>An avid reader, a passionate researcher, and a deeply resilient technologist, Marc's philosophy is rooted in a unique intersection of <strong>Psychology (Master's Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
                     <p>After facing severe, debilitating health challenges that sidelined him for years, Marc utilized AI as the ultimate equalizer. It provided the leverage needed to bridge the physical gap and engineer high-performance architectures directly from bed. His exceptional drive to overcome these constraints is the foundation of Pocono AI, LLC.</p>
                     <p><em>"I built this out of necessity, and I know exactly what it means to need systems that empower you. Now, my mission is to bring that same uncompromising capability and data sovereignty to medical practices and law offices—allowing professionals to reclaim their time and secure their data, no matter the logistical hurdles."</em></p>
                 </div>
                 <div class="dba-stack">
                     <h3>Enterprise Data Stack</h3>
                     <ul>
-                        <li><strong>Core:</strong> MySQL & MariaDB Expert</li>
-                        <li><strong>NoSQL:</strong> MongoDB & Cassandra</li>
-                        <li><strong>Relational:</strong> PostgreSQL & Oracle</li>
+                        <li><strong>Core:</strong> MySQL &amp; MariaDB Expert</li>
+                        <li><strong>NoSQL:</strong> MongoDB &amp; Cassandra</li>
+                        <li><strong>Relational:</strong> PostgreSQL &amp; Oracle</li>
                         <li><strong>Enterprise:</strong> Microsoft SQL Server</li>
-                        <li><strong>Systems:</strong> Linux Hardening & Air-Gaps</li>
+                        <li><strong>Systems:</strong> Linux Hardening &amp; Air-Gaps</li>
                     </ul>
                     <p style="font-size: 0.75rem; margin-top: 15px; opacity: 0.7;">*Experienced in building massive architectures for storage, retrieval, and cloud-to-local migration.</p>
                 </div>
@@ -182,35 +181,20 @@
             <a href="mailto:marcus@poconoai.com?subject=Strategic Trust Inquiry" class="cta-button">Email Direct Inquiry</a>
             <p style="margin-top: 30px;"><strong>Direct Strategic Access:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
         </section>
+
     </main>
 
-        <footer>
+    <footer>
         <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
         <p>
-            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; 
-            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; 
+            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
             <a href="sla.html">Service Level Agreement</a>
         </p>
     </footer>
 
+    <!-- Shared navigation script -->
+    <script src="nav.js"></script>
 
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const isExpanded = navMenu.classList.contains('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-
-            const spans = menuToggle.querySelectorAll('span');
-            if (isExpanded) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none'; spans[1].style.opacity = '1'; spans[2].style.transform = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
