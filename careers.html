@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Careers at Pocono AI, LLC. Join the movement to build sovereign, zero-telemetry AI infrastructure.">
+    <meta name="description" content="Careers at Pocono AI, LLC — including a CEO Co-Founder search. Join the movement to build sovereign, zero-telemetry AI infrastructure for healthcare.">
     <title>Careers | Pocono AI, LLC</title>
 
-    <meta property="og:title" content="Careers | Pocono AI, LLC">
-    <meta property="og:description" content="Join Pocono AI. We are engineering the standard for air-gapped, zero-telemetry enterprise AI.">
+    <meta property="og:title" content="Careers | Pocono AI, LLC — CEO Co-Founder Search">
+    <meta property="og:description" content="Doctors are begging for AI that doesn't leak data. We built it. Now looking for a CEO co-founder to take it to market.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/careers.html">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
-
     <link rel="stylesheet" href="styles.css">
 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
@@ -20,7 +19,6 @@
     <style>
         /* ── CAREERS-SPECIFIC STYLES ONLY ── */
 
-        /* Override DM Mono from styles.css — careers uses system font */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -48,29 +46,197 @@
         .momentum-banner-text { color: var(--white); font-size: 0.95em; line-height: 1.5; }
         .momentum-banner-text strong { color: var(--teal); letter-spacing: 0.5px; }
 
+        /* ── CEO FEATURED ROLE ── */
+        .ceo-role {
+            background: linear-gradient(135deg, rgba(0,163,255,0.12) 0%, rgba(5,22,34,1) 100%);
+            border: 2px solid var(--ai-blue);
+            border-radius: 14px;
+            padding: 50px 45px;
+            margin: 10px 0 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .ceo-role::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ai-blue), var(--teal));
+        }
+        .ceo-featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,163,255,0.15);
+            border: 1px solid rgba(0,163,255,0.4);
+            border-radius: 4px;
+            padding: 5px 14px;
+            font-size: 0.78em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ai-blue);
+            margin-bottom: 18px;
+        }
+        .ceo-role h2 {
+            color: var(--white);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin: 0 0 6px 0;
+            line-height: 1.2;
+        }
+        .ceo-role .ceo-subtitle {
+            color: var(--teal);
+            font-size: 1.05em;
+            font-weight: 600;
+            margin-bottom: 28px;
+            display: block;
+        }
+
+        .ceo-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        @media (max-width: 700px) {
+            .ceo-two-col { grid-template-columns: 1fr; gap: 24px; }
+            .ceo-role { padding: 35px 22px; }
+        }
+
+        .ceo-col h3 {
+            color: var(--ai-blue);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 14px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0,163,255,0.2);
+        }
+        .ceo-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ceo-col ul li {
+            color: var(--light-text);
+            font-size: 0.97em;
+            padding: 6px 0 6px 20px;
+            position: relative;
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .ceo-col ul li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .ceo-col ul li strong { color: var(--white); }
+
+        .ceo-what-i-bring { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 20px 24px; margin: 6px 0; }
+        .ceo-what-i-bring li { border-bottom: none; }
+
+        /* Equity terms row */
+        .equity-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin: 28px 0 32px;
+        }
+        .equity-cell {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,163,255,0.2);
+            border-radius: 8px;
+            padding: 16px 18px;
+            text-align: center;
+        }
+        .equity-cell .ec-label {
+            font-size: 0.68em;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .equity-cell .ec-value {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.0em;
+            line-height: 1.35;
+        }
+        .equity-cell .ec-sub {
+            color: var(--light-text);
+            font-size: 0.75em;
+            margin-top: 4px;
+        }
+
+        .ceo-pitch-block {
+            background: rgba(24,139,150,0.08);
+            border-left: 4px solid var(--teal);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 24px 0 28px;
+        }
+        .ceo-pitch-block p {
+            color: var(--light-text);
+            font-size: 1.0em;
+            line-height: 1.7;
+            margin: 0 0 10px 0;
+        }
+        .ceo-pitch-block p:last-child { margin: 0; }
+        .ceo-pitch-block strong { color: var(--white); }
+
+        .ceo-apply-btn {
+            display: inline-block;
+            background: var(--ai-blue);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05em;
+            padding: 15px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            letter-spacing: 0.02em;
+        }
+        .ceo-apply-btn:hover { background: var(--teal); transform: translateY(-2px); }
+        .ceo-apply-note {
+            font-size: 0.8em;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin: 50px 0 40px;
+        }
+
         /* Pipeline Grid */
         .pipeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
-        
-        .pipeline-card { 
-            background: var(--card-dark); 
-            padding: 30px; 
-            border-radius: 8px; 
-            border-top: 3px solid var(--ai-blue); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+
+        .pipeline-card {
+            background: var(--card-dark);
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 3px solid var(--ai-blue);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
         .pipeline-card:hover { transform: translateY(-3px); border-top-color: var(--teal); }
         .pipeline-card.urgent { border-top-color: var(--teal); }
-        
-        .status-badge { 
-            display: inline-block; 
-            padding: 4px 10px; 
-            border-radius: 4px; 
-            font-size: 0.75em; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 15px; 
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
         .badge-immediate { background: rgba(24,139,150,0.2); color: var(--teal); border: 1px solid rgba(24,139,150,0.4); }
         .badge-post { background: rgba(0,163,255,0.15); color: var(--ai-blue); border: 1px solid rgba(0,163,255,0.3); }
@@ -79,7 +245,7 @@
         .pipeline-card p { color: var(--light-text); font-size: 0.95em; line-height: 1.6; margin-bottom: 20px; }
         .pipeline-card ul { margin: 0 0 20px; padding-left: 20px; color: var(--light-text); font-size: 0.9em; line-height: 1.6; }
         .pipeline-card ul li { margin-bottom: 8px; }
-        
+
         .apply-link { color: var(--teal); text-decoration: none; font-weight: 600; font-size: 0.9em; display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s; }
         .apply-link:hover { color: var(--white); }
 
@@ -124,14 +290,97 @@
         <div class="momentum-banner">
             <svg class="momentum-banner-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             <div class="momentum-banner-text">
-                <strong>Current Company Momentum:</strong> We are in an active Pre-LOI discovery phase with multiple prospective clinical and legal partners. Initial capital tranches will be deployed directly toward human capital to support this immediate pipeline.
+                <strong>Current Company Momentum:</strong> Active pre-pilot discovery phase with clinical partners in Pennsylvania. BAA drafted. First Design Partner Pilot targeting Q3 2026. Pre-seed raise of $500k–$750k opens upon pilot LOIs.
             </div>
         </div>
 
-        <h2 style="color: white; font-size: 1.6em; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 20px;">Open Requisitions</h2>
-        
+
+        <!-- ══════════════════════════════════════════
+             CEO CO-FOUNDER — FEATURED ROLE
+        ══════════════════════════════════════════ -->
+        <div class="ceo-role">
+            <div class="ceo-featured-badge">
+                ★ &nbsp;Featured Opportunity — Co-Founder Search
+            </div>
+            <h2>CEO Co-Founder</h2>
+            <span class="ceo-subtitle">You Build Revenue. I Build the Machine.</span>
+
+            <div class="ceo-pitch-block">
+                <p>Doctors and lawyers are begging for AI that doesn't leak data. <strong>We built it.</strong> The Sentinel Node is an on-premises AI appliance — zero cloud, full HIPAA compliance, sub-second responses — that lives in a practice's server closet and never phones home. The architecture is complete. The BAA is drafted. The first pilot is being scheduled.</p>
+                <p>I'm the architect. I need a <strong>CEO who loves sales</strong> — someone comfortable cold-calling a clinic, running a demo, and closing an $18,000 deal. You don't need to code. You need to understand the product well enough to sell it and build the team around it.</p>
+            </div>
+
+            <div class="ceo-two-col">
+                <div class="ceo-col">
+                    <h3>What I'm Looking For</h3>
+                    <ul>
+                        <li>Sales or practice management background — <strong>healthcare or legal a strong plus</strong></li>
+                        <li>Comfortable cold-calling a clinic, running a live demo, closing a deal</li>
+                        <li>Wants to be <strong>CEO of a real product</strong>, not a pitch deck</li>
+                        <li>PA / NJ / NY based, or willing to travel to pilot sites</li>
+                        <li>Willing to learn the tech — not to build it, but to explain it</li>
+                        <li>Ready to lead the revenue function from day one</li>
+                    </ul>
+                </div>
+                <div class="ceo-col">
+                    <h3>What I Bring (Marcus)</h3>
+                    <div class="ceo-what-i-bring">
+                        <ul>
+                            <li>10+ yrs Senior DBA — MySQL, PostgreSQL, Oracle, SQL Server at production scale</li>
+                            <li>NoSQL: MongoDB, Cassandra — 10k+ doc ingestion pipelines</li>
+                            <li>Linux hardening, air-gapped networks, Bash/Python automation</li>
+                            <li>Built the entire Sentinel Node stack during health recovery — <strong>AI as equalizer</strong></li>
+                            <li>Master's in Psychology — I understand user workflow, not just databases</li>
+                            <li>Full legal scaffolding: BAA drafted, LLC funded, pricing validated</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--ai-blue); font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px 0; padding-bottom: 8px; border-bottom: 1px solid rgba(0,163,255,0.2);">The Deal</h3>
+            <div class="equity-row">
+                <div class="equity-cell">
+                    <div class="ec-label">Equity</div>
+                    <div class="ec-value">Significant Co-Founder Stake</div>
+                    <div class="ec-sub">Discussed in first conversation</div>
+                </div>
+                <div class="equity-cell">
+                    <div class="ec-label">Vesting</div>
+                    <div class="ec-value">1-Year Cliff</div>
+                    <div class="ec-sub">Standard 4-year schedule; terms open to discussion</div>
+                </div>
+                <div class="equity-cell">
+                    <div class="ec-label">Salary</div>
+                    <div class="ec-value">Upon Pre-Seed Funding</div>
+                    <div class="ec-sub">$500k–$750k raise triggered by pilot LOIs</div>
+                </div>
+                <div class="equity-cell">
+                    <div class="ec-label">Role Split</div>
+                    <div class="ec-value">You: Revenue &amp; Team</div>
+                    <div class="ec-sub">Marcus: Product &amp; Engineering</div>
+                </div>
+                <div class="equity-cell">
+                    <div class="ec-label">Stage</div>
+                    <div class="ec-value">Pre-Seed, Real Product</div>
+                    <div class="ec-sub">Tech works. BAA ready. First pilot imminent.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="mailto:marcus@poconoai.com?subject=CEO%20Co-Founder%20%E2%80%94%20Let%27s%20Talk" class="ceo-apply-btn">
+                    Let's Talk — marcus@poconoai.com
+                </a>
+                <div class="ceo-apply-note">Or text directly: (570) 534-0602 &nbsp;·&nbsp; First call is a conversation, not an interview</div>
+            </div>
+        </div>
+
+
+        <hr class="section-divider">
+
+        <h2 style="color: white; font-size: 1.6em; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-top: 20px;">Additional Open Requisitions</h2>
+
         <div class="pipeline-grid">
-            
+
             <div class="pipeline-card urgent">
                 <span class="status-badge badge-immediate">Tranche 1 Priority</span>
                 <h3>Junior DBA / Field Operations</h3>
