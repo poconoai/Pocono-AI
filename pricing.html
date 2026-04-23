@@ -1,239 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Playables SDK -->
-<script>// Playables SDK v1.0.0
-// Game lifecycle bridge: rAF-based game-ready detection + event communication
-(function() {
-  'use strict';
-
-  // Idempotency: skip if already initialized (e.g., server-side injection
-  // followed by client-side inject-javascript via the Bloks webview component).
-  if (window.playablesSDK) return;
-
-  var HANDLER_NAME = 'playablesGameEventHandler';
-  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
-  var RAF_FRAME_THRESHOLD = 3;
-
-  var gameReadySent = false;
-  var firstInteractionSent = false;
-  var errorSent = false;
-  var frameCount = 0;
-  var originalRAF = window.requestAnimationFrame;
-
-  // --- Transport Layer ---
-
-  function hasIOSBridge() {
-    return !!(window.webkit &&
-              window.webkit.messageHandlers &&
-              window.webkit.messageHandlers[HANDLER_NAME]);
-  }
-
-  function hasAndroidBridge() {
-    return !!(window[ANDROID_BRIDGE_NAME] &&
-              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
-  }
-
-  function isInIframe() {
-    return !!(window.parent && window.parent !== window);
-  }
-
-  function sendEvent(eventName, payload) {
-    var message = {
-      type: eventName,
-      payload: payload || {},
-      timestamp: Date.now()
-    };
-
-    if (hasIOSBridge()) {
-      try {
-        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
-      } catch (e) { /* ignore */ }
-      return;
-    }
-
-    if (hasAndroidBridge()) {
-    try {
-      var p = payload || {};
-      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
-      window[ANDROID_BRIDGE_NAME].postEvent(
-        eventName,
-        JSON.stringify(p)
-      );
-    } catch (e) { /* ignore */ }
-    return;
-  }
-
-    if (isInIframe()) {
-      try {
-        window.parent.postMessage(message, '*');
-      } catch (e) { /* ignore */ }
-      return;
-    }
-  }
-
-  // --- rAF Game-Ready Detection ---
-
-  function onFrame() {
-    if (gameReadySent) return;
-
-    frameCount++;
-    if (frameCount >= RAF_FRAME_THRESHOLD) {
-      gameReadySent = true;
-      sendEvent('game_ready', {
-        frame_count: frameCount,
-        detected_at: Date.now()
-      });
-      return;
-    }
-
-    originalRAF.call(window, onFrame);
-  }
-
-  if (originalRAF) {
-    window.requestAnimationFrame = function(callback) {
-      if (!gameReadySent) {
-        return originalRAF.call(window, function(timestamp) {
-          frameCount++;
-          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
-            gameReadySent = true;
-            sendEvent('game_ready', {
-              frame_count: frameCount,
-              detected_at: Date.now()
-            });
-          }
-          callback(timestamp);
-        });
-      }
-      return originalRAF.call(window, callback);
-    };
-  }
-
-  // --- First User Interaction Detection ---
-
-  function setupFirstInteractionDetection() {
-    var events = ['touchstart', 'mousedown', 'keydown'];
-
-    function onFirstInteraction() {
-      if (firstInteractionSent) return;
-      firstInteractionSent = true;
-      sendEvent('user_interaction_start', null);
-
-      for (var i = 0; i < events.length; i++) {
-        document.removeEventListener(events[i], onFirstInteraction, true);
-      }
-    }
-
-    for (var i = 0; i < events.length; i++) {
-      document.addEventListener(events[i], onFirstInteraction, true);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
-  } else {
-    setupFirstInteractionDetection();
-  }
-
-  // --- Auto Error Capture ---
-
-  window.addEventListener('error', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    sendEvent('error', {
-      message: event.message || 'Unknown error',
-      source: event.filename || '',
-      lineno: event.lineno || 0,
-      colno: event.colno || 0,
-      auto_captured: true
-    });
-  });
-
-  window.addEventListener('unhandledrejection', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    var reason = event.reason;
-    sendEvent('error', {
-      message: (reason instanceof Error) ? reason.message : String(reason),
-      type: 'unhandled_promise_rejection',
-      auto_captured: true
-    });
-  });
-
-  // --- Public API ---
-
-  window.playablesSDK = {
-    complete: function(score) {
-      sendEvent('game_ended', {
-        score: score,
-        completed: true
-      });
-    },
-
-    error: function(message) {
-      if (errorSent) return;
-      errorSent = true;
-      sendEvent('error', {
-        message: message || 'Unknown error',
-        auto_captured: false
-      });
-    },
-
-    sendEvent: function(eventName, payload) {
-      if (!eventName || typeof eventName !== 'string') return;
-      sendEvent(eventName, payload);
-    }
-  };
-
-  // Kick off rAF detection in case no game code calls rAF immediately
-  if (originalRAF) {
-    originalRAF.call(window, onFrame);
-  }
-})();</script>
-<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pocono AI, LLC Pricing: On-premises Local AI infrastructure with Zero Data Exfiltration and absolute Data Sovereignty.">
     <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, Private RAG Pricing, Sovereign AI Infrastructure">
     <meta name="date" content="2026-04-19">
-    <title>Pricing & Deployment | Data Sovereignty | Pocono AI, LLC</title>
-    
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Pricing &amp; Deployment | Data Sovereignty | Pocono AI, LLC</title>
+
+    <meta property="og:title" content="Pricing &amp; Deployment | Pocono AI, LLC">
+    <meta property="og:description" content="On-premises Local AI infrastructure with Zero Data Exfiltration. Three deployment tiers starting at $15,000 CapEx.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/pricing.html">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
-        :root { --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6; --critical-red: #ff3b3b; --muted: #5a7a8a; }
-        *:focus { outline: none !important; box-shadow: 0 0 0 2px var(--ai-blue) !important; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
-        .logo span { color: var(--ai-blue); margin-left: 5px; }
-        
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
-        
-        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
-        #nav-menu.active { display: block; }
-        .nav-links { list-style: none; padding: 0; margin: 0; }
-        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        
-        @media (min-width: 768px) {
-            .menu-toggle { display: none; }
-            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 20px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; font-size: 0.9em; }
-            .nav-links li a:hover { color: var(--ai-blue); }
+        /* ── PRICING-SPECIFIC STYLES ONLY ── */
+
+        /* System font — matches original */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: clamp(2.5rem, 6vw, 3rem); text-align: center; color: var(--white); margin-bottom: 10px; line-height: 1.1; }
+        /* Page title */
+        h1 { font-size: clamp(2.5rem, 6vw, 3rem); text-align: center; color: var(--white); margin-bottom: 10px; line-height: 1.1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
         .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 800px; margin: 0 auto 40px auto; }
-        
-        .roi-section { background: linear-gradient(135deg, rgba(0, 163, 255, 0.05) 0%, rgba(5, 22, 34, 1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid var(--ai-blue); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+
+        /* ROI section */
+        .roi-section { background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, rgba(5,22,34,1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid var(--ai-blue); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; line-height: 1; }
-        
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+
+        /* Pricing grid */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 25px; margin-top: 40px; }
         .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; }
         .pricing-card.enterprise { border-top-color: var(--teal); }
         .pricing-card.plus { border-top-color: var(--white); background-color: #0d3246; }
@@ -241,15 +45,17 @@
         .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); flex-grow: 1; }
         .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
         .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
-        
-        .subscription-banner { background: rgba(0, 163, 255, 0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin: 40px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+
+        /* Subscription banner */
+        .subscription-banner { background: rgba(0,163,255,0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin: 40px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
         .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 250px; }
-        
+
+        /* CTA button */
         .btn-submit { background: var(--teal); color: white; padding: 16px 32px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
         .btn-submit:hover { filter: brightness(1.1); transform: translateY(-2px); }
-        
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
-        footer a { color: var(--teal); text-decoration: none; }
+
+        /* Footer */
+        footer a { color: var(--teal); }
     </style>
 </head>
 <body>
@@ -266,15 +72,18 @@
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners & Advisory</a></li>
+                <li><a href="partners.html">Partners &amp; Advisory</a></li>
                 <li><a href="pricing.html" style="color: var(--ai-blue);">Pricing</a></li>
+                <li><a href="portal.html">Portal</a></li>
+                <li><a href="careers.html">Careers</a></li>
             </ul>
         </nav>
     </header>
-    
+
     <main>
         <h1>Deployment Models</h1>
-        <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty. <br><span style="font-size: 0.85em; font-weight: normal; color: var(--light-text);">*Hardware may qualify for Section 179 CapEx tax deduction.</span></p>
+        <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty.<br>
+        <span style="font-size: 0.85em; font-weight: normal; color: var(--light-text);">*Hardware may qualify for Section 179 CapEx tax deduction.</span></p>
 
         <div class="roi-section">
             <h2 style="color: white; margin-top: 0; border-bottom: none;">Projected Economic Impact</h2>
@@ -330,7 +139,7 @@
                 <div style="color: var(--light-text); font-size: 0.85em; margin-top: 5px;">Scalable by Compute Density</div>
             </div>
         </div>
-        
+
         <div style="text-align: center; margin-top: 60px;">
             <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit">Download Master Spec Sheet &amp; ROI (PDF)</a>
             <p style="margin-top: 30px;"><strong>Text to Schedule Scoping:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
@@ -338,33 +147,16 @@
     </main>
 
     <footer>
-    <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
-    <p>
-        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; 
-        <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; 
-        <a href="sla.html">Service Level Agreement</a>
-    </p>
-</footer>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
+            <a href="sla.html">Service Level Agreement</a>
+        </p>
+    </footer>
 
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const isExpanded = navMenu.classList.contains('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
+    <!-- Shared navigation script -->
+    <script src="nav.js"></script>
 
-            const spans = menuToggle.querySelectorAll('span');
-            if (isExpanded) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
