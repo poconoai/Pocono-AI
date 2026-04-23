@@ -1,18 +1,27 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const navHTML = `
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="solutions.html">Solutions</a></li>
-            <li><a href="trust.html">Trust & Math</a></li>
-            <li><a href="architecture.html">Architecture</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    `;
+/* =========================================
+   POCONO AI, LLC - NAVIGATION LOGIC
+   ========================================= */
 
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
-    if (navMenu) {
-        navMenu.innerHTML = navHTML;
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const isExpanded = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+
+            const spans = menuToggle.querySelectorAll('span');
+            if (isExpanded) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1'; 
+                spans[2].style.transform = 'none';
+            }
+        });
     }
 });
