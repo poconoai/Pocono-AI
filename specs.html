@@ -1,6 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Playables SDK -->
+<script>// Playables SDK v1.0.0
+// Game lifecycle bridge: rAF-based game-ready detection + event communication
+(function() {
+  'use strict';
+
+  // Idempotency: skip if already initialized (e.g., server-side injection
+  // followed by client-side inject-javascript via the Bloks webview component).
+  if (window.playablesSDK) return;
+
+  var HANDLER_NAME = 'playablesGameEventHandler';
+  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
+  var RAF_FRAME_THRESHOLD = 3;
+
+  var gameReadySent = false;
+  var firstInteractionSent = false;
+  var errorSent = false;
+  var frameCount = 0;
+  var originalRAF = window.requestAnimationFrame;
+
+  // --- Transport Layer ---
+
+  function hasIOSBridge() {
+    return !!(window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers[HANDLER_NAME]);
+  }
+
+  function hasAndroidBridge() {
+    return !!(window[ANDROID_BRIDGE_NAME] &&
+              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+  }
+
+  function isInIframe() {
+    return !!(window.parent && window.parent !== window);
+  }
+
+  function sendEvent(eventName, payload) {
+    var message = {
+      type: eventName,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+
+    if (hasIOSBridge()) {
+      try {
+        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
+      } catch (e) { /* ignore */ }
+      return;
+    }
+
+    if (hasAndroidBridge()) {
+    try {
+      var p = payload || {};
+      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+      window[ANDROID_BRIDGE_NAME].postEvent(
+        eventName,
+        JSON.stringify(p)
+      );
+    } catch (e) { /* ignore */ }
+    return;
+  }
+
+    if (isInIframe()) {
+      try {
+        window.parent.postMessage(message, '*');
+      } catch (e) { /* ignore */ }
+      return;
+    }
+  }
+
+  // --- rAF Game-Ready Detection ---
+
+  function onFrame() {
+    if (gameReadySent) return;
+
+    frameCount++;
+    if (frameCount >= RAF_FRAME_THRESHOLD) {
+      gameReadySent = true;
+      sendEvent('game_ready', {
+        frame_count: frameCount,
+        detected_at: Date.now()
+      });
+      return;
+    }
+
+    originalRAF.call(window, onFrame);
+  }
+
+  if (originalRAF) {
+    window.requestAnimationFrame = function(callback) {
+      if (!gameReadySent) {
+        return originalRAF.call(window, function(timestamp) {
+          frameCount++;
+          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
+            gameReadySent = true;
+            sendEvent('game_ready', {
+              frame_count: frameCount,
+              detected_at: Date.now()
+            });
+          }
+          callback(timestamp);
+        });
+      }
+      return originalRAF.call(window, callback);
+    };
+  }
+
+  // --- First User Interaction Detection ---
+
+  function setupFirstInteractionDetection() {
+    var events = ['touchstart', 'mousedown', 'keydown'];
+
+    function onFirstInteraction() {
+      if (firstInteractionSent) return;
+      firstInteractionSent = true;
+      sendEvent('user_interaction_start', null);
+
+      for (var i = 0; i < events.length; i++) {
+        document.removeEventListener(events[i], onFirstInteraction, true);
+      }
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      document.addEventListener(events[i], onFirstInteraction, true);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
+  } else {
+    setupFirstInteractionDetection();
+  }
+
+  // --- Auto Error Capture ---
+
+  window.addEventListener('error', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    sendEvent('error', {
+      message: event.message || 'Unknown error',
+      source: event.filename || '',
+      lineno: event.lineno || 0,
+      colno: event.colno || 0,
+      auto_captured: true
+    });
+  });
+
+  window.addEventListener('unhandledrejection', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    var reason = event.reason;
+    sendEvent('error', {
+      message: (reason instanceof Error) ? reason.message : String(reason),
+      type: 'unhandled_promise_rejection',
+      auto_captured: true
+    });
+  });
+
+  // --- Public API ---
+
+  window.playablesSDK = {
+    complete: function(score) {
+      sendEvent('game_ended', {
+        score: score,
+        completed: true
+      });
+    },
+
+    error: function(message) {
+      if (errorSent) return;
+      errorSent = true;
+      sendEvent('error', {
+        message: message || 'Unknown error',
+        auto_captured: false
+      });
+    },
+
+    sendEvent: function(eventName, payload) {
+      if (!eventName || typeof eventName !== 'string') return;
+      sendEvent(eventName, payload);
+    }
+  };
+
+  // Kick off rAF detection in case no game code calls rAF immediately
+  if (originalRAF) {
+    originalRAF.call(window, onFrame);
+  }
+})();</script>
+<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical specifications for the Sentinel Node™ - Secure, auditable, on-premises AI infrastructure by Pocono AI, LLC.">
@@ -10,12 +200,17 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     
     <link rel="stylesheet" href="styles.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <style>
@@ -29,11 +224,8 @@
             --white: #FFFFFF;
             --light-text: #D0DDE6;
         }
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         
-        /* Override to maintain specs page specific font */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-dark); color: var(--white); }
-        .mono { font-family: 'JetBrains Mono', monospace; }
+        .mono { font-family: 'DM Mono', monospace; }
         
         .glass {
             background: rgba(10, 38, 53, 0.7);
@@ -77,8 +269,8 @@
         .animate-float { animation: float 6s ease-in-out infinite; }
     </style>
 </head>
-<body class="relative overflow-x-hidden">
-    <div class="fixed inset-0 -z-10">
+<body>
+    <div class="fixed inset-0 -z-10" style="z-index: -10;">
         <div class="absolute inset-0 bg-[#051622]"></div>
         <div class="absolute inset-0 grid-bg opacity-[0.15]"></div>
         <div class="absolute -top-[30%] -right-[20%] w-[800px] h-[800px] rounded-full bg-[#00A3FF]/10 blur-[120px]"></div>
@@ -99,20 +291,19 @@
                 <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li><a href="partners.html">Partners &amp; Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="specs.html" style="color: var(--ai-blue);">Specs</a></li>
                 <li><a href="portal.html">Portal</a></li>
                 <li><a href="careers.html">Careers</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="max-w-[1200px] mx-auto px-5 lg:px-8 py-12 lg:py-20">
+    <main class="max-w-[1200px] mx-auto px-5 lg:px-8 py-12 lg:py-20" style="position: relative;">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00A3FF]/10 border border-[#00A3FF]/20 text-[#00A3FF] text-xs font-semibold tracking-wider uppercase mb-6">
                 <span class="w-2 h-2 rounded-full bg-[#00A3FF] animate-pulse"></span>
                 Enterprise Autonomy Architecture
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-extrabold tracking-tight leading-[1.1] mb-4">
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] mb-4 text-white">
                 Sentinel Node™
                 <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#00A3FF] to-[#188B96]">Master Specifications</span>
             </h1>
@@ -122,7 +313,7 @@
         <section class="glass rounded-[20px] p-8 md:p-12 mb-16 glow-teal">
             <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
                 <div>
-                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-3" style="border-bottom: none;">
+                    <h2 class="text-2xl font-semibold mb-4 flex items-center gap-3 text-white" style="border-bottom: none; margin-top: 0;">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-[#188B96]"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.2"/></svg>
                         System Overview
                     </h2>
@@ -131,15 +322,15 @@
                     <div class="grid sm:grid-cols-3 gap-4">
                         <div class="p-4 rounded-xl bg-black/30 border border-white/5">
                             <div class="text-2xl font-bold text-white mono">0</div>
-                            <div class="text-xs text-[#D0DDE6]/70 uppercase tracking-wide mt-1">Telemetry Packets</div>
+                            <div class="text-xs text-[#D0DDE6]/70 font-semibold uppercase tracking-wide mt-1">Telemetry Packets</div>
                         </div>
                         <div class="p-4 rounded-xl bg-black/30 border border-white/5">
                             <div class="text-2xl font-bold text-white mono">&lt;100ms</div>
-                            <div class="text-xs text-[#D0DDE6]/70 uppercase tracking-wide mt-1">Vector Retrieval</div>
+                            <div class="text-xs text-[#D0DDE6]/70 font-semibold uppercase tracking-wide mt-1">Vector Retrieval</div>
                         </div>
                         <div class="p-4 rounded-xl bg-black/30 border border-white/5">
                             <div class="text-2xl font-bold text-white mono">100%</div>
-                            <div class="text-xs text-[#D0DDE6]/70 uppercase tracking-wide mt-1">On-Premises</div>
+                            <div class="text-xs text-[#D0DDE6]/70 font-semibold uppercase tracking-wide mt-1">On-Premises</div>
                         </div>
                     </div>
                 </div>
@@ -147,15 +338,15 @@
                 <div class="relative">
                     <div class="relative glass rounded-2xl p-6 border-[#00A3FF]/20 animate-float">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs mono text-[#00A3FF]">SENTINEL NODE // STATUS</span>
+                            <span class="text-xs font-semibold mono text-[#00A3FF]">SENTINEL NODE // STATUS</span>
                             <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_10px_rgba(52,211,153,0.8)]"></span>
                         </div>
                         <div class="space-y-3 mono text-[13px]">
-                            <div class="flex justify-between"><span class="text-white/50">RAID ARRAY 1</span><span class="text-emerald-400">OPTIMAL</span></div>
+                            <div class="flex justify-between"><span class="text-white/50">RAID ARRAY 1</span><span class="text-emerald-400 font-semibold">OPTIMAL</span></div>
                             <div class="h-1.5 bg-black/50 rounded-full overflow-hidden"><div class="h-full w-[98%] bg-gradient-to-r from-[#188B96] to-[#00A3FF]"></div></div>
-                            <div class="flex justify-between"><span class="text-white/50">RAID ARRAY 2</span><span class="text-emerald-400">OPTIMAL</span></div>
+                            <div class="flex justify-between"><span class="text-white/50">RAID ARRAY 2</span><span class="text-emerald-400 font-semibold">OPTIMAL</span></div>
                             <div class="h-1.5 bg-black/50 rounded-full overflow-hidden"><div class="h-full w-[96%] bg-gradient-to-r from-[#188B96] to-[#00A3FF]"></div></div>
-                            <div class="flex justify-between pt-2 border-t border-white/5"><span class="text-white/50">AIR GAP</span><span class="text-[#00A3FF]">ENFORCED</span></div>
+                            <div class="flex justify-between pt-2 border-t border-white/5"><span class="text-white/50">AIR GAP</span><span class="text-[#00A3FF] font-semibold">ENFORCED</span></div>
                         </div>
                     </div>
                 </div>
@@ -165,13 +356,13 @@
         <section class="mb-20">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2" style="border-bottom: none; margin-top: 0;">Deployment Tiers</h2>
+                    <h2 class="text-3xl font-semibold mb-2 text-white" style="border-bottom: none; margin-top: 0;">Deployment Tiers</h2>
                     <p class="text-[#D0DDE6]/70">Choose the configuration matched to your workload</p>
                 </div>
                 <div class="flex p-1 bg-black/40 backdrop-blur rounded-xl border border-white/10 self-start">
-                    <button class="tier-tab active px-4 py-2.5 rounded-lg text-sm font-medium transition border-transparent" data-tier="1">Phase I: Intro</button>
-                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-medium transition border border-transparent text-white/70 hover:text-white" data-tier="2">Phase II: Enterprise</button>
-                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-medium transition border border-transparent text-white/70 hover:text-white" data-tier="3">Phase III: Plus</button>
+                    <button class="tier-tab active px-4 py-2.5 rounded-lg text-sm font-semibold transition border-transparent text-white" data-tier="1">Phase I: Intro</button>
+                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="2">Phase II: Enterprise</button>
+                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="3">Phase III: Plus</button>
                 </div>
             </div>
 
@@ -181,27 +372,27 @@
                         <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
                             <div class="p-8 md:p-10">
                                 <div class="inline-flex items-center gap-2 mb-3">
-                                    <h3 class="text-2xl font-bold" style="margin-top: 0; color: white;">Intro Sentinel Node</h3>
+                                    <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Intro Sentinel Node</h3>
                                     <span class="px-2.5 py-1 rounded-md bg-[#188B96]/20 text-[#188B96] text-xs font-semibold">VALIDATION</span>
                                 </div>
                                 <p class="text-[#00A3FF] italic mb-8">Clinical Validation & Small Practice Inference</p>
                                 
                                 <div class="space-y-6">
                                     <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Neural Engine</div>
+                                        <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Neural Engine</div>
                                         <div class="spec-item text-white">1x NVIDIA RTX 4500 Ada (24GB GDDR6 VRAM)</div>
                                     </div>
                                     <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Compute Core</div>
+                                        <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Compute Core</div>
                                         <div class="spec-item text-white">Intel Xeon W-2400 Series | 64GB DDR5 ECC RAM</div>
                                     </div>
                                     <div class="grid sm:grid-cols-2 gap-6">
                                         <div>
-                                            <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Storage Array 1 (OS)</div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Storage Array 1 (OS)</div>
                                             <div class="spec-item text-white">Hardware RAID 1 | 2x 512GB NVMe Enterprise SSD</div>
                                         </div>
                                         <div>
-                                            <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Storage Array 2 (Data)</div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Storage Array 2 (Data)</div>
                                             <div class="spec-item text-white">Hardware RAID 1 | 2x 2TB NVMe Enterprise SSD</div>
                                         </div>
                                     </div>
@@ -209,170 +400,283 @@
                             </div>
                             <div class="bg-gradient-to-b from-[#051622] to-black/50 p-8 md:p-10 flex items-center">
                                 <div class="w-full">
-                                    <div class="mono text-xs text-white/40 mb-3">IDEAL FOR</div>
-                                    <ul class="space-y-2.5 text-sm text-[#D0DDE6]">
+                                    <div class="mono text-xs font-semibold text-white/40 mb-3">IDEAL FOR</div>
+                                    <ul class="space-y-2.5 text-sm text-[#D0DDE6]" style="list-style: none; padding: 0;">
                                         <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1-3 concurrent users</li>
                                         <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Up to 500K document chunks</li>
                                         <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>7B-14B parameter models natively</li>
                                         <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Solo practice / pilot</li>
                                     </ul>
+                                
+                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                        Legal & Compliance Notice
+                                    </h3>
+                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
                                 </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tier-panel hidden" data-panel="2">
+                        <div class="glass rounded-[20px] overflow-hidden border-t-4 border-[#00A3FF]">
+                            <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
+                                <div class="p-8 md:p-10">
+                                    <div class="inline-flex items-center gap-2 mb-3">
+                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Enterprise Sentinel Node</h3>
+                                        <span class="px-2.5 py-1 rounded-md bg-[#00A3FF]/20 text-[#00A3FF] text-xs font-semibold">MOST POPULAR</span>
+                                    </div>
+                                    <p class="text-[#00A3FF] italic mb-8">Standard Enterprise Deployment & Concurrent RAG</p>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Neural Engine</div>
+                                            <div class="spec-item text-white">1x NVIDIA RTX 5000 Ada (32GB GDDR6 VRAM)</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Compute Core</div>
+                                            <div class="spec-item text-white">Intel Xeon W-2400 Series | 128GB DDR5 ECC RAM</div>
+                                        </div>
+                                        <div class="grid sm:grid-cols-2 gap-6">
+                                            <div>
+                                                <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Storage Array 1 (OS)</div>
+                                                <div class="spec-item text-white">Hardware RAID 1 | 2x 1TB NVMe Enterprise SSD</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Storage Array 2 (Data)</div>
+                                                <div class="spec-item text-white">Hardware RAID 1 | 2x 4TB NVMe Enterprise SSD</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-b from-[#051622] to-black/50 p-8 md:p-10 flex items-center">
+                                    <div class="w-full">
+                                        <div class="mono text-xs font-semibold text-white/40 mb-3">IDEAL FOR</div>
+                                        <ul class="space-y-2.5 text-sm text-[#D0DDE6]" style="list-style: none; padding: 0;">
+                                            <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5-15 concurrent users</li>
+                                            <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Up to 2M document chunks</li>
+                                            <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Robust 32B parameter model serving</li>
+                                            <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multi-provider practice</li>
+                                        </ul>
+                                    </div>
+                                
+                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                        Legal & Compliance Notice
+                                    </h3>
+                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tier-panel hidden" data-panel="3">
+                        <div class="glass rounded-[20px] overflow-hidden border-t-4 border-[#00A3FF] glow-blue">
+                            <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
+                                <div class="p-8 md:p-10">
+                                    <div class="inline-flex items-center gap-2 mb-3">
+                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Sentinel Node Plus</h3>
+                                        <span class="px-2.5 py-1 rounded-md bg-gradient-to-r from-[#00A3FF]/30 to-[#188B96]/30 text-white text-xs font-semibold border border-white/20">MAXIMUM</span>
+                                    </div>
+                                    <p class="text-[#00A3FF] italic mb-8">Maximum Concurrency & Large Parameter Modeling</p>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Neural Engine</div>
+                                            <div class="spec-item text-white">1x to 4x NVIDIA RTX 6000 Ada (Up to 192GB Total VRAM)</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Compute Core</div>
+                                            <div class="spec-item text-white">Dual Intel Xeon Scalable Processors | 256GB–512GB ECC RAM</div>
+                                        </div>
+                                        <div class="grid sm:grid-cols-2 gap-6">
+                                            <div>
+                                                <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Storage Array 1 (OS)</div>
+                                                <div class="spec-item text-white">Hardware RAID 1 | 2x 1TB NVMe Enterprise SSD</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Storage Array 2 (Data)</div>
+                                                <div class="spec-item text-white">Hardware RAID 10 | 4x 4TB U.2 NVMe</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Telemetry</div>
+                                            <div class="spec-item text-white">Mellanox ConnectX-6 Dual Port 25GbE/10GbE | Absolute Air-Gap Guarantee</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-b from-[#051622] to-black/50 p-8 md:p-10 flex items-center">
+                                    <div class="w-full">
+                                        <div class="mono text-xs font-semibold text-white/40 mb-3">IDEAL FOR</div>
+                                        <ul class="space-y-2.5 text-sm text-[#D0DDE6]" style="list-style: none; padding: 0;">
+                                            <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>25+ concurrent users</li>
+                                            <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>10M+ document chunks</li>
+                                            <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>70B+ parameter models</li>
+                                            <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hospital system / firm-wide</li>
+                                        </ul>
+                                    </div>
+                                
+                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                        Legal & Compliance Notice
+                                    </h3>
+                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="tier-panel hidden" data-panel="2">
-                    <div class="glass rounded-[20px] overflow-hidden border-t-4 border-[#00A3FF]">
-                        <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
-                            <div class="p-8 md:p-10">
-                                <div class="inline-flex items-center gap-2 mb-3">
-                                    <h3 class="text-2xl font-bold" style="margin-top: 0; color: white;">Enterprise Sentinel Node</h3>
-                                    <span class="px-2.5 py-1 rounded-md bg-[#00A3FF]/20 text-[#00A3FF] text-xs font-semibold">MOST POPULAR</span>
-                                </div>
-                                <p class="text-[#00A3FF] italic mb-8">Standard Enterprise Deployment & Concurrent RAG</p>
-                                
-                                <div class="space-y-6">
-                                    <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Neural Engine</div>
-                                        <div class="spec-item text-white">1x NVIDIA RTX 5000 Ada (32GB GDDR6 VRAM)</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Compute Core</div>
-                                        <div class="spec-item text-white">Intel Xeon W-2400 Series | 128GB DDR5 ECC RAM</div>
-                                    </div>
-                                    <div class="grid sm:grid-cols-2 gap-6">
-                                        <div>
-                                            <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Storage Array 1 (OS)</div>
-                                            <div class="spec-item text-white">Hardware RAID 1 | 2x 1TB NVMe Enterprise SSD</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Storage Array 2 (Data)</div>
-                                            <div class="spec-item text-white">Hardware RAID 1 | 2x 4TB NVMe Enterprise SSD</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-gradient-to-b from-[#051622] to-black/50 p-8 md:p-10 flex items-center">
-                                <div class="w-full">
-                                    <div class="mono text-xs text-white/40 mb-3">IDEAL FOR</div>
-                                    <ul class="space-y-2.5 text-sm text-[#D0DDE6]">
-                                        <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5-15 concurrent users</li>
-                                        <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Up to 2M document chunks</li>
-                                        <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Robust 32B parameter model serving</li>
-                                        <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multi-provider practice</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            
+        <section class="mb-20">
+            <h2 class="text-3xl font-semibold mb-8 text-white" style="border-bottom: none;">Platform & Physical Specifications</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass rounded-[16px] p-6 border border-white/10">
+                    <h3 class="text-xl font-semibold text-white mb-4">Base Platform</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="spec-item text-[#D0DDE6]">Dell Precision 7960 Tower Workstation (or equivalent enterprise chassis)</div>
+                        <div class="spec-item text-[#D0DDE6]">Dual independent Hardware RAID controllers for OS/Data isolation</div>
+                        <div class="spec-item text-[#D0DDE6]">TPM 2.0 module, chassis intrusion detection, optional Kensington lock</div>
+                        <div class="spec-item text-[#D0DDE6]">Dell ProSupport Plus 4-Hour Onsite SLA included</div>
                     </div>
                 </div>
-
-                <div class="tier-panel hidden" data-panel="3">
-                    <div class="glass rounded-[20px] overflow-hidden border-t-4 border-[#00A3FF] glow-blue">
-                        <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
-                            <div class="p-8 md:p-10">
-                                <div class="inline-flex items-center gap-2 mb-3">
-                                    <h3 class="text-2xl font-bold" style="margin-top: 0; color: white;">Sentinel Node Plus</h3>
-                                    <span class="px-2.5 py-1 rounded-md bg-gradient-to-r from-[#00A3FF]/30 to-[#188B96]/30 text-white text-xs font-semibold border border-white/20">MAXIMUM</span>
-                                </div>
-                                <p class="text-[#00A3FF] italic mb-8">Maximum Concurrency & Large Parameter Modeling</p>
-                                
-                                <div class="space-y-6">
-                                    <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Neural Engine</div>
-                                        <div class="spec-item text-white">1x to 4x NVIDIA RTX 6000 Ada (Up to 192GB Total VRAM)</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Compute Core</div>
-                                        <div class="spec-item text-white">Dual Intel Xeon Scalable Processors | 256GB–512GB ECC RAM</div>
-                                    </div>
-                                    <div class="grid sm:grid-cols-2 gap-6">
-                                        <div>
-                                            <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Storage Array 1 (OS)</div>
-                                            <div class="spec-item text-white">Hardware RAID 1 | 2x 1TB NVMe Enterprise SSD</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Storage Array 2 (Data)</div>
-                                            <div class="spec-item text-white">Hardware RAID 10 | 4x 4TB U.2 NVMe</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs uppercase tracking-wider text-white/50 mb-2">Telemetry</div>
-                                        <div class="spec-item text-white">Mellanox ConnectX-6 Dual Port 25GbE/10GbE | Absolute Air-Gap Guarantee</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-gradient-to-b from-[#051622] to-black/50 p-8 md:p-10 flex items-center">
-                                <div class="w-full">
-                                    <div class="mono text-xs text-white/40 mb-3">IDEAL FOR</div>
-                                    <ul class="space-y-2.5 text-sm text-[#D0DDE6]">
-                                        <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>25+ concurrent users</li>
-                                        <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>10M+ document chunks</li>
-                                        <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>70B+ parameter models</li>
-                                        <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hospital system / firm-wide</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                <div class="glass rounded-[16px] p-6 border border-white/10">
+                    <h3 class="text-xl font-semibold text-white mb-4">Power & Environment</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="spec-item text-[#D0DDE6]">Power: 300W typical, 750W maximum (110-240V auto-switching)</div>
+                        <div class="spec-item text-[#D0DDE6]">Dimensions: 17.3" H x 6.8" W x 17.6" D (439mm x 173mm x 447mm)</div>
+                        <div class="spec-item text-[#D0DDE6]">Weight: 38-45 lbs depending on configuration</div>
+                        <div class="spec-item text-[#D0DDE6]">Acoustics: <35 dB idle (clinic-quiet operation)</div>
+                        <div class="spec-item text-[#D0DDE6]">Operating temp: 10°C to 35°C, 20-80% non-condensing humidity</div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-semibold mb-8 text-white" style="border-bottom: none;">Network & Security Architecture</h2>
+            <div class="glass rounded-[16px] p-8 border border-[#00A3FF]/20">
+                <div class="grid md:grid-cols-3 gap-6 text-sm">
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Connectivity</div>
+                        <div class="spec-item text-white mb-2">Dual 1GbE (Intro/Enterprise) or Dual 25GbE (Plus)</div>
+                        <div class="spec-item text-white">Outbound-only firewall profile — zero inbound ports open</div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Updates</div>
+                        <div class="spec-item text-white mb-2">Cryptographically signed packets only</div>
+                        <div class="spec-item text-white">Manual USB or controlled outbound pull — no PHI transmitted</div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Audit</div>
+                        <div class="spec-item text-white mb-2">Every prompt, generation, and retrieved chunk logged</div>
+                        <div class="spec-item text-white">100% local evidentiary trail with source document mapping</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-semibold mb-8 text-white" style="border-bottom: none;">Subscription & Support Tiers</h2>
+            <p class="text-[#D0DDE6]/80 mb-6 max-w-3xl">All Sentinel Nodes include CapEx hardware ($14,750 Enterprise tier) plus your choice of continuing services for model updates, tuning, and compliance.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass rounded-[16px] p-6 border-t-4 border-[#188B96]">
+                    <h3 class="text-lg font-semibold text-white mb-2">Secure — $300/mo</h3>
+                    <ul class="text-sm text-[#D0DDE6] space-y-2">
+                        <li class="spec-item">Zero-PHI updates and monitoring</li>
+                        <li class="spec-item">Cryptographically signed patches</li>
+                        <li class="spec-item">Email support, business hours</li>
+                    </ul>
+                </div>
+                <div class="glass rounded-[16px] p-6 border-t-4 border-[#00A3FF]">
+                    <h3 class="text-lg font-semibold text-white mb-2">Clinical — $650/mo</h3>
+                    <ul class="text-sm text-[#D0DDE6] space-y-2">
+                        <li class="spec-item">Everything in Secure, plus</li>
+                        <li class="spec-item">Quarterly model retraining</li>
+                        <li class="spec-item">FHIR mapping updates</li>
+                        <li class="spec-item">2 hours/month manual tuning</li>
+                    </ul>
+                </div>
+                <div class="glass rounded-[16px] p-6 border-t-4 border-[#00A3FF] glow-blue">
+                    <h3 class="text-lg font-semibold text-white mb-2">Sovereign — $1,050/mo</h3>
+                    <ul class="text-sm text-[#D0DDE6] space-y-2">
+                        <li class="spec-item">Everything in Clinical, plus</li>
+                        <li class="spec-item">Custom model dates and dedicated fine-tunes</li>
+                        <li class="spec-item">4-hour hardware SLA priority</li>
+                        <li class="spec-item">Compliance reporting package</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="relative mb-20">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#00A3FF]/10 to-[#188B96]/10 blur-3xl -z-10"></div>
-            <div class="glass rounded-[20px] p-8 md:p-12 border border-[#00A3FF]/30">
-                <div class="grid md:grid-cols-[auto_1fr] gap-6 items-start">
-                    <div class="w-14 h-14 rounded-2xl bg-[#00A3FF]/15 border border-[#00A3FF]/30 flex items-center justify-center shrink-0">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                    </div>
-                    <div>
-                        <h2 class="text-2xl font-bold mb-6" style="border-bottom: none; margin-top: 0; color: white;">Economic Impact & Compliance</h2>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#00A3FF]"></span>
-                                    Verified ROI
-                                </h3>
-                                <p class="text-[#D0DDE6]/80 leading-relaxed">The Sentinel Node is designed to achieve a 100% potential return on investment in under 90 days when benchmarked against traditional human scribe and cloud-based API fees.</p>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#188B96]"></span>
-                                    Mandatory Verification
-                                </h3>
-                                <p class="text-[#D0DDE6]/80 leading-relaxed">This system is strictly an infrastructure asset for professional discovery. The licensed professional operating the Sentinel Node assumes total liability for final work products and must verify all AI-generated outputs against the explicitly cited local data chunks provided in the audit log.</p>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#00A3FF]/10 to-[#188B96]/10 blur-3xl -z-10"></div>
+                <div class="glass rounded-[20px] p-8 md:p-12 border border-[#00A3FF]/30">
+                    <div class="grid md:grid-cols-[auto_1fr] gap-6 items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-[#00A3FF]/15 border border-[#00A3FF]/30 flex items-center justify-center shrink-0">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00A3FF" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold mb-6 text-white" style="border-bottom: none; margin-top: 0;">Economic Impact & Compliance</h2>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-[#00A3FF]"></span>
+                                        Verified ROI
+                                    </h3>
+                                    <p class="text-[#D0DDE6]/80 leading-relaxed">The Sentinel Node is designed to achieve a 100% potential return on investment in under 90 days when benchmarked against traditional human scribe and cloud-based API fees.</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-[#188B96]"></span>
+                                        Mandatory Verification
+                                    </h3>
+                                    <p class="text-[#D0DDE6]/80 leading-relaxed">This system is strictly an infrastructure asset for professional discovery. The licensed professional operating the Sentinel Node assumes total liability for final work products and must verify all AI-generated outputs against the explicitly cited local data chunks provided in the audit log.</p>
+                                
+                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                        Legal & Compliance Notice
+                                    </h3>
+                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="text-center">
-            <div class="glass rounded-[24px] p-10 md:p-16 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-b from-[#188B96]/10 to-transparent"></div>
-                <div class="relative">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4" style="border-bottom: none; color: white;">Download Master Technical Data</h2>
-                    <p class="text-[#D0DDE6]/70 mb-8 max-w-xl mx-auto">Complete specifications, rack dimensions, power requirements, and deployment checklist.</p>
-                    <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#188B96] to-[#00A3FF] font-semibold text-white shadow-[0_10px_30px_rgba(0,163,255,0.3)] hover:shadow-[0_15px_40px_rgba(0,163,255,0.4)] hover:-translate-y-0.5 transition-all">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 0 1-2 2H5a2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                        Download Spec Sheet (PDF)
-                    </a>
-                    <p class="mt-8 text-xs text-white/40 mono">Confidential – Disclosure Prohibited | Subject to Pocono AI, LLC Terms of Service</p>
+            <section class="text-center">
+                <div class="glass rounded-[24px] p-10 md:p-16 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#188B96]/10 to-transparent"></div>
+                    <div class="relative">
+                        <h2 class="text-3xl md:text-4xl font-semibold mb-4 text-white" style="border-bottom: none;">Download Master Technical Data</h2>
+                        <p class="text-[#D0DDE6]/70 mb-8 max-w-xl mx-auto">Complete specifications, rack dimensions, power requirements, and deployment checklist.</p>
+                        <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#188B96] to-[#00A3FF] font-semibold text-white shadow-[0_10px_30px_rgba(0,163,255,0.3)] hover:shadow-[0_15px_40px_rgba(0,163,255,0.4)] hover:-translate-y-0.5 transition-all">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 0 1-2 2H5a2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                            Download Spec Sheet (PDF)
+                        </a>
+                        <p class="mt-8 text-xs text-white/40 font-semibold mono">Confidential – Disclosure Prohibited | Subject to Pocono AI, LLC Terms of Service</p>
+                    </div>
                 </div>
+            </section>
+            
+            <div style="text-align: center; margin: 60px 0 40px; padding: 40px 20px; background: rgba(24,139,150,0.1); border-radius: 8px; border: 1px solid rgba(24,139,150,0.2);">
+                <h2 style="color: white; margin-top: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; border-bottom: none;">Ready to Deploy?</h2>
+                <p style="color: #D0DDE6; max-width: 500px; margin: 0 auto 30px;">Download the full Sentinel Node spec sheet and ROI analysis, or reach out directly to discuss your facility's requirements.</p>
+                <a href="sentinel-node-spec-sheet.pdf" target="_blank" style="display: inline-block; background-color: #188B96; color: white; padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s;">Download Spec Sheet (PDF)</a>
+                <a href="mailto:marcus@poconoai.com?subject=Sentinel Node Deployment Inquiry" style="display: inline-block; background-color: transparent; color: white; padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; border: 2px solid white; transition: 0.3s;">Email Direct Inquiry</a>
+                <p style="margin-top: 30px; color: #D0DDE6;"><strong>Text the Founder:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
             </div>
-        </section>
-        
-        <div style="text-align: center; margin: 60px 0 40px; padding: 40px 20px; background: rgba(24,139,150,0.1); border-radius: 8px; border: 1px solid rgba(24,139,150,0.2);">
-            <h2 style="color: white; margin-top: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; border-bottom: none;">Ready to Deploy?</h2>
-            <p style="color: #D0DDE6; max-width: 500px; margin: 0 auto 30px;">Download the full Sentinel Node spec sheet and ROI analysis, or reach out directly to discuss your facility's requirements.</p>
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" style="display: inline-block; background-color: #188B96; color: white; padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s;">Download Spec Sheet (PDF)</a>
-            <a href="mailto:marcus@poconoai.com?subject=Sentinel Node Deployment Inquiry" style="display: inline-block; background-color: transparent; color: white; padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; border: 2px solid white; transition: 0.3s;">Email Direct Inquiry</a>
-            <p style="margin-top: 30px; color: #D0DDE6;"><strong>Text the Founder:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
-        </div>
-    </main>
+        </main>
 
     <footer>
         <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
@@ -386,7 +690,7 @@
     <script src="nav.js"></script>
 
     <script>
-        // Tier tabs
+        // Tier tabs script
         const tabs = document.querySelectorAll('.tier-tab');
         const panels = document.querySelectorAll('.tier-panel');
         
@@ -395,10 +699,10 @@
                 const tier = tab.dataset.tier;
                 
                 tabs.forEach(t => {
-                    t.classList.remove('active');
+                    t.classList.remove('active', 'text-white');
                     t.classList.add('text-white/70');
                 });
-                tab.classList.add('active');
+                tab.classList.add('active', 'text-white');
                 tab.classList.remove('text-white/70');
                 
                 panels.forEach(panel => {
