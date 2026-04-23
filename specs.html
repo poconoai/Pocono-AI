@@ -1,6 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Playables SDK -->
+<script>// Playables SDK v1.0.0
+// Game lifecycle bridge: rAF-based game-ready detection + event communication
+(function() {
+  'use strict';
+
+  // Idempotency: skip if already initialized (e.g., server-side injection
+  // followed by client-side inject-javascript via the Bloks webview component).
+  if (window.playablesSDK) return;
+
+  var HANDLER_NAME = 'playablesGameEventHandler';
+  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
+  var RAF_FRAME_THRESHOLD = 3;
+
+  var gameReadySent = false;
+  var firstInteractionSent = false;
+  var errorSent = false;
+  var frameCount = 0;
+  var originalRAF = window.requestAnimationFrame;
+
+  // --- Transport Layer ---
+
+  function hasIOSBridge() {
+    return !!(window.webkit &&
+              window.webkit.messageHandlers &&
+              window.webkit.messageHandlers[HANDLER_NAME]);
+  }
+
+  function hasAndroidBridge() {
+    return !!(window[ANDROID_BRIDGE_NAME] &&
+              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
+  }
+
+  function isInIframe() {
+    return !!(window.parent && window.parent !== window);
+  }
+
+  function sendEvent(eventName, payload) {
+    var message = {
+      type: eventName,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+
+    if (hasIOSBridge()) {
+      try {
+        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
+      } catch (e) { /* ignore */ }
+      return;
+    }
+
+    if (hasAndroidBridge()) {
+    try {
+      var p = payload || {};
+      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
+      window[ANDROID_BRIDGE_NAME].postEvent(
+        eventName,
+        JSON.stringify(p)
+      );
+    } catch (e) { /* ignore */ }
+    return;
+  }
+
+    if (isInIframe()) {
+      try {
+        window.parent.postMessage(message, '*');
+      } catch (e) { /* ignore */ }
+      return;
+    }
+  }
+
+  // --- rAF Game-Ready Detection ---
+
+  function onFrame() {
+    if (gameReadySent) return;
+
+    frameCount++;
+    if (frameCount >= RAF_FRAME_THRESHOLD) {
+      gameReadySent = true;
+      sendEvent('game_ready', {
+        frame_count: frameCount,
+        detected_at: Date.now()
+      });
+      return;
+    }
+
+    originalRAF.call(window, onFrame);
+  }
+
+  if (originalRAF) {
+    window.requestAnimationFrame = function(callback) {
+      if (!gameReadySent) {
+        return originalRAF.call(window, function(timestamp) {
+          frameCount++;
+          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
+            gameReadySent = true;
+            sendEvent('game_ready', {
+              frame_count: frameCount,
+              detected_at: Date.now()
+            });
+          }
+          callback(timestamp);
+        });
+      }
+      return originalRAF.call(window, callback);
+    };
+  }
+
+  // --- First User Interaction Detection ---
+
+  function setupFirstInteractionDetection() {
+    var events = ['touchstart', 'mousedown', 'keydown'];
+
+    function onFirstInteraction() {
+      if (firstInteractionSent) return;
+      firstInteractionSent = true;
+      sendEvent('user_interaction_start', null);
+
+      for (var i = 0; i < events.length; i++) {
+        document.removeEventListener(events[i], onFirstInteraction, true);
+      }
+    }
+
+    for (var i = 0; i < events.length; i++) {
+      document.addEventListener(events[i], onFirstInteraction, true);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
+  } else {
+    setupFirstInteractionDetection();
+  }
+
+  // --- Auto Error Capture ---
+
+  window.addEventListener('error', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    sendEvent('error', {
+      message: event.message || 'Unknown error',
+      source: event.filename || '',
+      lineno: event.lineno || 0,
+      colno: event.colno || 0,
+      auto_captured: true
+    });
+  });
+
+  window.addEventListener('unhandledrejection', function(event) {
+    if (errorSent) return;
+    errorSent = true;
+    var reason = event.reason;
+    sendEvent('error', {
+      message: (reason instanceof Error) ? reason.message : String(reason),
+      type: 'unhandled_promise_rejection',
+      auto_captured: true
+    });
+  });
+
+  // --- Public API ---
+
+  window.playablesSDK = {
+    complete: function(score) {
+      sendEvent('game_ended', {
+        score: score,
+        completed: true
+      });
+    },
+
+    error: function(message) {
+      if (errorSent) return;
+      errorSent = true;
+      sendEvent('error', {
+        message: message || 'Unknown error',
+        auto_captured: false
+      });
+    },
+
+    sendEvent: function(eventName, payload) {
+      if (!eventName || typeof eventName !== 'string') return;
+      sendEvent(eventName, payload);
+    }
+  };
+
+  // Kick off rAF detection in case no game code calls rAF immediately
+  if (originalRAF) {
+    originalRAF.call(window, onFrame);
+  }
+})();</script>
+<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical specifications for the Sentinel Node™ - Secure, auditable, on-premises AI infrastructure by Pocono AI, LLC.">
@@ -171,8 +361,8 @@
                 </div>
                 <div class="flex p-1 bg-black/40 backdrop-blur rounded-xl border border-white/10 self-start">
                     <button class="tier-tab active px-4 py-2.5 rounded-lg text-sm font-semibold transition border-transparent text-white" data-tier="1">Phase I: Intro</button>
-                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="2">Phase II: Standard</button>
-                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="3">Phase III: Enterprise</button>
+                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="2">Phase II: Sentinel Node</button>
+                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="3">Phase III: Sentinel Node Plus</button>
                 </div>
             </div>
 
@@ -227,10 +417,10 @@
                             <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
                                 <div class="p-8 md:p-10">
                                     <div class="inline-flex items-center gap-2 mb-3">
-                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Standard Sentinel Node</h3>
+                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Sentinel Node</h3>
                                         <span class="px-2.5 py-1 rounded-md bg-[#00A3FF]/20 text-[#00A3FF] text-xs font-semibold">MOST POPULAR</span>
                                     </div>
-                                    <p class="text-[#00A3FF] italic mb-8">Standard Practice Deployment & Concurrent RAG</p>
+                                    <p class="text-[#00A3FF] italic mb-8">Sentinel Node Deployment & Concurrent RAG</p>
                                     
                                     <div class="space-y-6">
                                         <div>
@@ -273,10 +463,10 @@
                             <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
                                 <div class="p-8 md:p-10">
                                     <div class="inline-flex items-center gap-2 mb-3">
-                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Enterprise Sentinel Node</h3>
+                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Sentinel Node Plus</h3>
                                         <span class="px-2.5 py-1 rounded-md bg-gradient-to-r from-[#00A3FF]/30 to-[#188B96]/30 text-white text-xs font-semibold border border-white/20">MAXIMUM</span>
                                     </div>
-                                    <p class="text-[#00A3FF] italic mb-8">Enterprise Maximum Concurrency & Large Parameter Modeling</p>
+                                    <p class="text-[#00A3FF] italic mb-8">Sentinel Node Plus Maximum Concurrency & Large Parameter Modeling</p>
                                     
                                     <div class="space-y-6">
                                         <div>
@@ -334,7 +524,7 @@
                     </div>
                 </div>
                 <div class="glass rounded-[16px] p-6 border border-white/10">
-                    <h3 class="text-lg font-semibold text-[#00A3FF] mb-3">Standard Node Platform</h3>
+                    <h3 class="text-lg font-semibold text-[#00A3FF] mb-3">Sentinel Node Platform</h3>
                     <div class="space-y-2 text-sm">
                         <div class="spec-item text-[#D0DDE6]">Dell Precision 5860 Tower</div>
                         <div class="spec-item text-[#D0DDE6]">Intel Xeon W5-2400 series</div>
@@ -343,7 +533,7 @@
                     </div>
                 </div>
                 <div class="glass rounded-[16px] p-6 border border-white/10">
-                    <h3 class="text-lg font-semibold text-white mb-3">Enterprise Node Platform</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3">Sentinel Node Plus Platform</h3>
                     <div class="space-y-2 text-sm">
                         <div class="spec-item text-[#D0DDE6]">Dell Precision 7960 Workstation (7900-series) — Tower or 2U Rack</div>
                         <div class="spec-item text-[#D0DDE6]">Dual Intel Xeon Scalable Processors</div>
