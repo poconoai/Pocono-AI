@@ -1,196 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Playables SDK -->
-<script>// Playables SDK v1.0.0
-// Game lifecycle bridge: rAF-based game-ready detection + event communication
-(function() {
-  'use strict';
-
-  // Idempotency: skip if already initialized (e.g., server-side injection
-  // followed by client-side inject-javascript via the Bloks webview component).
-  if (window.playablesSDK) return;
-
-  var HANDLER_NAME = 'playablesGameEventHandler';
-  var ANDROID_BRIDGE_NAME = '_MetaPlayablesBridge';
-  var RAF_FRAME_THRESHOLD = 3;
-
-  var gameReadySent = false;
-  var firstInteractionSent = false;
-  var errorSent = false;
-  var frameCount = 0;
-  var originalRAF = window.requestAnimationFrame;
-
-  // --- Transport Layer ---
-
-  function hasIOSBridge() {
-    return !!(window.webkit &&
-              window.webkit.messageHandlers &&
-              window.webkit.messageHandlers[HANDLER_NAME]);
-  }
-
-  function hasAndroidBridge() {
-    return !!(window[ANDROID_BRIDGE_NAME] &&
-              typeof window[ANDROID_BRIDGE_NAME].postEvent === 'function');
-  }
-
-  function isInIframe() {
-    return !!(window.parent && window.parent !== window);
-  }
-
-  function sendEvent(eventName, payload) {
-    var message = {
-      type: eventName,
-      payload: payload || {},
-      timestamp: Date.now()
-    };
-
-    if (hasIOSBridge()) {
-      try {
-        window.webkit.messageHandlers[HANDLER_NAME].postMessage(message);
-      } catch (e) { /* ignore */ }
-      return;
-    }
-
-    if (hasAndroidBridge()) {
-    try {
-      var p = payload || {};
-      p.__secureToken = window.__fbAndroidBridgeAuthToken || '';
-      window[ANDROID_BRIDGE_NAME].postEvent(
-        eventName,
-        JSON.stringify(p)
-      );
-    } catch (e) { /* ignore */ }
-    return;
-  }
-
-    if (isInIframe()) {
-      try {
-        window.parent.postMessage(message, '*');
-      } catch (e) { /* ignore */ }
-      return;
-    }
-  }
-
-  // --- rAF Game-Ready Detection ---
-
-  function onFrame() {
-    if (gameReadySent) return;
-
-    frameCount++;
-    if (frameCount >= RAF_FRAME_THRESHOLD) {
-      gameReadySent = true;
-      sendEvent('game_ready', {
-        frame_count: frameCount,
-        detected_at: Date.now()
-      });
-      return;
-    }
-
-    originalRAF.call(window, onFrame);
-  }
-
-  if (originalRAF) {
-    window.requestAnimationFrame = function(callback) {
-      if (!gameReadySent) {
-        return originalRAF.call(window, function(timestamp) {
-          frameCount++;
-          if (frameCount >= RAF_FRAME_THRESHOLD && !gameReadySent) {
-            gameReadySent = true;
-            sendEvent('game_ready', {
-              frame_count: frameCount,
-              detected_at: Date.now()
-            });
-          }
-          callback(timestamp);
-        });
-      }
-      return originalRAF.call(window, callback);
-    };
-  }
-
-  // --- First User Interaction Detection ---
-
-  function setupFirstInteractionDetection() {
-    var events = ['touchstart', 'mousedown', 'keydown'];
-
-    function onFirstInteraction() {
-      if (firstInteractionSent) return;
-      firstInteractionSent = true;
-      sendEvent('user_interaction_start', null);
-
-      for (var i = 0; i < events.length; i++) {
-        document.removeEventListener(events[i], onFirstInteraction, true);
-      }
-    }
-
-    for (var i = 0; i < events.length; i++) {
-      document.addEventListener(events[i], onFirstInteraction, true);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupFirstInteractionDetection);
-  } else {
-    setupFirstInteractionDetection();
-  }
-
-  // --- Auto Error Capture ---
-
-  window.addEventListener('error', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    sendEvent('error', {
-      message: event.message || 'Unknown error',
-      source: event.filename || '',
-      lineno: event.lineno || 0,
-      colno: event.colno || 0,
-      auto_captured: true
-    });
-  });
-
-  window.addEventListener('unhandledrejection', function(event) {
-    if (errorSent) return;
-    errorSent = true;
-    var reason = event.reason;
-    sendEvent('error', {
-      message: (reason instanceof Error) ? reason.message : String(reason),
-      type: 'unhandled_promise_rejection',
-      auto_captured: true
-    });
-  });
-
-  // --- Public API ---
-
-  window.playablesSDK = {
-    complete: function(score) {
-      sendEvent('game_ended', {
-        score: score,
-        completed: true
-      });
-    },
-
-    error: function(message) {
-      if (errorSent) return;
-      errorSent = true;
-      sendEvent('error', {
-        message: message || 'Unknown error',
-        auto_captured: false
-      });
-    },
-
-    sendEvent: function(eventName, payload) {
-      if (!eventName || typeof eventName !== 'string') return;
-      sendEvent(eventName, payload);
-    }
-  };
-
-  // Kick off rAF detection in case no game code calls rAF immediately
-  if (originalRAF) {
-    originalRAF.call(window, onFrame);
-  }
-})();</script>
-<script>window.Intl=window.Intl||{};Intl.t=function(s){return(Intl._locale&&Intl._locale[s])||s;};</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Technical specifications for the Sentinel Node™ - Secure, auditable, on-premises AI infrastructure by Pocono AI, LLC.">
@@ -361,8 +171,8 @@
                 </div>
                 <div class="flex p-1 bg-black/40 backdrop-blur rounded-xl border border-white/10 self-start">
                     <button class="tier-tab active px-4 py-2.5 rounded-lg text-sm font-semibold transition border-transparent text-white" data-tier="1">Phase I: Intro</button>
-                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="2">Phase II: Enterprise</button>
-                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="3">Phase III: Plus</button>
+                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="2">Phase II: Standard</button>
+                    <button class="tier-tab px-4 py-2.5 rounded-lg text-sm font-semibold transition border border-transparent text-white/70 hover:text-white" data-tier="3">Phase III: Enterprise</button>
                 </div>
             </div>
 
@@ -407,15 +217,7 @@
                                         <li class="flex gap-2" style="margin-bottom: 10px;"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>7B-14B parameter models natively</li>
                                         <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Solo practice / pilot</li>
                                     </ul>
-                                
-                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                        Legal & Compliance Notice
-                                    </h3>
-                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -425,10 +227,10 @@
                             <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
                                 <div class="p-8 md:p-10">
                                     <div class="inline-flex items-center gap-2 mb-3">
-                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Enterprise Sentinel Node</h3>
+                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Standard Sentinel Node</h3>
                                         <span class="px-2.5 py-1 rounded-md bg-[#00A3FF]/20 text-[#00A3FF] text-xs font-semibold">MOST POPULAR</span>
                                     </div>
-                                    <p class="text-[#00A3FF] italic mb-8">Standard Enterprise Deployment & Concurrent RAG</p>
+                                    <p class="text-[#00A3FF] italic mb-8">Standard Practice Deployment & Concurrent RAG</p>
                                     
                                     <div class="space-y-6">
                                         <div>
@@ -461,15 +263,7 @@
                                             <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multi-provider practice</li>
                                         </ul>
                                     </div>
-                                
-                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                        Legal & Compliance Notice
-                                    </h3>
-                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -479,10 +273,10 @@
                             <div class="grid lg:grid-cols-[1.2fr_0.8fr]">
                                 <div class="p-8 md:p-10">
                                     <div class="inline-flex items-center gap-2 mb-3">
-                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Sentinel Node Plus</h3>
+                                        <h3 class="text-2xl font-semibold text-white" style="margin-top: 0;">Enterprise Sentinel Node</h3>
                                         <span class="px-2.5 py-1 rounded-md bg-gradient-to-r from-[#00A3FF]/30 to-[#188B96]/30 text-white text-xs font-semibold border border-white/20">MAXIMUM</span>
                                     </div>
-                                    <p class="text-[#00A3FF] italic mb-8">Maximum Concurrency & Large Parameter Modeling</p>
+                                    <p class="text-[#00A3FF] italic mb-8">Enterprise Maximum Concurrency & Large Parameter Modeling</p>
                                     
                                     <div class="space-y-6">
                                         <div>
@@ -519,15 +313,7 @@
                                             <li class="flex gap-2"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" viewBox="0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hospital system / firm-wide</li>
                                         </ul>
                                     </div>
-                                
-                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                        Legal & Compliance Notice
-                                    </h3>
-                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -541,32 +327,32 @@
                 <div class="glass rounded-[16px] p-6 border border-white/10">
                     <h3 class="text-lg font-semibold text-[#188B96] mb-3">Intro Node Platform</h3>
                     <div class="space-y-2 text-sm">
-                        <div class="spec-item text-[#D0DDE6]">Dell Precision 5860 Tower (entry enterprise chassis)</div>
+                        <div class="spec-item text-[#D0DDE6]">Dell Precision 5860 Tower</div>
                         <div class="spec-item text-[#D0DDE6]">Intel Xeon W3-2400 series</div>
                         <div class="spec-item text-[#D0DDE6]">300W typical, 550W max</div>
                         <div class="spec-item text-[#D0DDE6]">17.0" H x 6.8" W x 16.5" D, 32 lbs</div>
                     </div>
                 </div>
                 <div class="glass rounded-[16px] p-6 border border-white/10">
-                    <h3 class="text-lg font-semibold text-[#00A3FF] mb-3">Enterprise Node Platform</h3>
+                    <h3 class="text-lg font-semibold text-[#00A3FF] mb-3">Standard Node Platform</h3>
                     <div class="space-y-2 text-sm">
-                        <div class="spec-item text-[#D0DDE6]">Dell Precision 7960 Tower</div>
-                        <div class="spec-item text-[#D0DDE6]">Intel Xeon W5/W7-2400 series</div>
-                        <div class="spec-item text-[#D0DDE6]">300W typical, 750W max</div>
-                        <div class="spec-item text-[#D0DDE6]">17.3" H x 6.8" W x 17.6" D, 38-45 lbs</div>
+                        <div class="spec-item text-[#D0DDE6]">Dell Precision 5860 Tower</div>
+                        <div class="spec-item text-[#D0DDE6]">Intel Xeon W5-2400 series</div>
+                        <div class="spec-item text-[#D0DDE6]">300W typical, 650W max</div>
+                        <div class="spec-item text-[#D0DDE6]">17.0" H x 6.8" W x 16.5" D, 35 lbs</div>
                     </div>
                 </div>
                 <div class="glass rounded-[16px] p-6 border border-white/10">
-                    <h3 class="text-lg font-semibold text-white mb-3">Plus Node Platform</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3">Enterprise Node Platform</h3>
                     <div class="space-y-2 text-sm">
-                        <div class="spec-item text-[#D0DDE6]">Dell Precision 7960 Rack or custom 2U</div>
-                        <div class="spec-item text-[#D0DDE6]">Dual Intel Xeon Scalable</div>
+                        <div class="spec-item text-[#D0DDE6]">Dell Precision 7960 Workstation (7900-series) — Tower or 2U Rack</div>
+                        <div class="spec-item text-[#D0DDE6]">Dual Intel Xeon Scalable Processors</div>
                         <div class="spec-item text-[#D0DDE6]">500W typical, 1200W max</div>
-                        <div class="spec-item text-[#D0DDE6]">Rackmount or tower, TPM 2.0, redundant PSU option</div>
+                        <div class="spec-item text-[#D0DDE6]">17.3" H x 6.8" W x 17.6" D or 2U rack</div>
                     </div>
                 </div>
             </div>
-            <p class="text-xs text-white/50 mt-4">All platforms include TPM 2.0, chassis intrusion detection, Dell ProSupport Plus 4-hour onsite SLA, and <35dB acoustic profile for clinic deployment.</p>
+            <p class="text-xs text-white/50 mt-4">All platforms include TPM 2.0, chassis intrusion detection, Dell ProSupport Plus 4-hour onsite SLA, and <35dB acoustic profile.</p>
         </section>
 
         <section class="mb-20">
@@ -575,18 +361,18 @@
                 <div class="grid md:grid-cols-3 gap-6 text-sm">
                     <div>
                         <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Connectivity</div>
-                        <div class="spec-item text-white mb-2">Dual 1GbE (Intro/Enterprise) or Dual 25GbE (Plus)</div>
-                        <div class="spec-item text-white">Outbound-only firewall profile — zero inbound ports open</div>
+                        <div class="spec-item text-white mb-2">Dual 1GbE (Intro/Standard) or Dual 25GbE (Enterprise)</div>
+                        <div class="spec-item text-white">Outbound-only firewall — zero inbound ports</div>
                     </div>
                     <div>
                         <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Updates</div>
                         <div class="spec-item text-white mb-2">Cryptographically signed packets only</div>
-                        <div class="spec-item text-white">Manual USB or controlled outbound pull — no PHI transmitted</div>
+                        <div class="spec-item text-white">Manual USB or controlled outbound pull — no PHI leaves</div>
                     </div>
                     <div>
                         <div class="text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Audit</div>
                         <div class="spec-item text-white mb-2">Every prompt, generation, and retrieved chunk logged</div>
-                        <div class="spec-item text-white">100% local evidentiary trail with source document mapping</div>
+                        <div class="spec-item text-white">100% local evidentiary trail</div>
                     </div>
                 </div>
             </div>
@@ -594,33 +380,18 @@
 
         <section class="mb-20">
             <h2 class="text-3xl font-semibold mb-8 text-white" style="border-bottom: none;">Subscription & Support Tiers</h2>
-            <p class="text-[#D0DDE6]/80 mb-6 max-w-3xl">All Sentinel Nodes include CapEx hardware ($14,750 Enterprise tier) plus your choice of continuing services for model updates, tuning, and compliance.</p>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass rounded-[16px] p-6 border-t-4 border-[#188B96]">
                     <h3 class="text-lg font-semibold text-white mb-2">Secure — $300/mo</h3>
-                    <ul class="text-sm text-[#D0DDE6] space-y-2">
-                        <li class="spec-item">Zero-PHI updates and monitoring</li>
-                        <li class="spec-item">Cryptographically signed patches</li>
-                        <li class="spec-item">Email support, business hours</li>
-                    </ul>
+                    <ul class="text-sm text-[#D0DDE6] space-y-2"><li class="spec-item">Zero-PHI updates</li><li class="spec-item">Monitoring</li><li class="spec-item">Email support</li></ul>
                 </div>
                 <div class="glass rounded-[16px] p-6 border-t-4 border-[#00A3FF]">
                     <h3 class="text-lg font-semibold text-white mb-2">Clinical — $650/mo</h3>
-                    <ul class="text-sm text-[#D0DDE6] space-y-2">
-                        <li class="spec-item">Everything in Secure, plus</li>
-                        <li class="spec-item">Quarterly model retraining</li>
-                        <li class="spec-item">FHIR mapping updates</li>
-                        <li class="spec-item">2 hours/month manual tuning</li>
-                    </ul>
+                    <ul class="text-sm text-[#D0DDE6] space-y-2"><li class="spec-item">Quarterly retraining</li><li class="spec-item">FHIR updates</li><li class="spec-item">2 hrs/mo manual tuning</li></ul>
                 </div>
-                <div class="glass rounded-[16px] p-6 border-t-4 border-[#00A3FF] glow-blue">
+                <div class="glass rounded-[16px] p-6 border-t-4 border-[#00A3FF]">
                     <h3 class="text-lg font-semibold text-white mb-2">Sovereign — $1,050/mo</h3>
-                    <ul class="text-sm text-[#D0DDE6] space-y-2">
-                        <li class="spec-item">Everything in Clinical, plus</li>
-                        <li class="spec-item">Custom model dates and dedicated fine-tunes</li>
-                        <li class="spec-item">4-hour hardware SLA priority</li>
-                        <li class="spec-item">Compliance reporting package</li>
-                    </ul>
+                    <ul class="text-sm text-[#D0DDE6] space-y-2"><li class="spec-item">Custom model dates</li><li class="spec-item">4-hr SLA priority</li><li class="spec-item">Compliance reporting</li></ul>
                 </div>
             </div>
         </section>
@@ -648,15 +419,7 @@
                                         Mandatory Verification
                                     </h3>
                                     <p class="text-[#D0DDE6]/80 leading-relaxed">This system is strictly an infrastructure asset for professional discovery. The licensed professional operating the Sentinel Node assumes total liability for final work products and must verify all AI-generated outputs against the explicitly cited local data chunks provided in the audit log.</p>
-                                
-                                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                                    <h3 class="font-semibold text-white mb-2 flex items-center gap-2" style="margin-top: 0;">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                        Legal & Compliance Notice
-                                    </h3>
-                                    <p class="text-[#D0DDE6]/70 text-xs leading-relaxed">Results from internal sandbox with isolated network. Not a HIPAA certification. Sentinel Node is provided as infrastructure only. Customer retains all PHI custody. No data exfiltration architecture does not constitute legal advice. Customer responsible for BAAs, security risk assessments, and compliance validation per 45 CFR 164.</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
