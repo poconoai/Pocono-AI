@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of auditable on-premises AI: The Zero-Trust architecture of Pocono AI, LLC.">
-    <meta name="date" content="2026-04-19">
+    <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of auditable on-premises AI: The Zero-Trust architecture of Pocono AI, LLC. BAA available for all Sentinel Node deployment partners.">
+    <meta name="date" content="2026-04-23">
     <title>Trust &amp; Security | Auditable AI | Pocono AI, LLC</title>
 
     <meta property="og:title" content="Trust &amp; Security | Pocono AI, LLC">
-    <meta property="og:description" content="Zero-Trust Sovereignty. Trust is a technical byproduct of Cloud Obviation and Transparent Auditability.">
+    <meta property="og:description" content="Zero-Trust Sovereignty. Trust is a technical byproduct of Cloud Obviation and Transparent Auditability. BAA available.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/trust.html">
 
     <link rel="icon" href="/favicon.ico" sizes="any">
-
-    <!-- Shared stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
@@ -22,12 +20,10 @@
     <style>
         /* ── TRUST-SPECIFIC STYLES ONLY ── */
 
-        /* System font — matches original */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Page title — system font for sharp, professional rendering */
         h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); text-align: center; color: var(--white); margin-top: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
         .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
 
@@ -47,32 +43,68 @@
         .audit-list { margin-top: 20px; background: rgba(0,0,0,0.4); padding: 20px 20px 20px 40px; border-radius: 6px; border-left: 3px solid var(--teal); }
         .audit-list li { color: var(--white); font-weight: 500; margin-bottom: 10px; }
 
-        /* Founder section */
-        .founder-section { background: rgba(10,38,53,0.6); padding: 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0,163,255,0.1); }
+        /* ── BAA SECTION ── */
+        .baa-section { background: linear-gradient(135deg, rgba(0,163,255,0.1) 0%, rgba(5,22,34,1) 100%); padding: 45px 40px; border-radius: 12px; margin-top: 60px; border: 2px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
+        .baa-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ai-blue), var(--teal)); }
+        .baa-section h2 { color: var(--ai-blue); margin-top: 0; margin-bottom: 12px; font-size: 1.6em; }
+        .baa-section p { color: var(--light-text); font-size: 1.0rem; margin-bottom: 14px; }
+        .baa-highlight-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin: 28px 0; }
+        .baa-highlight { background: rgba(0,0,0,0.35); border: 1px solid rgba(0,163,255,0.25); border-radius: 8px; padding: 18px 20px; }
+        .baa-highlight .bh-label { font-size: 0.72em; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+        .baa-highlight .bh-value { color: var(--white); font-weight: 600; font-size: 0.97em; line-height: 1.4; }
+        .baa-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 28px; }
+        .baa-download-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ai-blue); color: #fff; font-weight: 700; padding: 13px 28px; border-radius: 8px; text-decoration: none; font-size: 0.97em; transition: background 0.2s, transform 0.2s; }
+        .baa-download-btn:hover { background: var(--teal); transform: translateY(-2px); }
+        .baa-request-btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 2px solid var(--ai-blue); color: var(--ai-blue); font-weight: 700; padding: 11px 26px; border-radius: 8px; text-decoration: none; font-size: 0.97em; transition: all 0.2s; }
+        .baa-request-btn:hover { background: rgba(0,163,255,0.12); transform: translateY(-2px); }
+        .baa-draft-notice { margin-top: 18px; font-size: 0.82em; color: var(--muted); font-style: italic; padding: 10px 16px; background: rgba(0,0,0,0.3); border-radius: 6px; border-left: 3px solid rgba(0,163,255,0.3); }
+
+        /* ── PILOT SCOPE SECTION ── */
+        .pilot-scope { background: linear-gradient(135deg, rgba(24,139,150,0.12) 0%, rgba(5,22,34,1) 100%); padding: 45px 40px; border-radius: 12px; margin-top: 50px; border: 1px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .pilot-scope h2 { color: var(--teal); margin-top: 0; margin-bottom: 8px; }
+        .pilot-scope .pilot-subtitle { color: var(--muted); font-size: 0.9em; font-style: italic; margin-bottom: 24px; }
+        .pilot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin: 24px 0; }
+        .pilot-cell { background: rgba(0,0,0,0.35); border-radius: 8px; padding: 18px 20px; border-top: 3px solid var(--teal); }
+        .pilot-cell .pc-label { font-size: 0.72em; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+        .pilot-cell .pc-value { color: var(--white); font-weight: 700; font-size: 1.05em; }
+        .pilot-cell .pc-sub { color: var(--light-text); font-size: 0.82em; margin-top: 4px; }
+        .pilot-scope p { color: var(--light-text); font-size: 1.0rem; line-height: 1.7; }
+        .pilot-scope a.cta-button { margin-top: 10px; display: inline-block; }
+
+        /* ── FOUNDER SECTION ── */
+        .founder-section { background: rgba(10,38,53,0.6); padding: 50px 40px; border-radius: 8px; margin-top: 60px; border: 1px solid rgba(0,163,255,0.1); position: relative; overflow: hidden; }
+        .founder-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); }
         .founder-content { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
-        .founder-image { flex: 1; min-width: 300px; }
+        .founder-image { flex: 1; min-width: 260px; max-width: 320px; }
         .founder-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(0,163,255,0.2); }
-        .founder-bio { flex: 2; min-width: 300px; }
+        .founder-bio { flex: 2; min-width: 280px; }
         .founder-bio h2 { margin-top: 0; color: var(--white); }
-        .founder-bio p { color: var(--light-text); font-size: 1.05rem; margin-bottom: 20px; }
+        .founder-bio p { color: var(--light-text); font-size: 1.0rem; margin-bottom: 18px; line-height: 1.7; }
+        .founder-bio .founder-quote { border-left: 3px solid var(--teal); padding-left: 18px; font-style: italic; color: rgba(255,255,255,0.8); font-size: 0.97em; margin: 22px 0; line-height: 1.65; }
         .passion-badge { display: inline-block; background: var(--teal); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; }
-        .dba-stack { flex: 1; min-width: 250px; background: var(--bg-black); padding: 25px; border-radius: 6px; border-right: 4px solid var(--teal); }
+        .founder-mission-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .founder-mission-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(24,139,150,0.15); border: 1px solid rgba(24,139,150,0.4); border-radius: 20px; padding: 6px 14px; font-size: 0.82em; color: var(--teal); font-weight: 600; }
+        .dba-stack { flex: 0 0 auto; min-width: 220px; max-width: 260px; background: var(--bg-black); padding: 25px; border-radius: 6px; border-right: 4px solid var(--teal); }
         .dba-stack h3 { margin-top: 0; font-size: 0.9rem; text-transform: uppercase; color: var(--ai-blue); letter-spacing: 1px; }
         .dba-stack ul { list-style: none; padding: 0; margin: 0; color: var(--light-text); font-size: 0.9rem; }
         .dba-stack li { margin-bottom: 8px; padding-left: 15px; position: relative; }
         .dba-stack li::before { content: "›"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
 
-        /* CTA */
+        /* Investor relations */
         .cta-container { text-align: center; margin: 60px 0; padding: 50px; background: rgba(24,139,150,0.1); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
 
-        /* Footer */
         footer a { color: var(--teal); }
         footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 700px) {
+            .baa-section, .pilot-scope, .founder-section { padding: 30px 20px; }
+            .dba-stack { max-width: 100%; border-right: none; border-left: 4px solid var(--teal); }
+        }
     </style>
 </head>
 <body>
 
-            <header>
+    <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -84,20 +116,11 @@
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html" style="color: var(--ai-blue);">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
+                <li><a href="partners.html">Partners &amp; Advisory</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html">Specs</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">
-                        More <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="more-menu">
-                        <a href="portal.html">Portal</a>
-                        <a href="careers.html">Careers</a>
-                        <a href="investors.html">Investors</a>
-                        <a href="sitemap.html">Sitemap</a>
-                    </div>
-                </li>
+                <li><a href="portal.html">Portal</a></li>
+                <li><a href="careers.html">Careers</a></li>
             </ul>
         </nav>
     </header>
@@ -120,7 +143,7 @@
                 </div>
                 <div class="glossary-card">
                     <h3>Human-in-the-Loop (HITL)</h3>
-                    <p>A mandatory workflow designed for probabilistic LLMs, where every AI output provides explicitly cited local data for review, mitigating hallucination risk through transparent verification.</p>
+                    <p>A mandatory workflow designed for probabilistic LLMs, where every AI output provides explicitly cited local data for review, mitigating hallucination risk through transparent verification by the licensed professional.</p>
                 </div>
                 <div class="glossary-card">
                     <h3>Force Multiplier Protocol</h3>
@@ -131,21 +154,21 @@
 
         <section class="audit-section">
             <h2>Immutable Auditability</h2>
-            <p>Large Language Models are fundamentally probabilistic—they predict the next most likely token. Even with highly optimized local vector databases and mathematical constraints, the generation of plausible false citations (hallucinations) remains an architectural reality of generative AI.</p>
+            <p>Large Language Models are fundamentally probabilistic — they predict the next most likely token. Even with highly optimized local vector databases and mathematical constraints, the generation of plausible false citations (hallucinations) remains an architectural reality of generative AI.</p>
             <p>Pocono AI, LLC does not claim to magically eliminate this core mechanism. Instead, the Sentinel Node serves strictly as a high-powered <strong>research and discovery engine</strong>. We mitigate inherent risk by forcing absolute transparency. For every inference, the system captures a permanent, immutable log consisting of:</p>
             <ul class="audit-list">
                 <li>The exact semantic prompt issued by the user.</li>
                 <li>The specific, physical data chunks retrieved from your local RAG index.</li>
                 <li>The final generated response from the local LLM.</li>
             </ul>
-            <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid verification. To meet compliance standards, all interactions enforce a <strong>strict 90-day immutable local log retention policy</strong>, securely queryable by internal compliance officers.</p>
+            <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid verification. To meet compliance standards, all interactions enforce a <strong>strict 90-day immutable local log retention policy</strong>, securely queryable by internal compliance officers only.</p>
         </section>
 
         <section class="audit-section-blue">
             <h2>Vector Architecture &amp; Synthetic Stress Testing</h2>
             <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant's Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry. We utilize a highly tuned <strong>semantic chunking strategy</strong> to preserve diagnostic context boundaries, rather than arbitrary fixed-size chunking.</p>
-            <p>Database integrity is not left to chance or manual intervention. Drawing on deep enterprise DBA expertise, we have developed custom automated indexing scripts. As data ingestion scales—capable of handling indexes exceeding 10,000+ complex clinical documents seamlessly—these scripts autonomously re-index and optimize the vector space during off-peak hours.</p>
-            <p>To definitively validate this architecture before deployment, we stress-test the RAG pipeline by generating massive volumes of complex, <strong>synthetic patient data</strong>. This rigorous testing protocol proves that our Qdrant implementation handles extreme enterprise loads highly effectively—all while maintaining absolute zero-trust security by never exposing real Protected Health Information (PHI) during system validation.</p>
+            <p>Database integrity is not left to chance or manual intervention. Drawing on deep enterprise DBA expertise, we have developed custom automated indexing scripts. As data ingestion scales — capable of handling indexes exceeding 10,000+ complex clinical documents seamlessly — these scripts autonomously re-index and optimize the vector space during off-peak hours.</p>
+            <p>To definitively validate this architecture before deployment, we stress-test the RAG pipeline by generating massive volumes of complex, <strong>synthetic patient data</strong>. This rigorous testing protocol proves that our Qdrant implementation handles extreme enterprise loads — all while maintaining absolute zero-trust security by never exposing real Protected Health Information (PHI) during system validation.</p>
         </section>
 
         <section class="audit-section">
@@ -161,34 +184,141 @@
         </section>
 
 
-        <section class="audit-section" style="border-color: var(--ai-blue); margin-top: 40px;">
-            <h2 style="color: var(--ai-blue);">Business Associate Agreement (BAA)</h2>
-            <p>Under the Enterprise Autonomy Architecture (EAA), the Sentinel Node operates entirely within your facility on hardware in your physical custody. Because PHI never leaves your building and Pocono AI, LLC has no remote access to your data, the scope of Business Associate obligations is dramatically narrower than with any cloud-based AI vendor. As we expand to include optional cloud-connected features and deeper EHR integrations, a fully executed BAA will become a standard requirement for all deployments.</p>
-            <p style="margin-top: 15px;">A Business Associate Agreement (BAA) is available to all Sentinel Node deployment partners. Our BAA template has been drafted and is currently undergoing review by qualified healthcare counsel prior to finalization.</p>
-            <p style="margin-top: 15px;">The BAA is structured under <strong>45 CFR §§ 164.504(e) and 164.314(a)</strong> and includes EAA-specific language confirming that all PHI remains exclusively on hardware within your physical facility — language no cloud AI vendor can offer.</p>
-            <p style="margin-top: 15px;">To request a copy for your legal team's review, contact: <a href="mailto:marcus@poconoai.com?subject=BAA Request — Pocono AI" style="color: var(--ai-blue); font-weight: bold;">marcus@poconoai.com</a></p>
+        <!-- ── BAA SECTION ── -->
+        <section id="baa" class="baa-section">
+            <h2>Business Associate Agreement (BAA)</h2>
+            <p>A Business Associate Agreement is available to all Sentinel Node deployment partners. Our BAA has been drafted and is currently undergoing review by qualified healthcare counsel prior to finalization. We are making it available now so your legal team can begin review without delay.</p>
+
+            <div class="baa-highlight-row">
+                <div class="baa-highlight">
+                    <div class="bh-label">Regulatory Basis</div>
+                    <div class="bh-value">45 CFR §§ 164.504(e) and 164.314(a) — HIPAA / HITECH Act of 2009</div>
+                </div>
+                <div class="baa-highlight">
+                    <div class="bh-label">Key Distinction</div>
+                    <div class="bh-value">PHI remains exclusively on hardware within your physical facility — language no cloud AI vendor can offer</div>
+                </div>
+                <div class="baa-highlight">
+                    <div class="bh-label">Breach Notification</div>
+                    <div class="bh-value">Security incidents reported within 5 business days; unsecured PHI breaches within 60 calendar days</div>
+                </div>
+                <div class="baa-highlight">
+                    <div class="bh-label">Zero Exfiltration Warranty</div>
+                    <div class="bh-value">Explicit written warranty that all PHI processing occurs exclusively on your hardware — included in the agreement</div>
+                </div>
+                <div class="baa-highlight">
+                    <div class="bh-label">Audit Log Retention</div>
+                    <div class="bh-value">90-day immutable local log, queryable exclusively by your authorized personnel — Pocono AI has zero remote access</div>
+                </div>
+                <div class="baa-highlight">
+                    <div class="bh-label">Governing Law</div>
+                    <div class="bh-value">Commonwealth of Pennsylvania — Monroe County Court of Common Pleas</div>
+                </div>
+            </div>
+
+            <p>Under the Enterprise Autonomy Architecture (EAA), the Sentinel Node operates entirely within your facility on hardware in your physical custody. Because PHI never leaves your building and Pocono AI, LLC has no remote access to your data, the scope of Business Associate obligations is dramatically narrower than with any cloud-based AI vendor.</p>
+
+            <div class="baa-actions">
+                <a href="mailto:marcus@poconoai.com?subject=BAA%20Request%20%E2%80%94%20Pocono%20AI" class="baa-download-btn">
+                    &#8595;&nbsp; Request BAA Draft
+                </a>
+                <a href="mailto:marcus@poconoai.com?subject=BAA%20Legal%20Review%20%E2%80%94%20Pocono%20AI" class="baa-request-btn">
+                    Forward to Legal Team
+                </a>
+            </div>
+
+            <div class="baa-draft-notice">
+                <strong>Draft Notice:</strong> This BAA template is pending final review by qualified healthcare counsel and has not yet been executed. It is provided for your legal team's preliminary review and is subject to revision. Do not treat this as a finalized or executed agreement. Questions: <a href="mailto:marcus@poconoai.com" style="color: var(--ai-blue);">marcus@poconoai.com</a>
+            </div>
         </section>
 
 
+        <!-- ── PILOT SCOPE ── -->
+        <section id="pilot" class="pilot-scope">
+            <h2>Design Partner Pilot — Q3 2026</h2>
+            <p class="pilot-subtitle">One Pennsylvania practice. Thirty days. We measure everything together.</p>
+
+            <div class="pilot-grid">
+                <div class="pilot-cell">
+                    <div class="pc-label">Duration</div>
+                    <div class="pc-value">30 Days</div>
+                    <div class="pc-sub">Active pilot period</div>
+                </div>
+                <div class="pilot-cell">
+                    <div class="pc-label">Hardware</div>
+                    <div class="pc-value">On-Premises 5860</div>
+                    <div class="pc-sub">Installed in your facility</div>
+                </div>
+                <div class="pilot-cell">
+                    <div class="pc-label">Providers</div>
+                    <div class="pc-value">2 Providers</div>
+                    <div class="pc-sub">Enrolled in pilot workflows</div>
+                </div>
+                <div class="pilot-cell">
+                    <div class="pc-label">Primary Metric</div>
+                    <div class="pc-value">Time Saved</div>
+                    <div class="pc-sub">Measured vs. baseline documentation burden</div>
+                </div>
+                <div class="pilot-cell">
+                    <div class="pc-label">Data Handling</div>
+                    <div class="pc-value">Zero Cloud</div>
+                    <div class="pc-sub">PHI never leaves your building</div>
+                </div>
+                <div class="pilot-cell">
+                    <div class="pc-label">BAA</div>
+                    <div class="pc-value">Provided</div>
+                    <div class="pc-sub">Executed before go-live</div>
+                </div>
+            </div>
+
+            <p>The pilot is structured for a single Pennsylvania practice selected as a design partner — meaning your feedback directly shapes the product. We handle installation, configuration, staff orientation, and ongoing support throughout the 30 days. All outputs require Human-in-the-Loop verification by the licensed provider before any clinical use. We collect aggregate time-savings data (no PHI) to refine the deployment for future practices.</p>
+
+            <p>There is no obligation to purchase a full deployment after the pilot. If the data shows time reclaimed, the next conversation becomes straightforward. If it doesn't, you've learned something valuable for free.</p>
+
+            <a href="mailto:marcus@poconoai.com?subject=Design%20Partner%20Pilot%20Application%20%E2%80%94%20Pocono%20AI" class="cta-button" style="margin-top: 10px;">Apply for Design Partner Pilot</a>
+        </section>
+
+
+        <!-- ── INVESTOR RELATIONS ── -->
         <section class="audit-section-blue" style="text-align: center;">
             <h2 style="color: var(--ai-blue); border-bottom: none; margin-top: 0;">Investor Relations</h2>
-            <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 20px;">Pocono AI, LLC is currently raising a pre-seed round. Our investor deck covers the market opportunity, deployment economics, use of funds, and the EAA technical differentiation that no cloud competitor can replicate.</p>
-            <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 30px; font-size: 0.95em;">The deck is available to accredited investors and qualified strategic partners upon request.</p>
-            <a href="mailto:marcus@poconoai.com?subject=Investor Deck Request — Pocono AI" class="cta-button">Request Investor Deck</a>
+            <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 20px;">Pocono AI, LLC is currently raising a pre-seed round of <strong style="color: var(--white);">$750,000</strong>, structured as two equal tranches of $375,000 each. Our data room covers market opportunity, deployment economics, use of funds, and the EAA technical differentiation that no cloud competitor can replicate.</p>
+            <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 16px; font-size: 0.95em;"><strong style="color: var(--white);">Tranche 1 — $375,000 at signing:</strong> Funds CEO co-founder salary, first hardware builds, pilot deployment operations, and BAA finalization.</p>
+            <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 30px; font-size: 0.95em;"><strong style="color: var(--white);">Tranche 2 — $375,000 at 5 signed deployments:</strong> Funds regional scale, ML platform engineering hire, and the 7900 chassis production build. Available to accredited investors and qualified strategic partners upon request.</p>
+            <a href="mailto:marcus@poconoai.com?subject=Investor%20Deck%20Request%20%E2%80%94%20Pocono%20AI" class="cta-button">Request Data Room Access</a>
             <p style="margin-top: 25px; font-size: 0.85em; color: var(--muted);">Responses typically within 24 hours. Direct line: <a href="tel:+15705340602" style="color: var(--ai-blue);">(570) 534-0602</a></p>
         </section>
 
+
+        <!-- ── FOUNDER BIO ── -->
         <section id="founder-bio" class="founder-section">
             <div class="founder-content">
                 <div class="founder-image">
-                    <img src="hero.jpg" alt="Marc, Founder of Pocono AI">
+                    <img src="hero.jpg" alt="Marcus O'Dell, Founder of Pocono AI">
                 </div>
                 <div class="founder-bio">
                     <span class="passion-badge">Founder, CEO &amp; Chief Technologist</span>
-                    <h2>Meet Marc: The Architect of Sovereignty</h2>
-                    <p>An avid reader, a passionate researcher, and a deeply resilient technologist, Marc's philosophy is rooted in a unique intersection of <strong>Psychology (Master's Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
-                    <p>After facing severe, debilitating health challenges that sidelined him for years, Marc utilized AI as the ultimate equalizer. It provided the leverage needed to bridge the physical gap and engineer high-performance architectures directly from bed. His exceptional drive to overcome these constraints is the foundation of Pocono AI, LLC.</p>
-                    <p><em>"I built this out of necessity, and I know exactly what it means to need systems that empower you. Now, my mission is to bring that same uncompromising capability and data sovereignty to medical practices and law offices—allowing professionals to reclaim their time and secure their data, no matter the logistical hurdles."</em></p>
+                    <h2>Marcus O'Dell: The Architect of Sovereignty</h2>
+
+                    <p>I came up as a <strong>systems and database administrator</strong> — a decade-plus of enterprise MySQL, PostgreSQL, MongoDB, Linux hardening, and large-scale data architecture — with a foundation in <strong>Psychology (Master's Degree)</strong> that gave me a deep understanding of how people think and work under pressure. I understood both sides: the humans carrying the cognitive load and the systems meant to support them.</p>
+
+                    <p>Then I became disabled. For five years, contributing at the level I had built my identity around felt impossible. Typing on a keyboard was an exercise in frustration. Typing on my phone was worse. The executive dysfunction that came with my condition made it hard to articulate ideas that I could feel clearly — the words just wouldn't come out right. I watched the world move without me.</p>
+
+                    <p>Voice-to-AI changed that completely. Speaking into my phone, directing an AI, making minor edits to the output — I could architect systems again. I could write again. I could <em>build</em> again. That's not a small thing. For five years I couldn't contribute to the world the way I was built to. Now I can. <strong>AI was my equalizer.</strong></p>
+
+                    <blockquote class="founder-quote">
+                        "I'm developing a companion device — a personal Mini Sentinel Node — that listens to what you're <em>trying</em> to say and outputs it articulately for you. Not everyone will want one. But for those of us who struggle to find the words, it matters enormously. I will donate these devices, free of charge, to anyone who wants one — funded from Pocono AI's after-tax income as we grow. That's a personal commitment, not a marketing line."
+                    </blockquote>
+
+                    <p>The same experience that showed me what AI could do for one person who needed it is what drives the Sentinel Node. An estimated 350,000 Americans die every year from preventable medical errors — many linked directly to physicians not having fast, accurate access to prior documentation. That problem is solvable with the right local infrastructure. I intend to help solve it.</p>
+
+                    <p>I build by speaking into my phone and directing AI-assisted workflows — with minor copy-pastes and manual edits. Every line of this company has come from that process. If you're a clinician buried in EHR work, or an investor who wants to back someone who's built from the ground up with nothing to prove and everything to give: I'd like to talk.</p>
+
+                    <div class="founder-mission-row">
+                        <span class="founder-mission-badge">&#10003; Psychology (M.S.) + 10+ yrs DBA</span>
+                        <span class="founder-mission-badge">&#10003; Disabled founder, building in public</span>
+                        <span class="founder-mission-badge">&#10003; Donating personal devices to those who need them</span>
+                    </div>
                 </div>
                 <div class="dba-stack">
                     <h3>Enterprise Data Stack</h3>
@@ -198,32 +328,32 @@
                         <li><strong>Relational:</strong> PostgreSQL &amp; Oracle</li>
                         <li><strong>Enterprise:</strong> Microsoft SQL Server</li>
                         <li><strong>Systems:</strong> Linux Hardening &amp; Air-Gaps</li>
+                        <li><strong>Vector DB:</strong> Qdrant (RAG pipelines)</li>
+                        <li><strong>AI Stack:</strong> Ollama, Gemma, Llama 3/4</li>
                     </ul>
-                    <p style="font-size: 0.75rem; margin-top: 15px; opacity: 0.7;">*Experienced in building massive architectures for storage, retrieval, and cloud-to-local migration.</p>
+                    <p style="font-size: 0.75rem; margin-top: 15px; opacity: 0.7;">Experienced in building massive architectures for storage, retrieval, and cloud-to-local migration across healthcare and enterprise environments.</p>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
-            <a href="mailto:marcus@poconoai.com?subject=Strategic Trust Inquiry" class="cta-button">Email Direct Inquiry</a>
+            <a href="mailto:marcus@poconoai.com?subject=Strategic%20Trust%20Inquiry" class="cta-button">Email Direct Inquiry</a>
             <p style="margin-top: 30px;"><strong>Direct Strategic Access:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
         </section>
 
     </main>
 
-            <footer>
+    <footer>
         <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
         <p>
             <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
             <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
             <a href="sla.html">Service Level Agreement</a>
         </p>
-        <p><a href="investors.html">Investor Relations</a></p>
     </footer>
 
-
-    <!-- Shared navigation script -->
     <script src="nav.js"></script>
+
 </body>
 </html>
