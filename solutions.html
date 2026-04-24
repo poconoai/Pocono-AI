@@ -62,7 +62,47 @@
 
         /* Footer */
         footer a { color: var(--teal); }
-    </style>
+    
+    /* ── More dropdown ─────────────────────────────────────── */
+    .nav-more { position: relative; }
+    .nav-more-toggle {
+        background: none; border: none; cursor: pointer;
+        color: var(--light-text); font-size: 0.95em;
+        font-family: inherit; padding: 0;
+        display: flex; align-items: center; gap: 4px;
+        transition: color 0.2s;
+    }
+    .nav-more-toggle:hover, .nav-more-toggle.active { color: var(--ai-blue); }
+    .nav-more-toggle::after {
+        content: '▾'; font-size: 0.75em; margin-left: 2px;
+    }
+    .nav-more-menu {
+        display: none; position: absolute; top: calc(100% + 10px);
+        right: 0; background: var(--card-dark);
+        border: 1px solid rgba(0,163,255,0.2);
+        border-radius: 8px; min-width: 160px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        z-index: 2000; overflow: hidden;
+    }
+    .nav-more-menu a {
+        display: block; padding: 12px 18px;
+        color: var(--light-text); text-decoration: none;
+        font-size: 0.92em; transition: background 0.15s, color 0.15s;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-more-menu a:last-child { border-bottom: none; }
+    .nav-more-menu a:hover { background: rgba(0,163,255,0.1); color: var(--white); }
+    .nav-more-menu a.nav-active { color: var(--ai-blue); }
+    .nav-more.open .nav-more-menu { display: block; }
+    /* Mobile: More items flow inline */
+    @media (max-width: 900px) {
+        .nav-more-menu { position: static; box-shadow: none; border: none;
+            border-radius: 0; background: transparent; }
+        .nav-more-menu a { padding: 10px 0 10px 20px; border-bottom: none; }
+        .nav-more-toggle { display: none; }
+        .nav-more .nav-more-menu { display: block; }
+    }
+</style>
 </head>
 <body>
 
@@ -78,11 +118,17 @@
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners &amp; Advisory</a></li>
+                <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html">Specs</a></li>
-                <li><a href="portal.html">Portal</a></li>
-                <li><a href="careers.html">Careers</a></li>
+                <li class="nav-more">
+                    <button class="nav-more-toggle">More</button>
+                    <div class="nav-more-menu">
+                        <a href="portal.html">Portal</a>
+                        <a href="careers.html">Careers</a>
+                        <a href="investors.html">Investors</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
@@ -182,12 +228,30 @@
         <p>
             <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
             <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
-            <a href="sla.html">Service Level Agreement</a>
+            <a href="sla.html">Service Level Agreement</a> &nbsp;|&nbsp;
+            <a href="investors.html">Investors</a>
         </p>
     </footer>
 
     <!-- Shared navigation script -->
     <script src="nav.js"></script>
 
+    <script>
+    // More dropdown toggle
+    (function() {
+        var more = document.querySelector('.nav-more');
+        var btn  = more && more.querySelector('.nav-more-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            more.classList.toggle('open');
+            btn.classList.toggle('active');
+        });
+        document.addEventListener('click', function() {
+            more && more.classList.remove('open');
+            btn  && btn.classList.remove('active');
+        });
+    })();
+    </script>
 </body>
 </html>
