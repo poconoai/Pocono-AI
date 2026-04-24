@@ -3,125 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enterprise Service Level Agreement (SLA) for Pocono AI, LLC hardware and infrastructure deployments.">
+    <meta name="description" content="Enterprise Service Level Agreement for Sentinel Node hardware deployments by Pocono AI, LLC.">
     <title>Service Level Agreement | Pocono AI, LLC</title>
-    
     <meta property="og:title" content="Service Level Agreement | Pocono AI, LLC">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/sla.html">
     <meta name="twitter:card" content="summary">
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-
     <link rel="icon" href="/favicon.ico" sizes="any">
-    
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     <style>
-        :root {
-            --bg-black: #000000;
-            --bg-dark: #051622;
-            --card-dark: #0A2635;
-            --ai-blue: #00A3FF;
-            --teal: #188B96;
-            --white: #FFFFFF;
-            --light-text: #D0DDE6;
-            --alert-red: #e74c3c;
-        }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        
-        header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo { text-decoration: none; font-size: 1.6rem; font-weight: 800; color: var(--white); display: flex; align-items: center; }
-        .logo span { color: var(--ai-blue); margin-left: 5px; }
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
-        .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
-        
-        #nav-menu { display: none; position: absolute; top: 70px; right: 5%; background: var(--bg-black); width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-radius: 0 0 4px 4px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); }
-        #nav-menu.active { display: block; }
-        .nav-links { list-style: none; padding: 0; margin: 0; }
-        .nav-links li a { text-decoration: none; color: var(--white); font-weight: 500; padding: 12px; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .nav-links li:last-child a { border-bottom: none; }
-        @media (min-width: 768px) {
-            .menu-toggle { display: none; }
-            #nav-menu { display: flex; position: static; width: auto; background: transparent; box-shadow: none; border: none; padding: 0; }
-            .nav-links { display: flex; gap: 25px; }
-            .nav-links li a { border: none; padding: 0; transition: color 0.3s ease; }
-            .nav-links li a:hover { color: var(--ai-blue); }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+        main { max-width: 820px; margin: 60px auto; padding: 20px 20px 60px; }
+
+        .doc-card {
+            background: var(--card-dark);
+            border-radius: 10px;
+            padding: 48px;
+            border-top: 5px solid var(--teal);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
-        main { max-width: 800px; margin: 60px auto; padding: 40px; background-color: var(--card-dark); border-radius: 8px; border-top: 4px solid var(--teal); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { color: var(--white); margin-top: 0; font-size: 2.2em; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
-        h2 { color: var(--teal); margin-top: 35px; font-size: 1.4em; }
-        p, li { color: var(--light-text); margin-bottom: 15px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
+        h1 {
+            color: var(--white);
+            margin-top: 0;
+            font-size: 2.2em;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 16px;
+            margin-bottom: 6px;
+        }
+        .doc-meta {
+            color: var(--muted);
+            font-size: 0.85em;
+            margin-bottom: 36px;
+            line-height: 1.8;
+        }
+        .doc-meta strong { color: var(--light-text); }
 
+        h2 {
+            color: var(--teal);
+            margin-top: 40px;
+            font-size: 1.3em;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(24,139,150,0.2);
+        }
+        p { color: var(--light-text); margin-bottom: 14px; font-size: 0.95em; }
+        ul { padding-left: 20px; margin-bottom: 14px; }
+        li { color: var(--light-text); margin-bottom: 10px; font-size: 0.95em; }
+
+        /* Notice box — blue left border */
         .notice-box {
-            background: rgba(0, 163, 255, 0.06);
+            background: rgba(0,163,255,0.06);
             border-left: 4px solid var(--ai-blue);
             border-radius: 0 6px 6px 0;
             padding: 16px 20px;
-            margin: 20px 0;
+            margin: 18px 0;
         }
-        .notice-box p { margin: 0; color: var(--light-text); font-size: 0.95em; }
+        .notice-box p { margin: 0; font-size: 0.92em; }
 
-        .severity-grid {
-            display: grid;
-            gap: 15px;
-            margin: 20px 0;
+        /* Alert box — red left border for critical warnings */
+        .alert-box {
+            background: rgba(231,76,60,0.06);
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            padding: 16px 20px;
+            margin: 18px 0;
         }
+        .alert-box p { margin: 0; font-size: 0.92em; color: var(--light-text); }
+        .alert-box strong { color: #e74c3c; }
+
+        /* Severity cards — stacked, response time inline (original style) */
+        .severity-grid { display: grid; gap: 14px; margin: 22px 0; }
         .severity-card {
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 18px 22px;
+        }
+        .severity-card h3 {
+            margin: 0 0 10px 0;
+            color: var(--white);
+            font-size: 1.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .severity-card h3 .response-time {
+            color: var(--teal);
+            font-size: 0.88em;
+            font-weight: 700;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+        .severity-card.critical h3 .response-time { color: #e74c3c; }
+        .severity-card p { margin: 6px 0 0; font-size: 0.88em; color: var(--light-text); }
+
+        /* Audit log spec box */
+        .audit-box {
             background: rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 6px;
-            padding: 15px 20px;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 18px 0;
         }
-        .severity-card h3 { margin: 0 0 10px 0; color: var(--white); font-size: 1.1em; display: flex; justify-content: space-between;}
-        .severity-card h3 span { color: var(--teal); font-size: 0.9em; }
-        .severity-card.critical h3 span { color: var(--alert-red); }
+        .audit-box .audit-title {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .audit-box ul { margin: 0; padding-left: 18px; }
+        .audit-box li { font-size: 0.88em; margin-bottom: 6px; color: var(--light-text); }
 
-        footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 40px; }
-        footer a { color: var(--teal); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-    
-    /* ── More dropdown ─────────────────────────────────────── */
-    .nav-more { position: relative; }
-    .nav-more-toggle {
-        background: none; border: none; cursor: pointer;
-        color: var(--light-text); font-size: 0.95em;
-        font-family: inherit; padding: 0;
-        display: flex; align-items: center; gap: 4px;
-        transition: color 0.2s;
-    }
-    .nav-more-toggle:hover, .nav-more-toggle.active { color: var(--ai-blue); }
-    .nav-more-toggle::after {
-        content: '▾'; font-size: 0.75em; margin-left: 2px;
-    }
-    .nav-more-menu {
-        display: none; position: absolute; top: calc(100% + 10px);
-        right: 0; background: var(--card-dark);
-        border: 1px solid rgba(0,163,255,0.2);
-        border-radius: 8px; min-width: 160px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-        z-index: 2000; overflow: hidden;
-    }
-    .nav-more-menu a {
-        display: block; padding: 12px 18px;
-        color: var(--light-text); text-decoration: none;
-        font-size: 0.92em; transition: background 0.15s, color 0.15s;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .nav-more-menu a:last-child { border-bottom: none; }
-    .nav-more-menu a:hover { background: rgba(0,163,255,0.1); color: var(--white); }
-    .nav-more-menu a.nav-active { color: var(--ai-blue); }
-    .nav-more.open .nav-more-menu { display: block; }
-    /* Mobile: More items flow inline */
-    @media (max-width: 900px) {
-        .nav-more-menu { position: static; box-shadow: none; border: none;
-            border-radius: 0; background: transparent; }
-        .nav-more-menu a { padding: 10px 0 10px 20px; border-bottom: none; }
-        .nav-more-toggle { display: none; }
-        .nav-more .nav-more-menu { display: block; }
-    }
-</style>
+        /* CTA footer */
+        .cta-wrap {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .cta-wrap p { margin-bottom: 18px; }
+
+        footer a { color: var(--teal); }
+    </style>
 </head>
 <body>
 
@@ -140,12 +149,15 @@
                 <li><a href="partners.html">Partners</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="specs.html">Specs</a></li>
-                <li class="nav-more">
-                    <button class="nav-more-toggle">More</button>
-                    <div class="nav-more-menu">
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">
+                        More <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="more-menu">
                         <a href="portal.html">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
+                        <a href="sitemap.html">Sitemap</a>
                     </div>
                 </li>
             </ul>
@@ -153,58 +165,128 @@
     </header>
 
     <main>
-        <h1>Enterprise Service Level Agreement</h1>
-        <p><strong>Effective Date:</strong> April 2026</p>
-        <p><strong>Covered Infrastructure:</strong> Sentinel Node™ On-Premises Hardware & Local Software Stack</p>
+        <div class="doc-card">
 
-        <h2>1. Zero-Access & Data Custody Declaration</h2>
-        <p>Pocono AI, LLC ("Provider") deploys physically isolated, air-gapped hardware ("Sentinel Node"). At no time does the Provider require, request, or possess remote access to the Sentinel Node or the network on which it resides. The Client retains absolute custody of all data, Protected Health Information (PHI), and legally privileged information processed by the Sentinel Node.</p>
-        <div class="notice-box">
-            <p><strong>HIPAA/HITECH Status:</strong> Because the Provider cannot access, transmit, or store the Client’s data, the Provider is strictly a hardware/software licensor and operates outside the scope of a Business Associate under HIPAA.</p>
-        </div>
-
-        <h2>2. Service Level and Response Times</h2>
-        <p>Support is provided for hardware failures and local software pipeline anomalies. Because the Sentinel Node does not rely on cloud connectivity, traditional "Cloud Uptime" metrics do not apply. Support requests are categorized by the Client upon submission to the Secure Portal:</p>
-
-        <div class="severity-grid">
-            <div class="severity-card critical">
-                <h3>Severity 1 (Critical) <span>2 Hour Response</span></h3>
-                <p><strong>Definition:</strong> Complete hardware failure or localized inference engine crash halting all processing.</p>
-                <p><strong>Resolution Action:</strong> Remote diagnostic guidance or immediate dispatch of replacement hardware (See Section 3).</p>
+            <h1>Enterprise Service Level Agreement</h1>
+            <div class="doc-meta">
+                <strong>Effective Date:</strong> April 2026 &nbsp;&nbsp;|&nbsp;&nbsp;
+                <strong>Last Reviewed:</strong> April 2026<br>
+                <strong>Covered Infrastructure:</strong> Sentinel Node&#8482; On-Premises Hardware &amp; Local Software Stack<br>
+                <strong>Parties:</strong> Pocono AI, LLC (&ldquo;Provider&rdquo;) and the deploying practice or organization (&ldquo;Client&rdquo;)
             </div>
-            <div class="severity-card">
-                <h3>Severity 2 (High) <span>4 Hour Response</span></h3>
-                <p><strong>Definition:</strong> RAG pipeline degradation (e.g., specific document ingestion failure, noticeable latency).</p>
-                <p><strong>Resolution Action:</strong> Provision of a cryptographic software patch or localized database rebuild script.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>1. Zero-Access &amp; Data Custody Declaration</h2>
+            <p>Pocono AI, LLC (&ldquo;Provider&rdquo;) deploys physically isolated, air-gapped hardware (&ldquo;Sentinel Node&rdquo;). At no time does the Provider require, request, or possess remote access to the Sentinel Node or the network on which it resides. The Client retains absolute custody of all data, Protected Health Information (PHI), and legally privileged information processed by the Sentinel Node.</p>
+
+            <div class="notice-box">
+                <p><strong>HIPAA/HITECH Status:</strong> Because the Provider cannot access, transmit, or store the Client&rsquo;s data during standard inference operations, the Provider operates as a hardware and software licensor outside the scope of a Business Associate under HIPAA. A fully executed Business Associate Agreement (BAA) is provided before any authorized on-site maintenance visit that may involve incidental access to the Client&rsquo;s environment.</p>
             </div>
-            <div class="severity-card">
-                <h3>Severity 3 (Standard) <span>24 Hour Response</span></h3>
-                <p><strong>Definition:</strong> Feature inquiries, update requests, or general maintenance questions.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>2. Service Level &amp; Response Times</h2>
+            <p>Support is provided for hardware failures and local software pipeline anomalies. Because the Sentinel Node does not rely on cloud connectivity, traditional &ldquo;Cloud Uptime&rdquo; SLA metrics do not apply. Response time commitments are contingent on the Client maintaining an active, paid support tier. Support requests are categorized by the Client upon submission to the Secure Portal:</p>
+
+            <div class="severity-grid">
+                <div class="severity-card critical">
+                    <h3>Severity 1 &mdash; Critical <span class="response-time">&#9679; 2-Hour Response</span></h3>
+                    <p><strong>Definition:</strong> Complete hardware failure or localized inference engine crash halting all processing for all users.</p>
+                    <p><strong>Resolution:</strong> Remote diagnostic guidance initiated immediately. Dispatch of replacement hardware components (e.g., eGPU, processing node, NVMe array) confirmed within 2 hours. See Section 3 for hardware replacement terms.</p>
+                </div>
+                <div class="severity-card">
+                    <h3>Severity 2 &mdash; High <span class="response-time">&#9679; 4-Hour Response</span></h3>
+                    <p><strong>Definition:</strong> RAG pipeline degradation — specific document ingestion failures, noticeable retrieval latency increase, or partial user access loss.</p>
+                    <p><strong>Resolution:</strong> Provision of a cryptographically signed software patch or localized vector database rebuild script delivered via Secure Portal.</p>
+                </div>
+                <div class="severity-card">
+                    <h3>Severity 3 &mdash; Standard <span class="response-time">&#9679; 24-Hour Response</span></h3>
+                    <p><strong>Definition:</strong> Feature inquiries, model update requests, configuration questions, or general maintenance questions not affecting primary system availability.</p>
+                    <p><strong>Resolution:</strong> Written response via email or Secure Portal ticket.</p>
+                </div>
             </div>
-        </div>
 
-        <h2>3. Hardware Replacement Guarantee</h2>
-        <p>For hardware leased or maintained under an active Pocono AI support tier:</p>
-        <ul>
-            <li><strong>Standard Tier:</strong> Next Business Day (NBD) shipment of replacement components (e.g., eGPU, processing node) via overnight courier.</li>
-            <li><strong>Enterprise Redundancy Tier:</strong> Client is provided a cold-standby "Hot Spare" Sentinel Node on-site. In the event of a Severity 1 failure, Client IT swaps the physical NVMe storage to the Hot Spare for immediate return to operation within 15 minutes.</li>
-        </ul>
+            <div class="notice-box">
+                <p><strong>Support Hours &amp; Tier Dependency:</strong> Response time commitments apply during standard business hours (Mon&ndash;Fri, 9 AM&ndash;6 PM Eastern) for Standard and Clinical SLA subscribers. Sovereign tier subscribers receive priority coverage including weekend Severity 1 response. Response commitments are suspended if the Client&rsquo;s active SLA subscription has lapsed.</p>
+            </div>
 
-        <h2>4. Software, Weights, and Security Updates</h2>
-        <p>To maintain the Enterprise Autonomy Architecture (EAA) and air-gapped security, updates to the Large Language Models (LLMs) or retrieval architecture are <strong>never pushed via the internet</strong>.</p>
-        <ul>
-            <li>Updates are delivered exclusively via cryptographically signed executable packages available in the Secure Portal.</li>
-            <li>It is the sole responsibility of the Client’s IT administration to download, verify the checksum, and manually apply the update to the Sentinel Node via physical media.</li>
-        </ul>
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>3. Hardware Replacement Guarantee</h2>
+            <p>The following guarantees apply to hardware deployed under an active Pocono AI SLA subscription:</p>
+            <ul>
+                <li><strong>Standard Tier:</strong> Next Business Day (NBD) shipment of replacement components (e.g., eGPU, processing node, NVMe storage array) via overnight courier at no additional charge for manufacturing defects within the warranty period.</li>
+                <li><strong>Enterprise Redundancy Tier:</strong> Client is provided a cold-standby &ldquo;Hot Spare&rdquo; Sentinel Node on-site at deployment. In the event of a Severity 1 failure, Client IT swaps the physical NVMe storage arrays to the Hot Spare for immediate return to full operation, targeting restoration within 15 minutes of swap initiation.</li>
+            </ul>
+            <p style="font-size:0.88em; color: var(--muted);">Hardware replacement does not cover physical damage caused by the Client, acts of third parties, or environmental conditions outside standard operating specifications. Underlying manufacturer warranties (Dell ProSupport Plus) apply and are facilitated by the Provider on the Client&rsquo;s behalf.</p>
 
-        <h2>5. "Human-in-the-Loop" Mandate & Limitation of Liability</h2>
-        <p>The Sentinel Node is strictly an assistive administrative and discovery tool.</p>
-        <ul>
-            <li><strong>Mandatory Verification:</strong> The AI system will cite the localized data chunk used to generate any summary or output. A licensed professional (e.g., Physician, Attorney) MUST review and verify all outputs against the cited source before committing the data to an official Electronic Health Record (EHR) or legal filing.</li>
-            <li><strong>No Professional Advice:</strong> Outputs generated by the Sentinel Node do not constitute legal or medical advice.</li>
-        </ul>
-        <p><strong>Liability:</strong> Pocono AI, LLC is not liable for medical malpractice, legal malpractice, misdiagnosis, or erroneous filings resulting from the Client’s failure to verify AI-generated outputs. Maximum liability under this SLA shall not exceed the amount paid for the Sentinel Node deployment in the preceding 12 months.</p>
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>4. Software, Model Weights &amp; Security Updates</h2>
+            <p>To maintain the Enterprise Autonomy Architecture (EAA) and air-gapped security posture, updates to Large Language Models (LLMs), retrieval architecture, or system software are <strong>never pushed via the internet.</strong></p>
+            <ul>
+                <li>Updates are delivered exclusively via cryptographically signed executable packages made available through the Secure Portal.</li>
+                <li>Every update package includes a SHA-256 checksum. The Client&rsquo;s IT administrator must verify this checksum against the value published in the Secure Portal before installation.</li>
+                <li>It is the sole responsibility of the Client&rsquo;s IT administration to download, verify, and manually apply updates to the Sentinel Node via physical media (USB or equivalent).</li>
+                <li>Pocono AI, LLC is not responsible for system vulnerabilities or model drift resulting from the Client&rsquo;s failure to apply published updates in a timely manner.</li>
+            </ul>
 
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>5. Human-in-the-Loop Mandate &amp; Audit Log Specification</h2>
+
+            <div class="alert-box">
+                <p><strong>Mandatory Clinical &amp; Legal Requirement:</strong> The Sentinel Node is strictly an assistive administrative and discovery tool. Outputs generated by the system do not constitute medical advice, clinical diagnosis, legal advice, or legal strategy. All outputs must be verified by a licensed professional before use in any official capacity.</p>
+            </div>
+
+            <p><strong>Mandatory Verification Protocol:</strong> The Sentinel Node cites the specific local document chunk used to generate every summary or output. A licensed professional (Physician, Attorney, or delegated qualified staff member) MUST review and verify all AI-generated outputs against the cited source chunk before committing any output to an official Electronic Health Record (EHR), clinical note, legal filing, or patient care decision.</p>
+
+            <p><strong>No Professional Advice:</strong> Pocono AI, LLC provides infrastructure. The Provider does not practice medicine, provide clinical guidance, provide legal counsel, or render professional opinions of any kind through the Sentinel Node system.</p>
+
+            <p><strong>Audit Log Architecture:</strong> To enforce and support the Human-in-the-Loop requirement, every query session is logged locally on the Sentinel Node hardware and is never transmitted to Pocono AI, LLC or any external party.</p>
+
+            <div class="audit-box">
+                <div class="audit-title">Each Audit Log Entry Captures:</div>
+                <ul>
+                    <li>The verbatim user prompt submitted to the system</li>
+                    <li>The specific local document chunks retrieved by the RAG pipeline, with source file name and page reference</li>
+                    <li>The complete model-generated response</li>
+                    <li>A UTC timestamp and local session identifier</li>
+                    <li>The quantized model version and parameter count active at time of query</li>
+                    <li>The local user account identifier associated with the session</li>
+                </ul>
+            </div>
+            <p>Minimum audit log retention is 90 days on local NVMe storage. The Client is solely responsible for configuring extended retention periods to meet applicable regulatory requirements (HIPAA minimum: 6 years for BAA-related records). Audit logs are accessible to authorized Client administrators via the local interface at any time and are never accessible to the Provider.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>6. Limitation of Liability</h2>
+            <p>Pocono AI, LLC is not liable for medical malpractice, legal malpractice, misdiagnosis, erroneous patient care decisions, or erroneous legal filings resulting from the Client&rsquo;s use of, or failure to verify, AI-generated outputs against the cited source data chunks provided by the system.</p>
+            <p><strong>Maximum Liability Cap:</strong> In no event shall Pocono AI, LLC&rsquo;s total aggregate liability to the Client under this SLA — for any cause whatsoever and regardless of the form of action — exceed the total amount paid by the Client to Pocono AI, LLC for the Sentinel Node deployment and active SLA subscription in the twelve (12) months immediately preceding the claim.</p>
+            <p><strong>Exclusions:</strong> Pocono AI, LLC shall not be liable for: (a) indirect, incidental, consequential, special, or punitive damages of any kind; (b) loss of revenue, profits, or business opportunities; (c) data loss resulting from the Client&rsquo;s failure to maintain independent local backups; or (d) damages resulting from the Client&rsquo;s failure to apply available security updates.</p>
+            <p>The Client explicitly acknowledges that the Sentinel Node is a workflow augmentation tool operating under a mandatory Human-in-the-Loop protocol, and that all final professional judgments — clinical, legal, and administrative — remain the sole responsibility of the licensed professional operating the system.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>7. Force Majeure</h2>
+            <p>Neither party shall be held liable for delays or failures in performance resulting from causes beyond their reasonable control, including but not limited to: acts of God, natural disasters, power grid failures, government actions, supply chain disruptions affecting hardware component availability, or other events that make performance commercially impracticable. The affected party shall notify the other party in writing as soon as practicable and shall resume performance as quickly as reasonably possible.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>8. Dispute Resolution</h2>
+            <p>In the event of a dispute arising under this SLA, the parties agree to first attempt good-faith resolution through direct negotiation between authorized representatives, with a minimum 30-day negotiation period before either party may initiate formal proceedings.</p>
+            <p>If negotiation fails, the parties agree to non-binding mediation administered by a mutually agreed mediator in Pennsylvania before resorting to litigation. The cost of mediation shall be shared equally between the parties.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>9. Governing Law &amp; Jurisdiction</h2>
+            <p>This SLA is governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law principles. Any legal action brought solely under this SLA — and not under a separately executed Deployment &amp; Services Agreement — shall be brought in the state or federal courts located within the Commonwealth of Pennsylvania.</p>
+            <p>Clients requiring their home-state jurisdiction or federal arbitration clauses may negotiate alternative governing law terms in the separately executed Deployment &amp; Services Agreement signed at time of procurement.</p>
+
+            <!-- ══════════════════════════════════════════════ -->
+            <h2>10. Amendments &amp; Modifications</h2>
+            <p>Pocono AI, LLC reserves the right to update this SLA with reasonable written notice of not less than 30 days delivered to the Client&rsquo;s designated contact on file. Continued use of the Sentinel Node system following the notice period constitutes acceptance of the updated terms. Material changes to response time commitments, liability caps, or hardware replacement terms require written acknowledgment from the Client before taking effect.</p>
+            <p>No amendment, modification, or waiver of any provision of this SLA shall be valid unless made in writing and signed by an authorized representative of both parties.</p>
+
+            <div class="cta-wrap">
+                <p>Questions about deployment, support tiers, the BAA, or this SLA?</p>
+                <a href="mailto:marcus@poconoai.com?subject=SLA Inquiry — Pocono AI" class="cta-button">Email Direct Inquiry</a>
+                <p style="margin-top: 20px; font-size: 0.88em; color: var(--muted);">Direct line: <a href="tel:+15705340602" style="color: var(--ai-blue);">(570) 534-0602</a> &nbsp;|&nbsp; Responses within 24 hours</p>
+            </div>
+
+        </div><!-- end doc-card -->
     </main>
 
     <footer>
@@ -212,45 +294,13 @@
         <p>
             <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
             <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
-            <a href="sla.html">Service Level Agreement</a> &nbsp;|&nbsp;
-            <a href="investors.html">Investors</a>
+            <a href="sla.html">Service Level Agreement</a>
         </p>
+        <p><a href="investors.html">Investor Relations</a></p>
     </footer>
 
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const spans = menuToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    </script>
-    <script>
-    // More dropdown toggle
-    (function() {
-        var more = document.querySelector('.nav-more');
-        var btn  = more && more.querySelector('.nav-more-toggle');
-        if (!btn) return;
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            more.classList.toggle('open');
-            btn.classList.toggle('active');
-        });
-        document.addEventListener('click', function() {
-            more && more.classList.remove('open');
-            btn  && btn.classList.remove('active');
-        });
-    })();
-    </script>
+    <!-- Shared navigation script -->
     <script src="nav.js"></script>
+
 </body>
 </html>
