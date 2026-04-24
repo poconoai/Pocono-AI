@@ -168,12 +168,50 @@
             </div>
         </div>
 
-        <h2 class="section-header">04 · High-Liability Safety</h2>
+        <h2 class="section-header">04 · Document Sanitization Pipeline</h2>
+        <div class="highlight-section">
+            <p style="color: var(--light-text); font-size: 1.0em; margin-bottom: 20px; line-height: 1.75;">We do not blindly ingest bad data. Before any document reaches the RAG vectorization layer, it passes through a local preprocessing pipeline designed to enforce data quality and protect the integrity of every AI output.</p>
+            <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr));">
+                <div>
+                    <h3 style="color: var(--teal); margin-top: 0; font-size: 1.1em;">Phase 00 · Local OCR Microservice</h3>
+                    <p style="font-size: 0.95em;">Every document — including scanned faxes, handwritten notes, and legacy PDFs — is processed through a locally hosted OCR engine (Tesseract / NVIDIA Ada vision pipeline) before vectorization. No document is assumed to be machine-readable until verified.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--teal); margin-top: 0; font-size: 1.1em;">Confidence Scoring &amp; Quarantine</h3>
+                    <p style="font-size: 0.95em;">Each extraction is scored for OCR confidence. Documents falling below the 95% extraction threshold are refused by the vectorizer and routed to a secure Quarantine Dashboard for manual human review — mathematically preventing hallucinations from corrupted source data.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--teal); margin-top: 0; font-size: 1.1em;">The Guarantee</h3>
+                    <p style="font-size: 0.95em;">The Sentinel Node will never hallucinate from a bad scan. If a fax is unreadable, the system refuses to ingest it and flags it for staff verification. Clean data in. Cited, auditable answers out.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-header">05 · Operational Continuity Architecture</h2>
+        <div class="highlight-section" style="border-left-color: var(--teal);">
+            <p style="color: var(--light-text); font-size: 1.0em; margin-bottom: 20px; line-height: 1.75;">A sovereign deployment is only as strong as its uptime guarantee. Pocono AI engineers operational continuity through structural redundancy and enterprise hardware partnerships — not through the physical presence of a technician.</p>
+            <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr));">
+                <div>
+                    <h3 style="color: var(--ai-blue); margin-top: 0; font-size: 1.1em;">Active-Passive Twin Node Model</h3>
+                    <p style="font-size: 0.95em;">Enterprise deployments configure two nodes in a high-availability active-passive cluster. If the primary node experiences a hardware fault, the passive node absorbs the query load seamlessly — with zero workflow interruption to clinical or legal staff.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--ai-blue); margin-top: 0; font-size: 1.1em;">Dell Enterprise Support (Target SLA)</h3>
+                    <p style="font-size: 0.95em;">Our hardware specification roadmap targets Dell ProSupport Plus coverage on every Sentinel Node — providing 4-hour on-site parts and labor from Dell's global logistics network. Pocono AI acts as the software and RAG layer; Dell acts as the physical logistics arm.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--ai-blue); margin-top: 0; font-size: 1.1em;">The Guarantee</h3>
+                    <p style="font-size: 0.95em;">"Pocono AI guarantees zero workflow interruption not by rushing a technician to your clinic, but through local active-passive redundancy backed by enterprise hardware support SLA." This is continuity by architecture, not heroics.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-header">06 · High-Liability Safety</h2>
         <div class="highlight-section">
             <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px,1fr));">
                 <div>
                     <h3 style="color: var(--white); margin-top: 0; font-size: 1.1em;">Source-Cited Responses</h3>
-                    <p style="font-size: 0.95em;">The system forces the generative model to draw only from your explicitly provided records, neutralizing open-ended hallucinations.</p>
+                    <p style="font-size: 0.95em;">The system forces the generative model to draw only from your explicitly provided, sanitized records — neutralizing open-ended hallucinations at the architecture level.</p>
                 </div>
                 <div>
                     <h3 style="color: var(--white); margin-top: 0; font-size: 1.1em;">Immutable Audit Log</h3>
