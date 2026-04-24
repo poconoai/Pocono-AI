@@ -140,6 +140,21 @@
 
     <main>
 
+        <!-- ── ARCHITECTURE DIAGRAM ── -->
+        <section style="margin: 40px 0;">
+            <h2 style="color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; font-size: 1.6em; margin-bottom: 6px;">Data Flow — Zero-Exfiltration Pipeline</h2>
+            <p style="color: var(--light-text); font-size: 0.95em; margin-bottom: 20px;">Every query, every inference, every audit log entry stays inside your facility. The diagram below shows exactly how data moves — and what is permanently blocked.</p>
+            <div style="background: var(--card-dark); border-radius: 10px; border: 1px solid rgba(24,139,150,0.3); padding: 10px; overflow-x: auto;">
+                <img src="architecture-diagram.svg"
+                     alt="Sentinel Node Zero-Exfiltration Architecture Diagram — showing data flow from Provider through Local UI to Sentinel Node, Vector Database, RAID Storage and Audit Log, with Internet access permanently blocked"
+                     style="width: 100%; max-width: 860px; display: block; margin: 0 auto;"
+                     loading="lazy">
+            </div>
+            <p style="font-size: 0.78em; color: var(--muted); margin-top: 10px; font-style: italic; text-align: center;">All processing occurs on hardware within your facility. Zero outbound internet connections during inference. USB-only cryptographically signed updates. HIPAA §164.312 audit log compliance.</p>
+        </section>
+
+
+
         <section class="hero-section">
             <span class="hero-tagline">Sentinel Node · Architecture</span>
             <h1>Sovereign by Design</h1>

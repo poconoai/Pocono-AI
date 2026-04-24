@@ -1,0 +1,189 @@
+<svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pocono AI Sentinel Node — Zero-Exfiltration Architecture Diagram">
+  <title>Sentinel Node Zero-Exfiltration Architecture</title>
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#051622;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0A2635;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D3347;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#051622;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" style="stop-color:#188B96;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#051622;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" style="stop-color:#00A3FF;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#051622;stop-opacity:1"/>
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#00A3FF"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#188B96"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C0392B"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="860" height="520" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- Title -->
+  <text x="430" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF" letter-spacing="1">SENTINEL NODE — ZERO-EXFILTRATION ARCHITECTURE</text>
+  <text x="430" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7A9AAA" letter-spacing="0.5">Enterprise Autonomy Architecture (EAA) · Pocono AI, LLC</text>
+  <line x1="60" y1="62" x2="800" y2="62" stroke="#188B96" stroke-width="1" opacity="0.4"/>
+
+  <!-- ── FACILITY BOUNDARY ─────────────────────────────── -->
+  <rect x="120" y="76" width="600" height="372" rx="10" fill="url(#tealGrad)" stroke="#188B96" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="136" y="96" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#188B96" letter-spacing="1.5">YOUR FACILITY — PHYSICAL BOUNDARY</text>
+
+  <!-- ── PROVIDER / USER ────────────────────────────────── -->
+  <rect x="30" y="200" width="100" height="80" rx="8" fill="url(#nodeGrad)" stroke="#00A3FF" stroke-width="1.5"/>
+  <!-- person icon -->
+  <circle cx="80" cy="222" r="10" fill="none" stroke="#00A3FF" stroke-width="1.5"/>
+  <path d="M62,248 Q80,236 98,248" fill="none" stroke="#00A3FF" stroke-width="1.5"/>
+  <text x="80" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">PROVIDER</text>
+  <text x="80" y="274" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">Physician / Attorney</text>
+
+  <!-- Arrow: Provider → Local UI -->
+  <line x1="130" y1="240" x2="178" y2="240" stroke="#00A3FF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="154" y="234" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">LAN only</text>
+
+  <!-- ── LOCAL UI ────────────────────────────────────────── -->
+  <rect x="180" y="200" width="110" height="80" rx="8" fill="url(#nodeGrad)" stroke="#00A3FF" stroke-width="1.5"/>
+  <rect x="196" y="218" width="78" height="44" rx="3" fill="none" stroke="#00A3FF" stroke-width="1.2"/>
+  <line x1="196" y1="228" x2="274" y2="228" stroke="#00A3FF" stroke-width="0.8"/>
+  <text x="235" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">▶</text>
+  <text x="235" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">LOCAL UI</text>
+  <text x="235" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">On-prem browser</text>
+
+  <!-- Arrow: Local UI → Sentinel Node -->
+  <line x1="290" y1="240" x2="338" y2="240" stroke="#00A3FF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="314" y="234" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">encrypted</text>
+
+  <!-- ── SENTINEL NODE (central) ─────────────────────────── -->
+  <rect x="340" y="100" width="180" height="300" rx="10" fill="url(#nodeGrad)" stroke="#188B96" stroke-width="2" filter="url(#glow)"/>
+  <rect x="340" y="100" width="180" height="6" rx="3" fill="#188B96"/>
+  <text x="430" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">SENTINEL NODE</text>
+  <text x="430" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#188B96" letter-spacing="0.5">NVIDIA RTX Ada · Intel Xeon</text>
+  <line x1="356" y1="146" x2="504" y2="146" stroke="#188B96" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- LLM Inference block inside node -->
+  <rect x="356" y="154" width="148" height="52" rx="5" fill="rgba(0,163,255,0.1)" stroke="#00A3FF" stroke-width="1"/>
+  <text x="430" y="172" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#00A3FF">LOCAL LLM INFERENCE</text>
+  <text x="430" y="184" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Ollama · Llama 3/4 · Gemma</text>
+  <text x="430" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">Zero outbound API calls</text>
+
+  <!-- RAG / Vector DB block -->
+  <rect x="356" y="216" width="148" height="52" rx="5" fill="rgba(24,139,150,0.1)" stroke="#188B96" stroke-width="1"/>
+  <text x="430" y="234" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#188B96">VECTOR DATABASE</text>
+  <text x="430" y="246" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Qdrant · Local RAG Pipeline</text>
+  <text x="430" y="258" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">Sub-second retrieval · &lt;1s query</text>
+
+  <!-- RAID Storage block -->
+  <rect x="356" y="278" width="148" height="52" rx="5" fill="rgba(0,163,255,0.07)" stroke="#00A3FF" stroke-width="1"/>
+  <text x="430" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#00A3FF">HARDWARE RAID STORAGE</text>
+  <text x="430" y="308" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Array 1: OS · Array 2: PHI Data</text>
+  <text x="430" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">AES-256 · NVMe Enterprise SSD</text>
+
+  <!-- Audit Log block -->
+  <rect x="356" y="340" width="148" height="48" rx="5" fill="rgba(24,139,150,0.07)" stroke="#188B96" stroke-width="1"/>
+  <text x="430" y="358" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#188B96">IMMUTABLE AUDIT LOG</text>
+  <text x="430" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">90-day retention · Prompt + Output</text>
+  <text x="430" y="382" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">Local access only · HIPAA §164.312</text>
+
+  <!-- Arrow back: Sentinel Node → Local UI (response) -->
+  <line x1="340" y1="252" x2="292" y2="252" stroke="#188B96" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="316" y="264" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#188B96">cited results</text>
+
+  <!-- ── HITL VERIFICATION ───────────────────────────────── -->
+  <rect x="180" y="318" width="110" height="72" rx="8" fill="url(#nodeGrad)" stroke="#188B96" stroke-width="1.5"/>
+  <text x="235" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">HITL REVIEW</text>
+  <text x="235" y="353" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#188B96">Human-in-the-Loop</text>
+  <line x1="196" y1="360" x2="274" y2="360" stroke="#188B96" stroke-width="0.6" opacity="0.4"/>
+  <text x="235" y="373" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">Provider verifies</text>
+  <text x="235" y="384" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#7A9AAA">all cited outputs</text>
+
+  <!-- Arrow: Local UI → HITL -->
+  <line x1="235" y1="280" x2="235" y2="316" stroke="#188B96" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+
+  <!-- Arrow: HITL → Provider -->
+  <line x1="180" y1="354" x2="132" y2="290" stroke="#188B96" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="145" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#188B96">approved</text>
+
+  <!-- ── USB UPDATE PATH ─────────────────────────────────── -->
+  <rect x="560" y="148" width="130" height="64" rx="8" fill="url(#nodeGrad)" stroke="#00A3FF" stroke-width="1.5"/>
+  <text x="625" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">USB UPDATE</text>
+  <text x="625" y="181" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Cryptographically signed</text>
+  <text x="625" y="193" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">SHA-256 verified · Air-gap safe</text>
+  <text x="625" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#7A9AAA">No network required</text>
+
+  <!-- Arrow: USB → Sentinel Node -->
+  <line x1="560" y1="180" x2="522" y2="200" stroke="#00A3FF" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrowBlue)"/>
+  <text x="544" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#00A3FF">manual only</text>
+
+  <!-- ── EHR READ-ONLY ───────────────────────────────────── -->
+  <rect x="560" y="248" width="130" height="64" rx="8" fill="url(#nodeGrad)" stroke="#188B96" stroke-width="1.5"/>
+  <text x="625" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">EHR / FHIR</text>
+  <text x="625" y="281" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Read-only HL7/FHIR pull</text>
+  <text x="625" y="293" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">Epic · Athena · eCW</text>
+  <text x="625" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#7A9AAA">No write access · LAN only</text>
+
+  <!-- Arrow: EHR → Sentinel Node -->
+  <line x1="560" y1="280" x2="522" y2="270" stroke="#188B96" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="544" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#188B96">ingest only</text>
+
+  <!-- ── COMPLIANCE OFFICER ─────────────────────────────── -->
+  <rect x="560" y="348" width="130" height="64" rx="8" fill="url(#nodeGrad)" stroke="#188B96" stroke-width="1.5"/>
+  <text x="625" y="368" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF">COMPLIANCE OFFICER</text>
+  <text x="625" y="381" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Queries audit log locally</text>
+  <text x="625" y="393" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#7A9AAA">No Pocono AI remote access</text>
+  <text x="625" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#7A9AAA">HIPAA §164.312(b)</text>
+
+  <!-- Arrow: Audit Log → Compliance Officer -->
+  <line x1="522" y1="370" x2="560" y2="378" stroke="#188B96" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+
+  <!-- ── INTERNET / CLOUD BARRIER ────────────────────────── -->
+  <rect x="726" y="150" width="110" height="250" rx="8" fill="rgba(192,57,43,0.08)" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="781" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#C0392B" letter-spacing="0.5">INTERNET</text>
+  <text x="781" y="189" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#C0392B">CLOUD AI</text>
+  <!-- Cloud shape suggestion -->
+  <ellipse cx="781" cy="240" rx="32" ry="22" fill="none" stroke="#C0392B" stroke-width="1" opacity="0.5"/>
+  <ellipse cx="760" cy="248" rx="18" ry="14" fill="none" stroke="#C0392B" stroke-width="1" opacity="0.5"/>
+  <ellipse cx="802" cy="248" rx="18" ry="14" fill="none" stroke="#C0392B" stroke-width="1" opacity="0.5"/>
+  <rect x="748" y="250" width="66" height="18" fill="rgba(192,57,43,0.08)"/>
+  <!-- No entry symbol -->
+  <circle cx="781" cy="318" r="20" fill="none" stroke="#C0392B" stroke-width="2.5"/>
+  <line x1="766" y1="303" x2="796" y2="333" stroke="#C0392B" stroke-width="2.5"/>
+  <text x="781" y="358" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#C0392B">ZERO EGRESS</text>
+  <text x="781" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#C0392B">No PHI leaves</text>
+  <text x="781" y="382" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#C0392B">the facility</text>
+
+  <!-- Blocked arrow: trying to go to internet but blocked -->
+  <line x1="694" y1="250" x2="724" y2="250" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <line x1="716" y1="244" x2="724" y2="250" stroke="#C0392B" stroke-width="1.5"/>
+  <line x1="716" y1="256" x2="724" y2="250" stroke="#C0392B" stroke-width="1.5"/>
+  <text x="708" y="242" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#C0392B">BLOCKED</text>
+
+  <!-- ── LEGEND ──────────────────────────────────────────── -->
+  <rect x="30" y="456" width="800" height="50" rx="6" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Blue arrow -->
+  <line x1="50" y1="481" x2="80" y2="481" stroke="#00A3FF" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="88" y="485" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Query / Data Flow (LAN only)</text>
+  <!-- Teal arrow -->
+  <line x1="230" y1="481" x2="260" y2="481" stroke="#188B96" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <text x="268" y="485" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">AI Response + Audit Trail</text>
+  <!-- Dashed blue -->
+  <line x1="420" y1="481" x2="450" y2="481" stroke="#00A3FF" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrowBlue)"/>
+  <text x="458" y="485" font-family="Arial, sans-serif" font-size="8" fill="#B0C8D4">Manual USB Update (physical only)</text>
+  <!-- Red dashed -->
+  <line x1="630" y1="481" x2="660" y2="481" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="668" y="485" font-family="Arial, sans-serif" font-size="8" fill="#C0392B">Blocked — Zero Internet Egress</text>
+</svg>
