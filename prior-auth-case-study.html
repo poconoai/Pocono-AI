@@ -53,6 +53,22 @@
         .references li a { color: var(--teal); word-break: break-all; }
 
         footer a { color: var(--teal); }
+        /* Nav dropdown link protection — overrides any page-local a rules */
+        header .nav-dropdown-menu a {
+            color: var(--white) !important;
+            background: transparent !important;
+            text-decoration: none !important;
+            display: block;
+            font-family: 'Syne', sans-serif;
+        }
+        header .nav-dropdown-menu a:hover {
+            color: var(--ai-blue) !important;
+            background: rgba(255,255,255,0.04) !important;
+        }
+        header .nav-links > li > a {
+            color: var(--white) !important;
+            text-decoration: none !important;
+        }
     </style>
 </head>
 <body>
