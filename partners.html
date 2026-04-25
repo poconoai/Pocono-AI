@@ -23,12 +23,14 @@
         /* ── PARTNERS-SPECIFIC STYLES ONLY ── */
 
         /* System font — matches original */
-        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
         /* Hero */
         .hero-section { text-align: center; padding: 60px 10px 50px; }
         .hero-tagline { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.9em; margin-bottom: 20px; display: block; }
-        .hero-section h1 { font-size: clamp(1.8rem, 5vw, 3rem); color: var(--white); line-height: 1.1; margin: 0 0 20px 0; font-family: 'Syne', sans-serif; font-weight: 700; }
+        .hero-section h1 { font-size: clamp(1.8rem, 5vw, 3rem); color: var(--white); line-height: 1.1; margin: 0 0 20px 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
         .hero-section p { font-size: 1.2em; color: var(--light-text); max-width: 700px; margin: 0 auto 35px; }
 
         /* Section headings */
@@ -106,7 +108,6 @@
                         <a href="portal.html">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
-                        <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="sitemap.html">Sitemap</a>
                     </div>
                 </li>
@@ -169,12 +170,12 @@
         </div>
 
         <section class="pilot-section">
-            <h2 style="margin-top: 0; color: var(--teal); border: none;">Paid Proof-of-Value Engagement</h2>
-            <p style="color: var(--light-text); max-width: 700px; margin: 0 auto 20px;">We do not run speculative free trials with sensitive compliance data. Pocono AI engages in structured 60-Day Paid Proof-of-Value (POV) deployments. The engagement fee is <strong style="color: var(--white);">$5,000 + hardware cost</strong> — establishing a professional framework, covering architecture assessment and RAG configuration, and applying in full toward your long-term deployment contract upon conversion.</p>
+            <h2 style="margin-top: 0; color: var(--teal); border: none;">Inaugural Pilot Partnership</h2>
+            <p style="color: var(--light-text); max-width: 700px; margin: 0 auto 20px;">We are currently seeking visionary regional medical or legal practices to serve as our Inaugural Pilot Partners. Pilot partners receive the Sentinel Node hardware at cost and a significantly reduced, lifetime enterprise SLA.</p>
 
             <details>
                 <summary>
-                    View the Zero-Integration Clinical POV Roadmap (60-Day Paid Proof-of-Value)
+                    View the Zero-Integration Clinical Pilot Roadmap (60-Day POC)
                     <span style="font-size: 1.2em;">▼</span>
                 </summary>
                 <div class="details-body">
@@ -202,8 +203,8 @@
                         <strong style="color: var(--white);">The Proof is in the Packets:</strong> We offer a 30-minute technical walkthrough for your IT and security teams, including a live network packet capture ("tcpdump") diagnostic to demonstrate zero network exfiltration during model inference.
                     </div>
 
-                    <h3 class="details-h3">The 60-Day Paid Proof-of-Value Deployment</h3>
-                    <p>To align with strict hospital and legal data custody protocols, we structure every engagement as a <strong>60-Day Paid Proof-of-Value (POV)</strong>. The $5,000 engagement fee covers architecture assessment, local RAG configuration, document sanitization pipeline setup, and Human-in-the-Loop workflow calibration. Hardware is purchased separately — ensuring your organization retains 100% physical ownership of the infrastructure and all processed data from day one. Upon conversion to a long-term SLA contract, the $5,000 POV fee is applied in full to your setup cost.</p>
+                    <h3 class="details-h3">Next Steps: The 60-Day Paid Proof of Concept</h3>
+                    <p>To align with strict hospital data custody protocols, we structure our validation as a <strong>60-Day Paid Proof of Concept (POC)</strong>. Rather than loaning equipment, the clinic purchases the Sentinel Node hardware appliance upfront. This ensures your organization retains 100% physical ownership of the infrastructure and any processed data from day one.</p>
                     <p>During this 60-day period, we actively measure the delta in minutes spent per chart review before and after deployment. If the clinical ROI aligns with your baseline metrics, the hardware is already in place, allowing us to seamlessly transition into a long-term software licensing agreement and broader Epic integration scoping.</p>
 
                     <div style="text-align: center; margin-top: 30px;">
@@ -222,7 +223,7 @@
 
         <section id="contact" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Request Technical Briefing</h2>
-            <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a technical briefing regarding your local AI deployment or Paid Proof-of-Value engagement.</p>
+            <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a technical briefing regarding your local AI deployment or Pilot Program participation.</p>
 
             <form action="mailto:marcus@poconoai.com?subject=Strategic Inquiry via PoconoAI.com" method="post" enctype="text/plain" style="text-align: left; max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
                 <label for="name" style="color: var(--light-text); font-weight: bold; display: block; margin-bottom: 5px;">Name / Organization:</label>
@@ -253,6 +254,7 @@
         </p>
         <p><a href="investors.html">Investor Relations</a></p>
     </footer>
+
 
     <!-- Shared navigation script -->
     <script src="nav.js"></script>

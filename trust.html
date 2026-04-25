@@ -23,10 +23,13 @@
         /* ── TRUST-SPECIFIC STYLES ONLY ── */
 
         /* System font — matches original */
-        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-        h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); text-align: center; color: var(--white); margin-top: 20px; font-family: 'Syne', sans-serif; font-weight: 700; }
-        .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 40px; font-family: 'Syne', sans-serif; }
+        /* Page title — system font for sharp, professional rendering */
+        h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); text-align: center; color: var(--white); margin-top: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 700; }
+        .trust-intro { text-align: center; color: var(--ai-blue); font-weight: bold; font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
 
         /* Glossary */
         .glossary-section { margin: 60px 0; }
@@ -92,7 +95,6 @@
                         <a href="portal.html">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
-                        <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="sitemap.html">Sitemap</a>
                     </div>
                 </li>
@@ -123,14 +125,6 @@
                 <div class="glossary-card">
                     <h3>Force Multiplier Protocol</h3>
                     <p>AI-augmented management infrastructure that bridges operational gaps, ensuring service continuity regardless of individual bandwidth or physical constraints.</p>
-                </div>
-                <div class="glossary-card">
-                    <h3>ABA Rule 1.6 — Legal Confidentiality</h3>
-                    <p>The attorney's obligation to make reasonable efforts to prevent unauthorized disclosure of client information. Hardware custody — where client data never leaves your building — satisfies this standard by architecture, not by policy.</p>
-                </div>
-                <div class="glossary-card">
-                    <h3>Data Processing Agreement (DPA)</h3>
-                    <p>The legal practice equivalent of a healthcare BAA. Pocono AI provides a DPA scoped to law firm data handling — covering work product, privileged communications, and discovery materials — for firms requiring formal vendor agreements.</p>
                 </div>
             </div>
         </section>
@@ -166,6 +160,7 @@
             <p style="margin-top: 15px;">This protocol demonstrates architectural zero exfiltration during normal operation in our test environment. It does not constitute a HIPAA certification or guarantee against misconfiguration by the customer. Your team maintains physical control and audit logs.</p>
         </section>
 
+
         <section class="audit-section" style="border-color: var(--ai-blue); margin-top: 40px;">
             <h2 style="color: var(--ai-blue);">Business Associate Agreement (BAA)</h2>
             <p>Under the Enterprise Autonomy Architecture (EAA), the Sentinel Node operates entirely within your facility on hardware in your physical custody. Because PHI never leaves your building and Pocono AI, LLC has no remote access to your data, the scope of Business Associate obligations is dramatically narrower than with any cloud-based AI vendor. As we expand to include optional cloud-connected features and deeper EHR integrations, a fully executed BAA will become a standard requirement for all deployments.</p>
@@ -174,30 +169,6 @@
             <p style="margin-top: 15px;">To request a copy for your legal team's review, contact: <a href="mailto:marcus@poconoai.com?subject=BAA Request — Pocono AI" style="color: var(--ai-blue); font-weight: bold;">marcus@poconoai.com</a></p>
         </section>
 
-        <section class="audit-section" style="border-color: var(--teal); margin-top: 40px;">
-            <h2 style="color: var(--teal);">Legal Practice Compliance — Attorney-Client Privilege &amp; ABA Rule 1.6</h2>
-            <p>For law firms and solo practitioners, the governing confidentiality standard is not HIPAA — it is <strong>ABA Model Rule 1.6</strong> (and its state equivalents), which requires attorneys to make reasonable efforts to prevent the unauthorized disclosure of information relating to the representation of a client. The 2012 ABA Ethics Opinion 477R extended this obligation explicitly to electronic communications and cloud-based systems.</p>
-            <p style="margin-top: 15px;">Cloud AI vendors create a structural conflict with Rule 1.6: sending privileged discovery documents, work product, or client communications to an external inference API constitutes transmission of confidential information to a third-party system outside your direct control. Whether or not the vendor claims confidentiality, the data has left your custody. That exposure exists regardless of what their terms of service say.</p>
-            <p style="margin-top: 15px;">The Sentinel Node eliminates this conflict by architecture. Discovery documents, deposition summaries, case strategy memos, and privileged communications never leave your physical office network. The inference engine runs on hardware in your building, on your asset register, under your IT team's control. There is no transmission event. There is no third-party system. There is no disclosure.</p>
-            <ul class="audit-list" style="margin-top: 15px;">
-                <li><strong>Rule 1.6 compliance:</strong> Zero transmission of client information to external systems during inference.</li>
-                <li><strong>Work product protection:</strong> All AI-generated summaries and retrieved document chunks remain on local storage, never uploaded or logged externally.</li>
-                <li><strong>Audit trail:</strong> Every query, retrieval, and generation is logged locally — providing a defensible record for malpractice or ethics review if ever required.</li>
-                <li><strong>Data Processing Agreement:</strong> For law firms requiring a formal DPA in lieu of a healthcare BAA, contact us for the appropriate agreement structure scoped to legal practice data handling.</li>
-            </ul>
-            <p style="margin-top: 15px;">To discuss legal practice deployment or request a DPA template: <a href="mailto:marcus@poconoai.com?subject=Legal Practice DPA Request — Pocono AI" style="color: var(--teal); font-weight: bold;">marcus@poconoai.com</a></p>
-        </section>
-
-        <section class="audit-section-blue" style="margin-top: 40px;">
-            <h2 style="color: var(--ai-blue);">EAA &amp; Regulatory Framework Alignment</h2>
-            <p>Enterprise Autonomy Architecture (EAA) is Pocono AI's term for a hardware-enforced data custody model. Its principles are grounded in established regulatory and security frameworks:</p>
-            <ul class="audit-list" style="margin-top: 15px;">
-                <li><strong>HIPAA Security Rule — 45 CFR § 164.312:</strong> EAA satisfies the Technical Safeguards requirement for access controls and audit controls by keeping all PHI on hardware the Covered Entity physically controls.</li>
-                <li><strong>NIST SP 800-53 (Rev. 5) — SC-7 Boundary Protection:</strong> The air-gapped VLAN architecture and default-deny firewall posture map directly to the boundary protection controls required for high-impact systems.</li>
-                <li><strong>NIST Zero Trust Architecture (SP 800-207):</strong> The "never trust, always verify" principle is enforced at the physical layer — no implicit trust is extended to any external network or vendor system during inference.</li>
-                <li><strong>ABA Model Rule 1.6 (Legal):</strong> Hardware custody satisfies the "reasonable measures" standard for protecting electronically stored client information from unauthorized disclosure.</li>
-            </ul>
-        </section>
 
         <section class="audit-section-blue" style="text-align: center;">
             <h2 style="color: var(--ai-blue); border-bottom: none; margin-top: 0;">Investor Relations</h2>
@@ -250,6 +221,7 @@
         </p>
         <p><a href="investors.html">Investor Relations</a></p>
     </footer>
+
 
     <!-- Shared navigation script -->
     <script src="nav.js"></script>
