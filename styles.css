@@ -169,21 +169,35 @@ header {
     .nav-links > li > a { border: none; padding: 0 3px; font-size: 0.76em; white-space: nowrap; transition: color 0.3s ease; }
     .nav-links > li > a:hover { color: var(--ai-blue); }
     .nav-dropdown-toggle { border: none; padding: 0 3px; font-size: 0.76em; white-space: nowrap; width: auto; }
-    /* Desktop flyout */
+
+    /* Desktop flyout — click-triggered via JS, not CSS hover */
+    .nav-dropdown { position: relative; }
     .nav-dropdown-menu {
         position: absolute;
-        top: calc(100% + 14px);
+        top: 100%;          /* flush against button — no gap */
         right: 0;
         background: var(--bg-black);
-        border: 1px solid rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.15);
         border-radius: 6px;
-        box-shadow: 0 12px 32px rgba(0,0,0,0.85);
-        min-width: 170px;
-        z-index: 999;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.9);
+        min-width: 185px;
+        z-index: 2000;      /* well above header z-index:1000 */
+        /* Invisible top padding bridges any sub-pixel gap between
+           button and menu so the mouse never falls into dead space */
+        padding-top: 6px;
+        margin-top: -2px;
     }
-    .nav-dropdown-menu a { padding: 11px 18px; font-size: 0.82em; color: var(--white); }
-    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-dropdown:hover .nav-dropdown-toggle { color: var(--ai-blue); }
+    /* Remove CSS-hover trigger — JS handles open/close exclusively */
+    /* This prevents the flicker where menu vanishes as mouse travels */
+    .nav-dropdown-menu a {
+        padding: 11px 18px;
+        font-size: 0.82em;
+        color: var(--white);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-dropdown-menu a:last-child { border-bottom: none; }
+    .nav-dropdown-menu a:hover { color: var(--ai-blue); background: rgba(255,255,255,0.04); }
+    .nav-dropdown-toggle.open { color: var(--ai-blue); }
 }
 @media (min-width: 1100px) {
     .nav-links { gap: 16px; }

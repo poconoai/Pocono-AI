@@ -1,10 +1,13 @@
 /* =========================================
    POCONO AI, LLC - NAVIGATION LOGIC
+   Dropdown system — click-stable, no CSS hover flicker
+   Adding new dropdowns: push {toggleId, menuId} to the
+   dropdowns array below — no other changes needed.
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Hamburger toggle
+    // ── Hamburger (mobile) ────────────────────────────────────────────────
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu    = document.getElementById('nav-menu');
 
@@ -22,65 +25,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 spans[0].style.transform = '';
                 spans[1].style.opacity   = '';
                 spans[2].style.transform = '';
-                // Also close any open dropdown when closing the whole menu
-                closeDropdown();
+                closeAllDropdowns();
             }
         });
     }
 
-    // More dropdown toggle
-    const dropToggle = document.getElementById('more-toggle');
-    const dropMenu   = document.getElementById('more-menu');
-
-    // Research dropdown toggle
-    const resToggle  = document.getElementById('research-toggle');
-    const resMenu    = document.getElementById('research-menu');
+    // ── Dropdown registry — add new dropdowns here ────────────────────────
+    const dropdowns = [
+        { toggleId: 'research-toggle', menuId: 'research-menu' },
+        { toggleId: 'more-toggle',     menuId: 'more-menu'     },
+    ]
+    .map(d => ({
+        toggle: document.getElementById(d.toggleId),
+        menu:   document.getElementById(d.menuId),
+    }))
+    .filter(d => d.toggle && d.menu);
 
     function closeAllDropdowns() {
-        if (dropMenu && dropToggle) {
-            dropMenu.classList.remove('open');
-            dropToggle.classList.remove('open');
-            dropToggle.setAttribute('aria-expanded', 'false');
-        }
-        if (resMenu && resToggle) {
-            resMenu.classList.remove('open');
-            resToggle.classList.remove('open');
-            resToggle.setAttribute('aria-expanded', 'false');
-        }
+        dropdowns.forEach(d => {
+            d.menu.classList.remove('open');
+            d.toggle.classList.remove('open');
+            d.toggle.setAttribute('aria-expanded', 'false');
+        });
     }
 
-    // Legacy alias for closeDropdown calls elsewhere
-    function closeDropdown() { closeAllDropdowns(); }
+    dropdowns.forEach(d => {
 
-    if (dropToggle && dropMenu) {
-        dropToggle.addEventListener('click', (e) => {
+        // Toggle on button click
+        d.toggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            const opening = !dropMenu.classList.contains('open');
+            const wasOpen = d.menu.classList.contains('open');
             closeAllDropdowns();
-            if (opening) {
-                dropMenu.classList.add('open');
-                dropToggle.classList.add('open');
-                dropToggle.setAttribute('aria-expanded', 'true');
+            if (!wasOpen) {
+                d.menu.classList.add('open');
+                d.toggle.classList.add('open');
+                d.toggle.setAttribute('aria-expanded', 'true');
             }
         });
-        dropMenu.addEventListener('click', (e) => e.stopPropagation());
-    }
 
-    if (resToggle && resMenu) {
-        resToggle.addEventListener('click', (e) => {
+        // CRITICAL: stop propagation inside menu so the outside-click
+        // handler on document does not fire before link click registers.
+        d.menu.addEventListener('click', (e) => {
             e.stopPropagation();
-            const opening = !resMenu.classList.contains('open');
-            closeAllDropdowns();
-            if (opening) {
-                resMenu.classList.add('open');
-                resToggle.classList.add('open');
-                resToggle.setAttribute('aria-expanded', 'true');
-            }
         });
-        resMenu.addEventListener('click', (e) => e.stopPropagation());
-    }
+    });
 
-    // Close all dropdowns on outside click
+    // Close on any outside click
     document.addEventListener('click', closeAllDropdowns);
+
+    // Close on Escape from anywhere
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllDropdowns();
+    });
 
 });
