@@ -64,22 +64,12 @@
         .references li { color: var(--muted); font-size: 0.8em; line-height: 1.7; margin-bottom: 8px; }
         .references li a { color: var(--teal); word-break: break-all; }
         footer a { color: var(--teal); }
-        /* Nav dropdown link protection — overrides any page-local a rules */
-        header .nav-dropdown-menu a {
-            color: var(--white) !important;
-            background: transparent !important;
-            text-decoration: none !important;
-            display: block;
-            font-family: 'Syne', sans-serif;
-        }
-        header .nav-dropdown-menu a:hover {
-            color: var(--ai-blue) !important;
-            background: rgba(255,255,255,0.04) !important;
-        }
-        header .nav-links > li > a {
-            color: var(--white) !important;
-            text-decoration: none !important;
-        }
+        /* Nav protection — ensures nav links are never affected by page styles */
+        header a, header button { color: var(--white) !important; text-decoration: none !important; }
+        header .nav-dropdown-menu { background: var(--bg-black) !important; }
+        header .nav-dropdown-menu a { color: var(--white) !important; background: transparent !important; text-decoration: none !important; }
+        header .nav-dropdown-menu a:hover { color: var(--ai-blue) !important; background: rgba(255,255,255,0.04) !important; }
+        header .nav-dropdown-toggle { background: transparent !important; color: var(--white) !important; }
     </style>
 </head>
 <body>
@@ -96,8 +86,8 @@
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="Pocono_AI_60_Day_Clinical_Pilot.pdf">Partners</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf">Pricing</a></li>
                 <li><a href="specs.html">Specs</a></li>
                 <li class="nav-dropdown">
                     <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">
@@ -247,7 +237,7 @@
                 <p>This does not eliminate the administrative burden of billing, time tracking, or business development. But it eliminates the <strong>retrieval tax</strong> — the hours spent finding material the attorney already has — which is among the most cognitively draining and least-valued administrative tasks in legal practice.</p>
                 <p><strong>What a Paid Proof-of-Value deployment measures:</strong> time per document review task before and after. Query response time for case history retrieval. Attorney-reported hours reclaimed per week. No PHI. No privileged communications transmitted. Zero exfiltration by architecture.</p>
                 <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="partners.html" class="cta-button">Begin a Paid Proof-of-Value Engagement</a>
+                    <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" class="cta-button">Begin a Paid Proof-of-Value Engagement</a>
                     <a href="why-pocono-ai.html" class="cta-button cta-button-light">Why Hardware Custody Matters for Law</a>
                 </div>
             </div>

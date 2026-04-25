@@ -63,22 +63,12 @@
         .references li a { color: var(--teal); word-break: break-all; }
 
         footer a { color: var(--teal); }
-        /* Nav dropdown link protection — overrides any page-local a rules */
-        header .nav-dropdown-menu a {
-            color: var(--white) !important;
-            background: transparent !important;
-            text-decoration: none !important;
-            display: block;
-            font-family: 'Syne', sans-serif;
-        }
-        header .nav-dropdown-menu a:hover {
-            color: var(--ai-blue) !important;
-            background: rgba(255,255,255,0.04) !important;
-        }
-        header .nav-links > li > a {
-            color: var(--white) !important;
-            text-decoration: none !important;
-        }
+        /* Nav protection — ensures nav links are never affected by page styles */
+        header a, header button { color: var(--white) !important; text-decoration: none !important; }
+        header .nav-dropdown-menu { background: var(--bg-black) !important; }
+        header .nav-dropdown-menu a { color: var(--white) !important; background: transparent !important; text-decoration: none !important; }
+        header .nav-dropdown-menu a:hover { color: var(--ai-blue) !important; background: rgba(255,255,255,0.04) !important; }
+        header .nav-dropdown-toggle { background: transparent !important; color: var(--white) !important; }
     </style>
 </head>
 <body>
@@ -95,8 +85,8 @@
                 <li><a href="use-cases.html">Use Cases</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="Pocono_AI_60_Day_Clinical_Pilot.pdf">Partners</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf">Pricing</a></li>
                 <li><a href="specs.html">Specs</a></li>
                 <li class="nav-dropdown">
                     <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">
@@ -264,7 +254,7 @@
                 <p>The documentation still gets written. The billing requirements still get met. But the retrieval time — which Sinsky et al. measured as chart review time — is reduced from minutes to seconds. Across 20 patients per day, that compounds into meaningful reclaimed time. Not 5.9 hours. But measurably less than 5.9 hours.</p>
                 <p><strong>This is what we measure in a Paid Proof-of-Value deployment:</strong> minutes per chart before and after. Time spent on chart review before and after. Pajama time before and after. We let the physician's own data tell the story.</p>
                 <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="partners.html" class="cta-button">Begin a Paid Proof-of-Value Engagement</a>
+                    <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" class="cta-button">Begin a Paid Proof-of-Value Engagement</a>
                     <a href="prior-auth-case-study.html" class="cta-button cta-button-light">Also read: Prior Auth Crisis Brief</a>
                 </div>
             </div>

@@ -214,6 +214,8 @@ header {
 main { max-width: 1000px; margin: 0 auto; padding: 40px 10px; }
 .cta-button { display: inline-block; background-color: var(--teal); color: var(--white); padding: 16px 32px; text-decoration: none; font-weight: bold; border-radius: 4px; margin: 10px; transition: 0.3s; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 1px; }
 .cta-button:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.cta-button-light { background-color: transparent !important; color: var(--white) !important; border: 2px solid var(--white) !important; }
+.cta-button-light:hover { background-color: rgba(255,255,255,0.1) !important; filter: none; }
 
 /* Footer */
 footer { text-align: center; padding: 40px 20px; font-size: 0.85em; color: var(--light-text); border-top: 1px solid var(--card-dark); margin-top: 50px; }
