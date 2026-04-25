@@ -33,6 +33,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Research Hub -->
+  <url>
+    <loc>https://poconoai.com/research.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Research briefs — high SEO value, keyword-rich -->
   <url>
     <loc>https://poconoai.com/prior-auth-case-study.html</loc>
