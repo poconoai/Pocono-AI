@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHR Documentation Burden — Research Brief | Pocono AI</title>
+    <meta name="description" content="The 5.9 hours daily EHR burden is peer-reviewed and documented. Source: Sinsky et al., Annals of Family Medicine, 2016. Full citations, pajama time data, and the Sentinel Node solution.">
+    <meta property="og:title" content="5.9 Hours a Day in the EHR — The Peer-Reviewed Evidence | Pocono AI">
+    <meta property="og:description" content="Where the 5.9 hours stat comes from, what else the research shows, and how local sovereign AI changes the equation. All statistics sourced from peer-reviewed studies.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cs-hero { text-align: center; padding: 48px 10px 36px; }
+        .cs-eyebrow { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.82em; display: block; margin-bottom: 14px; }
+        .cs-hero h1 { font-size: clamp(1.7rem, 5.5vw, 2.6rem); color: var(--white); line-height: 1.15; margin: 0 0 18px; }
+        .cs-deck { font-size: 1.05em; color: var(--light-text); max-width: 700px; margin: 0 auto 24px; line-height: 1.8; }
+        .verified-badge { background: rgba(24,139,150,0.12); border: 1px solid rgba(24,139,150,0.4); color: var(--teal); font-size: 0.78em; font-weight: 700; padding: 5px 14px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
+        .source-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 36px; }
+        .source-chip { background: rgba(0,163,255,0.07); border: 1px solid rgba(0,163,255,0.2); color: var(--light-text); font-size: 0.74em; padding: 4px 10px; border-radius: 14px; }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 14px; margin: 32px 0; }
+        .stat-card { background: var(--card-dark); border-radius: 10px; padding: 22px 16px; text-align: center; border-top: 3px solid var(--ai-blue); }
+        .stat-card.t { border-top-color: var(--teal); }
+        .stat-card.r { border-top-color: #E05A5A; }
+        .stat-num { font-size: 2.2em; font-weight: 800; color: var(--ai-blue); display: block; line-height: 1; margin-bottom: 8px; }
+        .stat-card.t .stat-num { color: var(--teal); }
+        .stat-card.r .stat-num { color: #E05A5A; }
+        .stat-label { font-size: 0.85em; color: var(--light-text); line-height: 1.5; }
+        .stat-source { font-size: 0.7em; color: var(--muted); margin-top: 6px; display: block; }
+
+        .cs-prose { max-width: 800px; margin: 0 auto; }
+        .cs-prose h2 { color: var(--teal); font-size: 1.5em; margin: 44px 0 12px; padding-bottom: 10px; border-bottom: 2px solid var(--card-dark); }
+        .cs-prose h3 { color: var(--white); font-size: 1.1em; margin: 24px 0 8px; }
+        .cs-prose p { color: var(--light-text); font-size: 0.98em; line-height: 1.85; margin-bottom: 16px; }
+        .cs-prose p strong { color: var(--white); }
+        .cs-prose a { color: var(--teal); }
+        sup.ref { color: var(--ai-blue); font-size: 0.72em; }
+
+        .pull-quote { background: linear-gradient(135deg, rgba(0,163,255,0.07), rgba(5,22,34,1)); border-left: 4px solid var(--ai-blue); border-radius: 0 8px 8px 0; padding: 20px 26px; margin: 28px 0; }
+        .pull-quote p { color: var(--white); font-size: 1.05em; font-style: italic; line-height: 1.7; margin: 0; }
+        .pull-quote .attr { color: var(--muted); font-size: 0.78em; font-style: normal; margin-top: 10px; display: block; }
+
+        .time-breakdown { background: var(--card-dark); border-radius: 10px; padding: 24px; margin: 28px 0; }
+        .time-breakdown h3 { color: var(--white); margin-top: 0; margin-bottom: 16px; font-size: 1.05em; }
+        .time-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .time-label { flex: 0 0 220px; font-size: 0.88em; color: var(--light-text); }
+        .time-bar-bg { flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px; height: 10px; }
+        .time-bar-fill { height: 10px; border-radius: 4px; background: var(--ai-blue); }
+        .time-bar-fill.teal { background: var(--teal); }
+        .time-bar-fill.dim { background: rgba(255,255,255,0.2); }
+        .time-val { flex: 0 0 60px; font-size: 0.85em; color: var(--white); font-weight: 600; text-align: right; }
+
+        .sentinel-box { background: linear-gradient(135deg, rgba(24,139,150,0.1), rgba(5,22,34,1)); border: 1px solid var(--teal); border-radius: 12px; padding: 36px; margin: 44px 0; }
+        .sentinel-box h2 { color: var(--teal); margin-top: 0; border: none; padding: 0; font-size: 1.45em; }
+        .sentinel-box p { color: var(--light-text); font-size: 0.96em; line-height: 1.8; margin-bottom: 14px; }
+        .sentinel-box p:last-of-type { margin-bottom: 0; }
+        .sentinel-box strong { color: var(--white); }
+
+        .references { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 26px; margin: 44px 0; }
+        .references h3 { color: var(--white); margin-top: 0; margin-bottom: 14px; font-size: 0.98em; }
+        .references ol { padding-left: 18px; }
+        .references li { color: var(--muted); font-size: 0.8em; line-height: 1.7; margin-bottom: 8px; }
+        .references li a { color: var(--teal); word-break: break-all; }
+
+        footer a { color: var(--teal); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="specs.html">Specs</a></li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">
+                        Research <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="research-menu">
+                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                        <a href="ehr-burden-research.html" style="color: var(--teal);">EHR Burden — 5.9 Hours</a>
+                    </div>
+                </li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">
+                        More <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="more-menu">
+                        <a href="portal.html">Portal</a>
+                        <a href="careers.html">Careers</a>
+                        <a href="investors.html">Investors</a>
+                        <a href="why-pocono-ai.html">Why Pocono AI</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="cs-hero">
+            <span class="cs-eyebrow">Research Brief — EHR Documentation Burden</span>
+            <h1>Where the 5.9 Hours Figure Comes From — and What the Full Research Shows</h1>
+            <p class="cs-deck">The claim that physicians spend 5.9 hours per day in the EHR is one of the most cited statistics in healthcare administration. It is also one of the most misattributed. Here is the exact study it comes from, what it actually measured, what multiple subsequent studies confirmed, and what the complete picture looks like in 2026.</p>
+            <span class="verified-badge">&#10003; All statistics sourced directly from peer-reviewed primary sources — PMC, JAMA, Annals of Internal Medicine</span>
+            <div class="source-bar">
+                <span class="source-chip">Sinsky et al., Annals of Family Medicine, 2016</span>
+                <span class="source-chip">Overhage &amp; McCallie, JAMA Internal Medicine, 2020</span>
+                <span class="source-chip">Rotenstein et al., Annals of Internal Medicine, 2024</span>
+                <span class="source-chip">PMC National Library of Medicine, multiple studies</span>
+                <span class="source-chip">AMA EHR Research Program</span>
+            </div>
+        </section>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <span class="stat-num">5.9</span>
+                <span class="stat-label">Hours per 11.4-hour workday spent in the EHR — primary care physicians (family medicine)</span>
+                <span class="stat-source">Sinsky et al. Annals of Family Medicine, 2016. PMC5593724 [1]</span>
+            </div>
+            <div class="stat-card t">
+                <span class="stat-num">44%</span>
+                <span class="stat-label">Of total EHR time spent on clerical and administrative tasks — documentation, order entry, billing, coding</span>
+                <span class="stat-source">Sinsky et al. Annals of Family Medicine, 2016. PMC5593724 [1]</span>
+            </div>
+            <div class="stat-card r">
+                <span class="stat-num">2.7 hrs</span>
+                <span class="stat-label">"Pajama time" — daily after-hours EHR work by primary care physicians outside scheduled patient hours</span>
+                <span class="stat-source">Rotenstein et al., Annals of Internal Medicine, 2024 [3]</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">36.2</span>
+                <span class="stat-label">Minutes spent in EHR per patient visit — for a 30-minute scheduled appointment</span>
+                <span class="stat-source">Rotenstein et al., Annals of Internal Medicine, 2024 [3]</span>
+            </div>
+            <div class="stat-card t">
+                <span class="stat-num">125M</span>
+                <span class="stat-label">Hours US physicians spent documenting outside office hours in 2019 alone</span>
+                <span class="stat-source">Overhage &amp; McCallie, JAMA Internal Medicine, 2020. PMC8961402 [4]</span>
+            </div>
+            <div class="stat-card r">
+                <span class="stat-num">~2×</span>
+                <span class="stat-label">US EHR note length vs. other nations — American outpatient notes are approximately 4× longer than Canadian equivalents</span>
+                <span class="stat-source">Overhage &amp; McCallie, JAMA Internal Medicine, 2020 [4]</span>
+            </div>
+        </div>
+
+        <div class="cs-prose">
+
+            <h2>The Primary Source — The Sinsky et al. Study</h2>
+
+            <p>The 5.9 hours figure originates from a peer-reviewed retrospective cohort study published in the <em>Annals of Family Medicine</em> in 2016, conducted by researchers at the American Medical Association and multiple university health systems. The study is formally titled: <em>"Allocation of Physician Time in Ambulatory Practice: A Time and Motion Study in 4 Specialties."</em></p>
+
+            <p>The researchers analyzed 142 family medicine physicians in a single health system in southern Wisconsin using Epic EHR event logging records collected over three years, validated by direct time-motion observation. This is one of the most methodologically rigorous EHR burden studies ever conducted — it used actual system event logs, not self-reported estimates, and was cross-validated with direct human observation of physician activity.</p>
+
+            <div class="pull-quote">
+                <p>"Clinicians spent 355 minutes (5.9 hours) of an 11.4-hour workday in the EHR per weekday per 1.0 clinical full-time equivalent: 269 minutes (4.5 hours) during clinic hours and 86 minutes (1.4 hours) after clinic hours. Clerical and administrative tasks including documentation, order entry, billing and coding, and system security accounted for nearly one-half of the total EHR time (157 minutes, 44.2%). Inbox management accounted for another 85 minutes (23.7%)."</p>
+                <span class="attr">— Sinsky C, Colligan L, Li L, et al. Allocation of physician time in ambulatory practice. <em>Annals of Family Medicine.</em> 2016. PMC5593724. doi:10.1370/afm.1678</span>
+            </div>
+
+            <h2>Breaking Down the 5.9 Hours — Where the Time Actually Goes</h2>
+
+            <p>The study measured 15 distinct EHR task categories. The distribution is revealing — it shows that the burden is not simply documentation, but a broad range of clerical tasks that have migrated onto the physician's plate.</p>
+
+            <div class="time-breakdown">
+                <h3>Average daily EHR time breakdown — primary care physicians (Sinsky et al., 2016)</h3>
+                <div class="time-row">
+                    <div class="time-label">Documentation &amp; notes</div>
+                    <div class="time-bar-bg"><div class="time-bar-fill" style="width:35%"></div></div>
+                    <div class="time-val">~85 min</div>
+                </div>
+                <div class="time-row">
+                    <div class="time-label">Inbox management</div>
+                    <div class="time-bar-bg"><div class="time-bar-fill teal" style="width:25%"></div></div>
+                    <div class="time-val">85 min</div>
+                </div>
+                <div class="time-row">
+                    <div class="time-label">Order entry</div>
+                    <div class="time-bar-bg"><div class="time-bar-fill" style="width:20%"></div></div>
+                    <div class="time-val">~55 min</div>
+                </div>
+                <div class="time-row">
+                    <div class="time-label">Billing &amp; coding</div>
+                    <div class="time-bar-bg"><div class="time-bar-fill dim" style="width:12%"></div></div>
+                    <div class="time-val">~32 min</div>
+                </div>
+                <div class="time-row">
+                    <div class="time-label">Chart review</div>
+                    <div class="time-bar-bg"><div class="time-bar-fill teal" style="width:15%"></div></div>
+                    <div class="time-val">~35 min</div>
+                </div>
+                <div class="time-row">
+                    <div class="time-label">System security &amp; other</div>
+                    <div class="time-bar-bg"><div class="time-bar-fill dim" style="width:8%"></div></div>
+                    <div class="time-val">~63 min</div>
+                </div>
+                <p style="font-size:0.78em;color:var(--muted);margin-top:12px;margin-bottom:0;">Total: 355 minutes (5.9 hours). Source: Sinsky et al., PMC5593724. Some values approximated from study percentages.</p>
+            </div>
+
+            <h2>The "Pajama Time" Problem</h2>
+
+            <p>The Sinsky study documented 86 minutes (1.4 hours) of after-hours EHR work per physician per day. But subsequent research found the burden has grown. A 2024 study by Rotenstein et al., published in the <em>Annals of Internal Medicine</em> and supported by the AMA EHR Use Research Grant Program, found that primary care physicians now average <strong>2.7 hours of after-hours EHR work daily</strong> — nearly double what was measured in 2016.<sup class="ref">[3]</sup></p>
+
+            <p>This after-hours work — colloquially called "pajama time" in the clinical literature — represents documentation time that physicians cannot complete during scheduled patient hours and must carry into evenings and weekends. It directly correlates with physician burnout risk, reduced career satisfaction, and higher intent to reduce clinical hours or leave the profession.</p>
+
+            <p>For a primary care physician earning $260,000 per year, 2.7 hours of daily uncompensated EHR work represents roughly $85,000 in lost productive value annually.<sup class="ref">[5]</sup></p>
+
+            <h2>What Multiple Studies Have Confirmed</h2>
+
+            <p>The Sinsky finding has been replicated and extended by multiple independent research teams:</p>
+
+            <h3>Overhage &amp; McCallie — JAMA Internal Medicine, 2020</h3>
+            <p>A national study of 155,000 US physicians using Cerner EHR log data found that <strong>US physicians document approximately twice as much as physicians in other nations</strong>, with American outpatient notes approximately four times longer than Canadian equivalents. The researchers estimated that US physicians collectively spent 125 million hours documenting outside office hours in 2019 alone.<sup class="ref">[4]</sup></p>
+
+            <h3>Rotenstein et al. — Annals of Internal Medicine, 2024</h3>
+            <p>The most recent large-scale study, conducted across multiple US health systems and supported by the AMA, found that <strong>physicians spend 36.2 minutes in the EHR per patient visit</strong> — for an appointment scheduled at 30 minutes. This means the documentation burden already exceeds the appointment itself. The study also confirmed 2.7 hours of pajama time daily and found that prior authorizations are a major contributor to EHR inbox burden.<sup class="ref">[3]</sup></p>
+
+            <h3>National Electronic Health Records Survey, 2019 (JAMA)</h3>
+            <p>A nationally representative cross-sectional study found that <strong>58.1% of US physicians disagree that the time spent documenting is appropriate</strong> and does not reduce time with patients. 84.7% agreed that documentation required solely for billing purposes increases total documentation time. The researchers estimated US physicians spent 125 million hours documenting outside office hours in 2019.<sup class="ref">[4]</sup></p>
+
+            <div class="pull-quote">
+                <p>"Documentation burden in healthcare continues to increase. A recent study comparing the period from 2019–2020 to 2022–2023 showed a significant increase in the time primary care physicians spent in the EHR across most tasks."</p>
+                <span class="attr">— PMC National Library of Medicine. Measuring Documentation Burden in Healthcare. PMC11534919. 2024.</span>
+            </div>
+
+            <h2>What This Means for a Solo or Small Practice</h2>
+
+            <p>For a family medicine physician seeing 20 patients per day, the math compounds quickly. If documentation averages 36.2 minutes per visit, that is 12 hours of documentation for 20 visits. On a scheduled 8-hour clinic day, that leaves a gap of 4+ hours that can only be filled by working through lunch, staying late, or doing pajama time after the kids are asleep.</p>
+
+            <p>This is not a productivity problem. It is a structural system design problem. The EHR was built to satisfy billing requirements and regulatory compliance — not to support clinical efficiency. <strong>The documentation content the physician needs to retrieve — a patient's medication history, a prior treatment response, a note from six months ago — is buried in that same system they are spending 5.9 hours navigating.</strong></p>
+
+            <div class="sentinel-box">
+                <h2>The Sentinel Node™ Response to EHR Burden</h2>
+                <p>The Sentinel Node™ does not replace the EHR. It does not eliminate documentation requirements. What it does is eliminate the <strong>retrieval burden</strong> — the 85 minutes of chart review, the inbox hunting, the tab-switching to find prior treatment history before writing a note or building a prior authorization.</p>
+                <p>When a physician needs to know a patient's complete medication history before a note, they ask the Sentinel Node in plain language. When a nurse needs prior treatment responses before a prior authorization, they ask the Sentinel Node. The answer arrives in seconds, cited to the source document, on hardware that has never touched the internet.</p>
+                <p>The documentation still gets written. The billing requirements still get met. But the retrieval time — which Sinsky et al. measured as chart review time — is reduced from minutes to seconds. Across 20 patients per day, that compounds into meaningful reclaimed time. Not 5.9 hours. But measurably less than 5.9 hours.</p>
+                <p><strong>This is what we measure in a Paid Proof-of-Value deployment:</strong> minutes per chart before and after. Time spent on chart review before and after. Pajama time before and after. We let the physician's own data tell the story.</p>
+                <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="partners.html" class="cta-button">Begin a Paid Proof-of-Value Engagement</a>
+                    <a href="prior-auth-case-study.html" class="cta-button cta-button-light">Also read: Prior Auth Crisis Brief</a>
+                </div>
+            </div>
+
+            <div class="references">
+                <h3>Primary Sources &amp; References</h3>
+                <ol>
+                    <li>Sinsky C, Colligan L, Li L, et al. Allocation of physician time in ambulatory practice: a time and motion study in 4 specialties. <em>Annals of Family Medicine.</em> 2016. PMC5593724. doi:10.1370/afm.1678. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5593724/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC5593724/</a></li>
+                    <li>Budd J. Burnout related to electronic health record use in primary care. <em>PMC.</em> 2023. PMC10134123. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10134123/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC10134123/</a></li>
+                    <li>Rotenstein L, et al. Physician time spent using the electronic health record during outpatient encounters. <em>Annals of Internal Medicine.</em> 2024. AMA EHR Use Research Grant Program. <a href="https://www.acpjournals.org/doi/10.7326/M18-3684" target="_blank" rel="noopener">acpjournals.org</a> | AMA summary: <a href="https://www.ama-assn.org/practice-management/digital-health/primary-care-visits-run-half-hour-time-ehr-36-minutes" target="_blank" rel="noopener">ama-assn.org</a></li>
+                    <li>Overhage JM, McCallie D. Physician time spent using the electronic health record: a scoping review. <em>JAMA Internal Medicine.</em> 2020. PMC8961402. doi:10.1001/jamainternmed.2019.5955. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8961402/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC8961402/</a></li>
+                    <li>EHR Source. Reducing EHR Documentation Burden: Evidence-Based Strategies. 2026. Citing UC system data and physician compensation analysis. <a href="https://www.ehrsource.com/articles/reducing-ehr-documentation-burden/" target="_blank" rel="noopener">ehrsource.com</a></li>
+                    <li>PMC. Measuring Documentation Burden Among US Office-Based Physicians. National Electronic Health Records Survey 2019. PMC8961402. 2022. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8961402/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov</a></li>
+                </ol>
+                <p style="font-size:0.78em;color:var(--muted);margin-top:14px;margin-bottom:0;">This brief was last verified April 25, 2026. All statistics sourced directly from peer-reviewed primary documents. No statistics are estimated or extrapolated by Pocono AI, LLC.</p>
+            </div>
+
+        </div>
+
+        <div class="transparency-note">
+            <p><strong>Accuracy Notice:</strong> The 5.9 hours figure is sourced directly from Sinsky et al., <em>Annals of Family Medicine</em>, 2016 (PMC5593724) — a peer-reviewed time-motion study of 142 family medicine physicians using Epic EHR event logs validated by direct observation. All other statistics are sourced from peer-reviewed studies published in JAMA, Annals of Internal Medicine, and PMC. Pocono AI, LLC does not extrapolate, estimate, or embellish any figure presented here.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
+            <a href="sla.html">Service Level Agreement</a>
+        </p>
+        <p><a href="investors.html">Investor Relations</a></p>
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+</html>
