@@ -1,0 +1,68 @@
+# ==============================================================================
+# Sentinel Node™ — Pocono AI, LLC
+# .gitignore
+# ==============================================================================
+
+# ── SECRETS — NEVER COMMIT ───────────────────────────────────────────────────
+.env
+.env.*
+*.env
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# ── AUDIT LOGS — NEVER COMMIT ────────────────────────────────────────────────
+# Logs contain HMAC signatures of operational queries.
+# They live on the Sentinel Node hardware, not in version control.
+*.log
+*.log.*
+logs/
+/var/log/
+hash-chain.log
+
+# ── PYTHON ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+.venv/
+venv/
+env/
+.Python
+
+# ── OS / EDITOR ──────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── MODEL WEIGHTS — DO NOT COMMIT ────────────────────────────────────────────
+# Ollama model weights can be multi-gigabyte.
+# They are managed by Ollama directly, not git.
+*.gguf
+*.ggml
+*.bin
+models/
+
+# ── QDRANT DATA ──────────────────────────────────────────────────────────────
+qdrant_storage/
+*.qdrant
+
+# ── TEMP / TEST ──────────────────────────────────────────────────────────────
+tmp/
+temp/
+*.tmp
+test_*.log
