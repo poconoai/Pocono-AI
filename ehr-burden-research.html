@@ -34,6 +34,13 @@
         .cs-prose p { color: var(--light-text); font-size: 0.98em; line-height: 1.85; margin-bottom: 16px; }
         .cs-prose p strong { color: var(--white); }
         .cs-prose a { color: var(--teal); }
+        /* CTA buttons inside cs-prose must NOT inherit teal text */
+        .cs-prose .cta-button,
+        .cs-prose a.cta-button { color: var(--white) !important; }
+        .cs-prose .cta-button-light,
+        .cs-prose a.cta-button-light { color: var(--white) !important; border-color: var(--white) !important; background: transparent !important; }
+        .sentinel-box .cta-button { color: var(--white) !important; }
+        .sentinel-box .cta-button-light { color: var(--white) !important; border-color: var(--white) !important; background: transparent !important; }
         sup.ref { color: var(--ai-blue); font-size: 0.72em; }
 
         .pull-quote { background: linear-gradient(135deg, rgba(0,163,255,0.07), rgba(5,22,34,1)); border-left: 4px solid var(--ai-blue); border-radius: 0 8px 8px 0; padding: 20px 26px; margin: 28px 0; }
