@@ -1,50 +1,215 @@
-<section class="roi-section" style="background: linear-gradient(135deg, rgba(24,139,150,0.08) 0%, rgba(5,22,34,1) 100%);">
-    <h2 style="color: white; border-bottom: none;">The Tipping Point: Breakeven Analysis</h2>
-    <p style="color: var(--light-text); max-width: 750px; margin: 0 auto 30px;">For practices currently spending $3,500+ per month on cloud tokens or human scribes, ownership becomes the superior financial posture in under 5 months.</p>
-    
-    <div style="overflow-x: auto;">
-        <table style="width: 100%; color: var(--white); border-collapse: collapse; text-align: left;">
-            <thead>
-                <tr style="border-bottom: 2px solid var(--ai-blue);">
-                    <th style="padding: 15px;">Investment Month</th>
-                    <th style="padding: 15px;">Cloud/Scribe Cost (Accumulated)</th>
-                    <th style="padding: 15px;">Sentinel Node™ (Accumulated)</th>
-                    <th style="padding: 15px;">Net Asset Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="padding: 15px;">Month 1</td>
-                    <td style="padding: 15px;">$4,000</td>
-                    <td style="padding: 15px;">$18,299</td>
-                    <td style="padding: 15px; color: var(--muted);">Initial CapEx</td>
-                </tr>
-                <tr style="background: rgba(0,163,255,0.1); border-left: 4px solid var(--teal);">
-                    <td style="padding: 15px; font-weight: bold;">Month 5 (Breakeven)</td>
-                    <td style="padding: 15px;">$20,000</td>
-                    <td style="padding: 15px;">$19,499</td>
-                    <td style="padding: 15px; color: var(--teal); font-weight: bold;">ROI ACHIEVED</td>
-                </tr>
-                <tr>
-                    <td style="padding: 15px;">Year 2</td>
-                    <td style="padding: 15px;">$96,000</td>
-                    <td style="padding: 15px;">$25,499</td>
-                    <td style="padding: 15px; color: var(--teal);">+$70,501 Profit</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pocono AI, LLC Pricing: On-premises Local AI infrastructure with Zero Data Exfiltration and absolute Data Sovereignty.">
+    <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, Private RAG Pricing, Sovereign AI Infrastructure">
+    <meta name="date" content="2026-04-19">
+    <title>Pricing &amp; Deployment | Data Sovereignty | Pocono AI, LLC</title>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0;">
-    <div class="pricing-card" style="border-top-color: var(--teal);">
-        <h3 style="color: var(--white); font-size: 1.1em;">Malpractice Risk Report</h3>
-        <p style="font-size: 0.85em;">Why cloud hallucinations are an uninsurable liability.</p>
-        <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" style="color: var(--teal); text-decoration: underline; font-size: 0.9em;">Download White Paper &rarr;</a>
-    </div>
-    <div class="pricing-card" style="border-top-color: var(--ai-blue);">
-        <h3 style="color: var(--white); font-size: 1.1em;">SIREEQUARED Exec Brief</h3>
-        <p style="font-size: 0.85em;">Detailed ROI and hardware ownership modeling.</p>
-        <a href="Pocono_Exec.pdf" target="_blank" style="color: var(--ai-blue); text-decoration: underline; font-size: 0.9em;">Download Brief &rarr;</a>
-    </div>
-</div>
+    <meta property="og:title" content="Pricing &amp; Deployment | Pocono AI, LLC">
+    <meta property="og:description" content="On-premises Local AI infrastructure with Zero Data Exfiltration. Three deployment tiers starting at $15,000 CapEx.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/pricing.html">
+
+    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        /* ── PRICING-SPECIFIC STYLES ONLY ── */
+
+        /* Page title */
+        h1 { font-size: clamp(2.5rem, 6vw, 3rem); text-align: center; color: var(--white); margin-bottom: 10px; line-height: 1.1; font-family: 'Syne', sans-serif; font-weight: 700; }
+        .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 800px; margin: 0 auto 40px auto; }
+
+        /* ROI section */
+        .roi-section { background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, rgba(5,22,34,1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid var(--ai-blue); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; line-height: 1; }
+
+        /* Tipping Point Analysis Table */
+        .tipping-point-section { margin: 60px 0; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; overflow-x: auto; }
+        .tipping-point-section h2 { border-bottom: none; color: white; margin-top: 0; }
+        .tipping-table { width: 100%; border-collapse: collapse; margin-top: 25px; min-width: 600px; }
+        .tipping-table th, .tipping-table td { padding: 18px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tipping-table th { color: var(--ai-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; }
+        .tipping-table .check { color: var(--teal); font-weight: bold; }
+        .tipping-table .cross { color: #ff4d4d; font-weight: bold; }
+        .tipping-table .highlight { background: rgba(0,163,255,0.05); }
+
+        /* Pricing grid */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 25px; margin-top: 40px; }
+        .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; }
+        .pricing-card.enterprise { border-top-color: var(--teal); }
+        .pricing-card.plus { border-top-color: var(--white); background-color: #0d3246; }
+        .pricing-card h2 { margin-top: 0; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; font-size: 1.4em; }
+        .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); flex-grow: 1; }
+        .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
+        .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
+
+        /* Subscription banner */
+        .subscription-banner { background: rgba(0,163,255,0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin: 40px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 250px; }
+
+        /* CTA button */
+        .btn-submit { background: var(--teal); color: white; padding: 16px 32px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
+        .btn-submit:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* Footer */
+        footer a { color: var(--teal); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="use-cases.html">Use Cases</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="pricing.html" style="color: var(--ai-blue);">Pricing</a></li>
+                <li><a href="sentinel-node-spec-sheet.pdf">Specs</a></li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">
+                        Research <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="research-menu">
+                        <a href="research.html">Research Hub</a>
+                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hours</a>
+                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                        <a href="patient-advocacy.html">Patient Safety</a>
+                        <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Deployment Models</h1>
+        <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty.<br>
+        <span style="font-size: 0.85em; font-weight: normal; color: var(--light-text);">*Hardware may qualify for Section 179 CapEx tax deduction.</span></p>
+
+        <div class="roi-section">
+            <h2 style="color: white; margin-top: 0; border-bottom: none;">Projected Economic Impact</h2>
+            <p style="color: var(--light-text); font-size: 1.1em; max-width: 600px; margin: 0 auto;">When modeled against typical recurring costs for human scribes or paralegals, early pilot customers project full CapEx recovery in:</p>
+            <span class="roi-metric">&lt; 90 Days*</span>
+            <p style="color: var(--white); font-weight: bold; font-size: 1.25em;">Modeled payback &amp; maintained local data control [cite: 91]</p>
+            <p style="font-size: 0.8em; color: var(--muted); font-style: italic; margin-top: 10px;">*Based on internal modeling vs $3,000-$5,000 monthly scribe/paralegal costs. Actual results vary by workflow volume and staffing model. Not a guarantee of financial return.</p>
+        </div>
+
+        <section class="tipping-point-section">
+            <h2>The Tipping Point: Ownership vs. The "Renting Trap"</h2>
+            <p style="color: var(--light-text); font-size: 0.95em;">Renting cloud AI tokens is a perpetual liability. For healthcare and legal firms, the "tipping point" is not just financial—it is legal. Federal courts are now issuing <strong>$110,000 penalties</strong> for unverified cloud AI outputs[cite: 17].</p>
+            
+            <table class="tipping-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th class="highlight">Pocono AI (Local CapEx)</th>
+                        <th>Standard Cloud SaaS (OpEx)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Token Fees</strong></td>
+                        <td class="check">$0.00 (Owned Intelligence)</td>
+                        <td class="cross">Perpetual & Scaling [cite: 73]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Custody</strong></td>
+                        <td class="check">Absolute Physical Custody</td>
+                        <td class="cross">Outbound Exfiltration Risk </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Malpractice Risk</strong></td>
+                        <td class="check">Mathematically Suppressed RAG</td>
+                        <td class="cross">Uninsurable Hallucinations [cite: 7]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Financial Posture</strong></td>
+                        <td class="check">90-Day CapEx Recovery [cite: 91]</td>
+                        <td class="cross">Indefinite Monthly Rent [cite: 73]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Incident Loss</strong></td>
+                        <td class="check">Traceable Audit Logs [cite: 45]</td>
+                        <td class="cross">$4.4 Million Per Failure [cite: 28]</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.8em; color: var(--muted); margin-top: 20px; font-style: italic;">Note: "Standard Cloud SaaS" refers to general enterprise AI configurations as cited in 2025/2026 cross-industry surveys[cite: 28].</p>
+        </section>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h2>Phase I: Intro Node</h2>
+                <h3 style="color: var(--ai-blue); font-size: 1.8em; margin: 10px 0;">$15,000 CapEx</h3>
+                <p style="color: var(--teal); font-weight: bold; margin-bottom: 0;">$300/mo Baseline SLA</p>
+                <ul>
+                    <li>NVIDIA RTX 4500 Ada (24GB VRAM)</li>
+                    <li>64 GB High-Bandwidth RAM</li>
+                    <li>Dual Hardware RAID 1 Storage</li>
+                    <li>Zero-Exfiltration Logic Core</li>
+                </ul>
+            </div>
+            <div class="pricing-card enterprise">
+                <h2 style="color: var(--teal);">Phase II: Sentinel Node™</h2>
+                <h3 style="color: var(--teal); font-size: 1.8em; margin: 10px 0;">$17,999 CapEx</h3>
+                <p style="color: var(--teal); font-weight: bold; margin-bottom: 0;">$300/mo Baseline SLA</p>
+                <ul>
+                    <li>NVIDIA RTX 5000 Ada (32GB VRAM)</li>
+                    <li>128 GB High-Bandwidth RAM</li>
+                    <li>Enterprise RAG Logic Engine [cite: 54]</li>
+                    <li>Dedicated Vector DB Integrity [cite: 39]</li>
+                </ul>
+            </div>
+            <div class="pricing-card plus">
+                <h2 style="color: var(--white);">Phase III: Sentinel Plus</h2>
+                <h3 style="color: var(--white); font-size: 1.8em; margin: 10px 0;">Starts $29,999</h3>
+                <p style="color: var(--ai-blue); font-weight: bold; margin-bottom: 0;">$600/mo Base + $150/per extra GPU</p>
+                <ul>
+                    <li>Up to 4x NVIDIA RTX 6000 Ada (48GB)</li>
+                    <li>256GB - 512GB ECC RAM</li>
+                    <li>Massive IOPS RAID 10 Array</li>
+                    <li>Enterprise Verification Protocols</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="subscription-banner">
+            <div class="sub-text" style="flex: 1; min-width: 300px;">
+                <h2 style="margin-top: 0; color: var(--white); border-bottom: none;">Sovereignty &amp; Red Team SLA</h2>
+                <p style="color: var(--light-text); margin-bottom: 0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Our protocol delivers updates via cryptographically signed USB media[cite: 35, 48]. For Plus-tier nodes, this includes <strong>managed verification protocols</strong> to ensure mission-critical retrieval accuracy.</p>
+            </div>
+            <div class="sub-price">
+                <div style="font-size: 1.8em; color: var(--ai-blue); font-weight: bold;">$300 — $1,050 / mo</div>
+                <div style="color: var(--light-text); font-size: 0.85em; margin-top: 5px;">Scalable by Compute Density</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit">Download Master Spec Sheet &amp; ROI (PDF)</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
+            <a href="sla.html">Service Level Agreement</a>
+        </p>
+    </footer>
+</body>
+</html>
