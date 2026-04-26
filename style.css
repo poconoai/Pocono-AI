@@ -1,0 +1,17 @@
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: #333; line-height: 1.6; background-color: #f9f9f9; }
+.container { width: 90%; max-width: 1100px; margin: auto; overflow: hidden; }
+header { background: #2c3e50; color: #fff; padding: 20px 0; border-bottom: 3px solid #e67e22; }
+header a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
+.logo { max-height: 50px; vertical-align: middle; }
+.logo-text { font-size: 1.5em; }
+.hero { background: #34495e; color: #fff; padding: 100px 0; text-align: center; }
+.hero h1 { font-size: 2.5em; margin-bottom: 20px; }
+.btn-primary { background: #e67e22; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
+.roi-section { padding: 60px 0; background: #fff; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.card { padding: 30px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.card h3 { color: #e67e22; }
+.tier { background: #fff; padding: 20px; margin: 20px 0; border-left: 5px solid #e67e22; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+footer { background: #2c3e50; color: #fff; text-align: center; padding: 30px 0; margin-top: 50px; }
+footer a { color: #e67e22; text-decoration: none; }
