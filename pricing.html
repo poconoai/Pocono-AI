@@ -1,237 +1,135 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v29 -->
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pocono AI, LLC Pricing: On-premises Local AI infrastructure with Zero Data Exfiltration and absolute Data Sovereignty.">
-    <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, Private RAG Pricing, Sovereign AI Infrastructure">
-    <meta name="date" content="2026-04-19">
-    <title>Pricing &amp; Deployment | Data Sovereignty | Pocono AI, LLC</title>
-
-    <meta property="og:title" content="Pricing &amp; Deployment | Pocono AI, LLC">
-    <meta property="og:description" content="On-premises Local AI infrastructure with Zero Data Exfiltration. Three deployment tiers starting at $15,000 CapEx.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poconoai.com/pricing.html">
-
-    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
-
-    <!-- Shared stylesheet -->
+    <title>Pricing & ROI | Pocono AI, LLC</title>
     <link rel="stylesheet" href="styles.css">
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-
     <style>
-        /* ── PRICING-SPECIFIC STYLES ONLY ── */
+        /* Pricing Specific Styles */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 50px 0; }
+        .price-card { background: var(--card-dark); border-radius: 12px; padding: 40px 30px; border: 1px solid rgba(0,163,255,0.2); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .price-card:hover { transform: translateY(-5px); border-color: var(--teal); }
+        .price-card.featured { border: 2px solid var(--ai-blue); position: relative; }
+        .featured-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--ai-blue); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.75em; font-weight: bold; }
+        .tier-name { color: var(--muted); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9em; }
+        .price { font-size: 3rem; font-weight: 800; color: var(--white); margin: 20px 0; }
+        .price span { font-size: 0.4em; color: var(--muted); }
+        .tier-features { list-style: none; padding: 0; margin: 30px 0; flex-grow: 1; }
+        .tier-features li { margin-bottom: 15px; color: var(--light-text); font-size: 0.95em; display: flex; align-items: flex-start; gap: 10px; }
+        .tier-features li::before { content: "✓"; color: var(--teal); font-weight: bold; }
 
-        /* System font — matches original */
-        
-
-        /* Page title */
-        h1 { font-size: clamp(2.5rem, 6vw, 3rem); text-align: center; color: var(--white); margin-bottom: 10px; line-height: 1.1; font-family: 'Syne', sans-serif; font-weight: 700; }
-        .intro-text { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 800px; margin: 0 auto 40px auto; }
-
-        /* ROI section */
-        .roi-section { background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, rgba(5,22,34,1) 100%); padding: 40px; border-radius: 8px; margin: 60px auto; border-left: 5px solid var(--ai-blue); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .roi-metric { font-size: 3.5em; font-weight: bold; color: var(--teal); margin: 15px 0; display: block; line-height: 1; }
-
-        /* Pricing grid */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 25px; margin-top: 40px; }
-        .pricing-card { background-color: var(--card-dark); padding: 40px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; }
-        .pricing-card.enterprise { border-top-color: var(--teal); }
-        .pricing-card.plus { border-top-color: var(--white); background-color: #0d3246; }
-        .pricing-card h2 { margin-top: 0; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; font-size: 1.4em; }
-        .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; color: var(--light-text); flex-grow: 1; }
-        .pricing-card ul li { margin-bottom: 15px; position: relative; padding-left: 25px; }
-        .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: bold; }
-
-        /* Subscription banner */
-        .subscription-banner { background: rgba(0,163,255,0.05); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 8px; margin: 40px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-        .sub-price { background: var(--bg-black); padding: 20px; border-radius: 6px; text-align: center; border: 1px solid rgba(255,255,255,0.1); min-width: 250px; }
-
-        /* CTA button */
-        .btn-submit { background: var(--teal); color: white; padding: 16px 32px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
-        .btn-submit:hover { filter: brightness(1.1); transform: translateY(-2px); }
-
-        /* Footer */
-        footer a { color: var(--teal); }
+        /* Comparison Table */
+        .comparison-section { margin: 80px 0; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); border-radius: 8px; }
+        th, td { padding: 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        th { color: var(--ai-blue); text-transform: uppercase; font-size: 0.85em; letter-spacing: 1px; }
+        .check { color: var(--teal); font-weight: bold; }
+        .cross { color: #ff4d4d; opacity: 0.7; }
     </style>
-    <!-- SEO: Canonical URL + XML Sitemap reference -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="canonical" href="https://poconoai.com/pricing.html">
-    <!-- Open Graph: ensures social sharing pulls correct page -->
-    <meta property="og:url" content="https://poconoai.com/pricing.html">
 </head>
 <body>
-
-            <header>
-        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="nav-menu">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="use-cases.html">Use Cases</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf" style="color: var(--ai-blue);">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf">Specs</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">
-                        Research <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="research-menu">
-                        <a href="research.html">Research Hub</a>
-                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hours</a>
-                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                        <a href="patient-advocacy.html">Patient Safety</a>
-                        <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
-                    </div>
-                </li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">
-                        More <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="more-menu">
-                        <a href="portal.html">Portal</a>
-                        <a href="careers.html">Careers</a>
-                        <a href="investors.html">Investors</a>
-                        <a href="why-pocono-ai.html">Why Pocono AI</a>
-                        <a href="sitemap.html">Sitemap</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
     <main>
-        <h1>Deployment Models</h1>
-        <p class="intro-text">Local AI infrastructure for absolute Data Sovereignty.<br>
-        <span style="font-size: 0.85em; font-weight: normal; color: var(--light-text);">*Hardware may qualify for Section 179 CapEx tax deduction.</span></p>
-
-        <div class="roi-section">
-            <h2 style="color: white; margin-top: 0; border-bottom: none;">Projected Economic Impact</h2>
-            <p style="color: var(--light-text); font-size: 1.1em; max-width: 600px; margin: 0 auto;">When modeled against typical recurring costs for human scribes or paralegals, early pilot customers project full CapEx recovery in:</p>
-            <span class="roi-metric">&lt; 90 Days*</span>
-            <p style="color: var(--white); font-weight: bold; font-size: 1.25em;">Modeled payback &amp; maintained local data control</p>
-            <p style="font-size: 0.8em; color: var(--muted); font-style: italic; margin-top: 10px;">*Based on internal modeling vs $3,000-$5,000 monthly scribe/paralegal costs. Actual results vary by workflow volume and staffing model. Not a guarantee of financial return.</p>
-        </div>
+        <section style="text-align: center; padding: 60px 0;">
+            <span class="hero-tagline">Stop Renting. Start Owning.</span>
+            <h1>Infrastructure Tiers</h1>
+            <p>Managed on-premises AI with zero per-token fees. Own the hardware, own the intelligence.</p>
+        </section>
 
         <div class="pricing-grid">
-            <div class="pricing-card">
-                <h2>Phase I: Intro Node</h2>
-                <h3 style="color: var(--ai-blue); font-size: 1.8em; margin: 10px 0;">$15,000 CapEx</h3>
-                <p style="color: var(--teal); font-weight: bold; margin-bottom: 0;">$300/mo Baseline SLA</p>
-                <ul>
-                    <li>NVIDIA RTX 4500 Ada (24GB VRAM)</li>
-                    <li>64 GB High-Bandwidth RAM</li>
-                    <li>Dual Hardware RAID 1 Storage</li>
-                    <li>Zero-Exfiltration Logic Core</li>
+            <div class="price-card">
+                <span class="tier-name">Starter</span>
+                <div class="price">$2,999<span>/mo</span></div>
+                <p>Ideal for solo practices and legal researchers.</p>
+                <ul class="tier-features">
+                    <li>Single Sentinel Node (8B-30B Parameters)</li>
+                    <li>NVIDIA RTX 4090 Dedicated Inference</li>
+                    <li>Daily Database Optimization</li>
+                    <li>99.9% Local Availability SLA</li>
                 </ul>
-                <p style="font-size: 0.8em; color: var(--muted); margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 10px;">Active-passive Twin Node HA available as add-on. Deploy two Phase I nodes for zero-interruption continuity.</p>
+                <a href="#contact" class="cta-button">Deploy Starter</a>
             </div>
-            <div class="pricing-card enterprise">
-                <h2 style="color: var(--teal);">Phase II: Sentinel Node™</h2>
-                <h3 style="color: var(--teal); font-size: 1.8em; margin: 10px 0;">$17,999 CapEx</h3>
-                <p style="color: var(--teal); font-weight: bold; margin-bottom: 0;">$300/mo Baseline SLA</p>
-                <ul>
-                    <li>NVIDIA RTX 5000 Ada (32GB VRAM)</li>
-                    <li>128 GB High-Bandwidth RAM</li>
-                    <li>Enterprise RAG Logic Engine</li>
-                    <li>Dedicated Vector DB Integrity</li>
+
+            <div class="price-card featured">
+                <div class="featured-tag">Most Popular</div>
+                <span class="tier-name">Professional</span>
+                <div class="price">$3,899<span>/mo</span></div>
+                <p>Optimized for multi-provider clinics and small firms.</p>
+                <ul class="tier-features">
+                    <li>Dual Sentinel Nodes (Load Balanced)</li>
+                    <li>Llama 4 / Meta Optimized Architecture</li>
+                    <li>Unlimited Local RAG Indexing</li>
+                    <li>Priority Hardware Maintenance</li>
                 </ul>
-                <p style="font-size: 0.8em; color: var(--muted); margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 10px;">Recommended Twin Node HA configuration: dual Phase II nodes in active-passive cluster. Zero workflow interruption on hardware fault.</p>
+                <a href="#contact" class="cta-button">Deploy Professional</a>
             </div>
-            <div class="pricing-card plus">
-                <h2 style="color: var(--white);">Phase III: Sentinel Plus</h2>
-                <h3 style="color: var(--white); font-size: 1.8em; margin: 10px 0;">Starts $29,999</h3>
-                <p style="color: var(--ai-blue); font-weight: bold; margin-bottom: 0;">$600/mo Base + $150/per extra GPU</p>
-                <ul>
-                    <li>Up to 4x NVIDIA RTX 6000 Ada (48GB)</li>
-                    <li>256GB - 512GB ECC RAM</li>
-                    <li>Massive IOPS RAID 10 Array</li>
-                    <li>Enterprise Verification Protocols</li>
+
+            <div class="price-card">
+                <span class="tier-name">Enterprise</span>
+                <div class="price">$6,499<span>/mo</span></div>
+                <p>Full-spectrum sovereignty for high-volume hospitals.</p>
+                <ul class="tier-features">
+                    <li>Air-Gapped Multi-GPU Clusters</li>
+                    <li>70B+ Parameter Clinical Logic</li>
+                    <li>Custom Model Fine-Tuning</li>
+                    <li>24/7 On-Site Technician Option</li>
                 </ul>
-                <p style="font-size: 0.8em; color: var(--muted); margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 10px;">Twin Node HA standard at this tier. Active-passive clustering and Dell enterprise support scoped during architecture assessment.</p>
+                <a href="#contact" class="cta-button">Contact for Briefing</a>
             </div>
         </div>
 
-        <div class="subscription-banner">
-            <div class="sub-text" style="flex: 1; min-width: 300px;">
-                <h2 style="margin-top: 0; color: var(--white); border-bottom: none;">Sovereignty &amp; Red Team SLA</h2>
-                <p style="color: var(--light-text); margin-bottom: 0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Our protocol delivers updates via cryptographically signed USB media. For Plus-tier nodes, this includes <strong>managed verification protocols</strong> to ensure mission-critical retrieval accuracy.</p>
-            </div>
-            <div class="sub-price">
-                <div style="font-size: 1.8em; color: var(--ai-blue); font-weight: bold;">$300 — $1,050 / mo</div>
-                <div style="color: var(--light-text); font-size: 0.85em; margin-top: 5px;">Scalable by Compute Density</div>
-            </div>
-        </div>
+        <section class="comparison-section">
+            <h2 class="section-header">5-Year Strategic Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Pocono AI (Local Meta)</th>
+                        <th>Cloud SaaS (eCW/Epic)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Data Custody</strong></td>
+                        <td class="check">Absolute Physical Custody</td>
+                        <td class="cross">Third-Party Cloud Storage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Token Fees</strong></td>
+                        <td class="check">Zero ($0.00 Forever)</td>
+                        <td class="cross">Recurring API Costs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Security</strong></td>
+                        <td class="check">Air-Gapped Perimeter</td>
+                        <td class="cross">Encrypted but External</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hallucination Risk</strong></td>
+                        <td class="check">Mathematically Suppressed RAG</td>
+                        <td class="cross">Stochastic Outbound Logic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROI Recovery</strong></td>
+                        <td class="check">90-Day CapEx Recovery</td>
+                        <td class="cross">Indefinite Monthly Rent</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-        <div style="text-align: center; margin-top: 60px;">
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" class="btn-submit">Download Master Spec Sheet &amp; ROI (PDF)</a>
-            <p style="margin-top: 30px;"><strong>Text to Schedule Scoping:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, rgba(0,163,255,0.06) 0%, rgba(5,22,34,1) 100%); border: 1px solid var(--ai-blue); border-radius: 12px; padding: 36px; margin: 50px 0;">
-            <span style="color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85em; display: block; margin-bottom: 12px;">Technology Longevity</span>
-            <h2 style="color: var(--white); font-size: 1.6em; margin: 0 0 12px; border: none;">Hardware Refresh Program</h2>
-            <p style="color: var(--light-text); max-width: 680px; line-height: 1.8; font-size: 0.97em; margin-bottom: 24px;">Open-weight model architectures are evolving rapidly — today's 7B parameter standard becomes tomorrow's baseline. Pocono AI addresses hardware obsolescence with a structured refresh program so your CapEx investment never becomes a liability.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; max-width: 700px;">
-                <div style="background: rgba(0,0,0,0.35); border-radius: 8px; padding: 18px; border-left: 3px solid var(--ai-blue);">
-                    <div style="color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 8px;">Month 24 Trade-In</div>
-                    <div style="color: var(--muted); font-size: 0.85em; line-height: 1.6;">CapEx customers receive a guaranteed hardware trade-in credit at month 24 toward a next-generation Sentinel Node. Your data stays on-site — drives are never transferred.</div>
-                </div>
-                <div style="background: rgba(0,0,0,0.35); border-radius: 8px; padding: 18px; border-left: 3px solid var(--ai-blue);">
-                    <div style="color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 8px;">Model Compatibility Guarantee</div>
-                    <div style="color: var(--muted); font-size: 0.85em; line-height: 1.6;">Pocono AI commits to maintaining compatibility with frontier open-weight models appropriate to your tier's VRAM envelope for the duration of your active SLA.</div>
-                </div>
-                <div style="background: rgba(0,0,0,0.35); border-radius: 8px; padding: 18px; border-left: 3px solid var(--ai-blue);">
-                    <div style="color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 8px;">Upgrade Path — No Lock-In</div>
-                    <div style="color: var(--muted); font-size: 0.85em; line-height: 1.6;">Phase I and II clients may upgrade to a higher compute tier at any time. Setup fee is credited against your existing SLA balance. Hardware logistics coordinated by Pocono AI.</div>
-                </div>
+        <div class="resource-strip" style="border-color: var(--teal);">
+            <div class="resource-icon">
+                <span style="font-size:1.8em; display:block; color: var(--teal);">&#128200;</span>
+                <span style="font-size:0.68em;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Exec Brief</span>
             </div>
-            <p style="color: var(--muted); font-size: 0.8em; margin-top: 18px;">Hardware Refresh terms are scoped during the architecture assessment phase and formalized in the deployment SLA addendum.</p>
-        </div>
-
-        <div style="background: linear-gradient(135deg, rgba(24,139,150,0.1) 0%, rgba(5,22,34,1) 100%); border: 1px solid var(--teal); border-radius: 12px; padding: 40px; margin: 60px 0; text-align: center;">
-            <span style="color: var(--teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85em; display: block; margin-bottom: 12px;">Entry Point</span>
-            <h2 style="color: var(--white); font-size: 1.8em; margin: 0 0 10px; border: none;">60-Day Paid Proof-of-Value</h2>
-            <div style="font-size: 2.2em; font-weight: 800; color: var(--teal); margin: 10px 0;">$5,000 <span style="font-size: 0.5em; color: var(--muted); font-weight: 400;">+ hardware cost</span></div>
-            <p style="color: var(--light-text); max-width: 640px; margin: 16px auto 24px; line-height: 1.75; font-size: 1.0em;">We do not run speculative free trials with sensitive compliance data. Every engagement begins with a structured 60-Day Paid Proof-of-Value deployment. The $5,000 fee covers architecture assessment, local RAG configuration, document sanitization pipeline setup, and Human-in-the-Loop workflow calibration. Upon conversion to a long-term SLA, this fee is applied in full to your Phase I, II, or III deployment.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; max-width: 700px; margin: 0 auto 28px; text-align: left;">
-                <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 16px; border-left: 3px solid var(--teal);">
-                    <div style="color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 6px;">Architecture Assessment</div>
-                    <div style="color: var(--muted); font-size: 0.85em; line-height: 1.5;">Network topology review, isolation verification, and deployment scoping for your facility.</div>
-                </div>
-                <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 16px; border-left: 3px solid var(--teal);">
-                    <div style="color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 6px;">RAG Configuration</div>
-                    <div style="color: var(--muted); font-size: 0.85em; line-height: 1.5;">Local vector database setup, OCR sanitization pipeline, and document ingestion tuned to your workflow.</div>
-                </div>
-                <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 16px; border-left: 3px solid var(--teal);">
-                    <div style="color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 6px;">60-Day Validation</div>
-                    <div style="color: var(--muted); font-size: 0.85em; line-height: 1.5;">Measured workflow impact, time reclamation data, and zero-exfiltration verification — with your team, in your facility.</div>
-                </div>
+            <div class="resource-text">
+                <h3>Executive Brief: The ROI of Sovereignty</h3>
+                <p>A deep dive into the financial predictability of on-premise AI versus the "Cloud Token Crisis."</p>
             </div>
-            <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" target="_blank" class="btn-submit">60-Day POV Brief (PDF)</a>
-            <p style="margin-top: 16px; color: var(--muted); font-size: 0.85em;">Lawyers and physicians do not trust free. Neither do we.</p>
+            <div style="flex:0 0 auto;">
+                <a href="Pocono_Exec.pdf" target="_blank" class="cta-button" style="background-color: var(--teal); font-size:0.78em;padding:9px 14px;white-space:nowrap;">Download PDF &rarr;</a>
+            </div>
         </div>
     </main>
-
-            <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
-        <p>
-            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
-            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
-            <a href="sla.html">Service Level Agreement</a>
-        </p>
-        <p><a href="investors.html">Investor Relations</a></p>
-    </footer>
-
-    <!-- Shared navigation script -->
-    <script src="nav.js"></script>
 </body>
 </html>
-<<<END: pricing.html>>>
