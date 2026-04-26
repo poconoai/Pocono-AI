@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v29 -->
+<html lang="en"><!-- Pocono AI v30 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +22,6 @@
 
     <style>
         /* ── INDEX-SPECIFIC STYLES ONLY ── */
-
-        
 
         /* Hero */
         .hero-section { text-align: center; padding: 60px 10px 50px; }
@@ -48,6 +46,13 @@
         .feature-card { background-color: var(--card-dark); padding: 25px; border-radius: 8px; border-top: 4px solid var(--ai-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .feature-card h3 { margin-top: 0; color: var(--white); font-size: 1.2em; margin-bottom: 15px; }
         .feature-card p { color: var(--light-text); font-size: 0.95em; }
+
+        /* Resource Box Style */
+        .resource-strip { background: linear-gradient(135deg, rgba(0,163,255,0.08), rgba(5,22,34,1)); border: 1px solid rgba(0,163,255,0.3); border-radius: 10px; padding: 22px; margin: 20px 0; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+        .resource-icon { flex:0 0 auto; text-align:center; min-width:72px; }
+        .resource-text { flex:1; min-width:200px; }
+        .resource-text h3 { color:var(--white); margin:0 0 4px; font-size:1.0em; }
+        .resource-text p { color:var(--light-text); font-size:0.85em; line-height:1.6; margin:0; }
 
         /* Highlight / sandbox section */
         .highlight-section { background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, rgba(5,22,34,1) 100%); padding: 40px 25px; border-radius: 8px; margin: 50px 0; border-left: 5px solid var(--ai-blue); }
@@ -101,7 +106,7 @@
 </head>
 <body>
 
-            <header>
+    <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -158,15 +163,15 @@
             </div>
         </section>
 
-        <!-- WHITEPAPER FEATURED STRIP -->
-        <div style="background: linear-gradient(135deg, rgba(0,163,255,0.08), rgba(5,22,34,1)); border: 1px solid rgba(0,163,255,0.3); border-radius: 10px; padding: 20px 22px; margin: 0 0 30px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
-            <div style="flex:0 0 auto; text-align:center; min-width:72px;">
+        <!-- TOP FEATURED: MALPRACTICE TRAP (Retained as top hook) -->
+        <div class="resource-strip">
+            <div class="resource-icon">
                 <span style="font-size:1.8em; display:block;">&#9876;</span>
                 <span style="font-size:0.68em;color:var(--ai-blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">White Paper</span>
             </div>
-            <div style="flex:1; min-width:200px;">
-                <h3 style="color:var(--white);margin:0 0 4px;font-size:0.92em;">New: The Malpractice Trap</h3>
-                <p style="color:var(--light-text);font-size:0.82em;line-height:1.6;margin:0;">Why cloud AI hallucinations are an uninsurable liability in healthcare. Citing Raine v. OpenAI and a $110,000 federal penalty for AI-fabricated citations.</p>
+            <div class="resource-text">
+                <h3>New: The Malpractice Trap</h3>
+                <p>Why cloud AI hallucinations are an uninsurable liability in healthcare. Citing 2026 case law—including a $110,000 federal penalty for AI-fabricated citations—this paper outlines how local RAG architecture provides a mathematically defensible, HIPAA-compliant workflow.</p>
             </div>
             <div style="flex:0 0 auto;">
                 <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" class="cta-button" style="font-size:0.78em;padding:9px 14px;white-space:nowrap;">Download PDF &rarr;</a>
@@ -211,6 +216,41 @@
             </div>
         </section>
 
+        <!-- RESOURCE LIBRARY SECTION (NEW) -->
+        <section>
+            <h2 class="section-header">Executive Briefing &amp; Research</h2>
+            
+            <!-- POCONO EXEC DECK -->
+            <div class="resource-strip" style="border-color: var(--teal);">
+                <div class="resource-icon">
+                    <span style="font-size:1.8em; display:block; color: var(--teal);">&#128200;</span>
+                    <span style="font-size:0.68em;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Exec Brief</span>
+                </div>
+                <div class="resource-text">
+                    <h3>SIREEQUARED: Private AI Infrastructure Overview</h3>
+                    <p>Executive Brief: The ROI of Sovereignty. Stop renting cloud tokens and start owning your intelligence. Learn about our 90-day CapEx recovery model, zero-latency local inference, and the 'Zero Exfiltration Guarantee' designed for legal and healthcare data sovereignty.</p>
+                </div>
+                <div style="flex:0 0 auto;">
+                    <a href="Pocono_Exec.pdf" target="_blank" class="cta-button" style="background-color: var(--teal); font-size:0.78em;padding:9px 14px;white-space:nowrap;">Download Presentation &rarr;</a>
+                </div>
+            </div>
+
+            <!-- MALPRACTICE TRAP (Secondary/Duplicate for completeness in Library) -->
+            <div class="resource-strip">
+                <div class="resource-icon">
+                    <span style="font-size:1.8em; display:block;">&#9876;</span>
+                    <span style="font-size:0.68em;color:var(--ai-blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">White Paper</span>
+                </div>
+                <div class="resource-text">
+                    <h3>The Malpractice Trap: Legal Risk Analysis</h3>
+                    <p>Why cloud AI hallucinations are an uninsurable liability in healthcare. Citing 2026 case law—including a $110,000 federal penalty for AI-fabricated citations—this paper outlines how local RAG architecture provides a mathematically defensible, HIPAA-compliant workflow.</p>
+                </div>
+                <div style="flex:0 0 auto;">
+                    <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" class="cta-button" style="font-size:0.78em;padding:9px 14px;white-space:nowrap;">Download PDF &rarr;</a>
+                </div>
+            </div>
+        </section>
+
         <div class="highlight-section">
             <h2 style="color: white; margin-top: 0;">Clinical Validation Sandbox</h2>
             <p>Our local architecture undergoes extreme optimization stress-testing. In our latest sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.</p>
@@ -231,21 +271,11 @@
             <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_datasovereignty-localai-networkarchitecture-share-7451776847400415232-s6bd" target="_blank" class="cta-button linkedin-btn">Read the Full Discussion on LinkedIn</a>
         </section>
 
-        <!-- ═══════════════════════════════════════════
-             VIDEO SECTION
-             To activate: delete the placeholder <div>
-             and uncomment the <iframe> line below.
-
-             YouTube: https://www.youtube.com/embed/VIDEO_ID
-             Loom:    https://www.loom.com/embed/VIDEO_ID
-             Vimeo:   https://player.vimeo.com/video/VIDEO_ID
-        ═══════════════════════════════════════════ -->
         <section class="video-section">
             <span class="video-eyebrow">See It In Action</span>
             <h2>60 Seconds. Zero Cloud. Your Data Stays.</h2>
             <p>Watch the Sentinel Node ingest a 76-page clinical document, retrieve a cited answer in under one second, and never touch the internet.</p>
             <div class="video-frame">
-                <!-- PLACEHOLDER: remove this div when video is ready -->
                 <div class="video-placeholder">
                     <div class="play-icon">&#9654;</div>
                     <div style="margin:20px 0 10px;border-radius:10px;overflow:hidden;border:1px solid rgba(24,139,150,0.3);">
@@ -254,8 +284,6 @@
                 <p>Demo video coming soon.<br>Contact <a href="mailto:marcus@poconoai.com" style="color:var(--ai-blue);">marcus@poconoai.com</a> to schedule a live walkthrough.</p>
                     <a href="Pocono_AI_60_Sec_Video_Script.pdf" target="_blank" style="display:inline-block;margin-top:10px;font-size:0.82em;color:var(--teal);text-decoration:underline;letter-spacing:0.03em;">&#9654; View 60-Second Demo Script (PDF)</a>
                 </div>
-                <!-- ACTIVATE: delete placeholder div above, paste embed URL below -->
-                <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
             </div>
         </section>
 
@@ -314,7 +342,7 @@
 
     </main>
 
-            <footer>
+    <footer>
         <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
         <p>
             <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
@@ -328,5 +356,3 @@
     <script src="nav.js"></script>
 </body>
 </html>
-<<<END: index.html>>>
-
