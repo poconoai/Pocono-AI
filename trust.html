@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v39 -->
+<html lang="en"><!-- Pocono AI v40 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,6 +175,20 @@
             <p style="margin-top: 15px;">Tight vector indexing scripts ensure the model receives the most accurate context possible. The provided audit log explicitly shifts the final review burden to the licensed professional, enabling rapid verification. To meet compliance standards, all interactions enforce a <strong>strict 90-day immutable local log retention policy</strong>, securely queryable by internal compliance officers.</p>
         </section>
 
+        <section class="audit-section" style="border-left-color: var(--ai-blue);">
+            <h2>AI Error Liability — Our Position, Plainly Stated</h2>
+            <p>Buyers in healthcare and law ask a fair question: <em>"Who is liable when the AI gets it wrong?"</em> Here is our direct answer.</p>
+            <p style="margin-top:14px;">The Sentinel Node is a <strong>research and retrieval tool</strong>, not a decision-maker. Every output is explicitly labeled as AI-generated, cites the source document chunks it drew from, and requires licensed professional review before any clinical or legal action is taken. This is not fine print — it is enforced at the workflow level by the Human-in-the-Loop protocol built into the system.</p>
+            <p style="margin-top:14px;">Our terms of service make clear that Pocono AI, LLC does not indemnify against errors made by a licensed professional who acts on AI output without verification. What we do provide:</p>
+            <ul class="audit-list" style="margin-top:12px;">
+                <li><strong>Full audit trail:</strong> Every query, every retrieved chunk, every generated response — logged immutably for 90 days. If a hallucination occurs, you can trace exactly what data the model drew from and what it generated. This is your defense record.</li>
+                <li><strong>RAG constraint:</strong> The model cannot generate from parametric memory alone. Responses must be grounded in documents you explicitly ingested. An uncited assertion is an architectural failure, not just a model quirk.</li>
+                <li><strong>OCR quarantine:</strong> Corrupted or low-confidence source documents are rejected before ingestion. Garbage-in is blocked at the gate.</li>
+                <li><strong>No remote access, ever:</strong> Pocono AI has no window into your data, your queries, or your outputs. We cannot introduce liability through our own systems because we have no connection to yours.</li>
+            </ul>
+            <p style="margin-top:14px;font-size:0.88em;color:var(--muted);">Practices with specific indemnification requirements are encouraged to raise them during the architecture assessment. We work alongside your counsel to define the liability posture that fits your deployment.</p>
+        </section>
+
         <section class="audit-section-blue">
             <h2>Vector Architecture &amp; Synthetic Stress Testing</h2>
             <p>To ensure sub-second retrieval across complex medical and legal documentation, the Sentinel Node utilizes <strong>Qdrant</strong> as its localized vector database engine. Qdrant's Rust-based architecture allows for highly efficient local search without relying on external API calls or cloud telemetry. We utilize a highly tuned <strong>semantic chunking strategy</strong> to preserve diagnostic context boundaries, rather than arbitrary fixed-size chunking.</p>
@@ -227,6 +241,15 @@
             </ul>
         </section>
 
+        <section class="audit-section" style="border-left-color: var(--teal);">
+            <h2>If the Node Goes Down at 7pm — What Happens</h2>
+            <p>This is the right question to ask. Here is the direct answer, by tier.</p>
+            <p style="margin-top:14px;"><strong style="color:var(--light-text);">Standard SLA (Phase I / II):</strong> Severity 1 failures — complete hardware failure halting all processing — receive a 2-hour response during business hours (Mon–Fri, 9 AM–6 PM Eastern). Our engineering team initiates remote diagnostic guidance immediately. Dell ProSupport Plus hardware dispatch is activated in parallel: next-business-day replacement component shipment at no additional charge under warranty. The Sentinel Node is designed to be self-contained; most pipeline anomalies are resolvable via a signed patch delivered to the secure portal without physical intervention.</p>
+            <p style="margin-top:14px;"><strong style="color:var(--teal);">Sovereign / Enterprise Redundancy Tier:</strong> You have a second node on-site — a cold-standby Hot Spare deployed at installation. Severity 1 failure response: your IT staff swaps the NVMe storage array to the Hot Spare. Target restoration: under 15 minutes. No waiting for dispatch. No single point of failure. Weekend Severity 1 response is included.</p>
+            <p style="margin-top:14px;"><strong style="color:var(--light-text);">The honest constraint:</strong> We are a pre-seed company. We do not have a 24/7 NOC. What we do have is a hardware architecture designed so that <em>you don't need one</em> — Dell enterprise support covers the physical layer, your IT team handles the swap, and the system is stateless enough that a drive transfer restores full operation. If your workflow cannot tolerate any after-hours downtime and you do not have IT staff, the Enterprise Redundancy Tier with a Hot Spare is the right configuration. We will scope that with you during the architecture assessment.</p>
+            <p style="margin-top:10px;font-size:0.85em;"><a href="sla.html" style="color:var(--teal);">Full SLA terms, response time commitments, and hardware replacement guarantees &rarr;</a></p>
+        </section>
+
         <section class="audit-section-blue" style="text-align: center;">
             <h2 style="color: var(--ai-blue); border-bottom: none; margin-top: 0;">Investor Relations</h2>
             <p style="color: var(--light-text); max-width: 600px; margin: 0 auto 20px;">Pocono AI, LLC is currently raising a pre-seed round. Our investor deck covers the market opportunity, deployment economics, use of funds, and the EAA technical differentiation that no cloud competitor can replicate.</p>
@@ -241,11 +264,11 @@
                     <img src="hero.jpg" alt="Marc, Founder of Pocono AI" width="400" height="400" loading="lazy">
                 </div>
                 <div class="founder-bio">
-                    <span class="passion-badge">Founder, CEO &amp; Chief Technologist</span>
-                    <h2>Meet Marc: The Architect of Sovereignty</h2>
-                    <p>An avid reader, a passionate researcher, and a deeply resilient technologist, Marc's philosophy is rooted in a unique intersection of <strong>Psychology (Master's Degree)</strong> and over a decade as a <strong>Senior Database Administrator</strong>. A Linux fanatic and happy coder in Bash and Python, he spent over 10 years mastering massive data architecture before transitioning into AI.</p>
-                    <p>After facing severe, debilitating health challenges that sidelined him for years, Marc utilized AI as the ultimate equalizer. It provided the leverage needed to bridge the physical gap and engineer high-performance architectures directly from bed. His exceptional drive to overcome these constraints is the foundation of Pocono AI, LLC.</p>
-                    <p><em>"I built this out of necessity, and I know exactly what it means to need systems that empower you. Now, my mission is to bring that same uncompromising capability and data sovereignty to medical practices and law offices—allowing professionals to reclaim their time and secure their data, no matter the logistical hurdles."</em></p>
+                    <span class="passion-badge">Founder &amp; Chief Technologist</span>
+                    <h2>Marcus O'Dell — The Architect</h2>
+                    <p>Marcus brings over a decade of enterprise database architecture — MySQL, PostgreSQL, MongoDB, Oracle, Microsoft SQL Server — to the design of the Sentinel Node. He holds a Master's degree in Psychology, which informs how the Human-in-the-Loop workflow is structured: not as a legal disclaimer, but as a cognitive handoff point that matches how licensed professionals actually think under time pressure.</p>
+                    <p>A Linux systems administrator and Bash/Python practitioner, Marcus has spent 10+ years building and hardening large-scale local data environments. The Sentinel Node is not a pivot into AI — it is the application of hard-won data custody discipline to a new inference layer.</p>
+                    <p><em>"The architecture came first. The company came second. I built this because I needed it to work — not because it was a trend."</em></p>
                 </div>
                 <div class="dba-stack">
                     <h3>Enterprise Data Stack</h3>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v39 -->
+<html lang="en"><!-- Pocono AI v40 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -144,6 +144,10 @@
                 <h3>Private Inference</h3>
                 <p>Processed entirely on-device with zero cloud telemetry.</p>
                 <span class="tag-badge tag-badge-teal">Ollama / Gemma | Llama 3 / 4</span>
+                <div style="margin-top:12px;font-size:0.82em;color:var(--muted);line-height:1.65;">
+                    <strong style="color:var(--light-text);display:block;margin-bottom:4px;">Deployed model specs (Phase I / II):</strong>
+                    Gemma 3 27B · Llama 3.3 70B (Q4_K_M GGUF quantization) on Phase II (32 GB VRAM). Phase I runs Gemma 3 12B / Llama 3.1 8B at Q5_K_M. Models are RAG-constrained — generation is anchored to retrieved document chunks, not open-ended parametric recall, which is the primary architectural mitigation for hallucination in document-heavy workflows.
+                </div>
             </div>
         </div>
 
