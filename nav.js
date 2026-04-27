@@ -75,3 +75,29 @@
     }
 
 })();
+
+/* ── v31 ANNOUNCEMENT BAR DISMISS ── */
+var closeBtn = document.querySelector('.close-announce');
+if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+        var bar = document.querySelector('.announce-bar');
+        if (bar) { bar.style.display = 'none'; sessionStorage.setItem('announce-closed','1'); }
+    });
+    if (sessionStorage.getItem('announce-closed')) {
+        var bar = document.querySelector('.announce-bar');
+        if (bar) bar.style.display = 'none';
+    }
+}
+
+/* ── v31 FADE-IN SECTION OBSERVER ── */
+if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-section').forEach(function(el) { io.observe(el); });
+}
