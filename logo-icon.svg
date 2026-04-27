@@ -1,32 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" width="64" height="48">
-
-  <!-- Left flanking hill - shorter, softer -->
-  <polygon points="2,44 18,24 30,44" fill="#0d2545"/>
-
-  <!-- Right flanking hill - shorter, softer -->
-  <polygon points="34,44 46,26 62,44" fill="#0d2545"/>
-
-  <!-- Main center mountain - wide and flat, 90° peak, Pocono style -->
-  <polygon points="8,44 32,8 56,44" fill="#0a1f3d"/>
-
-  <!-- Snow cap - wide notch at top -->
-  <polygon points="32,8 27,20 32,17 37,20" fill="#ffffff"/>
-
-  <!-- Neural network - teal/blue, centered in lower mountain -->
-  <circle cx="32" cy="33" r="2.2" fill="none" stroke="#00c9a7" stroke-width="1.3"/>
-  <circle cx="24" cy="37" r="1.6" fill="none" stroke="#00c9a7" stroke-width="1.2"/>
-  <circle cx="40" cy="37" r="1.6" fill="none" stroke="#00c9a7" stroke-width="1.2"/>
-  <circle cx="28" cy="40" r="1.4" fill="none" stroke="#00A3FF" stroke-width="1.1"/>
-  <circle cx="36" cy="40" r="1.4" fill="none" stroke="#00A3FF" stroke-width="1.1"/>
-  <circle cx="32" cy="26" r="1.4" fill="none" stroke="#00A3FF" stroke-width="1.1"/>
-
-  <!-- Connections -->
-  <line x1="32" y1="33" x2="24" y2="37" stroke="#00c9a7" stroke-width="1.1" opacity="0.9"/>
-  <line x1="32" y1="33" x2="40" y2="37" stroke="#00c9a7" stroke-width="1.1" opacity="0.9"/>
-  <line x1="32" y1="33" x2="32" y2="26" stroke="#00A3FF" stroke-width="1" opacity="0.85"/>
-  <line x1="24" y1="37" x2="28" y2="40" stroke="#00A3FF" stroke-width="1" opacity="0.8"/>
-  <line x1="40" y1="37" x2="36" y2="40" stroke="#00A3FF" stroke-width="1" opacity="0.8"/>
-  <line x1="24" y1="37" x2="36" y2="40" stroke="#00A3FF" stroke-width="0.8" opacity="0.5"/>
-  <line x1="28" y1="40" x2="40" y2="37" stroke="#00A3FF" stroke-width="0.8" opacity="0.5"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Outer hexagon — the air-gap perimeter (teal) -->
+  <polygon
+    points="256,28 456,141 456,371 256,484 56,371 56,141"
+    fill="none"
+    stroke="#188B96"
+    stroke-width="22"
+    stroke-linejoin="round"
+  />
+  <!-- Mid shield ring — unbroken containment boundary (ai-blue, thinner) -->
+  <polygon
+    points="256,80 412,167 412,345 256,432 100,345 100,167"
+    fill="none"
+    stroke="#00A3FF"
+    stroke-width="10"
+    stroke-linejoin="round"
+    opacity="0.55"
+  />
+  <!-- Inner core glow fill — local AI inference engine -->
+  <polygon
+    points="256,148 336,193 336,285 256,330 176,285 176,193"
+    fill="#051622"
+    stroke="#00A3FF"
+    stroke-width="14"
+    stroke-linejoin="round"
+  />
+  <!-- Inner core active glow — pulsing compute node -->
+  <polygon
+    points="256,148 336,193 336,285 256,330 176,285 176,193"
+    fill="url(#coreGlow)"
+    opacity="0.7"
+  />
+  <!-- Central node dot -->
+  <circle cx="256" cy="239" r="28" fill="#00A3FF" opacity="0.9"/>
+  <circle cx="256" cy="239" r="14" fill="#051622"/>
+  <circle cx="256" cy="239" r="6" fill="#188B96"/>
+  <!-- Defs -->
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00A3FF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#188B96" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
 </svg>
