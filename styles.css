@@ -5,7 +5,12 @@
    accessibility, print, reduced-motion added.
    ========================================= */
 
+/* v32: Google Fonts loaded with display=swap. Preconnect added to all HTML heads. */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap');
+
+/* System font fallbacks (render immediately before web fonts load) */
+body { font-family: 'DM Mono', 'Cascadia Code', 'Fira Mono', 'Courier New', monospace; }
+h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', 'Trebuchet MS', system-ui, sans-serif; }
 
 /* ── CUSTOM PROPERTIES ── */
 :root {
@@ -399,4 +404,123 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ═══════════════════════════════════════════
+   v31 IMPROVEMENTS
+   ═══════════════════════════════════════════ */
+
+/* v31 #1: STICKY ANNOUNCEMENT BANNER */
+.announce-bar {
+    background: linear-gradient(90deg, rgba(0,163,255,0.12), rgba(24,139,150,0.12));
+    border-bottom: 1px solid rgba(0,163,255,0.2);
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 0.8em;
+    color: var(--light-text);
+    position: relative;
+    z-index: 1001;
+}
+.announce-bar a { color: var(--ai-blue); font-weight: 700; text-decoration: none; }
+.announce-bar a:hover { color: var(--white); }
+.announce-bar .close-announce {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 1.1em; padding: 0; line-height: 1;
+}
+.announce-bar .close-announce:hover { color: var(--white); }
+
+/* v31 #2: CARD HOVER LIFT — global upgrade for all cards */
+.feature-card, .pricing-card, .use-case-card, .argument-card, .why-now-card {
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.feature-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+.pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+/* v31 #3: INVESTOR PAGE SPECIFIC STYLES (extracted from v30 inline styles) */
+.inv-hero { text-align: center; padding: 40px 10px 30px; }
+.inv-tagline { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.85em; display: block; margin-bottom: 16px; }
+.inv-hero h1 { font-size: clamp(2rem, 7vw, 3rem); color: var(--white); line-height: 1.1; margin: 0 0 16px; }
+.inv-hero p { font-size: 1.1em; color: var(--light-text); max-width: 680px; margin: 0 auto; line-height: 1.75; }
+.conf-notice { background: rgba(186,117,23,0.08); border: 1px solid rgba(186,117,23,0.25); border-radius: 8px; padding: 16px 20px; margin: 24px 0; font-size: 0.82em; color: var(--light-text); line-height: 1.6; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 16px; margin: 36px 0; }
+.stat-cell { background: var(--card-dark); border-radius: 10px; padding: 22px 16px; text-align: center; border-top: 3px solid var(--ai-blue); }
+.stat-cell.teal { border-top-color: var(--teal); }
+.stat-num { font-size: 2.2em; font-weight: 800; color: var(--ai-blue); display: block; line-height: 1; }
+.stat-cell.teal .stat-num { color: var(--teal); }
+.stat-lbl { font-size: 0.78em; color: var(--muted); display: block; margin-top: 6px; line-height: 1.4; }
+.inv-section { background: linear-gradient(135deg, rgba(0,163,255,0.05) 0%, rgba(5,22,34,1) 100%); border-left: 4px solid var(--ai-blue); border-radius: 0 8px 8px 0; padding: 28px 28px 28px 28px; margin: 28px 0; }
+.inv-section.teal { border-left-color: var(--teal); background: linear-gradient(135deg, rgba(24,139,150,0.05) 0%, rgba(5,22,34,1) 100%); }
+.inv-section h2 { color: var(--white); margin-top: 0; font-size: 1.4em; }
+.inv-section p { color: var(--light-text); line-height: 1.8; margin-bottom: 12px; }
+.inv-section p:last-child { margin-bottom: 0; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; margin-top: 20px; }
+.why-card { background: var(--card-dark); border-radius: 8px; padding: 22px; border-top: 3px solid var(--ai-blue); }
+.why-card h3 { color: var(--white); margin-top: 0; font-size: 1.05em; }
+.why-card p { color: var(--light-text); font-size: 0.9em; line-height: 1.7; margin: 0; }
+.raise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; margin: 16px 0; }
+.raise-cell { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,163,255,0.2); border-radius: 8px; padding: 20px 16px; text-align: center; }
+.raise-num { font-size: 2em; font-weight: 800; color: var(--teal); display: block; line-height: 1; }
+.raise-lbl { font-size: 0.85em; color: var(--white); font-weight: 700; display: block; margin-top: 4px; }
+.raise-sub { font-size: 0.72em; color: var(--muted); display: block; margin-top: 3px; }
+.funds-list { list-style: none; padding: 0; margin: 0; }
+.funds-list li { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--light-text); font-size: 0.9em; }
+.funds-list li:last-child { border-bottom: none; }
+.funds-pct { color: var(--teal); font-weight: 700; white-space: nowrap; margin-left: 16px; }
+.founder-strip { display: flex; gap: 28px; align-items: flex-start; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 28px; margin: 40px 0; flex-wrap: wrap; }
+.founder-strip img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--teal); flex-shrink: 0; }
+.founder-strip-text h3 { color: var(--teal); margin-top: 0; font-size: 1.15em; }
+.founder-strip-text p { color: var(--light-text); font-size: 0.93em; line-height: 1.7; margin-bottom: 10px; }
+.inv-cta { text-align: center; margin: 50px 0; padding: 44px 20px; background: rgba(24,139,150,0.08); border: 1px solid rgba(24,139,150,0.2); border-radius: 12px; }
+.inv-cta h2 { color: var(--white); margin-top: 0; }
+.inv-cta p { color: var(--light-text); max-width: 580px; margin: 0 auto 24px; font-size: 0.97em; line-height: 1.75; }
+
+/* Trust / Glossary page */
+.trust-intro { text-align: center; font-size: 1.2em; color: var(--ai-blue); font-weight: bold; max-width: 700px; margin: 0 auto 40px; }
+.glossary-section { margin: 40px 0; }
+.glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; margin-top: 20px; }
+.glossary-card { background: var(--card-dark); border-radius: 8px; padding: 24px; border-top: 4px solid var(--teal); box-shadow: var(--shadow-card); }
+.glossary-card h3 { color: var(--white); margin-top: 0; font-size: 1.1em; }
+.glossary-card p { color: var(--light-text); font-size: 0.92em; line-height: 1.7; margin: 0; }
+.audit-section { margin: 50px 0; }
+.audit-section h2 { color: var(--teal); border-bottom: 2px solid var(--card-dark); padding-bottom: 10px; font-size: 1.7em; }
+.audit-section p { color: var(--light-text); line-height: 1.8; }
+.audit-list { color: var(--light-text); padding-left: 20px; }
+.audit-list li { margin-bottom: 8px; line-height: 1.7; }
+
+/* Research hub */
+.rh-hero { text-align: center; padding: 40px 10px 30px; }
+.rh-eyebrow { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.82em; display: block; margin-bottom: 12px; }
+.rh-hero h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); color: var(--white); line-height: 1.1; margin: 0 0 16px; }
+.rh-deck { font-size: 1.0em; color: var(--light-text); max-width: 680px; margin: 0 auto 20px; line-height: 1.8; }
+.accuracy-badge { display: inline-block; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); color: var(--success); font-size: 0.78em; padding: 6px 16px; border-radius: 20px; }
+.wp-featured { background: linear-gradient(135deg, rgba(0,163,255,0.08), rgba(5,22,34,1)); border: 1px solid rgba(0,163,255,0.25); border-radius: 12px; padding: 32px; margin: 36px 0; }
+.wp-featured h2 { color: var(--white); font-size: 1.4em; margin: 12px 0 12px; }
+.wp-featured p { color: var(--light-text); line-height: 1.8; margin-bottom: 20px; }
+.rcard-type { font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
+.type-wp { color: var(--ai-blue); }
+.rcard-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.rstat strong { display: block; font-size: 1.4em; color: var(--teal); font-family: 'Syne', sans-serif; }
+.rstat span { font-size: 0.78em; color: var(--muted); }
+
+/* v31 #4: DARK GLASSMORPHISM UPGRADE for hero on index */
+@supports (backdrop-filter: blur(12px)) {
+    .highlight-section {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+}
+
+/* v31 #5: SMOOTH SECTION FADE-IN via Intersection Observer */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-section { opacity: 1; transform: none; transition: none; }
 }

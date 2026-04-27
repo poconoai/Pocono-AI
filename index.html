@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v30 -->
+<html lang="en"><!-- Pocono AI v32 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,9 @@
     <meta property="og:image" content="https://poconoai.com/hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#051622">
     <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
 
     <!-- Shared stylesheet -->
@@ -27,6 +30,11 @@
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="announce-bar">
+    <strong style="color:var(--ai-blue);">NEW v32:</strong> &nbsp;
+    <a href="simulation.html">⚖ 12-Panel AI Simulation</a> — Watch investors, physicians, attorneys &amp; patient advocates deliberate live on your deployment decision.
+    <button class="close-announce" aria-label="Dismiss announcement">&times;</button>
+</div>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
             <header>
@@ -120,7 +128,7 @@
 
         <section>
             <h2 class="section-header">Operational Deployment Model</h2>
-            <div class="feature-grid">
+            <div class="feature-grid fade-in-section">
                 <div class="feature-card">
                     <h3>Reduced Exfiltration</h3>
                     <p>Prevents PHI exfiltration by obviating outbound cloud connections for primary inference workflows.</p>
@@ -140,7 +148,7 @@
             </div>
         </section>
 
-        <div class="highlight-section">
+        <div class="highlight-section fade-in-section">
             <h2 style="color: white; margin-top: 0;">Clinical Validation Sandbox</h2>
             <p>Our local architecture undergoes extreme optimization stress-testing. In our latest sandbox, we ingested a <strong>76-page raw clinical document</strong> into an isolated local vector database.</p>
             <div class="stat-row">
@@ -153,7 +161,7 @@
             <p style="font-size: 0.8em; color: var(--muted); font-style: italic; margin-top: 5px;">*Results from internal sandbox with isolated network. Not a HIPAA certification.</p>
         </div>
 
-        <section class="insight-section">
+        <section class="insight-section fade-in-section">
             <h2>Technical Brief: Achieving Zero Telemetry</h2>
             <p>The conversation around AI safety often misses a structural reality: If you want to stop an AI model from "phoning home," you have to engineer an environment where it physically cannot.</p>
             <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">At Pocono AI, we enforce strict hardware and network firewalls. A proper sovereign deployment places the AI infrastructure on a physically isolated network—routing traffic <em>in</em> to cordon the system off from outbound access.</p>
@@ -212,7 +220,7 @@
             </a>
         </section>
 
-        <section id="contact" class="cta-container">
+        <section id="contact" class="fade-in-section" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Establish Your Perimeter</h2>
             <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a technical briefing regarding your local AI deployment or Paid Proof-of-Value engagement.</p>
 
