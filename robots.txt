@@ -4,5 +4,5 @@ Allow: /
 # XML Sitemap location
 Sitemap: https://poconoai.com/sitemap.xml
 
-# Disallow nothing — all 19 pages should be indexed
+# Disallow nothing — all 25 pages should be indexed
 # PDF files are allowed for indexing

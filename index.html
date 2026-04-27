@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v40 -->
+<html lang="en"><!-- Pocono AI v44 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,48 +77,33 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
-            <header>
+                        <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <nav id="nav-menu" aria-label="Main navigation">
             <ul class="nav-links">
-                <li><a href="index.html" style="color: var(--ai-blue);">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="use-cases.html">Use Cases</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html">Partners</a></li>
+                <li class="nav-mobile-hide"><a href="index.html" style="color:var(--ai-blue);">Home</a></li>
+                <li><a href="for-physicians.html">For Physicians</a></li>
+                <li><a href="for-attorneys.html">For Attorneys</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf">Specs</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false" aria-controls="research-menu">
-                        Research <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="research-menu" role="menu">
-                        <a href="research.html">Research Hub</a>
-                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hours</a>
-                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                        <a href="patient-advocacy.html">Patient Safety</a>
-                        <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
-                        <a href="The_Zero_Exfiltration_Advantage_PoconoAI.pdf" target="_blank">Zero Exfiltration Advantage (PDF)</a>
-                        <a href="Pocono_Exec.pdf" target="_blank">Executive Deck (PDF)</a>
-                    </div>
-                </li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li class="nav-dropdown">
                     <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
                         More <span class="arrow">&#9662;</span>
                     </button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="simulation.html">&#9878; 12-Panel Simulation</a>
-                        <a href="portal.html">Portal</a>
-                        <a href="careers.html">Careers</a>
-                        <a href="investors.html">Investors</a>
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="use-cases.html">Use Cases</a>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="specs.html">Specs</a>
                         <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="partners.html">Partners</a>
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
-                        <a href="sitemap.html">Sitemap</a>
+                        <a href="research.html">Research Hub</a>
+                        <a href="portal.html">Client Portal</a>
+                        <a href="simulation.html" style="opacity:0.65;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
             </ul>
@@ -128,14 +113,15 @@
     <main id="main-content">
 
         <section class="hero-section">
-            <span class="hero-tagline">Architected for Data Sovereignty</span>
-            <h1>Reclaim Your Practice</h1>
-            <p>On-premises infrastructure designed to eliminate administrative friction through local AI and air-gapped security.</p>
-            <div class="hero-ctas">
-                <a href="use-cases.html" class="cta-button">View Time Reclamation</a>
-                <a href="pricing.html" class="cta-button cta-button-light">Deployment Tiers</a>
-                <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" target="_blank" class="cta-button cta-button-light">60-Day POV Brief (PDF)</a>
+            <span class="hero-tagline">Sovereign On-Premises AI for Independent Practices</span>
+            <h1>Give Physicians Their<br>Afternoons Back.</h1>
+            <p>Physicians lose <strong style="color:var(--ai-blue);">5.9 hours daily</strong> to EHR documentation. Attorneys lose 40% of their working day to non-billable tasks. The Sentinel Node™ runs locally in your building — zero cloud, zero exfiltration, zero vendor access — and targets 3–5 hours of daily reclamation.</p>
+            <div class="hero-audience-links">
+                <a href="for-physicians.html" class="cta-button">For Physicians &rarr;</a>
+                <a href="for-attorneys.html" class="cta-button" style="background:var(--ai-blue);">For Attorneys &rarr;</a>
+                <a href="pricing.html" class="cta-button cta-button-light">Pricing</a>
             </div>
+            <p class="hero-mission">Built for independent practices of 2&ndash;10 providers. Not for hospital systems.</p>
         </section>
 
         <!-- WHITEPAPER LIBRARY — v35 -->
@@ -246,8 +232,9 @@
                     <img src="integration-demo.png" alt="Pocono AI Sentinel Node — Anything LLM Integration Demo showing AI Core Status, Usage Analytics, and local RAG chat interface" style="width:100%;display:block;" loading="lazy">
                 </div>
                 <p>Demo video coming soon.<br>Contact <a href="mailto:marcus@poconoai.com" style="color:var(--ai-blue);">marcus@poconoai.com</a> to schedule a live walkthrough.</p>
-                    <a href="Pocono_AI_60_Sec_Video_Script.pdf" target="_blank" style="display:inline-block;margin-top:10px;font-size:0.82em;color:var(--teal);text-decoration:underline;letter-spacing:0.03em;">&#9654; View 60-Second Demo Script (PDF)</a>
+                    
                 </div>
+                </div><!-- /video-placeholder -->
                 <!-- ACTIVATE: delete placeholder div above, paste embed URL below -->
                 <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
             </div>
@@ -288,11 +275,35 @@
                 </p>
             </div>
 
-            <p style="margin-top: 35px;"><strong>Text the Founder to coordinate:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
+            <p style="margin-top: 35px;"><strong>Direct Access Line &mdash;</strong> Call or text the Chief Technologist directly for urgent architecture scoping: <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
             <p style="margin-top: 20px;">
                 <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" target="_blank" class="cta-button cta-button-light" style="font-size:0.9em; padding:12px 22px;">60-Day POV Brief (PDF)</a>
             </p>
         </section>
+
+
+        <!-- AS SEEN ON LINKEDIN — v42 Social Proof Strip -->
+        <div style="border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);padding:32px 20px;margin:40px 0;text-align:center;">
+            <p style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.18em;font-weight:700;margin:0 0 18px;">As Seen On LinkedIn</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;max-width:860px;margin:0 auto;">
+                <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_datasovereignty-localai-networkarchitecture-share-7451776847400415232-s6bd" target="_blank" rel="noopener" style="flex:1;min-width:240px;max-width:360px;background:var(--card-dark);border:1px solid rgba(10,115,210,0.3);border-radius:10px;padding:18px 20px;text-decoration:none;display:block;text-align:left;transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(10,115,210,0.7)'" onmouseout="this.style.borderColor='rgba(10,115,210,0.3)'">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A73D2" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        <span style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.1em;">LinkedIn Discussion</span>
+                    </div>
+                    <p style="color:var(--light-text);font-size:0.88em;line-height:1.65;margin:0 0 10px;">"If you want to stop an AI model from phoning home, you have to engineer an environment where it physically cannot."</p>
+                    <span style="color:var(--ai-blue);font-size:0.78em;font-weight:700;">Read the full thread &rarr;</span>
+                </a>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" style="flex:1;min-width:240px;max-width:360px;background:var(--card-dark);border:1px solid rgba(10,115,210,0.3);border-radius:10px;padding:18px 20px;text-decoration:none;display:block;text-align:left;transition:border-color 0.3s;" onmouseover="this.style.borderColor='rgba(10,115,210,0.7)'" onmouseout="this.style.borderColor='rgba(10,115,210,0.3)'">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A73D2" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        <span style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.1em;">Pocono AI Company Page</span>
+                    </div>
+                    <p style="color:var(--light-text);font-size:0.88em;line-height:1.65;margin:0 0 10px;">Follow for ongoing coverage of zero-exfiltration architecture, EHR burden research, and sovereign AI deployment insights.</p>
+                    <span style="color:var(--ai-blue);font-size:0.78em;font-weight:700;">Follow on LinkedIn &rarr;</span>
+                </a>
+            </div>
+        </div>
 
         <div class="transparency-note">
             <p><strong>Analytics Transparency:</strong> The Sentinel Node has zero outbound telemetry — it never connects out. This marketing site uses <strong>Umami</strong>, a privacy-first, cookie-free analytics tool, to monitor basic traffic. <a href="trust.html#analytics" style="color:var(--ai-blue);">Full details on our Trust page.</a></p>
@@ -300,14 +311,59 @@
 
     </main>
 
-            <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
-        <p>
-            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
-            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
-            <a href="sla.html">Service Level Agreement</a>
-        </p>
-        <p><a href="investors.html">Investor Relations</a></p>
+                <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <p class="footer-brand">Pocono <span>AI</span></p>
+                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">For Practitioners</p>
+                <a href="for-physicians.html">For Physicians</a>
+                <a href="for-attorneys.html">For Attorneys</a>
+                <a href="use-cases.html">Use Cases</a>
+                <a href="solutions.html">Solutions Overview</a>
+                <a href="pricing.html">Pricing &amp; Financing</a>
+                <a href="specs.html">Hardware Specs</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Technology</p>
+                <a href="architecture.html">For IT &amp; MSPs</a>
+                <a href="trust.html">Trust &amp; Security</a>
+                <a href="partners.html">Partners</a>
+                <a href="competitive-analysis.html">Competitive Analysis</a>
+                <a href="why-pocono-ai.html">Why Pocono AI</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Research</p>
+                <a href="research.html">Research Hub</a>
+                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                <a href="patient-advocacy.html">Patient Safety</a>
+                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Company</p>
+                <a href="portal.html">Client Portal</a>
+                <a href="careers.html">Careers</a>
+                <a href="simulation.html">12-Panel Simulation</a>
+                <a href="sitemap.html">Sitemap</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="sla.html">SLA</a>
+                <a href="investors.html" class="footer-subtle">Investor Relations</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+            </p>
+            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+        </div>
     </footer>
 
     <!-- Shared navigation script -->

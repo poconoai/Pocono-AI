@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v40 -->
+<html lang="en"><!-- Pocono AI v44 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,48 +59,33 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
-            <header>
+                        <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <nav id="nav-menu" aria-label="Main navigation">
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="use-cases.html">Use Cases</a></li>
-                <li><a href="architecture.html">Architecture</a></li>
-                <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li><a href="partners.html" style="color: var(--ai-blue);">Partners</a></li>
+                <li class="nav-mobile-hide"><a href="index.html">Home</a></li>
+                <li><a href="for-physicians.html">For Physicians</a></li>
+                <li><a href="for-attorneys.html">For Attorneys</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="sentinel-node-spec-sheet.pdf">Specs</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false" aria-controls="research-menu">
-                        Research <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="research-menu" role="menu">
-                        <a href="research.html">Research Hub</a>
-                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hours</a>
-                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                        <a href="patient-advocacy.html">Patient Safety</a>
-                        <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
-                        <a href="The_Zero_Exfiltration_Advantage_PoconoAI.pdf" target="_blank">Zero Exfiltration Advantage (PDF)</a>
-                        <a href="Pocono_Exec.pdf" target="_blank">Executive Deck (PDF)</a>
-                    </div>
-                </li>
+                <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li class="nav-dropdown">
                     <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
                         More <span class="arrow">&#9662;</span>
                     </button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="simulation.html">&#9878; 12-Panel Simulation</a>
-                        <a href="portal.html">Portal</a>
-                        <a href="careers.html">Careers</a>
-                        <a href="investors.html">Investors</a>
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="use-cases.html">Use Cases</a>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="specs.html">Specs</a>
                         <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="partners.html">Partners</a>
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
-                        <a href="sitemap.html">Sitemap</a>
+                        <a href="research.html">Research Hub</a>
+                        <a href="portal.html">Client Portal</a>
+                        <a href="simulation.html" style="opacity:0.65;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
             </ul>
@@ -206,7 +191,82 @@
             </details>
         </section>
 
-        <section class="insight-section">
+
+        <!-- MSP PARTNER PROGRAM — v41 Red Team Fix #1 -->
+        <section style="margin-bottom:40px;">
+            <h2 style="color:var(--teal);">MSP &amp; IT Partner Program</h2>
+            <p style="color:var(--light-text);line-height:1.8;">Independent practices don&#8217;t have CISOs or in-house network engineers. Their IT infrastructure is managed by a local Managed Service Provider (MSP). For a Sentinel Node deployment to succeed, the practice&#8217;s IT partner must understand the architecture and feel confident recommending it.</p>
+            <p style="color:var(--light-text);line-height:1.8;">We actively partner with regional MSPs and outsourced IT vendors serving medical and legal practices. If you support a clinic or law office and want to add sovereign AI infrastructure to your service portfolio, we want to talk.</p>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;">
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(24,139,150,0.3);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--teal);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For MSPs</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">Dedicated VLAN setup guides, architecture documentation written for outsourced IT teams, and direct access to the Chief Technologist for scoping calls.</p>
+                </div>
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(0,163,255,0.2);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For Practice Managers</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">We will brief your current IT vendor directly. If they have questions about the Sentinel Node architecture, we schedule a joint technical call — no friction, no guesswork.</p>
+                </div>
+            </div>
+            <p style="margin-top:20px;"><a href="mailto:marcus@poconoai.com?subject=MSP%20Partner%20Inquiry" class="cta-button" style="margin-left:0;">Inquire About MSP Partnership</a></p>
+        </section>
+
+   
+        <!-- MSP PARTNER PROGRAM — v41 Red Team Fix #1 -->
+        <section style="margin-bottom:40px;">
+            <h2 style="color:var(--teal);">MSP &amp; IT Partner Program</h2>
+            <p style="color:var(--light-text);line-height:1.8;">Independent practices don&#8217;t have CISOs or in-house network engineers. Their IT infrastructure is managed by a local Managed Service Provider (MSP). For a Sentinel Node deployment to succeed, the practice&#8217;s IT partner must understand the architecture and feel confident recommending it.</p>
+            <p style="color:var(--light-text);line-height:1.8;">We actively partner with regional MSPs and outsourced IT vendors serving medical and legal practices. If you support a clinic or law office and want to add sovereign AI infrastructure to your service portfolio, we want to talk.</p>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;">
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(24,139,150,0.3);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--teal);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For MSPs</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">Dedicated VLAN setup guides, architecture documentation written for outsourced IT teams, and direct access to the Chief Technologist for scoping calls.</p>
+                </div>
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(0,163,255,0.2);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For Practice Managers</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">We will brief your current IT vendor directly. If they have questions about the Sentinel Node architecture, we schedule a joint technical call &mdash; no friction, no guesswork.</p>
+                </div>
+            </div>
+            <p style="margin-top:20px;"><a href="mailto:marcus@poconoai.com?subject=MSP%20Partner%20Inquiry" class="cta-button" style="margin-left:0;">Inquire About MSP Partnership</a></p>
+        </section>
+
+     
+        <!-- MSP PARTNER PROGRAM — v41 Red Team Fix #1 -->
+        <section style="margin-bottom:40px;">
+            <h2 style="color:var(--teal);">MSP &amp; IT Partner Program</h2>
+            <p style="color:var(--light-text);line-height:1.8;">Independent practices don&#8217;t have CISOs or in-house network engineers. Their IT is managed by a local Managed Service Provider. For a Sentinel Node deployment to succeed, the practice&#8217;s IT partner must understand the architecture and feel confident recommending it.</p>
+            <p style="color:var(--light-text);line-height:1.8;">We actively partner with regional MSPs and outsourced IT vendors serving medical and legal practices. If you support a clinic or law office and want to add sovereign AI infrastructure to your service portfolio, we want to talk.</p>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;">
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(24,139,150,0.3);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--teal);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For MSPs</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">Dedicated VLAN setup guides, architecture documentation written for outsourced IT teams, and direct Chief Technologist access for scoping calls.</p>
+                </div>
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(0,163,255,0.2);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For Practice Managers</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">We will brief your current IT vendor directly. If they have questions about the Sentinel Node, we schedule a joint technical call &mdash; no friction, no guesswork.</p>
+                </div>
+            </div>
+            <p style="margin-top:20px;"><a href="mailto:marcus@poconoai.com?subject=MSP%20Partner%20Inquiry" class="cta-button" style="margin-left:0;">Inquire About MSP Partnership</a></p>
+        </section>
+
+        <!-- MSP PARTNER PROGRAM v41 Red Team Fix -->
+        <section style="margin-bottom:40px;">
+            <h2 style="color:var(--teal);">MSP &amp; IT Partner Program</h2>
+            <p style="color:var(--light-text);line-height:1.8;">Independent practices don&#8217;t have CISOs or in-house network engineers. Their IT is managed by a local Managed Service Provider. For a Sentinel Node deployment to succeed, the practice&#8217;s IT partner must understand the architecture and feel confident recommending it.</p>
+            <p style="color:var(--light-text);line-height:1.8;">We actively partner with regional MSPs serving medical and legal practices. If you manage IT for a clinic or law office and want to add sovereign AI to your service portfolio, we want to talk.</p>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;">
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(24,139,150,0.3);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--teal);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For MSPs</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">VLAN setup guides and architecture documentation written for outsourced IT teams, plus direct Chief Technologist access for scoping calls.</p>
+                </div>
+                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(0,163,255,0.2);border-radius:8px;padding:20px 24px;">
+                    <p style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For Practice Managers</p>
+                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">We will brief your IT vendor directly. If they have questions about the Sentinel Node, we schedule a joint technical call &mdash; no friction, no guesswork.</p>
+                </div>
+            </div>
+            <p style="margin-top:20px;"><a href="mailto:marcus@poconoai.com?subject=MSP%20Partner%20Inquiry" class="cta-button" style="margin-left:0;">Inquire About MSP Partnership</a></p>
+        </section>
+
+<section class="insight-section">
             <h2>Technical Brief: Achieving Zero Telemetry</h2>
             <p>The conversation around AI safety often misses a fundamental structural reality: If you want to stop an AI model from "phoning home," you have to engineer an environment where it physically cannot.</p>
             <p style="font-size: 0.95em; color: var(--light-text); margin-top: 15px;">At Pocono AI, we enforce strict hardware and network firewalls. A proper sovereign deployment places the AI infrastructure on a physically isolated network—routing traffic <em>in</em> to cordon the system off from outbound access.</p>
@@ -217,7 +277,7 @@
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Request Technical Briefing</h2>
             <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Initiate a technical briefing regarding your local AI deployment or Paid Proof-of-Value engagement.</p>
 
-            <form action="mailto:marcus@poconoai.com?subject=Strategic Inquiry via PoconoAI.com" method="post" enctype="text/plain" style="text-align: left; max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+            <form action="mailto:marcus@poconoai.com?subject=Strategic%20Inquiry%20via%20PoconoAI.com" method="post" enctype="text/plain" style="text-align: left; max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.3); padding: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
                 <label for="name" style="color: var(--light-text); font-weight: bold; display: block; margin-bottom: 5px;">Name / Organization:</label>
                 <input type="text" id="name" name="Name" required placeholder="Dr. Jane Doe, Regional Health System">
                 <input type="submit" value="Open Secure Email Client" class="cta-button" style="width: 100%; cursor: pointer; border: none; font-size: 1.1em; margin: 0;">
@@ -228,7 +288,7 @@
                     <strong>Security Notice:</strong> Initial inquiry only. Do not submit PHI or confidential legal details via this web form.
                 </p>
             </div>
-            <p style="margin-top: 35px;"><strong>Text the Founder to coordinate:</strong> <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
+            <p style="margin-top: 35px;"><strong>Direct Access Line &mdash;</strong> Call or text the Chief Technologist directly for urgent architecture scoping: <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
         </section>
 
         <div class="transparency-note">
@@ -237,14 +297,59 @@
 
     </main>
 
-            <footer>
-        <p>&copy; 2026 Pocono AI, LLC. East Stroudsburg, Pennsylvania</p>
-        <p>
-            <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
-            <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp;
-            <a href="sla.html">Service Level Agreement</a>
-        </p>
-        <p><a href="investors.html">Investor Relations</a></p>
+                <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <p class="footer-brand">Pocono <span>AI</span></p>
+                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">For Practitioners</p>
+                <a href="for-physicians.html">For Physicians</a>
+                <a href="for-attorneys.html">For Attorneys</a>
+                <a href="use-cases.html">Use Cases</a>
+                <a href="solutions.html">Solutions Overview</a>
+                <a href="pricing.html">Pricing &amp; Financing</a>
+                <a href="specs.html">Hardware Specs</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Technology</p>
+                <a href="architecture.html">For IT &amp; MSPs</a>
+                <a href="trust.html">Trust &amp; Security</a>
+                <a href="partners.html">Partners</a>
+                <a href="competitive-analysis.html">Competitive Analysis</a>
+                <a href="why-pocono-ai.html">Why Pocono AI</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Research</p>
+                <a href="research.html">Research Hub</a>
+                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                <a href="patient-advocacy.html">Patient Safety</a>
+                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Company</p>
+                <a href="portal.html">Client Portal</a>
+                <a href="careers.html">Careers</a>
+                <a href="simulation.html">12-Panel Simulation</a>
+                <a href="sitemap.html">Sitemap</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="sla.html">SLA</a>
+                <a href="investors.html" class="footer-subtle">Investor Relations</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+            </p>
+            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+        </div>
     </footer>
 
     <!-- Shared navigation script -->

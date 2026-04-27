@@ -1,0 +1,19 @@
+# Pocono AI v44 — Asset Upload Checklist for GitHub Pages
+# 
+# These files exist on the live server but are NOT included in this tarball
+# (they are binary files managed separately). Upload them to your GitHub repo root.
+#
+# PDFs (upload to repo root — same level as index.html):
+#   The_Malpractice_Trap_Whitepaper.pdf
+#   The_Zero_Exfiltration_Advantage_PoconoAI.pdf
+#   Pocono_Exec.pdf
+#   sentinel-node-spec-sheet.pdf
+#   Pocono_AI_60_Day_Clinical_Pilot.pdf
+#
+# Images (upload to repo root):
+#   hero.jpg          (founder/profile photo)
+#   integration-demo.png  (AnythingLLM demo screenshot)
+#
+# All HTML pages reference these files by relative path from repo root.
+# GitHub Pages will serve them correctly once uploaded.
+# No code changes needed — links are already correct.
