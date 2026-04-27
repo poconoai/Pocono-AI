@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v32 -->
+<html lang="en"><!-- Pocono AI v38 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Pocono AI 12-Panel Simulation — investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. All positions grounded in peer-reviewed research.">
+    <meta name="description" content="Watch 12 expert panelists — investors, physicians, attorneys, patient advocates — deliberate sovereign AI deployment. Fully offline. Research-grounded.">
     <title>12-Panel Simulation | Pocono AI, LLC</title>
     <meta property="og:title" content="12-Panel Simulation | Pocono AI, LLC">
     <meta property="og:description" content="Watch 12 expert panelists deliberate live on sovereign AI deployment. No cloud. All research-grounded.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/simulation.html">
+    <meta property="og:image" content="https://poconoai.com/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="theme-color" content="#051622">
@@ -110,19 +113,60 @@
 .panelist-select option { background: var(--bg-dark); }
 .sim-disclaimer { background: rgba(0,0,0,0.28); border-radius: 8px; padding: 15px 20px; margin-top: 28px; font-size: 0.76em; color: var(--muted); line-height: 1.65; border: 1px solid rgba(255,255,255,0.05); }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pocono AI, LLC",
+      "url": "https://poconoai.com",
+      "logo": "https://poconoai.com/logo-icon.svg",
+      "description": "Sovereign, on-premises local AI infrastructure for healthcare and legal professionals. Zero data exfiltration. Hardware-custody deployment.",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "East Stroudsburg",
+        "addressRegion": "PA",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-570-534-0602",
+        "contactType": "sales",
+        "email": "marcus@poconoai.com"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/pocono-ai"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "12-Panel Simulation | Pocono AI",
+  "description": "Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Fully offline. Research-grounded.",
+  "url": "https://poconoai.com/simulation.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://poconoai.com",
+    "name": "Pocono AI, LLC"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pocono AI, LLC",
+    "url": "https://poconoai.com"
+  }
+}
+    </script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
-<div class="announce-bar">
-    <strong style="color:var(--ai-blue);">NEW v32:</strong> &nbsp;
-    <a href="simulation.html">⚖ 12-Panel Simulation</a> — Fully offline. Zero cloud calls. All deliberations grounded in peer-reviewed research.
-    <button class="close-announce" aria-label="Dismiss announcement">&times;</button>
-</div>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
 <header>
     <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
-    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
     </button>
     <nav id="nav-menu" aria-label="Main navigation">
@@ -136,8 +180,8 @@
             <li><a href="pricing.html">Pricing</a></li>
             <li><a href="sentinel-node-spec-sheet.pdf">Specs</a></li>
             <li class="nav-dropdown">
-                <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">Research <span class="arrow">&#9662;</span></button>
-                <div class="nav-dropdown-menu" id="research-menu">
+                <button type="button" class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false" aria-controls="research-menu">Research <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="research-menu" role="menu">
                     <a href="research.html">Research Hub</a>
                     <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
                     <a href="ehr-burden-research.html">EHR Burden — 5.9 Hours</a>
@@ -147,8 +191,8 @@
                 </div>
             </li>
             <li class="nav-dropdown">
-                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">More <span class="arrow">&#9662;</span></button>
-                <div class="nav-dropdown-menu" id="more-menu">
+                <button type="button" class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
                     <a href="simulation.html" style="color:var(--teal);">12-Panel Simulation</a>
                     <a href="competitive-analysis.html">Competitive Analysis</a>
                     <a href="why-pocono-ai.html">Why Pocono AI</a>
@@ -165,7 +209,7 @@
 <main id="main-content">
 
     <section class="sim-hero">
-        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v32</span>
+        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v37</span>
         <h1>The 12-Panel Convening</h1>
         <p>Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Every position is grounded in peer-reviewed research published on this site.</p>
         <span class="offline-badge">✓ Zero cloud calls — fully offline deliberation engine</span>
@@ -174,11 +218,11 @@
     <div>
         <p style="color:var(--muted);font-size:0.8em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:10px;">Choose a deliberation scenario:</p>
         <div class="scenario-bar" id="scenario-bar">
-            <button class="scenario-btn active" data-scenario="deploy">Solo practice deployment</button>
-            <button class="scenario-btn" data-scenario="invest">Pre-seed investment decision</button>
-            <button class="scenario-btn" data-scenario="legal">Boutique law firm AI adoption</button>
-            <button class="scenario-btn" data-scenario="patient">Patient safety impact</button>
-            <button class="scenario-btn" data-scenario="cloud">Cloud AI vs. Sentinel Node</button>
+            <button type="button" class="scenario-btn active" data-scenario="deploy">Solo practice deployment</button>
+            <button type="button" class="scenario-btn" data-scenario="invest">Pre-seed investment decision</button>
+            <button type="button" class="scenario-btn" data-scenario="legal">Boutique law firm AI adoption</button>
+            <button type="button" class="scenario-btn" data-scenario="patient">Patient safety impact</button>
+            <button type="button" class="scenario-btn" data-scenario="cloud">Cloud AI vs. Sentinel Node</button>
         </div>
         <div class="scenario-desc" id="scenario-desc">
             <h3>Scenario: Solo Practice Deployment Decision</h3>
@@ -205,13 +249,13 @@
     <div class="panel-grid" id="panel-grid"></div>
 
     <div class="sim-controls">
-        <button class="sim-btn sim-btn-primary" id="btn-run">▶ Convene Panel</button>
-        <button class="sim-btn sim-btn-secondary" id="btn-reset">↺ Reset</button>
+        <button type="button" class="sim-btn sim-btn-primary" id="btn-run">▶ Convene Panel</button>
+        <button type="button" class="sim-btn sim-btn-secondary" id="btn-reset">↺ Reset</button>
         <div class="speed-toggle">
             <span class="speed-label">Speed:</span>
-            <button class="speed-opt" data-speed="800">1×</button>
-            <button class="speed-opt active" data-speed="400">2×</button>
-            <button class="speed-opt" data-speed="150">3×</button>
+            <button type="button" class="speed-opt" data-speed="800">1×</button>
+            <button type="button" class="speed-opt active" data-speed="400">2×</button>
+            <button type="button" class="speed-opt" data-speed="150">3×</button>
         </div>
     </div>
 
@@ -246,7 +290,7 @@
                 <option value="competitor">AirgapAI vs. Sentinel Node</option>
                 <option value="timeline">Deployment timeline</option>
             </select>
-            <button class="sim-btn sim-btn-primary" id="btn-ask" disabled>Ask →</button>
+            <button type="button" class="sim-btn sim-btn-primary" id="btn-ask" disabled>Ask →</button>
         </div>
     </div>
 

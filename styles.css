@@ -410,25 +410,6 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
    v31 IMPROVEMENTS
    ═══════════════════════════════════════════ */
 
-/* v31 #1: STICKY ANNOUNCEMENT BANNER */
-.announce-bar {
-    background: linear-gradient(90deg, rgba(0,163,255,0.12), rgba(24,139,150,0.12));
-    border-bottom: 1px solid rgba(0,163,255,0.2);
-    text-align: center;
-    padding: 9px 16px;
-    font-size: 0.8em;
-    color: var(--light-text);
-    position: relative;
-    z-index: 1001;
-}
-.announce-bar a { color: var(--ai-blue); font-weight: 700; text-decoration: none; }
-.announce-bar a:hover { color: var(--white); }
-.announce-bar .close-announce {
-    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; color: var(--muted); cursor: pointer;
-    font-size: 1.1em; padding: 0; line-height: 1;
-}
-.announce-bar .close-announce:hover { color: var(--white); }
 
 /* v31 #2: CARD HOVER LIFT — global upgrade for all cards */
 .feature-card, .pricing-card, .use-case-card, .argument-card, .why-now-card {
@@ -523,4 +504,285 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 }
 @media (prefers-reduced-motion: reduce) {
     .fade-in-section { opacity: 1; transform: none; transition: none; }
+}
+
+/* ═══════════════════════════════════════
+   v34: EXTRACTED INLINE STYLES — pricing.html & index.html
+   ═══════════════════════════════════════ */
+
+/* Section headers shared across pricing / invest */
+.section-eyebrow {
+    color: var(--ai-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85em;
+    display: block;
+    margin-bottom: 12px;
+}
+.section-eyebrow.teal { color: var(--teal); }
+
+.section-h2-plain { color: var(--white); font-size: 1.8em; margin: 0 0 10px; border: none; }
+.section-h2-sm    { color: var(--white); font-size: 1.6em; margin: 0 0 12px; border: none; }
+.section-h2-pov   { color: var(--white); font-size: 1.8em; margin: 0 0 10px; border: none; }
+
+/* Shared inner-card prose */
+.card-muted-note  { color: var(--muted); font-size: 0.8em; margin-top: 18px; }
+.card-light-body  { color: var(--light-text); font-size: 0.97em; line-height: 1.8; margin-bottom: 24px; max-width: 640px; }
+
+/* Feature boxes used in pricing refresh & POV sections */
+.box-blue {
+    background: linear-gradient(135deg, rgba(0,163,255,0.06) 0%, rgba(5,22,34,1) 100%);
+    border: 1px solid var(--ai-blue);
+    border-radius: 12px;
+    padding: 36px;
+    margin: 50px 0;
+}
+.box-teal-cta {
+    background: linear-gradient(135deg, rgba(24,139,150,0.1) 0%, rgba(5,22,34,1) 100%);
+    border: 1px solid var(--teal);
+    border-radius: 12px;
+    padding: 40px;
+    margin: 60px 0;
+    text-align: center;
+}
+.box-teal-cta h2 { color: var(--white); font-size: 1.8em; margin: 0 0 10px; border: none; }
+
+/* Mini-feature cards inside pricing sections */
+.mini-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 16px;
+    max-width: 700px;
+    margin: 0 auto 28px;
+    text-align: left;
+}
+.mini-feature-card {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 3px solid var(--teal);
+}
+.mini-feature-card.blue-left { border-left-color: var(--ai-blue); }
+.mini-feature-card h4 {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.95em;
+    margin: 0 0 6px;
+    font-family: 'Syne','Trebuchet MS',system-ui,sans-serif;
+}
+.mini-feature-card p { color: var(--muted); font-size: 0.85em; line-height: 1.5; margin: 0; }
+
+/* Hardware refresh grid */
+.refresh-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 16px;
+    max-width: 700px;
+}
+.refresh-card {
+    background: rgba(0,0,0,0.35);
+    border-radius: 8px;
+    padding: 18px;
+    border-left: 3px solid var(--ai-blue);
+}
+.refresh-card h4 { color: var(--white); font-weight: 600; font-size: 0.95em; margin-bottom: 8px; }
+.refresh-card p  { color: var(--muted); font-size: 0.85em; line-height: 1.6; margin: 0; }
+
+/* Promo price display */
+.pov-price {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--teal);
+    margin: 10px 0;
+    display: block;
+}
+.pov-price-sub { font-size: 0.5em; color: var(--muted); font-weight: 400; }
+
+/* Index promo strip semantic classes */
+.promo-icon-lg { font-size: 2.4em; font-weight: 800; color: var(--teal); display: block; line-height: 1; }
+.promo-icon-sub { font-size: 0.72em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.promo-heading { color: var(--white); margin: 0 0 6px; font-size: 1.0em; }
+.promo-body { color: var(--light-text); font-size: 0.86em; line-height: 1.65; margin: 0; }
+
+/* card-h4 — inner heading used in pricing feature cards */
+.card-h4 {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.95em;
+    margin: 0 0 6px;
+    font-family: 'Syne','Trebuchet MS',system-ui,sans-serif;
+}
+
+/* pov-price-sub — pricing sub-label */
+.pov-price-sub { font-size: 0.5em; color: var(--muted); font-weight: 400; }
+
+/* Pricing page specific helpers */
+.pricing-h3-teal  { color: var(--teal); font-size: 1.8em; margin: 10px 0; }
+.pricing-h3-blue  { color: var(--ai-blue); font-size: 1.8em; margin: 10px 0; }
+.pricing-h3-white { color: var(--white); font-size: 1.8em; margin: 10px 0; }
+.pricing-note        { font-size: 0.8em; color: var(--muted); margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 10px; }
+.pricing-note-italic { font-size: 0.8em; color: var(--muted); font-style: italic; margin-top: 10px; }
+.card-muted-sm       { color: var(--muted); font-size: 0.85em; line-height: 1.55; }
+
+/* ═══════════════════════════════════════
+   v35: WHITEPAPER LIBRARY SECTION
+   ═══════════════════════════════════════ */
+.wp-library {
+    margin: 44px 0;
+}
+.wp-library-heading {
+    color: var(--white);
+    font-size: 1.05em;
+    font-weight: 700;
+    font-family: 'Syne','Trebuchet MS',system-ui,sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.wp-library-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+}
+.wp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+.wp-card {
+    background: var(--card-dark);
+    border-radius: 10px;
+    padding: 22px 24px;
+    border-top: 3px solid var(--ai-blue);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform var(--transition), box-shadow var(--transition);
+    text-decoration: none;
+}
+.wp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.5);
+}
+.wp-card.teal-top  { border-top-color: var(--teal); }
+.wp-card.white-top { border-top-color: rgba(255,255,255,0.3); }
+.wp-card-label {
+    font-size: 0.68em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ai-blue);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.wp-card.teal-top  .wp-card-label { color: var(--teal); }
+.wp-card.white-top .wp-card-label { color: var(--muted); }
+.wp-card-title {
+    font-family: 'Syne','Trebuchet MS',system-ui,sans-serif;
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin: 0;
+}
+.wp-card-desc {
+    font-size: 0.84em;
+    color: var(--light-text);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+}
+.wp-card-cta {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ai-blue);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.wp-card.teal-top  .wp-card-cta { color: var(--teal); }
+.wp-card.white-top .wp-card-cta { color: var(--muted); }
+
+/* ═══════════════════════════════════════
+   v35: BACK-TO-TOP BUTTON
+   ═══════════════════════════════════════ */
+#back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    background: var(--card-dark);
+    border: 1px solid rgba(0,163,255,0.3);
+    border-radius: 50%;
+    color: var(--ai-blue);
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    z-index: 800;
+    pointer-events: none;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: rgba(0,163,255,0.15);
+    border-color: var(--ai-blue);
+}
+@media (prefers-reduced-motion: reduce) {
+    #back-to-top { transition: none; }
+}
+
+/* ═══════════════════════════════════════
+   v36: SITEMAP PAGE STYLES
+   ═══════════════════════════════════════ */
+.sitemap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px;
+}
+.sitemap-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sitemap-list li:last-child { border-bottom: none; }
+.sitemap-list a {
+    color: var(--ai-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Syne','Trebuchet MS',system-ui,sans-serif;
+    font-size: 0.95em;
+    transition: color var(--transition);
+}
+.sitemap-list a:hover { color: var(--white); }
+.sitemap-list .desc {
+    color: var(--muted);
+    font-size: 0.82em;
+    margin: 3px 0 0;
+    line-height: 1.5;
+}
+
+/* v36: sitemap section headings extracted from inline */
+.sitemap-section-h2 {
+    color: var(--teal);
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--card-dark);
+    padding-bottom: 8px;
+    margin-top: 36px;
 }

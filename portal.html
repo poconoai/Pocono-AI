@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v32 -->
+<html lang="en"><!-- Pocono AI v38 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,9 @@
     <meta property="og:description" content="Sentinel Node Management Portal. Enterprise-grade support for Pocono AI deployments.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/portal.html">
+    <meta property="og:image" content="https://poconoai.com/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,14 +28,36 @@
     <link rel="canonical" href="https://poconoai.com/portal.html">
     <!-- Open Graph: ensures social sharing pulls correct page -->
     <meta property="og:url" content="https://poconoai.com/portal.html">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pocono AI, LLC",
+      "url": "https://poconoai.com",
+      "logo": "https://poconoai.com/logo-icon.svg",
+      "description": "Sovereign, on-premises local AI infrastructure for healthcare and legal professionals. Zero data exfiltration. Hardware-custody deployment.",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "East Stroudsburg",
+        "addressRegion": "PA",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-570-534-0602",
+        "contactType": "sales",
+        "email": "marcus@poconoai.com"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/pocono-ai"
+      ]
+    }
+    </script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
-<div class="announce-bar">
-    <strong style="color:var(--ai-blue);">NEW v32:</strong> &nbsp;
-    <a href="simulation.html">⚖ 12-Panel AI Simulation</a> — Watch investors, physicians, attorneys &amp; patient advocates deliberate live on your deployment decision.
-    <button class="close-announce" aria-label="Dismiss announcement">&times;</button>
-</div>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
             <header>
@@ -40,7 +65,7 @@
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
-        <nav id="nav-menu">
+        <nav id="nav-menu" aria-label="Main navigation">
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solutions.html">Solutions</a></li>
@@ -51,23 +76,26 @@
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="sentinel-node-spec-sheet.pdf">Specs</a></li>
                 <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false">
+                    <button class="nav-dropdown-toggle" id="research-toggle" aria-expanded="false" aria-controls="research-menu">
                         Research <span class="arrow">&#9662;</span>
                     </button>
-                    <div class="nav-dropdown-menu" id="research-menu">
+                    <div class="nav-dropdown-menu" id="research-menu" role="menu">
                         <a href="research.html">Research Hub</a>
                         <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
                         <a href="ehr-burden-research.html">EHR Burden — 5.9 Hours</a>
                         <a href="legal-admin-burden.html">Legal Admin Burden</a>
                         <a href="patient-advocacy.html">Patient Safety</a>
                         <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
+                        <a href="The_Zero_Exfiltration_Advantage_PoconoAI.pdf" target="_blank">Zero Exfiltration Advantage (PDF)</a>
+                        <a href="Pocono_Exec.pdf" target="_blank">Executive Deck (PDF)</a>
                     </div>
                 </li>
                 <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false">
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
                         More <span class="arrow">&#9662;</span>
                     </button>
-                    <div class="nav-dropdown-menu" id="more-menu">
+                    <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                        <a href="simulation.html">&#9878; 12-Panel Simulation</a>
                         <a href="portal.html" style="color: var(--ai-blue);">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
@@ -148,19 +176,6 @@
 
     <!-- Shared navigation script -->
     <script src="nav.js"></script>
-<script>
-// Reading progress bar (v30)
-(function(){
-  var bar = document.getElementById('reading-progress');
-  if (!bar) return;
-  window.addEventListener('scroll', function(){
-    var doc = document.documentElement;
-    var scrolled = doc.scrollTop || document.body.scrollTop;
-    var total = doc.scrollHeight - doc.clientHeight;
-    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
-  }, { passive: true });
-})();
-</script>
 </body>
 </html>
 <<<END: portal.html>>>
