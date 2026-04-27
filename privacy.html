@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v29 -->
+<html lang="en"><!-- Pocono AI v30 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,8 @@
     <meta property="og:url" content="https://poconoai.com/privacy.html">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
             <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
@@ -62,6 +64,7 @@
                         <a href="portal.html">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="sitemap.html">Sitemap</a>
                     </div>
@@ -70,7 +73,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <h1>Privacy Policy</h1>
         <p><strong>Effective Date:</strong> April 2026</p>
         
@@ -103,6 +106,19 @@
 
     <!-- Shared navigation script -->
     <script src="nav.js"></script>
+<script>
+// Reading progress bar (v30)
+(function(){
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function(){
+    var doc = document.documentElement;
+    var scrolled = doc.scrollTop || document.body.scrollTop;
+    var total = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
 <<<END: privacy.html>>>

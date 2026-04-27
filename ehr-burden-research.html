@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v29 -->
+<html lang="en"><!-- Pocono AI v30 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,82 +8,15 @@
     <meta property="og:title" content="5.9 Hours a Day in the EHR — The Peer-Reviewed Evidence | Pocono AI">
     <meta property="og:description" content="Where the 5.9 hours stat comes from, what else the research shows, and how local sovereign AI changes the equation. All statistics sourced from peer-reviewed studies.">
     <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .cs-hero { text-align: center; padding: 48px 10px 36px; }
-        .cs-eyebrow { color: var(--ai-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.82em; display: block; margin-bottom: 14px; }
-        .cs-hero h1 { font-size: clamp(1.7rem, 5.5vw, 2.6rem); color: var(--white); line-height: 1.15; margin: 0 0 18px; }
-        .cs-deck { font-size: 1.05em; color: var(--light-text); max-width: 700px; margin: 0 auto 24px; line-height: 1.8; }
-        .verified-badge { background: rgba(24,139,150,0.12); border: 1px solid rgba(24,139,150,0.4); color: var(--teal); font-size: 0.78em; font-weight: 700; padding: 5px 14px; border-radius: 20px; display: inline-block; margin-bottom: 20px; }
-        .source-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 36px; }
-        .source-chip { background: rgba(0,163,255,0.07); border: 1px solid rgba(0,163,255,0.2); color: var(--light-text); font-size: 0.74em; padding: 4px 10px; border-radius: 14px; }
-
-        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 14px; margin: 32px 0; }
-        .stat-card { background: var(--card-dark); border-radius: 10px; padding: 22px 16px; text-align: center; border-top: 3px solid var(--ai-blue); }
-        .stat-card.t { border-top-color: var(--teal); }
-        .stat-card.r { border-top-color: #E05A5A; }
-        .stat-num { font-size: 2.2em; font-weight: 800; color: var(--ai-blue); display: block; line-height: 1; margin-bottom: 8px; }
-        .stat-card.t .stat-num { color: var(--teal); }
-        .stat-card.r .stat-num { color: #E05A5A; }
-        .stat-label { font-size: 0.85em; color: var(--light-text); line-height: 1.5; }
-        .stat-source { font-size: 0.7em; color: var(--muted); margin-top: 6px; display: block; }
-
-        .cs-prose { max-width: 800px; margin: 0 auto; }
-        .cs-prose h2 { color: var(--teal); font-size: 1.5em; margin: 44px 0 12px; padding-bottom: 10px; border-bottom: 2px solid var(--card-dark); }
-        .cs-prose h3 { color: var(--white); font-size: 1.1em; margin: 24px 0 8px; }
-        .cs-prose p { color: var(--light-text); font-size: 0.98em; line-height: 1.85; margin-bottom: 16px; }
-        .cs-prose p strong { color: var(--white); }
-        .cs-prose a { color: var(--teal); }
-        /* CTA buttons inside cs-prose must NOT inherit teal text */
-        .cs-prose .cta-button,
-        .cs-prose a.cta-button { color: var(--white) !important; }
-        .cs-prose .cta-button-light,
-        .cs-prose a.cta-button-light { color: var(--white) !important; border-color: var(--white) !important; background: transparent !important; }
-        .sentinel-box .cta-button { color: var(--white) !important; }
-        .sentinel-box .cta-button-light { color: var(--white) !important; border-color: var(--white) !important; background: transparent !important; }
-        sup.ref { color: var(--ai-blue); font-size: 0.72em; }
-
-        .pull-quote { background: linear-gradient(135deg, rgba(0,163,255,0.07), rgba(5,22,34,1)); border-left: 4px solid var(--ai-blue); border-radius: 0 8px 8px 0; padding: 20px 26px; margin: 28px 0; }
-        .pull-quote p { color: var(--white); font-size: 1.05em; font-style: italic; line-height: 1.7; margin: 0; }
-        .pull-quote .attr { color: var(--muted); font-size: 0.78em; font-style: normal; margin-top: 10px; display: block; }
-
-        .time-breakdown { background: var(--card-dark); border-radius: 10px; padding: 24px; margin: 28px 0; }
-        .time-breakdown h3 { color: var(--white); margin-top: 0; margin-bottom: 16px; font-size: 1.05em; }
-        .time-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .time-label { flex: 0 0 220px; font-size: 0.88em; color: var(--light-text); }
-        .time-bar-bg { flex: 1; background: rgba(255,255,255,0.08); border-radius: 4px; height: 10px; }
-        .time-bar-fill { height: 10px; border-radius: 4px; background: var(--ai-blue); }
-        .time-bar-fill.teal { background: var(--teal); }
-        .time-bar-fill.dim { background: rgba(255,255,255,0.2); }
-        .time-val { flex: 0 0 60px; font-size: 0.85em; color: var(--white); font-weight: 600; text-align: right; }
-
-        .sentinel-box { background: linear-gradient(135deg, rgba(24,139,150,0.1), rgba(5,22,34,1)); border: 1px solid var(--teal); border-radius: 12px; padding: 36px; margin: 44px 0; }
-        .sentinel-box h2 { color: var(--teal); margin-top: 0; border: none; padding: 0; font-size: 1.45em; }
-        .sentinel-box p { color: var(--light-text); font-size: 0.96em; line-height: 1.8; margin-bottom: 14px; }
-        .sentinel-box p:last-of-type { margin-bottom: 0; }
-        .sentinel-box strong { color: var(--white); }
-
-        .references { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 26px; margin: 44px 0; }
-        .references h3 { color: var(--white); margin-top: 0; margin-bottom: 14px; font-size: 0.98em; }
-        .references ol { padding-left: 18px; }
-        .references li { color: var(--muted); font-size: 0.8em; line-height: 1.7; margin-bottom: 8px; }
-        .references li a { color: var(--teal); word-break: break-all; }
-
-        footer a { color: var(--teal); }
-        /* Nav protection — ensures nav links are never affected by page styles */
-        header a, header button { color: var(--white) !important; text-decoration: none !important; }
-        header .nav-dropdown-menu { background: var(--bg-black) !important; }
-        header .nav-dropdown-menu a { color: var(--white) !important; background: transparent !important; text-decoration: none !important; }
-        header .nav-dropdown-menu a:hover { color: var(--ai-blue) !important; background: rgba(255,255,255,0.04) !important; }
-        header .nav-dropdown-toggle { background: transparent !important; color: var(--white) !important; }
-    </style>
-    <!-- SEO: Canonical URL + XML Sitemap reference -->
+    <link rel="stylesheet" href="styles.css">    <!-- SEO: Canonical URL + XML Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/ehr-burden-research.html">
     <!-- Open Graph: ensures social sharing pulls correct page -->
     <meta property="og:url" content="https://poconoai.com/ehr-burden-research.html">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
     <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
@@ -118,6 +51,7 @@
                         <a href="portal.html">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="sitemap.html">Sitemap</a>
                     </div>
@@ -303,6 +237,19 @@
     </footer>
 
     <script src="nav.js"></script>
+<script>
+// Reading progress bar (v30)
+(function(){
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function(){
+    var doc = document.documentElement;
+    var scrolled = doc.scrollTop || document.body.scrollTop;
+    var total = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
 <<<END: ehr-burden-research.html>>>

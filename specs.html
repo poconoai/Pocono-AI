@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v29 -->
+<html lang="en"><!-- Pocono AI v30 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,99 +7,15 @@
     <title>Technical Specifications | Pocono AI, LLC</title>
     <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    <style>
-        
-        .specs-wrap { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
-        .specs-hero { text-align: center; padding: 40px 20px 50px; }
-        .specs-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 20px; background: rgba(0,163,255,0.10); border: 1px solid rgba(0,163,255,0.20); color: var(--ai-blue); font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
-        .eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ai-blue); animation: blink 2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-        .specs-hero h1 { font-size: clamp(2rem, 6vw, 3.2rem);  line-height: 1.1; color: var(--white); margin: 0 0 16px; }
-        .hero-gradient { background: linear-gradient(135deg, var(--ai-blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
-        .specs-hero p { font-size: 1.05em; color: var(--light-text); max-width: 580px; margin: 0 auto; line-height: 1.75; }
-        .glass-card { background: rgba(10,38,53,0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
-        .overview-wrap { padding: 40px; margin-bottom: 50px; border-top: 4px solid var(--teal); }
-        .overview-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
-        @media (max-width: 800px) { .overview-grid { grid-template-columns: 1fr; gap: 28px; } }
-        .overview-grid h2 { font-size: 1.45em; font-weight: 700; color: var(--white); margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
-        .overview-grid p { color: var(--light-text); line-height: 1.75; margin-bottom: 24px; }
-        .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-        .stat-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 14px; text-align: center; }
-        .stat-val { font-size: 1.7em; font-weight: 700; color: var(--white); }
-        .stat-label { font-size: 0.68em; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; }
-        .status-card { background: rgba(5,22,34,0.95); border: 1px solid rgba(0,163,255,0.2); border-radius: 14px; padding: 24px; animation: floaty 6s ease-in-out infinite; }
-        @keyframes floaty { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
-        .sc-header { font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ai-blue); display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-        .sc-dot { width: 8px; height: 8px; border-radius: 50%; background: #34D399; box-shadow: 0 0 8px #34D399; }
-        .sc-row { display: flex; justify-content: space-between; font-size: 0.82em; color: var(--muted); margin-bottom: 6px; }
-        .sc-ok { color: #34D399; }
-        .sc-blue { color: var(--ai-blue); }
-        .sc-bar { height: 4px; background: rgba(0,0,0,0.4); border-radius: 4px; margin-bottom: 12px; overflow: hidden; }
-        .sc-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); }
-        .sc-divider { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px; margin-top: 4px; }
-        .tier-nav { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
-        .tier-nav-title h2 { font-size: 1.8em;  color: var(--white); margin: 0; }
-        .tier-nav-title p { font-size: 0.9em; color: var(--muted); margin: 6px 0 0; }
-        .tier-tabs { display: flex; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 4px; gap: 2px; flex-wrap: wrap; }
-        .tier-tab { padding: 8px 16px; border-radius: 9px; font-size: 0.84em; font-weight: 500; color: rgba(255,255,255,0.55); background: transparent; border: 1px solid transparent; cursor: pointer; transition: all 0.2s; white-space: nowrap;  }
-        .tier-tab:hover { color: var(--white); }
-        .tier-tab.active { background: linear-gradient(135deg, rgba(0,163,255,0.2), rgba(24,139,150,0.2)); border-color: var(--ai-blue); color: var(--white); }
-        .tier-panel { display: none; }
-        .tier-panel.visible { display: block; }
-        .spec-card { border-radius: 16px; overflow: hidden; margin-bottom: 50px; }
-        .spec-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; }
-        @media (max-width: 780px) { .spec-grid { grid-template-columns: 1fr; } }
-        .spec-main { padding: 36px 38px; }
-        .spec-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
-        .spec-head h3 { font-size: 1.45em; font-weight: 700; color: var(--white); margin: 0; }
-        .spec-badge { font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 6px; }
-        .badge-teal { background: rgba(24,139,150,0.2); color: var(--teal); }
-        .badge-blue { background: rgba(0,163,255,0.2); color: var(--ai-blue); }
-        .badge-max { background: linear-gradient(135deg,rgba(0,163,255,0.3),rgba(24,139,150,0.3)); color: var(--white); border: 1px solid rgba(255,255,255,0.2); }
-        .spec-tagline { color: var(--ai-blue); font-style: italic; font-size: 0.9em; margin: 0 0 20px; }
-        .spec-price { font-size: 2em; font-weight: 800; color: var(--white); margin: 0 0 3px; line-height: 1.1; }
-        .spec-sla { font-size: 0.88em; color: var(--teal); font-weight: 600; margin: 0 0 26px; }
-        .spec-lbl { font-size: 0.66em; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.38); margin-bottom: 5px; }
-        .spec-val { position: relative; padding-left: 18px; color: var(--white); font-size: 0.92em; line-height: 1.5; margin-bottom: 18px; }
-        .spec-val::before { content:''; position:absolute; left:0; top:0.55em; width:6px; height:6px; border-radius:50%; background:var(--ai-blue); box-shadow:0 0 8px var(--ai-blue); }
-        .storage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        @media (max-width: 500px) { .storage-grid { grid-template-columns: 1fr; } }
-        .ha-note { font-size: 0.8em; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.07); padding-top: 14px; margin-top: 6px; line-height: 1.65; }
-        .spec-ideal { background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(0,0,0,0.5) 100%); padding: 36px 28px; display: flex; align-items: center; }
-        .ideal-lbl { font-size: 0.68em; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
-        .ideal-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-        .ideal-list li { display: flex; gap: 9px; align-items: flex-start; font-size: 0.88em; color: var(--light-text); line-height: 1.45; }
-        .chk { color: #34D399; flex-shrink: 0; margin-top: 1px; }
-        .t1-accent { border-top: 4px solid var(--teal); }
-        .t2-accent { border-top: 4px solid var(--ai-blue); }
-        .t3-accent { border-top: 4px solid var(--ai-blue); box-shadow: 0 0 40px rgba(0,163,255,0.12); }
-        .impact-wrap { margin-bottom: 50px; }
-        .impact-inner { padding: 38px; border: 1px solid rgba(0,163,255,0.3); }
-        .impact-inner h2 { font-size: 1.4em; font-weight: 700; color: var(--white); margin: 0 0 20px; }
-        .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
-        @media (max-width: 640px) { .impact-grid { grid-template-columns: 1fr; gap: 22px; } }
-        .impact-h3 { font-size: 0.95em; font-weight: 600; color: var(--white); display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
-        .i-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-        .impact-grid p { font-size: 0.9em; color: var(--light-text); line-height: 1.75; margin: 0; }
-        .dl-section { text-align: center; padding: 56px 20px; position: relative; overflow: hidden; border-radius: 16px; }
-        .dl-section h2 { font-size: 1.75em; font-weight: 700; color: var(--white); margin: 0 0 10px; }
-        .dl-section p { color: rgba(208,221,230,0.7); max-width: 460px; margin: 0 auto 28px; font-size: 0.92em; line-height: 1.65; }
-        .dl-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; border-radius: 12px; background: linear-gradient(135deg, var(--teal), var(--ai-blue)); font-size: 0.97em; font-weight: 600; color: var(--white); text-decoration: none; box-shadow: 0 10px 28px rgba(0,163,255,0.28); transition: box-shadow 0.2s, transform 0.2s; }
-        .dl-btn:hover { box-shadow: 0 14px 38px rgba(0,163,255,0.4); transform: translateY(-2px); }
-        .dl-note { margin-top: 22px; font-size: 0.73em; color: rgba(255,255,255,0.28); }
-        .bg-glow { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        .glow-1 { position: absolute; top: -30%; right: -20%; width: 700px; height: 700px; border-radius: 50%; background: rgba(0,163,255,0.08); filter: blur(100px); }
-        .glow-2 { position: absolute; bottom: -20%; left: -20%; width: 550px; height: 550px; border-radius: 50%; background: rgba(24,139,150,0.1); filter: blur(90px); }
-        footer a { color: var(--teal); }
-    </style>
-    <!-- SEO: Canonical URL + XML Sitemap reference -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>    <!-- SEO: Canonical URL + XML Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/specs.html">
     <!-- Open Graph: ensures social sharing pulls correct page -->
     <meta property="og:url" content="https://poconoai.com/specs.html">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
 <div class="bg-glow"><div class="glow-1"></div><div class="glow-2"></div></div>
 
@@ -139,7 +55,8 @@
                     <a href="portal.html">Portal</a>
                     <a href="careers.html">Careers</a>
                     <a href="investors.html">Investors</a>
-                    <a href="why-pocono-ai.html">Why Pocono AI</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="why-pocono-ai.html">Why Pocono AI</a>
                     <a href="sitemap.html">Sitemap</a>
                 </div>
             </li>
@@ -147,7 +64,7 @@
     </nav>
 </header>
 
-<main>
+<main id="main-content">
 <div class="specs-wrap">
 
     <div class="specs-hero">
@@ -394,6 +311,19 @@
     });
 </script>
 <script src="nav.js"></script>
+<script>
+// Reading progress bar (v30)
+(function(){
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function(){
+    var doc = document.documentElement;
+    var scrolled = doc.scrollTop || document.body.scrollTop;
+    var total = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
 <<<END: specs.html>>>

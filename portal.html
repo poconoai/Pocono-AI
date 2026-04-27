@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v29 -->
+<html lang="en"><!-- Pocono AI v30 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,155 +17,6 @@
     <link rel="stylesheet" href="styles.css">
 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-
-    <style>
-        /* Portal-specific layout only — everything else comes from styles.css */
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-        }
-
-        .portal-wrap {
-            width: 100%;
-            max-width: 480px;
-        }
-
-        /* Page header above card */
-        .portal-eyebrow {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-        .portal-eyebrow .tagline {
-            color: var(--ai-blue);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.85em;
-            display: block;
-            margin-bottom: 10px;
-            font-family: 'Syne', sans-serif;
-        }
-        .portal-eyebrow h1 {
-            font-size: clamp(2.5rem, 8vw, 3.8rem);
-            color: var(--white);
-            line-height: 1.1;
-            margin: 0;
-        }
-        .portal-eyebrow h1 span {
-            color: var(--ai-blue);
-        }
-        .portal-eyebrow p {
-            color: var(--light-text);
-            font-size: 1.15em;
-            margin: 12px 0 0;
-            line-height: 1.5;
-        }
-
-        /* Login card */
-        .portal-card {
-            background-color: var(--card-dark);
-            border-radius: 12px;
-            border-top: 5px solid var(--teal);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            padding: 40px 32px;
-        }
-
-        /* Form */
-        .form-group {
-            margin-bottom: 24px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            color: var(--teal);
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-family: 'Syne', sans-serif;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 16px;
-            background: rgba(0, 0, 0, 0.4);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-family: 'DM Mono', monospace;
-            font-size: 1.1rem;
-            transition: border-color 0.3s ease;
-        }
-        .form-group input:focus {
-            border-color: var(--ai-blue);
-            box-shadow: 0 0 0 2px var(--ai-blue) !important;
-        }
-        .form-group input::placeholder {
-            color: var(--muted);
-            font-size: 0.9em;
-        }
-
-        .portal-submit {
-            display: block;
-            width: 100%;
-            background-color: var(--teal);
-            color: var(--white);
-            padding: 16px;
-            font-size: 1.15rem;
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 10px;
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-        .portal-submit:hover {
-            filter: brightness(1.12);
-            transform: translateY(-2px);
-        }
-
-        /* Status notice */
-        .portal-notice {
-            margin-top: 24px;
-            padding: 16px;
-            background: rgba(0, 163, 255, 0.06);
-            border: 1px solid rgba(0, 163, 255, 0.2);
-            border-radius: 6px;
-            font-size: 1rem;
-            color: var(--light-text);
-            line-height: 1.6;
-            text-align: center;
-        }
-        .portal-notice strong {
-            color: var(--ai-blue);
-            display: block;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Syne', sans-serif;
-        }
-
-        /* Footer override — match index/partners dark footer */
-        footer {
-            background-color: var(--bg-black);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 0;
-        }
-    </style>
     <!-- SEO: Canonical URL + XML Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/portal.html">
@@ -173,6 +24,8 @@
     <meta property="og:url" content="https://poconoai.com/portal.html">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
             <header>
         <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
@@ -210,6 +63,7 @@
                         <a href="portal.html" style="color: var(--ai-blue);">Portal</a>
                         <a href="careers.html">Careers</a>
                         <a href="investors.html">Investors</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="sitemap.html">Sitemap</a>
                     </div>
@@ -218,7 +72,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <div class="portal-wrap">
 
             <div class="portal-eyebrow">
@@ -286,6 +140,19 @@
 
     <!-- Shared navigation script -->
     <script src="nav.js"></script>
+<script>
+// Reading progress bar (v30)
+(function(){
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function(){
+    var doc = document.documentElement;
+    var scrolled = doc.scrollTop || document.body.scrollTop;
+    var total = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
 <<<END: portal.html>>>
