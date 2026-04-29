@@ -1,281 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"><!-- Pocono AI v50 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | Pocono AI LLC</title>
-    <style>
-        :root {
-            --navy: #0A3A60;
-            --teal: #188B96;
-            --teal-dark: #0f6a72;
-            --slate: #475569;
-            --light: #f8fafc;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: #ffffff;
-            color: var(--navy);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 15% 20%, rgba(24, 139, 150, 0.06) 0%, transparent 35%),
-                radial-gradient(circle at 85% 75%, rgba(10, 58, 96, 0.05) 0%, transparent 40%),
-                linear-gradient(180deg, #f7fafc 0%, #ffffff 60%);
-            z-index: -2;
-        }
-
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 32px;
-            position: relative;
-        }
-
-        .logo svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 4px 12px rgba(10, 58, 96, 0.15));
-        }
-
-        .error-code {
-            font-size: clamp(4rem, 15vw, 8rem);
-            font-weight: 800;
-            line-height: 1;
-            color: var(--navy);
-            letter-spacing: -0.04em;
-            margin-bottom: 16px;
-            position: relative;
-        }
-
-        .error-code::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--teal), var(--navy));
-            border-radius: 2px;
-        }
-
-        h1 {
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .tagline {
-            font-size: 1.125rem;
-            color: var(--teal);
-            font-weight: 600;
-            margin-bottom: 24px;
-            letter-spacing: 0.02em;
-        }
-
-        .message {
-            font-size: 1.0625rem;
-            line-height: 1.7;
-            color: var(--slate);
-            margin-bottom: 40px;
-            max-width: 520px;
-        }
-
-        .message strong {
-            color: var(--navy);
-            font-weight: 600;
-        }
-
-        .actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 48px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-            min-width: 160px;
-        }
-
-        .btn-primary {
-            background: var(--teal);
-            color: white;
-            box-shadow: 0 4px 14px rgba(24, 139, 150, 0.25);
-        }
-
-        .btn-primary:hover {
-            background: var(--teal-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(24, 139, 150, 0.35);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--navy);
-            border-color: #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--teal);
-            color: var(--teal);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .divider {
-            width: 100%;
-            max-width: 400px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-            margin: 0 auto 32px;
-        }
-
-        .help-text {
-            font-size: 0.9375rem;
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        .help-text a {
-            color: var(--teal);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-
-        .help-text a:hover {
-            border-bottom-color: var(--teal);
-        }
-
-        footer {
-            padding: 24px 20px;
-            text-align: center;
-            border-top: 1px solid #f1f5f9;
-            background: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(8px);
-        }
-
-        footer p {
-            font-size: 0.875rem;
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 480px) {
-            .actions {
-                flex-direction: column;
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+    <title>Page Not Found | Pocono AI, LLC</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 </head>
 <body>
-    <main class="container">
-        <div class="logo">
-            <svg viewBox="0 0 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 L85 45 L75 45 L65 30 L50 45 L35 30 L25 45 L15 45 Z" fill="#0A3A60"/>
-                <path d="M15 45 L30 65 L20 75 L10 70 Z" fill="#0A3A60"/>
-                <path d="M85 45 L70 65 L80 75 L90 70 Z" fill="#0A3A60"/>
-                <path d="M30 65 L70 65 L75 85 L25 85 Z" fill="#0A3A60"/>
-                <circle cx="40" cy="72" r="2.5" fill="#188B96"/>
-                <circle cx="48" cy="68" r="2.5" fill="#188B96"/>
-                <circle cx="56" cy="72" r="2.5" fill="#188B96"/>
-                <circle cx="44" cy="78" r="2" fill="#188B96"/>
-                <circle cx="52" cy="78" r="2" fill="#188B96"/>
-                <circle cx="60" cy="76" r="2" fill="#188B96"/>
-                <path d="M40 72 Q44 70 48 68" stroke="#188B96" stroke-width="1.5" fill="none"/>
-                <path d="M48 68 Q52 70 56 72" stroke="#188B96" stroke-width="1.5" fill="none"/>
-                <path d="M40 72 Q42 75 44 78" stroke="#188B96" stroke-width="1.5" fill="none"/>
-                <path d="M48 68 Q50 73 52 78" stroke="#188B96" stroke-width="1.5" fill="none"/>
-                <path d="M56 72 Q58 74 60 76" stroke="#188B96" stroke-width="1.5" fill="none"/>
-            </svg>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav-menu" aria-label="Main navigation">
+            <ul class="nav-links">
+                <li class="nav-home-always"><a href="index.html">Home</a></li>
+                <li><a href="for-physicians.html">For Physicians</a></li>
+                <li><a href="for-attorneys.html">For Attorneys</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="trust.html" style="color:var(--ai-blue);">Trust &amp; Security</a></li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
+                        More <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="use-cases.html">Use Cases</a>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="specs.html">Specs</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="partners.html">Partners</a>
+                        <a href="why-pocono-ai.html">Why Pocono AI</a>
+                        <a href="research.html">Research Hub</a>
+                        <a href="portal.html">Client Portal</a>
+                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<main id="main-content">
+    <section class="page-hero" style="min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;">
+        <span style="color:var(--teal);font-family:'Syne',sans-serif;font-size:5em;font-weight:800;line-height:1;display:block;margin-bottom:16px;">404</span>
+        <span class="page-eyebrow">Page Not Found</span>
+        <h1 style="font-size:clamp(1.6rem,5vw,2.4rem);margin:16px 0 14px;">This page doesn't exist on our server.</h1>
+        <p style="color:var(--light-text);max-width:500px;margin:0 auto 32px;line-height:1.8;font-size:1em;">Which, for a company that keeps everything local and off the cloud, feels oddly on-brand. But you still need to get somewhere useful.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;max-width:680px;width:100%;margin-bottom:36px;">
+            <a href="index.html" class="cta-button" style="text-align:center;">&#8592; Home</a>
+            <a href="for-physicians.html" class="cta-button" style="text-align:center;background:var(--ai-blue);">For Physicians</a>
+            <a href="for-attorneys.html" class="cta-button" style="text-align:center;background:rgba(186,117,23,0.8);">For Attorneys</a>
+            <a href="pricing.html" class="cta-button cta-button-light" style="text-align:center;">Pricing</a>
         </div>
 
-        <div class="error-code">404</div>
-        <h1>Page Not Found</h1>
-        <div class="tagline">Secure. Local. Intelligent.</div>
-        
-        <p class="message">
-            The page you are looking for does not exist or has moved. 
-            <strong>Our AI stays on-premise</strong> — this link did not.
-        </p>
-
-        <div class="actions">
-            <a href="/" class="btn btn-primary">Return to Homepage</a>
-            <a href="mailto:info@poconoai.com" class="btn btn-secondary">Contact Support</a>
+        <div style="background:var(--card-dark);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px 28px;max-width:500px;width:100%;text-align:left;">
+            <p style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 10px;">Looking for something specific?</p>
+            <p style="color:var(--light-text);font-size:0.88em;margin:0 0 12px;line-height:1.7;">Email Marcus directly and he'll get you to the right place.</p>
+            <a href="mailto:marcus@poconoai.com?subject=Broken%20Link%20on%20PoconoAI.com" style="color:var(--teal);font-weight:700;font-size:0.88em;text-decoration:none;">marcus@poconoai.com &rarr;</a>
         </div>
+    </section>
+</main>
 
-        <div class="divider"></div>
-        
-        <p class="help-text">
-            Need immediate assistance? Call <a href="tel:+14845424769">484-542-4769</a><br>
-            East Stroudsburg, Pennsylvania
-        </p>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Pocono AI, LLC. All rights reserved.</p>
+<footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <p class="footer-brand">Pocono <span>AI</span></p>
+                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">For Practitioners</p>
+                <a href="for-physicians.html">For Physicians</a>
+                <a href="for-attorneys.html">For Attorneys</a>
+                <a href="use-cases.html">Use Cases</a>
+                <a href="solutions.html">Solutions Overview</a>
+                <a href="pricing.html">Pricing &amp; Financing</a>
+                <a href="specs.html">Hardware Specs</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Technology</p>
+                <a href="architecture.html">For IT &amp; MSPs</a>
+                <a href="trust.html">Trust &amp; Security</a>
+                <a href="partners.html">Partners</a>
+                <a href="competitive-analysis.html">Competitive Analysis</a>
+                <a href="why-pocono-ai.html">Why Pocono AI</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Research</p>
+                <a href="research.html">Research Hub</a>
+                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                <a href="patient-advocacy.html">Patient Safety</a>
+                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Company</p>
+                <a href="portal.html">Client Portal</a>
+                <a href="careers.html">Careers</a>
+                <a href="simulation.html">12-Panel Simulation</a>
+                <a href="sitemap.html">Sitemap</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="sla.html">SLA</a>
+                <a href="investors.html" class="footer-subtle">Investor Relations</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+            </p>
+            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+        </div>
     </footer>
+
+<script src="nav.js"></script>
 </body>
 </html>
