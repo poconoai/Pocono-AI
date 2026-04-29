@@ -32,7 +32,7 @@
         </button>
         <nav id="nav-menu" aria-label="Main navigation">
             <ul class="nav-links">
-                <li class="nav-mobile-hide"><a href="index.html">Home</a></li>
+                <li class="nav-home-always"><a href="index.html">Home</a></li>
                 <li><a href="for-physicians.html">For Physicians</a></li>
                 <li><a href="for-attorneys.html">For Attorneys</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
@@ -51,7 +51,7 @@
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="research.html">Research Hub</a>
                         <a href="portal.html">Client Portal</a>
-                        <a href="simulation.html" style="opacity:0.65;">&#9878; 12-Panel Simulation</a>
+                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
             </ul>
@@ -70,7 +70,7 @@
     <section class="fade-in-section" style="margin-bottom:40px;">
         <h2 class="section-header">The Complete Threat Model</h2>
         <p style="color:var(--light-text);max-width:700px;line-height:1.8;margin-bottom:28px;">Zero cloud exfiltration eliminates the external threat vector. But a rigorous security posture must also address the internal one: <strong style="color:var(--white);">an employee with physical access to the hardware.</strong> The Sentinel Node's security architecture layers three defenses against insider threats — port lockdown, at-rest encryption, and role-based access controls.</p>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
             <div style="background:var(--card-dark);border-radius:12px;padding:22px;border-top:3px solid var(--danger);text-align:center;">
                 <div style="color:var(--danger);font-size:2em;margin-bottom:10px;">&#128274;</div>
                 <h3 style="color:var(--white);font-size:0.95em;margin:0 0 8px;">Physical Port Lockdown</h3>
@@ -95,7 +95,7 @@
             <span style="color:var(--danger);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.72em;display:block;margin-bottom:10px;">&#9632; Layer 1 · Physical Port Security</span>
             <h2 style="color:var(--white);margin:0 0 16px;border-bottom:none;font-size:1.3em;">An Angry Paralegal With a USB Drive Is Not a Threat Vector</h2>
             <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">The Sentinel Node's USB policy enforces the same cryptographic trust model used for model weight updates — applied to every port on the machine. This is not a software policy that can be bypassed by an administrator. It is enforced at the kernel level.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:20px;">
                 <div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:18px 20px;">
                     <div style="color:var(--danger);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">&#8856; Blocked — Unauthorized USB</div>
                     <ul style="color:var(--light-text);font-size:0.83em;line-height:1.85;padding-left:16px;margin:0;">
@@ -129,7 +129,7 @@
             <span style="color:var(--amber);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.72em;display:block;margin-bottom:10px;">&#9632; Layer 2 · Encrypted At-Rest Storage</span>
             <h2 style="color:var(--white);margin:0 0 16px;border-bottom:none;font-size:1.3em;">If Someone Walks Out With the Hardware, They Get an Encrypted Brick</h2>
             <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">Full-disk encryption (LUKS/dm-crypt on the OS layer, with hardware-accelerated AES-256) is applied to every storage volume on the Sentinel Node — the OS partition, the Qdrant vector database, the RAG document index, and the audit log. An attacker who physically removes the drives gets encrypted data that is computationally infeasible to recover without the key.</p>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:20px;">
                 <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;text-align:center;">
                     <div style="color:var(--amber);font-family:'Syne',sans-serif;font-size:1.1em;font-weight:800;margin-bottom:6px;">AES-256</div>
                     <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Full-disk encryption standard. Hardware-accelerated on Dell Precision processors.</div>
@@ -203,7 +203,7 @@
     <section class="fade-in-section" style="margin-bottom:40px;">
         <h2 class="section-header">The 90-Day Immutable Audit Trail</h2>
         <p style="color:var(--light-text);max-width:700px;line-height:1.8;margin-bottom:22px;">Every event — query, USB insertion attempt, role authentication, update application, and system boot — is written to a tamper-resistant local log. The log is <strong style="color:var(--white);">write-once</strong> during its 90-day retention window: entries cannot be modified or deleted, even by the IT administrator. After 90 days, entries are archived per the client's data retention policy.</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
             <div style="background:var(--card-dark);border-radius:8px;padding:16px;text-align:center;">
                 <div style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.3em;font-weight:800;margin-bottom:6px;">90 Days</div>
                 <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Immutable retention window for all system events</div>

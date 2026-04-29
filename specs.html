@@ -63,7 +63,7 @@
         </button>
         <nav id="nav-menu" aria-label="Main navigation">
             <ul class="nav-links">
-                <li class="nav-mobile-hide"><a href="index.html">Home</a></li>
+                <li class="nav-home-always"><a href="index.html">Home</a></li>
                 <li><a href="for-physicians.html">For Physicians</a></li>
                 <li><a href="for-attorneys.html">For Attorneys</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
@@ -82,7 +82,7 @@
                         <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="research.html">Research Hub</a>
                         <a href="portal.html">Client Portal</a>
-                        <a href="simulation.html" style="opacity:0.65;">&#9878; 12-Panel Simulation</a>
+                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
             </ul>
@@ -312,7 +312,7 @@
         <h2 style="color:var(--white);margin:0 0 18px;border-bottom:none;font-size:1.35em;">Network Topology: Inbound vs. Outbound — The Full Picture</h2>
         <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">Zero exfiltration does not mean zero network connectivity. It means <strong style="color:var(--white);">zero outbound data transmission during inference and operation.</strong> A skeptical IT director deserves a precise answer to the obvious question: if it's isolated, how do model weights and security patches get in?</p>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:22px;">
             <div style="background:rgba(224,90,90,0.07);border:1px solid rgba(224,90,90,0.25);border-radius:10px;padding:20px 22px;">
                 <div style="color:var(--danger);font-weight:700;font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">&#8856; Permanently Blocked — Outbound</div>
                 <ul style="color:var(--light-text);font-size:0.85em;line-height:1.9;padding-left:18px;margin:0;">
@@ -337,7 +337,7 @@
 
         <div style="background:rgba(0,0,0,0.35);border-radius:10px;padding:18px 22px;">
             <div style="color:var(--teal);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">LLM Weight &amp; Patch Update Protocol — How It Actually Works</div>
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
                 <div style="text-align:center;padding:14px 10px;">
                     <div style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;margin-bottom:6px;">&#9312;</div>
                     <div style="color:var(--white);font-size:0.8em;font-weight:700;margin-bottom:4px;">Package Prepared</div>

@@ -88,6 +88,8 @@ header { isolation: isolate; }
 /* Mobile: hide Home link (redundant — logo IS home) */
 @media (max-width: 899px) {
     .nav-mobile-hide { display: none !important; }
+    /* Home link is ALWAYS visible on mobile — it's the sales funnel entry point */
+    .nav-home-always { display: list-item !important; }
 }
 .nav-dropdown { position: relative; }
 .nav-dropdown-toggle {
@@ -1123,3 +1125,146 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 .panelist-select { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.14); border-radius: 6px; color: var(--light-text); padding: 10px 13px; font-family: 'Syne','Trebuchet MS',system-ui,sans-serif; font-size: 0.8em; cursor: pointer; outline: none; min-width: 180px; }
 .panelist-select option { background: var(--bg-dark); }
 .sim-disclaimer { background: rgba(0,0,0,0.28); border-radius: 8px; padding: 15px 20px; margin-top: 28px; font-size: 0.76em; color: var(--muted); line-height: 1.65; border: 1px solid rgba(255,255,255,0.05); }
+
+/* ═══════════════════════════════════════════════
+   v46 MOBILE RESPONSIVE — Comprehensive fixes
+   Panel priority: single-column on small screens
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+    /* ── Typography scale-down ── */
+    h1 { font-size: clamp(1.6rem, 8vw, 2.4rem) !important; }
+    h2 { font-size: clamp(1.2rem, 6vw, 1.7rem) !important; }
+    .page-hero h1, .audience-hero h1 { font-size: clamp(1.7rem, 9vw, 2.6rem) !important; line-height: 1.15 !important; }
+
+    /* ── Competitive analysis table — horizontal scroll on mobile ── */
+    .hth-header, .hth-row { grid-template-columns: 1fr 1fr 1fr; font-size: 0.72em; }
+    .hth-cell { padding: 8px 6px !important; }
+    .ca-pros-cons { grid-template-columns: 1fr !important; }
+
+    /* ── Pricing ── */
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .pricing-card { padding: 22px !important; }
+    .roi-section { padding: 22px 18px !important; }
+
+    /* ── Audience pages ── */
+    .audience-stats-row { gap: 8px; }
+    .audience-stat { min-width: 40%; flex: 1 1 40%; }
+    .audience-stat-val { font-size: clamp(1.4rem, 7vw, 2.2rem) !important; }
+    .audience-hero { padding: 32px 16px 24px !important; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-ctas .cta-button { text-align: center; width: 100%; box-sizing: border-box; }
+    .cta-button { display: block; text-align: center; margin: 6px 0 !important; width: 100%; box-sizing: border-box; }
+    .hero-ctas a.cta-button { margin: 5px 0 !important; }
+
+    /* ── Panel grid (simulation) ── */
+    .panel-grid { grid-template-columns: 1fr 1fr !important; }
+    .scenario-bar { gap: 6px; }
+    .scenario-btn { font-size: 0.7em; padding: 7px 12px; }
+    .sim-controls { gap: 8px; }
+    .speed-toggle { margin-left: 0; }
+
+    /* ── Cards ── */
+    .mini-feature-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+    .steps-grid { grid-template-columns: 1fr !important; }
+    .audience-workflow-grid { grid-template-columns: 1fr !important; }
+
+    /* ── Specs page ── */
+    .sc-block { padding: 18px !important; }
+
+    /* ── General layout ── */
+    main { padding: 0 14px; }
+    .page-hero { padding: 28px 0 20px !important; }
+    section { margin-bottom: 30px !important; }
+
+    /* ── For-attorneys Mata banner ── */
+    .mata-banner-flex { flex-direction: column; }
+
+    /* ── Simulation chamber ── */
+    .chamber-body { max-height: 360px; }
+    .speech-wrap { gap: 8px; }
+    .speech-avatar { width: 28px; height: 28px; font-size: 0.65em; }
+
+    /* ── Nav home link — ensure visible and styled ── */
+    .nav-home-always { display: list-item !important; }
+    .nav-home-always a { color: var(--ai-blue) !important; font-weight: 700 !important; }
+
+    /* ── Footer ── */
+    .footer-grid { grid-template-columns: 1fr !important; gap: 20px; }
+    .footer-bottom p { font-size: 0.78em; text-align: center; }
+    .footer-bottom { text-align: center; }
+
+    /* ── Tables — horizontal scroll wrapper ── */
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* ── Inline multi-col divs added by panel fixes — stack on mobile ── */
+    [style*="grid-template-columns:repeat(auto-fit,minmax(280px"] { min-width: 0; }
+    [style*="grid-template-columns:repeat(auto-fit,minmax(220px"] { min-width: 0; }
+    [style*="grid-template-columns:repeat(auto-fit,minmax(180px"] { min-width: 0; }
+}
+
+@media (max-width: 480px) {
+    .panel-grid { grid-template-columns: 1fr !important; }
+    .audience-stat { min-width: 100%; flex: 1 1 100%; text-align: center; }
+    .hero-audience-links { flex-direction: column; gap: 10px; }
+    .hero-audience-links a { width: 100%; text-align: center; box-sizing: border-box; }
+    .pov-price { font-size: 2.4em !important; }
+    .vote-tally { gap: 8px; }
+    .tally-num { font-size: 1.8em; }
+}
+
+/* ── Nav height consistency: index.html has same 70px header as all pages ── */
+/* The inconsistency was the Home link being visible vs hidden — now fixed via nav-home-always */
+/* This ensures the nav-links ul has consistent line-height on mobile */
+@media (max-width: 899px) {
+    .nav-links > li > a { line-height: 1.4; }
+    .nav-home-always > a { border-bottom: 1px solid rgba(255,255,255,0.05); }
+}
+
+/* ── Touch target minimums (WCAG 2.5.5) ── */
+@media (max-width: 899px) {
+    .cta-button, .btn-submit, .btn-read, .btn-pdf, .sim-btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu-toggle { min-width: 44px; min-height: 44px; }
+    .scenario-btn { min-height: 40px; }
+    .nav-links > li > a, .nav-dropdown-toggle { min-height: 44px; }
+    
+    /* ── Box padding on mobile ── */
+    .box-teal-cta { padding: 28px 20px !important; }
+    .verdict-board { padding: 18px 16px !important; }
+    .chamber-header { padding: 10px 14px !important; }
+    .question-zone { padding: 18px 16px !important; }
+    
+    /* ── Simulation page wrapper ── */
+    .sim-page-wrap { padding: 0 14px 40px !important; }
+    
+    /* ── Panelist selects stack on mobile ── */
+    .question-input-row { flex-direction: column; }
+    .panelist-select { min-width: 100%; width: 100%; }
+    
+    /* ── Scenario desc flex ── */
+    .scenario-desc { flex-direction: column; gap: 10px; }
+    
+    /* ── Panel legend wraps ── */
+    .panel-legend { gap: 10px; }
+}
+
+/* ── Active page indicator in mobile nav ── */
+@media (max-width: 899px) {
+    #nav-menu.active .nav-home-always > a {
+        background: rgba(0,163,255,0.08);
+        border-left: 3px solid var(--ai-blue);
+        padding-left: 17px;
+    }
+}
+
+/* ── Head-to-head comparison table mobile scroll ── */
+@media (max-width: 640px) {
+    .hth-block { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .hth-header, .hth-row { min-width: 480px; }
+    .hth-cell, .hth-col-head { font-size: 0.75em; padding: 9px 8px !important; }
+}
