@@ -1,181 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- ── HOME ── -->
   <url>
     <loc>https://poconoai.com/</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- ── PRIMARY AUDIENCE PAGES ── -->
   <url>
-    <loc>https://poconoai.com/index.html</loc>
+    <loc>https://poconoai.com/for-physicians.html</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.95</priority>
   </url>
-
-  <!-- Core pages — highest priority -->
   <url>
-    <loc>https://poconoai.com/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://poconoai.com/for-attorneys.html</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://poconoai.com/solutions.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://poconoai.com/why-pocono-ai.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://poconoai.com/use-cases.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://poconoai.com/pricing.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
-
-  <!-- Research Hub -->
   <url>
-    <loc>https://poconoai.com/research.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://poconoai.com/simulation.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
 
-  <!-- Patient advocacy page -->
-  <url>
-    <loc>https://poconoai.com/patient-advocacy.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Research briefs — high SEO value, keyword-rich -->
+  <!-- ── RESEARCH BRIEFS — highest SEO value ── -->
   <url>
     <loc>https://poconoai.com/prior-auth-case-study.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://poconoai.com/ehr-burden-research.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://poconoai.com/legal-admin-burden.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
-
-  <!-- Technical and compliance pages -->
   <url>
-    <loc>https://poconoai.com/architecture.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://poconoai.com/research.html</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://poconoai.com/trust.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://poconoai.com/patient-advocacy.html</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ── SOLUTIONS ── -->
+  <url>
+    <loc>https://poconoai.com/solutions.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://poconoai.com/use-cases.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://poconoai.com/why-pocono-ai.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://poconoai.com/competitive-analysis.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ── TECHNICAL & COMPLIANCE ── -->
+  <url>
+    <loc>https://poconoai.com/trust.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://poconoai.com/architecture.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://poconoai.com/security.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://poconoai.com/specs.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Business pages -->
   <url>
-    <loc>https://poconoai.com/partners.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://poconoai.com/sla.html</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ── COMPANY ── -->
+  <url>
+    <loc>https://poconoai.com/about.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://poconoai.com/investors.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://poconoai.com/partners.html</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://poconoai.com/careers.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <!-- Support and legal -->
   <url>
     <loc>https://poconoai.com/portal.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  <url>
-    <loc>https://poconoai.com/sla.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+
+  <!-- ── LEGAL ── -->
   <url>
     <loc>https://poconoai.com/privacy.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://poconoai.com/terms.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://poconoai.com/sitemap.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://poconoai.com/competitive-analysis.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://poconoai.com/simulation.html</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://poconoai.com/for-physicians.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://poconoai.com/for-attorneys.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 
 </urlset>
