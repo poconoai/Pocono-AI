@@ -202,8 +202,47 @@
                 </div>
             </div>
 
-            <div class="advocacy-box">
-                <h2>For Patient Advocacy Organizations</h2>
+            <div class="advocacy-box" style="border-left-color:var(--success);background:linear-gradient(135deg,rgba(34,197,94,0.05),rgba(5,22,34,0.95));">
+                <span style="color:var(--success);font-weight:700;text-transform:uppercase;letter-spacing:0.14em;font-size:0.72em;display:block;margin-bottom:10px;">&#9632; Panel Priority · Dr. Naomi Freed &amp; Rosa Delgado · Patient Advocates</span>
+                <h2 style="color:var(--white);margin-top:0;">Patient Consent &amp; The True Privacy Argument</h2>
+                <p>The healthcare industry frames zero-exfiltration AI as a <strong style="color:var(--white);">HIPAA compliance tool for practice protection</strong>. That framing is true — but it misses the more fundamental argument: <strong style="color:var(--white);">it's about what you actually consented to.</strong></p>
+
+                <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:20px 24px;margin:20px 0;">
+                    <p style="color:var(--white);font-size:1.05em;font-weight:600;margin:0 0 10px;line-height:1.5;">When you became a patient at your doctor's practice, you consented to your physician using your records to care for you.</p>
+                    <p style="color:var(--light-text);margin:0;line-height:1.8;">You did not consent to your protected health information traversing a cloud AI vendor's servers in a data center you've never heard of, operated by employees you've never vetted, governed by a Business Associate Agreement you've never read. That transmission happens every time a provider uses cloud AI — and it happens without your knowledge or explicit agreement.</p>
+                </div>
+
+                <h3 style="color:var(--white);font-size:1em;margin:20px 0 10px;">The Consent Gap in Cloud Healthcare AI</h3>
+                <p style="color:var(--light-text);line-height:1.8;">HIPAA's Privacy Rule allows covered entities to use PHI for treatment, payment, and healthcare operations without obtaining individual authorization. Cloud AI vendors argue their services fall under these categories. But this legal permission was designed for <em>treatment-related uses</em> — not for routing sensitive health data through commercial AI infrastructure that internalizes it, processes it, and operates on it in ways that are architecturally impossible for patients to audit or verify.</p>
+                <p style="color:var(--light-text);line-height:1.8;">As Dr. Freed's research documents: once PHI enters cloud infrastructure, its provenance is impossible to audit in any meaningful way. Patients cannot verify where their data went, who processed it, whether it influenced a model's outputs, or whether it was accessed by a vendor employee. The BAA says it wasn't. But the patient has no mechanism to confirm that claim.</p>
+
+                <h3 style="color:var(--white);font-size:1em;margin:20px 0 10px;">Hardware Custody Is the Only Architecture Consistent With Consent</h3>
+                <p style="color:var(--light-text);line-height:1.8;">The Sentinel Node's Enterprise Autonomy Architecture is the only AI deployment model where a patient's consent boundary is fully respected by the technology itself — not just by contractual promise. When inference runs on hardware inside the physician's facility, your records never leave the building. The entity that processes your data is the same entity you consented to when you became a patient.</p>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;">
+                    <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;border:1px solid rgba(255,255,255,0.06);">
+                        <div style="color:var(--danger);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Cloud AI · What Actually Happens</div>
+                        <ul style="color:var(--muted);font-size:0.82em;line-height:1.85;padding-left:16px;margin:0;">
+                            <li>Your PHI leaves your doctor's building</li>
+                            <li>It traverses vendor infrastructure</li>
+                            <li>Processed by staff you cannot vet</li>
+                            <li>Covered by a contract you never saw</li>
+                            <li>Audit is vendor-side; you see nothing</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(34,197,94,0.06);border-radius:8px;padding:16px;border:1px solid rgba(34,197,94,0.2);">
+                        <div style="color:var(--success);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Sentinel Node · What Actually Happens</div>
+                        <ul style="color:var(--muted);font-size:0.82em;line-height:1.85;padding-left:16px;margin:0;">
+                            <li>Your PHI stays in the practice's building</li>
+                            <li>Processed on hardware the practice owns</li>
+                            <li>No vendor employee accesses your records</li>
+                            <li>Audit log under the practice's custody</li>
+                            <li>Physically verifiable — no vendor attestation needed</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.75;margin:0;">The consent argument matters because it reframes the conversation: zero-exfiltration AI isn't just a compliance tool for practices. It's the technology choice that actually honors what patients agreed to when they became patients. <strong style="color:var(--white);">Your doctor's obligation is to your care. The AI they use should stay within the scope of that relationship — not extend it to an infrastructure you never consented to.</strong></p>
+            </div>
                 <p>If you represent patients living with chronic illness, rare disease, or conditions that require frequent prior authorization battles — we want to hear from you.</p>
                 <p>The prior authorization crisis disproportionately harms patients with complex, ongoing conditions who require frequent specialist referrals, specialty medications, and repeat authorization cycles. These are your members. The data on this page documents their experience in peer-reviewed terms.</p>
                 <p>We are open to research partnerships, data sharing agreements, and conversations about how local sovereign AI can reduce the prior authorization burden on the practices that serve your community — without compromising the privacy of a single patient record.</p>

@@ -110,18 +110,103 @@
         </p>
     </section>
 
-    <!-- ROI BANNER -->
-    <div class="roi-section">
-        <h2 style="color:var(--white);margin-top:0;border-bottom:none;">Projected Economic Impact</h2>
-        <p style="color:var(--light-text);font-size:1.05em;max-width:600px;margin:0 auto 4px;">
-            Modeled against typical recurring costs for human scribes or paralegals, early pilot customers project full CapEx recovery in:
-        </p>
-        <span class="roi-metric">&lt; 90 Days*</span>
-        <p style="color:var(--white);font-weight:bold;font-size:1.2em;margin-bottom:6px;">Modeled payback &amp; maintained local data control</p>
-        <p style="font-size:0.78em;color:var(--muted);font-style:italic;margin:0;">
-            *Based on internal modeling vs. $3,000–$5,000/mo scribe/paralegal costs. Results vary by workflow volume and staffing model. Not a guarantee of financial return.
-        </p>
+    <!-- ROI CALCULATOR — Panel Priority #1 -->
+    <div class="roi-section" style="padding:36px 40px;">
+        <span style="color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.75em;display:block;margin-bottom:10px;">&#9664; Championed by Alexandra Chen (Investor) &amp; Dr. Kowalski</span>
+        <h2 style="color:var(--white);margin-top:0;border-bottom:none;font-size:1.6em;">Your Custom ROI &amp; Payback Calculator</h2>
+        <p style="color:var(--light-text);font-size:0.97em;max-width:620px;margin:0 auto 28px;line-height:1.75;">The math is the strongest argument. Input your practice's actual numbers and see your personal payback timeline — built on the AMA's documented prior authorization cost data.</p>
+
+        <div id="roi-calc" style="max-width:700px;margin:0 auto;">
+            <!-- INPUTS -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;">
+                <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:20px 22px;">
+                    <label style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;display:block;margin-bottom:8px;">Physicians / Providers</label>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <input type="range" id="roi-providers" min="1" max="10" value="3" step="1" style="flex:1;" oninput="roiCalc()">
+                        <span id="roi-providers-val" style="color:var(--white);font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;min-width:28px;">3</span>
+                    </div>
+                </div>
+                <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:20px 22px;">
+                    <label style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;display:block;margin-bottom:8px;">Monthly Scribe / Paralegal Cost ($)</label>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <input type="range" id="roi-scribe" min="500" max="8000" value="3500" step="100" style="flex:1;" oninput="roiCalc()">
+                        <span id="roi-scribe-val" style="color:var(--white);font-family:'Syne',sans-serif;font-size:1.2em;font-weight:800;min-width:56px;">$3,500</span>
+                    </div>
+                </div>
+                <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:20px 22px;">
+                    <label style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;display:block;margin-bottom:6px;">Prior Auth Recapture Estimate</label>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <input type="range" id="roi-pa-pct" min="10" max="80" value="40" step="5" style="flex:1;" oninput="roiCalc()">
+                        <span id="roi-pa-val" style="color:var(--white);font-family:'Syne',sans-serif;font-size:1.2em;font-weight:800;min-width:42px;">40%</span>
+                    </div>
+                    <p style="color:var(--muted);font-size:0.68em;margin:6px 0 0;line-height:1.4;">% of $68K/provider/yr prior auth loss recaptured</p>
+                </div>
+                <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:20px 22px;">
+                    <label style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;display:block;margin-bottom:8px;">Deployment Tier</label>
+                    <select id="roi-tier" onchange="roiCalc()" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:var(--white);padding:9px 12px;font-family:'Syne',sans-serif;font-size:0.88em;">
+                        <option value="15000">Phase I — $15,000 CapEx</option>
+                        <option value="17999">Phase II — $17,999 CapEx</option>
+                        <option value="29999">Phase III — $29,999 CapEx</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- RESULTS -->
+            <div style="background:linear-gradient(135deg,rgba(0,163,255,0.08),rgba(24,139,150,0.12));border:1px solid rgba(24,139,150,0.3);border-radius:12px;padding:28px 32px;">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+                    <div style="text-align:center;">
+                        <div id="roi-annual" style="color:var(--success);font-family:'Syne',sans-serif;font-size:1.9em;font-weight:800;line-height:1;">$204k</div>
+                        <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Annual Savings Modeled</div>
+                    </div>
+                    <div style="text-align:center;border-left:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);">
+                        <div id="roi-payback" style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.9em;font-weight:800;line-height:1;">26 days</div>
+                        <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">CapEx Payback Period</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div id="roi-yr1" style="color:var(--amber);font-family:'Syne',sans-serif;font-size:1.9em;font-weight:800;line-height:1;">$182k</div>
+                        <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">Net Year-1 After CapEx</div>
+                    </div>
+                </div>
+                <div id="roi-bar-wrap" style="background:rgba(0,0,0,0.4);border-radius:6px;height:8px;overflow:hidden;margin-bottom:12px;">
+                    <div id="roi-bar" style="background:linear-gradient(90deg,var(--teal),var(--ai-blue));height:100%;width:30%;transition:width 0.6s cubic-bezier(.4,0,.2,1);border-radius:6px;"></div>
+                </div>
+                <p id="roi-label" style="color:var(--light-text);font-size:0.82em;text-align:center;margin:0;line-height:1.6;"></p>
+            </div>
+            <p style="color:var(--muted);font-size:0.72em;font-style:italic;margin:10px 0 0;text-align:center;">Modeled against AMA 2023 Prior Authorization Survey data ($68K/provider/yr) and typical scribe/paralegal costs. Not a guarantee of financial return. Results vary by practice workflow, volume, and staffing. Consult your financial advisor.</p>
+        </div>
     </div>
+
+<script>
+function roiCalc() {
+    var providers = parseInt(document.getElementById('roi-providers').value);
+    var scribe    = parseInt(document.getElementById('roi-scribe').value);
+    var paPct     = parseInt(document.getElementById('roi-pa-pct').value) / 100;
+    var capex     = parseInt(document.getElementById('roi-tier').value);
+    var sla       = 300;
+
+    document.getElementById('roi-providers-val').textContent = providers;
+    document.getElementById('roi-scribe-val').textContent    = '$' + scribe.toLocaleString();
+    document.getElementById('roi-pa-val').textContent        = Math.round(paPct * 100) + '%';
+
+    var annualPA     = providers * 68000 * paPct;
+    var annualScribe = scribe * 12;
+    var totalSavings = annualPA + annualScribe;
+    var totalCost    = capex + (sla * 12);
+    var yr1Net       = totalSavings - totalCost;
+    var paybackDays  = totalSavings > 0 ? Math.round((capex / totalSavings) * 365) : 999;
+
+    document.getElementById('roi-annual').textContent  = '$' + Math.round(totalSavings / 1000) + 'k';
+    document.getElementById('roi-payback').textContent = paybackDays < 365 ? paybackDays + ' days' : Math.round(paybackDays/30) + ' mo';
+    document.getElementById('roi-yr1').textContent     = '$' + Math.round(yr1Net / 1000) + 'k';
+
+    var barPct = Math.min(100, Math.round((capex / totalSavings) * 100));
+    document.getElementById('roi-bar').style.width = barPct + '%';
+
+    var lbl = 'At your inputs — ' + providers + ' provider' + (providers > 1 ? 's' : '') + ', $' + scribe.toLocaleString() + '/mo in admin costs, ' + Math.round(paPct * 100) + '% prior auth recapture — the Sentinel Node CapEx is recovered in approximately ' + (paybackDays < 365 ? paybackDays + ' days' : Math.round(paybackDays/30) + ' months') + '. Year-1 net after all costs: $' + Math.round(yr1Net).toLocaleString() + '.';
+    document.getElementById('roi-label').textContent = lbl;
+}
+roiCalc();
+</script>
 
     <!-- FINANCING & SECTION 179 CALLOUT — v41 -->
     <div style="background:linear-gradient(135deg,rgba(24,139,150,0.12),rgba(0,163,255,0.08));border:1px solid rgba(24,139,150,0.35);border-radius:12px;padding:36px 40px;margin:0 0 48px;text-align:center;">
@@ -256,9 +341,24 @@
     </div>
 
     <!-- 60-DAY POV -->
-    <div class="box-teal-cta">
+    <div class="box-teal-cta" id="pov">
         <span class="section-eyebrow teal">Entry Point</span>
         <h2>60-Day Paid Proof-of-Value</h2>
+
+        <!-- POV TRACKER — Panel Priority #5 -->
+        <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(24,139,150,0.35);border-radius:10px;padding:16px 22px;margin:0 auto 22px;max-width:560px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;">
+            <div style="display:flex;align-items:center;gap:7px;">
+                <span style="width:8px;height:8px;background:var(--success);border-radius:50%;display:inline-block;animation:povpulse2 2s infinite;"></span>
+                <span style="color:var(--success);font-family:'Syne',sans-serif;font-size:0.7em;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;">Cohort Status</span>
+            </div>
+            <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:center;">
+                <span style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.35);border-radius:5px;padding:4px 12px;color:var(--success);font-size:0.75em;font-weight:700;">&#9632; Pilot 1 — Active</span>
+                <span style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.35);border-radius:5px;padding:4px 12px;color:var(--success);font-size:0.75em;font-weight:700;">&#9632; Pilot 2 — Active</span>
+                <span style="background:rgba(0,163,255,0.1);border:1px solid rgba(0,163,255,0.3);border-radius:5px;padding:4px 12px;color:var(--ai-blue);font-size:0.75em;font-weight:700;">&#9633; Q2 Slot — 1 Remaining</span>
+            </div>
+        </div>
+        <style>@keyframes povpulse2{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}</style>
+
         <div class="pov-price">$5,000 <span class="pov-price-sub">+ hardware cost</span></div>
         <p class="card-light-body" style="margin:16px auto 24px;">
             We do not run speculative free trials with sensitive compliance data. Every engagement begins with a structured 60-Day Paid Proof-of-Value deployment. The $5,000 fee covers architecture assessment, local RAG configuration, document sanitization pipeline setup, and Human-in-the-Loop workflow calibration. Upon conversion to a long-term SLA, this fee is <strong style="color:var(--white);">applied in full</strong> to your Phase I, II, or III deployment.
