@@ -295,15 +295,45 @@ roiCalc();
 
     </div>
 
-    <!-- SLA BANNER -->
-    <div class="subscription-banner">
-        <div style="flex:1;min-width:300px;">
-            <h2 style="margin-top:0;color:var(--white);border-bottom:none;">Sovereignty &amp; Red Team SLA</h2>
-            <p style="color:var(--light-text);margin-bottom:0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Updates are delivered via <strong>cryptographically signed USB media</strong>. For Plus-tier nodes, this includes managed verification protocols to ensure mission-critical retrieval accuracy.</p>
+    <!-- SLA BANNER — Fix #3: Subscription Model Clarification -->
+    <div class="subscription-banner" style="flex-direction:column;gap:20px;">
+        <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;width:100%;">
+            <div style="flex:1;min-width:300px;">
+                <span style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;letter-spacing:0.14em;font-size:0.72em;display:block;margin-bottom:8px;">Not a Subscription. A Hardware SLA.</span>
+                <h2 style="margin-top:0;color:var(--white);border-bottom:none;">Sovereignty &amp; Red Team SLA</h2>
+                <p style="color:var(--light-text);margin-bottom:0;">Maintaining <strong>Zero Data Exfiltration</strong> requires physical isolation. Updates are delivered via <strong>cryptographically signed USB media</strong>. For Plus-tier nodes, this includes managed verification protocols to ensure mission-critical retrieval accuracy.</p>
+            </div>
+            <div class="sub-price">
+                <div style="font-size:1.8em;color:var(--ai-blue);font-weight:800;line-height:1;">$300 — $1,050</div>
+                <div style="color:var(--muted);font-size:0.82em;margin-top:4px;">per month · flat rate · scales by compute density</div>
+            </div>
         </div>
-        <div class="sub-price">
-            <div style="font-size:1.8em;color:var(--ai-blue);font-weight:800;line-height:1;">$300 — $1,050</div>
-            <div style="color:var(--muted);font-size:0.82em;margin-top:4px;">per month · scales by compute density</div>
+        <!-- CapEx vs OpEx differentiation -->
+        <div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:18px 22px;width:100%;box-sizing:border-box;">
+            <div style="color:var(--teal);font-weight:700;font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">Predictable CapEx + Flat SLA vs. Runaway Cloud OpEx — The CFO Argument</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                <div>
+                    <div style="color:var(--danger);font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">&#8856; Cloud AI Subscription Model</div>
+                    <ul style="color:var(--muted);font-size:0.82em;line-height:1.85;padding-left:16px;margin:0;">
+                        <li>Per-user or per-token billing — scales with every query</li>
+                        <li>Cost grows as staff adoption increases</li>
+                        <li>Vendor can raise prices at renewal</li>
+                        <li>Budget unpredictable month-to-month</li>
+                        <li>Perpetual OpEx with no exit path</li>
+                    </ul>
+                </div>
+                <div>
+                    <div style="color:var(--success);font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">&#10003; Sentinel Node SLA Model</div>
+                    <ul style="color:var(--muted);font-size:0.82em;line-height:1.85;padding-left:16px;margin:0;">
+                        <li><strong style="color:var(--white);">Flat monthly rate</strong> — covers hardware SLA + signed updates</li>
+                        <li>No per-user charges — all staff, same cost</li>
+                        <li>No per-query or per-token fees — unlimited inference</li>
+                        <li>Cost does not scale with usage volume</li>
+                        <li>Hardware owned by your practice — cancel SLA, keep the node</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="color:var(--muted);font-size:0.75em;margin:12px 0 0;font-style:italic;">The SLA covers: cryptographically signed model weight updates (via USB), RAG pipeline enhancements, security patches, and technical support access. It is not a software license or cloud access fee — it is a maintenance contract for hardware you own.</p>
         </div>
     </div>
 

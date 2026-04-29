@@ -306,6 +306,63 @@
         </div>
     </div>
 
+    <!-- NETWORK LOGIC — Fix #1: IT Skeptic Vulnerability -->
+    <div style="background:linear-gradient(135deg,rgba(0,163,255,0.07),rgba(5,22,34,0.97));border:1px solid rgba(0,163,255,0.22);border-radius:14px;padding:32px 36px;margin:40px 0 0;">
+        <span style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.72em;display:block;margin-bottom:10px;">For IT Directors &amp; Technical Auditors</span>
+        <h2 style="color:var(--white);margin:0 0 18px;border-bottom:none;font-size:1.35em;">Network Topology: Inbound vs. Outbound — The Full Picture</h2>
+        <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">Zero exfiltration does not mean zero network connectivity. It means <strong style="color:var(--white);">zero outbound data transmission during inference and operation.</strong> A skeptical IT director deserves a precise answer to the obvious question: if it's isolated, how do model weights and security patches get in?</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;">
+            <div style="background:rgba(224,90,90,0.07);border:1px solid rgba(224,90,90,0.25);border-radius:10px;padding:20px 22px;">
+                <div style="color:var(--danger);font-weight:700;font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">&#8856; Permanently Blocked — Outbound</div>
+                <ul style="color:var(--light-text);font-size:0.85em;line-height:1.9;padding-left:18px;margin:0;">
+                    <li>All outbound internet routes blocked at VLAN boundary</li>
+                    <li>No PHI transmission during inference — ever</li>
+                    <li>No telemetry, heartbeat, or phone-home to vendor</li>
+                    <li>No cloud API calls for model inference or retrieval</li>
+                    <li>No outbound logging to external SIEM</li>
+                </ul>
+            </div>
+            <div style="background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:20px 22px;">
+                <div style="color:var(--success);font-weight:700;font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">&#10003; Permitted — Controlled Inbound</div>
+                <ul style="color:var(--light-text);font-size:0.85em;line-height:1.9;padding-left:18px;margin:0;">
+                    <li>Authorized clinical workstations on isolated VLAN (inbound only)</li>
+                    <li>EHR PDF export via secure local share — staff-initiated</li>
+                    <li>Model &amp; patch updates: cryptographically signed USB only</li>
+                    <li>LLM weight delivery: signed package, SHA-256 verified before apply</li>
+                    <li>Unsigned or unverified packages are automatically rejected</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.35);border-radius:10px;padding:18px 22px;">
+            <div style="color:var(--teal);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">LLM Weight &amp; Patch Update Protocol — How It Actually Works</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+                <div style="text-align:center;padding:14px 10px;">
+                    <div style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;margin-bottom:6px;">&#9312;</div>
+                    <div style="color:var(--white);font-size:0.8em;font-weight:700;margin-bottom:4px;">Package Prepared</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Pocono AI signs model weights or patch with Ed25519 private key. SHA-256 hash published in the secure client portal.</div>
+                </div>
+                <div style="text-align:center;padding:14px 10px;border-left:1px solid rgba(255,255,255,0.06);">
+                    <div style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;margin-bottom:6px;">&#9313;</div>
+                    <div style="color:var(--white);font-size:0.8em;font-weight:700;margin-bottom:4px;">USB Delivery</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Signed package loaded onto encrypted USB. IT administrator or practice manager receives and physically inserts into the Sentinel Node.</div>
+                </div>
+                <div style="text-align:center;padding:14px 10px;border-left:1px solid rgba(255,255,255,0.06);">
+                    <div style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;margin-bottom:6px;">&#9314;</div>
+                    <div style="color:var(--white);font-size:0.8em;font-weight:700;margin-bottom:4px;">Signature Verified</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Sentinel Node verifies Ed25519 signature and SHA-256 hash before any package touches the filesystem. Mismatch = automatic rejection, no install.</div>
+                </div>
+                <div style="text-align:center;padding:14px 10px;border-left:1px solid rgba(255,255,255,0.06);">
+                    <div style="color:var(--success);font-family:'Syne',sans-serif;font-size:1.4em;font-weight:800;margin-bottom:6px;">&#9315;</div>
+                    <div style="color:var(--white);font-size:0.8em;font-weight:700;margin-bottom:4px;">Applied &amp; Logged</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Update applied offline. Every install event is logged to the 90-day immutable local audit trail — timestamp, package hash, and installer identity.</div>
+                </div>
+            </div>
+        </div>
+        <p style="color:var(--muted);font-size:0.78em;margin:14px 0 0;line-height:1.6;">The result: LLM weights, tuning, and security patches enter the system only via cryptographically signed, human-carried USB media. <strong style="color:var(--light-text);">An unsigned USB is physically ignored by the system.</strong> No remote management interface. No vendor back-door. No automatic cloud pull. The air gap is not a policy — it is enforced by the update architecture itself.</p>
+    </div>
+
 </div>
 </main>
 

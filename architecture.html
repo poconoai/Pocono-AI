@@ -247,7 +247,25 @@
                 </div>
                 <div style="background:var(--card-dark);border-radius:var(--radius);padding:24px;border-left:4px solid var(--teal);">
                     <h3 style="color:var(--white);margin:0 0 12px;font-size:1.05em;">Step 3 — Update Verification</h3>
-                    <p style="color:var(--light-text);font-size:0.88em;line-height:1.75;margin:0;">Software and model weight updates are <strong style="color:var(--white);">never pushed over the internet.</strong> Each update is delivered as a cryptographically signed package via the Secure Portal. The IT administrator downloads the package, verifies the <strong style="color:var(--white);">SHA-256 checksum</strong> against the value published in the Portal, and applies via USB or local transfer. If the hash does not match, the package is rejected.</p>
+                    <p style="color:var(--light-text);font-size:0.88em;line-height:1.75;margin:0 0 12px;">Software and model weight updates are <strong style="color:var(--white);">never pushed over the internet.</strong> LLM weights, RAG enhancements, and security patches are delivered as cryptographically signed packages (Ed25519 signature + SHA-256 checksum). The IT administrator receives the package, verifies the hash against the value published in the Secure Client Portal, and physically applies it via signed USB. <strong style="color:var(--white);">Unsigned or hash-mismatched USB media is automatically rejected</strong> — the Sentinel Node will not mount or execute an unverified package under any circumstances.</p>
+                    <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:14px 18px;display:flex;gap:24px;flex-wrap:wrap;">
+                        <div style="flex:1;min-width:180px;">
+                            <div style="color:var(--danger);font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">&#8856; Never Over the Network</div>
+                            <ul style="color:var(--muted);font-size:0.78em;line-height:1.8;padding-left:14px;margin:0;">
+                                <li>No remote push updates</li>
+                                <li>No vendor management tunnel</li>
+                                <li>No automatic cloud sync</li>
+                            </ul>
+                        </div>
+                        <div style="flex:1;min-width:180px;">
+                            <div style="color:var(--success);font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">&#10003; Physical-Only Update Path</div>
+                            <ul style="color:var(--muted);font-size:0.78em;line-height:1.8;padding-left:14px;margin:0;">
+                                <li>Ed25519-signed package required</li>
+                                <li>SHA-256 hash verified before install</li>
+                                <li>Every update logged to immutable audit trail</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 

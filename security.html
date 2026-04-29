@@ -1,11 +1,295 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><title>Security | Pocono AI, LLC</title><style>body { font-family: sans-serif; padding: 40px; line-height: 1.5; color: #333; }</style></head>
+<html lang="en"><!-- Pocono AI v46 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sentinel Node physical port security, encrypted at-rest storage, and Role-Based Access Control. Perimeter security from the inside out.">
+    <title>Physical &amp; Internal Security | Pocono AI, LLC</title>
+    <meta property="og:title" content="Physical &amp; Internal Security | Pocono AI, LLC">
+    <meta property="og:description" content="Port lockdown, encrypted at-rest storage, and RBAC. How the Sentinel Node defends against internal threat vectors.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/security.html">
+    <meta property="og:image" content="https://poconoai.com/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="canonical" href="https://poconoai.com/security.html">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+</head>
 <body>
-    <h1>Zero Exfiltration Advantage</h1>
-    <p>Physically enforced privacy. Your data never leaves your silicon.</p>
-    <p><a href="The_Zero_Exfiltration_Advantage_PoconoAI.pdf" target="_blank">Download Security Whitepaper</a></p>
-    <p><a href="index.html">Back to Home</a></p>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+
+<header>
+        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav id="nav-menu" aria-label="Main navigation">
+            <ul class="nav-links">
+                <li class="nav-mobile-hide"><a href="index.html">Home</a></li>
+                <li><a href="for-physicians.html">For Physicians</a></li>
+                <li><a href="for-attorneys.html">For Attorneys</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="trust.html" style="color:var(--ai-blue);">Trust &amp; Security</a></li>
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
+                        More <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="use-cases.html">Use Cases</a>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="specs.html">Specs</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="partners.html">Partners</a>
+                        <a href="why-pocono-ai.html">Why Pocono AI</a>
+                        <a href="research.html">Research Hub</a>
+                        <a href="portal.html">Client Portal</a>
+                        <a href="simulation.html" style="opacity:0.65;">&#9878; 12-Panel Simulation</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<main id="main-content">
+
+    <section class="page-hero">
+        <span class="page-eyebrow">Physical &amp; Internal Security Architecture</span>
+        <h1>The Perimeter Is Secure<br>From the Inside Out</h1>
+        <p>The Sentinel Node defeats cloud exfiltration by architecture. But a compliance officer's next question is the right one: <em>what stops an insider threat?</em> Here is the complete answer — physical port control, encrypted storage, and role-based access control.</p>
+    </section>
+
+    <!-- THREAT MODEL OVERVIEW -->
+    <section class="fade-in-section" style="margin-bottom:40px;">
+        <h2 class="section-header">The Complete Threat Model</h2>
+        <p style="color:var(--light-text);max-width:700px;line-height:1.8;margin-bottom:28px;">Zero cloud exfiltration eliminates the external threat vector. But a rigorous security posture must also address the internal one: <strong style="color:var(--white);">an employee with physical access to the hardware.</strong> The Sentinel Node's security architecture layers three defenses against insider threats — port lockdown, at-rest encryption, and role-based access controls.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div style="background:var(--card-dark);border-radius:12px;padding:22px;border-top:3px solid var(--danger);text-align:center;">
+                <div style="color:var(--danger);font-size:2em;margin-bottom:10px;">&#128274;</div>
+                <h3 style="color:var(--white);font-size:0.95em;margin:0 0 8px;">Physical Port Lockdown</h3>
+                <p style="color:var(--muted);font-size:0.8em;line-height:1.65;margin:0;">Unauthorized USB devices are hardware-blocked. Signed media only. No walk-out-with-a-USB attacks.</p>
+            </div>
+            <div style="background:var(--card-dark);border-radius:12px;padding:22px;border-top:3px solid var(--amber);text-align:center;">
+                <div style="color:var(--amber);font-size:2em;margin-bottom:10px;">&#128190;</div>
+                <h3 style="color:var(--white);font-size:0.95em;margin:0 0 8px;">Encrypted At-Rest Storage</h3>
+                <p style="color:var(--muted);font-size:0.8em;line-height:1.65;margin:0;">Full-disk encryption renders the vectorized database unreadable if the hardware is physically removed.</p>
+            </div>
+            <div style="background:var(--card-dark);border-radius:12px;padding:22px;border-top:3px solid var(--teal);text-align:center;">
+                <div style="color:var(--teal);font-size:2em;margin-bottom:10px;">&#128100;</div>
+                <h3 style="color:var(--white);font-size:0.95em;margin:0 0 8px;">Role-Based Access Control</h3>
+                <p style="color:var(--muted);font-size:0.8em;line-height:1.65;margin:0;">Query access is scoped by role. A paralegal cannot reach clinical records. A billing clerk cannot reach privileged case files.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: PORT SECURITY -->
+    <section class="fade-in-section" style="margin-bottom:40px;">
+        <div style="background:linear-gradient(135deg,rgba(224,90,90,0.07),rgba(5,22,34,0.97));border:1px solid rgba(224,90,90,0.25);border-radius:14px;padding:32px 36px;">
+            <span style="color:var(--danger);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.72em;display:block;margin-bottom:10px;">&#9632; Layer 1 · Physical Port Security</span>
+            <h2 style="color:var(--white);margin:0 0 16px;border-bottom:none;font-size:1.3em;">An Angry Paralegal With a USB Drive Is Not a Threat Vector</h2>
+            <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">The Sentinel Node's USB policy enforces the same cryptographic trust model used for model weight updates — applied to every port on the machine. This is not a software policy that can be bypassed by an administrator. It is enforced at the kernel level.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+                <div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:18px 20px;">
+                    <div style="color:var(--danger);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">&#8856; Blocked — Unauthorized USB</div>
+                    <ul style="color:var(--light-text);font-size:0.83em;line-height:1.85;padding-left:16px;margin:0;">
+                        <li>Unsigned USB media — system refuses to mount</li>
+                        <li>Unknown device IDs — blocked at kernel level via udev rules</li>
+                        <li>Mass storage devices not on the approved hardware whitelist</li>
+                        <li>Attempted bypass via USB-C or Thunderbolt adapters</li>
+                        <li>Every rejected insertion attempt is logged to the audit trail</li>
+                    </ul>
+                </div>
+                <div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:18px 20px;">
+                    <div style="color:var(--success);font-weight:700;font-size:0.75em;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">&#10003; Permitted — Authorized Media Only</div>
+                    <ul style="color:var(--light-text);font-size:0.83em;line-height:1.85;padding-left:16px;margin:0;">
+                        <li>Cryptographically signed update packages (Ed25519)</li>
+                        <li>Whitelisted hardware device IDs — pre-approved during deployment</li>
+                        <li>Package signature verified before any filesystem mount</li>
+                        <li>SHA-256 hash checked against Secure Portal value</li>
+                        <li>Successful and failed attempts both logged immutably</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:14px 18px;">
+                <p style="color:var(--light-text);font-size:0.83em;margin:0;line-height:1.7;"><strong style="color:var(--white);">What this means in practice:</strong> An employee who plugs an unauthorized USB drive into the Sentinel Node will find that nothing happens — the device is not recognized, not mounted, and not accessible. The attempt is silently logged with timestamp and device identifier. The next time the IT administrator reviews the audit trail, the event is visible. The data goes nowhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: ENCRYPTION AT REST -->
+    <section class="fade-in-section" style="margin-bottom:40px;">
+        <div style="background:linear-gradient(135deg,rgba(186,117,23,0.07),rgba(5,22,34,0.97));border:1px solid rgba(186,117,23,0.25);border-radius:14px;padding:32px 36px;">
+            <span style="color:var(--amber);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.72em;display:block;margin-bottom:10px;">&#9632; Layer 2 · Encrypted At-Rest Storage</span>
+            <h2 style="color:var(--white);margin:0 0 16px;border-bottom:none;font-size:1.3em;">If Someone Walks Out With the Hardware, They Get an Encrypted Brick</h2>
+            <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">Full-disk encryption (LUKS/dm-crypt on the OS layer, with hardware-accelerated AES-256) is applied to every storage volume on the Sentinel Node — the OS partition, the Qdrant vector database, the RAG document index, and the audit log. An attacker who physically removes the drives gets encrypted data that is computationally infeasible to recover without the key.</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+                <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;text-align:center;">
+                    <div style="color:var(--amber);font-family:'Syne',sans-serif;font-size:1.1em;font-weight:800;margin-bottom:6px;">AES-256</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Full-disk encryption standard. Hardware-accelerated on Dell Precision processors.</div>
+                </div>
+                <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;text-align:center;">
+                    <div style="color:var(--amber);font-family:'Syne',sans-serif;font-size:1.1em;font-weight:800;margin-bottom:6px;">LUKS2</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Linux Unified Key Setup — the industry standard for enterprise disk encryption on Linux.</div>
+                </div>
+                <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px;text-align:center;">
+                    <div style="color:var(--amber);font-family:'Syne',sans-serif;font-size:1.1em;font-weight:800;margin-bottom:6px;">Key Custody</div>
+                    <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Encryption keys managed by the client organization — not held by Pocono AI. Pocono AI cannot decrypt your data.</div>
+                </div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:14px 18px;">
+                <p style="color:var(--light-text);font-size:0.83em;margin:0;line-height:1.7;"><strong style="color:var(--white);">What gets encrypted:</strong> The Qdrant vector database (your indexed patient records / case files), the raw document store, the 90-day immutable audit log, all OS configuration and credentials, and all temporary inference artifacts. The encryption key is held by the client organization and is required for every system boot — if the hardware is powered off and moved, it will not boot without the key.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: RBAC -->
+    <section class="fade-in-section" style="margin-bottom:40px;">
+        <div style="background:linear-gradient(135deg,rgba(24,139,150,0.07),rgba(5,22,34,0.97));border:1px solid rgba(24,139,150,0.3);border-radius:14px;padding:32px 36px;">
+            <span style="color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:0.15em;font-size:0.72em;display:block;margin-bottom:10px;">&#9632; Layer 3 · Role-Based Access Control (RBAC)</span>
+            <h2 style="color:var(--white);margin:0 0 16px;border-bottom:none;font-size:1.3em;">The Right Data to the Right Role — Nothing More</h2>
+            <p style="color:var(--light-text);line-height:1.8;margin-bottom:22px;">Even with full access to the local network, a staff member can only query data appropriate to their role. RBAC is configured during the 60-Day Proof of Value deployment and scoped to the practice's specific staff structure. Query permissions are enforced at the API layer — not just in the UI.</p>
+            <div style="overflow-x:auto;margin-bottom:20px;">
+                <table style="width:100%;border-collapse:collapse;font-size:0.83em;">
+                    <thead>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <th style="text-align:left;padding:10px 14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:0.8em;">Role</th>
+                            <th style="text-align:left;padding:10px 14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:0.8em;">Can Query</th>
+                            <th style="text-align:left;padding:10px 14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:0.8em;">Cannot Query</th>
+                            <th style="text-align:left;padding:10px 14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:0.8em;">Audit Logged</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:11px 14px;color:var(--danger);font-weight:700;">Physician / NP (Tier A)</td>
+                            <td style="padding:11px 14px;color:var(--light-text);">Full patient record index, clinical summaries, referral history</td>
+                            <td style="padding:11px 14px;color:var(--muted);">Billing admin records, system config</td>
+                            <td style="padding:11px 14px;color:var(--success);">Every query logged</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:11px 14px;color:var(--amber);font-weight:700;">Clinical Support (Tier B)</td>
+                            <td style="padding:11px 14px;color:var(--light-text);">Medication history, prior auth support documents, triage notes</td>
+                            <td style="padding:11px 14px;color:var(--muted);">Diagnosis summaries requiring licensed review, full clinical notes</td>
+                            <td style="padding:11px 14px;color:var(--success);">Every query logged</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                            <td style="padding:11px 14px;color:var(--teal);font-weight:700;">Administrative (Tier C)</td>
+                            <td style="padding:11px 14px;color:var(--light-text);">Billing context, insurance policy docs, scheduling information</td>
+                            <td style="padding:11px 14px;color:var(--muted);">All clinical records, medication histories, diagnosis documents</td>
+                            <td style="padding:11px 14px;color:var(--success);">Every query logged</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:11px 14px;color:var(--ai-blue);font-weight:700;">IT Administrator</td>
+                            <td style="padding:11px 14px;color:var(--light-text);">System configuration, audit log review, update application</td>
+                            <td style="padding:11px 14px;color:var(--muted);">Patient records, clinical data (IT access is scoped to infra only)</td>
+                            <td style="padding:11px 14px;color:var(--success);">All admin actions logged</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:14px 18px;">
+                <p style="color:var(--light-text);font-size:0.83em;margin:0;line-height:1.7;"><strong style="color:var(--white);">How RBAC is enforced:</strong> Each authenticated workstation session carries a role token issued during deployment configuration. The Sentinel Node's API layer validates this token on every query — not just at login. A billing clerk cannot construct a query that returns clinical records, regardless of how they phrase it. The restriction is at the data layer, not the interface layer. Role tokens are rotated during the quarterly SLA review and can be revoked immediately by the IT administrator without rebooting the system.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: AUDIT TRAIL -->
+    <section class="fade-in-section" style="margin-bottom:40px;">
+        <h2 class="section-header">The 90-Day Immutable Audit Trail</h2>
+        <p style="color:var(--light-text);max-width:700px;line-height:1.8;margin-bottom:22px;">Every event — query, USB insertion attempt, role authentication, update application, and system boot — is written to a tamper-resistant local log. The log is <strong style="color:var(--white);">write-once</strong> during its 90-day retention window: entries cannot be modified or deleted, even by the IT administrator. After 90 days, entries are archived per the client's data retention policy.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+            <div style="background:var(--card-dark);border-radius:8px;padding:16px;text-align:center;">
+                <div style="color:var(--ai-blue);font-family:'Syne',sans-serif;font-size:1.3em;font-weight:800;margin-bottom:6px;">90 Days</div>
+                <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Immutable retention window for all system events</div>
+            </div>
+            <div style="background:var(--card-dark);border-radius:8px;padding:16px;text-align:center;">
+                <div style="color:var(--teal);font-family:'Syne',sans-serif;font-size:1.3em;font-weight:800;margin-bottom:6px;">Write-Once</div>
+                <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">No admin can modify or delete audit entries during the retention window</div>
+            </div>
+            <div style="background:var(--card-dark);border-radius:8px;padding:16px;text-align:center;">
+                <div style="color:var(--success);font-family:'Syne',sans-serif;font-size:1.3em;font-weight:800;margin-bottom:6px;">Local Only</div>
+                <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Audit log stored on the Sentinel Node — never transmitted to Pocono AI or any external system</div>
+            </div>
+            <div style="background:var(--card-dark);border-radius:8px;padding:16px;text-align:center;">
+                <div style="color:var(--amber);font-family:'Syne',sans-serif;font-size:1.3em;font-weight:800;margin-bottom:6px;">OCR Ready</div>
+                <div style="color:var(--muted);font-size:0.72em;line-height:1.5;">Log format meets HIPAA technical safeguard audit requirements for OCR review</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-container fade-in-section">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">Full Technical Architecture Documentation</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 30px;">The complete security architecture — VLAN isolation, RBAC configuration, port lockdown setup, and audit trail format — is included in the Sentinel Node spec sheet and the 60-Day Proof of Value deployment package.</p>
+        <a href="specs.html" class="cta-button">View Full Specs</a>
+        <a href="trust.html" class="cta-button cta-button-light">Trust &amp; Compliance Overview</a>
+        <a href="The_Zero_Exfiltration_Advantage_PoconoAI.pdf" target="_blank" class="cta-button cta-button-light">Zero Exfiltration White Paper</a>
+        <p style="margin-top:30px;"><strong>Direct technical access:</strong> <a href="tel:+15705340602" style="color:white;text-decoration:underline;">(570) 534-0602</a> &nbsp;&middot;&nbsp; <a href="mailto:marcus@poconoai.com" style="color:white;text-decoration:underline;">marcus@poconoai.com</a></p>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <p class="footer-brand">Pocono <span>AI</span></p>
+                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">For Practitioners</p>
+                <a href="for-physicians.html">For Physicians</a>
+                <a href="for-attorneys.html">For Attorneys</a>
+                <a href="use-cases.html">Use Cases</a>
+                <a href="solutions.html">Solutions Overview</a>
+                <a href="pricing.html">Pricing &amp; Financing</a>
+                <a href="specs.html">Hardware Specs</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Technology</p>
+                <a href="architecture.html">For IT &amp; MSPs</a>
+                <a href="trust.html">Trust &amp; Security</a>
+                <a href="partners.html">Partners</a>
+                <a href="competitive-analysis.html">Competitive Analysis</a>
+                <a href="why-pocono-ai.html">Why Pocono AI</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Research</p>
+                <a href="research.html">Research Hub</a>
+                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                <a href="patient-advocacy.html">Patient Safety</a>
+                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank">Malpractice Trap (PDF)</a>
+            </div>
+            <div class="footer-col">
+                <p class="footer-heading">Company</p>
+                <a href="portal.html">Client Portal</a>
+                <a href="careers.html">Careers</a>
+                <a href="simulation.html">12-Panel Simulation</a>
+                <a href="sitemap.html">Sitemap</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="sla.html">SLA</a>
+                <a href="investors.html" class="footer-subtle">Investor Relations</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+            </p>
+            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+        </div>
+    </footer>
+
+<script src="nav.js"></script>
 </body>
 </html>
