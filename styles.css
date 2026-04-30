@@ -1394,9 +1394,9 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 @media (max-width: 600px) { .brand-banner-section { margin-top: 16px; padding: 0 4%; } .brand-banner-img { border-radius: 10px; } }
 
 /* ── TRUST BADGES v67 ── grayscale "we play nice" row */
-.trust-badges-section { width: 100%; max-width: 1100px; margin: 48px auto; padding: 32px 4%; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center; }
-.trust-badges-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.78em; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 22px; }
-.trust-badges-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 36px 56px; color: var(--muted); }
-.trust-badges-row .badge-svg { height: 28px; width: auto; opacity: 0.55; color: var(--muted); transition: opacity 0.25s ease, color 0.25s ease; display: block; }
-.trust-badges-row .badge-svg:hover { opacity: 1; color: var(--ai-blue); }
-@media (max-width: 540px) { .trust-badges-row { gap: 24px 32px; } .trust-badges-row .badge-svg { height: 22px; } }
+.trust-badges-section { width: 100%; max-width: 1100px; margin: 28px auto; padding: 18px 4%; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center; }
+.trust-badges-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.72em; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.trust-badges-row { display: flex; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 0 48px; color: var(--muted); }
+.trust-badges-row .badge-svg { display: inline-block; height: 18px; width: auto; flex-shrink: 0; opacity: 0.5; color: var(--muted); transition: opacity 0.25s ease, color 0.25s ease; overflow: visible; }
+.trust-badges-row .badge-svg:hover { opacity: 1; color: var(--ai-blue); cursor: default; }
+@media (max-width: 640px) { .trust-badges-row { flex-wrap: wrap; gap: 10px 24px; } .trust-badges-row .badge-svg { height: 14px; } }
