@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v54 -->
+<html lang="en"><!-- Pocono AI v55 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -79,14 +79,10 @@
                     </button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
                         <a href="solutions.html">Solutions Overview</a>
-                        <a href="use-cases.html">Use Cases</a>
                         <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="specs.html">Specs</a>
                         <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="partners.html">Partners</a>
-                        <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="research.html">Research Hub</a>
-                        <a href="portal.html">Client Portal</a>
+                        <a href="about.html">About the Founder</a>
                         <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
@@ -132,8 +128,40 @@
                 <p>Processed entirely on-device with zero cloud telemetry.</p>
                 <span class="tag-badge tag-badge-teal">Ollama / Gemma | Llama 3 / 4</span>
                 <div style="margin-top:12px;font-size:0.82em;color:var(--muted);line-height:1.65;">
-                    <strong style="color:var(--light-text);display:block;margin-bottom:4px;">Deployed model specs (Phase I / II):</strong>
-                    Gemma 3 27B · Llama 3.3 70B (Q4_K_M GGUF quantization) on Phase II (32 GB VRAM). Phase I runs Gemma 3 12B / Llama 3.1 8B at Q5_K_M. Models are RAG-constrained — generation is anchored to retrieved document chunks, not open-ended parametric recall, which is the primary architectural mitigation for hallucination in document-heavy workflows.
+                    <strong style="color:var(--light-text);display:block;margin-bottom:12px;">Full Technical Stack — Model & Infrastructure</strong>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px;">
+                        <div style="background:rgba(10,115,210,0.06);border:1px solid rgba(10,115,210,0.2);border-radius:8px;padding:14px 16px;">
+                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">LLM — Phase I (16 GB VRAM)</div>
+                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Gemma 3 12B · Q5_K_M GGUF</div>
+                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">Llama 3.1 8B alt configuration</div>
+                        </div>
+                        <div style="background:rgba(10,115,210,0.06);border:1px solid rgba(10,115,210,0.2);border-radius:8px;padding:14px 16px;">
+                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">LLM — Phase II (32 GB VRAM)</div>
+                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Gemma 3 27B · Q4_K_M GGUF</div>
+                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">Llama 3.3 70B alt configuration</div>
+                        </div>
+                        <div style="background:rgba(24,139,150,0.06);border:1px solid rgba(24,139,150,0.2);border-radius:8px;padding:14px 16px;">
+                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">Vector Database</div>
+                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Qdrant (Rust-native)</div>
+                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">Semantic chunking · cosine similarity</div>
+                        </div>
+                        <div style="background:rgba(24,139,150,0.06);border:1px solid rgba(24,139,150,0.2);border-radius:8px;padding:14px 16px;">
+                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">Embedding Model</div>
+                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">nomic-embed-text-v1.5</div>
+                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">768-dim · fully local · no API calls</div>
+                        </div>
+                        <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:14px 16px;">
+                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">Inference Runtime</div>
+                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Ollama · llama.cpp backend</div>
+                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">CUDA-accelerated · NVIDIA Ada GPU</div>
+                        </div>
+                        <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:14px 16px;">
+                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">OCR Pipeline</div>
+                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Tesseract + NVIDIA Ada vision</div>
+                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">95% confidence threshold · local</div>
+                        </div>
+                    </div>
+                    <p style="color:var(--muted);font-size:0.76em;line-height:1.6;">All models run locally via Ollama on Dell Precision hardware. No model weights or inference calls leave the local network. RAG-constrained generation anchors every output to retrieved document chunks — not open-ended parametric recall — which is the primary architectural hallucination mitigation. <span style="color:var(--ai-blue);">Last validated: April 2026.</span></p>
                 </div>
             </div>
         </div>

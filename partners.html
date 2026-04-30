@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v54 -->
+<html lang="en"><!-- Pocono AI v55 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -79,14 +79,10 @@
                     </button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
                         <a href="solutions.html">Solutions Overview</a>
-                        <a href="use-cases.html">Use Cases</a>
                         <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="specs.html">Specs</a>
                         <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="partners.html">Partners</a>
-                        <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="research.html">Research Hub</a>
-                        <a href="portal.html">Client Portal</a>
+                        <a href="about.html">About the Founder</a>
                         <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
@@ -194,22 +190,70 @@
         </section>
 
 
-        <!-- MSP PARTNER PROGRAM — v41 Red Team Fix #1 -->
-        <section style="margin-bottom:40px;">
+        <!-- MSP PARTNER PROGRAM — v55 expanded with revenue structure -->
+        <section style="margin-bottom:40px;" id="msp-program">
             <h2 style="color:var(--teal);">MSP &amp; IT Partner Program</h2>
-            <p style="color:var(--light-text);line-height:1.8;">Independent practices don&#8217;t have CISOs or in-house network engineers. Their IT infrastructure is managed by a local Managed Service Provider (MSP). For a Sentinel Node deployment to succeed, the practice&#8217;s IT partner must understand the architecture and feel confident recommending it.</p>
-            <p style="color:var(--light-text);line-height:1.8;">We actively partner with regional MSPs and outsourced IT vendors serving medical and legal practices. If you support a clinic or law office and want to add sovereign AI infrastructure to your service portfolio, we want to talk.</p>
-            <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:24px;">
-                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(24,139,150,0.3);border-radius:8px;padding:20px 24px;">
-                    <p style="color:var(--teal);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For MSPs</p>
-                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">Dedicated VLAN setup guides, architecture documentation written for outsourced IT teams, and direct access to the Chief Technologist for scoping calls.</p>
+            <p style="color:var(--light-text);line-height:1.8;max-width:720px;">Independent practices don&#8217;t have CISOs or in-house network engineers — they have an MSP. For a Sentinel Node deployment to succeed, that MSP must understand the architecture and feel confident recommending it. We&#8217;ve built the program around that reality.</p>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:28px 0;">
+                <div style="background:var(--card-dark);border:1px solid rgba(24,139,150,0.3);border-radius:10px;padding:22px 24px;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal);"></div>
+                    <p style="color:var(--teal);font-weight:700;text-transform:uppercase;font-size:0.72em;letter-spacing:0.12em;margin:0 0 10px;">&#128200; Referral Partner</p>
+                    <p style="color:var(--white);font-family:'Syne',sans-serif;font-size:1.5em;font-weight:800;margin:0 0 4px;">15%</p>
+                    <p style="color:var(--muted);font-size:0.72em;margin:0 0 12px;">of hardware sale on referred &amp; closed deployments</p>
+                    <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">You refer a qualified practice, we close and deploy. On a $15K Phase I sale, that&#8217;s $2,250 per deployment — no installation required from your team.</p>
                 </div>
-                <div style="flex:1;min-width:220px;background:var(--card-dark);border:1px solid rgba(0,163,255,0.2);border-radius:8px;padding:20px 24px;">
-                    <p style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;font-size:0.75em;letter-spacing:0.12em;margin:0 0 8px;">For Practice Managers</p>
-                    <p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;">We will brief your current IT vendor directly. If they have questions about the Sentinel Node architecture, we schedule a joint technical call — no friction, no guesswork.</p>
+                <div style="background:var(--card-dark);border:1px solid rgba(10,115,210,0.3);border-radius:10px;padding:22px 24px;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--ai-blue);"></div>
+                    <p style="color:var(--ai-blue);font-weight:700;text-transform:uppercase;font-size:0.72em;letter-spacing:0.12em;margin:0 0 10px;">&#128736; Install Partner</p>
+                    <p style="color:var(--white);font-family:'Syne',sans-serif;font-size:1.5em;font-weight:800;margin:0 0 4px;">20%</p>
+                    <p style="color:var(--muted);font-size:0.72em;margin:0 0 12px;">of hardware sale when your team installs and configures</p>
+                    <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">Your team handles the VLAN configuration and physical installation using our documented setup guides. You own the client relationship. On a $17,999 Phase II, that&#8217;s $3,600 per deployment.</p>
+                </div>
+                <div style="background:var(--card-dark);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:22px 24px;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#A78BFA;"></div>
+                    <p style="color:#A78BFA;font-weight:700;text-transform:uppercase;font-size:0.72em;letter-spacing:0.12em;margin:0 0 10px;">&#9733; SLA Revenue Share</p>
+                    <p style="color:var(--white);font-family:'Syne',sans-serif;font-size:1.5em;font-weight:800;margin:0 0 4px;">$60<span style="font-size:0.5em;font-weight:400;color:var(--muted);">/mo</span></p>
+                    <p style="color:var(--muted);font-size:0.72em;margin:0 0 12px;">per active SLA client you manage (Install Partners)</p>
+                    <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">Install Partners who handle first-line support for their Sentinel Node clients share in the monthly SLA revenue — $60/month per active deployment, recurring.</p>
                 </div>
             </div>
-            <p style="margin-top:20px;"><a href="mailto:marcus@poconoai.com?subject=MSP%20Partner%20Inquiry" class="cta-button" style="margin-left:0;">Inquire About MSP Partnership</a></p>
+
+            <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:20px 24px;margin-bottom:20px;">
+                <p style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 12px;font-weight:700;">What Partners Receive</p>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:var(--teal);font-size:0.9em;flex-shrink:0;">&#10003;</span>
+                        <span style="color:var(--light-text);font-size:0.85em;line-height:1.6;">Dedicated VLAN setup guide &amp; network requirements checklist</span>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:var(--teal);font-size:0.9em;flex-shrink:0;">&#10003;</span>
+                        <span style="color:var(--light-text);font-size:0.85em;line-height:1.6;">Co-branded one-pager for client presentations</span>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:var(--teal);font-size:0.9em;flex-shrink:0;">&#10003;</span>
+                        <span style="color:var(--light-text);font-size:0.85em;line-height:1.6;">Direct access to Chief Technologist for scoping calls</span>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:var(--teal);font-size:0.9em;flex-shrink:0;">&#10003;</span>
+                        <span style="color:var(--light-text);font-size:0.85em;line-height:1.6;">Architecture documentation written for outsourced IT teams</span>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:var(--teal);font-size:0.9em;flex-shrink:0;">&#10003;</span>
+                        <span style="color:var(--light-text);font-size:0.85em;line-height:1.6;">Partner listing on poconoai.com partners page</span>
+                    </div>
+                    <div style="display:flex;gap:10px;align-items:flex-start;">
+                        <span style="color:var(--teal);font-size:0.9em;flex-shrink:0;">&#10003;</span>
+                        <span style="color:var(--light-text);font-size:0.85em;line-height:1.6;">Priority support channel for partner-managed deployments</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="mailto:marcus@poconoai.com?subject=MSP%20Partner%20Inquiry" class="cta-button" style="margin-left:0;">Apply to Partner Program &rarr;</a>
+                <a href="architecture.html" class="cta-button cta-button-light">Review Technical Architecture</a>
+            </div>
+            <p style="color:var(--muted);font-size:0.78em;margin-top:14px;line-height:1.6;">Program terms are formalized via a simple Partner Agreement. Revenue share paid within 30 days of client payment. Currently accepting MSPs serving medical and legal practices in the Mid-Atlantic region and expanding nationally.</p>
         </section>
 
 <section class="insight-section">

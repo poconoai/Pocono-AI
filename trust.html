@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v54 -->
+<html lang="en"><!-- Pocono AI v55 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -112,14 +112,10 @@
                     </button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
                         <a href="solutions.html">Solutions Overview</a>
-                        <a href="use-cases.html">Use Cases</a>
                         <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="specs.html">Specs</a>
                         <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="partners.html">Partners</a>
-                        <a href="why-pocono-ai.html">Why Pocono AI</a>
                         <a href="research.html">Research Hub</a>
-                        <a href="portal.html">Client Portal</a>
+                        <a href="about.html">About the Founder</a>
                         <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                     </div>
                 </li>
@@ -208,9 +204,41 @@
         </section>
 
         <section class="audit-section" style="border-color: var(--ai-blue); margin-top: 40px;">
+
+        <!-- COMPLIANCE EVIDENCE SUMMARY — rec from OCR Auditor panelist -->
+        <section style="margin:40px 0;" id="compliance-evidence">
+            <h2 style="color:var(--teal);">Compliance Evidence Summary</h2>
+            <p style="color:var(--light-text);line-height:1.75;margin-bottom:20px;">The following evidence package is available to compliance officers, OCR auditors, and procurement teams conducting vendor due diligence. These are not policy promises — they are verifiable technical demonstrations.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px;">
+                <div style="background:rgba(24,139,150,0.06);border:1px solid rgba(24,139,150,0.2);border-radius:10px;padding:20px;">
+                    <div style="color:var(--teal);font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;">&#128302; tcpdump Zero-Exfiltration Test</div>
+                    <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin-bottom:8px;">Live packet capture during inference session. Demonstrates zero outbound TCP/UDP traffic on port 443, 80, or any non-local address during a full document query cycle. Available as a recorded session for your compliance team.</p>
+                    <div style="color:var(--muted);font-size:0.72em;">Protocol: Wireshark + tcpdump · 100% on-premises · Reproducible on-site</div>
+                </div>
+                <div style="background:rgba(10,115,210,0.06);border:1px solid rgba(10,115,210,0.2);border-radius:10px;padding:20px;">
+                    <div style="color:var(--ai-blue);font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;">&#128196; Audit Log Format</div>
+                    <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin-bottom:8px;">Every inference is captured: timestamp, exact prompt, retrieved document chunks (with page references), generated response, and user identifier. Immutable for 90 days. Exportable as JSON or CSV for your own SIEM.</p>
+                    <div style="color:var(--muted);font-size:0.72em;">Format: JSON · Retention: 90 days immutable · Export: CSV / SIEM-compatible</div>
+                </div>
+                <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:20px;">
+                    <div style="color:#A78BFA;font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;">&#9654; NIST SP 800-53 Rev. 5 Mapping</div>
+                    <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin-bottom:8px;">Control mapping for SC-7 (Boundary Protection), AC-3 (Access Enforcement), AU-9 (Protection of Audit Information), and SI-3 (Malicious Code Protection). Available for your GRC team on request.</p>
+                    <div style="color:var(--muted);font-size:0.72em;">Framework: NIST SP 800-53 Rev. 5 · Applicable controls documented</div>
+                </div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:16px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+                <p style="color:var(--light-text);font-size:0.85em;line-height:1.6;margin:0;flex:1;min-width:200px;">Request the full Compliance Evidence Package — tcpdump methodology, sample audit log, and NIST control mapping — for your procurement or compliance review.</p>
+                <a href="mailto:marcus@poconoai.com?subject=Compliance%20Evidence%20Package%20Request%20%E2%80%94%20Pocono%20AI" class="cta-button" style="flex-shrink:0;font-size:0.85em;">Request Evidence Package &rarr;</a>
+            </div>
+        </section>
             <h2 style="color: var(--ai-blue);">Business Associate Agreement (BAA)</h2>
             <p>Under the Enterprise Autonomy Architecture (EAA™), the Sentinel Node operates entirely within your facility on hardware in your physical custody. Because PHI never leaves your building and Pocono AI, LLC has no remote access to your data, the scope of Business Associate obligations is dramatically narrower than with any cloud-based AI vendor. As we expand to include optional cloud-connected features and deeper EHR integrations, a fully executed BAA will become a standard requirement for all deployments.</p>
-            <p style="margin-top: 15px;">A Business Associate Agreement (BAA) is available to all Sentinel Node deployment partners. Our BAA template has been drafted and is currently undergoing review by qualified healthcare counsel prior to finalization.</p>
+            <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:14px 18px;margin:15px 0;display:flex;gap:12px;align-items:flex-start;">
+                <span style="color:var(--success);font-size:1em;flex-shrink:0;margin-top:1px;">&#9679;</span>
+                <div>
+                    <p style="color:var(--light-text);font-size:0.88em;line-height:1.75;margin:0;"><strong style="color:var(--white);">BAA Status:</strong> A Business Associate Agreement is available to all Sentinel Node deployment partners. The BAA template (v2.1) has been drafted and is available for download and review. Practices with specific indemnification requirements or counsel-required modifications are encouraged to raise them during the architecture assessment — we work alongside your legal team to define the final posture.</p>
+                </div>
+            </div>
             <p style="margin-top: 15px;">The BAA is structured under <strong>45 CFR §§ 164.504(e) and 164.314(a)</strong> and includes EAA-specific language confirming that all PHI remains exclusively on hardware within your physical facility — language no cloud AI vendor can offer.</p>
             <p style="margin-top: 15px;"><a href="PoconoAI_BAA_v2-1.docx" download class="cta-button" style="display:inline-block;margin-bottom:10px;">Download BAA v2.1 (Word Doc)</a><br><span style="font-size:0.85em;color:var(--muted);">Questions? <a href="mailto:marcus@poconoai.com?subject=BAA%20Request%20%E2%80%94%20Pocono%20AI" style="color:var(--ai-blue);font-weight:bold;">marcus@poconoai.com</a></span></p>
         </section>
