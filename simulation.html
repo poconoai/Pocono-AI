@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v55 -->
+<html lang="en"><!-- Pocono AI v56 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -103,7 +103,7 @@
 <main id="main-content">
 
     <section class="sim-hero">
-        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v54</span>
+        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v56</span>
         <h1>The 12-Panel Convening</h1>
         <p>Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Every position is grounded in peer-reviewed research published on this site.</p>
         <span class="offline-badge">✓ Zero cloud calls — fully offline deliberation engine</span>
@@ -111,7 +111,7 @@
 
     <div>
         <p style="color:var(--muted);font-size:0.8em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:10px;">Choose a deliberation scenario:</p>
-        <div class="scenario-bar" id="scenario-bar">
+        <div class="scenario-bar" id="scenario-bar" style="overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px;">
             <button type="button" class="scenario-btn active" data-scenario="deploy">Solo practice deployment</button>
             <button type="button" class="scenario-btn" data-scenario="invest">Pre-seed investment decision</button>
             <button type="button" class="scenario-btn" data-scenario="legal">Boutique law firm AI adoption</button>
@@ -119,7 +119,7 @@
             <button type="button" class="scenario-btn" data-scenario="cloud">Cloud AI vs. Sentinel Node</button>
         </div>
         <div class="scenario-desc" id="scenario-desc">
-            <h3>Scenario: Solo Practice Deployment Decision</h3>
+            <h3><span class="scenario-icon">🏥</span> Scenario: Solo Practice Deployment Decision</h3>
             <p>A 3-physician family medicine practice in rural Pennsylvania. Currently on Epic with Nuance DAX. Spending 5.9 hours/day in EHR. Losing $68,000/physician/year to prior authorization processing. Capital available. Should they deploy the Sentinel Node?</p>
         </div>
     </div>
@@ -181,7 +181,7 @@
                 <option value="ehr">EHR documentation burden</option>
                 <option value="aba">ABA Rule 1.6 &amp; attorney privilege</option>
                 <option value="patient_safety">Patient safety outcomes</option>
-                <option value="competitor">AirgapAI vs. Sentinel Node</option>
+                <option value="competitor">Competitor comparison</option>
                 <option value="timeline">Deployment timeline</option>
             </select>
             <button type="button" class="sim-btn sim-btn-primary" id="btn-ask" disabled>Ask →</button>
@@ -189,7 +189,7 @@
     </div>
 
     <div class="sim-disclaimer">
-        <strong>Simulation Disclosure (v50):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023). This is not legal, medical, or financial advice.
+        <strong>Simulation Disclosure (v56):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023). This is not legal, medical, or financial advice.
     </div>
 
 </main>
@@ -692,6 +692,7 @@ function resetSim() {
 // ── SCENARIO TOGGLE ──
 document.querySelectorAll('.scenario-btn').forEach(btn => {
   btn.addEventListener('click', () => {
+    if (state.running) return; // prevent scenario switch mid-run
     document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     state.scenario = btn.dataset.scenario;
@@ -706,9 +707,15 @@ document.querySelectorAll('.scenario-btn').forEach(btn => {
       rural:         ['🌾','Rural Health Access & Deployment','HRSA documents 60 million Americans in rural health professional shortage areas, served almost exclusively by independent practices. These practices cannot access enterprise cloud AI alternatives. Does deploying the Sentinel Node in rural independent practice constitute a health equity intervention?'],
     };
     const [icon, h, p] = descs[state.scenario] || ['⚖','',''];
-    $('scenario-desc').querySelector('.scenario-icon').textContent = icon;
-    $('scenario-desc').querySelector('h3').textContent = 'Scenario: ' + h;
-    $('scenario-desc').querySelector('p').textContent = p;
+    const descEl = $('scenario-desc');
+    descEl.querySelector('.scenario-icon').textContent = icon;
+    const h3El = descEl.querySelector('h3');
+    // Preserve the icon span, update the text node after it
+    const iconSpan = h3El.querySelector('.scenario-icon');
+    h3El.textContent = '';
+    h3El.appendChild(iconSpan);
+    h3El.appendChild(document.createTextNode(' Scenario: ' + h));
+    descEl.querySelector('p').textContent = p;
     if (!state.running) resetSim();
   });
 });

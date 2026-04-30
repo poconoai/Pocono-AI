@@ -1159,8 +1159,10 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 
     /* ── Panel grid (simulation) ── */
     .panel-grid { grid-template-columns: 1fr 1fr !important; }
-    .scenario-bar { gap: 6px; }
-    .scenario-btn { font-size: 0.7em; padding: 7px 12px; }
+    .scenario-bar { gap: 6px; flex-wrap: nowrap !important; }
+    .scenario-btn { font-size: 0.7em; padding: 7px 12px; flex-shrink: 0; white-space: nowrap; }
+    .scenario-desc h3 { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+    .scenario-icon { flex-shrink: 0; }
     .sim-controls { gap: 8px; }
     .speed-toggle { margin-left: 0; }
 
@@ -1230,7 +1232,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
         justify-content: center;
     }
     .menu-toggle { min-width: 44px; min-height: 44px; }
-    .scenario-btn { min-height: 40px; }
+    .scenario-btn { min-height: 40px; flex-shrink: 0; white-space: nowrap; }
     .nav-links > li > a, .nav-dropdown-toggle { min-height: 44px; }
     
     /* ── Box padding on mobile ── */
