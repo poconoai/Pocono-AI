@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v52 -->
+<html lang="en"><!-- Pocono AI v54 -->
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pocono AI deployment pricing: Phase I $15K, Phase II $17,999, Phase III from $29,999 CapEx. 60-Day Paid POV at $5,000 credited on conversion. Section 179 eligible.">
     <meta name="keywords" content="Zero Data Exfiltration, Data Sovereignty, Local AI, Air-Gapped Security, Private RAG Pricing, Sovereign AI Infrastructure">
@@ -60,6 +61,19 @@
       "publisher": { "@type": "Organization", "name": "Pocono AI, LLC", "url": "https://poconoai.com" }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"What does the Sentinel Node cost?","acceptedAnswer":{"@type":"Answer","text":"Three tiers: Phase I Essential at $15,000 (up to 3 providers), Phase II Professional at $17,999 (up to 6 providers), and Enterprise Redundancy at $29,999 (up to 10 providers with hot-spare failover). Hardware may qualify for Section 179 CapEx tax deduction."}},
+        {"@type":"Question","name":"Is there a monthly fee or subscription?","acceptedAnswer":{"@type":"Answer","text":"Hardware is a one-time purchase. The optional SLA is $300/month and covers managed firmware updates, priority support response, and Dell ProSupport Plus hardware dispatch. No per-query fees, no usage-based pricing, no data leaves your building."}},
+        {"@type":"Question","name":"What is the Proof-of-Value engagement?","acceptedAnswer":{"@type":"Answer","text":"The $5,000 POV is a structured 60-day pilot demonstrating measurable time reclamation in your specific workflow. The fee is credited in full at deployment — it is a deposit toward your hardware purchase, not a separate cost."}},
+        {"@type":"Question","name":"How quickly does the Sentinel Node pay for itself?","acceptedAnswer":{"@type":"Answer","text":"A 3-provider practice spending on medical scribes and losing 13 hours per physician per week to prior authorizations can see payback in under 12 months at Phase I pricing. The ROI calculator on this page accepts your actual numbers."}},
+        {"@type":"Question","name":"Does the hardware qualify for Section 179 tax deductions?","acceptedAnswer":{"@type":"Answer","text":"Sentinel Node hardware may qualify for the Section 179 CapEx deduction, allowing practices to deduct the full purchase price in the year of acquisition. Consult your tax advisor to confirm eligibility."}}
+      ]
+    }
+    </script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -109,6 +123,9 @@
             ✱ Hardware may qualify for <strong style="color:var(--light-text);">Section 179</strong> CapEx tax deduction. Consult your tax advisor.
         </p>
     </section>
+
+    <!-- ROI ANCHOR STAT -->
+    <div style="background:rgba(10,115,210,0.07);border:1px solid rgba(10,115,210,0.2);border-radius:12px;padding:20px 28px;margin:0 auto 32px;max-width:860px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;"><div style="flex:0 0 auto;text-align:center;min-width:110px;"><div style="color:var(--white);font-family:'Syne',sans-serif;font-size:2.2em;font-weight:800;line-height:1;">$68K</div><div style="color:var(--ai-blue);font-size:0.7em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">per physician/year</div></div><div style="flex:1;min-width:200px;border-left:1px solid rgba(10,115,210,0.25);padding-left:24px;"><p style="color:var(--light-text);font-size:0.9em;line-height:1.7;margin:0;"><strong style="color:var(--white);">The hidden cost already on your books:</strong> The AMA documents 13 hours per physician per week consumed by prior authorizations alone &mdash; an estimated $68,000 in administrative overhead annually per provider. That cost exists whether you deploy AI or not. <a href="prior-auth-case-study.html" style="color:var(--ai-blue);font-weight:600;">See the research &rarr;</a></p></div></div>
 
     <!-- ROI CALCULATOR — Panel Priority #1 -->
     <div class="roi-section" style="padding:36px 40px;">

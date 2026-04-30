@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v52 -->
+<html lang="en"><!-- Pocono AI v54 -->
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Data sovereignty, Cloud Obviation, and the economic impact of auditable on-premises AI: The Zero-Trust architecture of Pocono AI, LLC.">
     <meta name="date" content="2026-04-19">
@@ -74,6 +75,19 @@
     "url": "https://poconoai.com"
   }
 }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"Is the Sentinel Node HIPAA compliant?","acceptedAnswer":{"@type":"Answer","text":"The Sentinel Node achieves HIPAA compliance by physical isolation — PHI never leaves your building. There is no transmission event, no cloud vendor, and no third-party data processing. A Business Associate Agreement (BAA) is available for all deployment partners."}},
+        {"@type":"Question","name":"What happens if the Sentinel Node goes down after hours?","acceptedAnswer":{"@type":"Answer","text":"Severity 1 failures receive a 2-hour response during business hours (Mon-Fri, 9 AM-6 PM Eastern). Dell ProSupport Plus hardware dispatch activates next-business-day replacement. Practices requiring 24/7 coverage should select the Enterprise Redundancy Tier with Hot Spare."}},
+        {"@type":"Question","name":"Who is liable if the AI produces an incorrect output or hallucination?","acceptedAnswer":{"@type":"Answer","text":"The Sentinel Node is a retrieval and research tool, not a decision-maker. The licensed professional retains full clinical and legal judgment. Every AI output is logged immutably for 90 days with the exact prompt, retrieved data chunks, and generated response. Pocono AI has no remote access to your data."}},
+        {"@type":"Question","name":"Does Pocono AI require a Business Associate Agreement?","acceptedAnswer":{"@type":"Answer","text":"A BAA is available to all Sentinel Node deployment partners under 45 CFR 164.504(e) with EAA-specific language confirming PHI remains exclusively on hardware within your physical facility. Because PHI never leaves your building, BAA scope is dramatically narrower than with any cloud AI vendor."}},
+        {"@type":"Question","name":"Does the Sentinel Node integrate with my EHR?","acceptedAnswer":{"@type":"Answer","text":"The Sentinel Node works alongside any EHR without requiring API integration. Physicians load documents into the local system directly — no EHR vendor cooperation, no API keys, no new data sharing agreements required."}}
+      ]
+    }
     </script>
 </head>
 <body>
@@ -231,7 +245,7 @@
             <p>This is the right question to ask. Here is the direct answer, by tier.</p>
             <p style="margin-top:14px;"><strong style="color:var(--light-text);">Standard SLA (Phase I / II):</strong> Severity 1 failures — complete hardware failure halting all processing — receive a 2-hour response during business hours (Mon–Fri, 9 AM–6 PM Eastern). Our engineering team initiates remote diagnostic guidance immediately. Dell ProSupport Plus hardware dispatch is activated in parallel: next-business-day replacement component shipment at no additional charge under warranty. The Sentinel Node is designed to be self-contained; most pipeline anomalies are resolvable via a signed patch delivered to the secure portal without physical intervention.</p>
             <p style="margin-top:14px;"><strong style="color:var(--teal);">Sovereign / Enterprise Redundancy Tier:</strong> You have a second node on-site — a cold-standby Hot Spare deployed at installation. Severity 1 failure response: your IT staff swaps the NVMe storage array to the Hot Spare. Target restoration: under 15 minutes. No waiting for dispatch. No single point of failure. Weekend Severity 1 response is included.</p>
-            <p style="margin-top:14px;"><strong style="color:var(--light-text);">The honest constraint:</strong> We are a pre-seed company. We do not have a 24/7 NOC. What we do have is a hardware architecture designed so that <em>you don't need one</em> — Dell enterprise support covers the physical layer, your IT team handles the swap, and the system is stateless enough that a drive transfer restores full operation. If your workflow cannot tolerate any after-hours downtime and you do not have IT staff, the Enterprise Redundancy Tier with a Hot Spare is the right configuration. We will scope that with you during the architecture assessment.</p>
+            <p style="margin-top:14px;"><strong style="color:var(--light-text);">The honest constraint:</strong> We are a pre-seed company. We do not have a 24/7 NOC. What we do have is a hardware architecture designed so that <em>you don't need one</em> — Dell enterprise support covers the physical layer, your IT team handles the swap, and the system is stateless enough that a drive transfer restores full operation. If your workflow cannot tolerate any after-hours downtime and you do not have IT staff, the Enterprise Redundancy Tier with a Hot Spare is the right configuration. We will scope that with you during the architecture assessment. <a href="architecture.html" style="color:var(--ai-blue);">Full IT deployment specs &rarr;</a></p>
             <p style="margin-top:10px;font-size:0.85em;"><a href="sla.html" style="color:var(--teal);">Full SLA terms, response time commitments, and hardware replacement guarantees &rarr;</a></p>
         </section>
 
