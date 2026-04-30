@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v47 -->
+<html lang="en"><!-- Pocono AI v58 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -103,7 +103,7 @@
 <main id="main-content">
 
     <section class="sim-hero">
-        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v47 · 8 Scenarios · 15 Topics</span>
+        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v58 · 8 Scenarios · 15 Topics</span>
         <h1>The 12-Panel Convening</h1>
         <p>Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Every position is grounded in peer-reviewed research published on this site.</p>
         <span class="offline-badge">✓ Zero cloud calls — fully offline deliberation engine</span>
@@ -201,7 +201,7 @@
     </div>
 
     <div class="sim-disclaimer">
-        <strong>Simulation Disclosure (v47):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. The v47 conversation engine features 8 deliberation scenarios, 15 follow-up topics, multi-variant panelist responses, and spontaneous cross-panelist reactions. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023), Sullivan &amp; Cromwell court apology (April 2026). This is not legal, medical, or financial advice. All pricing reflects Pocono AI HaaS model as of v47.
+        <strong>Simulation Disclosure (v58):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. The v47 conversation engine features 8 deliberation scenarios, 15 follow-up topics, multi-variant panelist responses, and spontaneous cross-panelist reactions. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023), Sullivan &amp; Cromwell court apology (April 2026). This is not legal, medical, or financial advice. All pricing reflects Pocono AI HaaS model as of v47.
     </div>
 
 </main>
@@ -367,6 +367,51 @@ cloud: { // Cloud AI vs. Sentinel Node — honest debate
   pat1: { text: `The patient perspective on this comparison is simple: cloud AI requires my medical records to leave my doctor's building. I didn't consent to that when I became a patient. I consented to my doctor using my records for my care. The Sentinel Node is the only architecture consistent with what I actually agreed to. Beyond consent: if cloud AI hallucinations are creating clinical errors — as Raine v. OpenAI suggests — then from a patient safety standpoint, local grounded RAG is the safer choice. <span class="cite">Sentinel Node wins on consent and safety for patients.</span>`, vote:'yes' },
   pat2: { text: `For patients with complex conditions, the comparison matters in prior auth specifically. Cloud AI ambient transcription helps with documentation speed — I see that benefit. But when it comes to prior authorization submissions, I want the system that has my complete, accurate patient history available locally and can generate submissions grounded in that actual record. Incomplete submissions cause the denials that cause the delays that cause the harm. <span class="cite">Conditional — cloud for documentation, Sentinel Node for prior auth and compliance-critical workflows.</span>`, vote:'conditional' },
   pat3: { text: `The privacy research comparison is unambiguous: cloud AI transmits PHI to external infrastructure, regardless of BAA coverage. Local AI does not. Patients who understand this distinction will increasingly demand local AI from their providers. As health data privacy literacy grows — driven by high-profile breaches and regulatory attention — the market for provably zero-exfiltration AI infrastructure will grow proportionally. The Sentinel Node is correctly positioned for where patient expectations are heading. <span class="cite">Sentinel Node wins the long game on patient trust.</span>`, vote:'yes' },
+},
+
+burnout: { // Physician Burnout Crisis
+  inv1: { text: `The burnout thesis is actually a retention argument. Physician departure from a solo practice costs $500,000–$1 million in replacement costs when recruitment, onboarding, and lost billing are fully counted. At 63% burnout prevalence (APA 2023), this isn't a wellness issue — it's a P&amp;L issue. The Sentinel Node addresses the primary cited cause — EHR administrative burden — at <strong>$950/month</strong>. That's the cheapest physician retention program in the market. <span class="cite">Yes — deploy, and frame it as retention infrastructure.</span>`, vote:'yes' },
+  inv2: { text: `The EHR burden data is the investment thesis in disguise. Sinsky et al.: 5.9 hours daily in administrative tasks. That's <strong>44% of the working day</strong> not generating revenue, not seeing patients, not building practice value. If the Sentinel Node reclaims 2 hours of that, a 3-physician practice gains 6 physician-hours per day. At even $150/hour in billing capacity, that's $900/day in recovered productivity — against a $950/month HaaS fee. <span class="cite">Strong yes.</span>`, vote:'yes' },
+  inv3: { text: `Burnout has a compliance dimension that's underappreciated. A burned-out physician is a physician making documentation errors, missing audit trails, and creating malpractice exposure. OCR and malpractice carriers both care about documentation quality. An AI system that produces clean, cited, human-reviewed documentation is a burnout mitigation tool <em>and</em> a compliance tool. That's a two-vector ROI that most healthcare AI products can't claim. <span class="cite">Yes.</span>`, vote:'yes' },
+  med1: { text: `I've written two resignation letters in the past three years. I didn't submit them. But I wrote them. The documentation burden, the prior auth appeals, the inbox at 11pm — none of this is why I went to medical school. When someone shows me a tool that handles chart prep and prior auth drafts, my first thought isn't ROI. It's: <em>maybe I don't quit.</em> That's what this product actually offers to rural physicians. <span class="cite">Strong yes. Personal yes.</span>`, vote:'yes' },
+  med2: { text: `At the health system level, burnout is measured in FTE turnover and patient satisfaction scores. The correlation between administrative burden and burnout is documented — and the correlation between burnout and adverse events is documented. A health system that deploys local AI to reduce documentation burden is investing in both workforce retention and patient safety simultaneously. For the solo practice in this scenario, the personal case is even more acute. <span class="cite">Yes — the clinical workforce argument is decisive.</span>`, vote:'yes' },
+  med3: { text: `The mechanism is specific: "pajama time" — documentation completed at home after clinic — is the most corrosive form of administrative burden because it eliminates recovery time. Sinsky et al. documented this explicitly. A tool that automates chart prep and prior auth drafts before the physician arrives eliminates pajama time at the source. That's not efficiency. That's the difference between sustainable practice and departure. <span class="cite">Deploy — pajama time elimination is the highest-value workflow target.</span>`, vote:'yes' },
+  law1: { text: `From a liability standpoint, burned-out physicians create documentation risk. Fatigue-driven charting errors, missed signatures, incomplete prior auth records — these are the conditions under which malpractice claims originate. A practice that reduces its physicians' administrative burden reduces its malpractice exposure as a downstream effect. The Sentinel Node is defensive infrastructure as much as it is an efficiency tool. <span class="cite">Yes — liability reduction through burnout mitigation is a compelling legal argument.</span>`, vote:'yes' },
+  law2: { text: `The burnout-to-malpractice pipeline is well-established. Fatigued documentation produces errors. Errors produce adverse events. Adverse events produce litigation. I've handled cases where the chain started with a physician doing charting at midnight after a 14-hour shift. Any tool that moves that documentation out of pajama time and into automated-draft-plus-review is reducing the conditions that produce the cases I litigate. <span class="cite">Yes — from a litigation standpoint, burnout reduction is risk reduction.</span>`, vote:'yes' },
+  law3: { text: `The workforce sustainability argument has a legal dimension for rural communities specifically. When a burned-out rural physician closes their practice, the community loses access to care under HRSA shortage area definitions. That creates health equity exposure at the policy level. AI tools that extend rural physician sustainability are increasingly cited in health equity litigation and regulatory guidance. <span class="cite">Conditional yes — the rural burnout argument is where the policy and equity case intersects.</span>`, vote:'conditional' },
+  pat1: { text: `When my physician burns out and leaves, I lose my doctor. In rural areas, losing your doctor means driving 45 minutes for care, or not going at all. The 63% burnout statistic isn't abstract to me — it's the reason I've had to find a new primary care physician twice in five years. Anything that keeps physicians in practice serves patients directly. <span class="cite">Strong yes — physician retention is patient access.</span>`, vote:'yes' },
+  pat2: { text: `Chronic illness patients are the most dependent on physician continuity. When my doctor burns out and transfers care, I lose years of shared clinical history. The handoff is always incomplete. The new physician doesn't know my baseline. That disruption has real health consequences. A tool that reduces burnout keeps physicians in their practices — and that keeps patients like me in stable care relationships. <span class="cite">Yes — continuity of care depends on physician retention.</span>`, vote:'yes' },
+  pat3: { text: `Health data privacy and burnout intersect in one place: tired physicians make documentation errors that create records with inconsistencies — inconsistencies that later require correction and create privacy audit exposure. A physician who reviews AI-drafted documentation before signing produces cleaner records. Cleaner records mean fewer amendment requests, fewer audit complications, and less patient data exposed to correction workflows. <span class="cite">Yes — documentation quality and privacy are linked through burnout.</span>`, vote:'yes' },
+},
+
+hipaa_breach: { // Post-Breach HIPAA Audit Scenario
+  inv1: { text: `Post-breach evaluation is where the Sentinel Node's value proposition is most concentrated. A practice that just paid $1.8M in penalties and remediation is not evaluating AI on ROI — it's evaluating it on liability elimination. The EAA™ architecture is the only structure that can answer "can you demonstrate PHI never left your network?" with yes and a SIEM log. That's not a sales pitch at this point. It's a corrective action plan requirement. <span class="cite">Unambiguous yes — this is the product for this specific situation.</span>`, vote:'yes' },
+  inv2: { text: `From an investor standpoint, the post-breach segment is the highest-conversion market in healthcare AI. Practices that have experienced OCR corrective action are motivated, have budget allocated to compliance infrastructure, and have executive-level urgency. A $3,000 implementation fee and $1,150/month for enterprise-grade zero-exfiltration AI is not a hard close in this context. <span class="cite">Yes — post-breach practices are the highest-probability pilot candidates.</span>`, vote:'yes' },
+  inv3: { text: `OCR corrective action plans specifically require documented technical safeguard improvements. "Deployed air-gapped AI infrastructure with network-verified zero PHI transmission" is exactly the kind of documented, auditable improvement OCR is looking for. No cloud AI vendor can provide that documentation. The Sentinel Node's SIEM-verifiable zero-exfiltration claim is post-breach corrective action language. <span class="cite">Strong yes — this is the compliance case at its most concrete.</span>`, vote:'yes' },
+  med1: { text: `After a breach, every physician in the practice is traumatized — not just financially, but professionally. The trust violation with patients, the media coverage, the investigation. What they need next is a system they can explain to patients: "Your records never leave this building. We process everything on hardware in our office." The Sentinel Node gives them that conversation. <span class="cite">Yes — the physician trust restoration argument is real.</span>`, vote:'yes' },
+  med2: { text: `Post-breach recovery at the health system level requires documenting every technical safeguard improvement to OCR satisfaction. The corrective action plan has specific milestones. For AI infrastructure, "deployed zero-exfiltration local processing" is the milestone that satisfies the AI-specific safeguard requirement. The Sentinel Node's EAA™ documentation package is designed for exactly this purpose. <span class="cite">Yes — the CAP compliance argument is decisive for post-breach practices.</span>`, vote:'yes' },
+  med3: { text: `The post-breach informatics question is: what audit trail does OCR actually want to see? They want to see that PHI did not traverse unauthorized network paths. SIEM logs from an EAA™ deployment show exactly that — zero outbound connections from the AI processing segment. That's a compliance artifact that closes the OCR audit loop. Cloud AI cannot produce an equivalent artifact. <span class="cite">Yes — the audit trail requirement is definitively met by EAA™ deployment.</span>`, vote:'yes' },
+  law1: { text: `Post-breach corrective action under HIPAA requires demonstrable technical safeguard improvements. "We added a BAA with a cloud vendor" does not satisfy this requirement when the original breach occurred via cloud vendor transmission. OCR wants to see architectural change, not contract change. EAA™ deployment is architectural change — provable by network topology, not vendor attestation. <span class="cite">Strong yes — for a post-breach practice, this is not optional. It's the corrective action.</span>`, vote:'yes' },
+  law2: { text: `From a litigation standpoint, the post-breach practice needs to demonstrate to its malpractice carrier and any patient plaintiffs that it has implemented demonstrable, architectural safeguards — not just policy changes. The Sentinel Node's EAA™ deployment creates a documented, expert-defensible architectural change that satisfies both the carrier's underwriting requirements and the court's reasonable-effort standard. <span class="cite">Yes — this is the litigation defense infrastructure for post-breach practices.</span>`, vote:'yes' },
+  law3: { text: `The legal technology assessment here is straightforward: the corrective action plan requires documented improvement. EAA™ deployment is the most comprehensively documented zero-exfiltration architecture available at practice scale. The compliance brief, BAA language, and SIEM log methodology are all package-ready for OCR submission. No cloud alternative produces an equivalent documentation set. <span class="cite">Yes — the documentation package alone justifies the evaluation.</span>`, vote:'yes' },
+  pat1: { text: `When a practice has a breach, patients lose trust. The harm isn't just the exposed data — it's the relationship damage. A practice that can say to patients after remediation: "We've replaced all cloud AI with local processing. Your records physically cannot leave this building" is a practice that can rebuild trust. That conversation requires exactly this product. <span class="cite">Strong yes — patient trust restoration requires architectural proof, not promises.</span>`, vote:'yes' },
+  pat2: { text: `As someone whose records have been in a healthcare breach, I can tell you what patients want to hear after an incident: not that you signed better contracts, but that you changed the system. "Your records now stay on hardware in our office" is the only answer that rebuilds trust. The Sentinel Node makes that answer possible. <span class="cite">Yes — post-breach trust requires architectural change, not contractual change.</span>`, vote:'yes' },
+  pat3: { text: `The post-breach privacy argument is the most concentrated version of the zero-exfiltration case. PHI was exposed because it left the building. The corrective action is to prevent it from ever leaving again. EAA™ deployment is the only architecture where that prevention is verifiable — not promised. For patients, that distinction is the difference between a vendor statement and an architectural fact. <span class="cite">Strong yes — the corrective action requires architectural proof.</span>`, vote:'yes' },
+},
+
+rural: { // Rural Health Access & Deployment
+  inv1: { text: `Rural health is not a niche — it's the core independent practice market. HRSA documented 60 million Americans in shortage areas, served almost exclusively by the exact 2–10 provider practices the Sentinel Node targets. The zero-EHR-integration deployment path is specifically suited to rural resource constraints: no IT department, no 12-month implementation queue, PDF export from whatever EHR they're on. The TAM argument for rural health alone justifies the investment thesis. <span class="cite">Yes — rural independent practice is the Sentinel Node's native market.</span>`, vote:'yes' },
+  inv2: { text: `Rural practices have the highest administrative burden and the fewest administrative resources. No IT staff. No compliance officer. No legal department. The Sentinel Node's self-contained deployment — ship, connect, configure — is designed for exactly this operational context. And the HaaS pricing at $950/month removes the CapEx barrier that rural practices consistently cite as the reason they don't adopt enterprise technology. <span class="cite">Yes — rural market fit is stronger than urban for this product.</span>`, vote:'yes' },
+  inv3: { text: `From a compliance standpoint, rural practices are the most exposed to OCR audit risk — they have the least compliance infrastructure while handling the same PHI obligations as large health systems. A self-contained zero-exfiltration AI deployment that doesn't require a compliance officer to manage is a fit-for-purpose solution for rural practice realities. <span class="cite">Yes — rural compliance risk is the unaddressed market this product is built for.</span>`, vote:'yes' },
+  med1: { text: `I am this practice. County of 28,000 people. Two family medicine physicians. No IT staff. My prior auth burden is 13 hours a week, and I have no one to delegate it to the way a large practice might. The Sentinel Node's value to me isn't incremental — it's existential. If I can automate prior auth prep and chart summarization, I can see more patients and stop thinking about closing. <span class="cite">Strong yes. This product was built for practices like mine.</span>`, vote:'yes' },
+  med2: { text: `From a health system perspective, rural independent practices are the first line of care for 60 million Americans. When they close — due to burnout, administrative burden, financial pressure — those patients end up in emergency departments, which creates downstream health system strain. Any technology that extends rural practice sustainability is health system infrastructure, not just a practice efficiency tool. <span class="cite">Yes — rural sustainability is health system resilience.</span>`, vote:'yes' },
+  med3: { text: `The informatics deployment case for rural practices is the zero-integration argument. Rural practices can't wait for EHR API integrations that require IT infrastructure they don't have. The Sentinel Node starts with PDF export — a universal capability — and runs inference on local hardware. No external dependencies. That's the only AI deployment path that works in a rural practice with no dedicated IT. <span class="cite">Yes — zero-integration deployment is the only viable path for rural practice.</span>`, vote:'yes' },
+  law1: { text: `Rural practices face the same HIPAA obligations as urban health systems but with a fraction of the compliance resources. A self-contained zero-exfiltration deployment that doesn't require external vendor management, complex BAA negotiations, or ongoing cloud security monitoring is HIPAA compliance proportionate to rural practice capacity. <span class="cite">Yes — the compliance architecture fits rural resource constraints.</span>`, vote:'yes' },
+  law2: { text: `When a rural practice closes because the physician burned out from administrative burden, patients in that community lose access to care — sometimes permanently. From a health equity standpoint, that closure is a legal harm to a population. AI tools that prevent that closure by reducing administrative burden are health equity infrastructure. This isn't a financial investment case. It's a moral one. <span class="cite">Yes — rural practice sustainability is a health equity obligation.</span>`, vote:'yes' },
+  law3: { text: `The legal technology parallel is the rural solo attorney — 3 attorneys or fewer, serving communities with no other legal representation. The same administrative burden, the same lack of support staff, the same access-to-justice implications when the practice closes. The Sentinel Node's dual healthcare/legal market serves both rural communities equally. <span class="cite">Yes — rural legal access mirrors rural health access. Same product, same impact.</span>`, vote:'yes' },
+  pat1: { text: `I grew up in a rural community. When our family medicine physician retired and no one replaced him, the nearest doctor was 45 minutes away. My grandmother stopped going to appointments. Her conditions went unmanaged. That's the direct consequence of rural physician shortage. Any technology that keeps a rural physician in practice — by making their job survivable — is a health equity intervention in the most direct sense. <span class="cite">Strong yes — rural physician retention is rural patient access.</span>`, vote:'yes' },
+  pat2: { text: `Chronic illness management in rural communities is already a crisis. Transportation barriers, limited specialist access, and long primary care wait times mean that rural patients with complex conditions have the worst health outcomes. A burned-out rural primary care physician who closes their practice makes all of those outcomes worse. Preventing that closure through AI-assisted administrative relief is not a technology story. It's a patient story. <span class="cite">Yes — the patient access case for rural deployment is the strongest argument in the simulation.</span>`, vote:'yes' },
+  pat3: { text: `Rural health data privacy has a specific texture: small communities where a breach doesn't just expose records — it exposes identities in communities where everyone knows everyone. A local AI deployment that keeps all processing on-premises is the only architecture that eliminates that community-specific breach risk. For rural patients, zero exfiltration isn't just a compliance posture — it's a social protection. <span class="cite">Yes — rural privacy is community privacy. Local processing is the only ethical architecture.</span>`, vote:'yes' },
 },
 
 }; // end SPEECHES
@@ -561,7 +606,7 @@ let state = {
   scenario: 'deploy',
   running: false,
   convened: false,
-  speed: 420,
+  speed: 400,  // matches the 2× button marked active on load
   panelists: PANELISTS.map(p => ({ ...p, vote: null })),
 };
 
@@ -713,6 +758,8 @@ async function runPanel() {
   btnRun.disabled = true;
   btnReset.disabled = true;
   btnAsk.disabled = true;
+  // BUG FIX 7: visually disable scenario buttons during deliberation
+  document.querySelectorAll('.scenario-btn').forEach(b => b.setAttribute('disabled',''));
   vFinal.className = 'verdict-final';
 
   // Reset panelists
@@ -722,7 +769,16 @@ async function runPanel() {
   body.innerHTML = '';
 
   // Opening
-  const sc = { deploy:'Solo Practice Deployment', invest:'Pre-Seed Investment', legal:'Boutique Law Firm AI', patient:'Patient Safety Impact', cloud:'Cloud AI vs. Sentinel Node' }[state.scenario];
+  const sc = {
+    deploy:       'Solo Practice Deployment',
+    invest:       'Pre-Seed Investment Decision',
+    legal:        'Boutique Law Firm AI Adoption',
+    patient:      'Patient Safety Impact',
+    cloud:        'Cloud AI vs. Sentinel Node',
+    burnout:      'Physician Burnout Crisis',
+    hipaa_breach: 'Post-Breach HIPAA Audit',
+    rural:        'Rural Health Access & Deployment',
+  }[state.scenario] || state.scenario;
   const intro = document.createElement('div');
   intro.style.cssText = 'text-align:center;padding:14px 0 20px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:18px;color:var(--muted);font-size:0.82em;';
   intro.innerHTML = `⚖ <strong style="color:var(--white)">Panel convened.</strong> &nbsp; Scenario: <em style="color:var(--ai-blue)">${sc}</em>`;
@@ -735,10 +791,13 @@ async function runPanel() {
     if (i < state.panelists.length - 1) await delay(Math.round(state.speed * 0.6));
   }
 
-  status.textContent = 'Deliberation complete';
+  status.textContent = 'Deliberation complete — select a panelist below to ask a follow-up';
   state.running = false;
   btnReset.disabled = false;
-  btnAsk.disabled = false;
+  // BUG FIX 7: re-enable scenario buttons after deliberation
+  document.querySelectorAll('.scenario-btn').forEach(b => b.removeAttribute('disabled'));
+  // Enable ask button if selections already made
+  btnAsk.disabled = !(state.convened && $('q-panelist').value && $('q-topic').value);
 }
 
 // ── FOLLOW-UP (EXPANDED — variant responses + cross-panelist reactions) ──
@@ -751,7 +810,9 @@ async function askFollowup() {
   if (!panelist) return;
 
   btnAsk.disabled = true;
+  let askError = false;
 
+  try {
   // Thread separator
   const sep = document.createElement('div');
   sep.style.cssText = 'text-align:center;padding:10px 0 14px;border-top:1px solid rgba(255,255,255,0.05);margin-top:6px;color:var(--muted);font-size:0.76em;';
@@ -799,7 +860,13 @@ async function askFollowup() {
   }
 
   status.textContent = 'Ready for next question';
-  btnAsk.disabled = false;
+  } catch(e) {
+    console.error('askFollowup error:', e);
+    status.textContent = 'Error — please try again';
+    askError = true;
+  } finally {
+    btnAsk.disabled = false;
+  }
 }
 
 // ── RESET ──
@@ -807,9 +874,13 @@ function resetSim() {
   state.running = false;
   state.convened = false;
   state.panelists = PANELISTS.map(p => ({ ...p, vote: null }));
-  // Reset conversation state
+  // BUG FIX 5: Reset conversation state and clear stale select values
   Object.keys(ASK_COUNT).forEach(k => delete ASK_COUNT[k]);
   CONVERSATION_THREAD.length = 0;
+  const pSel = $('q-panelist');
+  const tSel = $('q-topic');
+  if (pSel) pSel.value = '';
+  if (tSel) tSel.value = '';
   body.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:200px;flex-direction:column;gap:12px;color:var(--muted);text-align:center;padding:20px;"><span style="font-size:2em;">⚖</span><span style="font-size:0.9em;line-height:1.75;">Choose a scenario and click <strong style="color:var(--white)">Convene Panel</strong>.<br>12 experts will deliberate in sequence, then vote.</span></div>`;
   status.textContent = 'Awaiting convening…';
   vFinal.className = 'verdict-final';
@@ -839,13 +910,17 @@ document.querySelectorAll('.scenario-btn').forEach(btn => {
     };
     const [icon, h, p] = descs[state.scenario] || ['⚖','',''];
     const descEl = $('scenario-desc');
-    descEl.querySelector('.scenario-icon').textContent = icon;
+    // BUG FIX 3: textContent='' destroys child nodes — use safe DOM ops
     const h3El = descEl.querySelector('h3');
-    // Preserve the icon span, update the text node after it
-    const iconSpan = h3El.querySelector('.scenario-icon');
-    h3El.textContent = '';
-    h3El.appendChild(iconSpan);
-    h3El.appendChild(document.createTextNode(' Scenario: ' + h));
+    let iconSpan = h3El.querySelector('.scenario-icon');
+    if (!iconSpan) {
+      iconSpan = document.createElement('span');
+      iconSpan.className = 'scenario-icon';
+      h3El.prepend(iconSpan);
+    }
+    iconSpan.textContent = icon;
+    Array.from(h3El.childNodes).forEach(n => { if (n.nodeType === Node.TEXT_NODE) n.remove(); });
+    h3El.appendChild(document.createTextNode(' Scenario: ' + h));
     descEl.querySelector('p').textContent = p;
     if (!state.running) resetSim();
   });
