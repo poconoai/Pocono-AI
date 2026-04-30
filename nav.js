@@ -1,84 +1,67 @@
-// ── RENDER VERDICT (Safeguarded) ──
-function renderVerdict(yes, no, cond) {
-  let msg, cls;
-  if (yes >= 9)          { msg = `Strong consensus: ${yes}/12 vote YES. Panel recommends proceeding.`;            cls = 'v-strong'; }
-  else if (yes >= 7)     { msg = `Majority yes: ${yes}/12 yes, ${cond}/12 conditional. Recommended with noted conditions.`; cls = 'v-strong'; }
-  else if (yes+cond >= 9){ msg = `Qualified majority: ${yes} yes + ${cond} conditional. Proceed with conditions above.`; cls = 'v-conditional'; }
-  else if (no >= 7)      { msg = `Majority concern: ${no}/12 advise against at this time. See positions above.`; cls = 'v-divided'; }
-  else                   { msg = `Panel divided: ${yes} yes / ${cond} conditional / ${no} no. No clear consensus — review individual positions.`; cls = 'v-divided'; }
-  
-  if (vFinal) {
-    vFinal.className = 'verdict-final show ' + cls;
-    vFinal.innerHTML = '⚖ ' + msg;
-  }
+// ── DYNAMIC ROI ENGINE (Bulletproof) ──
+function initROICalculator() {
+    try {
+        const inpProviders = $('inp-providers');
+        const inpSq = $('inp-sq');
+        const inpHours = $('inp-hours');
+        const inpRate = $('inp-rate');
+
+        // SAFETY GATE: If any input is missing from the HTML, silently abort 
+        // to protect the rest of the simulation page (scenario buttons, etc.)
+        if (!inpProviders || !inpSq || !inpHours || !inpRate) {
+            console.warn("ROI Calculator elements missing. Skipping ROI initialization.");
+            return; 
+        }
+
+        function formatCurrency(num) {
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+        }
+
+        function calculateROI() {
+            const providers = parseInt(inpProviders.value) || 1;
+            const sqMonthly = parseInt(inpSq.value) || 0;
+            const hours = parseFloat(inpHours.value) || 0;
+            const rate = parseInt(inpRate.value) || 0;
+
+            // Update Slider Labels safely
+            if ($('val-providers')) $('val-providers').textContent = providers;
+            if ($('val-sq')) $('val-sq').textContent = formatCurrency(sqMonthly);
+            if ($('val-hours')) $('val-hours').textContent = hours.toFixed(1);
+            if ($('val-rate')) $('val-rate').textContent = formatCurrency(rate);
+
+            // Pocono AI Constants
+            const months = 36;
+            const capexUpfront = 17999;
+            const capexMaintenance = 150;
+            const haasMonthly = 950;
+            const daysPerMonth = 20;
+
+            // The Math
+            const costSq = sqMonthly * providers * months;
+            const costCapex = (capexUpfront * providers) + (capexMaintenance * providers * months);
+            const costHaas = haasMonthly * providers * months;
+            const timeValue = hours * rate * daysPerMonth * providers * months;
+
+            // Render to DOM safely
+            if ($('out-sq')) $('out-sq').textContent = formatCurrency(costSq);
+            if ($('out-capex')) $('out-capex').textContent = formatCurrency(costCapex);
+            if ($('out-haas')) $('out-haas').textContent = formatCurrency(costHaas);
+            if ($('out-time-val')) $('out-time-val').textContent = formatCurrency(timeValue);
+        }
+
+        // Attach Event Listeners
+        [inpProviders, inpSq, inpHours, inpRate].forEach(inp => {
+            inp.addEventListener('input', calculateROI);
+        });
+
+        // Initial load calculation
+        calculateROI();
+        
+    } catch (error) {
+        // If anything catastrophic happens, log it but don't break the page
+        console.error("ROI Engine failed to load, but page execution will continue.", error);
+    }
 }
 
-// ── RUN FULL PANEL (Safeguarded) ──
-async function runPanel() {
-  state.running = true;
-  state.convened = true;
-  btnRun.disabled = true;
-  btnReset.disabled = true;
-  btnAsk.disabled = true;
-  document.querySelectorAll('.scenario-btn').forEach(b => b.setAttribute('disabled',''));
-  
-  if (vFinal) vFinal.className = 'verdict-final';
-
-  // Reset panelists
-  state.panelists = PANELISTS.map(p => ({ ...p, vote: null }));
-  renderCards();
-  updateTally();
-  body.innerHTML = '';
-
-  // Opening
-  const sc = {
-    deploy:       'Solo Practice Deployment',
-    invest:       'Pre-Seed Investment Decision',
-    legal:        'Boutique Law Firm AI Adoption',
-    patient:      'Patient Safety Impact',
-    cloud:        'Cloud AI vs. Sentinel Node',
-    burnout:      'Physician Burnout Crisis',
-    hipaa_breach: 'Post-Breach HIPAA Audit',
-    rural:        'Rural Health Access & Deployment',
-  }[state.scenario] || state.scenario;
-  const intro = document.createElement('div');
-  intro.style.cssText = 'text-align:center;padding:14px 0 20px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:18px;color:var(--muted);font-size:0.82em;';
-  intro.innerHTML = `⚖ <strong style="color:var(--white)">Panel convened.</strong> &nbsp; Scenario: <em style="color:var(--ai-blue)">${sc}</em>`;
-  body.appendChild(intro);
-  status.textContent = 'Deliberation in progress…';
-
-  for (let i = 0; i < state.panelists.length; i++) {
-    if (!state.running) break;
-    await speakOne(state.panelists[i]);
-    if (i < state.panelists.length - 1) await delay(Math.round(state.speed * 0.6));
-  }
-
-  status.textContent = 'Deliberation complete — select a panelist below to ask a follow-up';
-  state.running = false;
-  btnReset.disabled = false;
-  document.querySelectorAll('.scenario-btn').forEach(b => b.removeAttribute('disabled'));
-  btnAsk.disabled = !(state.convened && $('q-panelist').value && $('q-topic').value);
-}
-
-// ── RESET (Safeguarded) ──
-function resetSim() {
-  state.running = false;
-  state.convened = false;
-  state.panelists = PANELISTS.map(p => ({ ...p, vote: null }));
-  Object.keys(ASK_COUNT).forEach(k => delete ASK_COUNT[k]);
-  CONVERSATION_THREAD.length = 0;
-  const pSel = $('q-panelist');
-  const tSel = $('q-topic');
-  if (pSel) pSel.value = '';
-  if (tSel) tSel.value = '';
-  body.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:200px;flex-direction:column;gap:12px;color:var(--muted);text-align:center;padding:20px;"><span style="font-size:2em;">⚖</span><span style="font-size:0.9em;line-height:1.75;">Choose a scenario and click <strong style="color:var(--white)">Convene Panel</strong>.<br>12 experts will deliberate in sequence, then vote.</span></div>`;
-  status.textContent = 'Awaiting convening…';
-  
-  if (vFinal) vFinal.className = 'verdict-final';
-  
-  btnRun.disabled = false;
-  btnReset.disabled = false;
-  btnAsk.disabled = true;
-  renderCards();
-  updateTally();
-}
+// Boot up the calculator
+initROICalculator();
