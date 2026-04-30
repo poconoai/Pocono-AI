@@ -1,67 +1,121 @@
-// ── DYNAMIC ROI ENGINE (Bulletproof) ──
-function initROICalculator() {
-    try {
-        const inpProviders = $('inp-providers');
-        const inpSq = $('inp-sq');
-        const inpHours = $('inp-hours');
-        const inpRate = $('inp-rate');
+/* =========================================
+   POCONO AI, LLC — NAVIGATION v43
+   Bulletproof dropdown: explicit state machine,
+   single document listener, proper touch handling.
+   ========================================= */
+(function () {
+    'use strict';
 
-        // SAFETY GATE: If any input is missing from the HTML, silently abort 
-        // to protect the rest of the simulation page (scenario buttons, etc.)
-        if (!inpProviders || !inpSq || !inpHours || !inpRate) {
-            console.warn("ROI Calculator elements missing. Skipping ROI initialization.");
-            return; 
+    document.addEventListener('DOMContentLoaded', function () {
+
+        /* ── Hamburger ─────────────────────────────────────── */
+        var toggle  = document.getElementById('mobile-menu');
+        var navMenu = document.getElementById('nav-menu');
+        var mOpen   = false;
+
+        function setMobile(open) {
+            mOpen = open;
+            if (!navMenu || !toggle) return;
+            navMenu.classList.toggle('active', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            var spans = toggle.querySelectorAll('span');
+            spans[0].style.transform = open ? 'rotate(45deg) translate(5px,6px)' : '';
+            spans[1].style.opacity   = open ? '0' : '';
+            spans[2].style.transform = open ? 'rotate(-45deg) translate(5px,-6px)' : '';
+            if (!open) closeAll();
         }
 
-        function formatCurrency(num) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+        if (toggle && navMenu) {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setMobile(!mOpen);
+            });
         }
 
-        function calculateROI() {
-            const providers = parseInt(inpProviders.value) || 1;
-            const sqMonthly = parseInt(inpSq.value) || 0;
-            const hours = parseFloat(inpHours.value) || 0;
-            const rate = parseInt(inpRate.value) || 0;
+        /* ── Dropdowns ─────────────────────────────────────── */
+        var registry = [
+            { toggleId: 'more-toggle', menuId: 'more-menu' },
+        ].map(function (d) {
+            return { toggle: document.getElementById(d.toggleId),
+                     menu:   document.getElementById(d.menuId),
+                     open:   false };
+        }).filter(function (d) { return d.toggle && d.menu; });
 
-            // Update Slider Labels safely
-            if ($('val-providers')) $('val-providers').textContent = providers;
-            if ($('val-sq')) $('val-sq').textContent = formatCurrency(sqMonthly);
-            if ($('val-hours')) $('val-hours').textContent = hours.toFixed(1);
-            if ($('val-rate')) $('val-rate').textContent = formatCurrency(rate);
-
-            // Pocono AI Constants
-            const months = 36;
-            const capexUpfront = 17999;
-            const capexMaintenance = 150;
-            const haasMonthly = 950;
-            const daysPerMonth = 20;
-
-            // The Math
-            const costSq = sqMonthly * providers * months;
-            const costCapex = (capexUpfront * providers) + (capexMaintenance * providers * months);
-            const costHaas = haasMonthly * providers * months;
-            const timeValue = hours * rate * daysPerMonth * providers * months;
-
-            // Render to DOM safely
-            if ($('out-sq')) $('out-sq').textContent = formatCurrency(costSq);
-            if ($('out-capex')) $('out-capex').textContent = formatCurrency(costCapex);
-            if ($('out-haas')) $('out-haas').textContent = formatCurrency(costHaas);
-            if ($('out-time-val')) $('out-time-val').textContent = formatCurrency(timeValue);
+        function openDrop(d) {
+            d.open = true;
+            d.menu.classList.add('open');
+            d.toggle.classList.add('open');
+            d.toggle.setAttribute('aria-expanded', 'true');
+            d.menu.style.zIndex = '2100';
         }
+        function closeDrop(d) {
+            d.open = false;
+            d.menu.classList.remove('open');
+            d.toggle.classList.remove('open');
+            d.toggle.setAttribute('aria-expanded', 'false');
+        }
+        function closeAll() { registry.forEach(closeDrop); }
 
-        // Attach Event Listeners
-        [inpProviders, inpSq, inpHours, inpRate].forEach(inp => {
-            inp.addEventListener('input', calculateROI);
+        registry.forEach(function (d) {
+            d.toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var was = d.open;
+                closeAll();
+                if (!was) openDrop(d);
+            });
         });
 
-        // Initial load calculation
-        calculateROI();
-        
-    } catch (error) {
-        // If anything catastrophic happens, log it but don't break the page
-        console.error("ROI Engine failed to load, but page execution will continue.", error);
-    }
-}
+        /* Single outside-click handler */
+        document.addEventListener('click', function (e) {
+            var inside = registry.some(function (d) {
+                return d.menu.contains(e.target) || d.toggle.contains(e.target);
+            });
+            if (!inside) closeAll();
+            if (!inside && mOpen && navMenu && !navMenu.contains(e.target) &&
+                toggle && !toggle.contains(e.target)) {
+                setMobile(false);
+            }
+        });
 
-// Boot up the calculator
-initROICalculator();
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { closeAll(); setMobile(false); }
+        });
+    });
+
+    /* ── Reading progress ──────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', function () {
+        var bar = document.getElementById('reading-progress');
+        if (!bar) return;
+        function upd() {
+            var d = document.documentElement;
+            var t = d.scrollHeight - d.clientHeight;
+            bar.style.width = t > 0 ? ((d.scrollTop || document.body.scrollTop) / t * 100) + '%' : '0%';
+        }
+        window.addEventListener('scroll', upd, { passive: true });
+        upd();
+    });
+
+    /* ── Fade-in observer ──────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', function () {
+        if (!('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-in-section').forEach(function (el) { io.observe(el); });
+    });
+
+    /* ── Back-to-top ───────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', function () {
+        var btn = document.createElement('button');
+        btn.id = 'back-to-top'; btn.type = 'button';
+        btn.setAttribute('aria-label', 'Back to top');
+        btn.innerHTML = '&#8593;';
+        document.body.appendChild(btn);
+        btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        window.addEventListener('scroll', function () {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+    });
+}());
