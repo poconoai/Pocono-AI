@@ -51,7 +51,7 @@ img { max-width: 100%; height: auto; }
 /* ── HEADER ── */
 header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 10px 2.5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1); gap: 16px; }
 .logo { text-decoration: none; font-size: 1.5rem; font-weight: 800; color: var(--white); display: flex; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; gap: 8px; flex-shrink: 0; white-space: nowrap; letter-spacing: 0; }
-.logo img { height: 34px; width: auto; display: block; flex-shrink: 0; }
+.logo img { height: 44px; width: 44px; display: block; flex-shrink: 0; border-radius: 6px; }
 .logo span { color: var(--ai-blue); margin-left: 3px; }
 
 /* ── HAMBURGER ── */
@@ -173,6 +173,14 @@ main, .container { max-width: 1000px; margin: 0 auto; padding: 40px 10px; }
 @media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; } }
 .footer-col { display: flex; flex-direction: column; gap: 8px; }
 .footer-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--white); margin: 0 0 6px; }
+/* ── FOOTER LOGO v67 ── quiet monochrome mark + wordmark, won't fight CTAs above */
+.footer-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--muted); margin: 0 0 6px; transition: color 0.2s ease; }
+.footer-logo:hover { color: var(--ai-blue); }
+.footer-logo img { width: 36px; height: 36px; display: block; opacity: 0.85; transition: opacity 0.2s ease; }
+.footer-logo:hover img { opacity: 1; }
+.footer-logo .footer-brand { display: inline; margin: 0; font-size: 1.15rem; color: var(--white); }
+.footer-logo .footer-brand span { color: var(--ai-blue); }
+
 .footer-brand span { color: var(--ai-blue); }
 .footer-tagline { color: var(--muted); font-size: 0.82em; line-height: 1.65; margin: 0; }
 .footer-location { color: var(--muted); font-size: 0.78em; margin: 0; }
@@ -1379,3 +1387,16 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 
 /* ── Missing: referrer-policy meta + noopener on external links ── */
 /* (applied via HTML; this is a reminder comment) */
+
+/* ── BRAND BANNER v67 ── responsive, dark-edge fade so it sits cleanly between sections */
+.brand-banner-section { width: 100%; max-width: 1200px; margin: 28px auto 0; padding: 0 4%; }
+.brand-banner-img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid rgba(0,163,255,0.15); box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+@media (max-width: 600px) { .brand-banner-section { margin-top: 16px; padding: 0 4%; } .brand-banner-img { border-radius: 10px; } }
+
+/* ── TRUST BADGES v67 ── grayscale "we play nice" row */
+.trust-badges-section { width: 100%; max-width: 1100px; margin: 48px auto; padding: 32px 4%; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); text-align: center; }
+.trust-badges-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.78em; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 22px; }
+.trust-badges-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 36px 56px; color: var(--muted); }
+.trust-badges-row img { height: 28px; width: auto; opacity: 0.65; transition: opacity 0.2s ease, color 0.2s ease; filter: grayscale(100%); }
+.trust-badges-row img:hover { opacity: 1; filter: grayscale(0%); color: var(--ai-blue); }
+@media (max-width: 540px) { .trust-badges-row { gap: 24px 32px; } .trust-badges-row img { height: 22px; } }
