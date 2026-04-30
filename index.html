@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v51 -->
+<html lang="en"><!-- Pocono AI v52 -->
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Reclaim 1.5–3 hours per day from EHR work without sending patient data to the cloud. The Sentinel Node runs locally in your office. No internet. No vendor access. No risk.">
     <title>Pocono AI | AI That Runs Inside Your Office — No Cloud, No Risk</title>
@@ -138,17 +139,17 @@
              Panel: add urgency — "we're onboarding 3 pilots this quarter"
         ═══════════════════════════════════════════ -->
         <!-- POV TRACKER — Panel Priority #5 (David Merritt · Investor) -->
-        <div style="background:rgba(0,0,0,0.38);border:1px solid rgba(24,139,150,0.3);border-radius:12px;padding:20px 28px;margin:0 0 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-            <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+        <div class="pov-banner">
+            <div class="pov-banner-label">
                 <span style="width:9px;height:9px;background:var(--amber);border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <span style="color:var(--amber);font-family:'Syne',sans-serif;font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;">Q2 POV Cohort</span>
             </div>
-            <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
-                <span style="background:rgba(186,117,23,0.1);border:1px solid rgba(186,117,23,0.3);border-radius:6px;padding:5px 14px;color:var(--amber);font-family:'Syne',sans-serif;font-size:0.8em;font-weight:700;">&#9633; Slot 1 — Pending</span>
-                <span style="background:rgba(186,117,23,0.1);border:1px solid rgba(186,117,23,0.3);border-radius:6px;padding:5px 14px;color:var(--amber);font-family:'Syne',sans-serif;font-size:0.8em;font-weight:700;">&#9633; Slot 2 — Pending</span>
-                <span style="background:rgba(186,117,23,0.1);border:1px solid rgba(186,117,23,0.3);border-radius:6px;padding:5px 14px;color:var(--amber);font-family:'Syne',sans-serif;font-size:0.8em;font-weight:700;">&#9633; Slot 3 — Pending</span>
+            <div class="pov-banner-slots">
+                <span class="pov-slot">&#9633; Slot 1 — Pending</span>
+                <span class="pov-slot">&#9633; Slot 2 — Pending</span>
+                <span class="pov-slot">&#9633; Slot 3 — Pending</span>
             </div>
-            <div style="flex:1;min-width:220px;">
+            <div class="pov-banner-copy">
                 <p style="color:var(--light-text);font-size:0.85em;margin:0;line-height:1.6;"><strong style="color:var(--white);">3 Q2 slots available.</strong> The $5,000 Proof-of-Value engagement fee is credited in full at deployment. <a href="pricing.html" style="color:var(--teal);">See full POV structure &rarr;</a></p>
             </div>
         </div>
@@ -385,7 +386,7 @@
             <p style="color:var(--light-text);max-width:520px;margin:0 auto 10px;">No sales pitch. A direct technical conversation with the founder about whether the Sentinel Node is right for your practice.</p>
             <p style="color:var(--muted);font-size:0.82em;max-width:500px;margin:0 auto 25px;">Built for independent practices of 2&ndash;10 providers. Not for hospitals or enterprise health systems.</p>
             <div class="calendar-embed">
-                <iframe src="https://cal.com/poconoai/technical-briefing" style="width:100%;height:100%;border:none;" title="Schedule Technical Briefing"></iframe>
+                <iframe src="https://cal.com/poconoai/technical-briefing" style="width:100%;height:100%;border:none;" title="Schedule Technical Briefing" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox" loading="lazy"></iframe>
             </div>
             <div style="margin-top:25px;padding:15px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;background:rgba(0,0,0,0.3);max-width:500px;margin-left:auto;margin-right:auto;">
                 <p style="font-size:0.85em;opacity:0.8;margin:0;color:var(--light-text);text-align:left;"><strong>Security Notice:</strong> Do not submit PHI or confidential legal details via this scheduling form.</p>
@@ -454,7 +455,7 @@
                 <p class="footer-brand">Pocono <span>AI</span></p>
                 <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
                 <p class="footer-location">East Stroudsburg, Pennsylvania</p>
-                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
             </div>
             <div class="footer-col">
                 <p class="footer-heading">For Practitioners</p>
