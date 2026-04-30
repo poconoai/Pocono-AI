@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v59 -->
+<html lang="en"><!-- Pocono AI v66 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -66,6 +66,197 @@
   }
 }
     </script>
+    <style id="v66-tco-calc-styles">
+  /* === v66 — Universal TCO Calculator === */
+  .tco-calc-section { margin: 32px 0 48px; }
+  .tco-calc-shell {
+    background: linear-gradient(135deg, rgba(0,163,255,0.07), rgba(5,22,34,0.95));
+    border: 1px solid rgba(0,163,255,0.22);
+    border-radius: 14px;
+    padding: clamp(20px, 4vw, 36px);
+    max-width: 980px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .tco-eyebrow {
+    color: var(--ai-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.72em;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .tco-title {
+    color: var(--white);
+    margin: 0 0 6px;
+    border-bottom: none;
+    font-size: clamp(1.2em, 3.5vw, 1.55em);
+    line-height: 1.25;
+  }
+  .tco-sub {
+    color: var(--muted);
+    font-size: 0.85em;
+    margin: 0 0 22px;
+    line-height: 1.65;
+  }
+  .tco-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .tco-input-row { min-width: 0; }
+  .tco-input-row .tco-lbl {
+    color: var(--muted);
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1.45;
+  }
+  .tco-input-row .tco-val {
+    color: var(--white);
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .tco-slider {
+    width: 100%;
+    -webkit-appearance: none; appearance: none;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    outline: none;
+    margin: 4px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  .tco-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 18px; height: 18px;
+    background: var(--ai-blue);
+    border-radius: 50%;
+    border: 2px solid var(--card-dark);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,163,255,0.45);
+    transition: transform 0.15s ease;
+  }
+  .tco-slider::-moz-range-thumb {
+    width: 18px; height: 18px;
+    background: var(--ai-blue);
+    border-radius: 50%;
+    border: 2px solid var(--card-dark);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,163,255,0.45);
+  }
+  .tco-slider::-webkit-slider-thumb:hover { transform: scale(1.1); }
+  .tco-slider:focus-visible {
+    box-shadow: var(--focus-ring);
+    outline: none;
+  }
+  .tco-slider:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgba(0,163,255,0.35), 0 2px 6px rgba(0,163,255,0.45);
+  }
+  .tco-slider:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 4px rgba(0,163,255,0.35);
+  }
+  .tco-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .tco-card {
+    background: rgba(0,0,0,0.32);
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+    min-width: 0;
+    overflow: hidden;
+    border-top: 3px solid transparent;
+  }
+  .tco-card.sq    { border-top-color: var(--danger);  }
+  .tco-card.capex { border-top-color: var(--amber);   }
+  .tco-card.haas  { border-top-color: var(--success); }
+  .tco-card-tag {
+    display: block;
+    font-size: 0.62em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 8px;
+  }
+  .tco-card.sq .tco-card-tag    { color: var(--danger);  }
+  .tco-card.capex .tco-card-tag { color: var(--amber);   }
+  .tco-card.haas .tco-card-tag  { color: var(--success); }
+  .tco-card-val {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.1em, 4.5vw, 1.7em);
+    line-height: 1.15;
+    color: var(--white);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .tco-card-sub {
+    display: block;
+    color: var(--muted);
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  .tco-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: 10px;
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.22);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .tco-summary-item { text-align: center; min-width: 0; }
+  .tco-summary-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.05em, 4vw, 1.4em);
+    color: var(--success);
+    display: block;
+    word-break: break-word;
+    line-height: 1.1;
+  }
+  .tco-summary-lbl {
+    color: var(--muted);
+    font-size: 0.66em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    display: block;
+  }
+  .tco-foot {
+    color: var(--muted);
+    font-size: 0.7em;
+    font-style: italic;
+    margin: 0;
+    text-align: center;
+    line-height: 1.55;
+  }
+  .tco-foot a { color: var(--ai-blue); }
+  /* Mobile (< 400px): force single-column to prevent overlap/break */
+  @media (max-width: 400px) {
+    .tco-calc-shell    { padding: 18px 14px; border-radius: 10px; }
+    .tco-cards         { grid-template-columns: 1fr; }
+    .tco-summary       { grid-template-columns: 1fr; }
+    .tco-card-val      { font-size: 1.3em; }
+    .tco-summary-val   { font-size: 1.2em; }
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -103,7 +294,7 @@
 <main id="main-content">
 
     <section class="sim-hero">
-        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v59 · 8 Scenarios · 16 Topics</span>
+        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v66 · 8 Scenarios · 16 Topics</span>
         <h1>The 12-Panel Convening</h1>
         <p>Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Every position is grounded in peer-reviewed research published on this site.</p>
         <span class="offline-badge">✓ Zero cloud calls — fully offline deliberation engine</span>
@@ -200,9 +391,235 @@
         </div>
 
         <div class="sim-disclaimer">
-            <strong>Simulation Disclosure (v59):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. The v59 conversation engine features 8 deliberation scenarios, 16 follow-up topics, multi-variant panelist responses, and spontaneous cross-panelist reactions. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023), Sullivan &amp; Cromwell court apology (April 2026). This is not legal, medical, or financial advice. All pricing reflects Pocono AI HaaS model as of v59.
+            <strong>Simulation Disclosure (v66):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. The v66 conversation engine features 8 deliberation scenarios, 16 follow-up topics, multi-variant panelist responses, and spontaneous cross-panelist reactions. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023), Sullivan &amp; Cromwell court apology (April 2026). This is not legal, medical, or financial advice. All pricing reflects Pocono AI HaaS model as of v66.
         </div>
     </div>
+
+
+    <!-- v66 ROI Calculator (new for v66 — namespaced) -->
+<!-- v66 — Universal 3-Year TCO Calculator (namespaced: sim-) -->
+<section class="tco-calc-section fade-in-section" id="sim-tco" data-tco-prefix="sim" aria-labelledby="sim-tco-title">
+  <div class="tco-calc-shell">
+    <span class="tco-eyebrow">Run the Numbers · 3-Year TCO Calculator · v66</span>
+    <h2 id="sim-tco-title" class="tco-title">The panel debated the economics. Run them yourself.</h2>
+    <p class="tco-sub">The same 3-year TCO model the Investor and Medicine panels reference, with sliders. Compare doing nothing, buying outright, or HaaS at $950/mo all-inclusive.</p>
+
+    <div class="tco-inputs">
+      <div class="tco-input-row">
+        <label class="tco-lbl" for="sim-inp-providers">Providers: <span id="sim-lbl-providers" class="tco-val" aria-live="polite">3</span></label>
+        <input class="tco-slider" type="range" id="sim-inp-providers"
+               min="1" max="10" value="3" step="1"
+               aria-label="Number of providers (1 to 10)" />
+      </div>
+      <div class="tco-input-row">
+        <label class="tco-lbl" for="sim-inp-monthly">Current scribe / cloud-AI spend, per provider per month: <span id="sim-lbl-monthly" class="tco-val" aria-live="polite">$2,000</span></label>
+        <input class="tco-slider" type="range" id="sim-inp-monthly"
+               min="0" max="4000" value="2000" step="100"
+               aria-label="Current scribe / cloud-AI spend, in US dollars per month" />
+      </div>
+      <div class="tco-input-row">
+        <label class="tco-lbl" for="sim-inp-burden">Annual prior-auth &amp; admin burden per provider: <span id="sim-lbl-burden" class="tco-val" aria-live="polite">$68,000</span></label>
+        <input class="tco-slider" type="range" id="sim-inp-burden"
+               min="0" max="120000" value="68000" step="1000"
+               aria-label="Annual prior-auth &amp; admin burden in US dollars per year" />
+      </div>
+    </div>
+
+    <div class="tco-cards" role="group" aria-label="3-year total cost of ownership comparison">
+      <div class="tco-card sq">
+        <span class="tco-card-tag">Status Quo</span>
+        <span class="tco-card-val" id="sim-out-sq" aria-live="polite">$0</span>
+        <span class="tco-card-sub">3-Year Cost · do nothing</span>
+      </div>
+      <div class="tco-card capex">
+        <span class="tco-card-tag">CapEx Purchase</span>
+        <span class="tco-card-val" id="sim-out-capex" aria-live="polite">$0</span>
+        <span class="tco-card-sub">3-Year Cost · own the hardware</span>
+      </div>
+      <div class="tco-card haas">
+        <span class="tco-card-tag">HaaS · $950 / mo</span>
+        <span class="tco-card-val" id="sim-out-haas" aria-live="polite">$0</span>
+        <span class="tco-card-sub">3-Year Cost · predictable OpEx</span>
+      </div>
+    </div>
+
+    <div class="tco-summary" role="group" aria-label="HaaS savings summary">
+      <div class="tco-summary-item">
+        <span class="tco-summary-val" id="sim-out-savings" aria-live="polite">$0</span>
+        <span class="tco-summary-lbl">3-Year HaaS Savings vs. Status Quo</span>
+      </div>
+      <div class="tco-summary-item">
+        <span class="tco-summary-val" id="sim-out-payback" aria-live="polite">— mo</span>
+        <span class="tco-summary-lbl">HaaS Payback Period</span>
+      </div>
+    </div>
+
+    <p class="tco-foot">Intro Sentinel Node @ $950/mo HaaS · CapEx model: $17,999 hardware + $300/mo support over 36 months · AMA 2023 prior-auth data · Not a guarantee of financial return. <a href="pricing.html">See full HaaS pricing &rarr;</a></p>
+  </div>
+</section>
+
+<script>
+/* ================================================================
+   Pocono AI v66 — Universal 3-Year TCO Calculator
+   - Namespaced per-page via data-tco-prefix (ph / at / sim)
+   - Try/catch + null-guards on every DOM node (bulletproof)
+   - NaN/Infinity safe Intl.NumberFormat
+   - No globals except window.initROICalculator
+   ================================================================ */
+(function () {
+  'use strict';
+
+  function initROICalculator(prefix) {
+    try {
+      if (!prefix || typeof prefix !== 'string') return;
+      var byId = function (suffix) {
+        return document.getElementById(prefix + '-' + suffix);
+      };
+
+      var inp = {
+        providers: byId('inp-providers'),
+        monthly:   byId('inp-monthly'),
+        burden:    byId('inp-burden')
+      };
+      // If any required input is missing, bail cleanly — prevents collisions
+      // when this script lives on a page that does not host the calculator.
+      if (!inp.providers || !inp.monthly || !inp.burden) return;
+
+      var lbl = {
+        providers: byId('lbl-providers'),
+        monthly:   byId('lbl-monthly'),
+        burden:    byId('lbl-burden')
+      };
+      var out = {
+        sq:      byId('out-sq'),
+        capex:   byId('out-capex'),
+        haas:    byId('out-haas'),
+        savings: byId('out-savings'),
+        payback: byId('out-payback')
+      };
+
+      // Build formatter once — fall back gracefully if Intl unsupported.
+      var FMT = null;
+      try {
+        FMT = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0
+        });
+      } catch (e) { FMT = null; }
+
+      function fmt(n) {
+        // NaN / undefined / Infinity guard — never returns "$NaN" or "$undefined"
+        if (n === null || n === undefined) return '$0';
+        if (typeof n !== 'number') n = Number(n);
+        if (isNaN(n) || !isFinite(n)) return '$0';
+        var rounded = Math.round(n);
+        try {
+          return FMT ? FMT.format(rounded) : ('$' + rounded.toLocaleString('en-US'));
+        } catch (e) {
+          return '$' + rounded;
+        }
+      }
+
+      function setText(node, value) {
+        if (node && node.textContent !== undefined) {
+          try { node.textContent = value; } catch (e) { /* swallow */ }
+        }
+      }
+
+      function clamp(v, lo, hi, fallback) {
+        if (typeof v !== 'number' || isNaN(v) || !isFinite(v)) return fallback;
+        if (v < lo) return lo;
+        if (v > hi) return hi;
+        return v;
+      }
+
+      function update() {
+        try {
+          var p = clamp(parseInt(inp.providers.value, 10), 1,     10,      3);
+          var m = clamp(parseInt(inp.monthly.value,   10), 0,     8000,  2000);
+          var b = clamp(parseInt(inp.burden.value,    10), 0,   200000, 68000);
+
+          setText(lbl.providers, String(p));
+          setText(lbl.monthly,   fmt(m));
+          setText(lbl.burden,    fmt(b));
+
+          // 3-year horizon
+          var months = 36;
+          // Status Quo: keep paying scribe/SaaS + carry full admin burden
+          var statusQuo = (m * p * months) + (b * p * 3);
+          // CapEx: $17,999 hardware + $300/mo support over 36 months
+          var capex     = 17999 + (300 * months);
+          // HaaS: Intro Sentinel Node $950/mo all-inclusive
+          var haas      = 950 * months;
+          var savings   = statusQuo - haas;
+
+          // Monthly value recovered = scribe spend + 1/12 of admin burden
+          var monthlyValue = (m * p) + ((b * p) / 12);
+          var paybackMo = monthlyValue > 0 ? (haas / monthlyValue) : 0;
+          var paybackText;
+          if (!isFinite(paybackMo) || isNaN(paybackMo) || paybackMo <= 0) {
+            paybackText = '—';
+          } else if (paybackMo < 1) {
+            paybackText = '< 1 mo';
+          } else if (paybackMo > 240) {
+            paybackText = '> 20 yrs';
+          } else {
+            paybackText = Math.round(paybackMo) + ' mo';
+          }
+
+          setText(out.sq,      fmt(statusQuo));
+          setText(out.capex,   fmt(capex));
+          setText(out.haas,    fmt(haas));
+          setText(out.savings, fmt(savings));
+          setText(out.payback, paybackText);
+        } catch (e) {
+          if (window.console && console.warn) {
+            console.warn('[v66 TCO ' + prefix + '] update failed:', e);
+          }
+        }
+      }
+
+      var keys = ['providers', 'monthly', 'burden'];
+      for (var i = 0; i < keys.length; i++) {
+        var node = inp[keys[i]];
+        if (node && node.addEventListener) {
+          node.addEventListener('input',  update);
+          node.addEventListener('change', update);
+        }
+      }
+      update();
+    } catch (e) {
+      if (window.console && console.warn) {
+        console.warn('[v66 TCO] init failed for prefix "' + prefix + '":', e);
+      }
+    }
+  }
+
+  function autoInit() {
+    try {
+      var roots = document.querySelectorAll('[data-tco-prefix]');
+      for (var i = 0; i < roots.length; i++) {
+        var prefix = roots[i].getAttribute('data-tco-prefix');
+        if (prefix) initROICalculator(prefix);
+      }
+    } catch (e) {
+      if (window.console && console.warn) {
+        console.warn('[v66 TCO] autoInit failed:', e);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoInit);
+  } else {
+    autoInit();
+  }
+
+  // Expose for manual re-init (e.g. SPA route changes)
+  window.initROICalculator = initROICalculator;
+})();
+</script>
 
 </main>
 
