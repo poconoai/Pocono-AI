@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v56 -->
+<html lang="en"><!-- Pocono AI v47 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -103,7 +103,7 @@
 <main id="main-content">
 
     <section class="sim-hero">
-        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v56</span>
+        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v47 · 8 Scenarios · 15 Topics</span>
         <h1>The 12-Panel Convening</h1>
         <p>Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Every position is grounded in peer-reviewed research published on this site.</p>
         <span class="offline-badge">✓ Zero cloud calls — fully offline deliberation engine</span>
@@ -112,11 +112,14 @@
     <div>
         <p style="color:var(--muted);font-size:0.8em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:10px;">Choose a deliberation scenario:</p>
         <div class="scenario-bar" id="scenario-bar" style="overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px;">
-            <button type="button" class="scenario-btn active" data-scenario="deploy">Solo practice deployment</button>
-            <button type="button" class="scenario-btn" data-scenario="invest">Pre-seed investment decision</button>
-            <button type="button" class="scenario-btn" data-scenario="legal">Boutique law firm AI adoption</button>
-            <button type="button" class="scenario-btn" data-scenario="patient">Patient safety impact</button>
-            <button type="button" class="scenario-btn" data-scenario="cloud">Cloud AI vs. Sentinel Node</button>
+            <button type="button" class="scenario-btn active" data-scenario="deploy">🏥 Solo Practice</button>
+            <button type="button" class="scenario-btn" data-scenario="invest">💰 Investment Decision</button>
+            <button type="button" class="scenario-btn" data-scenario="legal">⚖ Law Firm Adoption</button>
+            <button type="button" class="scenario-btn" data-scenario="patient">🛡 Patient Safety</button>
+            <button type="button" class="scenario-btn" data-scenario="cloud">☁ Cloud vs. Local</button>
+            <button type="button" class="scenario-btn" data-scenario="burnout">🔥 Burnout Crisis</button>
+            <button type="button" class="scenario-btn" data-scenario="hipaa_breach">🚨 Post-Breach Audit</button>
+            <button type="button" class="scenario-btn" data-scenario="rural">🌾 Rural Health</button>
         </div>
         <div class="scenario-desc" id="scenario-desc">
             <h3><span class="scenario-icon">🏥</span> Scenario: Solo Practice Deployment Decision</h3>
@@ -168,7 +171,10 @@
 
     <div class="question-zone">
         <h3>Ask a Panelist a Follow-Up</h3>
-        <p>After the panel has spoken, select any panelist and a topic — they'll give their expert position on it.</p>
+        <p>After the panel has spoken, select any panelist and a topic — they'll respond in their own voice. Ask the same panelist multiple times on different topics, or ask different panelists the same question to see how their perspectives diverge.</p>
+        <div style="background:rgba(0,0,0,0.2);border-radius:6px;padding:8px 14px;margin-bottom:12px;font-size:0.76em;color:var(--muted);line-height:1.6;">
+            💬 <strong style="color:var(--light-text);">Conversation tips:</strong> Ask the same panelist the same topic multiple times — each response varies. Ask different panelists the same topic to compare perspectives. Some answers trigger spontaneous reactions from other panelists.
+        </div>
         <div class="question-input-row">
             <select class="panelist-select" id="q-panelist"><option value="">Choose panelist…</option></select>
             <select class="panelist-select" id="q-topic">
@@ -183,13 +189,19 @@
                 <option value="patient_safety">Patient safety outcomes</option>
                 <option value="competitor">Competitor comparison</option>
                 <option value="timeline">Deployment timeline</option>
+                <option value="burnout">Physician burnout &amp; morale</option>
+                <option value="open_weight">Open-weight model strategy</option>
+                <option value="series_a">Series A &amp; investor readiness</option>
+                <option value="rural_access">Rural health access</option>
+                <option value="malpractice">Malpractice &amp; AI liability</option>
+                <option value="haas_model">HaaS vs. CapEx economics</option>
             </select>
             <button type="button" class="sim-btn sim-btn-primary" id="btn-ask" disabled>Ask →</button>
         </div>
     </div>
 
     <div class="sim-disclaimer">
-        <strong>Simulation Disclosure (v56):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023). This is not legal, medical, or financial advice.
+        <strong>Simulation Disclosure (v47):</strong> All panelist voices are pre-authored by Pocono AI using its own published research, peer-reviewed statistics, and public legal precedents as source material. No real person is represented. No cloud AI calls are made — this page operates fully offline after load. The v47 conversation engine features 8 deliberation scenarios, 15 follow-up topics, multi-variant panelist responses, and spontaneous cross-panelist reactions. All statistics cited by panelists are sourced from: Sinsky et al. (Annals of Family Medicine, 2016), AMA Prior Authorization Survey (2023), Health Affairs, Tai-Seale et al. (Health Affairs, 2017), JAMA Internal Medicine, Raine v. OpenAI (2024), Mata v. Avianca (SDNY, 2023), Sullivan &amp; Cromwell court apology (April 2026). This is not legal, medical, or financial advice. All pricing reflects Pocono AI HaaS model as of v47.
     </div>
 
 </main>
@@ -283,15 +295,15 @@ const PANELISTS = [
 const SPEECHES = {
 
 deploy: { // Should a 3-physician solo practice deploy the Sentinel Node?
-  inv1: { text: `The unit economics here are the story. At <strong>$68,000/physician/year</strong> in prior auth processing costs — verified by the AMA's 2023 Prior Authorization Survey — a 3-physician practice bleeds $204,000 annually on administrative overhead alone. The Phase I Sentinel Node at $15,000 CapEx models payback in under 90 days against even a <em>partial</em> recapture of that loss. For a VC, this isn't a technology bet. It's an ROI bet, and the numbers are unusually tight. <span class="cite">I'd want to see the 60-day POV data, but I'm inclined to say deploy.</span>`, vote:'yes' },
+  inv1: { text: `The unit economics here are the story. At <strong>$68,000/physician/year</strong> in prior auth processing costs — verified by the AMA's 2023 Prior Authorization Survey — a 3-physician practice bleeds $204,000 annually on administrative overhead alone. The Intro Sentinel Node at <strong>$950/month</strong> — all-inclusive HaaS, no CapEx — models Day-1 positive cash flow against the $1,500–$2,500/month a part-time remote scribe costs this practice. For an investor, this isn't a technology bet anymore — it's an OpEx comparison that every practice CFO can sign off on without a board vote. <span class="cite">I'd want to see the 60-day POV data, but I'm inclined to say deploy.</span>`, vote:'yes' },
   inv2: { text: `I've seen the EHR burden data. Sinsky et al. in the Annals of Family Medicine documented <strong>5.9 hours daily</strong> in EHR tasks — that's 44% of the working day. For a solo practice owner, that's not a workflow problem, it's an existential one. What strikes me here is that the Sentinel Node doesn't require EHR integration. You export PDFs. You start in weeks. No 12-month IT queue. For a 3-physician practice, that's the whole argument. <span class="cite">Yes — deploy, start with the 60-day POV to validate the workflow.</span>`, vote:'yes' },
-  inv3: { text: `I'm compliance-focused, so this is where I land: cloud AI is architecturally incompatible with HIPAA's core requirement for PHI custody. OCR enforcement has increased 400% since 2020. One breach on a cloud AI system carrying patient records is an OCR investigation and potential seven-figure penalties. The EAA™ model eliminates that entire risk vector — not by policy, but by the absence of a network path. For a small practice with no legal department, that protection alone justifies the CapEx. <span class="cite">Deploy.</span>`, vote:'yes' },
+  inv3: { text: `I'm compliance-focused, so this is where I land: cloud AI is architecturally incompatible with HIPAA's core requirement for PHI custody. OCR enforcement has increased 400% since 2020. One breach on a cloud AI system carrying patient records is an OCR investigation and potential seven-figure penalties. The EAA™ model eliminates that entire risk vector — not by policy, but by the absence of a network path. For a small practice with no legal department, that protection alone justifies the $950/month HaaS subscription. No CapEx approval needed. <span class="cite">Deploy.</span>`, vote:'yes' },
   med1: { text: `I run a practice like this. The 5.9-hour EHR burden is real — I live it. What gets me is the prior auth math. <strong>13 hours per week</strong> on prior authorizations per AMA data, at an average of $23 in staff time per submission. And 82% of denied authorizations that get appealed are ultimately overturned — meaning most denials were wrong to begin with. If the Sentinel Node gives my nurses instant access to complete patient history to build submissions that stick the first time, that pays for itself in a month. <span class="cite">Strong yes. I'd deploy tomorrow.</span>`, vote:'yes' },
   med2: { text: `From a hospital CMO perspective, I need to apply a different lens. A 400-bed system already has Epic integration and a Nuance DAX contract. For us, the value proposition is different — the Sentinel Node isn't our primary play. But for the 3-physician practice in this scenario? They don't have the IT infrastructure for Nuance. They can't wait 12–18 months for Epic integration. The Sentinel Node starts in weeks and requires zero EHR API access. <span class="cite">For this specific practice: conditional yes — validate in the 60-day POV before full commitment.</span>`, vote:'conditional' },
   med3: { text: `The informatics concern I always raise is hallucination grounding. Cloud AI systems generate from parametric memory — they can produce confident, authoritative clinical errors with no citation trail. The Sentinel Node's RAG architecture forces every output to cite a retrieved document chunk. That citation chain is what makes human-in-the-loop verification meaningful. A clinician can check the source. That's <strong>not possible with any cloud model</strong>. From a patient safety standpoint, this is the right architecture. <span class="cite">Deploy — with mandatory Human-in-the-Loop protocol enforced.</span>`, vote:'yes' },
   law1: { text: `HIPAA analysis is straightforward here. A Business Associate Agreement with a cloud vendor is a legal document — it assigns liability after a breach, it does not prevent one. Under HIPAA's tiered penalty structure, a Tier 3 or 4 violation runs up to <strong>$1.9 million per violation category</strong>. The EAA™ model Pocono AI uses is the only structure where a covered entity can demonstrate zero PHI transmission to external infrastructure — provable by SIEM logs, not vendor attestation. That's what survives an OCR audit. <span class="cite">Deploy. The compliance argument is decisive.</span>`, vote:'yes' },
   law2: { text: `As a litigation attorney, I think about the malpractice exposure. Cloud AI hallucinations in clinical settings are an uninsurable liability — as the Malpractice Trap whitepaper argues. If a cloud AI invents a patient's allergy history and that error reaches a treatment decision, you're looking at a jury case with no good defense. The Sentinel Node's RAG architecture cites actual patient records for every output. That citation trail is your defense. It demonstrates the AI was grounded in verified local data, not generating from a model's parametric memory. <span class="cite">Yes — deploy.</span>`, vote:'yes' },
-  law3: { text: `From a legal technology standpoint, the key question is: what happens in 24 months? Open-weight models (Llama, Gemma) are Apache 2.0 and MIT licensed. Once deployed, they're yours. No vendor deprecation. No license renewal. No API pricing change. That's a meaningful long-term cost stability argument against any SaaS competitor. The $300/month SLA for managed updates is predictable and capped. Cloud alternatives compound in cost as usage scales. <span class="cite">Conditional yes — validate the workflow, then commit to the full SLA.</span>`, vote:'conditional' },
+  law3: { text: `From a legal technology standpoint, the key question is: what happens in 24 months? Open-weight models (Llama, Gemma) are Apache 2.0 and MIT licensed. Once deployed, they're yours. No vendor deprecation. No license renewal. No API pricing change. That's a meaningful long-term cost stability argument against any SaaS competitor. The monthly HaaS fee is predictable and capped — hardware, software, KYHD SLA, all inclusive. Cloud alternatives compound in cost as usage scales. <span class="cite">Conditional yes — validate the workflow in the 60-day POV, then commit to the HaaS contract.</span>`, vote:'conditional' },
   pat1: { text: `I advocate for patients who can't navigate the prior authorization system. <strong>29% of physicians report a serious adverse event caused by prior auth delays</strong>, per the AMA. <strong>8% report a patient death.</strong> Those are not statistics — those are people. If a system that gives a physician's nurse instant access to complete patient history means that the prior auth submission is complete and correct the first time, that's fewer delays, fewer denials, and potentially fewer deaths. <span class="cite">Deploy — and get the prior auth workflow running as the first use case.</span>`, vote:'yes' },
   pat2: { text: `Patients with chronic conditions bear the heaviest burden of prior auth delays. We're the ones who can least afford a two-week wait for a medication approval while a physician's staff battles an insurer over paperwork. The Sentinel Node doesn't just help the practice — it helps every patient that practice serves. The math is simple: <strong>82% of appealed denials are overturned</strong>. That means most denials were wrong. Getting them right the first time is a patient safety intervention, not a billing optimization. <span class="cite">Deploy.</span>`, vote:'yes' },
   pat3: { text: `My concern as a health data privacy researcher is patient consent. Patients consent to their provider using their records for their care. They do not consent to those records running through a cloud AI vendor's infrastructure — even when contracts prohibit training. The practical reality is that once PHI enters a cloud system, provenance is impossible to audit. The Sentinel Node is the only architecture where patient data demonstrably remains under the control of the entity the patient actually consented to. <span class="cite">Strong yes — on privacy grounds alone.</span>`, vote:'yes' },
@@ -299,7 +311,7 @@ deploy: { // Should a 3-physician solo practice deploy the Sentinel Node?
 
 invest: { // Should investors write a pre-seed check?
   inv1: { text: `The investment thesis is structural: every funded healthcare AI company is cloud-based, and the on-premise zero-exfiltration segment is uncontested at practice scale. That's a real market gap. The founder's 20-year DBA background is directly relevant — this is a deployment and infrastructure play, not a model play. The EAA™ moat is meaningful: <strong>competitors cannot replicate physical hardware custody without abandoning their cloud business model.</strong> The $750K ask is modest for the TAM. I'm in, subject to diligence on the co-founder search. <span class="cite">Yes — write the check.</span>`, vote:'yes' },
-  inv2: { text: `I've watched HIT companies for 20 years. The timing here is unusually good: OCR enforcement is accelerating, NVIDIA Ada Gen GPUs made local inference viable at sub-$20K, and physician burnout is at historic highs with EHR burden as the cited cause. The two-tranche structure ($375K on close, $375K at 5th paid pilot) is disciplined — it ties capital deployment to commercial validation. Month 11 EBITDA positive is aggressive but not unreasonable against a $300–$600/month recurring SLA per unit. <span class="cite">Conditional — I want to see LOIs converting to pilots before Tranche 2.</span>`, vote:'conditional' },
+  inv2: { text: `I've watched HIT companies for 20 years. The timing here is unusually good: OCR enforcement is accelerating, NVIDIA Ada Gen GPUs made local inference viable at sub-$20K, and physician burnout is at historic highs with EHR burden as the cited cause. The two-tranche structure ($375K on close, $375K at 5th paid pilot) is disciplined — it ties capital deployment to commercial validation. Month 11 EBITDA positive is aggressive but not unreasonable against $950–$2,300/month recurring HaaS revenue per deployed node. A single 24-month Tier 1 contract generates $22,800 in guaranteed MRR — that's the unit economics story. <span class="cite">Conditional — I want to see LOIs converting to pilots before Tranche 2.</span>`, vote:'conditional' },
   inv3: { text: `From a compliance tech perspective, this is the right product at the right regulatory moment. OCR penalties have escalated 400% since 2020. Healthcare organizations are actively searching for solutions that de-risk AI adoption. The EAA™ BAA structure is differentiated — no cloud vendor can offer a BAA scoped exclusively to hardware provisioning. The weak point is execution: the co-founder search needs to close before Series A becomes a conversation. <span class="cite">Conditional yes — strong product, execution risk on the operating side.</span>`, vote:'conditional' },
   med1: { text: `I'm not an investor, but I can tell you whether the product solves a real problem. It does. The 5.9-hour EHR burden is documented. The $68,000 prior auth loss per physician is documented. If this product works as described and saves even 3 of those hours, the ROI is obvious to every practice I know. The market demand is real. Whether the business model scales is for the investors to determine — but the problem is genuine. <span class="cite">From a clinical need standpoint: the investment is justified.</span>`, vote:'yes' },
   med2: { text: `At the health system level, I'd be watching whether this can scale from solo practices to department-level enterprise deployments. The Sentinel Plus tier — up to 4× NVIDIA RTX 6000 Ada GPUs, 256–512GB RAM — suggests the hardware architecture can scale. But enterprise sales cycles are long and require integration credibility. The co-founder search is the right priority. <span class="cite">Conditional — the product is right, the go-to-market needs an operator.</span>`, vote:'conditional' },
@@ -308,7 +320,7 @@ invest: { // Should investors write a pre-seed check?
   law2: { text: `The legal liability angle is compelling as an investment thesis. Raine v. OpenAI established that AI hallucinations in clinical settings carry direct malpractice exposure. Mata v. Avianca resulted in a $110,000 federal sanction. These precedents are creating active demand for AI systems with auditable, citation-grounded outputs. Pocono AI's RAG-with-local-citation architecture directly addresses the hallucination liability problem. That's a product that sells itself to risk-averse professionals. <span class="cite">Yes — invest.</span>`, vote:'yes' },
   law3: { text: `From a legal technology investment standpoint, the dual-market approach (healthcare and legal) is smart. The same compliance need — keeping sensitive data off cloud infrastructure — drives both markets. A law firm with privileged communications and a medical practice with PHI have identical structural requirements. One hardware platform serves both. That's a meaningful TAM expansion story for Series A. <span class="cite">Yes — dual-market play de-risks the healthcare-only concentration.</span>`, vote:'yes' },
   pat1: { text: `I evaluate investments based on impact, not just returns. If this product reduces the administrative burden that drives prior auth delays and physician burnout, it has direct patient benefit. The 29% serious adverse event rate from prior auth delays represents real harm that a better-documented submission system could reduce. I'd want investor commitments tied to patient outcome tracking as part of the pilot data. <span class="cite">Conditional — yes, if pilot data includes patient access metrics.</span>`, vote:'conditional' },
-  pat2: { text: `The patient impact case for this investment is straightforward. Physicians spending 5.9 hours daily on EHR documentation are spending less than 6 hours on patients. Every hour reclaimed is an hour that could go to care. The investment case that matters most to me isn't the CapEx payback model — it's whether the time saved actually reaches patients. If it does, this is worth funding. <span class="cite">Yes — with outcome accountability built into the pilot terms.</span>`, vote:'yes' },
+  pat2: { text: `The patient impact case for this investment is straightforward. Physicians spending 5.9 hours daily on EHR documentation are spending less than 6 hours on patients. Every hour reclaimed is an hour that could go to care. The investment case that matters most to me isn't the unit economics model — it's whether the time saved actually reaches patients. If it does, this is worth funding. <span class="cite">Yes — with outcome accountability built into the pilot terms.</span>`, vote:'yes' },
   pat3: { text: `From a health data privacy standpoint, this is the most defensible AI investment available in healthcare today. Every cloud AI product in this space carries structural privacy risk — the data must leave the building to be processed. Only hardware-custody deployment eliminates that risk by architecture. For investors who care about ESG or patient rights, this is the only category of healthcare AI I'd consider funding. <span class="cite">Strong yes.</span>`, vote:'yes' },
 },
 
@@ -344,8 +356,8 @@ patient: { // Does local AI improve patient safety?
 
 cloud: { // Cloud AI vs. Sentinel Node — honest debate
   inv1: { text: `Investment perspective: cloud wins on time-to-market, features, and per-seat cost at scale. AirgapAI at $697/user perpetual is compelling for workflow automation. But cloud AI's structural problem is the same as its structural advantage — the data leaves the building, which enables continuous model improvement AND creates continuous compliance exposure. For high-liability healthcare and legal markets specifically, that trade-off is increasingly untenable. <span class="cite">Sentinel Node for compliance-first markets. Cloud for everything else.</span>`, vote:'conditional' },
-  inv2: { text: `Nuance DAX (Azure) and Abridge are genuinely excellent products. Their documentation accuracy is best-in-class for ambient capture. But both require PHI to route to vendor infrastructure, and both require EHR integration that takes 12–18 months. For a solo practice, that's a locked door. The Sentinel Node's zero-integration pilot via standard PDF export is a meaningful accessibility advantage for the market that needs this most. <span class="cite">Cloud wins on features. Sentinel wins on accessibility and compliance for the target market.</span>`, vote:'conditional' },
-  inv3: { text: `The compliance argument isn't even close. A Business Associate Agreement assigns liability after a breach. Physical isolation prevents one. These are not equivalent risk mitigation strategies. For any organization where a single OCR violation could be catastrophic — small practice, solo physician, boutique law firm — the Sentinel Node's architecture is the only rational choice. Cloud AI, regardless of compliance certifications, does not eliminate the transmission event. <span class="cite">Sentinel Node for high-liability environments. No debate.</span>`, vote:'yes' },
+  inv2: { text: `Nuance DAX (Azure) and Abridge are genuinely excellent products. Their documentation accuracy is best-in-class for ambient capture. But both require PHI to route to vendor infrastructure, and both require EHR integration that takes 12–18 months. For a solo practice, that's a locked door. The Sentinel Node's zero-integration pilot via standard PDF export — at $950/month, no CapEx — is a meaningful accessibility advantage for the market that needs this most. <span class="cite">Cloud wins on features. Sentinel wins on accessibility, pricing, and compliance for the target market.</span>`, vote:'conditional' },
+  inv3: { text: `The compliance argument isn't even close. A Business Associate Agreement assigns liability after a breach. Physical isolation prevents one. These are not equivalent risk mitigation strategies. For any organization where a single OCR violation could be catastrophic — small practice, solo physician, boutique law firm — the Sentinel Node's HaaS architecture at $950/month is the only rational choice. At that price point, the compliance argument is also the budget argument. Cloud AI, regardless of compliance certifications, does not eliminate the transmission event. <span class="cite">Sentinel Node for high-liability environments. No debate.</span>`, vote:'yes' },
   med1: { text: `Honest clinical assessment: Nuance DAX's ambient documentation is better than what local AI currently offers for real-time transcription. That's a genuine trade-off. But Nuance requires an Epic license and a 12-month integration queue I don't have access to. The Sentinel Node gives me something I can actually deploy in my practice, right now, that eliminates cloud PHI exposure and automates the prior auth workflow that's killing my nurses. Perfect is the enemy of good. <span class="cite">Sentinel Node wins for the practices that need it most and can't wait for enterprise integration.</span>`, vote:'yes' },
   med2: { text: `At health system scale, cloud wins. Nuance DAX, Abridge, and Epic's native AI offer documentation quality and EHR integration depth that a local workstation can't replicate for enterprise workflows. But I'd argue for a hybrid approach: cloud AI for ambient documentation where latency is acceptable and integration is available, Sentinel Node for high-sensitivity departments (oncology, psychiatry, HIV care) where zero-exfiltration is a departmental requirement. <span class="cite">Both have a role. Not a binary choice at enterprise scale.</span>`, vote:'conditional' },
   med3: { text: `The informatics comparison that matters most: grounded vs. ungrounded generation. Every cloud model — Nuance, Abridge, Suki, OpenAI — generates from parametric memory. The model has internalized training data, and it generates from that internalized context, not from your patient's actual records. RAG changes this fundamentally: the model retrieves from your records and generates with that context explicitly present. For clinical decision support, that difference is not academic — it's the difference between a hallucination and a citation. <span class="cite">Sentinel Node architecture wins on patient safety. Cloud wins on ambient transcription. Know which use case you're solving.</span>`, vote:'conditional' },
@@ -369,10 +381,10 @@ const FOLLOWUPS = {
     default: `The PHI exfiltration question is central to the Sentinel Node's value proposition. Cloud AI requires PHI to leave your building for inference to occur. The Sentinel Node runs inference entirely on hardware in your facility. PHI never traverses an outbound network path. That's verifiable by SIEM logs — not a vendor promise, a network topology.`
   },
   roi: {
-    inv1: `The ROI model is unusually tight for a CapEx hardware product. Against $68,000/physician/year in prior auth costs (AMA 2023), and $3,000–$5,000/month in scribe/paralegal costs, the Phase I Sentinel Node at $15,000 CapEx models full payback in under 90 days. The $300/month SLA after payback is a minor ongoing cost against reclaimed physician time. For investors, the unit economics per deployment are compelling.`,
+    inv1: `The HaaS unit economics are unusually clean. Against $68,000/physician/year in prior auth costs (AMA 2023), and $1,500–$2,500/month in scribe costs, the Intro Sentinel Node at $950/month HaaS is cash-flow positive from Month 1. A 24-month contract generates $22,800 in guaranteed MRR per deployed node. For investors, that's a recurring revenue story, not a hardware story — and it commands a premium valuation multiple.`,
     med1: `The ROI for my practice specifically: 13 hours per week on prior authorizations per AMA data, at an average staff cost I'd put at $25/hour. That's $325/week, $16,900/year, just in staff time — before considering physician time. If the Sentinel Node reclaims even half of that by getting submissions right the first time, the Phase I unit pays for itself before the 60-day POV is over.`,
-    inv2: `The ROI case for legal practices mirrors healthcare. Discovery document review at $150–$400/hour associate billing time is the equivalent of physician EHR burden. A local RAG system that ingests case files and returns cited answers in under a second replaces hours of associate document review per matter. The math favors CapEx over per-seat subscription at any volume above a few matters per month.`,
-    default: `ROI is modeled at under 90 days against scribe/paralegal costs of $3,000–$5,000/month. The AMA's documented $68,000/physician/year in prior auth costs creates additional upside. The $300/month SLA is the ongoing cost after payback. Against recurring subscription alternatives, the CapEx model creates long-term cost stability.`
+    inv2: `The ROI case for legal practices mirrors healthcare. Discovery document review at $150–$400/hour associate billing time is the equivalent of physician EHR burden. A local RAG system that ingests case files and returns cited answers in under a second replaces hours of associate document review per matter. At $950–$1,150/month HaaS, the math favors the Sentinel Node over per-seat cloud subscriptions from the first matter billed.`,
+    default: `ROI is Day-1 positive vs. scribe/paralegal costs of $1,500–$2,500/month. The AMA's documented $68,000/physician/year in prior auth costs creates additional upside. The all-inclusive HaaS rate ($950–$2,300/month depending on tier) is the only ongoing cost — hardware, software, KYHD SLA, all bundled. Against recurring cloud subscriptions, the HaaS model creates predictable, capped OpEx.`
   },
   hipaa: {
     law1: `HIPAA compliance has two mechanisms: process and architecture. BAA-covered cloud AI is process compliance — you have a legal document that assigns liability if something goes wrong. EAA™ deployment is architectural compliance — PHI never leaves your control, so there's nothing to breach. An OCR auditor asking "can you demonstrate that PHI never left your network?" gets a yes with network logs from an EAA™ deployment. That question cannot be answered with a BAA.`,
@@ -429,10 +441,10 @@ const FOLLOWUPS = {
     default: `Physician burnout: 63% prevalence (APA 2023), EHR burden cited as the primary cause. 5.9 hours/day in administrative tasks is the documented mechanism. The Sentinel Node addresses chart prep and prior auth automation — the two highest-volume administrative burdens. Burnout reduction is the upstream value of workflow efficiency.`
   },
   open_weight: {
-    law3: `Open-weight model strategy: Apache 2.0 and MIT licensed models (Llama, Gemma, Mistral) create no vendor dependency. Once deployed, they're the client's indefinitely — no deprecation risk, no license renewal, no API price change as usage scales. The $300/month SLA covers managed updates, not model licensing. That's long-term cost stability no SaaS alternative can match.`,
+    law3: `Open-weight model strategy: Apache 2.0 and MIT licensed models (Llama, Gemma, Mistral) create no vendor dependency. Once deployed, they're the client's indefinitely — no deprecation risk, no license renewal, no API price change as usage scales. The all-inclusive HaaS monthly fee covers managed updates, model upgrades, and hardware maintenance — not just model licensing. That's long-term cost stability no SaaS alternative can match.`,
     med3: `Open-weight models for clinical RAG are inspectable, auditable, and configurable. A covered entity can review what the model was trained on, apply fine-tuning for clinical terminology, and verify no PHI was embedded in the weights. Cloud model weights are opaque — covered entities must trust vendor attestation. Open-weight deployment is the only architecture where the AI itself is fully auditable.`,
     inv1: `The open-weight model strategy is the moat that makes the business sustainable long-term. Competitors relying on proprietary cloud models face license dependency, pricing changes, and deprecation risk. Pocono AI's deployment of Apache 2.0 and MIT licensed models means core AI capability is commoditized and free — the value is in the deployment infrastructure, the RAG pipeline, and the compliance architecture. That is a durable competitive position.`,
-    default: `Open-weight models (Llama, Gemma, Mistral): Apache 2.0 and MIT licensed. Once deployed, they are indefinitely yours — no deprecation, no renewal, no pricing change. The SLA covers managed updates. The open-weight strategy is the long-term cost stability argument that makes the CapEx model financially superior to any recurring subscription alternative.`
+    default: `Open-weight models (Llama, Gemma, Mistral): Apache 2.0 and MIT licensed. Once deployed, they are indefinitely yours — no deprecation, no renewal, no pricing change. The monthly HaaS fee covers managed updates. The open-weight strategy is the long-term cost stability argument that makes the HaaS model financially superior to any recurring cloud subscription alternative.`
   },
   series_a: {
     inv1: `Series A readiness requires three things the pre-seed must deliver: a paying pilot with documented ROI data, a named co-founder with operating experience, and at minimum one letter of intent from a second institutional pilot. The 60-day POV structure generates the ROI data. The co-founder search is the critical path. NIH SBIR Phase I funding would de-risk R&D and add credibility to the institutional investor pitch.`,
@@ -446,6 +458,14 @@ const FOLLOWUPS = {
     inv1: `HRSA documented 60 million Americans in rural health professional shortage areas, served almost exclusively by independent practices — the exact Sentinel Node target market. The zero-EHR-integration deployment path is specifically suited to rural practice resource constraints. Rural health is not a niche. It is the core independent practice market.`,
     default: `Rural health access: 60 million Americans in shortage areas (HRSA 2023), served by independent practices that cannot access enterprise AI alternatives. The Sentinel Node's zero-integration deployment is specifically suited to rural resource constraints. Prior auth automation in rural practice is a care access equity intervention, not just a billing efficiency.`
   },
+  haas_model: {
+    inv1: `The HaaS pivot is the inflection point for Pocono AI's investment thesis. Under the old CapEx model, the business recognized $15,000 in revenue once and then waited for the next sale. Under HaaS, a single Tier 1 deployment generates $22,800 in guaranteed 24-month MRR — and that contract renews. For a VC, MRR commands 8–12× revenue multiples at exit versus 2–4× for hardware sales. The pivot doesn't just change the cash flow profile; it changes the exit story entirely.`,
+    inv2: `HaaS changes the unit economics conversation in every investor meeting. Instead of defending a $15K–$30K price tag to a risk-averse physician practice manager, you're asking: "Is $950/month less than what you're paying your remote scribe?" The answer is almost always yes. The barrier to first deployment drops from a board-level CapEx approval to a single-line operating expense. That's a sales velocity multiplier, not just a pricing change.`,
+    inv3: `From a compliance technology investment standpoint, HaaS also solves the hardware obsolescence objection. Under CapEx, a client who buys a $17,999 server is worried it'll be outdated in 3 years. Under HaaS, Pocono AI retains ownership — hardware refresh is Pocono AI's responsibility, not the client's. That shifts the risk to the party best positioned to manage it, and it removes the single biggest objection from the client-side evaluation.`,
+    med1: `As a physician practice owner, HaaS is how I think about every major service in my office. I don't own my EHR — I pay a monthly subscription. I don't own my phone system — I pay a monthly fee. The idea that I'd buy a $17,999 server for AI felt like a different category of decision. At $950 a month, it feels like every other operating expense I approve without calling a meeting. That's not a trivial psychological shift — it's the difference between a pilot that happens in Q2 and one that gets pushed to next year's budget cycle.`,
+    law2: `For a solo litigation attorney, the HaaS model is the only version of this product I'd realistically sign. A $15,000 hardware purchase requires a capital allocation conversation with my accountant and a signed asset on my books. A $950/month operating expense is the same conversation I have about my Westlaw subscription. One requires a business case. The other just requires a credit card.`,
+    default: `HaaS vs. CapEx: the pivot makes the Sentinel Node accessible to independent practices as a monthly operating expense rather than a capital allocation decision. At $950–$2,300/month all-inclusive, the product competes on a different budget line — operations, not capital — which is where independent practices and solo attorneys actually make purchasing decisions. Pocono AI retains hardware ownership and captures depreciation benefits while building MRR.`
+  },
   malpractice: {
     law2: `Malpractice exposure from cloud AI hallucinations has been definitively addressed by two precedents: Raine v. OpenAI (2024) establishing clinical AI liability, and Mata v. Avianca ($110,000 federal sanctions for hallucinated legal citations). The Sentinel Node's RAG citation architecture creates a verifiable clinical process — every output cites its source, every source is checkable before action. That citation trail is the malpractice defense record.`,
     med3: `Clinical AI malpractice exposure: a cloud model generating from parametric memory can produce a confident, authoritative clinical error with no inherent correction mechanism. A RAG output cites the retrieved document chunk — the clinician sees the source alongside the generation and can verify accuracy before proceeding. Human-in-the-Loop protocol with citation verification is the documented defense standard.`,
@@ -453,6 +473,88 @@ const FOLLOWUPS = {
     default: `Malpractice and AI: Raine v. OpenAI (2024) established clinical AI hallucination liability. Mata v. Avianca resulted in $110,000 federal sanctions. The Sentinel Node's local RAG citation architecture — every output cites a retrieved source document — creates the verifiable clinical process that constitutes a malpractice defense. Cloud AI's parametric memory generation has no equivalent mechanism.`
   }
 };
+
+// ── RESPONSE VARIANT SYSTEM ──
+// Each followup topic can have multiple response framings per panelist.
+// The engine picks a variant based on how many times this panelist has been asked.
+const ASK_COUNT = {};
+
+function getVariantResponse(pid, topic, panelist) {
+  const topicBank = FOLLOWUPS[topic] || {};
+  const key = pid + '_' + topic;
+  const count = ASK_COUNT[key] || 0;
+  ASK_COUNT[key] = count + 1;
+
+  // Try panelist-specific first, then type, then default
+  let responses = topicBank[pid] || topicBank[panelist.type] || topicBank['default'];
+  if (!responses) return `${panelist.name} notes this warrants deeper review. Refer to Pocono AI's research hub for detailed analysis.`;
+
+  // If it's an array, cycle through variants
+  if (Array.isArray(responses)) {
+    return responses[count % responses.length];
+  }
+  // Legacy string format — return as-is
+  return responses;
+}
+
+// ── CROSS-PANELIST REACTION SYSTEM ──
+// After a follow-up, a random second panelist offers a brief reaction
+const REACTIONS = {
+  phi: [
+    { id:'law1', text:'Catherine Walsh interjects: <em>"The network topology point is the legally decisive one. You can't argue with a SIEM log. You can argue with a contract."</em>' },
+    { id:'pat3', text:'Dr. Naomi Freed adds: <em>"From a patient rights perspective — zero transmission isn't just a compliance posture. It's the only architecture consistent with what patients actually consented to."</em>' },
+    { id:'med3', text:'Dr. Rahul Patel: <em>"Informaticists call this 'provenance by design' — you don't just claim the data stayed local, you can demonstrate it by examining the network traffic log. No cloud system can offer that."</em>' },
+  ],
+  roi: [
+    { id:'med1', text:'Dr. James Kowalski: <em>"The $950/month number is the one that landed for me. I sign off on that every month without a meeting. A $15K capital purchase? That's a different conversation entirely."</em>' },
+    { id:'inv1', text:'Alexandra Chen: <em>"The 24-month MRR math is what changes the Series A story. $22,800 guaranteed per Tier 1 node isn't a hardware sale — it's a subscription. Those get valued very differently."</em>' },
+    { id:'law2', text:'Marcus Reed: <em>"For a solo attorney, the ROI isn't about payback periods. It's about whether I can win more complex matters faster. If I can review a 500-page medical record in 10 minutes instead of a day, that's billable hours recovered."</em>' },
+  ],
+  hipaa: [
+    { id:'inv3', text:'Priya Nair: <em>"The distinction between 'BAA compliance' and 'architectural compliance' is the one that every healthcare AI board presentation gets wrong. BAA is liability assignment. EAA™ is risk elimination. Those are not the same sentence."</em>' },
+    { id:'med3', text:'Dr. Rahul Patel: <em>"Audit trail custody is the piece that doesn't get enough attention. Your logs live on your hardware. You produce them to the OCR auditor. No subpoena to a cloud vendor. No waiting."</em>' },
+    { id:'pat1', text:'Rosa Delgado: <em>"HIPAA was written to protect patients. The EAA™ model is the first AI architecture I've seen that actually delivers on that promise rather than using compliance language as marketing."</em>' },
+  ],
+  haas_model: [
+    { id:'inv2', text:'David Merritt: <em>"I've seen this pivot work in medical devices, in diagnostics equipment, in lab instrumentation. The moment you move from CapEx to OpEx, the sales conversation changes — you're talking to a different budget holder, with a different approval threshold."</em>' },
+    { id:'med1', text:'Dr. James Kowalski: <em>"$950 a month. That's it. I literally don't have to call anyone. That's a different decision than the one I was making before."</em>' },
+    { id:'law2', text:'Marcus Reed: <em>"The OpEx frame is how legal technology has always sold. We don't buy Westlaw. We subscribe to it. The Sentinel Node finally fits that mental model."</em>' },
+  ],
+  hallucination: [
+    { id:'law2', text:'Marcus Reed: <em>"Mata v. Avianca didn't just cost $110,000. It cost the attorneys their reputation in that court. The reputational cost is what drives the behavior change — not the fine."</em>' },
+    { id:'med1', text:'Dr. James Kowalski: <em>"A hallucinated allergy in a clinical note is not a theoretical risk. It's a patient in the ER getting a drug they're allergic to because someone trusted the AI. RAG grounding is not optional for clinical use."</em>' },
+    { id:'inv3', text:'Priya Nair: <em>"Insurance underwriters are starting to ask: was AI used in this decision, and can you prove the output was grounded in verified records? That question alone is driving the compliance tech market."</em>' },
+  ],
+  prior_auth: [
+    { id:'pat2', text:'Thomas Wilder: <em>"I've been denied coverage three times in the last two years for treatments my doctor ordered. Two of those were overturned on appeal. The third one — I just couldn't fight it anymore. That's the human cost of a 13-hour-per-week administrative burden."</em>' },
+    { id:'inv1', text:'Alexandra Chen: <em>"90 million prior auth requests per year in the US. Even a 10% reduction in first-attempt denials is an enormous economic and patient safety impact. That's not a niche workflow — that's the core healthcare administrative problem."</em>' },
+    { id:'law1', text:'Catherine Walsh: <em>"The legal liability angle on prior auth is underappreciated. A denial that leads to a serious adverse event, when the submission was demonstrably incomplete, creates exposure for the practice as well as the insurer. Complete submissions are a liability reduction strategy."</em>' },
+  ],
+  burnout: [
+    { id:'med1', text:'Dr. James Kowalski (quietly): <em>"I've written two resignation letters in the past three years. Never submitted them. But I wrote them. That's the state of rural family medicine right now. Administrative load is the reason."</em>' },
+    { id:'pat2', text:'Thomas Wilder: <em>"When my doctor is burned out, I get less of her. Less attention, less time, less of the clinical judgment I need. Physician wellness is patient care — those aren't separate."</em>' },
+    { id:'inv2', text:'David Merritt: <em>"Burnout-driven departure costs $500K–$1M in recruitment and onboarding for a rural practice. The Sentinel Node's ROI denominator isn't just scribe costs — it's physician retention."</em>' },
+  ],
+  competitor: [
+    { id:'inv1', text:'Alexandra Chen: <em>"AirgapAI's 'air gap' is a behavioral commitment by their employees. Pocono AI's air gap is a physical network topology. To a compliance officer, those are categorically different things."</em>' },
+    { id:'law3', text:'Ingrid Svensson: <em>"The Clio vs. Sentinel Node comparison isn't really a technology comparison — it's a risk posture comparison. Clio is efficient. The Sentinel Node is defensible. For sensitive matters, defensibility wins."</em>' },
+    { id:'med2', text:'Dr. Sandra Obi: <em>"At health system scale, Nuance DAX wins on integration depth. But for the 3-physician practice in this room, Nuance is a 12-month IT queue they don't have. That's not a competition — it's a different market."</em>' },
+  ],
+  malpractice: [
+    { id:'law2', text:'Marcus Reed: <em>"The citation chain is the malpractice defense record. If the Sentinel Node output says 'based on chart note dated March 12', and that note exists in the record, you have a defensible clinical process. Cloud AI has no equivalent output format."</em>' },
+    { id:'med3', text:'Dr. Rahul Patel: <em>"Human-in-the-Loop protocol with citation verification is not bureaucracy — it's the documented workflow that separates 'AI-assisted care' from 'AI-decided care' in front of a jury."</em>' },
+    { id:'inv2', text:'David Merritt: <em>"The insurance dynamic is the sleeper issue. When malpractice carriers start issuing premium discounts for citation-grounded AI use — and they will — the ROI calculation changes overnight."</em>' },
+  ],
+  ehr: [
+    { id:'med1', text:'Dr. James Kowalski: <em>"'Pajama time' is real. I finished last night's notes at 11pm. That's the hidden cost that doesn't show up in the ROI model — it shows up in burnout statistics."</em>' },
+    { id:'pat2', text:'Thomas Wilder: <em>"Every hour my doctor spends on documentation is an hour she's not in the room. That's not abstract — I've had 8-minute appointments because the chart prep ran long. The EHR burden affects patients directly."</em>' },
+    { id:'inv1', text:'Alexandra Chen: <em>"5.9 hours per day is 44% of the working day. If the Sentinel Node reclaims 2 of those hours, that's a 34% productivity improvement. Against a $950/month OpEx, that's the strongest ROI argument in the product."</em>' },
+  ],
+};
+
+// ── CONVERSATION THREAD TRACKER ──
+// Tracks which panelists have spoken in follow-ups for context threading
+const CONVERSATION_THREAD = [];
 
 // ── STATE ──
 let state = {
@@ -639,7 +741,7 @@ async function runPanel() {
   btnAsk.disabled = false;
 }
 
-// ── FOLLOW-UP ──
+// ── FOLLOW-UP (EXPANDED — variant responses + cross-panelist reactions) ──
 async function askFollowup() {
   const pid = $('q-panelist').value;
   const topic = $('q-topic').value;
@@ -650,27 +752,53 @@ async function askFollowup() {
 
   btnAsk.disabled = true;
 
-  // Get response: try panelist-specific, then type-default, then topic default
-  const topicBank = FOLLOWUPS[topic] || {};
-  const response = topicBank[pid] || topicBank[panelist.type] || topicBank['default'] || `${panelist.name} notes this is an important consideration for the deployment decision. Refer to Pocono AI's research hub for detailed analysis.`;
-
-  // Heading bubble
+  // Thread separator
   const sep = document.createElement('div');
   sep.style.cssText = 'text-align:center;padding:10px 0 14px;border-top:1px solid rgba(255,255,255,0.05);margin-top:6px;color:var(--muted);font-size:0.76em;';
-  sep.innerHTML = `↩ Follow-up to <strong style="color:var(--white)">${panelist.name}</strong>`;
+  const topicLabel = ($('q-topic').options[$('q-topic').selectedIndex] || {}).text || topic;
+  sep.innerHTML = `↩ <strong style="color:var(--white)">${panelist.name}</strong> on <em style="color:var(--teal)">${topicLabel}</em>`;
   body.appendChild(sep);
 
   const card = document.getElementById('card-' + pid);
   if (card) card.classList.add('active-speaker');
-  status.textContent = panelist.name + ' is responding…';
+  status.textContent = panelist.name + ' is formulating a response…';
 
   addTyping(panelist);
-  await delay(state.speed + 200);
+  await delay(state.speed + 300);
   removeTyping(pid);
+
+  // Get variant response (cycles on repeated asks)
+  const response = getVariantResponse(pid, topic, panelist);
   addSpeech(panelist, response);
   if (card) card.classList.remove('active-speaker');
 
-  status.textContent = 'Follow-up complete';
+  // Track conversation
+  CONVERSATION_THREAD.push({ pid, topic });
+
+  // 55% chance of a cross-panelist reaction (after 1st followup)
+  const reactions = REACTIONS[topic];
+  if (reactions && Math.random() < 0.55) {
+    await delay(state.speed * 0.8);
+
+    // Pick a reactor who hasn't just spoken
+    const eligible = reactions.filter(r => r.id !== pid);
+    if (eligible.length > 0) {
+      const reaction = eligible[Math.floor(Math.random() * eligible.length)];
+      const reactor = PANELISTS.find(p => p.id === reaction.id);
+      if (reactor) {
+        const rcard = document.getElementById('card-' + reaction.id);
+        if (rcard) rcard.classList.add('active-speaker');
+        status.textContent = reactor.name + ' reacts…';
+        addTyping(reactor);
+        await delay(Math.round(state.speed * 0.6));
+        removeTyping(reaction.id);
+        addSpeech(reactor, reaction.text);
+        if (rcard) rcard.classList.remove('active-speaker');
+      }
+    }
+  }
+
+  status.textContent = 'Ready for next question';
   btnAsk.disabled = false;
 }
 
@@ -679,6 +807,9 @@ function resetSim() {
   state.running = false;
   state.convened = false;
   state.panelists = PANELISTS.map(p => ({ ...p, vote: null }));
+  // Reset conversation state
+  Object.keys(ASK_COUNT).forEach(k => delete ASK_COUNT[k]);
+  CONVERSATION_THREAD.length = 0;
   body.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:200px;flex-direction:column;gap:12px;color:var(--muted);text-align:center;padding:20px;"><span style="font-size:2em;">⚖</span><span style="font-size:0.9em;line-height:1.75;">Choose a scenario and click <strong style="color:var(--white)">Convene Panel</strong>.<br>12 experts will deliberate in sequence, then vote.</span></div>`;
   status.textContent = 'Awaiting convening…';
   vFinal.className = 'verdict-final';
