@@ -295,6 +295,88 @@
                     <a href="about.html">About the Founder</a>
                     <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                 </div>
+                </li>
+            </ul>
+        </nav>
+    
+    </header>
+
+<main id="main-content">
+
+    <section class="sim-hero">
+        <span class="sim-eyebrow">Live Deliberation Engine · Pocono AI v66 · 8 Scenarios · 16 Topics</span>
+        <h1>The 12-Panel Convening</h1>
+        <p>Investors, physicians, attorneys, and patient advocates deliberate sovereign AI deployment. Every position is grounded in peer-reviewed research published on this site.</p>
+        <span class="offline-badge">✓ Zero cloud calls — fully offline deliberation engine</span>
+    </section>
+
+        <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+            <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+            <div class="trust-badges-row">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+            </div>
+        </section>
+
+
+    <div id="sim-app">
+        <p style="color:var(--muted);font-size:0.8em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:10px;">Choose a deliberation scenario:</p>
+        <div class="scenario-bar" id="scenario-bar" role="tablist" aria-label="Deliberation scenarios" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;">
+            <button type="button" class="scenario-btn" role="tab" data-scenario="deploy" aria-pressed="true">🏥 Solo Practice</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="invest" aria-pressed="false">💰 Investment Decision</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="legal" aria-pressed="false">⚖ Law Firm Adoption</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="patient" aria-pressed="false">🛡 Patient Safety</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="cloud" aria-pressed="false">☁ Cloud vs. Local</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="burnout" aria-pressed="false">🔥 Burnout Crisis</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="hipaa_breach" aria-pressed="false">🚨 Post-Breach Audit</button>
+            <button type="button" class="scenario-btn" role="tab" data-scenario="rural" aria-pressed="false">🌾 Rural Health</button>
+        </div>
+        <div class="scenario-desc" id="scenario-desc" aria-live="polite">
+            <h3><span class="scenario-icon">🏥</span> Scenario: Solo Practice Deployment Decision</h3>
+            <p>A 3-physician family medicine practice in rural Pennsylvania. Currently on Epic with Nuance DAX. Spending 5.9 hours/day in EHR. Losing $68,000/physician/year to prior authorization processing. Capital available. Should they deploy the Sentinel Node?</p>
+        </div>
+
+        <div class="verdict-board">
+            <div class="verdict-title">Panel Verdict Board</div>
+            <div class="vote-tally">
+                <div class="tally-item"><span class="tally-num tally-yes" id="tally-yes">0</span><span class="tally-lbl">Deploy</span></div>
+                <div class="tally-item"><span class="tally-num tally-cond" id="tally-cond">0</span><span class="tally-lbl">Conditional</span></div>
+                <div class="tally-item"><span class="tally-num tally-no" id="tally-no">0</span><span class="tally-lbl">Not Yet</span></div>
+                <div class="tally-item"><span class="tally-num tally-pending" id="tally-pending">12</span><span class="tally-lbl">Pending</span></div>
+            </div>
+            <div class="vote-bar-wrap">
+                <div class="vote-bar-yes" id="bar-yes" style="width:0%"></div>
+                <div class="vote-bar-cond" id="bar-cond" style="width:0%"></div>
+                <div class="vote-bar-no" id="bar-no" style="width:0%"></div>
+            </div>
+            <div class="verdict-final" id="verdict-final" aria-live="polite"></div>
+        </div>
+
+        <div class="panel-grid" id="panel-grid"></div>
+
+        <div class="sim-controls" id="sim-controls">
+            <button type="button" class="sim-btn sim-btn-primary" id="btn-run" aria-live="polite">▶ Convene Panel</button>
+            <button type="button" class="sim-btn sim-btn-secondary" id="btn-reset">↺ Reset</button>
+            <div class="speed-toggle" role="group" aria-label="Playback speed">
+                <span class="speed-label">Speed:</span>
+                <button type="button" class="speed-opt" data-speed="800" aria-pressed="false">1×</button>
+                <button type="button" class="speed-opt" data-speed="400" aria-pressed="true">2×</button>
+                <button type="button" class="speed-opt" data-speed="150" aria-pressed="false">3×</button>
+            </div>
+        </div>
+
+        <div class="chamber">
+            <div class="chamber-header">
+                <span class="chamber-title">Deliberation Chamber</span>
+                <span class="chamber-status" id="chamber-status" aria-live="polite">Awaiting convening…</span>
+            </div>
+            <div class="chamber-body" id="chamber-body" aria-live="polite" aria-relevant="additions">
+                <div class="chamber-empty" id="chamber-empty">
+                    <span style="font-size:2em;">⚖</span>
+                    <span style="font-size:0.9em;line-height:1.75;">Choose a scenario and tap <strong style="color:var(--white);">Convene Panel</strong>.<br>12 experts will deliberate in sequence, then vote.</span>
+                </div>
             </div>
         </div>
 
@@ -395,17 +477,6 @@
     <p class="tco-foot">Intro Sentinel Node @ $950/mo HaaS · CapEx model: $17,999 hardware + $300/mo support over 36 months · AMA 2023 prior-auth data · Not a guarantee of financial return. <a href="pricing.html">See full HaaS pricing &rarr;</a></p>
   </div>
 </section>
-
-        <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
-            <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
-            <div class="trust-badges-row">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
-            </div>
-        </section>
-
 
 <script>
 /* ================================================================

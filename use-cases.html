@@ -1,349 +1,532 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v58 -->
+<html lang="en"><!-- Pocono AI v73 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Four vetted AI workflows for independent medical and legal practices: family medicine, neurology, behavioral health/psychiatry, and solo law. Local AI. Zero cloud.">
-    <title>Use Cases | Time Reclamation | Pocono AI, LLC</title>
-
-    <meta property="og:title" content="Use Cases | Time Reclamation | Pocono AI, LLC">
-    <meta property="og:description" content="Three vetted workflows where the Sentinel Node reclaims hours daily for physicians and attorneys.">
+    <meta name="description" content="Real use cases for the Sentinel Node — what physicians and attorneys actually query, how the system responds, and what time is reclaimed. No demos. No stock photos. Real workflows.">
+    <title>Use Cases | Pocono AI, LLC</title>
+    <meta property="og:title" content="Sentinel Node Use Cases — What It Actually Does, Daily">
+    <meta property="og:description" content="Prior auth packet assembly in 12 minutes. Chart summarization in seconds. Case file review without privilege risk. Real use cases from real workflows.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
     <meta property="og:url" content="https://poconoai.com/use-cases.html">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
-
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta name="theme-color" content="#051622">
-    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
-
-    <!-- Shared stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    <!-- SEO: Canonical URL + XML Sitemap reference -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/use-cases.html">
-    <!-- Open Graph: ensures social sharing pulls correct page -->
-    <meta property="og:url" content="https://poconoai.com/use-cases.html">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Pocono AI, LLC",
-      "url": "https://poconoai.com",
-      "logo": "https://poconoai.com/logo-icon.svg",
-      "description": "Sovereign, on-premises local AI infrastructure for healthcare and legal professionals. Zero data exfiltration. Hardware-custody deployment.",
-      "foundingDate": "2024",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "East Stroudsburg",
-        "addressRegion": "PA",
-        "addressCountry": "US"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-570-534-0602",
-        "contactType": "sales",
-        "email": "marcus@poconoai.com"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/pocono-ai"
-      ]
-    }
-    </script>
+    <style>
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .use-case-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+
+        .use-case-card.medical::before { background: var(--teal); }
+        .use-case-card.legal::before   { background: var(--ai-blue); }
+        .use-case-card.admin::before   { background: #A78BFA; }
+
+        .use-case-type {
+            font-size: 0.68em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 10px;
+        }
+
+        .use-case-card.medical .use-case-type { color: var(--teal); }
+        .use-case-card.legal .use-case-type   { color: var(--ai-blue); }
+        .use-case-card.admin .use-case-type   { color: #A78BFA; }
+
+        .use-case-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05em;
+            font-weight: 800;
+            color: var(--white);
+            margin: 0 0 12px;
+            line-height: 1.35;
+        }
+
+        .query-box {
+            background: rgba(0,0,0,0.3);
+            border-left: 3px solid rgba(255,255,255,0.15);
+            border-radius: 0 6px 6px 0;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            font-size: 0.82em;
+            color: var(--light-text);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .query-box strong {
+            color: var(--muted);
+            font-style: normal;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .response-box {
+            background: rgba(24,139,150,0.07);
+            border-left: 3px solid var(--teal);
+            border-radius: 0 6px 6px 0;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            font-size: 0.82em;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .response-box strong {
+            color: var(--teal);
+            font-style: normal;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .use-case-card.legal .response-box {
+            border-left-color: var(--ai-blue);
+            background: rgba(59,130,246,0.07);
+        }
+
+        .use-case-card.legal .response-box strong { color: var(--ai-blue); }
+
+        .use-case-card.admin .response-box {
+            border-left-color: #A78BFA;
+            background: rgba(167,139,250,0.07);
+        }
+
+        .use-case-card.admin .response-box strong { color: #A78BFA; }
+
+        .use-case-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .use-case-stat {
+            font-size: 0.75em;
+            color: var(--muted);
+        }
+
+        .use-case-stat strong {
+            color: var(--white);
+            font-size: 1.05em;
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+        }
+
+        .phi-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.68em;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: rgba(5,150,105,0.15);
+            color: #34D399;
+            margin-top: 10px;
+        }
+
+        .section-divider {
+            max-width: 1060px;
+            margin: 48px auto 24px;
+            padding: 0 4%;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-divider h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1em;
+            font-weight: 800;
+            color: var(--white);
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.07);
+        }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
-                        <header>
-        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="nav-menu" aria-label="Main navigation">
-            <ul class="nav-links">
-                <li class="nav-home-always"><a href="index.html">Home</a></li>
-                <li><a href="for-physicians.html">For Physicians</a></li>
-                <li><a href="for-attorneys.html">For Attorneys</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
-                        More <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="solutions.html">Solutions Overview</a>
-                        <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="research.html">Research Hub</a>
-                        <a href="about.html">About the Founder</a>
-                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="about.html">About the Founder</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <main id="main-content">
+<main id="main-content">
 
-        <section class="hero">
-            <h1>Time Reclamation <span>in Practice</span></h1>
-            <p>Four vetted workflows where the Sentinel Node™ reclaims hours daily.</p>
-        </section>
+    <section class="hero-section">
+        <span class="hero-tagline">Sentinel Node™ &middot; Real Workflows</span>
+        <h1>What It Actually Does, Every Day</h1>
+        <p class="hero-plain">Not a demo. Not a best-case scenario. These are the specific queries physicians, attorneys, and their staff run daily — and what the Sentinel Node returns, locally, without a single byte leaving the building.</p>
+        <div class="hero-ctas">
+            <a href="for-physicians.html" class="cta-button">For Physicians</a>
+            <a href="for-attorneys.html" class="cta-button cta-button-light">For Attorneys</a>
+        </div>
+    </section>
 
-        <!-- USE CASE 1 -->
-        <section class="use-case-card">
-            <div class="case-header">
-                <div>
-                    <span class="case-num">Use Case 1</span>
-                    <h2 class="case-title">Family Medicine Physician</h2>
-                </div>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-box"><span class="stat-val">5.9 hrs</span><span class="stat-lbl">Daily EHR Baseline</span></div>
-                <div class="stat-box"><span class="stat-val">44%</span><span class="stat-lbl">Clerical Task Load</span></div>
-                <div class="stat-box"><span class="stat-val">Zero</span><span class="stat-lbl">Pajama Time Goal</span></div>
-            </div>
-            <div class="timeline-item">
-                <span class="time-label">8:00 AM - Chart Prep</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>Review 20 charts manually. 45-60 mins.</div>
-                    <div class="after"><span class="label">With Sentinel</span>Auto-generated overnight summaries. 5 min review.</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <span class="time-label">1:00 PM - Inbox &amp; Refills</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>30-50 messages. 60 mins over lunch.</div>
-                    <div class="after"><span class="label">With Sentinel</span>Triage &amp; pre-drafted refills. 15 min review.</div>
-                </div>
-            </div>
-            <div class="reclaimed">Target: 4 to 5 hours per day redirected to patient care. Measuring in active pilot deployments — results published with partner permission.</div>
-            <div class="pilot-box">
-                <h3>Paid Proof-of-Value — Recruiting Now</h3>
-                <p>We are recruiting regional family medicine practices for a structured 60-Day Paid Proof-of-Value engagement ($5,000 + hardware cost). POV participants will measure minutes saved per chart, retrieval accuracy, and zero-exfiltration via customer-run packet capture. Results published only with written permission. POV fee applied in full to long-term SLA upon conversion.</p>
-            </div>
-        </section>
+    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+        <div class="trust-badges-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+        </div>
+    </section>
 
-        <!-- USE CASE 2 -->
-        <section class="use-case-card">
-            <div class="case-header">
-                <div>
-                    <span class="case-num">Use Case 2</span>
-                    <h2 class="case-title">Neurology Practice Assistant</h2>
-                </div>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-box"><span class="stat-val">36 hrs</span><span class="stat-lbl">Weekly Admin Load</span></div>
-                <div class="stat-box"><span class="stat-val">49%</span><span class="stat-lbl">Manual Data Entry</span></div>
-                <div class="stat-box"><span class="stat-val">70%</span><span class="stat-lbl">Prep Reduction</span></div>
-            </div>
-            <div class="timeline-item">
-                <span class="time-label">9:00 AM - Referral Intake</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>Manual fax entry. 20 mins per referral.</div>
-                    <div class="after"><span class="label">With Sentinel</span>OCR extraction &amp; auto-population. 3 min verification.</div>
-                </div>
-            </div>
-            <div class="reclaimed">Target: 3 hours of daily chart prep reduced to under 1 hour. Workflow timing measured against standard 20-chart morning prep rounds.</div>
-            <div class="pilot-box">
-                <h3>Paid Proof-of-Value — Recruiting Now</h3>
-                <p>We are recruiting neurology practices for a structured 60-Day Paid Proof-of-Value engagement ($5,000 + hardware cost). POV participants will measure time per referral, data entry accuracy, and local-only processing verification. Results published only with written permission. POV fee applied in full to long-term SLA upon conversion.</p>
-            </div>
-        </section>
+    <!-- MEDICAL USE CASES -->
+    <div class="section-divider"><h2>&#x2695;&#xfe0f; Independent Medical Practices</h2></div>
 
-        <!-- USE CASE 3 -->
-        <section class="use-case-card" style="border-top-color: var(--ai-blue);">
-            <div class="case-header">
-                <div>
-                    <span class="case-num">Use Case 3</span>
-                    <h2 class="case-title">Solo Law Practice Partner</h2>
-                </div>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-box"><span class="stat-val">2.3 hrs</span><span class="stat-lbl">Avg. Daily Billable</span></div>
-                <div class="stat-box"><span class="stat-val">40%</span><span class="stat-lbl">Non-Practice Tasks</span></div>
-                <div class="stat-box"><span class="stat-val">2/3</span><span class="stat-lbl">Review Reduction</span></div>
-            </div>
-            <div class="timeline-item">
-                <span class="time-label">10:00 AM - Discovery Review</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>Manual 400-page review. 4-5 hours.</div>
-                    <div class="after"><span class="label">With Sentinel</span>Local extraction of timelines. 12 minutes.</div>
-                </div>
-            </div>
-            <div class="reclaimed">Target: 15 to 18 hours per week converted to billable time. Modeled against Bloomberg Law's 2.9/8 billable hour baseline — measuring actual output with pilot law firms.</div>
-            <div class="pilot-box">
-                <h3>Paid Proof-of-Value — Recruiting Now</h3>
-                <p>We are recruiting solo law practices for a structured 60-Day Paid Proof-of-Value engagement ($5,000 + hardware cost). POV participants will measure review time reduction, citation accuracy, and local data containment. Results published only with written permission. POV fee applied in full to long-term SLA upon conversion.</p>
-            </div>
-        </section>
+    <div class="use-case-grid">
 
-
-        <!-- USE CASE 4: BEHAVIORAL HEALTH / PSYCHIATRY — rec from Dr. Osei (Psychiatrist panelist) -->
-        <section class="use-case-card" style="border-top-color: #A78BFA;" id="behavioral-health">
-            <div class="case-header">
-                <div>
-                    <span class="case-num">Use Case 4</span>
-                    <h2 class="case-title">Behavioral Health &amp; Psychiatry Practice</h2>
-                </div>
+        <div class="use-case-card medical">
+            <div class="use-case-type">Prior Authorization</div>
+            <h3 class="use-case-title">Prior Auth History for a Biologic</h3>
+            <div class="query-box">
+                <strong>MA Query</strong>
+                "Pull prior treatment history for [Patient] — all biologics, GI medications, dosages, and outcomes for the last 36 months. Format for prior auth justification letter for Humira."
             </div>
-            <p style="color:var(--light-text);font-size:0.92em;line-height:1.75;margin-bottom:20px;">Behavioral health carries one of the highest documentation burdens in medicine — detailed session notes, psychotropic medication management, insurance prior authorizations for specialty medications, and treatment plan documentation for every payer. A 3-psychiatrist practice can spend more time on paperwork than patient sessions. And the data is among the most sensitive in healthcare: mental health records require extra-layer protection under 42 CFR Part 2 in addition to standard HIPAA.</p>
-            <div class="stats-grid">
-                <div class="stat-box"><span class="stat-val">60%</span><span class="stat-lbl">Notes written<br>after hours</span></div>
-                <div class="stat-box"><span class="stat-val">2&times;</span><span class="stat-lbl">Prior auth rate vs.<br>primary care</span></div>
-                <div class="stat-box"><span class="stat-val">42 CFR</span><span class="stat-lbl">Part 2 extra-layer<br>protection required</span></div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Structured treatment timeline with every relevant medication, dosage, start/stop date, and documented outcome — each cited to a specific page in the patient's chart. Formatted as a prior auth justification summary ready for physician review.
             </div>
-            <div class="timeline-item">
-                <span class="time-label">End of Day — Session Notes</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>Psychiatrist dictates or types full session notes after 8+ appointments. 60–90 minutes of documentation after the last patient leaves.</div>
-                    <div class="after"><span class="label">With Sentinel Node</span>Between-session gaps used for draft generation from structured prompts. Clinician reviews, adjusts, and signs. Notes complete before leaving. No pajama time.</div>
-                </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>8–14 sec</strong>retrieval time</div>
+                <div class="use-case-stat"><strong>vs. 25–45 min</strong>manual chart review</div>
             </div>
-            <div class="timeline-item">
-                <span class="time-label">Psychotropic Prior Auth</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>Prior auth for specialty psychiatric medications requires diagnosis history, failed treatment evidence, and clinical rationale — assembled manually from multiple chart sections. 30–45 minutes per request.</div>
-                    <div class="after"><span class="label">With Sentinel Node</span>Local query: "Patient's full medication trial history and treatment response for [medication]." Complete cited summary in seconds. Staff reviews and submits. 4–6 minutes total.</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <span class="time-label">Treatment Plan Reviews</span>
-                <div class="flow-grid">
-                    <div class="before"><span class="label">Before</span>Annual and quarterly treatment plan reviews require synthesizing months of session notes, medication changes, and patient progress — a 45-minute manual synthesis per patient.</div>
-                    <div class="after"><span class="label">With Sentinel Node</span>Progress synthesis query: "Patient's documented trajectory, medication changes, and treatment response over the last 12 months." Cited summary ready in under a minute for clinician review.</div>
-                </div>
-            </div>
-            <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:16px 20px;margin:16px 0;">
-                <p style="color:var(--light-text);font-size:0.85em;line-height:1.75;margin:0;"><strong style="color:#A78BFA;">42 CFR Part 2 &amp; Local Architecture:</strong> Substance use disorder treatment records carry federal confidentiality protections beyond standard HIPAA — 42 CFR Part 2 restricts disclosure without explicit patient consent. The Sentinel Node's zero-exfiltration architecture ensures these records never leave your building, satisfying Part 2's non-disclosure requirement by physical design, not by policy.</p>
-            </div>
-            <div class="reclaimed">Target: 90+ minutes reclaimed daily from session documentation and prior auth. Zero behavioral health records transmitted outside the practice's physical network.</div>
-            <div class="pilot-box">
-                <h3>Paid Proof-of-Value — Recruiting Behavioral Health Practices</h3>
-                <p>We are recruiting psychiatry, psychology, and behavioral health practices for a structured 60-Day Paid Proof-of-Value engagement ($5,000 + hardware cost). POV participants will measure documentation time per session, prior auth cycle time, and local data containment. Results published only with written permission. POV fee applied in full to long-term SLA upon conversion.</p>
-                <p style="margin-top:10px;"><a href="mailto:marcus@poconoai.com?subject=Behavioral%20Health%20POV%20Inquiry%20%E2%80%94%20Pocono%20AI" class="cta-button" style="font-size:0.85em;">Inquire About Behavioral Health POV &rarr;</a></p>
-            </div>
-        </section>
-
-        <!-- PRIOR AUTHORIZATION USE CASE -->
-        <section class="use-case-card" id="prior-auth" style="border-left: 4px solid var(--teal);">
-            <div class="use-case-header">
-                <span class="specialty-tag" style="background: rgba(24,139,150,0.15); color: var(--teal);">Prior Authorization &amp; Denial Defense</span>
-                <h2>Winning the Prior Authorization Fight With Complete Local Patient Evidence</h2>
-                <p class="use-case-intro">13 hours per week. $68,000 per physician per year. The equivalent of 100,000 full-time registered nurses consumed by paperwork. Prior authorization is the largest documented source of administrative waste in American medicine — and the practices that win are the ones that produce complete, cited, patient-specific evidence fastest.</p>
-            </div>
-            <div class="workflow">
-                <h3>The Problem</h3>
-                <p style="color: var(--light-text); font-size: 0.95em; line-height: 1.75; margin-bottom: 20px;">A nurse building a prior authorization submission currently hunts across multiple EHR tabs, scanned documents, and payer portals to assemble the patient history that supports the request. 82% of appealed denials are ultimately overturned — meaning most denials are wrong on the merits — but only 0.2% of patients ever appeal, because practices lack the time and staff to fight every denial. <em>(Sources: AMA 2024 Annual PA Survey; Health Affairs / Stanford, January 2026.)</em></p>
-                <h3>The Sentinel Node™ Workflow</h3>
-                <div class="workflow-steps">
-                    <div class="before"><span class="label">Before</span>Hunt across 4–6 EHR tabs and payer portals. 20–40 minutes per request. Incomplete documentation increases denial rate.</div>
-                    <div class="after"><span class="label">With Sentinel</span>Single local query: "Patient's full history with Drug X, prior adverse events, and past payer approvals." Cited answer in seconds. Complete documentation. Submission ready.</div>
-                </div>
-                <p style="color:var(--muted);font-size:0.82em;margin-top:14px;line-height:1.65;"><strong style="color:var(--light-text);">How data gets to the Node:</strong> During the 60-Day POV, we configure a local secure drop-folder on your existing network. Staff export from the EHR once — the Sentinel Node indexes automatically. From that point, queries run from any authorized workstation on your LAN. No manual file transfers per query. No new logins. The workflow is functionally invisible after setup.</p>
-            </div>
-            <div class="reclaimed">Reclaimed: Staff time reduced from 20–30 minutes to 2–3 minutes per authorization. Complete patient-specific evidence reduces initial denial rate and strengthens every appeal.</div>
-            <div style="margin: 20px 0 10px;">
-                <a href="prior-auth-case-study.html" style="color: var(--teal); font-weight: 700; font-size: 0.9em; text-decoration: underline;">Read the full peer-reviewed research brief &rarr;</a>
-            </div>
-            <div class="pilot-box">
-                <h3>Paid Proof-of-Value — Recruiting Now</h3>
-                <p>We are recruiting medical practices with high prior authorization volume for a structured 60-Day Paid Proof-of-Value engagement ($5,000 + hardware cost). POV participants will measure time per authorization request, first-pass approval rate, and denial rate change. Zero PHI transmitted. Results published only with written permission. POV fee applied in full to long-term SLA upon conversion.</p>
-            </div>
-        </section>
-
-        <!-- WHITEPAPER CTA -->
-        <div style="background: linear-gradient(135deg, rgba(0,163,255,0.08), rgba(5,22,34,1)); border: 1px solid rgba(0,163,255,0.3); border-radius: 10px; padding: 28px 24px; margin: 40px 0; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-            <div style="flex:0 0 auto; text-align:center; min-width:80px;">
-                <span style="font-size:2em; display:block;">&#9876;</span>
-                <span style="font-size:0.7em;color:var(--ai-blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">White Paper</span>
-            </div>
-            <div style="flex:1; min-width:220px;">
-                <h3 style="color:var(--white);margin:0 0 6px;font-size:1.0em;">The Malpractice Trap — New Research</h3>
-                <p style="color:var(--light-text);font-size:0.86em;line-height:1.65;margin:0;">Why cloud AI hallucinations are an uninsurable liability in healthcare. Covers Raine v. OpenAI, the $110,000 federal penalty for AI-fabricated citations, and the mathematical solution via local RAG architecture.</p>
-            </div>
-            <div style="flex:0 0 auto;">
-                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="cta-button" style="font-size:0.82em;padding:10px 16px;white-space:nowrap;">Download White Paper</a>
-            </div>
+            <div class="phi-badge">&#128274; Zero PHI transmission</div>
         </div>
 
-        <section style="text-align: center; margin: 60px 0; padding: 50px 20px; background: rgba(24,139,150,0.1); border-radius: 8px; border: 1px solid rgba(24,139,150,0.2);">
-            <h2 style="color: white; border-bottom: none; margin-top: 0;">See the Full Technical Picture</h2>
-            <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Download the Sentinel Node spec sheet and ROI analysis, or schedule a technical briefing to discuss your workflow.</p>
-            <a href="sentinel-node-spec-sheet.pdf" target="_blank" rel="noopener noreferrer" class="cta-button">Download Spec Sheet</a>
-            <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" target="_blank" rel="noopener noreferrer" class="cta-button cta-button-light">60-Day POV Brief (PDF)</a>
-            <a href="index.html#contact" class="cta-button cta-button-light">Schedule Briefing</a>
-            <p style="margin-top: 30px;"><strong>Direct Access Line &mdash;</strong> Call or text the Chief Technologist directly for urgent architecture scoping: <a href="tel:+15705340602" style="color: white; text-decoration: underline;">(570) 534-0602</a></p>
-        </section>
-
-    </main>
-
-                <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <p class="footer-brand">Pocono <span>AI</span></p>
-                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
-                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
-                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+        <div class="use-case-card medical">
+            <div class="use-case-type">Chart Summarization</div>
+            <h3 class="use-case-title">Pre-Visit Chart Summary</h3>
+            <div class="query-box">
+                <strong>Physician Query</strong>
+                "Summarize [Patient]'s last four encounters — chief complaints, assessment, plan, and any open orders or outstanding referrals. I have 4 minutes before the visit."
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">For Practitioners</p>
-                <a href="for-physicians.html">For Physicians</a>
-                <a href="for-attorneys.html">For Attorneys</a>
-                <a href="use-cases.html">Use Cases</a>
-                <a href="solutions.html">Solutions Overview</a>
-                <a href="pricing.html">Pricing &amp; Financing</a>
-                <a href="specs.html">Hardware Specs</a>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Structured four-encounter summary with chief complaint, assessment, plan, and flagged open items per visit — each section cited to the source encounter note. Physician walks in prepared.
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">Technology</p>
-                <a href="architecture.html">For IT &amp; MSPs</a>
-                <a href="trust.html">Trust &amp; Security</a>
-                <a href="partners.html">Partners</a>
-                <a href="competitive-analysis.html">Competitive Analysis</a>
-                <a href="why-pocono-ai.html">Why Pocono AI</a>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>10–18 sec</strong>retrieval time</div>
+                <div class="use-case-stat"><strong>vs. 8–12 min</strong>manual chart scan</div>
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">Research</p>
-                <a href="research.html">Research Hub</a>
-                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
-                <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                <a href="patient-advocacy.html">Patient Safety</a>
-                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
-            </div>
-            <div class="footer-col">
-                <p class="footer-heading">Company</p>
-                <a href="portal.html">Client Portal</a>
-                <a href="about.html">About the Founder</a>
-                        <a href="careers.html">Careers</a>
-                <a href="simulation.html">12-Panel Simulation</a>
-                <a href="sitemap.html">Sitemap</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="sla.html">SLA</a>
-                <a href="investors.html" class="footer-subtle">Investor Relations</a>
-            </div>
+            <div class="phi-badge">&#128274; Zero PHI transmission</div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
-                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
-                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
-            </p>
-            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
-        </div>
-    </footer>
 
-    <!-- Shared navigation script -->
-    <script src="nav.js"></script>
+        <div class="use-case-card medical">
+            <div class="use-case-type">Referral Letters</div>
+            <h3 class="use-case-title">Specialist Referral Packet</h3>
+            <div class="query-box">
+                <strong>MA Query</strong>
+                "Draft a referral letter to cardiology for [Patient] — include reason for referral, relevant cardiac history, current medications, and last three EKG results from the chart."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Complete referral draft with all clinically relevant history, medications, and test results pulled from local records and cited by page. Physician reviews citations, edits if needed, signs. No dictation. No manual chart pulls.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>12–20 sec</strong>draft generation</div>
+                <div class="use-case-stat"><strong>vs. 20–35 min</strong>manual drafting</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero PHI transmission</div>
+        </div>
+
+        <div class="use-case-card medical">
+            <div class="use-case-type">Medication Review</div>
+            <h3 class="use-case-title">Polypharmacy Risk Check</h3>
+            <div class="query-box">
+                <strong>Physician Query</strong>
+                "List all current medications for [Patient] including OTC and supplements documented in the chart. Flag any documented drug interactions or allergy conflicts."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Complete local medication list with documented allergy and interaction flags sourced from chart notes. Physician verifies against current prescriptions before new script. All citations traceable to source documents.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>6–10 sec</strong>retrieval time</div>
+                <div class="use-case-stat"><strong>vs. 10–18 min</strong>manual medication reconciliation</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero PHI transmission</div>
+        </div>
+
+    </div>
+
+    <!-- LEGAL USE CASES -->
+    <div class="section-divider"><h2>&#x2696;&#xfe0f; Independent Law Firms</h2></div>
+
+    <div class="use-case-grid">
+
+        <div class="use-case-card legal">
+            <div class="use-case-type">Case File Review</div>
+            <h3 class="use-case-title">Discovery Document Summary</h3>
+            <div class="query-box">
+                <strong>Paralegal Query</strong>
+                "Summarize all documents produced in [Matter] discovery related to the defendant's knowledge of the defect prior to the incident date. Cite specific documents and pages."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Structured summary of all relevant discovery documents with direct citations to document names, bates numbers, and page references. Attorney reviews citations before filing or arguing. No privileged material leaves the building.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>15–25 sec</strong>retrieval across large document sets</div>
+                <div class="use-case-stat"><strong>vs. 2–4 hours</strong>manual discovery review</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero privilege waiver risk</div>
+        </div>
+
+        <div class="use-case-card legal">
+            <div class="use-case-type">Correspondence</div>
+            <h3 class="use-case-title">Demand Letter Drafting</h3>
+            <div class="query-box">
+                <strong>Attorney Query</strong>
+                "Draft a demand letter for [Matter] — personal injury, slip and fall. Pull documented injuries, treatment history, lost wages, and pain and suffering evidence from the file."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Complete demand letter draft with factual section pulled directly from local matter documents — medical records, wage documentation, and relevant correspondence — each cited by document and page. Attorney edits, verifies citations, signs.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>20–30 sec</strong>draft generation</div>
+                <div class="use-case-stat"><strong>vs. 1.5–3 hours</strong>manual drafting from file</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero privilege waiver risk</div>
+        </div>
+
+        <div class="use-case-card legal">
+            <div class="use-case-type">Research Memos</div>
+            <h3 class="use-case-title">Case-Specific Research from Local Files</h3>
+            <div class="query-box">
+                <strong>Associate Query</strong>
+                "Pull all correspondence and deposition excerpts in [Matter] where opposing counsel or the defendant referenced the inspection schedule. Organize chronologically."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Chronological compilation of all relevant excerpts with full document citations. Associate verifies each citation against source. No fabricated case references — every output is grounded in documents actually in the local matter file.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>12–20 sec</strong>across full matter file</div>
+                <div class="use-case-stat"><strong>vs. 45–90 min</strong>manual review</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero privilege waiver risk</div>
+        </div>
+
+        <div class="use-case-card legal">
+            <div class="use-case-type">Client Communication</div>
+            <h3 class="use-case-title">Status Update Letter</h3>
+            <div class="query-box">
+                <strong>Paralegal Query</strong>
+                "Draft a client status update letter for [Matter] — summarize where the case stands, what happened at the last hearing, next steps, and any outstanding items the client needs to address."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Structured client letter drafted from local matter notes, hearing summaries, and task logs. All factual claims cited to source documents. Attorney reviews and personalizes before sending. No client confidential details transmitted externally.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>10–18 sec</strong>draft generation</div>
+                <div class="use-case-stat"><strong>vs. 25–40 min</strong>manual drafting</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero privilege waiver risk</div>
+        </div>
+
+    </div>
+
+    <!-- ADMIN USE CASES -->
+    <div class="section-divider"><h2>&#128203; Administrative &amp; Practice Management</h2></div>
+
+    <div class="use-case-grid">
+
+        <div class="use-case-card admin">
+            <div class="use-case-type">Insurance &amp; Billing</div>
+            <h3 class="use-case-title">Claim Appeal Documentation</h3>
+            <div class="query-box">
+                <strong>Billing Staff Query</strong>
+                "Pull all documentation supporting the medical necessity of [Procedure] for [Patient] — diagnosis codes, clinical notes, and physician orders from the relevant date range."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Organized appeal packet with all supporting documentation cited to source records. Billing staff attaches to appeal submission. Denial rate on fully-documented appeals significantly lower than incomplete submissions.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>10–16 sec</strong>documentation pull</div>
+                <div class="use-case-stat"><strong>vs. 30–60 min</strong>manual record assembly</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero PHI transmission</div>
+        </div>
+
+        <div class="use-case-card admin">
+            <div class="use-case-type">Patient Communication</div>
+            <h3 class="use-case-title">Discharge Summary Preparation</h3>
+            <div class="query-box">
+                <strong>MA Query</strong>
+                "Prepare discharge summary notes for [Patient] — today's visit findings, medications prescribed, follow-up instructions, and any referrals ordered. Format for patient handout."
+            </div>
+            <div class="response-box">
+                <strong>Sentinel Node Returns</strong>
+                Complete patient-facing discharge summary drafted from today's encounter note and chart history. Physician reviews, verifies, and hands to patient. No dictation lag. No transcription backlog.
+            </div>
+            <div class="use-case-meta">
+                <div class="use-case-stat"><strong>8–12 sec</strong>draft generation</div>
+                <div class="use-case-stat"><strong>vs. 15–25 min</strong>manual note + summary</div>
+            </div>
+            <div class="phi-badge">&#128274; Zero PHI transmission</div>
+        </div>
+
+    </div>
+
+    <!-- HITL NOTE -->
+    <section style="max-width:860px;margin:48px auto 0;padding:0 4%;">
+        <div style="background:rgba(24,139,150,0.07);border:1px solid rgba(24,139,150,0.2);border-radius:12px;padding:24px 28px;">
+            <h3 style="color:var(--teal);margin:0 0 12px;font-size:1em;">About These Use Cases — The HITL Requirement</h3>
+            <p style="color:var(--light-text);font-size:0.88em;line-height:1.8;margin:0 0 10px;">Every output shown above is reviewed by the licensed professional before it is acted on. This is not a disclaimer — it is the design. The Human-in-the-Loop step is where the physician verifies that "Patient X was prescribed Drug Y on Date Z" matches what is actually in the chart before signing a prior auth letter. The attorney confirms that "Document 47, page 12" actually says what the summary claims before citing it in a filing.</p>
+            <p style="color:var(--light-text);font-size:0.88em;line-height:1.8;margin:0;">Cloud AI models generate from parametric memory — they can fabricate citations with high confidence. The Sentinel Node generates from retrieved document chunks only. Every claim is anchored to a specific page in a specific document that exists in your local file system. The professional's job is to verify, not to trust.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-container" style="margin-top:40px;">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">See It Working on Your Documents</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">The 60-day Proof-of-Value deploys the Sentinel Node against your actual patient charts or matter files — not sample data. You see the time savings on your workflow, not a demo.</p>
+        <a href="mailto:marcus@poconoai.com?subject=Use%20Case%20Inquiry%20%E2%80%94%20PoconoAI.com" class="cta-button">&#9993; Email marcus@poconoai.com</a>
+        <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">60-Day Timeline</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="specs.html">Hardware Specs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology</p>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="partners.html">Partners</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="deployment.html">60-Day Deployment</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="shadow-audit.html">Shadow IT Audit</a>
+            <a href="why-pocono-ai.html">Why Pocono AI</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company</p>
+            <a href="portal.html">Client Portal</a>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="deployment.html">60-Day Deployment Timeline</a>
+            <a href="simulation.html">12-Panel Simulation</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
 </body>
 </html>
-<<<END: use-cases.html>>>
-
