@@ -6,8 +6,6 @@
    ========================================= */
 
 /* v32: Google Fonts loaded with display=swap. Preconnect added to all HTML heads. */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap');
-
 /* System font fallbacks (render immediately before web fonts load) */
 body { font-family: 'DM Mono', 'Cascadia Code', 'Fira Mono', 'Courier New', monospace; }
 h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', 'Trebuchet MS', system-ui, sans-serif;  touch-action: manipulation; -webkit-tap-highlight-color: transparent; }

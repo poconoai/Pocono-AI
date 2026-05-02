@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v83 — Neurodiversity Hiring -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How hiring actually works at Pocono AI. The interview process, accommodations baked in by default, and communication norms — published, so neurodivergent candidates can decide if we're a real fit.">
+    <title>How We Hire | Neurodiversity-First | Pocono AI, LLC</title>
+
+    <meta property="og:title" content="How We Hire | Pocono AI — Neurodiversity-First, Published">
+    <meta property="og:description" content="The interview process, accommodations baked in by default, and how we work. Published, so candidates can decide if this is a real fit.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/how-we-hire.html">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pocono AI — How We Hire">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How We Hire | Pocono AI">
+    <meta name="twitter:description" content="The hiring process most companies won't publish.">
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="canonical" href="https://poconoai.com/how-we-hire.html">
+
+    <style>
+        /* ─── HOW WE HIRE PAGE ─── */
+        .hh-hero {
+            text-align: center;
+            padding: 64px 20px 40px;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .hh-eyebrow {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.74em;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            color: var(--teal);
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border: 1px solid rgba(24, 139, 150, 0.3);
+            border-radius: 30px;
+            background: rgba(24, 139, 150, 0.08);
+            margin-bottom: 22px;
+        }
+        .hh-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            line-height: 1.12;
+            margin: 0 0 22px;
+            color: var(--white);
+            letter-spacing: -0.015em;
+            border: none;
+        }
+        .hh-hero h1 em {
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--ai-blue);
+        }
+        .hh-hero p.lede {
+            color: var(--light-text);
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin: 0 auto;
+        }
+
+        /* ─── PROMISE BLOCK ─── */
+        .hh-promise {
+            max-width: 760px;
+            margin: 30px auto 60px;
+            padding: 32px 36px;
+            background:
+                linear-gradient(135deg, rgba(0, 163, 255, 0.05), rgba(24, 139, 150, 0.04));
+            border: 1px solid rgba(0, 163, 255, 0.18);
+            border-radius: 14px;
+            position: relative;
+        }
+        .hh-promise::before {
+            content: '"';
+            position: absolute;
+            top: -28px;
+            left: 24px;
+            font-family: 'Fraunces', serif;
+            font-size: 7em;
+            color: var(--ai-blue);
+            line-height: 1;
+            opacity: 0.4;
+        }
+        .hh-promise p {
+            color: var(--white);
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-size: 1.25em;
+            font-style: italic;
+            line-height: 1.6;
+            margin: 0;
+            padding-left: 12px;
+        }
+        .hh-promise cite {
+            display: block;
+            margin-top: 16px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8em;
+            font-style: normal;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+        }
+
+        /* ─── SECTION HEADERS ─── */
+        .hh-section {
+            max-width: 820px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .hh-section-eyebrow {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin: 0 0 8px;
+        }
+        .hh-section h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            line-height: 1.2;
+            color: var(--white);
+            margin: 0 0 24px;
+            border: none;
+            letter-spacing: -0.01em;
+        }
+        .hh-section p {
+            color: var(--light-text);
+            line-height: 1.85;
+            font-size: 1em;
+            margin: 0 0 16px;
+        }
+
+        /* ─── PROCESS STEPS (numbered timeline) ─── */
+        .hh-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            counter-reset: hh-step;
+        }
+        .hh-step {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 22px;
+            counter-increment: hh-step;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .hh-step::before {
+            content: counter(hh-step, decimal-leading-zero);
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--ai-blue);
+            grid-column: 1;
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .hh-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 36px;
+            bottom: -22px;
+            width: 1px;
+            background: linear-gradient(180deg, rgba(0, 163, 255, 0.4), rgba(0, 163, 255, 0.05));
+        }
+        .hh-step-body h3 {
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15em;
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+        .hh-step-meta {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.78em;
+            color: var(--muted);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .hh-step-body p {
+            color: var(--light-text);
+            font-size: 0.95em;
+            line-height: 1.75;
+            margin: 0 0 8px;
+        }
+
+        /* ─── ACCOMMODATION CARDS ─── */
+        .hh-accom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 26px;
+        }
+        .hh-accom {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 22px 24px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .hh-accom:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 212, 168, 0.35);
+        }
+        .hh-accom-icon {
+            color: #00d4a8;
+            font-size: 0.78em;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hh-accom-icon::before {
+            content: '\2713';
+            color: #00d4a8;
+            font-size: 1.1em;
+        }
+        .hh-accom h4 {
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-size: 1em;
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+        .hh-accom p {
+            color: var(--light-text);
+            font-size: 0.88em;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ─── COMMS NORMS ─── */
+        .hh-norms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
+            margin-top: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .hh-norm {
+            padding: 24px 28px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.015);
+        }
+        .hh-norm:last-child { border-right: none; }
+        @media (max-width: 600px) {
+            .hh-norms { grid-template-columns: 1fr; }
+            .hh-norm { border-right: none; }
+        }
+        .hh-norm-do, .hh-norm-dont {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .hh-norm-do { color: #00d4a8; }
+        .hh-norm-dont { color: #ff7b7b; }
+        .hh-norm h4 {
+            color: var(--white);
+            font-size: 1em;
+            margin: 0 0 6px;
+            line-height: 1.3;
+        }
+        .hh-norm p {
+            color: var(--light-text);
+            font-size: 0.88em;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ─── HONESTY NOTE ─── */
+        .hh-honesty {
+            max-width: 820px;
+            margin: 60px auto;
+            padding: 32px 36px;
+            background: rgba(255, 91, 91, 0.04);
+            border-left: 4px solid #ff7b7b;
+            border-radius: 0 12px 12px 0;
+        }
+        .hh-honesty-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ff7b7b;
+            margin: 0 0 12px;
+        }
+        .hh-honesty h3 {
+            color: var(--white);
+            font-size: 1.25em;
+            margin: 0 0 12px;
+            border: none;
+        }
+        .hh-honesty p {
+            color: var(--light-text);
+            line-height: 1.8;
+            margin: 0 0 12px;
+        }
+
+        /* ─── CTA ─── */
+        .hh-cta {
+            max-width: 820px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 40px 28px;
+            background: linear-gradient(135deg, rgba(0, 212, 168, 0.05), rgba(0, 163, 255, 0.04));
+            border: 1px solid rgba(0, 212, 168, 0.2);
+            border-radius: 14px;
+        }
+        .hh-cta h2 {
+            color: var(--white);
+            font-size: 1.6em;
+            margin: 0 0 14px;
+            border: none;
+        }
+        .hh-cta p {
+            color: var(--light-text);
+            margin: 0 auto 24px;
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 600px) {
+            .hh-promise { padding: 26px 24px; margin-left: 16px; margin-right: 16px; }
+            .hh-promise::before { font-size: 5em; top: -18px; }
+            .hh-step { grid-template-columns: 48px 1fr; gap: 14px; }
+            .hh-step::before { font-size: 1.2em; }
+            .hh-step:not(:last-child)::after { left: 16px; }
+            .hh-honesty { margin-left: 16px; margin-right: 16px; padding: 26px 24px; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <span class="nav-group-label">Tools</span>
+                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <span class="nav-group-label">Trust</span>
+                    <a href="trust.html">Trust &amp; Security</a>
+                    <a href="trust-receipts.html">&#10003; Trust Receipts</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <span class="nav-group-label">Technology</span>
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="comparison.html">Comparison</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <span class="nav-group-label">Research</span>
+                    <a href="research.html">Research Hub</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+                    <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                    <a href="patient-advocacy.html">Patient Safety</a>
+                    <span class="nav-group-label">Company</span>
+                    <a href="about.html">About the Founder</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="how-we-hire.html" style="color:var(--ai-blue);font-weight:700;">How We Hire</a>
+                    <a href="partners.html">Partners</a>
+                    <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hh-hero">
+        <span class="hh-eyebrow">Neurodiversity-First Hiring</span>
+        <h1>The hiring page <em>most companies won't publish.</em></h1>
+        <p class="lede">If you're neurodivergent, you've probably spent a hundred interviews trying to figure out whether a "we welcome diverse minds" page actually means anything. Here's what ours means, in detail. Read it, decide if we're a fit, and skip us if we're not. Either way, you save a week of guessing.</p>
+    </section>
+
+    <!-- ═══ PROMISE ═══ -->
+    <div class="hh-promise">
+        <p>The interview is designed to surface what you can do, not whether you perform comfort with a stranger for forty-five minutes. If our process doesn't work for your brain, the process is wrong. Tell us, and we will adjust it.</p>
+        <cite>— Marcus O'Dell, Founder</cite>
+    </div>
+
+    <!-- ═══ THE PROCESS ═══ -->
+    <section class="hh-section">
+        <p class="hh-section-eyebrow">The Actual Process</p>
+        <h2>How we interview, step by step.</h2>
+        <p style="margin-bottom:36px;">No mystery. No "culture fit" round that's actually vibes-based discrimination. Each step has a specific purpose, a defined time box, and a written deliverable so you know what you're being evaluated on.</p>
+
+        <ol class="hh-steps">
+            <li class="hh-step">
+                <div class="hh-step-body">
+                    <h3>Initial conversation &mdash; 30 minutes, your format</h3>
+                    <span class="hh-step-meta">async or live · video off allowed · text chat allowed instead</span>
+                    <p>You pick the format. A live call, a text-based chat, or a written exchange over email. We get curious about your work, what you want next, and what you'd want this role to look like. We ask the same opening question of everyone, and you can see it in advance: "What's a problem you've solved that you're proud of, and what made it hard?"</p>
+                </div>
+            </li>
+
+            <li class="hh-step">
+                <div class="hh-step-body">
+                    <h3>Take-home work sample &mdash; sized to the role</h3>
+                    <span class="hh-step-meta">2–4 hours · paid at your hourly rate · graded on a published rubric</span>
+                    <p>You receive a real, sanitized version of the kind of work the role does. For engineering, that might be debugging a piece of the audit wrapper. For sales, drafting a discovery call plan for a prospective practice. The rubric is published before you start. You submit, we review, we send written feedback regardless of outcome.</p>
+                </div>
+            </li>
+
+            <li class="hh-step">
+                <div class="hh-step-body">
+                    <h3>Walkthrough conversation &mdash; 60 minutes</h3>
+                    <span class="hh-step-meta">live · agenda sent 24 hrs in advance · breaks welcome</span>
+                    <p>We talk through your work sample together. You walk us through your reasoning. We ask follow-ups. This is not a "do you have grit?" round &mdash; it's a "let's see how you actually think when we're collaborating" round. You can ask us anything. We do not ask brain-teasers, leetcode, or whiteboard-coding-from-memory.</p>
+                </div>
+            </li>
+
+            <li class="hh-step">
+                <div class="hh-step-body">
+                    <h3>References &mdash; from anyone you trust</h3>
+                    <span class="hh-step-meta">2 references · LinkedIn or email contact · we send written questions</span>
+                    <p>References can be coworkers, peers, mentors &mdash; not necessarily managers. We email written questions and accept written replies. We're looking for working-relationship signal, not personality testimony.</p>
+                </div>
+            </li>
+
+            <li class="hh-step">
+                <div class="hh-step-body">
+                    <h3>Decision &mdash; in writing, within 5 business days</h3>
+                    <span class="hh-step-meta">yes · no · "we'd love to keep you in mind for X" — always written</span>
+                    <p>You hear back from Marcus, in writing, with a real answer. If it's a no, you get the reason. If it's a yes, you get a written offer with the role, the equity terms, the comp, and time to think.</p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- ═══ ACCOMMODATIONS ═══ -->
+    <section class="hh-section">
+        <p class="hh-section-eyebrow">Accommodations Baked In By Default</p>
+        <h2>You don't have to ask. They're already on.</h2>
+        <p>Most companies put accommodations behind a request form, which means you have to disclose to access them, which means many people don't. Ours are the default for everyone. They are not a special arrangement.</p>
+
+        <div class="hh-accom-grid">
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Camera-off is fine</h4>
+                <p>For interviews and meetings. We never read into it. Some of us are camera-off most days too.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Questions in advance</h4>
+                <p>For every interview round, you get the agenda and main questions 24 hours ahead. Surprise is not a hiring signal.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Written-first communication</h4>
+                <p>If you process better in writing than on a call, every step has a written-equivalent path. Pick what works.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Take-home is paid</h4>
+                <p>If we're asking for hours of your skilled labor, we pay for it. Pick a rate. We pay it on submission.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Breaks are not weakness</h4>
+                <p>You can take a 5-minute break in any conversation by just saying so. We won't note it. We do it ourselves.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Sensory-considerate workspace</h4>
+                <p>For onsite roles &mdash; the East Stroudsburg office is designed for low overhead lighting, quiet zones, headphones welcome, no open-plan stadium seating. Working from home most days is also fine.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>Flexible hours</h4>
+                <p>Engineering and ops roles have core overlap hours but otherwise: when you do your best work, you should be working. Early-morning, late-night, split-shift &mdash; we don't care, we just need outcomes.</p>
+            </div>
+            <div class="hh-accom">
+                <div class="hh-accom-icon">Default</div>
+                <h4>"Direct" is a feature</h4>
+                <p>If you communicate bluntly, that is good here. We don't need you to soften every sentence. We mean what we say too.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ COMMS NORMS ═══ -->
+    <section class="hh-section">
+        <p class="hh-section-eyebrow">How We Actually Work</p>
+        <h2>Our communication norms, on the record.</h2>
+        <p>The thing about culture is that nobody writes it down, and then everybody has a different version of it, and then someone neurodivergent gets penalized for not reading the room nobody documented. Here is the room, documented.</p>
+
+        <div class="hh-norms">
+            <div class="hh-norm">
+                <p class="hh-norm-do">We Do</p>
+                <h4>Write things down</h4>
+                <p>Decisions go in documents. Not in DMs, not in meetings nobody recapped. If it isn't written, it didn't happen.</p>
+            </div>
+            <div class="hh-norm">
+                <p class="hh-norm-dont">We Don't</p>
+                <h4>Expect mind-reading</h4>
+                <p>If we want something, we say it directly. Hinting, "you should just know," and passive-aggressive silence are all bugs we treat as bugs.</p>
+            </div>
+            <div class="hh-norm">
+                <p class="hh-norm-do">We Do</p>
+                <h4>Default to async</h4>
+                <p>Slack-style messages, written PRs, recorded looms. Live meetings are for things that genuinely require synchronous discussion. Most things don't.</p>
+            </div>
+            <div class="hh-norm">
+                <p class="hh-norm-dont">We Don't</p>
+                <h4>Reward "always on"</h4>
+                <p>Replying at 11pm doesn't earn you points. Burning out doesn't either. Sustainable pace is the strategy.</p>
+            </div>
+            <div class="hh-norm">
+                <p class="hh-norm-do">We Do</p>
+                <h4>Disagree out loud</h4>
+                <p>If you think a decision is wrong, say so. Pushback isn't insubordination. Surface it, we'll discuss, we'll commit.</p>
+            </div>
+            <div class="hh-norm">
+                <p class="hh-norm-dont">We Don't</p>
+                <h4>Track keystrokes or webcams</h4>
+                <p>Surveillance tooling has no place here. If we hired you, we trust you. If we don't trust you, that's a different conversation, not a software problem.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ HONESTY ═══ -->
+    <section class="hh-honesty">
+        <p class="hh-honesty-label">Honest disclosure &mdash; what we can't promise yet</p>
+        <h3>Where we are, and where we want to be.</h3>
+        <p>We are an early-stage company building this culture in public. The founder lives this directly &mdash; chronic-illness management, neurodivergent traits, the whole picture. That gives us conviction; it does not give us a complete program. We don't have a dedicated People team yet (it's in the <a href="careers.html" style="color:var(--ai-blue);">hiring roadmap</a>). We will hire imperfectly. We will get something wrong and need to fix it.</p>
+        <p>What we promise: when something is wrong, you can name it without fear, and we will fix it or explain why we can't. That's the floor. We're aiming higher than that, and we'd rather you see the floor than be sold a ceiling.</p>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="hh-cta">
+        <h2>Sound right? Come work on something that matters.</h2>
+        <p>If you've read this and thought, "yes, that's how it should work," then we want to talk. The open roles are listed on our careers page. The reply lands in Marcus's inbox, not a hiring black box.</p>
+        <a href="careers.html" class="cta-button">See Open Roles &rarr;</a>
+        <a href="mailto:marcus@poconoai.com?subject=How%20We%20Hire%20%E2%80%94%20Question%20About%20The%20Process" class="cta-button cta-button-light">Ask About the Process</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Trust &amp; Tools</p>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="trust-receipts.html">&#10003; Trust Receipts</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+            <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company &amp; Legal</p>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="how-we-hire.html">How We Hire</a>
+            <a href="partners.html">Partners</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

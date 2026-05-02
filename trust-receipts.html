@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v83 — Trust Receipts -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trust Receipts: every security claim Pocono AI makes, backed by the actual mechanism, code, and citation. Show, don't tell.">
+    <title>Trust Receipts | Verified Claims | Pocono AI, LLC</title>
+
+    <meta property="og:title" content="Trust Receipts | Pocono AI — Every Claim, Verified">
+    <meta property="og:description" content="Most security companies handwave. We publish the mechanism, the code, and the citation behind every claim.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/trust-receipts.html">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pocono AI — Trust Receipts">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trust Receipts | Pocono AI">
+    <meta name="twitter:description" content="Every claim, verified. Mechanism, code, and citation for every promise we make.">
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="canonical" href="https://poconoai.com/trust-receipts.html">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Trust Receipts — Every Claim, Verified",
+      "description": "The technical mechanism, code reference, and regulatory citation behind every security claim Pocono AI makes.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pocono AI, LLC",
+        "logo": "https://poconoai.com/logo.svg"
+      }
+    }
+    </script>
+
+    <style>
+        /* ─── TRUST RECEIPTS PAGE ─── */
+        .tr-hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+        .tr-eyebrow {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.74em;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            color: var(--ai-blue);
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border: 1px solid rgba(0, 163, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(0, 163, 255, 0.06);
+            margin-bottom: 20px;
+        }
+        .tr-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.1;
+            margin: 0 0 18px;
+            color: var(--white);
+            letter-spacing: -0.015em;
+        }
+        .tr-hero h1 em {
+            font-style: italic;
+            color: var(--teal);
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-weight: 600;
+        }
+        .tr-hero p.lede {
+            color: var(--light-text);
+            font-size: 1.1em;
+            line-height: 1.75;
+            max-width: 680px;
+            margin: 0 auto 14px;
+        }
+        .tr-hero p.disclosure {
+            color: var(--muted);
+            font-size: 0.85em;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ─── INDEX / TABLE OF CONTENTS ─── */
+        .tr-index {
+            max-width: 900px;
+            margin: 24px auto 60px;
+            padding: 24px 28px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+        }
+        .tr-index-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68em;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 14px;
+        }
+        .tr-index ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+            counter-reset: receipt;
+        }
+        .tr-index li { counter-increment: receipt; }
+        .tr-index a {
+            display: block;
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.92em;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            line-height: 1.4;
+        }
+        .tr-index a::before {
+            content: counter(receipt, decimal-leading-zero);
+            font-family: 'DM Mono', monospace;
+            color: var(--teal);
+            font-weight: 500;
+            margin-right: 10px;
+            font-size: 0.85em;
+        }
+        .tr-index a:hover {
+            background: rgba(0, 163, 255, 0.05);
+            border-color: rgba(0, 163, 255, 0.25);
+            color: var(--white);
+        }
+
+        /* ─── RECEIPTS ─── */
+        .tr-receipts {
+            max-width: 900px;
+            margin: 0 auto;
+            counter-reset: receipt-card;
+        }
+
+        .tr-receipt {
+            position: relative;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            margin-bottom: 28px;
+            padding: 32px 36px 28px;
+            counter-increment: receipt-card;
+            scroll-margin-top: 100px;
+        }
+        .tr-receipt::before {
+            content: 'RECEIPT ' counter(receipt-card, decimal-leading-zero);
+            position: absolute;
+            top: -10px;
+            left: 24px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62em;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            color: var(--teal);
+            background: var(--bg-dark);
+            padding: 0 12px;
+        }
+
+        .tr-claim {
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-size: 1.5em;
+            line-height: 1.25;
+            color: var(--white);
+            font-weight: 600;
+            font-style: italic;
+            margin: 0 0 24px;
+            padding-left: 16px;
+            border-left: 3px solid var(--ai-blue);
+        }
+
+        .tr-grid {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 14px 22px;
+            margin-bottom: 20px;
+        }
+        .tr-grid-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            color: var(--teal);
+            text-transform: uppercase;
+            padding-top: 4px;
+            border-right: 1px solid rgba(0, 163, 255, 0.18);
+            padding-right: 18px;
+            text-align: right;
+        }
+        .tr-grid-value {
+            color: var(--light-text);
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+        .tr-grid-value code {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.88em;
+            background: rgba(0, 163, 255, 0.08);
+            color: var(--ai-blue);
+            padding: 1px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 163, 255, 0.15);
+        }
+        .tr-grid-value strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* code block */
+        .tr-code-wrap {
+            position: relative;
+            margin: 24px 0 16px;
+            padding-top: 12px; /* room for the floating label */
+        }
+        .tr-code-wrap::before {
+            content: attr(data-source);
+            position: absolute;
+            top: 0;
+            right: 14px;
+            background: var(--bg-dark, #051622);
+            color: var(--muted);
+            font-size: 0.74em;
+            padding: 2px 10px;
+            border: 1px solid rgba(0, 163, 255, 0.25);
+            border-radius: 3px;
+            font-weight: 500;
+            white-space: nowrap;
+            z-index: 2;
+            font-family: 'DM Mono', monospace;
+        }
+        .tr-code {
+            margin: 0;
+            background: #0a1825;
+            border: 1px solid rgba(0, 163, 255, 0.18);
+            border-radius: 8px;
+            padding: 18px 18px 14px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.84em;
+            line-height: 1.7;
+            color: #c8d8e6;
+            overflow-x: auto;
+        }
+        .tr-code .k { color: #ff79c6; }     /* keyword */
+        .tr-code .s { color: #f1fa8c; }     /* string */
+        .tr-code .c { color: #6272a4; font-style: italic; } /* comment */
+        .tr-code .f { color: #50fa7b; }     /* function */
+        .tr-code .n { color: #bd93f9; }     /* number/constant */
+
+        .tr-citations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .tr-cite {
+            display: inline-block;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.78em;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 4px 10px;
+            color: var(--light-text);
+            text-decoration: none;
+        }
+        .tr-cite:hover {
+            border-color: var(--ai-blue);
+            color: var(--ai-blue);
+        }
+
+        .tr-falsifier {
+            margin-top: 18px;
+            padding: 14px 18px;
+            background: rgba(255, 91, 91, 0.05);
+            border-left: 3px solid #ff5b5b;
+            border-radius: 0 8px 8px 0;
+        }
+        .tr-falsifier-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68em;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: #ff7b7b;
+            text-transform: uppercase;
+            margin: 0 0 4px;
+        }
+        .tr-falsifier-text {
+            color: var(--light-text);
+            font-size: 0.9em;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        @media (max-width: 680px) {
+            .tr-receipt { padding: 26px 20px 22px; margin-left: 12px; margin-right: 12px; }
+            .tr-grid { grid-template-columns: 1fr; gap: 6px 0; }
+            .tr-grid-label { border-right: none; border-bottom: 1px solid rgba(0,163,255,0.15); padding: 0 0 4px; text-align: left; padding-top: 8px; }
+            .tr-claim { font-size: 1.2em; padding-left: 12px; }
+        }
+
+        /* CTA at the bottom */
+        .tr-cta {
+            max-width: 900px;
+            margin: 60px auto 40px;
+            text-align: center;
+            padding: 36px 28px;
+            background: linear-gradient(135deg, rgba(0, 163, 255, 0.06), rgba(24, 139, 150, 0.04));
+            border: 1px solid rgba(0, 163, 255, 0.2);
+            border-radius: 14px;
+        }
+        .tr-cta h2 {
+            color: var(--white);
+            font-size: 1.6em;
+            margin: 0 0 12px;
+            border: none;
+        }
+        .tr-cta p {
+            color: var(--light-text);
+            margin: 0 auto 22px;
+            max-width: 580px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <span class="nav-group-label">Tools</span>
+                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <span class="nav-group-label">Trust</span>
+                    <a href="trust.html">Trust &amp; Security</a>
+                    <a href="trust-receipts.html" style="color:var(--ai-blue);font-weight:700;">&#10003; Trust Receipts</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <span class="nav-group-label">Technology</span>
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="comparison.html">Comparison</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <span class="nav-group-label">Research</span>
+                    <a href="research.html">Research Hub</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+                    <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                    <a href="patient-advocacy.html">Patient Safety</a>
+                    <span class="nav-group-label">Company</span>
+                    <a href="about.html">About the Founder</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="partners.html">Partners</a>
+                    <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <!-- ════════════════════════════════════════
+         HERO
+    ════════════════════════════════════════ -->
+    <section class="tr-hero">
+        <span class="tr-eyebrow">&#10003; Trust Receipts</span>
+        <h1>Most security companies <em>handwave</em>.<br>We publish the receipt.</h1>
+        <p class="lede">Every claim on this site has a mechanism, a code reference, and a citation. Below: the engineering and the regulations behind each promise we make. If we can't show our work, we don't make the claim.</p>
+        <p class="disclosure">Last updated: <time datetime="2026-05-02">May 2, 2026</time> &nbsp;·&nbsp; Sentinel Node™ audit wrapper version 2.1 &nbsp;·&nbsp; <a href="https://github.com/pocono-ai" style="color:var(--teal);">github.com/pocono-ai</a></p>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         INDEX
+    ════════════════════════════════════════ -->
+    <section class="tr-index">
+        <p class="tr-index-label">The Receipts</p>
+        <ol>
+            <li><a href="#receipt-01">Zero data exfiltration</a></li>
+            <li><a href="#receipt-02">Immutable audit log</a></li>
+            <li><a href="#receipt-03">HMAC-signed every query and response</a></li>
+            <li><a href="#receipt-04">Air-gapped by network topology</a></li>
+            <li><a href="#receipt-05">No vendor telemetry</a></li>
+            <li><a href="#receipt-06">HIPAA technical safeguards</a></li>
+            <li><a href="#receipt-07">Hardware custody &mdash; you own it</a></li>
+            <li><a href="#receipt-08">No training on your data</a></li>
+            <li><a href="#receipt-09">Recoverable from cold-start</a></li>
+            <li><a href="#receipt-10">Zero-trust against insider compromise</a></li>
+        </ol>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         THE RECEIPTS
+    ════════════════════════════════════════ -->
+    <section class="tr-receipts">
+
+        <!-- ── 01 ── -->
+        <article class="tr-receipt" id="receipt-01">
+            <p class="tr-claim">"Your patient and client data never leaves the building."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">The Sentinel Node runs <code>Ollama</code> locally on customer-owned hardware, bound to <code>127.0.0.1:11434</code>. The inference model never makes outbound calls. There is no API key to a vendor service. Removing the network cable does not degrade functionality &mdash; we test for this.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">
+<div class="tr-code-wrap" data-source="sentinel_audit_wrapper.py"><pre class="tr-code"><span class="c"># Ollama config — bound to localhost only</span>
+<span class="n">SENTINEL_OLLAMA_URL</span> = <span class="s">"http://localhost:11434"</span>
+<span class="c"># If this host had outbound connectivity, the deployment</span>
+<span class="c"># would still work. If localhost binding fails, it won't.</span></pre></div>
+                </div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <a class="tr-cite" href="https://github.com/ollama/ollama">Ollama (open source)</a>
+                        <a class="tr-cite" href="trust.html">Trust &amp; Security &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">Run <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-family:'DM Mono',monospace;font-size:0.85em;color:#ffaa88;">tcpdump -i any 'host not 127.0.0.1'</code> on the deployed Sentinel Node during a live query. If you observe outbound packets carrying inference data, our claim is wrong. Customers may run this themselves; results are reproducible.</p>
+            </div>
+        </article>
+
+        <!-- ── 02 ── -->
+        <article class="tr-receipt" id="receipt-02">
+            <p class="tr-claim">"Audit log entries cannot be modified or deleted &mdash; not even by us."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">On hourly rotation, closed log segments receive the Linux <code>chattr +i</code> immutable bit. A SHA-256 hash of each segment is appended to a hash-chain log, which itself becomes immutable on rotation. Modifying any prior segment breaks the chain, and the modification itself appears in the system audit trail.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">
+<div class="tr-code-wrap" data-source="logrotate.d/sentinel"><pre class="tr-code"><span class="c"># Excerpt from logrotate post-rotate hook</span>
+<span class="f">sha256sum</span> /var/log/sentinel/audit.log.1 \
+    &gt;&gt; /var/log/sentinel/hash-chain.log
+<span class="f">chattr</span> +i /var/log/sentinel/audit.log.1
+<span class="f">chattr</span> +i /var/log/sentinel/hash-chain.log</pre></div>
+                </div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <span class="tr-cite">HIPAA &sect;164.312(b)</span>
+                        <span class="tr-cite">NIST SP 800-53 AU-9</span>
+                        <a class="tr-cite" href="README.md">README.md (public)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">Try to write to a closed segment. The kernel will deny the operation regardless of user privilege, including root, until <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-family:'DM Mono',monospace;font-size:0.85em;color:#ffaa88;">chattr -i</code> is explicitly run &mdash; which itself appears in <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-family:'DM Mono',monospace;font-size:0.85em;color:#ffaa88;">auditd</code> as a forensic event.</p>
+            </div>
+        </article>
+
+        <!-- ── 03 ── -->
+        <article class="tr-receipt" id="receipt-03">
+            <p class="tr-claim">"Every query and response is cryptographically signed before the user sees it."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">The audit wrapper sits between the user and the LLM. Before the model is invoked, a <code>QUERY_IN</code> event is HMAC-SHA256-signed with a 256-bit key and <code>fsync()</code>'d to disk. After inference but before the user sees the response, a <code>RESPONSE_OUT</code> event is signed and persisted. Both events share an <code>hmac_query</code> field that links them.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">
+<div class="tr-code-wrap" data-source="sentinel_audit_wrapper.py"><pre class="tr-code"><span class="k">def</span> <span class="f">log_query</span>(<span class="n">user_id</span>, <span class="n">prompt</span>, <span class="n">model</span>):
+    <span class="n">hmac_query</span> = <span class="f">hmac_sign</span>(<span class="n">prompt</span>, <span class="n">SENTINEL_HMAC_KEY</span>)
+    <span class="n">event</span> = {
+        <span class="s">"type"</span>: <span class="s">"QUERY_IN"</span>,
+        <span class="s">"ts"</span>: <span class="f">utc_now</span>(),
+        <span class="s">"hmac_query"</span>: <span class="n">hmac_query</span>,
+        <span class="s">"user_id"</span>: <span class="n">user_id</span>,
+        <span class="s">"model"</span>: <span class="n">model</span>,
+    }
+    <span class="f">write_and_fsync</span>(<span class="n">event</span>)  <span class="c"># before LLM invocation</span></pre></div>
+                </div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <span class="tr-cite">HIPAA &sect;164.312(a)(2)(i)</span>
+                        <span class="tr-cite">HIPAA &sect;164.312(b)</span>
+                        <span class="tr-cite">RFC 2104 (HMAC)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">Tamper with any logged event field. Re-running <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-family:'DM Mono',monospace;font-size:0.85em;color:#ffaa88;">sentinel_audit_wrapper.py --verify</code> against that segment will exit non-zero and print the offending record.</p>
+            </div>
+        </article>
+
+        <!-- ── 04 ── -->
+        <article class="tr-receipt" id="receipt-04">
+            <p class="tr-claim">"Air-gapped by topology, not by policy."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">The deployment specification places the Sentinel Node on a VLAN with no default gateway to the internet. Inference services bind to localhost. Even if a malicious actor exfiltrated the HMAC key, there is no route over which to ship the data. <strong>You cannot lose what cannot leave.</strong></div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">Validated at deployment via <code>ip route</code> showing no default route, and <code>ss -tlnp</code> confirming no externally-bound listeners. Customers receive a network topology diagram as part of the SLA.</div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <span class="tr-cite">HIPAA &sect;164.312(e) &mdash; Transmission Security</span>
+                        <a class="tr-cite" href="architecture.html">Architecture &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">From the Sentinel Node, attempt <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-family:'DM Mono',monospace;font-size:0.85em;color:#ffaa88;">curl https://1.1.1.1</code>. The connection should fail. If it succeeds, the deployment is misconfigured; we treat that as a Severity-1 incident.</p>
+            </div>
+        </article>
+
+        <!-- ── 05 ── -->
+        <article class="tr-receipt" id="receipt-05">
+            <p class="tr-claim">"We don't phone home. Ever."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">No analytics SDK, no telemetry library, no auto-update beacon, no usage reporter. The Sentinel Node software has zero outbound dependencies after install. Updates are delivered as signed packages a customer chooses to apply &mdash; never pulled.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">Ship manifest is published. <code>requirements.txt</code> for the audit wrapper contains <code>requests</code> and <code>python-dotenv</code>; <code>requests</code> is used solely to call the localhost Ollama endpoint. No analytics packages, no Sentry, no Datadog agent, no anything.</div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <a class="tr-cite" href="trust.html#zero-telemetry">Zero Telemetry &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">Run packet capture for 24 hours on the Sentinel Node. Any outbound connection attempt other than to localhost falsifies this claim. We've never observed one. We invite the test.</p>
+            </div>
+        </article>
+
+        <!-- ── 06 ── -->
+        <article class="tr-receipt" id="receipt-06">
+            <p class="tr-claim">"HIPAA technical safeguards: not aspirational, mapped."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">Each technical safeguard in 45 CFR &sect;164.312 is implemented by a specific architectural element, not by a policy document. We publish the mapping and the corresponding code or configuration line.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value" style="line-height:1.85;">
+                    <strong>(a)(1) Access Control</strong> &rarr; Linux user/group + SSH key auth, no shared accounts<br>
+                    <strong>(a)(2)(i) Unique User ID</strong> &rarr; <code>user_id</code> field on every audit record<br>
+                    <strong>(b) Audit Controls</strong> &rarr; HMAC-signed audit wrapper, see Receipt 03<br>
+                    <strong>(c)(1) Integrity</strong> &rarr; Hash-chain + immutable bit, see Receipt 02<br>
+                    <strong>(d) Person/Entity Auth</strong> &rarr; SSH keys, no password fallback<br>
+                    <strong>(e)(1) Transmission Security</strong> &rarr; No transmission, see Receipt 04
+                </div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <span class="tr-cite">45 CFR &sect;164.312</span>
+                        <a class="tr-cite" href="compliance.html">Generate Attestation &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── 07 ── -->
+        <article class="tr-receipt" id="receipt-07">
+            <p class="tr-claim">"You own the hardware. We don't have a key."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">Title to the Sentinel Node hardware transfers to the customer at deployment. There is no remote management channel, no vendor backdoor, no SSH key held by Pocono AI. The HMAC key is generated on the customer's machine and held only by the customer.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value"><code>sentinel_audit_wrapper.py --generate-key</code> creates a 256-bit key locally, prints it once, and never transmits it. The <code>.env</code> file is in <code>.gitignore</code> for a reason: it is operational secret material the vendor has no business possessing.</div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <a class="tr-cite" href="sla.html">SLA &rarr;</a>
+                        <a class="tr-cite" href="terms.html">Terms of Service &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">Audit the Sentinel Node for any user account, SSH key, or service that traces back to Pocono AI infrastructure. None will be present. If one is, it is a deployment defect, not policy.</p>
+            </div>
+        </article>
+
+        <!-- ── 08 ── -->
+        <article class="tr-receipt" id="receipt-08">
+            <p class="tr-claim">"Your data is never used to train any model."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">The model weights deployed to your Sentinel Node are static. Inference does not modify weights. There is no telemetry channel back to Pocono AI or to the upstream model authors. Fine-tuning, if a customer requests it, runs locally on customer hardware against customer data &mdash; the resulting weights remain on customer hardware.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">Ollama runs models in pure inference mode. No <code>train()</code> code path is invoked at runtime. The model files are read-only at the OS level after install.</div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <a class="tr-cite" href="terms.html">Terms &sect; Data Use &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── 09 ── -->
+        <article class="tr-receipt" id="receipt-09">
+            <p class="tr-claim">"Your audit history survives a full hardware replacement."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">Closed audit segments and the hash chain can be backed up to an air-gapped storage medium of the customer's choice. On hardware replacement, the new Sentinel Node verifies the chain end-to-end before resuming operations. The HMAC key required for verification is the customer's, not ours.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value"><code>sentinel_audit_wrapper.py --verify &lt;segment&gt;</code> exits with status 0 on a clean segment and 1 on any integrity issue. The verification is a single command; it is not a managed service we run for you.</div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <a class="tr-cite" href="README.md">README &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── 10 ── -->
+        <article class="tr-receipt" id="receipt-10">
+            <p class="tr-claim">"Even a compromised admin account cannot rewrite history."</p>
+
+            <div class="tr-grid">
+                <div class="tr-grid-label">Mechanism</div>
+                <div class="tr-grid-value">A root-level attacker would need to: (1) run <code>chattr -i</code> on the target log segment, (2) modify the segment without breaking the per-line HMAC, (3) regenerate the SHA-256 entry in the hash-chain log, (4) recompute every subsequent hash-chain entry, and (5) hide the <code>chattr</code> call from <code>auditd</code>. Each step is observable. The chain breaks at the first inconsistency.</div>
+
+                <div class="tr-grid-label">Evidence</div>
+                <div class="tr-grid-value">The HMAC key is required to forge new entries that pass verification. The HMAC key never appears in any log entry &mdash; it lives only in the customer's <code>.env</code> or secrets manager. Compromising the running system does not yield the key unless the attacker also extracts memory at exactly the right moment during a request.</div>
+
+                <div class="tr-grid-label">Citation</div>
+                <div class="tr-grid-value">
+                    <div class="tr-citations">
+                        <span class="tr-cite">NIST SP 800-53 AU-9</span>
+                        <span class="tr-cite">CIA Triad &mdash; Integrity</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tr-falsifier">
+                <p class="tr-falsifier-label">How to falsify this claim</p>
+                <p class="tr-falsifier-text">Modify a closed segment without breaking <code style="background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;font-family:'DM Mono',monospace;font-size:0.85em;color:#ffaa88;">--verify</code>. We have not seen this done. We do not believe it is feasible without the customer's HMAC key, which we do not hold.</p>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- ════════════════════════════════════════
+         CTA
+    ════════════════════════════════════════ -->
+    <section class="tr-cta">
+        <h2>If a claim isn't here, we don't make it.</h2>
+        <p>If you believe one of these receipts is incomplete, wrong, or unfalsifiable, tell us. We'll fix it, retract it, or pay you a finder's fee &mdash; in that order of preference. Trust is earned by being correctable.</p>
+        <a href="mailto:marcus@poconoai.com?subject=Trust%20Receipts%20%E2%80%94%20Challenge%20a%20Claim" class="cta-button">Challenge a Claim</a>
+        <a href="trust.html" class="cta-button cta-button-light">Trust &amp; Security Overview</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Trust &amp; Tools</p>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="trust-receipts.html">&#10003; Trust Receipts</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+            <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+            <a href="shadow-audit.html">Shadow IT Audit</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company &amp; Legal</p>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

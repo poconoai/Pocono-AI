@@ -21,12 +21,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
     <meta name="theme-color" content="#051622">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
-    <meta name="theme-color" content="#051622">
-
     <!-- Shared stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
@@ -173,6 +172,823 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
             </div>
         </section>
+
+<!--
+═══════════════════════════════════════════════════════════════════
+   LIVE SOVEREIGNTY PROOF — Pocono AI v83
+   The widget that ends the conversation about "where does our data go?"
+
+   Two parallel network paths, animated in real-time:
+   • Cloud AI: data leaves the building, traverses ISP → Big Tech datacenter → 
+     model API → vendor logs → training corpus. Bytes counter climbs. Risk grows.
+   • Sentinel Node: data stays inside the practice perimeter. Zero packets cross 
+     the firewall. Counter stays at 0.
+
+   Loops every 12 seconds. Pure CSS + minimal JS. No images.
+═══════════════════════════════════════════════════════════════════
+-->
+<section class="sovereignty-proof" aria-labelledby="sovereignty-proof-heading">
+    <div class="sp-header">
+        <span class="sp-eyebrow">Live Sovereignty Proof</span>
+        <h2 id="sovereignty-proof-heading" class="sp-headline">Watch where your data actually goes.</h2>
+        <p class="sp-subhead">Same patient note. Two architectures. The packets don't lie.</p>
+    </div>
+
+    <div class="sp-stage" role="img" aria-label="Animated diagram comparing cloud AI data flow against on-premises Sentinel Node data flow. The cloud path shows data leaving the practice and traversing multiple third-party servers. The Sentinel Node path shows data remaining inside the practice perimeter with zero outbound packets.">
+
+        <!-- ═══ TOP LANE: CLOUD AI (the dangerous path) ═══ -->
+        <div class="sp-lane sp-lane--cloud">
+            <div class="sp-lane-label">
+                <span class="sp-lane-tag sp-lane-tag--danger">CLOUD AI</span>
+                <span class="sp-lane-status sp-lane-status--danger">
+                    <span class="sp-status-dot sp-status-dot--danger" aria-hidden="true"></span>
+                    Data leaving building
+                </span>
+            </div>
+
+            <div class="sp-track sp-track--cloud">
+                <!-- Origin: practice -->
+                <div class="sp-node sp-node--origin">
+                    <div class="sp-node-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 21V9l9-6 9 6v12h-6v-7H9v7H3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="sp-node-label">Your Practice</div>
+                </div>
+
+                <!-- Hop 1: ISP -->
+                <div class="sp-hop sp-hop--1" aria-hidden="true"></div>
+                <div class="sp-node sp-node--hop">
+                    <div class="sp-node-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+                    </div>
+                    <div class="sp-node-label">ISP</div>
+                    <div class="sp-node-sub">in transit</div>
+                </div>
+
+                <!-- Hop 2: Big Tech datacenter -->
+                <div class="sp-hop sp-hop--2" aria-hidden="true"></div>
+                <div class="sp-node sp-node--hop">
+                    <div class="sp-node-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="4" width="18" height="5" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="10" width="18" height="5" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="16" width="18" height="5" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="6" cy="6.5" r="0.6" fill="currentColor"/><circle cx="6" cy="12.5" r="0.6" fill="currentColor"/><circle cx="6" cy="18.5" r="0.6" fill="currentColor"/></svg>
+                    </div>
+                    <div class="sp-node-label">Datacenter</div>
+                    <div class="sp-node-sub">us-east-1</div>
+                </div>
+
+                <!-- Hop 3: Model API + logs -->
+                <div class="sp-hop sp-hop--3" aria-hidden="true"></div>
+                <div class="sp-node sp-node--terminal sp-node--terminal--danger">
+                    <div class="sp-node-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="sp-node-label">Vendor LLM</div>
+                    <div class="sp-node-sub">+ training logs</div>
+                </div>
+
+                <!-- The packet that actually animates across -->
+                <div class="sp-packet sp-packet--cloud" aria-hidden="true">
+                    <span class="sp-packet-payload">PHI</span>
+                </div>
+            </div>
+
+            <!-- Telemetry strip below the cloud track -->
+            <div class="sp-telemetry sp-telemetry--cloud">
+                <div class="sp-meter">
+                    <span class="sp-meter-label">Outbound</span>
+                    <span class="sp-meter-value sp-meter-value--danger" data-counter="cloud-bytes">0 KB</span>
+                </div>
+                <div class="sp-meter">
+                    <span class="sp-meter-label">Hops</span>
+                    <span class="sp-meter-value sp-meter-value--danger" data-counter="cloud-hops">0</span>
+                </div>
+                <div class="sp-meter">
+                    <span class="sp-meter-label">3rd Parties</span>
+                    <span class="sp-meter-value sp-meter-value--danger" data-counter="cloud-parties">0</span>
+                </div>
+                <div class="sp-meter">
+                    <span class="sp-meter-label">Audit Trail</span>
+                    <span class="sp-meter-value sp-meter-value--danger">Vendor's terms</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ DIVIDER: VS ═══ -->
+        <div class="sp-divider" aria-hidden="true">
+            <span class="sp-divider-line"></span>
+            <span class="sp-divider-label">vs</span>
+            <span class="sp-divider-line"></span>
+        </div>
+
+        <!-- ═══ BOTTOM LANE: SENTINEL NODE (the proof) ═══ -->
+        <div class="sp-lane sp-lane--sentinel">
+            <div class="sp-lane-label">
+                <span class="sp-lane-tag sp-lane-tag--safe">SENTINEL NODE™</span>
+                <span class="sp-lane-status sp-lane-status--safe">
+                    <span class="sp-status-dot sp-status-dot--safe" aria-hidden="true"></span>
+                    Data inside perimeter
+                </span>
+            </div>
+
+            <div class="sp-track sp-track--sentinel">
+                <!-- The whole track is inside one perimeter -->
+                <div class="sp-perimeter">
+                    <span class="sp-perimeter-label">PRACTICE PERIMETER &nbsp;·&nbsp; AIR-GAPPED</span>
+
+                    <div class="sp-perimeter-flow">
+                        <div class="sp-node sp-node--origin">
+                            <div class="sp-node-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 21V9l9-6 9 6v12h-6v-7H9v7H3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="sp-node-label">Your Practice</div>
+                        </div>
+
+                        <div class="sp-hop sp-hop--internal" aria-hidden="true"></div>
+
+                        <div class="sp-node sp-node--terminal sp-node--terminal--safe">
+                            <div class="sp-node-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="6" width="18" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="12" r="1.4" fill="currentColor"/><path d="M12 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                            </div>
+                            <div class="sp-node-label">Sentinel Node</div>
+                            <div class="sp-node-sub">on your hardware</div>
+                        </div>
+                    </div>
+
+                    <!-- The packet that bounces internally, never crosses out -->
+                    <div class="sp-packet sp-packet--internal" aria-hidden="true">
+                        <span class="sp-packet-payload">PHI</span>
+                    </div>
+                </div>
+
+                <!-- The firewall — visible barrier on the right -->
+                <div class="sp-firewall" aria-hidden="true">
+                    <div class="sp-firewall-bricks">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <span class="sp-firewall-label">FIREWALL</span>
+                </div>
+            </div>
+
+            <!-- Telemetry strip — all zeros, that's the point -->
+            <div class="sp-telemetry sp-telemetry--sentinel">
+                <div class="sp-meter">
+                    <span class="sp-meter-label">Outbound</span>
+                    <span class="sp-meter-value sp-meter-value--safe">0 KB</span>
+                </div>
+                <div class="sp-meter">
+                    <span class="sp-meter-label">Hops</span>
+                    <span class="sp-meter-value sp-meter-value--safe">0</span>
+                </div>
+                <div class="sp-meter">
+                    <span class="sp-meter-label">3rd Parties</span>
+                    <span class="sp-meter-value sp-meter-value--safe">0</span>
+                </div>
+                <div class="sp-meter">
+                    <span class="sp-meter-label">Audit Trail</span>
+                    <span class="sp-meter-value sp-meter-value--safe">HMAC + immutable</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sp-footer">
+        <p class="sp-footer-copy">
+            Zero exfiltration is not a policy. It's a network topology. <a href="trust.html">See the engineering &rarr;</a>
+        </p>
+        <button class="sp-replay" type="button" aria-label="Replay the demonstration">
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Replay</span>
+        </button>
+    </div>
+</section>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   LIVE SOVEREIGNTY PROOF — STYLES
+   Self-contained. Uses existing CSS variables (--teal, --ai-blue, etc.)
+   plus widget-local custom properties for animation timing.
+═══════════════════════════════════════════════════════════════════ */
+.sovereignty-proof {
+    --sp-cycle: 12s;
+    --sp-danger: #ff5b5b;
+    --sp-danger-glow: rgba(255, 91, 91, 0.45);
+    --sp-safe: #00d4a8;
+    --sp-safe-glow: rgba(0, 212, 168, 0.4);
+    --sp-grid: rgba(255, 255, 255, 0.04);
+    --sp-stroke: rgba(255, 255, 255, 0.12);
+    --sp-stroke-soft: rgba(255, 255, 255, 0.06);
+
+    max-width: 1100px;
+    margin: 60px auto 40px;
+    padding: 44px 36px 32px;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 163, 255, 0.06), transparent 70%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.018) 0%, rgba(5, 22, 34, 0.7) 100%);
+    border: 1px solid var(--sp-stroke-soft);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle grid backdrop — gives engineering-diagram texture without noise */
+.sovereignty-proof::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--sp-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--sp-grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    opacity: 0.5;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 50%, transparent 100%);
+}
+
+.sp-header {
+    text-align: center;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+}
+.sp-eyebrow {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--ai-blue);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding: 4px 12px;
+    border: 1px solid rgba(0, 163, 255, 0.3);
+    border-radius: 30px;
+    background: rgba(0, 163, 255, 0.06);
+}
+.sp-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 800;
+    color: var(--white);
+    margin: 0 0 12px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    border: none;
+}
+.sp-subhead {
+    color: var(--light-text);
+    font-size: 1em;
+    margin: 0;
+    font-style: italic;
+}
+
+/* ── STAGE ── */
+.sp-stage {
+    position: relative;
+    z-index: 1;
+}
+
+.sp-lane {
+    padding: 22px 0;
+}
+.sp-lane-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.sp-lane-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.74em;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    padding: 5px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+.sp-lane-tag--danger {
+    color: var(--sp-danger);
+    background: rgba(255, 91, 91, 0.08);
+    border: 1px solid rgba(255, 91, 91, 0.3);
+}
+.sp-lane-tag--safe {
+    color: var(--sp-safe);
+    background: rgba(0, 212, 168, 0.08);
+    border: 1px solid rgba(0, 212, 168, 0.3);
+}
+.sp-lane-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78em;
+    color: var(--light-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.sp-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.sp-status-dot--danger {
+    background: var(--sp-danger);
+    box-shadow: 0 0 10px var(--sp-danger-glow);
+    animation: sp-pulse 1.4s ease-in-out infinite;
+}
+.sp-status-dot--safe {
+    background: var(--sp-safe);
+    box-shadow: 0 0 10px var(--sp-safe-glow);
+}
+@keyframes sp-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.25); }
+}
+
+/* ── TRACK (the network diagram) ── */
+.sp-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 8px;
+    min-height: 90px;
+}
+.sp-track--cloud {
+    background:
+        linear-gradient(90deg,
+            rgba(255, 91, 91, 0) 0%,
+            rgba(255, 91, 91, 0.04) 50%,
+            rgba(255, 91, 91, 0.08) 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 91, 91, 0.12);
+}
+
+/* ── NODES (origin, hop, terminal) ── */
+.sp-node {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+}
+.sp-node-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-dark, #051622);
+    border: 1px solid var(--sp-stroke);
+    color: var(--light-text);
+    margin-bottom: 8px;
+}
+.sp-node-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.74em;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.sp-node-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68em;
+    color: var(--muted);
+    margin-top: 2px;
+}
+.sp-node--terminal--danger .sp-node-icon {
+    border-color: var(--sp-danger);
+    color: var(--sp-danger);
+    box-shadow: 0 0 0 1px rgba(255, 91, 91, 0.15), 0 0 20px rgba(255, 91, 91, 0.18);
+}
+.sp-node--terminal--safe .sp-node-icon {
+    border-color: var(--sp-safe);
+    color: var(--sp-safe);
+    box-shadow: 0 0 0 1px rgba(0, 212, 168, 0.15), 0 0 20px rgba(0, 212, 168, 0.2);
+}
+.sp-node--origin .sp-node-icon {
+    border-color: var(--ai-blue);
+    color: var(--ai-blue);
+}
+
+/* ── HOPS (the dashed lines between nodes) ── */
+.sp-hop {
+    flex: 1;
+    height: 2px;
+    border-top: 2px dashed var(--sp-stroke);
+    margin: 0 6px;
+    align-self: center;
+    margin-top: -22px; /* center vertically with the icon row */
+    position: relative;
+    z-index: 1;
+}
+.sp-track--cloud .sp-hop {
+    border-top-color: rgba(255, 91, 91, 0.25);
+}
+
+/* ── CLOUD PACKET — animates left to right repeatedly, with the cycle ── */
+.sp-packet {
+    position: absolute;
+    top: 50%;
+    width: 38px;
+    height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62em;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    z-index: 3;
+    margin-top: -33px; /* pull up to align with icon centerline */
+    pointer-events: none;
+}
+.sp-packet--cloud {
+    background: var(--sp-danger);
+    color: white;
+    box-shadow: 0 0 18px var(--sp-danger-glow), 0 2px 6px rgba(0, 0, 0, 0.4);
+    left: 0;
+    animation: sp-packet-cloud var(--sp-cycle) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.sp-packet-payload {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes sp-packet-cloud {
+    0%   { left: 4%;  opacity: 0; transform: scale(0.5); }
+    8%   { left: 4%;  opacity: 1; transform: scale(1); }
+    25%  { left: 28%; opacity: 1; transform: scale(1); }
+    50%  { left: 54%; opacity: 1; transform: scale(1); }
+    75%  { left: 80%; opacity: 1; transform: scale(1); }
+    92%  { left: 92%; opacity: 1; transform: scale(1.15); }
+    96%  { left: 92%; opacity: 0.4; transform: scale(0.7); }
+    100% { left: 92%; opacity: 0; transform: scale(0.5); }
+}
+
+/* ── TELEMETRY METERS ── */
+.sp-telemetry {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 14px;
+    background: var(--sp-stroke-soft);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--sp-stroke-soft);
+}
+.sp-meter {
+    background: rgba(5, 22, 34, 0.6);
+    padding: 12px 14px;
+    text-align: left;
+}
+.sp-meter-label {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+.sp-meter-value {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+}
+.sp-meter-value--danger { color: var(--sp-danger); }
+.sp-meter-value--safe { color: var(--sp-safe); }
+
+/* ── DIVIDER ── */
+.sp-divider {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 28px 0 20px;
+    padding: 0 8px;
+}
+.sp-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sp-stroke), transparent);
+}
+.sp-divider-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+/* ── SENTINEL TRACK — totally different layout: enclosed perimeter ── */
+.sp-track--sentinel {
+    background: linear-gradient(90deg,
+        rgba(0, 212, 168, 0.04) 0%,
+        rgba(0, 212, 168, 0.02) 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 212, 168, 0.12);
+    display: flex;
+    align-items: stretch;
+    padding: 12px;
+    gap: 14px;
+}
+.sp-perimeter {
+    flex: 1;
+    border: 2px dashed rgba(0, 212, 168, 0.45);
+    border-radius: 8px;
+    padding: 14px 20px 18px;
+    position: relative;
+    background: rgba(0, 212, 168, 0.025);
+}
+.sp-perimeter-label {
+    position: absolute;
+    top: -10px;
+    left: 18px;
+    background: var(--bg-dark, #051622);
+    padding: 0 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.62em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--sp-safe);
+    text-transform: uppercase;
+}
+.sp-perimeter-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+}
+.sp-hop--internal {
+    flex: 1;
+    height: 2px;
+    border-top: 2px solid rgba(0, 212, 168, 0.5);
+    margin: 0 12px;
+    margin-top: -22px;
+    align-self: center;
+    position: relative;
+}
+/* Bouncing internal packet — never leaves the perimeter */
+.sp-packet--internal {
+    background: var(--sp-safe);
+    color: var(--bg-dark, #051622);
+    box-shadow: 0 0 14px var(--sp-safe-glow);
+    left: 22%;
+    top: 50%;
+    margin-top: -25px;
+    animation: sp-packet-internal var(--sp-cycle) ease-in-out infinite;
+}
+@keyframes sp-packet-internal {
+    0%   { left: 22%; opacity: 0; transform: scale(0.5); }
+    6%   { left: 22%; opacity: 1; transform: scale(1); }
+    35%  { left: 65%; opacity: 1; transform: scale(1); }
+    50%  { left: 65%; opacity: 1; transform: scale(1.1); }
+    65%  { left: 22%; opacity: 1; transform: scale(1); }
+    94%  { left: 22%; opacity: 1; transform: scale(1); }
+    100% { left: 22%; opacity: 0; transform: scale(0.5); }
+}
+
+/* ── FIREWALL — the visible barrier ── */
+.sp-firewall {
+    width: 56px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 10px 0;
+    border-left: 1px solid rgba(0, 212, 168, 0.18);
+}
+.sp-firewall-bricks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    width: 32px;
+    margin-bottom: 8px;
+}
+.sp-firewall-bricks span {
+    height: 7px;
+    background: linear-gradient(180deg, rgba(0, 212, 168, 0.45), rgba(0, 212, 168, 0.2));
+    border-radius: 1px;
+    border: 1px solid rgba(0, 212, 168, 0.55);
+}
+.sp-firewall-bricks span:nth-child(odd) {
+    transform: translateX(3px);
+}
+.sp-firewall-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.55em;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--sp-safe);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+.sp-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--sp-stroke-soft);
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+.sp-footer-copy {
+    color: var(--light-text);
+    font-size: 0.92em;
+    margin: 0;
+    line-height: 1.5;
+}
+.sp-footer-copy a {
+    color: var(--ai-blue);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 163, 255, 0.4);
+    transition: border-color 0.2s, color 0.2s;
+}
+.sp-footer-copy a:hover {
+    color: var(--white);
+    border-bottom-color: var(--white);
+}
+.sp-replay {
+    background: transparent;
+    border: 1px solid var(--sp-stroke);
+    color: var(--light-text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.74em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.sp-replay:hover {
+    border-color: var(--ai-blue);
+    color: var(--ai-blue);
+    background: rgba(0, 163, 255, 0.06);
+}
+.sp-replay:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+    .sovereignty-proof { padding: 32px 18px 24px; margin: 36px 12px; }
+    .sp-track { padding: 12px 4px; min-height: 78px; }
+    .sp-node-icon { width: 38px; height: 38px; }
+    .sp-node-label { font-size: 0.66em; }
+    .sp-node-sub { font-size: 0.58em; }
+    .sp-telemetry { grid-template-columns: 1fr 1fr; }
+    .sp-meter { padding: 9px 11px; }
+    .sp-meter-value { font-size: 0.88em; }
+    .sp-firewall { width: 40px; }
+    .sp-firewall-bricks { width: 24px; }
+    .sp-perimeter { padding: 12px 10px 14px; }
+    .sp-perimeter-label { font-size: 0.55em; }
+    .sp-hop--internal { margin: 0 6px; margin-top: -22px; }
+    .sp-packet { width: 32px; height: 19px; font-size: 0.55em; }
+}
+
+/* ── REDUCED MOTION — kill animations, leave a clear static comparison ── */
+@media (prefers-reduced-motion: reduce) {
+    .sp-packet--cloud,
+    .sp-packet--internal,
+    .sp-status-dot--danger {
+        animation: none;
+    }
+    .sp-packet--cloud { left: 50%; }
+    .sp-packet--internal { left: 45%; }
+}
+</style>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   LIVE SOVEREIGNTY PROOF — SCRIPT
+   Animated counters synchronized with the CSS packet animation cycle.
+   The cloud-side counters tick up as the packet hops; sentinel stays at 0.
+═══════════════════════════════════════════════════════════════════ */
+(function () {
+    'use strict';
+
+    var widget = document.querySelector('.sovereignty-proof');
+    if (!widget) return;
+
+    // Respect reduced motion
+    var reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var bytesEl   = widget.querySelector('[data-counter="cloud-bytes"]');
+    var hopsEl    = widget.querySelector('[data-counter="cloud-hops"]');
+    var partiesEl = widget.querySelector('[data-counter="cloud-parties"]');
+    var replayBtn = widget.querySelector('.sp-replay');
+
+    // Cycle is 12s — counter increments at the same beats as packet animation
+    var CYCLE_MS = 12000;
+    var schedule = [
+        // [time_ms, bytes, hops, parties]
+        [   0,   0, 0, 0],  // 0%   reset
+        [ 960,   1, 0, 0],  // 8%   leaves practice (1KB ack)
+        [3000,  47, 1, 1],  // 25%  ISP hop
+        [6000, 142, 2, 2],  // 50%  datacenter
+        [9000, 287, 3, 3],  // 75%  vendor LLM
+        [11040, 412, 4, 4]  // 92%  + training logs
+    ];
+
+    function setCounters(bytes, hops, parties) {
+        if (bytesEl)   bytesEl.textContent = bytes + ' KB';
+        if (hopsEl)    hopsEl.textContent  = hops;
+        if (partiesEl) partiesEl.textContent = parties;
+    }
+
+    var timeouts = [];
+    function clearAll() {
+        timeouts.forEach(clearTimeout);
+        timeouts = [];
+    }
+
+    function runCycle() {
+        clearAll();
+        schedule.forEach(function (step) {
+            timeouts.push(setTimeout(function () {
+                setCounters(step[1], step[2], step[3]);
+            }, step[0]));
+        });
+        // schedule the next cycle
+        timeouts.push(setTimeout(runCycle, CYCLE_MS));
+    }
+
+    // IntersectionObserver — only run when widget is on screen
+    // (saves CPU + battery for users who scroll past quickly)
+    var running = false;
+    function start() {
+        if (running) return;
+        running = true;
+        if (reduceMotion) {
+            // Show the scary final state, statically
+            setCounters(412, 4, 4);
+        } else {
+            runCycle();
+        }
+    }
+    function stop() {
+        running = false;
+        clearAll();
+    }
+
+    if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) start();
+                else stop();
+            });
+        }, { threshold: 0.2 });
+        io.observe(widget);
+    } else {
+        start();
+    }
+
+    // Replay button — manually restart the cycle
+    if (replayBtn) {
+        replayBtn.addEventListener('click', function () {
+            // Force reflow on the packet to restart its CSS animation
+            var packets = widget.querySelectorAll('.sp-packet');
+            packets.forEach(function (p) {
+                p.style.animation = 'none';
+                // Force reflow
+                void p.offsetWidth;
+                p.style.animation = '';
+            });
+            stop();
+            start();
+        });
+    }
+})();
+</script>
+
+
 
 
         <!-- ═══════════════════════════════════════════
