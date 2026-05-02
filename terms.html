@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v58 -->
+<html lang="en" class="legal-page"><!-- Pocono AI v80b -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Terms of Service for Pocono AI, LLC hardware and infrastructure deployments.">
+    <meta name="description" content="Terms of Service for Pocono AI, LLC — on-premises AI hardware deployments, data sovereignty, HIPAA compliance obligations, and mandatory Human-in-the-Loop requirements.">
     <title>Terms of Service | Pocono AI, LLC</title>
-    
+
     <meta property="og:title" content="Terms of Service | Pocono AI, LLC">
+    <meta property="og:description" content="Terms of Service for Pocono AI, LLC on-premises AI deployments. Data sovereignty, HIPAA, audit log specification.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/terms.html">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pocono AI — Sovereign on-premises AI">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
-
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="theme-color" content="#051622">
-    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
-    
-    
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
     <link rel="stylesheet" href="styles.css">
-    <!-- SEO: Canonical URL + XML Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/terms.html">
-    <!-- Open Graph: ensures social sharing pulls correct page -->
-    <meta property="og:url" content="https://poconoai.com/terms.html">
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
     <script type="application/ld+json">
     {
@@ -35,7 +36,7 @@
       "@type": "Organization",
       "name": "Pocono AI, LLC",
       "url": "https://poconoai.com",
-      "logo": "https://poconoai.com/logo-icon.svg",
+      "logo": "https://poconoai.com/logo.svg",
       "description": "Sovereign, on-premises local AI infrastructure for healthcare and legal professionals. Zero data exfiltration. Hardware-custody deployment.",
       "foundingDate": "2024",
       "address": {
@@ -58,10 +59,10 @@
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
-<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
-                        <header>
-        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
+<header>
+        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -73,92 +74,110 @@
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
-                        More <span class="arrow">&#9662;</span>
-                    </button>
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="solutions.html">Solutions Overview</a>
-                        <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="research.html">Research Hub</a>
-                        <a href="about.html">About the Founder</a>
+                        <span class="nav-group-label">Tools</span>
+                        <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
                         <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                        <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                        <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                        <span class="nav-group-label">Technology</span>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="comparison.html">Comparison</a>
+                        <a href="compliance.html">&#128274; Compliance Attestation</a>
+                        <a href="deployment.html">Deployment Timeline</a>
+                        <span class="nav-group-label">Research</span>
+                        <a href="research.html">Research Hub</a>
+                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                        <a href="patient-advocacy.html">Patient Safety</a>
+                        <span class="nav-group-label">Company</span>
+                        <a href="about.html">About the Founder</a>
+                        <a href="partners.html">Partners</a>
+                        <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
                     </div>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <main id="main-content">
-        <h1>Terms of Service</h1>
-        <p><strong>Effective Date:</strong> April 2026 &nbsp;|&nbsp; <strong>Last Updated:</strong> April 2026</p>
+<main id="main-content">
 
-        <!-- ── SECTION 1 ── -->
-        <h2>1. Nature of the Service</h2>
-        <p>Pocono AI, LLC provides physical hardware (The Sentinel Node™) and the configuration of localized, open-weight Large Language Models (LLMs) and Vector Databases. We are an infrastructure and systems architecture provider, not a cloud service provider or Software-as-a-Service (SaaS) entity.</p>
-        <p>All consultations and deployment scoping are led by our engineering and deployment operations team. Every client engages directly with the architects responsible for their system.</p>
+    <h1>Terms of Service</h1>
+    <p class="legal-meta"><strong>Effective Date:</strong> April 2026 &nbsp;|&nbsp; <strong>Last Updated:</strong> April 2026 &nbsp;|&nbsp; Questions: <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a></p>
 
-        <!-- ── SECTION 2 ── -->
-        <h2>2. Data Sovereignty &amp; Liability</h2>
-        <p>Because the Sentinel Node operates entirely on-premises with zero telemetry, the Client retains 100% physical and digital custody of their data. Consequently, Pocono AI, LLC bears no liability for data breaches, unauthorized internal access, or PHI/EPHI exposure resulting from the Client's internal network security posture, physical premises security, or misuse of the local hardware.</p>
-        <p>Pocono AI, LLC does not receive, store, process, or transmit any Client data, patient records, or protected health information at any time. The Client is, and remains, the sole Covered Entity or Business Associate under HIPAA with respect to their data.</p>
+    <!-- ── SECTION 1 ── -->
+    <h2>1. Nature of the Service</h2>
+    <p>Pocono AI, LLC provides physical hardware (The Sentinel Node™) and the configuration of localized, open-weight Large Language Models (LLMs) and Vector Databases. We are an infrastructure and systems architecture provider, not a cloud service provider or Software-as-a-Service (SaaS) entity.</p>
+    <p>All consultations and deployment scoping are led by our engineering and deployment operations team. Every client engages directly with the architects responsible for their system.</p>
 
-        <!-- ── SECTION 3 ── -->
-        <h2>3. Intellectual Property</h2>
-        <p>Pocono AI, LLC retains rights to our proprietary integration methodologies, deployment scripts, and specific hardware-software configurations. The underlying LLM weights remain subject to their respective open-source licenses (e.g., Llama community license, Gemma terms of use). The Client retains all intellectual property rights to any data, documents, or prompts processed through the Sentinel Node.</p>
+    <!-- ── SECTION 2 ── -->
+    <h2>2. Data Sovereignty &amp; Liability</h2>
+    <p>Because the Sentinel Node operates entirely on-premises with zero telemetry, the Client retains 100% physical and digital custody of their data. Consequently, Pocono AI, LLC bears no liability for data breaches, unauthorized internal access, or PHI/EPHI exposure resulting from the Client's internal network security posture, physical premises security, or misuse of the local hardware.</p>
+    <p>Pocono AI, LLC does not receive, store, process, or transmit any Client data, patient records, or protected health information at any time. The Client is, and remains, the sole Covered Entity or Business Associate under HIPAA with respect to their data.</p>
 
-        <!-- ── SECTION 4 ── -->
-        <h2>4. Hardware Warranties &amp; Professional Liability</h2>
-        <p>Sentinel Node compute engines are backed by the underlying manufacturer's enterprise SLA (e.g., Dell ProSupport Plus with 4-Hour Mission Critical On-Site response). Pocono AI, LLC facilitates the architectural integration but does not independently manufacture the silicon or storage components.</p>
-        <p>Pocono AI, LLC maintains appropriate professional liability coverage for its infrastructure deployment and integration activities. Specific coverage details are available upon request during the procurement scoping phase.</p>
+    <!-- ── SECTION 3 ── -->
+    <h2>3. Intellectual Property</h2>
+    <p>Pocono AI, LLC retains rights to our proprietary integration methodologies, deployment scripts, and specific hardware-software configurations. The underlying LLM weights remain subject to their respective open-source licenses (e.g., Llama community license, Gemma terms of use). The Client retains all intellectual property rights to any data, documents, or prompts processed through the Sentinel Node.</p>
 
-        <!-- ── SECTION 5 ── -->
-        <h2>5. Mandatory Human-in-the-Loop &amp; Audit Log Specification</h2>
-        <p>Pocono AI, LLC provides systems architecture, <strong>not medical, clinical, or legal advice.</strong> The generative models deployed are probabilistic systems designed strictly as research and discovery tools to augment professional workflows. Because large language models may generate plausible but factually incorrect information (hallucinations) — including from locally retrieved data — all operational use of the Sentinel Node requires a strict Human-in-the-Loop (HITL) protocol mandated at the system architecture level.</p>
+    <!-- ── SECTION 4 ── -->
+    <h2>4. Hardware Warranties &amp; Professional Liability</h2>
+    <p>Sentinel Node compute engines are backed by the underlying manufacturer's enterprise SLA (e.g., Dell ProSupport Plus with 4-Hour Mission Critical On-Site response). Pocono AI, LLC facilitates the architectural integration but does not independently manufacture the silicon or storage components.</p>
+    <p>Pocono AI, LLC maintains appropriate professional liability coverage for its infrastructure deployment and integration activities. Specific coverage details are available upon request during the procurement scoping phase.</p>
 
-        <p><strong>The Client explicitly agrees that outputs generated by the Sentinel Node must never be utilized as the sole basis for clinical diagnosis, patient care decisions, or legal strategy without direct human verification against the source data chunks provided by the system.</strong> The licensed professional operating the system assumes complete and total liability for the accuracy and appropriateness of their final work product.</p>
+    <!-- ── SECTION 5 ── -->
+    <h2>5. Mandatory Human-in-the-Loop &amp; Audit Log Specification</h2>
+    <p>Pocono AI, LLC provides systems architecture, <strong>not medical, clinical, or legal advice.</strong> The generative models deployed are probabilistic systems designed strictly as research and discovery tools to augment professional workflows. Because large language models may generate plausible but factually incorrect information (hallucinations) — including from locally retrieved data — all operational use of the Sentinel Node requires a strict Human-in-the-Loop (HITL) protocol mandated at the system architecture level.</p>
+    <p><strong>The Client explicitly agrees that outputs generated by the Sentinel Node must never be utilized as the sole basis for clinical diagnosis, patient care decisions, or legal strategy without direct human verification against the source data chunks provided by the system.</strong> The licensed professional operating the system assumes complete and total liability for the accuracy and appropriateness of their final work product.</p>
 
-        <div class="notice-box">
-            <p><strong>Audit Log Architecture:</strong> To enforce and support the HITL requirement, the Sentinel Node maintains a local, on-device Audit Log for every query session. This log is stored exclusively on the deployed hardware and is never transmitted to Pocono AI, LLC or any third party.</p>
-        </div>
+    <div class="notice-box">
+        <p><strong>Audit Log Architecture:</strong> To enforce and support the HITL requirement, the Sentinel Node maintains a local, on-device Audit Log for every query session. This log is stored exclusively on the deployed hardware and is never transmitted to Pocono AI, LLC or any third party.</p>
+    </div>
 
-        <div class="audit-spec">
-            <p style="color: var(--white); font-weight: 600; margin: 0 0 8px 0;">Each Audit Log entry captures:</p>
-            <ul>
-                <li>The verbatim user prompt submitted to the system</li>
-                <li>The specific local document chunks retrieved by the RAG pipeline, with source file references</li>
-                <li>The complete model-generated response</li>
-                <li>A UTC timestamp and local session identifier</li>
-                <li>The quantized model version active at time of query</li>
-            </ul>
-            <p style="margin: 12px 0 0 0;">Minimum log retention is 90 days on local NVMe storage. The Client is responsible for configuring extended retention to meet their applicable regulatory requirements. Audit logs are accessible to the Client's authorized administrators via the local interface at any time.</p>
-        </div>
-
-        <!-- ── SECTION 6 ── -->
-        <h2>6. Regulatory Compliance — HIPAA, HITECH &amp; State Notification</h2>
-        <p>The Sentinel Node is architected to support the Client's existing HIPAA compliance posture by eliminating cloud data transmission entirely. However, Pocono AI, LLC does not execute or initiate a Business Associate Agreement (BAA) through this website or through the deployment of the Sentinel Node. The Client remains the Covered Entity solely responsible for their HIPAA and HITECH compliance obligations.</p>
-        <p>In the event of a security incident involving the Client's local network or hardware environment, the Client is solely responsible for conducting breach risk assessments and for adhering to applicable notification timelines, including:</p>
+    <div class="audit-spec">
+        <p style="color: var(--white); font-weight: 600; margin: 0 0 8px 0;">Each Audit Log entry captures:</p>
         <ul>
-            <li><strong>HITECH Act:</strong> Notification to affected individuals and HHS within 60 days of discovery of a breach affecting 500 or more individuals</li>
-            <li><strong>Pennsylvania Breach of Personal Information Notification Act:</strong> Notification to affected Pennsylvania residents without unreasonable delay following discovery</li>
-            <li><strong>Other applicable state statutes</strong> governing the Client's patient or client population</li>
+            <li>The verbatim user prompt submitted to the system</li>
+            <li>The specific local document chunks retrieved by the RAG pipeline, with source file references</li>
+            <li>The complete model-generated response</li>
+            <li>A UTC timestamp and local session identifier</li>
+            <li>The quantized model version active at time of query</li>
         </ul>
-        <p>Pocono AI, LLC will cooperate reasonably with Client breach investigations to the extent the inquiry concerns the Sentinel Node's local architecture, at no additional charge during the initial deployment warranty period.</p>
+        <p>Minimum log retention is 90 days on local NVMe storage. The Client is responsible for configuring extended retention to meet their applicable regulatory requirements. Audit logs are accessible to the Client's authorized administrators via the local interface at any time.</p>
+    </div>
 
-        <!-- ── SECTION 7 ── -->
-        <h2>7. Governing Law &amp; Jurisdiction</h2>
-        <p>The governing law and jurisdiction for any deployment shall be mutually agreed upon and specified in the executed Deployment &amp; Services Agreement signed at the time of procurement. Enterprise clients requiring their home state jurisdiction or federal arbitration are accommodated in the executed agreement.</p>
-        <p>Absent a signed Deployment Agreement specifying alternative jurisdiction, these Terms of Service shall be governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law principles. Any legal action brought solely under these website Terms — and not under a separate executed agreement — shall be brought in the state or federal courts located within Pennsylvania.</p>
+    <!-- ── SECTION 6 ── -->
+    <h2>6. Regulatory Compliance — HIPAA, HITECH &amp; State Notification</h2>
+    <p>The Sentinel Node is architected to support the Client's existing HIPAA compliance posture by eliminating cloud data transmission entirely. However, Pocono AI, LLC does not execute or initiate a Business Associate Agreement (BAA) through this website or through the deployment of the Sentinel Node. The Client remains the Covered Entity solely responsible for their HIPAA and HITECH compliance obligations.</p>
+    <p>In the event of a security incident involving the Client's local network or hardware environment, the Client is solely responsible for conducting breach risk assessments and for adhering to applicable notification timelines, including:</p>
+    <ul>
+        <li><strong>HITECH Act:</strong> Notification to affected individuals and HHS within 60 days of discovery of a breach affecting 500 or more individuals</li>
+        <li><strong>Pennsylvania Breach of Personal Information Notification Act:</strong> Notification to affected Pennsylvania residents without unreasonable delay following discovery</li>
+        <li><strong>Other applicable state statutes</strong> governing the Client's patient or client population</li>
+    </ul>
+    <p>Pocono AI, LLC will cooperate reasonably with Client breach investigations to the extent the inquiry concerns the Sentinel Node's local architecture, at no additional charge during the initial deployment warranty period.</p>
 
-    </main>
+    <!-- ── SECTION 7 ── -->
+    <h2>7. Governing Law &amp; Jurisdiction</h2>
+    <p>The governing law and jurisdiction for any deployment shall be mutually agreed upon and specified in the executed Deployment &amp; Services Agreement signed at the time of procurement. Enterprise clients requiring their home state jurisdiction or federal arbitration are accommodated in the executed agreement.</p>
+    <p>Absent a signed Deployment Agreement specifying alternative jurisdiction, these Terms of Service shall be governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law principles. Any legal action brought solely under these website Terms — and not under a separate executed agreement — shall be brought in the state or federal courts located within Pennsylvania.</p>
 
-                <footer class="site-footer">
+    <p style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);color:var(--muted);font-size:0.82em;">
+        For questions about these terms, contact <a href="mailto:marcus@poconoai.com" style="color:var(--ai-blue);">marcus@poconoai.com</a> &nbsp;|&nbsp; <a href="privacy.html" style="color:var(--ai-blue);">Privacy Policy</a> &nbsp;|&nbsp; <a href="sla.html" style="color:var(--ai-blue);">Service Level Agreement</a>
+    </p>
+
+</main>
+
+<footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
-                <p class="footer-brand">Pocono <span>AI</span></p>
+                <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
                 <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
                 <p class="footer-location">East Stroudsburg, Pennsylvania</p>
-                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
             </div>
             <div class="footer-col">
                 <p class="footer-heading">For Practitioners</p>
@@ -167,15 +186,19 @@
                 <a href="use-cases.html">Use Cases</a>
                 <a href="solutions.html">Solutions Overview</a>
                 <a href="pricing.html">Pricing &amp; Financing</a>
-                <a href="specs.html">Hardware Specs</a>
+                <a href="architecture.html">For IT &amp; MSPs</a>
             </div>
             <div class="footer-col">
-                <p class="footer-heading">Technology</p>
-                <a href="architecture.html">For IT &amp; MSPs</a>
-                <a href="trust.html">Trust &amp; Security</a>
-                <a href="partners.html">Partners</a>
+                <p class="footer-heading">Technology &amp; Tools</p>
+                <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+                <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+                <a href="breach-calculator.html">Breach Calculator</a>
+                <a href="shadow-audit.html">Shadow IT Audit</a>
+                <a href="compliance.html">Compliance Attestation</a>
                 <a href="competitive-analysis.html">Competitive Analysis</a>
-                <a href="why-pocono-ai.html">Why Pocono AI</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="deployment.html">Deployment Timeline</a>
+                <a href="trust.html">Trust &amp; Security</a>
             </div>
             <div class="footer-col">
                 <p class="footer-heading">Research</p>
@@ -187,14 +210,12 @@
                 <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
             </div>
             <div class="footer-col">
-                <p class="footer-heading">Company</p>
-                <a href="portal.html">Client Portal</a>
+                <p class="footer-heading">Company &amp; Legal</p>
                 <a href="about.html">About the Founder</a>
-                        <a href="careers.html">Careers</a>
-                <a href="simulation.html">12-Panel Simulation</a>
-                <a href="sitemap.html">Sitemap</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="careers.html">Careers</a>
+                <a href="partners.html">Partners</a>
                 <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
                 <a href="sla.html">SLA</a>
                 <a href="investors.html" class="footer-subtle">Investor Relations</a>
             </div>
@@ -208,9 +229,6 @@
         </div>
     </footer>
 
-    <!-- Shared navigation script -->
     <script src="nav.js"></script>
 </body>
 </html>
-<<<END: terms.html>>>
-

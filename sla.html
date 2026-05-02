@@ -1,61 +1,37 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v58 -->
+<html lang="en" class="legal-page"><!-- Pocono AI v80b -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enterprise Service Level Agreement for Sentinel Node hardware deployments by Pocono AI, LLC.">
+    <meta name="description" content="Service Level Agreement for Pocono AI, LLC Sentinel Node deployments — hardware uptime, support response times, and KYHD coverage.">
     <title>Service Level Agreement | Pocono AI, LLC</title>
     <meta property="og:title" content="Service Level Agreement | Pocono AI, LLC">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/sla.html">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="theme-color" content="#051622">
-    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
     <link rel="stylesheet" href="styles.css">
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>    <!-- SEO: Canonical URL + XML Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/sla.html">
-    <!-- Open Graph: ensures social sharing pulls correct page -->
-    <meta property="og:url" content="https://poconoai.com/sla.html">
-
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Pocono AI, LLC",
-      "url": "https://poconoai.com",
-      "logo": "https://poconoai.com/logo-icon.svg",
-      "description": "Sovereign, on-premises local AI infrastructure for healthcare and legal professionals. Zero data exfiltration. Hardware-custody deployment.",
-      "foundingDate": "2024",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "East Stroudsburg",
-        "addressRegion": "PA",
-        "addressCountry": "US"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-570-534-0602",
-        "contactType": "sales",
-        "email": "marcus@poconoai.com"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/pocono-ai"
-      ]
-    }
+    {"@context":"https://schema.org","@type":"Organization","name":"Pocono AI, LLC","url":"https://poconoai.com","logo":"https://poconoai.com/logo.svg","foundingDate":"2024","address":{"@type":"PostalAddress","addressLocality":"East Stroudsburg","addressRegion":"PA","addressCountry":"US"},"contactPoint":{"@type":"ContactPoint","telephone":"+1-570-534-0602","contactType":"sales","email":"marcus@poconoai.com"},"sameAs":["https://www.linkedin.com/company/pocono-ai"]}
     </script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
-<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
-                <header>
-        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
+<header>
+        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -67,175 +43,102 @@
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
-                        More <span class="arrow">&#9662;</span>
-                    </button>
+                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="solutions.html">Solutions Overview</a>
-                        <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="research.html">Research Hub</a>
-                        <a href="about.html">About the Founder</a>
+                        <span class="nav-group-label">Tools</span>
+                        <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
                         <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                        <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                        <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                        <span class="nav-group-label">Technology</span>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="comparison.html">Comparison</a>
+                        <a href="compliance.html">&#128274; Compliance Attestation</a>
+                        <a href="deployment.html">Deployment Timeline</a>
+                        <span class="nav-group-label">Research</span>
+                        <a href="research.html">Research Hub</a>
+                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                        <a href="patient-advocacy.html">Patient Safety</a>
+                        <span class="nav-group-label">Company</span>
+                        <a href="about.html">About the Founder</a>
+                        <a href="partners.html">Partners</a>
+                        <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
                     </div>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <main id="main-content">
-        <div class="doc-card">
+<main id="main-content">
 
-            <h1>Enterprise Service Level Agreement</h1>
-            <div class="doc-meta">
-                <strong>Effective Date:</strong> April 2026 &nbsp;&nbsp;|&nbsp;&nbsp;
-                <strong>Last Reviewed:</strong> April 2026<br>
-                <strong>Covered Infrastructure:</strong> Sentinel Node™ On-Premises Hardware &amp; Local Software Stack<br>
-                <strong>Parties:</strong> Pocono AI, LLC (&ldquo;Provider&rdquo;) and the deploying practice or organization (&ldquo;Client&rdquo;)
-            </div>
+    <h1>Service Level Agreement</h1>
+    <p class="legal-meta"><strong>Effective Date:</strong> April 2026 &nbsp;|&nbsp; <strong>Last Updated:</strong> April 2026 &nbsp;|&nbsp; Questions: <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a></p>
 
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>1. Zero-Access &amp; Data Custody Declaration</h2>
-            <p>Pocono AI, LLC (&ldquo;Provider&rdquo;) deploys physically isolated, air-gapped hardware (&ldquo;Sentinel Node&rdquo;). At no time does the Provider require, request, or possess remote access to the Sentinel Node or the network on which it resides. The Client retains absolute custody of all data, Protected Health Information (PHI), and legally privileged information processed by the Sentinel Node.</p>
+    <div class="notice-box">
+        <p><strong>Note:</strong> This is a summary SLA for reference. Deployed clients receive a full executed Deployment &amp; Services Agreement specifying their individual SLA tier, hardware configuration, and support escalation path. Contact <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a> for your deployment-specific agreement.</p>
+    </div>
 
-            <div class="notice-box">
-                <p><strong>HIPAA/HITECH Status:</strong> Because the Provider cannot access, transmit, or store the Client&rsquo;s data during standard inference operations, the Provider operates as a hardware and software licensor outside the scope of a Business Associate under HIPAA. A fully executed Business Associate Agreement (BAA) is provided before any authorized on-site maintenance visit that may involve incidental access to the Client&rsquo;s environment.</p>
-            </div>
+    <h2>1. Hardware Coverage — KYHD (Know Your Hardware Down)</h2>
+    <p>All Sentinel Node deployments include the manufacturer's enterprise hardware SLA. For Dell-based configurations, this is <strong>Dell ProSupport Plus with 4-Hour Mission Critical On-Site Response</strong>, available 24×7×365, including holidays.</p>
+    <ul>
+        <li><strong>Response time:</strong> On-site technician dispatched within 4 hours of hardware failure confirmation</li>
+        <li><strong>Parts:</strong> Critical components covered including CPUs, RAM, storage arrays, and GPU cards</li>
+        <li><strong>Coverage:</strong> 3-year coverage included in all HaaS subscriptions; extended terms available</li>
+    </ul>
 
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>2. Service Level &amp; Response Times</h2>
-            <p>Support is provided for hardware failures and local software pipeline anomalies. Because the Sentinel Node does not rely on cloud connectivity, traditional &ldquo;Cloud Uptime&rdquo; SLA metrics do not apply. Response time commitments are contingent on the Client maintaining an active, paid support tier. Support requests are categorized by the Client upon submission to the Secure Portal:</p>
+    <h2>2. Software &amp; Configuration Support</h2>
+    <p>Pocono AI, LLC provides direct engineering support for the Sentinel Node's software stack — model configuration, RAG pipeline, vector database, and system updates.</p>
+    <ul>
+        <li><strong>Standard response:</strong> Next business day for non-critical issues</li>
+        <li><strong>Priority response:</strong> 4-hour response for system-down conditions during business hours (M–F, 9am–6pm ET)</li>
+        <li><strong>Model updates:</strong> Delivered via cryptographically signed USB media, scheduled quarterly or as needed for security patches</li>
+        <li><strong>Remote diagnosis:</strong> Performed via secure, client-initiated screen share only — no persistent remote access</li>
+    </ul>
 
-            <div class="severity-grid">
-                <div class="severity-card critical">
-                    <h3>Severity 1 &mdash; Critical <span class="response-time">&#9679; 2-Hour Response</span></h3>
-                    <p><strong>Definition:</strong> Complete hardware failure or localized inference engine crash halting all processing for all users.</p>
-                    <p><strong>Resolution:</strong> Remote diagnostic guidance initiated immediately. For Enterprise Redundancy Tier clients, the on-site Hot Spare node absorbs the workload — Client IT swaps NVMe arrays targeting restoration in under 15 minutes. For Standard Tier, Dell ProSupport Plus hardware dispatch is initiated under the underlying manufacturer warranty, coordinated by Pocono AI on the Client's behalf. See Section 3 for full hardware replacement terms.</p>
-                </div>
-                <div class="severity-card">
-                    <h3>Severity 2 &mdash; High <span class="response-time">&#9679; 4-Hour Response</span></h3>
-                    <p><strong>Definition:</strong> RAG pipeline degradation — specific document ingestion failures, noticeable retrieval latency increase, or partial user access loss.</p>
-                    <p><strong>Resolution:</strong> Provision of a cryptographically signed software patch or localized vector database rebuild script delivered via Secure Portal.</p>
-                </div>
-                <div class="severity-card">
-                    <h3>Severity 3 &mdash; Standard <span class="response-time">&#9679; 24-Hour Response</span></h3>
-                    <p><strong>Definition:</strong> Feature inquiries, model update requests, configuration questions, or general maintenance questions not affecting primary system availability.</p>
-                    <p><strong>Resolution:</strong> Written response via email or Secure Portal ticket.</p>
-                </div>
-            </div>
+    <h2>3. HaaS Subscription — What's Included</h2>
+    <p>The Hardware-as-a-Service (HaaS) monthly subscription covers all of the following at a single predictable rate:</p>
+    <ul>
+        <li>Sentinel Node hardware (Pocono AI, LLC retains title; client has exclusive on-premises custody)</li>
+        <li>Operating system and firmware maintenance</li>
+        <li>LLM model updates and RAG pipeline upgrades</li>
+        <li>Qdrant vector database maintenance</li>
+        <li>Manufacturer hardware SLA (KYHD)</li>
+        <li>Human-in-the-Loop protocol documentation and training materials</li>
+        <li>90-day audit log architecture (on-device, client-controlled)</li>
+    </ul>
 
-            <div class="notice-box">
-                <p><strong>Support Hours &amp; Tier Dependency:</strong> Response time commitments apply during standard business hours (Mon&ndash;Fri, 9 AM&ndash;6 PM Eastern) for Standard and Clinical SLA subscribers. Sovereign tier subscribers receive priority coverage including weekend Severity 1 response. Response commitments are suspended if the Client&rsquo;s active SLA subscription has lapsed.</p>
-            </div>
+    <h2>4. Exclusions</h2>
+    <p>This SLA does not cover:</p>
+    <ul>
+        <li>Damage resulting from client network misconfiguration, power surges, or physical damage outside manufacturer defect</li>
+        <li>HIPAA compliance attestation (client remains the Covered Entity — see <a href="terms.html">Terms of Service</a>)</li>
+        <li>Client data backup, disaster recovery planning, or business continuity services beyond hardware replacement</li>
+        <li>EHR integration, API development, or third-party software support</li>
+    </ul>
 
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>3. Hardware Replacement Guarantee</h2>
-            <p>The following guarantees apply to hardware deployed under an active Pocono AI SLA subscription:</p>
-            <ul>
-                <li><strong>Standard Tier:</strong> Next Business Day (NBD) shipment of replacement components (e.g., eGPU, processing node, NVMe storage array) via overnight courier at no additional charge for manufacturing defects within the warranty period.</li>
-                <li><strong>Enterprise Redundancy Tier:</strong> Client is provided a cold-standby &ldquo;Hot Spare&rdquo; Sentinel Node on-site at deployment. In the event of a Severity 1 failure, Client IT swaps the physical NVMe storage arrays to the Hot Spare for immediate return to full operation, targeting restoration within 15 minutes of swap initiation.</li>
-            </ul>
-            <div style="background: rgba(24,139,150,0.08); border: 1px solid var(--teal); border-radius: 8px; padding: 22px; margin: 20px 0;">
-            <h3 style="color: var(--teal); margin-top: 0; font-size: 1.05em;">Keep Your Hard Drive (KYHD) &mdash; Mandatory PHI Custody Provision</h3>
-            <p style="color: var(--light-text); font-size: 0.93em; line-height: 1.75; margin-bottom: 10px;">All Sentinel Node deployments operating under an active SLA are provisioned with the <strong>Keep Your Hard Drive (KYHD)</strong> add-on under their Dell ProSupport Plus coverage. This is not optional for any deployment involving Protected Health Information (PHI), privileged legal documents, or other regulated data.</p>
-            <p style="color: var(--light-text); font-size: 0.93em; line-height: 1.75; margin-bottom: 10px;">Under standard Dell ProSupport contracts, a technician dispatched for hardware failure is required to return the failed drive to Dell. <strong>Under KYHD, the Client retains full physical custody of the failed drive.</strong> The defective component remains in the Client&rsquo;s possession &mdash; to be destroyed, degaussed, or archived per the Client&rsquo;s own data retention policy &mdash; and a replacement drive is provided without requiring return of the original.</p>
-            <p style="color: var(--light-text); font-size: 0.93em; line-height: 1.75;">This provision closes the final gap in the PHI custody chain. The Sentinel Node ingests locally. Processes locally. And if hardware fails, your data never leaves your building &mdash; not even on a defective drive headed to a third-party repair facility.</p>
-        </div>
-        <p style="font-size:0.88em; color: var(--muted);">Hardware replacement does not cover physical damage caused by the Client, acts of third parties, or environmental conditions outside standard operating specifications. Underlying manufacturer warranties (Dell ProSupport Plus with KYHD) apply and are facilitated by the Provider on the Client&rsquo;s behalf.</p>
+    <h2>5. Uptime &amp; Availability</h2>
+    <p>The Sentinel Node operates on the client's local network without cloud dependencies. System availability is therefore a function of the client's local power and network infrastructure, not Pocono AI, LLC's infrastructure. Pocono AI, LLC commits to hardware that meets or exceeds Dell enterprise specifications for mean time between failures (MTBF).</p>
 
+    <h2>6. SLA Disputes</h2>
+    <p>SLA disputes are governed by the terms of the executed Deployment &amp; Services Agreement. For clients without a signed agreement, Pennsylvania law governs. Contact <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a> to initiate any SLA dispute resolution process.</p>
 
-            <!-- SOFTWARE RESTORATION PROTOCOL — v42 Red Team Fix -->
-            <div style="background:rgba(0,163,255,0.06);border:1px solid rgba(0,163,255,0.25);border-radius:10px;padding:26px 30px;margin:24px 0;">
-                <h3 style="color:var(--ai-blue);margin-top:0;font-size:1.05em;">Software Restoration Protocol — Post Hardware Replacement</h3>
-                <p style="color:var(--light-text);font-size:0.92em;line-height:1.75;margin-bottom:12px;">Dell ProSupport Plus replaces physical hardware. It does not reinstall the operating system, vector database, or AI model weights. After any Severity 1 hardware event requiring Dell component replacement, the following Pocono AI software restoration sequence applies:</p>
-                <ol style="color:var(--light-text);font-size:0.92em;line-height:1.9;padding-left:20px;margin:0 0 12px;">
-                    <li><strong style="color:var(--white);">Hardware Triage:</strong> Client IT and Dell ProSupport coordinate physical component replacement (motherboard, NVMe array, or processing node). KYHD ensures all data-bearing drives remain in Client custody throughout.</li>
-                    <li><strong style="color:var(--white);">Restoration USB Dispatch:</strong> Pocono AI dispatches a cryptographically signed restoration USB within 4 business hours of confirmed hardware replacement. The USB contains the complete OS image, Qdrant vector database configuration, and model weight loader.</li>
-                    <li><strong style="color:var(--white);">Client IT Installation:</strong> Client&#8217;s IT administrator boots from the restoration USB and applies the signed image. Estimated installation time: 45–90 minutes. Step-by-step written runbook provided.</li>
-                    <li><strong style="color:var(--white);">Vector Database Rehydration:</strong> The document ingestion pipeline re-indexes from the Client&#8217;s local document archive. Pocono AI provides a rehydration script; no data leaves the building at any stage.</li>
-                    <li><strong style="color:var(--white);">Functional Verification:</strong> Chief Technologist confirms system is operational via phone walkthrough with Client IT before closing the ticket.</li>
-                </ol>
-                <p style="color:var(--muted);font-size:0.8em;font-style:italic;margin:0;">Target full software restoration: under 24 hours from confirmed hardware replacement for Standard Tier. Enterprise Redundancy Tier clients remain operational on the Hot Spare during the entire process.</p>
-            </div>
+    <p style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);color:var(--muted);font-size:0.82em;">
+        <a href="terms.html" style="color:var(--ai-blue);">Terms of Service</a> &nbsp;|&nbsp; <a href="privacy.html" style="color:var(--ai-blue);">Privacy Policy</a> &nbsp;|&nbsp; <a href="pricing.html" style="color:var(--ai-blue);">Pricing &amp; Tiers</a> &nbsp;|&nbsp; <a href="deployment.html" style="color:var(--ai-blue);">Deployment Timeline</a>
+    </p>
 
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>4. Software, Model Weights &amp; Security Updates</h2>
-            <p>To maintain the Enterprise Autonomy Architecture (EAA™) and air-gapped security posture, updates to Large Language Models (LLMs), retrieval architecture, or system software are <strong>never pushed via the internet.</strong></p>
-            <ul>
-                <li>Updates are delivered exclusively via cryptographically signed executable packages made available through the Secure Portal.</li>
-                <li>Every update package includes a SHA-256 checksum. The Client&rsquo;s IT administrator must verify this checksum against the value published in the Secure Portal before installation.</li>
-                <li>It is the sole responsibility of the Client&rsquo;s IT administration to download, verify, and manually apply updates to the Sentinel Node via physical media (USB or equivalent).</li>
-                <li>Pocono AI, LLC is not responsible for system vulnerabilities or model drift resulting from the Client&rsquo;s failure to apply published updates in a timely manner.</li>
-            </ul>
+</main>
 
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>5. Human-in-the-Loop Mandate &amp; Audit Log Specification</h2>
-
-            <div class="alert-box">
-                <p><strong>Mandatory Clinical &amp; Legal Requirement:</strong> The Sentinel Node is strictly an assistive administrative and discovery tool. Outputs generated by the system do not constitute medical advice, clinical diagnosis, legal advice, or legal strategy. All outputs must be verified by a licensed professional before use in any official capacity.</p>
-            </div>
-
-            <p><strong>Mandatory Verification Protocol:</strong> The Sentinel Node cites the specific local document chunk used to generate every summary or output. A licensed professional (Physician, Attorney, or delegated qualified staff member) MUST review and verify all AI-generated outputs against the cited source chunk before committing any output to an official Electronic Health Record (EHR), clinical note, legal filing, or patient care decision.</p>
-
-            <p><strong>No Professional Advice:</strong> Pocono AI, LLC provides infrastructure. The Provider does not practice medicine, provide clinical guidance, provide legal counsel, or render professional opinions of any kind through the Sentinel Node system.</p>
-
-            <p><strong>Audit Log Architecture:</strong> To enforce and support the Human-in-the-Loop requirement, every query session is logged locally on the Sentinel Node hardware and is never transmitted to Pocono AI, LLC or any external party.</p>
-
-            <div class="audit-box">
-                <div class="audit-title">Each Audit Log Entry Captures:</div>
-                <ul>
-                    <li>The verbatim user prompt submitted to the system</li>
-                    <li>The specific local document chunks retrieved by the RAG pipeline, with source file name and page reference</li>
-                    <li>The complete model-generated response</li>
-                    <li>A UTC timestamp and local session identifier</li>
-                    <li>The quantized model version and parameter count active at time of query</li>
-                    <li>The local user account identifier associated with the session</li>
-                </ul>
-            </div>
-            <p>Minimum audit log retention is 90 days on local NVMe storage. The Client is solely responsible for configuring extended retention periods to meet applicable regulatory requirements (HIPAA minimum: 6 years for BAA-related records). Audit logs are accessible to authorized Client administrators via the local interface at any time and are never accessible to the Provider.</p>
-
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>6. Limitation of Liability</h2>
-            <p>Pocono AI, LLC is not liable for medical malpractice, legal malpractice, misdiagnosis, erroneous patient care decisions, or erroneous legal filings resulting from the Client&rsquo;s use of, or failure to verify, AI-generated outputs against the cited source data chunks provided by the system.</p>
-            <p><strong>Maximum Liability Cap:</strong> In no event shall Pocono AI, LLC&rsquo;s total aggregate liability to the Client under this SLA — for any cause whatsoever and regardless of the form of action — exceed the total amount paid by the Client to Pocono AI, LLC for the Sentinel Node deployment and active SLA subscription in the twelve (12) months immediately preceding the claim.</p>
-            <p><strong>Exclusions:</strong> Pocono AI, LLC shall not be liable for: (a) indirect, incidental, consequential, special, or punitive damages of any kind; (b) loss of revenue, profits, or business opportunities; (c) data loss resulting from the Client&rsquo;s failure to maintain independent local backups; or (d) damages resulting from the Client&rsquo;s failure to apply available security updates.</p>
-            <p>The Client explicitly acknowledges that the Sentinel Node is a workflow augmentation tool operating under a mandatory Human-in-the-Loop protocol, and that all final professional judgments — clinical, legal, and administrative — remain the sole responsibility of the licensed professional operating the system.</p>
-
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>7. Force Majeure</h2>
-            <p>Neither party shall be held liable for delays or failures in performance resulting from causes beyond their reasonable control, including but not limited to: acts of God, natural disasters, power grid failures, government actions, supply chain disruptions affecting hardware component availability, or other events that make performance commercially impracticable. The affected party shall notify the other party in writing as soon as practicable and shall resume performance as quickly as reasonably possible.</p>
-
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>8. Dispute Resolution</h2>
-            <p>In the event of a dispute arising under this SLA, the parties agree to first attempt good-faith resolution through direct negotiation between authorized representatives, with a minimum 30-day negotiation period before either party may initiate formal proceedings.</p>
-            <p>If negotiation fails, the parties agree to non-binding mediation administered by a mutually agreed mediator in Pennsylvania before resorting to litigation. The cost of mediation shall be shared equally between the parties.</p>
-
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>9. Governing Law &amp; Jurisdiction</h2>
-            <p>This SLA is governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law principles. Any legal action brought solely under this SLA — and not under a separately executed Deployment &amp; Services Agreement — shall be brought in the state or federal courts located within the Commonwealth of Pennsylvania.</p>
-            <p>Clients requiring their home-state jurisdiction or federal arbitration clauses may negotiate alternative governing law terms in the separately executed Deployment &amp; Services Agreement signed at time of procurement.</p>
-
-            <!-- ══════════════════════════════════════════════ -->
-            <h2>10. Amendments &amp; Modifications</h2>
-            <p>Pocono AI, LLC reserves the right to update this SLA with reasonable written notice of not less than 30 days delivered to the Client&rsquo;s designated contact on file. Continued use of the Sentinel Node system following the notice period constitutes acceptance of the updated terms. Material changes to response time commitments, liability caps, or hardware replacement terms require written acknowledgment from the Client before taking effect.</p>
-            <p>No amendment, modification, or waiver of any provision of this SLA shall be valid unless made in writing and signed by an authorized representative of both parties.</p>
-
-            <div class="cta-wrap">
-                <p>Questions about deployment, support tiers, the BAA, or this SLA?</p>
-                <a href="mailto:marcus@poconoai.com?subject=SLA%20Inquiry%20%E2%80%94%20Pocono%20AI" class="cta-button">Email Direct Inquiry</a>
-                <p style="margin-top: 20px; font-size: 0.88em; color: var(--muted);">Direct line: <a href="tel:+15705340602" style="color: var(--ai-blue);">(570) 534-0602</a> &nbsp;|&nbsp; Responses within 24 hours</p>
-            </div>
-
-        </div><!-- end doc-card -->
-    </main>
-
-        <footer class="site-footer">
+<footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
-                <p class="footer-brand">Pocono <span>AI</span></p>
+                <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
                 <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
                 <p class="footer-location">East Stroudsburg, Pennsylvania</p>
-                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
             </div>
             <div class="footer-col">
                 <p class="footer-heading">For Practitioners</p>
@@ -244,15 +147,19 @@
                 <a href="use-cases.html">Use Cases</a>
                 <a href="solutions.html">Solutions Overview</a>
                 <a href="pricing.html">Pricing &amp; Financing</a>
-                <a href="specs.html">Hardware Specs</a>
+                <a href="architecture.html">For IT &amp; MSPs</a>
             </div>
             <div class="footer-col">
-                <p class="footer-heading">Technology</p>
-                <a href="architecture.html">For IT &amp; MSPs</a>
-                <a href="trust.html">Trust &amp; Security</a>
-                <a href="partners.html">Partners</a>
+                <p class="footer-heading">Technology &amp; Tools</p>
+                <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+                <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+                <a href="breach-calculator.html">Breach Calculator</a>
+                <a href="shadow-audit.html">Shadow IT Audit</a>
+                <a href="compliance.html">Compliance Attestation</a>
                 <a href="competitive-analysis.html">Competitive Analysis</a>
-                <a href="why-pocono-ai.html">Why Pocono AI</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="deployment.html">Deployment Timeline</a>
+                <a href="trust.html">Trust &amp; Security</a>
             </div>
             <div class="footer-col">
                 <p class="footer-heading">Research</p>
@@ -264,14 +171,12 @@
                 <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
             </div>
             <div class="footer-col">
-                <p class="footer-heading">Company</p>
-                <a href="portal.html">Client Portal</a>
+                <p class="footer-heading">Company &amp; Legal</p>
                 <a href="about.html">About the Founder</a>
-                        <a href="careers.html">Careers</a>
-                <a href="simulation.html">12-Panel Simulation</a>
-                <a href="sitemap.html">Sitemap</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="careers.html">Careers</a>
+                <a href="partners.html">Partners</a>
                 <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
                 <a href="sla.html">SLA</a>
                 <a href="investors.html" class="footer-subtle">Investor Relations</a>
             </div>
@@ -285,10 +190,6 @@
         </div>
     </footer>
 
-    <!-- Shared navigation script -->
     <script src="nav.js"></script>
-
 </body>
 </html>
-<<<END: sla.html>>>
-

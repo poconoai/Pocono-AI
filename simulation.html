@@ -25,56 +25,6 @@
     <meta name="theme-color" content="#051622">
     <link rel="stylesheet" href="styles.css">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <style>
-      /* ── Simulation page: fix scenario-bar horizontal scroll ──────────────────
-         styles.css sets body { overflow-x: hidden } which silently clips any
-         overflow-x: auto child — the scenario pill bar can't scroll.
-         Fix: restore overflow-x on body, push the clip to html so the page
-         still won't produce a horizontal scrollbar at the viewport level.    */
-      html { overflow-x: hidden; }
-      body { overflow-x: visible; }
-
-      /* Ensure the bar's own scroll container is never clipped by ancestors */
-      #sim-app { overflow: visible; }
-
-      /* Scenario bar: robust horizontal scroll with momentum + hidden scrollbar */
-      .scenario-bar {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: visible !important;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        /* Hide scrollbar visually but keep it functional */
-        scrollbar-width: none;          /* Firefox */
-        -ms-overflow-style: none;       /* IE/Edge */
-        /* Give a little breathing room so pills don't get clipped */
-        padding-bottom: 4px;
-        /* Negative margin trick: extend the scroll area to the page edge on small screens */
-        position: relative;
-      }
-      .scenario-bar::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-
-      /* Each pill must never shrink */
-      .scenario-btn {
-        flex-shrink: 0 !important;
-        white-space: nowrap !important;
-      }
-
-      /* Fade edges to hint that more pills exist off-screen */
-      .scenario-bar-wrap {
-        position: relative;
-      }
-      .scenario-bar-wrap::after {
-        content: '';
-        position: absolute;
-        top: 0; right: 0;
-        width: 48px; height: 100%;
-        background: linear-gradient(to right, transparent, var(--bg-dark, #051622));
-        pointer-events: none;
-        border-radius: 0 20px 20px 0;
-      }
-    </style>
     <link rel="canonical" href="https://poconoai.com/simulation.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 <script type="application/ld+json">
@@ -323,7 +273,7 @@
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
-                <nav id="nav-menu" aria-label="Main navigation">
+        <nav id="nav-menu" aria-label="Main navigation">
             <ul class="nav-links">
                 <li class="nav-home-always"><a href="index.html">Home</a></li>
                 <li><a href="for-physicians.html">For Physicians</a></li>
@@ -333,23 +283,32 @@
                 <li class="nav-dropdown">
                     <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                    <a href="architecture.html">For IT &amp; MSPs</a>
-                    <a href="solutions.html">Solutions Overview</a>
-                    <a href="deployment.html">Deployment Timeline</a>
-                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
-                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
-                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
-                    <a href="compliance.html">&#128274; Compliance Attestation</a>
-                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                    <a href="competitive-analysis.html">Competitive Analysis</a>
-                    <a href="research.html">Research Hub</a>
-                    <a href="about.html">About the Founder</a>
-                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
-                </div>
+                        <span class="nav-group-label">Tools</span>
+                        <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
+                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                        <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                        <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                        <span class="nav-group-label">Technology</span>
+                        <a href="architecture.html">For IT &amp; MSPs</a>
+                        <a href="solutions.html">Solutions Overview</a>
+                        <a href="competitive-analysis.html">Competitive Analysis</a>
+                        <a href="comparison.html">Comparison</a>
+                        <a href="compliance.html">&#128274; Compliance Attestation</a>
+                        <a href="deployment.html">Deployment Timeline</a>
+                        <span class="nav-group-label">Research</span>
+                        <a href="research.html">Research Hub</a>
+                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                        <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                        <a href="patient-advocacy.html">Patient Safety</a>
+                        <span class="nav-group-label">Company</span>
+                        <a href="about.html">About the Founder</a>
+                        <a href="partners.html">Partners</a>
+                        <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
+                    </div>
                 </li>
             </ul>
         </nav>
-    
     </header>
 
 <main id="main-content">
@@ -374,7 +333,6 @@
 
     <div id="sim-app">
         <p style="color:var(--muted);font-size:0.8em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:10px;">Choose a deliberation scenario:</p>
-        <div class="scenario-bar-wrap">
         <div class="scenario-bar" id="scenario-bar" role="tablist" aria-label="Deliberation scenarios">
             <button type="button" class="scenario-btn" role="tab" data-scenario="deploy" aria-pressed="true">🏥 Solo Practice</button>
             <button type="button" class="scenario-btn" role="tab" data-scenario="invest" aria-pressed="false">💰 Investment Decision</button>
@@ -384,7 +342,6 @@
             <button type="button" class="scenario-btn" role="tab" data-scenario="burnout" aria-pressed="false">🔥 Burnout Crisis</button>
             <button type="button" class="scenario-btn" role="tab" data-scenario="hipaa_breach" aria-pressed="false">🚨 Post-Breach Audit</button>
             <button type="button" class="scenario-btn" role="tab" data-scenario="rural" aria-pressed="false">🌾 Rural Health</button>
-        </div>
         </div>
         <div class="scenario-desc" id="scenario-desc" aria-live="polite">
             <h3><span class="scenario-icon">🏥</span> Scenario: Solo Practice Deployment Decision</h3>
@@ -711,16 +668,19 @@
                 <a href="use-cases.html">Use Cases</a>
                 <a href="solutions.html">Solutions Overview</a>
                 <a href="pricing.html">Pricing &amp; Financing</a>
-                <a href="specs.html">Hardware Specs</a>
+                <a href="architecture.html">For IT &amp; MSPs</a>
             </div>
             <div class="footer-col">
-                <p class="footer-heading">Technology</p>
-                <a href="architecture.html">For IT &amp; MSPs</a>
-                <a href="trust.html">Trust &amp; Security</a>
-                <a href="sentinel-demo.html">Live RAG Demo</a>
-                <a href="partners.html">Partners</a>
+                <p class="footer-heading">Technology &amp; Tools</p>
+                <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+                <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+                <a href="breach-calculator.html">Breach Calculator</a>
+                <a href="shadow-audit.html">Shadow IT Audit</a>
+                <a href="compliance.html">Compliance Attestation</a>
                 <a href="competitive-analysis.html">Competitive Analysis</a>
-                <a href="why-pocono-ai.html">Why Pocono AI</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="deployment.html">Deployment Timeline</a>
+                <a href="trust.html">Trust &amp; Security</a>
             </div>
             <div class="footer-col">
                 <p class="footer-heading">Research</p>
@@ -732,15 +692,12 @@
                 <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
             </div>
             <div class="footer-col">
-                <p class="footer-heading">Company</p>
-                <a href="portal.html">Client Portal</a>
+                <p class="footer-heading">Company &amp; Legal</p>
                 <a href="about.html">About the Founder</a>
                 <a href="careers.html">Careers</a>
-                <a href="deployment.html">60-Day Deployment Timeline</a>
-                <a href="simulation.html">12-Panel Simulation</a>
-                <a href="sitemap.html">Sitemap</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="partners.html">Partners</a>
                 <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
                 <a href="sla.html">SLA</a>
                 <a href="investors.html" class="footer-subtle">Investor Relations</a>
             </div>
@@ -1106,6 +1063,33 @@ const REACTIONS = {
     timers:   []              /* pending setTimeout handles */
   };
 
+  /* ── FUZZY VOTE ENGINE (v81) ──────────────────────────────────────────
+     Adds realistic variation to vote outcomes so the panel never reads
+     as a unanimous rubber stamp. Base vote from SPEECHES is canonical;
+     fuzzVote nudges it with controlled per-run, per-panelist probability.
+       • 'yes'         → stays 'yes' ~68%, shifts to 'conditional' ~32%
+       • 'conditional' → stays 'conditional' ~52%, upgrades to 'yes' ~28%
+       • 'no'          → stays 'no' or softens to 'conditional'
+     Seeded fresh each convene — different tallies every run.
+  ──────────────────────────────────────────────────────────────────── */
+  var _fuzzSeed = 0;
+  function _lcg(s) {
+    s = Math.imul(1664525, s) + 1013904223 | 0;
+    return { next: s, val: (s >>> 0) / 4294967296 };
+  }
+  function fuzzVote(baseVote, panelistId) {
+    var idHash = 0;
+    for (var ci = 0; ci < panelistId.length; ci++) {
+      idHash = Math.imul(31, idHash) + panelistId.charCodeAt(ci) | 0;
+    }
+    var r = _lcg(_fuzzSeed ^ idHash);
+    _fuzzSeed = r.next;
+    var rnd = r.val;
+    if (baseVote === 'yes')         { return rnd < 0.68 ? 'yes' : 'conditional'; }
+    if (baseVote === 'conditional') { return rnd < 0.28 ? 'yes' : 'conditional'; }
+    return rnd < 0.40 ? 'conditional' : 'no';
+  }
+
   function makeFreshPanelists() {
     return PANELISTS.map(function (p) {
       return { id:p.id, type:p.type, role:p.role, name:p.name,
@@ -1347,7 +1331,7 @@ const REACTIONS = {
         applyVote(panelist.id, 'conditional');
       } else {
         addSpeech(panelist, speech.text);
-        applyVote(panelist.id, speech.vote);
+        applyVote(panelist.id, fuzzVote(speech.vote, panelist.id));
       }
       highlightCard(null, false);
       onDone && onDone();
@@ -1371,6 +1355,8 @@ const REACTIONS = {
   function startSimulation() {
     if (STATE.status === 'running') return;
     clearAllTimers();
+    /* Fresh entropy seed every run — different tallies each time */
+    _fuzzSeed = (Date.now() ^ (Math.random() * 0xFFFFFFFF | 0)) | 0;
     STATE.panelists = makeFreshPanelists();
     STATE.askCounts = {};
     STATE.status    = 'running';
@@ -1565,38 +1551,24 @@ const REACTIONS = {
 
 <script>
 /* ── Simulation mobile touch fix ──
-   The bar uses native CSS overflow-x: auto scroll (best performance).
-   This script only handles the edge case where a short tap on a pill
-   might get eaten by the scroll container before the click fires. */
+   Prevents the horizontal scroll container from stealing tap events.
+   If the touch doesn't move significantly, treat it as a click. */
 (function() {
   'use strict';
   var bar = document.getElementById('scenario-bar');
   if (!bar) return;
-
-  var startX, startY, startScrollLeft, startTime, isDragging;
-
+  var startX, startY, startTime;
   bar.addEventListener('touchstart', function(e) {
-    startX        = e.touches[0].clientX;
-    startY        = e.touches[0].clientY;
-    startScrollLeft = bar.scrollLeft;
-    startTime     = Date.now();
-    isDragging    = false;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startTime = Date.now();
   }, { passive: true });
-
-  bar.addEventListener('touchmove', function(e) {
-    var dx = Math.abs(e.touches[0].clientX - startX);
-    var dy = Math.abs(e.touches[0].clientY - startY);
-    if (dx > 6) isDragging = true;   // horizontal drag → let native scroll handle it
-    // Only prevent default if clearly horizontal, to avoid blocking page scroll
-    if (dx > dy && dx > 6) e.preventDefault();
-  }, { passive: false });
-
   bar.addEventListener('touchend', function(e) {
     var dx = Math.abs(e.changedTouches[0].clientX - startX);
     var dy = Math.abs(e.changedTouches[0].clientY - startY);
     var dt = Date.now() - startTime;
-    /* Pure tap (didn't move, fast) → fire click on the pill */
-    if (!isDragging && dx < 8 && dy < 8 && dt < 350) {
+    /* If it's a tap (small movement, fast), synthesize a click */
+    if (dx < 10 && dy < 10 && dt < 300) {
       var target = e.target.closest ? e.target.closest('.scenario-btn') : null;
       if (target) {
         e.preventDefault();
@@ -1604,27 +1576,15 @@ const REACTIONS = {
       }
     }
   }, { passive: false });
-
-  /* Auto-scroll active pill into view on scenario change */
-  var observer = new MutationObserver(function() {
-    var active = bar.querySelector('.scenario-btn.active');
-    if (active) {
-      // Smooth scroll the active pill to center of bar
-      var barRect    = bar.getBoundingClientRect();
-      var btnRect    = active.getBoundingClientRect();
-      var target     = bar.scrollLeft + (btnRect.left - barRect.left) - (barRect.width / 2) + (btnRect.width / 2);
-      bar.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
-    }
-  });
-  observer.observe(bar, { attributes: true, subtree: true, attributeFilter: ['class'] });
-
-  /* Verify engine initialized */
+  /* Also expose STATE globally for debugging */
   document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
+      /* Verify engine initialized */
       var btns = document.querySelectorAll('#scenario-bar .scenario-btn');
       var hasActive = false;
       btns.forEach(function(b) { if (b.classList.contains('active')) hasActive = true; });
       if (!hasActive && btns.length > 0) {
+        /* Engine may not have run - force first button active */
         btns[0].classList.add('active');
         btns[0].setAttribute('aria-pressed', 'true');
       }
