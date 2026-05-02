@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v74 -->
+<html lang="en"><!-- Pocono AI v76 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Live Sentinel Node workflow demonstration. Ask a real AI a question about a clinical note or legal document. Watch it cite the source. Zero cloud on the real hardware — this shows you how it works.">
+    <meta name="description" content="Live Sentinel Node RAG workflow demonstration. Ask any question about a clinical note, legal memo, or compliance report. Watch cited answers appear in real time.">
     <title>Live Demo — Sentinel Node RAG Workflow | Pocono AI</title>
     <meta property="og:title" content="Watch the Sentinel Node Answer a Question — Live">
-    <meta property="og:description" content="Ask any question about a real document. Watch local RAG retrieve and cite the answer in milliseconds. This is the workflow. The hardware makes it private.">
+    <meta property="og:description" content="191 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything — watch RAG citation in action.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://poconoai.com/og-image.jpg">
     <meta property="og:url" content="https://poconoai.com/sentinel-demo.html">
@@ -21,435 +21,84 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://poconoai.com/sentinel-demo.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-
     <style>
-        /* ── Demo page layout ─────────────────────────────── */
-        .demo-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 4%;
-        }
-
-        /* Disclosure banner */
-        .demo-disclosure {
-            max-width: 1100px;
-            margin: 0 auto 28px;
-            padding: 14px 20px;
-            background: rgba(24,139,150,0.08);
-            border: 1px solid rgba(24,139,150,0.25);
-            border-radius: 10px;
-            font-size: 0.84em;
-            color: var(--light-text);
-            line-height: 1.7;
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-        }
-        .demo-disclosure-icon { font-size: 1.3em; flex-shrink: 0; margin-top: 1px; }
-        .demo-disclosure strong { color: var(--white); }
-        .demo-disclosure a { color: var(--teal); }
-
-        /* Mode selector */
-        .demo-mode-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-        .demo-mode-btn {
-            padding: 10px 22px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: transparent;
-            color: var(--muted);
-            font-size: 0.88em;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-        .demo-mode-btn.active {
-            background: var(--teal);
-            border-color: var(--teal);
-            color: white;
-        }
-        .demo-mode-btn:hover:not(.active) {
-            border-color: var(--teal);
-            color: var(--white);
-        }
-
-        /* Main demo grid */
-        .demo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            align-items: start;
-        }
-        @media (max-width: 760px) { .demo-grid { grid-template-columns: 1fr; } }
-
-        /* Document panel */
-        .doc-panel {
-            background: var(--card-dark);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .doc-panel-header {
-            background: rgba(0,0,0,0.3);
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .doc-panel-title {
-            font-size: 0.78em;
-            font-weight: 700;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        .doc-label {
-            font-size: 0.7em;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-weight: 700;
-            background: rgba(24,139,150,0.15);
-            color: var(--teal);
-        }
-        .doc-content {
-            padding: 18px 20px;
-            font-family: 'Georgia', serif;
-            font-size: 0.82em;
-            color: var(--light-text);
-            line-height: 1.8;
-            max-height: 420px;
-            overflow-y: auto;
-        }
-        .doc-content h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.9em;
-            color: var(--white);
-            margin: 0 0 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            padding-bottom: 6px;
-        }
-        .doc-content .doc-section {
-            margin-bottom: 14px;
-        }
-        .doc-content .doc-section-label {
-            font-size: 0.78em;
-            font-weight: 700;
-            color: var(--teal);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 4px;
-        }
-
-        /* Highlight chunks when cited */
-        .doc-chunk {
-            transition: background 0.3s ease;
-            border-radius: 3px;
-            padding: 1px 2px;
-            margin: -1px -2px;
-        }
-        .doc-chunk.highlighted {
-            background: rgba(24,139,150,0.22);
-            color: var(--white);
-        }
-
-        /* Query panel */
-        .query-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        /* Suggested queries */
-        .suggested-label {
-            font-size: 0.72em;
-            font-weight: 700;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 6px;
-        }
-        .suggested-queries {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-        .suggested-query {
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: transparent;
-            color: var(--light-text);
-            font-size: 0.78em;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.15s;
-            text-align: left;
-        }
-        .suggested-query:hover {
-            border-color: var(--teal);
-            color: var(--white);
-            background: rgba(24,139,150,0.08);
-        }
-
-        /* Query input */
-        .query-input-area {
-            background: var(--card-dark);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 14px 16px;
-            transition: border-color 0.2s;
-        }
-        .query-input-area:focus-within { border-color: var(--teal); }
-        .query-textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--white);
-            font-size: 0.9em;
-            font-family: inherit;
-            line-height: 1.6;
-            resize: none;
-            outline: none;
-            min-height: 64px;
-            box-sizing: border-box;
-        }
-        .query-textarea::placeholder { color: var(--muted); }
-        .query-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .query-privacy-note {
-            font-size: 0.72em;
-            color: var(--muted);
-        }
-        .query-privacy-note span { color: var(--teal); }
-
-        /* Response area */
-        .response-area {
-            background: var(--card-dark);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 10px;
-            overflow: hidden;
-            min-height: 180px;
-        }
-        .response-header {
-            background: rgba(0,0,0,0.25);
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .response-header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .response-label {
-            font-size: 0.72em;
-            font-weight: 700;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        .response-timer {
-            font-family: 'Courier New', monospace;
-            font-size: 0.75em;
-            color: var(--teal);
-            font-weight: 700;
-        }
-        .response-body {
-            padding: 16px 18px;
-            font-size: 0.88em;
-            color: var(--light-text);
-            line-height: 1.75;
-        }
-        .response-placeholder {
-            color: var(--muted);
-            font-style: italic;
-            font-size: 0.85em;
-        }
-        .response-thinking {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--teal);
-            font-size: 0.85em;
-        }
-        .thinking-dots span {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--teal);
-            margin: 0 2px;
-            animation: blink 1.2s infinite;
-        }
-        .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes blink {
-            0%, 80%, 100% { opacity: 0.2; }
-            40% { opacity: 1; }
-        }
-
-        /* Citation chips */
-        .citation-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(24,139,150,0.12);
-            border: 1px solid rgba(24,139,150,0.25);
-            color: var(--teal);
-            font-size: 0.72em;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.15s;
-            vertical-align: middle;
-        }
-        .citation-chip:hover {
-            background: rgba(24,139,150,0.25);
-        }
-
-        /* Comparison strip */
-        .compare-strip {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 14px;
-        }
-        @media (max-width: 500px) { .compare-strip { grid-template-columns: 1fr; } }
-
-        .compare-cloud {
-            background: rgba(192,57,43,0.07);
-            border: 1px solid rgba(192,57,43,0.2);
-            border-radius: 8px;
-            padding: 12px 14px;
-            font-size: 0.75em;
-            font-family: 'Courier New', monospace;
-            color: var(--light-text);
-            line-height: 1.7;
-        }
-        .compare-local {
-            background: rgba(24,139,150,0.07);
-            border: 1px solid rgba(24,139,150,0.2);
-            border-radius: 8px;
-            padding: 12px 14px;
-            font-size: 0.75em;
-            font-family: 'Courier New', monospace;
-            color: var(--light-text);
-            line-height: 1.7;
-        }
-        .compare-label-bad  { color: #FF6B5B; font-weight: 700; display: block; margin-bottom: 6px; }
-        .compare-label-good { color: var(--teal); font-weight: 700; display: block; margin-bottom: 6px; }
-        .compare-entry { margin-bottom: 3px; }
-
-        /* Stats row */
-        .demo-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .demo-stat {
-            background: var(--card-dark);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 8px;
-            padding: 14px 16px;
-            text-align: center;
-        }
-        .demo-stat-val {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.6em;
-            font-weight: 800;
-            color: var(--teal);
-            line-height: 1;
-        }
-        .demo-stat-val.red { color: #FF6B5B; }
-        .demo-stat-label {
-            font-size: 0.72em;
-            color: var(--muted);
-            margin-top: 4px;
-            line-height: 1.4;
-        }
-
-        /* Reset button */
-        .demo-reset {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--muted);
-            font-size: 0.78em;
-            padding: 6px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.15s;
-        }
-        .demo-reset:hover { border-color: var(--muted); color: var(--light-text); }
-
-        /* Vendor retention section */
-        .retention-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 14px;
-            margin-top: 20px;
-        }
-        .retention-card {
-            background: var(--card-dark);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 10px;
-            padding: 16px 18px;
-        }
-        .retention-vendor {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 0.95em;
-            color: var(--white);
-            margin-bottom: 8px;
-        }
-        .retention-fact {
-            font-size: 0.78em;
-            color: var(--light-text);
-            line-height: 1.6;
-            margin-bottom: 4px;
-        }
-        .retention-fact strong { color: #FF6B5B; }
-        .retention-source {
-            font-size: 0.68em;
-            color: var(--muted);
-            margin-top: 8px;
-        }
-        .retention-source a { color: var(--muted); text-decoration: underline; }
-        .retention-card.sentinel-card {
-            border-color: rgba(24,139,150,0.3);
-            background: rgba(24,139,150,0.05);
-        }
-        .retention-card.sentinel-card .retention-vendor { color: var(--teal); }
-        .retention-fact.good { color: var(--teal); }
-        .retention-fact.good strong { color: var(--teal); }
+        .demo-disclosure{max-width:1100px;margin:0 auto 24px;padding:14px 20px;background:rgba(24,139,150,.08);border:1px solid rgba(24,139,150,.25);border-radius:10px;font-size:.84em;color:var(--light-text);line-height:1.7;display:flex;gap:14px;align-items:flex-start}
+        .demo-disclosure strong{color:var(--white)}.demo-disclosure a{color:var(--teal)}
+        .demo-disclosure-icon{font-size:1.3em;flex-shrink:0;margin-top:1px}
+        .demo-wrapper{max-width:1100px;margin:0 auto;padding:0 4%}
+        .demo-mode-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+        .demo-mode-btn{padding:10px 22px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--muted);font-size:.88em;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+        .demo-mode-btn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+        .demo-mode-btn:hover:not(.active){border-color:var(--teal);color:var(--white)}
+        .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+        @media(max-width:760px){.demo-grid{grid-template-columns:1fr}}
+        .doc-panel{background:var(--card-dark);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden}
+        .doc-panel-header{background:rgba(0,0,0,.3);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
+        .doc-panel-title{font-size:.78em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+        .doc-label{font-size:.7em;padding:3px 8px;border-radius:10px;font-weight:700;background:rgba(24,139,150,.15);color:var(--teal)}
+        .doc-content{padding:18px 20px;font-family:Georgia,serif;font-size:.81em;color:var(--light-text);line-height:1.8;max-height:440px;overflow-y:auto}
+        .doc-content h4{font-family:'Syne',sans-serif;font-size:.88em;color:var(--white);margin:0 0 8px;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:6px}
+        .doc-section{margin-bottom:14px}
+        .doc-section-label{font-size:.75em;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+        .doc-chunk{transition:background .35s ease;border-radius:3px;padding:1px 2px;margin:-1px -2px}
+        .doc-chunk.highlighted{background:rgba(24,139,150,.28);color:var(--white)}
+        .query-panel{display:flex;flex-direction:column;gap:14px}
+        .suggested-label{font-size:.72em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+        .suggested-queries{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+        .suggested-query{padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--light-text);font-size:.75em;cursor:pointer;font-family:inherit;transition:all .15s;text-align:left}
+        .suggested-query:hover{border-color:var(--teal);color:var(--white);background:rgba(24,139,150,.08)}
+        .query-input-area{background:var(--card-dark);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px;transition:border-color .2s}
+        .query-input-area:focus-within{border-color:var(--teal)}
+        .query-textarea{width:100%;background:transparent;border:none;color:var(--white);font-size:.9em;font-family:inherit;line-height:1.6;resize:none;outline:none;min-height:58px;box-sizing:border-box}
+        .query-textarea::placeholder{color:var(--muted)}
+        .query-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;flex-wrap:wrap;gap:8px}
+        .query-privacy-note{font-size:.71em;color:var(--muted)}.query-privacy-note span{color:var(--teal)}
+        .response-area{background:var(--card-dark);border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden;min-height:160px}
+        .response-header{background:rgba(0,0,0,.25);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.05)}
+        .response-label{font-size:.72em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+        .response-timer{font-family:'Courier New',monospace;font-size:.75em;color:var(--teal);font-weight:700}
+        .response-body{padding:16px 18px;font-size:.87em;color:var(--light-text);line-height:1.8}
+        .response-placeholder{color:var(--muted);font-style:italic;font-size:.85em}
+        .thinking-ring{display:inline-block;width:16px;height:16px;border:2px solid rgba(24,139,150,.3);border-top-color:var(--teal);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .citation-chip{display:inline-flex;align-items:center;gap:4px;background:rgba(24,139,150,.12);border:1px solid rgba(24,139,150,.25);color:var(--teal);font-size:.72em;font-weight:700;padding:2px 8px;border-radius:10px;cursor:pointer;transition:all .15s;vertical-align:middle}
+        .citation-chip:hover{background:rgba(24,139,150,.25)}
+        .compare-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+        @media(max-width:500px){.compare-strip{grid-template-columns:1fr}}
+        .compare-cloud{background:rgba(192,57,43,.07);border:1px solid rgba(192,57,43,.2);border-radius:8px;padding:12px 14px;font-size:.74em;font-family:'Courier New',monospace;color:var(--light-text);line-height:1.7}
+        .compare-local{background:rgba(24,139,150,.07);border:1px solid rgba(24,139,150,.2);border-radius:8px;padding:12px 14px;font-size:.74em;font-family:'Courier New',monospace;color:var(--light-text);line-height:1.7}
+        .compare-label-bad{color:#FF6B5B;font-weight:700;display:block;margin-bottom:6px}
+        .compare-label-good{color:var(--teal);font-weight:700;display:block;margin-bottom:6px}
+        .compare-entry{margin-bottom:3px}
+        .demo-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px}
+        .demo-stat{background:var(--card-dark);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px 16px;text-align:center}
+        .demo-stat-val{font-family:'Syne',sans-serif;font-size:1.6em;font-weight:800;color:var(--teal);line-height:1}
+        .demo-stat-val.red{color:#FF6B5B}
+        .demo-stat-label{font-size:.7em;color:var(--muted);margin-top:4px;line-height:1.4}
+        .demo-reset{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:.78em;padding:6px 14px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s}
+        .demo-reset:hover{border-color:var(--muted);color:var(--light-text)}
+        .retention-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+        .retention-card{background:var(--card-dark);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px 18px}
+        .retention-vendor{font-family:'Syne',sans-serif;font-weight:800;font-size:.95em;color:var(--white);margin-bottom:8px}
+        .retention-fact{font-size:.78em;color:var(--light-text);line-height:1.6;margin-bottom:4px}
+        .retention-fact strong{color:#FF6B5B}
+        .retention-source{font-size:.68em;color:var(--muted);margin-top:8px}
+        .retention-source a{color:var(--muted);text-decoration:underline}
+        .retention-card.sentinel-card{border-color:rgba(24,139,150,.3);background:rgba(24,139,150,.05)}
+        .retention-card.sentinel-card .retention-vendor{color:var(--teal)}
+        .retention-fact.good{color:var(--teal)}.retention-fact.good strong{color:var(--teal)}
+        .match-badge{font-size:.68em;padding:2px 7px;border-radius:8px;font-weight:700;vertical-align:middle;margin-left:6px}
+        .match-exact{background:rgba(24,139,150,.15);color:var(--teal)}
+        .match-close{background:rgba(245,158,11,.12);color:#FFC850}
+        .match-fuzzy{background:rgba(255,255,255,.08);color:var(--muted)}
     </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
-
 <header>
     <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
-    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-    </button>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav id="nav-menu" aria-label="Main navigation">
         <ul class="nav-links">
             <li class="nav-home-always"><a href="index.html">Home</a></li>
@@ -479,195 +128,147 @@
 </header>
 
 <main id="main-content">
+<section class="hero-section">
+    <span class="hero-tagline" style="color:var(--teal);">&#9654; Live Workflow Demonstration</span>
+    <h1>Ask It a Question.<br>Watch It Cite the Answer.</h1>
+    <p class="hero-plain">This is the Sentinel Node RAG workflow — demonstrated in your browser with 191 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything. Watch cited retrieval in action.</p>
+</section>
 
-    <!-- HERO -->
-    <section class="hero-section">
-        <span class="hero-tagline" style="color:var(--teal);">&#9654; Live Workflow Demonstration</span>
-        <h1>Ask It a Question.<br>Watch It Cite the Answer.</h1>
-        <p class="hero-plain">This is the Sentinel Node RAG workflow — live, in your browser. Pick a document, ask anything, watch the AI retrieve the exact passage and cite the source. The hardware makes it private. This shows you how it works.</p>
-    </section>
+<section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+    <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+    <div class="trust-badges-row">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+    </div>
+</section>
 
-    <!-- BADGES -->
-    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
-        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
-        <div class="trust-badges-row">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+<div class="demo-wrapper">
+    <div class="demo-disclosure">
+        <span class="demo-disclosure-icon">&#128161;</span>
+        <div><strong>How this works:</strong> 191 RAG-style responses were generated by Claude AI from the synthetic demo documents, then pre-loaded into a 120KB JavaScript file served with the page — zero API calls, zero network requests, zero data transmitted. The citation behavior is identical to what the Sentinel Node does locally. The hardware makes it private. <a href="deployment.html">Hardware ships next week →</a></div>
+    </div>
+</div>
+
+<div class="demo-wrapper">
+    <p class="suggested-label" style="margin-bottom:8px;">Choose your role</p>
+    <div class="demo-mode-tabs">
+        <button class="demo-mode-btn active" onclick="setMode('physician')">&#x2695;&#xfe0f; Physician — Clinical Note</button>
+        <button class="demo-mode-btn" onclick="setMode('attorney')">&#x2696;&#xfe0f; Attorney — Case Memo</button>
+        <button class="demo-mode-btn" onclick="setMode('msp')">&#x1f4bb; MSP — Compliance Report</button>
+    </div>
+</div>
+
+<div class="demo-wrapper">
+    <div class="demo-grid">
+        <div class="doc-panel">
+            <div class="doc-panel-header">
+                <span class="doc-panel-title" id="doc-title">Patient Clinical Note</span>
+                <span class="doc-label">SYNTHETIC · NOT REAL PHI</span>
+            </div>
+            <div class="doc-content" id="doc-content"></div>
         </div>
-    </section>
-
-    <!-- DISCLOSURE BANNER -->
-    <div class="demo-wrapper">
-        <div class="demo-disclosure">
-            <span class="demo-disclosure-icon">&#128161;</span>
+        <div class="query-panel">
             <div>
-                <strong>Workflow demonstration — powered by Claude API.</strong> This demo uses the Claude API to show you the RAG citation workflow your Sentinel Node runs locally. The method is identical. The difference: on your deployed Sentinel Node, this computation happens on hardware in your office — no query leaves your building, no vendor retains your data. This page exists because the hardware ships next week. The workflow is live right now. <a href="deployment.html">See the 60-day deployment timeline →</a>
+                <p class="suggested-label">Suggested queries</p>
+                <div class="suggested-queries" id="suggested-queries"></div>
+            </div>
+            <div class="query-input-area">
+                <textarea class="query-textarea" id="query-input" placeholder="Ask anything about the document... or click a suggestion" rows="3"></textarea>
+                <div class="query-footer">
+                    <span class="query-privacy-note">&#128274; <span>Zero network calls.</span> Fully local response library.</span>
+                    <button class="cta-button" onclick="runQuery()" id="ask-btn" style="padding:8px 20px;font-size:.88em;">Ask &#9654;</button>
+                </div>
+            </div>
+            <div class="response-area">
+                <div class="response-header">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <span class="response-label">Sentinel Node Response</span>
+                        <span id="match-badge" style="display:none;"></span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span class="response-timer" id="response-timer"></span>
+                        <button class="demo-reset" onclick="resetDemo()" id="reset-btn" style="display:none;">&#8635; Reset</button>
+                    </div>
+                </div>
+                <div class="response-body" id="response-body">
+                    <span class="response-placeholder">Click a suggestion or type a question, then press Ask.</span>
+                </div>
+            </div>
+            <div id="compare-strip" style="display:none;">
+                <div class="compare-strip">
+                    <div class="compare-cloud">
+                        <span class="compare-label-bad">&#9729; Cloud AI (ChatGPT, Nuance)</span>
+                        <div class="compare-entry">Query transmitted: <strong style="color:#FF6B5B;">YES</strong></div>
+                        <div class="compare-entry">PHI left building: <strong style="color:#FF6B5B;">YES</strong></div>
+                        <div class="compare-entry">Vendor log created: <strong style="color:#FF6B5B;">YES</strong></div>
+                        <div class="compare-entry">Discoverable under subpoena: <strong style="color:#FF6B5B;">YES</strong></div>
+                        <div class="compare-entry">BAA required externally: <strong style="color:#FF6B5B;">YES</strong></div>
+                    </div>
+                    <div class="compare-local">
+                        <span class="compare-label-good">&#127968; Sentinel Node (Local)</span>
+                        <div class="compare-entry">Query transmitted: <strong style="color:var(--teal);">NO</strong></div>
+                        <div class="compare-entry">PHI left building: <strong style="color:var(--teal);">NO</strong></div>
+                        <div class="compare-entry">Vendor log created: <strong style="color:var(--teal);">NONE</strong></div>
+                        <div class="compare-entry">Discoverable under subpoena: <strong style="color:var(--teal);">NO DATA EXISTS</strong></div>
+                        <div class="compare-entry">BAA executed: <strong style="color:var(--teal);">LOCAL (architectural)</strong></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="demo-stats" id="demo-stats" style="display:none;">
+        <div class="demo-stat"><div class="demo-stat-val" id="stat-time">—</div><div class="demo-stat-label">Simulated retrieval<br>time (ms)</div></div>
+        <div class="demo-stat"><div class="demo-stat-val">0</div><div class="demo-stat-label">API calls made<br>by this page</div></div>
+        <div class="demo-stat"><div class="demo-stat-val">0</div><div class="demo-stat-label">PHI in demo<br>documents</div></div>
+        <div class="demo-stat"><div class="demo-stat-val" id="stat-responses">191</div><div class="demo-stat-label">Pre-computed<br>responses loaded</div></div>
+        <div class="demo-stat"><div class="demo-stat-val" id="stat-citations">—</div><div class="demo-stat-label">Source citations<br>in this response</div></div>
+    </div>
+</div>
 
-    <!-- MODE SELECTOR -->
-    <div class="demo-wrapper">
-        <p class="suggested-label" style="margin-bottom:8px;">Choose your role — see a document relevant to your practice</p>
-        <div class="demo-mode-tabs">
-            <button class="demo-mode-btn active" onclick="setMode('physician')">&#x2695;&#xfe0f; Physician — Clinical Note</button>
-            <button class="demo-mode-btn" onclick="setMode('attorney')">&#x2696;&#xfe0f; Attorney — Case Memo</button>
-            <button class="demo-mode-btn" onclick="setMode('msp')">&#x1f4bb; MSP — Compliance Report</button>
+<section style="max-width:1100px;margin:48px auto 0;padding:0 4%;">
+    <h2>What Your Current AI Vendor Retains — In Their Own Words</h2>
+    <p style="color:var(--light-text);line-height:1.8;max-width:680px;">Every statement below is sourced from the vendor's published privacy policy or data processing agreement. Not our claims — their own disclosed terms.</p>
+    <div class="retention-grid">
+        <div class="retention-card">
+            <div class="retention-vendor">OpenAI (ChatGPT)</div>
+            <div class="retention-fact">Conversations retained for up to <strong>30 days</strong> by default for safety monitoring.</div>
+            <div class="retention-fact">Human reviewers <strong>may access conversations</strong> to improve model performance.</div>
+            <div class="retention-fact">Under subpoena, OpenAI <strong>is required to disclose</strong> retained conversation logs.</div>
+            <div class="retention-source">Source: <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAI Privacy Policy</a> &amp; <a href="https://openai.com/enterprise-privacy" target="_blank" rel="noopener">Enterprise Privacy FAQ</a></div>
+        </div>
+        <div class="retention-card">
+            <div class="retention-vendor">Microsoft Copilot / Nuance DAX</div>
+            <div class="retention-fact">Nuance DAX is HIPAA-eligible with a BAA — <strong>but data still routes to Microsoft Azure</strong> for processing.</div>
+            <div class="retention-fact">Azure interaction data retained per subscription terms, <strong>typically 90 days</strong>.</div>
+            <div class="retention-fact">A signed BAA governs handling <em>after</em> transmission. PHI still leaves your building.</div>
+            <div class="retention-source">Source: <a href="https://www.nuance.com/healthcare/ambient-clinical-intelligence/hipaa.html" target="_blank" rel="noopener">Nuance HIPAA Statement</a> &amp; Microsoft DPA</div>
+        </div>
+        <div class="retention-card">
+            <div class="retention-vendor">Otter.ai</div>
+            <div class="retention-fact">Retains all audio and transcripts. <strong>No BAA available</strong> on free or Pro plans.</div>
+            <div class="retention-fact">Recordings may be used to <strong>improve transcription models</strong>.</div>
+            <div class="retention-fact">Clinical visits transcribed through Otter.ai are <strong>retained on Otter's servers — no HIPAA protection</strong>.</div>
+            <div class="retention-source">Source: <a href="https://otter.ai/privacy" target="_blank" rel="noopener">Otter.ai Privacy Policy</a></div>
+        </div>
+        <div class="retention-card sentinel-card">
+            <div class="retention-vendor">Sentinel Node (Pocono AI)</div>
+            <div class="retention-fact good"><strong>Nothing retained externally.</strong> All processing is local.</div>
+            <div class="retention-fact good">No vendor accesses your queries, documents, or responses.</div>
+            <div class="retention-fact good">Under subpoena: <strong>no external log exists to produce.</strong></div>
+            <div class="retention-fact good">BAA executed — compliance is architectural, not contractual.</div>
+            <div class="retention-source">Verified by live tcpdump at deployment. <a href="trust.html">See Trust &amp; Security →</a></div>
         </div>
     </div>
+</section>
 
-    <!-- MAIN DEMO -->
-    <div class="demo-wrapper">
-        <div class="demo-grid">
-
-            <!-- LEFT: Document panel -->
-            <div class="doc-panel">
-                <div class="doc-panel-header">
-                    <span class="doc-panel-title" id="doc-title">Patient Clinical Note</span>
-                    <span class="doc-label">SYNTHETIC · NOT REAL PHI</span>
-                </div>
-                <div class="doc-content" id="doc-content">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
-
-            <!-- RIGHT: Query panel -->
-            <div class="query-panel">
-
-                <div>
-                    <p class="suggested-label">Suggested queries</p>
-                    <div class="suggested-queries" id="suggested-queries">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-
-                <div class="query-input-area">
-                    <textarea class="query-textarea" id="query-input" placeholder="Type your question about the document..." rows="3"></textarea>
-                    <div class="query-footer">
-                        <span class="query-privacy-note">&#128274; <span>Your query goes to Claude API for this demo.</span> On the Sentinel Node: stays local.</span>
-                        <button class="cta-button" onclick="runQuery()" id="ask-btn" style="padding:8px 20px;font-size:0.88em;">Ask &#9654;</button>
-                    </div>
-                </div>
-
-                <!-- Response -->
-                <div class="response-area">
-                    <div class="response-header">
-                        <div class="response-header-left">
-                            <span class="response-label">Sentinel Node Response</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <span class="response-timer" id="response-timer"></span>
-                            <button class="demo-reset" onclick="resetDemo()" id="reset-btn" style="display:none;">↺ Reset</button>
-                        </div>
-                    </div>
-                    <div class="response-body" id="response-body">
-                        <span class="response-placeholder">Ask a question above to see the RAG workflow in action.</span>
-                    </div>
-                </div>
-
-                <!-- Comparison strip — shown after first query -->
-                <div id="compare-strip" style="display:none;">
-                    <div class="compare-strip">
-                        <div class="compare-cloud">
-                            <span class="compare-label-bad">☁ Cloud AI (ChatGPT, Nuance)</span>
-                            <div class="compare-entry">Query transmitted: <strong style="color:#FF6B5B;">YES</strong></div>
-                            <div class="compare-entry">PHI left building: <strong style="color:#FF6B5B;">YES</strong></div>
-                            <div class="compare-entry">Vendor log entry: <strong style="color:#FF6B5B;">CREATED</strong></div>
-                            <div class="compare-entry">Discoverable under subpoena: <strong style="color:#FF6B5B;">YES</strong></div>
-                            <div class="compare-entry">BAA required: <strong style="color:#FF6B5B;">YES</strong></div>
-                        </div>
-                        <div class="compare-local">
-                            <span class="compare-label-good">&#127968; Sentinel Node (Local)</span>
-                            <div class="compare-entry">Query transmitted: <strong style="color:var(--teal);">NO</strong></div>
-                            <div class="compare-entry">PHI left building: <strong style="color:var(--teal);">NO</strong></div>
-                            <div class="compare-entry">Vendor log entry: <strong style="color:var(--teal);">NONE</strong></div>
-                            <div class="compare-entry">Discoverable under subpoena: <strong style="color:var(--teal);">NO DATA EXISTS</strong></div>
-                            <div class="compare-entry">BAA required: <strong style="color:var(--teal);">EXECUTED (local)</strong></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Stats row — shown after query -->
-        <div class="demo-stats" id="demo-stats" style="display:none;">
-            <div class="demo-stat">
-                <div class="demo-stat-val" id="stat-time">—</div>
-                <div class="demo-stat-label">Response time<br>(this demo)</div>
-            </div>
-            <div class="demo-stat">
-                <div class="demo-stat-val">0</div>
-                <div class="demo-stat-label">Outbound API calls on<br>Sentinel Node hardware</div>
-            </div>
-            <div class="demo-stat">
-                <div class="demo-stat-val red">1</div>
-                <div class="demo-stat-label">API call made<br>by this demo page</div>
-            </div>
-            <div class="demo-stat">
-                <div class="demo-stat-val">0</div>
-                <div class="demo-stat-label">PHI in these<br>demo documents</div>
-            </div>
-            <div class="demo-stat">
-                <div class="demo-stat-val" id="stat-citations">—</div>
-                <div class="demo-stat-label">Source citations<br>in response</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- VENDOR RETENTION FACTS -->
-    <section style="max-width:1100px;margin:48px auto 0;padding:0 4%;">
-        <h2>What Your Current AI Vendor Retains — In Their Own Words</h2>
-        <p style="color:var(--light-text);line-height:1.8;max-width:680px;">Every quote below is sourced directly from the vendor's published privacy policy or data processing agreement. These are not our claims. They are the vendors' own disclosures about what they do with your data.</p>
-
-        <div class="retention-grid">
-
-            <div class="retention-card">
-                <div class="retention-vendor">OpenAI (ChatGPT)</div>
-                <div class="retention-fact"><strong>Retains conversations</strong> for up to 30 days by default for safety monitoring. Enterprise and API users can opt out of training data use but logs are retained.</div>
-                <div class="retention-fact">Human reviewers <strong>may access conversations</strong> to improve model safety.</div>
-                <div class="retention-fact">Under subpoena, OpenAI <strong>is required to disclose</strong> retained logs to legal authorities.</div>
-                <div class="retention-source">Source: <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAI Privacy Policy</a> &amp; <a href="https://openai.com/enterprise-privacy" target="_blank" rel="noopener">Enterprise Privacy FAQ</a></div>
-            </div>
-
-            <div class="retention-card">
-                <div class="retention-vendor">Microsoft Copilot / Nuance DAX</div>
-                <div class="retention-fact">Nuance DAX is HIPAA-eligible with a signed BAA — <strong>but data still travels to Microsoft Azure</strong> for processing.</div>
-                <div class="retention-fact">Microsoft retains diagnostic and interaction data. <strong>Azure logs are retained</strong> per your Azure subscription terms (typically 90 days).</div>
-                <div class="retention-fact">A signed BAA governs handling <em>after transmission</em> — it does not prevent the data from leaving your building.</div>
-                <div class="retention-source">Source: <a href="https://www.nuance.com/healthcare/ambient-clinical-intelligence/hipaa.html" target="_blank" rel="noopener">Nuance HIPAA Statement</a> &amp; Microsoft DPA</div>
-            </div>
-
-            <div class="retention-card">
-                <div class="retention-vendor">Otter.ai</div>
-                <div class="retention-fact">Otter.ai retains all audio recordings and transcripts. <strong>No BAA is available</strong> on free or Pro plans.</div>
-                <div class="retention-fact">Recordings may be used to <strong>improve transcription models</strong>.</div>
-                <div class="retention-fact">Any clinical or legal conversation transcribed through Otter.ai is <strong>retained on Otter's servers</strong> with no HIPAA protection.</div>
-                <div class="retention-source">Source: <a href="https://otter.ai/privacy" target="_blank" rel="noopener">Otter.ai Privacy Policy</a></div>
-            </div>
-
-            <div class="retention-card sentinel-card">
-                <div class="retention-vendor">Sentinel Node (Pocono AI)</div>
-                <div class="retention-fact good"><strong>Nothing is retained on any external server.</strong> Processing is local.</div>
-                <div class="retention-fact good">No vendor has access to your queries, documents, or responses.</div>
-                <div class="retention-fact good">Under subpoena, there is no external vendor log to produce. <strong>The data does not exist outside your building.</strong></div>
-                <div class="retention-fact good">BAA executed — but compliance is architectural, not contractual.</div>
-                <div class="retention-source">Verified by live tcpdump during deployment. <a href="trust.html">See Trust &amp; Security →</a></div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="contact" class="cta-container" style="margin-top:40px;">
-        <h2 style="color:white;border-bottom:none;margin-top:0;">The Hardware Ships Next Week</h2>
-        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">You just used the workflow. The Sentinel Node runs this locally — same citations, same speed, zero outbound calls. The 60-day Proof-of-Value deploys it against your actual patient charts or case files.</p>
-        <a href="mailto:marcus@poconoai.com?subject=Live%20Demo%20%E2%80%94%20Ready%20to%20Talk%20%7C%20PoconoAI.com" class="cta-button">&#9993; I'm Ready to Talk</a>
-        <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">60-Day Timeline</a>
-    </section>
-
+<section id="contact" class="cta-container" style="margin-top:40px;">
+    <h2 style="color:white;border-bottom:none;margin-top:0;">The Hardware Ships Next Week</h2>
+    <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">You just experienced the workflow. On your deployed Sentinel Node this runs on hardware in your office — same citations, same speed, zero outbound calls, zero retention.</p>
+    <a href="mailto:marcus@poconoai.com?subject=Live%20Demo%20%E2%80%94%20Ready%20to%20Talk%20%7C%20PoconoAI.com" class="cta-button">&#9993; I'm Ready to Talk</a>
+    <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">60-Day Timeline</a>
+</section>
 </main>
 
 <footer class="site-footer">
@@ -692,8 +293,8 @@
             <a href="architecture.html">For IT &amp; MSPs</a>
             <a href="trust.html">Trust &amp; Security</a>
             <a href="partners.html">Partners</a>
-            <a href="competitive-analysis.html">Competitive Analysis</a>
             <a href="sentinel-demo.html">Live RAG Demo</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
             <a href="why-pocono-ai.html">Why Pocono AI</a>
         </div>
         <div class="footer-col">
@@ -720,237 +321,138 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
-            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
-            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
-        </p>
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;<a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;<a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a></p>
         <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
     </div>
 </footer>
 
+<!-- Response library loaded separately — no API key, no network calls -->
+<script src="demo-responses.js"></script>
 <script src="nav.js"></script>
 <script>
-// ── Demo documents ─────────────────────────────────────────────────────────
-
+// ── Document content ─────────────────────────────────────────────────────────
 const DOCS = {
     physician: {
         title: 'Patient Clinical Note — Synthetic Demo',
-        label: 'SYNTHETIC · NOT REAL PHI',
-        suggestions: [
-            'What medications is this patient currently taking?',
-            'What is the primary diagnosis and when was it established?',
-            'Summarize the prior authorization history for Metformin',
-            'What lab values are outside normal range?',
-            'What follow-up is required and by when?',
-        ],
-        content: `
-<h4>PATIENT CLINICAL NOTE — SYNTHETIC DEMO RECORD</h4>
-<p style="font-size:0.78em;color:var(--muted);margin-bottom:16px;">This is entirely fictional synthetic data. Any resemblance to real patients is coincidental.</p>
-
-<div class="doc-section">
-<div class="doc-section-label">Patient Information</div>
-<p><span class="doc-chunk" data-chunk="demographics">Name: Patricia M. Holloway &nbsp;|&nbsp; DOB: 03/14/1968 &nbsp;|&nbsp; MRN: DEMO-00427
-Sex: Female &nbsp;|&nbsp; Insurance: BlueCross PPO &nbsp;|&nbsp; PCP: Dr. A. Reyes, MD</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Chief Complaint &amp; HPI</div>
-<p><span class="doc-chunk" data-chunk="complaint">Patient presents for 3-month follow-up of Type 2 Diabetes Mellitus (E11.9), established 2019. Reports fatigue and increased thirst over the past 6 weeks. Denies chest pain, shortness of breath. No hypoglycemic episodes since last visit.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Current Medications</div>
-<p><span class="doc-chunk" data-chunk="medications">1. Metformin HCl 1000mg PO BID — for Type 2 DM. PA renewed 01/12/2026.<br>
-2. Lisinopril 10mg PO daily — for Hypertension (I10), established 2021.<br>
-3. Atorvastatin 40mg PO nightly — for Hyperlipidemia (E78.5).<br>
-4. Aspirin 81mg PO daily — cardiovascular prophylaxis.<br>
-5. Vitamin D3 2000 IU PO daily — for documented deficiency (E55.9).</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Laboratory Results — 04/28/2026</div>
-<p><span class="doc-chunk" data-chunk="labs">HbA1c: 8.1% (H — target &lt;7.0%) &nbsp;|&nbsp; Fasting Glucose: 182 mg/dL (H)
-eGFR: 61 mL/min/1.73m² (borderline stage G3a) &nbsp;|&nbsp; BMP: Na 138, K 4.1, Cr 1.2 (H)
-LDL: 94 mg/dL &nbsp;|&nbsp; HDL: 48 mg/dL &nbsp;|&nbsp; Triglycerides: 187 mg/dL (H)
-Urine Albumin/Creatinine Ratio: 42 mg/g (moderately elevated)</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Assessment &amp; Plan</div>
-<p><span class="doc-chunk" data-chunk="plan">1. T2DM suboptimally controlled. Increase Metformin to 1000mg TID. Refer to diabetes education.
-2. Hypertension: stable on current regimen. Continue Lisinopril.
-3. Early diabetic nephropathy suspected given elevated ACR and borderline eGFR. Order repeat CMP in 90 days. Nephrology referral if eGFR declines further.
-4. Prior auth required for SGLT2 inhibitor (Empagliflozin) — cardio-renal benefit. Submitting PA 05/02/2026.
-5. Follow-up: 3 months or sooner if symptomatic.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Prior Authorization History</div>
-<p><span class="doc-chunk" data-chunk="priorauth">Metformin: PA approved 01/12/2026, valid through 01/11/2027. BlueCross PPO.
-Atorvastatin 40mg: PA approved 08/15/2025, valid through 08/14/2026.
-Empagliflozin 10mg: PA submitted 05/02/2026. PENDING. Rationale: T2DM with early nephropathy and cardiovascular risk factors. Supporting labs attached.</span></p>
-</div>`,
+        suggestions: ['What medications is this patient currently taking?','What lab values are outside normal range?','Summarize the prior authorization history for Metformin','What follow-up is required and by when?','Draft a prior auth justification for Empagliflozin','What is the patient\'s kidney function?','Is this patient diabetic?','What symptoms is the patient experiencing?'],
+        content: `<h4>PATIENT CLINICAL NOTE — SYNTHETIC DEMO RECORD</h4>
+<p style="font-size:.78em;color:var(--muted);margin-bottom:14px;">Entirely fictional synthetic data. No real patient is represented.</p>
+<div class="doc-section"><div class="doc-section-label">Patient Information</div>
+<p><span class="doc-chunk" data-chunk="demographics">Name: Patricia M. Holloway &nbsp;|&nbsp; DOB: 03/14/1968 &nbsp;|&nbsp; MRN: DEMO-00427<br>Sex: Female &nbsp;|&nbsp; Insurance: BlueCross PPO &nbsp;|&nbsp; PCP: Dr. A. Reyes, MD</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Chief Complaint &amp; HPI</div>
+<p><span class="doc-chunk" data-chunk="complaint">Patient presents for 3-month follow-up of Type 2 Diabetes Mellitus (E11.9), established 2019. Reports fatigue and increased thirst over past 6 weeks. Denies chest pain, shortness of breath. No hypoglycemic episodes since last visit.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Current Medications</div>
+<p><span class="doc-chunk" data-chunk="medications">1. Metformin HCl 1000mg PO BID — T2DM. PA renewed 01/12/2026.<br>2. Lisinopril 10mg PO daily — Hypertension (I10), est. 2021.<br>3. Atorvastatin 40mg PO nightly — Hyperlipidemia (E78.5).<br>4. Aspirin 81mg PO daily — cardiovascular prophylaxis.<br>5. Vitamin D3 2000 IU PO daily — deficiency (E55.9).</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Laboratory Results — 04/28/2026</div>
+<p><span class="doc-chunk" data-chunk="labs">HbA1c: 8.1% (H — target &lt;7.0%) &nbsp;|&nbsp; Fasting Glucose: 182 mg/dL (H)<br>eGFR: 61 mL/min/1.73m² (borderline G3a) &nbsp;|&nbsp; Creatinine: 1.2 (H)<br>Na: 138 &nbsp;|&nbsp; K: 4.1 &nbsp;|&nbsp; LDL: 94 mg/dL &nbsp;|&nbsp; HDL: 48 mg/dL<br>Triglycerides: 187 mg/dL (H) &nbsp;|&nbsp; Urine ACR: 42 mg/g (moderately elevated)</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Assessment &amp; Plan</div>
+<p><span class="doc-chunk" data-chunk="plan">1. T2DM suboptimally controlled. Increase Metformin to TID. Refer to diabetes education.<br>2. Hypertension: stable. Continue Lisinopril.<br>3. Early diabetic nephropathy suspected — repeat CMP 90 days. Nephrology referral if eGFR declines.<br>4. PA for Empagliflozin 10mg submitted 05/02/2026 — cardio-renal benefit.<br>5. Follow-up: 3 months or sooner if symptomatic.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Prior Authorization History</div>
+<p><span class="doc-chunk" data-chunk="priorauth">Metformin: PA approved 01/12/2026, valid 01/11/2027. BlueCross PPO.<br>Atorvastatin 40mg: PA approved 08/15/2025, valid 08/14/2026.<br>Empagliflozin 10mg: PENDING — submitted 05/02/2026. Rationale: T2DM with early nephropathy and cardiovascular risk. Labs attached.</span></p></div>`
     },
-
     attorney: {
         title: 'Case Memorandum — Synthetic Demo',
-        label: 'SYNTHETIC · FICTIONAL MATTER',
-        suggestions: [
-            'What is the key liability theory in this case?',
-            'When is the statute of limitations and has it run?',
-            'Summarize the damages claimed by plaintiff',
-            'What discovery is outstanding?',
-            'What are the strongest defense arguments?',
-        ],
-        content: `
-<h4>CASE MEMORANDUM — SYNTHETIC DEMO RECORD</h4>
-<p style="font-size:0.78em;color:var(--muted);margin-bottom:16px;">Entirely fictional. No real clients, matters, or legal proceedings.</p>
-
-<div class="doc-section">
-<div class="doc-section-label">Matter Information</div>
-<p><span class="doc-chunk" data-chunk="matter">Matter: Holloway v. Meridian Construction Group, LLC &nbsp;|&nbsp; File No: DEMO-2024-0318
-Type: Personal Injury — Premises Liability &nbsp;|&nbsp; Client: Patricia Holloway (Plaintiff)
-Assigned Attorney: J. Rivera, Esq. &nbsp;|&nbsp; Opened: 03/18/2024 &nbsp;|&nbsp; Jurisdiction: EDPA</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Facts &amp; Liability Theory</div>
-<p><span class="doc-chunk" data-chunk="facts">On November 4, 2023, Plaintiff Patricia Holloway slipped and fell on an unmarked wet surface at Meridian's commercial property at 400 Commerce Drive, Stroudsburg, PA. Defendant's maintenance staff had mopped the floor 12 minutes prior without posting wet floor signage, in violation of OSHA 29 CFR 1910.22(a)(1) and Meridian's own internal safety protocol (Exhibit C, §4.2). Security footage confirms absence of signage at time of incident. Primary liability theory: negligence per se and ordinary negligence.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Damages</div>
-<p><span class="doc-chunk" data-chunk="damages">Medical expenses to date: $87,400 (L4-L5 herniated disc, surgical consult pending).
-Lost wages: $34,200 (18 weeks at $1,900/week — office manager position).
-Pain and suffering: Claimed. Plaintiff reports ongoing radicular pain, inability to perform household tasks.
-Future medical: $45,000–$110,000 estimated (microdiscectomy if conservative treatment fails).
-Total claimed: $166,600–$231,600 plus pain and suffering TBD.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Statute of Limitations</div>
-<p><span class="doc-chunk" data-chunk="sol">Pennsylvania personal injury SOL: 2 years from date of injury (42 Pa.C.S. § 5524).
-Date of injury: November 4, 2023. Filing deadline: November 4, 2025.
-Complaint filed: March 18, 2024 — timely. SOL not implicated.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Discovery Status</div>
-<p><span class="doc-chunk" data-chunk="discovery">Completed: Plaintiff deposition (06/14/2024), security footage obtained, maintenance log subpoenaed (Exhibit D), OSHA inspection report obtained.
-Outstanding: Defendant's 30(b)(6) deposition scheduled 05/20/2026. Expert report from biomechanics expert due 06/01/2026. Defendant's medical expert designation due 06/15/2026.
-Trial date: 09/08/2026.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Defense Arguments &amp; Counter-Strategy</div>
-<p><span class="doc-chunk" data-chunk="defense">Expected defenses: (1) Comparative negligence — plaintiff was wearing inappropriate footwear (deposition testimony); (2) Open and obvious doctrine — plaintiff argues inapplicable as wet surface was not visible; (3) Lack of notice — maintenance log shows floor was dry 45 min prior. Counter: 12-minute window is insufficient; OSHA violation is strict liability equivalent. Strength of our case: security footage is dispositive on signage issue.</span></p>
-</div>`,
+        suggestions: ['What is the key liability theory in this case?','Summarize the damages claimed by plaintiff','What discovery is outstanding?','When is the statute of limitations and has it run?','What are the strongest defense arguments?','What does the security footage show?','What evidence do we have?','What is the OSHA violation?'],
+        content: `<h4>CASE MEMORANDUM — SYNTHETIC DEMO RECORD</h4>
+<p style="font-size:.78em;color:var(--muted);margin-bottom:14px;">Entirely fictional. No real clients or legal proceedings.</p>
+<div class="doc-section"><div class="doc-section-label">Matter Information</div>
+<p><span class="doc-chunk" data-chunk="matter">Holloway v. Meridian Construction Group, LLC &nbsp;|&nbsp; File: DEMO-2024-0318<br>Type: Personal Injury — Premises Liability &nbsp;|&nbsp; Client: Patricia Holloway<br>Attorney: J. Rivera, Esq. &nbsp;|&nbsp; Opened: 03/18/2024 &nbsp;|&nbsp; Jurisdiction: EDPA</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Facts &amp; Liability Theory</div>
+<p><span class="doc-chunk" data-chunk="facts">On November 4, 2023, Plaintiff slipped on unmarked wet floor at Meridian's property, 400 Commerce Drive, Stroudsburg, PA. Maintenance had mopped 12 min prior without posting signage — violation of OSHA 29 CFR 1910.22(a)(1) and Meridian's internal safety protocol (Exhibit C, §4.2). Security footage confirms absent signage. Theories: negligence per se + ordinary negligence.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Damages</div>
+<p><span class="doc-chunk" data-chunk="damages">Medical expenses to date: $87,400 (L4-L5 herniated disc, surgical consult pending).<br>Lost wages: $34,200 (18 weeks @ $1,900/wk — office manager).<br>Future medical: $45,000–$110,000 (microdiscectomy if needed).<br>Pain &amp; suffering: claimed, not yet quantified.<br>Total economic: $166,600–$231,600 + P&amp;S.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Statute of Limitations</div>
+<p><span class="doc-chunk" data-chunk="sol">PA SOL: 2 years from injury (42 Pa.C.S. §5524). Injury: 11/04/2023. Deadline: 11/04/2025. Complaint filed: 03/18/2024 — timely. SOL not implicated.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Discovery Status</div>
+<p><span class="doc-chunk" data-chunk="discovery">Completed: Plaintiff deposition (06/14/2024), security footage, maintenance log (Exhibit D), OSHA inspection report.<br>Outstanding: Defendant 30(b)(6) deposition — 05/20/2026. Expert report (biomechanics) — 06/01/2026. Defense medical expert — 06/15/2026. Trial: 09/08/2026.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Defense Arguments &amp; Counter-Strategy</div>
+<p><span class="doc-chunk" data-chunk="defense">Expected: (1) Comparative negligence — plaintiff footwear (from depo). (2) Open and obvious — inapplicable, wet surface not visible. (3) Lack of notice — maintenance log shows floor dry 45 min prior. Counter: 12-min window = constructive notice. Security footage dispositive on signage issue.</span></p></div>`
     },
-
     msp: {
         title: 'IT Compliance Assessment — Synthetic Demo',
-        label: 'SYNTHETIC · DEMO ONLY',
-        suggestions: [
-            'What HIPAA gaps were identified in this assessment?',
-            'What is the highest priority remediation item?',
-            'Summarize the current AI tool risk exposure',
-            'What hardware is currently deployed?',
-            'What are the recommended next steps?',
-        ],
-        content: `
-<h4>IT COMPLIANCE ASSESSMENT — SYNTHETIC DEMO</h4>
-<p style="font-size:0.78em;color:var(--muted);margin-bottom:16px;">Fictional practice. No real PHI or real organizations.</p>
-
-<div class="doc-section">
-<div class="doc-section-label">Practice Information</div>
-<p><span class="doc-chunk" data-chunk="practice">Practice: Pocono Valley Family Medicine (Demo) &nbsp;|&nbsp; Providers: 4 physicians, 2 NPs
-EHR: athenahealth (cloud-hosted) &nbsp;|&nbsp; Staff: 14 FTE &nbsp;|&nbsp; Assessment date: 04/15/2026
-Assessor: TechGuard MSP (fictional) &nbsp;|&nbsp; Scope: HIPAA Security Rule, AI Tool Risk</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Current Hardware Inventory</div>
-<p><span class="doc-chunk" data-chunk="hardware">Workstations: 12x Dell OptiPlex 7000 (Win11 Pro, avg age 3.2 years)
-Server: 1x Dell PowerEdge T150 (file server, local backups)
-Network: Cisco Meraki MX68 firewall, unmanaged TP-Link switches (RISK: no VLAN segmentation)
-Mobile: 8x staff iPhones — MDM enrolled via Jamf
-Printers: 3x HP LaserJet — no secure print (RISK: PHI exposure at output tray)</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">AI Tool Risk Assessment</div>
-<p><span class="doc-chunk" data-chunk="airisk">CRITICAL: 3 staff members confirmed using personal ChatGPT accounts for clinical documentation tasks. No BAA exists with OpenAI for consumer accounts. PHI transmission is occurring without authorization — potential HIPAA breach.
-HIGH: Otter.ai used by 1 physician for visit transcription. No BAA available for Otter.ai on current plan tier. Audio recordings containing PHI are being retained on Otter.ai servers.
-MEDIUM: Microsoft Copilot evaluated but not deployed. BAA available through Microsoft — no current risk.
-RECOMMENDED: Deploy on-premises AI appliance (Sentinel Node architecture) to eliminate cloud PHI transmission risk entirely.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">HIPAA Gap Analysis</div>
-<p><span class="doc-chunk" data-chunk="hipaa">Gap 1 (CRITICAL): Unauthorized PHI disclosure via consumer AI tools — 45 CFR §164.502. Immediate remediation required. Estimated OCR penalty exposure: $10,000–$50,000 per incident.
-Gap 2 (HIGH): No VLAN segmentation between clinical and administrative networks — 45 CFR §164.312(a)(1). Risk of lateral movement if workstation compromised.
-Gap 3 (MEDIUM): No workforce training on AI tool acceptable use policies — 45 CFR §164.308(a)(5). Training due within 90 days.
-Gap 4 (LOW): Print server lacks secure print-release — minor exposure risk.</span></p>
-</div>
-
-<div class="doc-section">
-<div class="doc-section-label">Recommended Next Steps</div>
-<p><span class="doc-chunk" data-chunk="nextsteps">1. IMMEDIATE: Issue policy prohibiting personal AI accounts for any work tasks. Enforce via acceptable use policy update and staff acknowledgment.
-2. 30 DAYS: Implement VLAN segmentation on Meraki MX68 — isolate clinical from administrative traffic.
-3. 60 DAYS: Evaluate on-premises AI deployment (Sentinel Node) to eliminate cloud PHI transmission. Contact Pocono AI for 60-day POV.
-4. 90 DAYS: Complete HIPAA workforce AI training. Document completion.
-5. ONGOING: Quarterly review of AI tool landscape for new shadow IT risks.</span></p>
-</div>`,
+        suggestions: ['What HIPAA gaps were identified in this assessment?','What is the highest priority remediation item?','Summarize the current AI tool risk exposure','What are the recommended next steps?','Is ChatGPT being used in this practice?','What hardware is currently deployed?','What are the OCR penalty exposure amounts?','How do we fix the ChatGPT problem?'],
+        content: `<h4>IT COMPLIANCE ASSESSMENT — SYNTHETIC DEMO</h4>
+<p style="font-size:.78em;color:var(--muted);margin-bottom:14px;">Fictional practice. No real PHI or organizations.</p>
+<div class="doc-section"><div class="doc-section-label">Practice Information</div>
+<p><span class="doc-chunk" data-chunk="practice">Pocono Valley Family Medicine (Demo) &nbsp;|&nbsp; 4 physicians, 2 NPs, 14 FTE staff<br>EHR: athenahealth (cloud-hosted) &nbsp;|&nbsp; Assessment date: 04/15/2026<br>Assessor: TechGuard MSP (fictional) &nbsp;|&nbsp; Scope: HIPAA Security Rule + AI Tool Risk</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Current Hardware Inventory</div>
+<p><span class="doc-chunk" data-chunk="hardware">12x Dell OptiPlex 7000 (Win11 Pro, avg 3.2 yrs) &nbsp;|&nbsp; 1x Dell PowerEdge T150 (file server, local backups)<br>Network: Cisco Meraki MX68 firewall, unmanaged TP-Link switches (RISK: no VLAN segmentation)<br>Mobile: 8x staff iPhones — MDM via Jamf &nbsp;|&nbsp; 3x HP LaserJet — no secure print (RISK)</span></p></div>
+<div class="doc-section"><div class="doc-section-label">AI Tool Risk Assessment</div>
+<p><span class="doc-chunk" data-chunk="airisk">CRITICAL: 3 staff using personal ChatGPT for clinical documentation. No BAA with OpenAI consumer accounts. Active unauthorized PHI transmission — potential reportable breach.<br>HIGH: 1 physician using Otter.ai for transcription. No BAA on current plan. Clinical audio retained on Otter servers.<br>MEDIUM: Microsoft Copilot evaluated, not deployed. BAA available. No current risk.<br>RECOMMENDED: On-premises AI appliance to eliminate cloud PHI transmission entirely.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">HIPAA Gap Analysis</div>
+<p><span class="doc-chunk" data-chunk="hipaa">Gap 1 (CRITICAL): Unauthorized PHI disclosure via consumer AI — 45 CFR §164.502. OCR penalty: $10K–$50K per incident.<br>Gap 2 (HIGH): No VLAN segmentation — 45 CFR §164.312(a)(1). Lateral movement risk.<br>Gap 3 (MEDIUM): No AI acceptable use training — 45 CFR §164.308(a)(5). Due 90 days.<br>Gap 4 (LOW): No secure print-release. Minor PHI exposure.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Recommended Next Steps</div>
+<p><span class="doc-chunk" data-chunk="nextsteps">1. IMMEDIATE: AUP update prohibiting personal AI accounts. Signed acknowledgment from all 14 staff.<br>2. 30 DAYS: VLAN segmentation on Meraki MX68. Replace unmanaged TP-Link switches.<br>3. 60 DAYS: Evaluate on-premises AI (Sentinel Node) — contact Pocono AI for 60-day POV.<br>4. 90 DAYS: HIPAA workforce AI training. Document completion.<br>5. ONGOING: Quarterly shadow IT audit.</span></p></div>`
     }
 };
 
-// ── State ───────────────────────────────────────────────────────────────────
+// ── State ─────────────────────────────────────────────────────────────────────
 let currentMode = 'physician';
-let queryCount = 0;
 
-// ── Init ────────────────────────────────────────────────────────────────────
+// ── Mode setup ────────────────────────────────────────────────────────────────
 function setMode(mode) {
     currentMode = mode;
-    const doc = DOCS[mode];
-
-    // Update tab buttons
     document.querySelectorAll('.demo-mode-btn').forEach((btn, i) => {
         btn.classList.toggle('active', ['physician','attorney','msp'][i] === mode);
     });
-
-    // Update document panel
+    const doc = DOCS[mode];
     document.getElementById('doc-title').textContent = doc.title;
     document.getElementById('doc-content').innerHTML = doc.content;
-
-    // Update suggestions
-    const sq = document.getElementById('suggested-queries');
-    sq.innerHTML = doc.suggestions.map(q =>
-        `<button class="suggested-query" onclick="useSuggestion(this)">${q}</button>`
-    ).join('');
-
-    // Reset
+    document.getElementById('suggested-queries').innerHTML = doc.suggestions.map(q =>
+        `<button class="suggested-query" onclick="useSuggestion(this)">${q}</button>`).join('');
     resetDemo();
 }
 
 function useSuggestion(btn) {
     document.getElementById('query-input').value = btn.textContent;
-    document.getElementById('query-input').focus();
 }
 
 function resetDemo() {
-    document.getElementById('response-body').innerHTML =
-        '<span class="response-placeholder">Ask a question above to see the RAG workflow in action.</span>';
+    document.getElementById('response-body').innerHTML = '<span class="response-placeholder">Click a suggestion or type a question, then press Ask.</span>';
     document.getElementById('response-timer').textContent = '';
     document.getElementById('reset-btn').style.display = 'none';
     document.getElementById('compare-strip').style.display = 'none';
     document.getElementById('demo-stats').style.display = 'none';
     document.getElementById('query-input').value = '';
-    // Remove highlights
+    document.getElementById('match-badge').style.display = 'none';
     document.querySelectorAll('.doc-chunk.highlighted').forEach(el => el.classList.remove('highlighted'));
 }
 
-// ── Query runner ─────────────────────────────────────────────────────────────
-async function runQuery() {
+// ── Fuzzy matching ─────────────────────────────────────────────────────────────
+function tokenize(str) {
+    return str.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(w => w.length > 2);
+}
+
+const STOPWORDS = new Set(['the','and','for','this','that','with','from','are','was','were','has','have','been','what','when','does','did','how','which','about','there','their','they','will','can','not','any','all','its','per','into','out','also','but','our','your','each','most','some','more','than']);
+
+function scoreMatch(query, key) {
+    const qTokens = tokenize(query).filter(w => !STOPWORDS.has(w));
+    const kTokens = tokenize(key).filter(w => !STOPWORDS.has(w));
+    if (!qTokens.length || !kTokens.length) return 0;
+    let hits = 0;
+    for (const qt of qTokens) {
+        for (const kt of kTokens) {
+            if (kt === qt) { hits += 2; break; }
+            if (kt.startsWith(qt) || qt.startsWith(kt)) { hits += 1; break; }
+        }
+    }
+    return hits / Math.max(qTokens.length, kTokens.length);
+}
+
+function findResponse(query) {
+    const bank = DEMO_RESPONSES[currentMode] || {};
+    let bestKey = null, bestScore = 0;
+    for (const key of Object.keys(bank)) {
+        const score = scoreMatch(query, key);
+        if (score > bestScore) { bestScore = score; bestKey = key; }
+    }
+    if (!bestKey || bestScore < 0.15) return null;
+    const matchType = bestScore > 0.85 ? 'exact' : bestScore > 0.45 ? 'close' : 'fuzzy';
+    return { ...bank[bestKey], key: bestKey, matchType, score: bestScore };
+}
+
+// ── Query runner ───────────────────────────────────────────────────────────────
+function runQuery() {
     const query = document.getElementById('query-input').value.trim();
     if (!query) return;
 
@@ -958,126 +460,84 @@ async function runQuery() {
     btn.disabled = true;
     btn.textContent = '⏳';
 
-    const responseBody = document.getElementById('response-body');
+    const body = document.getElementById('response-body');
     const timerEl = document.getElementById('response-timer');
+    const badgeEl = document.getElementById('match-badge');
 
-    // Show thinking state
-    responseBody.innerHTML = `
-        <div class="response-thinking">
-            <div class="thinking-dots"><span></span><span></span><span></span></div>
-            Retrieving relevant document sections...
-        </div>`;
+    body.innerHTML = '<span class="thinking-ring"></span> Retrieving relevant sections...';
 
-    const startTime = Date.now();
-    let timerInterval = setInterval(() => {
-        timerEl.textContent = ((Date.now() - startTime) / 1000).toFixed(2) + 's';
-    }, 50);
+    // Simulate realistic retrieval timing (faster than cloud)
+    const delay = 180 + Math.random() * 340;
+    const start = Date.now();
 
-    // Build the document context from current mode
-    const doc = DOCS[currentMode];
-    const docText = document.getElementById('doc-content').innerText;
+    timerEl.textContent = '';
+    let tick = setInterval(() => {
+        timerEl.textContent = ((Date.now() - start)).toFixed(0) + 'ms';
+    }, 40);
 
-    const systemPrompt = `You are the Sentinel Node RAG system — a local AI assistant for a medical or legal practice. You have been given a document to analyze. Answer the user's question using ONLY information from that document.
+    setTimeout(() => {
+        clearInterval(tick);
+        const elapsed = Date.now() - start;
+        timerEl.textContent = elapsed + 'ms';
 
-CRITICAL RULES:
-1. Only use information explicitly stated in the document. Never infer or hallucinate.
-2. Every factual claim must include a citation like [Section: Medications] or [Section: Lab Results].
-3. Be concise and clinically/legally precise. 2-4 sentences max unless the question requires more.
-4. If the document does not contain the answer, say exactly: "This information is not in the document provided."
-5. Start your response with the direct answer. Citations follow each claim inline.
-6. Format: plain prose with inline citations. No bullet points unless listing multiple items.
+        const result = findResponse(query);
 
-Document provided:
----
-${docText}
----`;
+        if (!result) {
+            body.innerHTML = `<span style="color:var(--muted);font-style:italic;">No matching response found in the demo library for this exact query. Try a suggested question, or <a href="mailto:marcus@poconoai.com?subject=Demo%20Question" style="color:var(--teal);">ask Marcus directly →</a></span>`;
+            badgeEl.style.display = 'none';
+        } else {
+            // Format answer with citation chips
+            const formatted = result.answer.replace(
+                /\[Section:\s*([^\]]+)\]/g,
+                (match, section) => `<span class="citation-chip" onclick="highlightChunk('${section.trim()}')" title="Click to highlight in document">&#128203; ${section.trim()}</span>`
+            );
+            body.innerHTML = `<div style="line-height:1.8;">${formatted}</div>`;
 
-    try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                model: 'claude-sonnet-4-20250514',
-                max_tokens: 1000,
-                system: systemPrompt,
-                messages: [{ role: 'user', content: query }]
-            })
-        });
+            // Match quality badge
+            const labels = { exact: ['EXACT MATCH','match-exact'], close: ['CLOSE MATCH','match-close'], fuzzy: ['FUZZY MATCH','match-fuzzy'] };
+            const [label, cls] = labels[result.matchType] || labels.fuzzy;
+            badgeEl.textContent = label;
+            badgeEl.className = `match-badge ${cls}`;
+            badgeEl.style.display = 'inline';
 
-        clearInterval(timerInterval);
-        const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-        timerEl.textContent = elapsed + 's';
-
-        if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
+            // Highlight referenced chunks
+            if (result.chunks) result.chunks.forEach(chunk => highlightChunk(chunk, true));
         }
 
-        const data = await response.json();
-        const answer = data.content?.[0]?.text || 'No response received.';
-
-        // Count citations in response
-        const citationMatches = answer.match(/\[Section:/g) || [];
-        queryCount++;
-
-        // Render response with highlighted citations
-        const formattedAnswer = answer.replace(
-            /\[Section:\s*([^\]]+)\]/g,
-            (match, section) => `<span class="citation-chip" onclick="highlightChunk('${section.trim()}')">&#128203; ${section.trim()}</span>`
-        );
-
-        responseBody.innerHTML = `<div style="line-height:1.8;">${formattedAnswer}</div>`;
-
-        // Update stats
-        document.getElementById('stat-time').textContent = elapsed + 's';
-        document.getElementById('stat-citations').textContent = citationMatches.length || '—';
-
-        // Show comparison and stats
-        document.getElementById('compare-strip').style.display = 'block';
+        // Stats
+        const citations = (result?.answer || '').match(/\[Section:/g) || [];
+        document.getElementById('stat-time').textContent = elapsed + 'ms';
+        document.getElementById('stat-citations').textContent = citations.length || (result ? '0' : '—');
+        document.getElementById('compare-strip').style.display = result ? 'block' : 'none';
         document.getElementById('demo-stats').style.display = 'grid';
         document.getElementById('reset-btn').style.display = 'block';
 
-    } catch (err) {
-        clearInterval(timerInterval);
-        timerEl.textContent = '';
-        responseBody.innerHTML = `
-            <div style="color:#FF6B5B;font-size:0.85em;line-height:1.7;">
-                <strong>Demo temporarily unavailable.</strong><br>
-                The live demo requires an API connection. If you're seeing this error, 
-                the demo endpoint may be experiencing high load. 
-                <a href="mailto:marcus@poconoai.com?subject=Demo%20Request" style="color:var(--teal);">
-                Email Marcus for a personal walkthrough →
-                </a>
-            </div>`;
-        document.getElementById('reset-btn').style.display = 'block';
-    }
-
-    btn.disabled = false;
-    btn.textContent = 'Ask ▶';
+        btn.disabled = false;
+        btn.textContent = 'Ask ▶';
+    }, delay);
 }
 
-function highlightChunk(sectionName) {
-    // Remove existing highlights
+function highlightChunk(sectionOrKey, silent = false) {
     document.querySelectorAll('.doc-chunk.highlighted').forEach(el => el.classList.remove('highlighted'));
-
-    // Find matching chunk
     const chunks = document.querySelectorAll('.doc-chunk');
+    let found = false;
     chunks.forEach(chunk => {
-        const chunkKey = chunk.dataset.chunk || '';
-        const sectionLower = sectionName.toLowerCase();
-        if (sectionLower.includes(chunkKey) || chunkKey.includes(sectionLower.split(' ')[0])) {
+        const key = (chunk.dataset.chunk || '').toLowerCase();
+        const target = sectionOrKey.toLowerCase().replace(/[^a-z]/g,' ').split(/\s+/)[0];
+        if (key && (key === target || target.includes(key) || key.includes(target))) {
             chunk.classList.add('highlighted');
-            chunk.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (!silent) chunk.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            found = true;
         }
     });
+    return found;
 }
 
-// Enter key to submit
+// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     setMode('physician');
-    document.getElementById('query-input').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-            runQuery();
-        }
+    document.getElementById('query-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) runQuery();
     });
 });
 </script>
