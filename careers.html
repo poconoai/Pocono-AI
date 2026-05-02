@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v82 -->
+<html lang="en"><!-- Pocono AI v83 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Careers at Pocono AI, LLC. Join the movement to build sovereign, zero-telemetry AI infrastructure.">
+    <meta name="description" content="Careers at Pocono AI, LLC — East Stroudsburg, PA. Join the team building sovereign, zero-telemetry AI infrastructure for healthcare and legal. Ethics-first. Neurodiversity-first. Zero-trust always.">
     <title>Careers | Pocono AI, LLC</title>
 
     <meta property="og:title" content="Careers | Pocono AI, LLC">
-    <meta property="og:description" content="Join Pocono AI. We are engineering the standard for air-gapped, zero-telemetry enterprise AI.">
+    <meta property="og:description" content="Join Pocono AI. We are engineering the standard for air-gapped, zero-telemetry enterprise AI. Ethics-first. Neurodiversity-first.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://poconoai.com/careers.html">
     <meta property="og:image" content="https://poconoai.com/og-image.jpg">
@@ -24,16 +24,11 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
-    <meta name="theme-color" content="#051622">
 
-    <!-- Shared stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    <!-- SEO: Canonical URL + XML Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/careers.html">
-    <!-- Open Graph: ensures social sharing pulls correct page -->
 
     <script type="application/ld+json">
     {
@@ -56,208 +51,819 @@
         "contactType": "sales",
         "email": "marcus@poconoai.com"
       },
-      "sameAs": [
-        "https://www.linkedin.com/company/pocono-ai"
-      ]
+      "sameAs": ["https://www.linkedin.com/company/pocono-ai"]
     }
     </script>
+
+    <style>
+        /* ── CAREERS PAGE STYLES ── */
+        .careers-intro {
+            max-width: 760px;
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+        .careers-intro p {
+            color: var(--light-text);
+            font-size: 1.1em;
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+
+        /* Location badge */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,163,255,0.08);
+            border: 1px solid rgba(0,163,255,0.25);
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.82em;
+            font-weight: 700;
+            color: var(--ai-blue);
+            letter-spacing: 0.06em;
+            margin-bottom: 32px;
+        }
+
+        /* Values pillars */
+        .values-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 24px 0 40px;
+        }
+        .value-pill {
+            background: rgba(24,139,150,0.12);
+            border: 1px solid rgba(24,139,150,0.3);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.78em;
+            font-weight: 700;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ── FILTER TABS ── */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 auto 40px;
+            max-width: 900px;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 6px;
+            color: var(--light-text);
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            border-color: var(--ai-blue);
+            color: var(--ai-blue);
+        }
+        .filter-btn.active {
+            background: var(--teal);
+            border-color: var(--teal);
+            color: var(--white);
+        }
+
+        /* ── ACTIVE JOB CARDS ── */
+        .active-job {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 12px;
+            padding: 36px 40px;
+            margin: 0 auto 28px;
+            max-width: 900px;
+            transition: border-color 0.2s;
+        }
+        .active-job:hover {
+            border-color: rgba(24,139,150,0.4);
+        }
+        .active-job h2 {
+            color: var(--white);
+            font-size: 1.5em;
+            margin: 0 0 14px;
+            border: none;
+            line-height: 1.2;
+        }
+        .active-job h2 .opening-count {
+            font-size: 0.55em;
+            color: var(--teal);
+            font-weight: 600;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .meta-tag {
+            background: rgba(0,163,255,0.08);
+            border: 1px solid rgba(0,163,255,0.2);
+            border-radius: 4px;
+            color: var(--light-text);
+            font-size: 0.78em;
+            padding: 4px 12px;
+            white-space: nowrap;
+        }
+        .job-section {
+            margin-bottom: 20px;
+        }
+        .job-section h3 {
+            color: var(--teal);
+            font-size: 0.88em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            margin: 0 0 10px;
+            text-transform: uppercase;
+        }
+        .job-section p {
+            color: var(--light-text);
+            line-height: 1.8;
+            margin: 0 0 10px;
+        }
+        .job-section ul {
+            color: var(--light-text);
+            line-height: 1.8;
+            margin: 0;
+            padding-left: 20px;
+        }
+        .job-section ul li {
+            margin-bottom: 6px;
+        }
+        .comp-box {
+            background: rgba(0,163,255,0.05);
+            border: 1px solid rgba(0,163,255,0.15);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .comp-box h4 {
+            color: var(--ai-blue);
+            font-size: 0.82em;
+            letter-spacing: 0.12em;
+            margin: 0 0 10px;
+            text-transform: uppercase;
+        }
+        .comp-box p {
+            color: var(--light-text);
+            font-size: 0.92em;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* ── PIPELINE SECTION ── */
+        .pipeline-section {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .timeline-group {
+            margin-bottom: 48px;
+        }
+        .timeline-label {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .timeline-label-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        .timeline-label-text.q1 { color: #00c896; }
+        .timeline-label-text.q2 { color: var(--ai-blue); }
+        .timeline-label-text.q3 { color: #a78bfa; }
+        .timeline-label-text.future { color: var(--muted); }
+        .timeline-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .pipeline-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            padding: 22px 24px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .pipeline-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.14);
+        }
+        .status-badge {
+            display: inline-block;
+            border-radius: 3px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.62em;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+            padding: 3px 8px;
+            text-transform: uppercase;
+        }
+        .status-badge.q1 { background: rgba(0,200,150,0.12); color: #00c896; }
+        .status-badge.q2 { background: rgba(0,163,255,0.1); color: var(--ai-blue); }
+        .status-badge.q3 { background: rgba(167,139,250,0.1); color: #a78bfa; }
+        .status-badge.future { background: rgba(90,122,138,0.12); color: var(--muted); }
+        .pipeline-card h3 {
+            color: var(--white);
+            font-size: 0.98em;
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+        .pipeline-card p {
+            color: var(--muted);
+            font-size: 0.82em;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .pipeline-card .card-dept {
+            font-size: 0.7em;
+            color: rgba(90,122,138,0.8);
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+        }
+
+        /* ── CALLOUT BLOCKS ── */
+        .callout-msp {
+            background: linear-gradient(135deg, rgba(0,180,180,0.07) 0%, rgba(5,22,34,0.0) 100%);
+            border: 1px solid rgba(24,139,150,0.28);
+            border-radius: 12px;
+            padding: 32px 36px;
+            margin: 50px auto;
+            max-width: 900px;
+        }
+        .callout-msp h3 { color: var(--teal); margin-top: 0; }
+        .callout-msp p { color: var(--light-text); line-height: 1.8; }
+        .callout-msp a.msp-link {
+            color: var(--teal);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--teal);
+        }
+
+        .callout-ethics {
+            background: rgba(255,255,255,0.025);
+            border-left: 4px solid var(--teal);
+            border-radius: 0 12px 12px 0;
+            padding: 30px 36px;
+            margin: 50px auto;
+            max-width: 900px;
+        }
+        .callout-ethics h3 { color: var(--ai-blue); margin-top: 0; }
+        .callout-ethics p { color: var(--light-text); line-height: 1.8; margin: 0; }
+
+        /* hidden job cards when filtered */
+        .active-job.hidden,
+        .pipeline-card.hidden {
+            display: none;
+        }
+
+        /* section spacer */
+        .section-rule {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin: 60px auto;
+            max-width: 900px;
+        }
+
+        @media (max-width: 680px) {
+            .active-job { padding: 24px 20px; }
+            .callout-msp, .callout-ethics { padding: 24px 20px; }
+            .pipeline-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
-                        <header>
-        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="nav-menu" aria-label="Main navigation">
-            <ul class="nav-links">
-                <li class="nav-home-always"><a href="index.html">Home</a></li>
-                <li><a href="for-physicians.html">For Physicians</a></li>
-                <li><a href="for-attorneys.html">For Attorneys</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
-                    <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <span class="nav-group-label">Tools</span>
-                        <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
-                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
-                        <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
-                        <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
-                        <span class="nav-group-label">Technology</span>
-                        <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="solutions.html">Solutions Overview</a>
-                        <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="comparison.html">Comparison</a>
-                        <a href="compliance.html">&#128274; Compliance Attestation</a>
-                        <a href="deployment.html">Deployment Timeline</a>
-                        <span class="nav-group-label">Research</span>
-                        <a href="research.html">Research Hub</a>
-                        <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                        <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
-                        <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                        <a href="patient-advocacy.html">Patient Safety</a>
-                        <span class="nav-group-label">Company</span>
-                        <a href="about.html">About the Founder</a>
-                        <a href="partners.html">Partners</a>
-                        <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
-                    </div>
-                </li>
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <span class="nav-group-label">Tools</span>
+                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <span class="nav-group-label">Technology</span>
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="comparison.html">Comparison</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <span class="nav-group-label">Research</span>
+                    <a href="research.html">Research Hub</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+                    <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                    <a href="patient-advocacy.html">Patient Safety</a>
+                    <span class="nav-group-label">Company</span>
+                    <a href="about.html">About the Founder</a>
+                    <a href="partners.html">Partners</a>
+                    <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <!-- ── HERO ── -->
+    <section class="hero-section">
+        <span class="hero-tagline">Build The Future of Sovereignty</span>
+        <h1>Join Pocono AI</h1>
+        <div style="text-align:center;">
+            <span class="location-badge">&#128205; East Stroudsburg, PA &nbsp;·&nbsp; Poconos Region &nbsp;·&nbsp; Easy access: NJ · Philadelphia · NYC</span>
+        </div>
+        <p style="max-width:700px;margin:0 auto 24px;color:var(--light-text);font-size:1.1em;line-height:1.85;">We are engineering the standard for air-gapped, zero-telemetry enterprise AI for healthcare and legal. We do not just build infrastructure — we build it with a conscience. Ethics-first. Neurodiversity-first. Zero-trust always.</p>
+        <div class="values-row">
+            <span class="value-pill">&#9679; Ethics First</span>
+            <span class="value-pill">&#9679; Neurodiversity First</span>
+            <span class="value-pill">&#9679; Zero Trust Architecture</span>
+            <span class="value-pill">&#9679; Air-Gapped by Design</span>
+            <span class="value-pill">&#9679; Equity-Backed Ground Floor</span>
+        </div>
+    </section>
+
+    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+        <div class="trust-badges-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+        </div>
+    </section>
+
+    <!-- ── FILTER BAR ── -->
+    <div style="text-align:center; margin-bottom: 10px;">
+        <p style="color:var(--muted); font-size:0.8em; text-transform:uppercase; letter-spacing:0.12em; font-family:'Syne',sans-serif; margin:0 0 14px;">Filter by department</p>
+    </div>
+    <div class="filter-bar" role="group" aria-label="Filter jobs by category">
+        <button class="filter-btn active" data-filter="all">All Roles</button>
+        <button class="filter-btn" data-filter="sales">Sales</button>
+        <button class="filter-btn" data-filter="engineering">Engineering</button>
+        <button class="filter-btn" data-filter="database">Database / DBA</button>
+        <button class="filter-btn" data-filter="design">UI/UX &amp; Design</button>
+        <button class="filter-btn" data-filter="security">Security</button>
+        <button class="filter-btn" data-filter="leadership">Leadership</button>
+        <button class="filter-btn" data-filter="people">People &amp; Ethics</button>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         ACTIVE / NOW HIRING
+    ════════════════════════════════════════ -->
+    <div style="max-width:900px; margin: 0 auto 12px;">
+        <h2 class="section-header" style="margin-top:0;">Now Hiring</h2>
+        <p style="color:var(--light-text); font-size:1em; margin-bottom:28px; line-height:1.75;">These roles are open today. We are a ground-floor company with real equity on the table. If you want to help build something that matters — sovereign, ethical AI in regulated environments — this is the team to join.</p>
+    </div>
+
+    <!-- ROLE 1: Enterprise Sales Lead -->
+    <section class="active-job" data-dept="sales">
+        <h2>Enterprise Sales &amp; Revenue Operations Lead</h2>
+        <div class="job-meta">
+            <span class="meta-tag">💼 Sales / Business Development</span>
+            <span class="meta-tag">📍 East Stroudsburg, PA (Hybrid/Remote)</span>
+            <span class="meta-tag">🤝 B2B Enterprise</span>
+        </div>
+        <div class="job-section">
+            <h3>The Role</h3>
+            <p>Independent medical and legal practices are desperate for AI that reclaims their time without leaking sensitive data to the cloud. The Sentinel Node™ is built, priced, and ready. We need a closer who speaks both the language of physicians and the language of procurement — and who wants to be an owner, not just a rep.</p>
+        </div>
+        <div class="job-section">
+            <h3>What You Will Own</h3>
+            <ul>
+                <li><strong>Pipeline Development:</strong> Identify and qualify independent clinics and law firms (2–10 providers) for Paid Proof-of-Value engagements.</li>
+                <li><strong>Technical Demos:</strong> Run live walkthroughs of the Sentinel Node alongside our engineering team — no cold decks, real hardware.</li>
+                <li><strong>Deal Closure:</strong> Shepherd prospects from first call through architecture assessment to signed SLA.</li>
+                <li><strong>Partner Outreach:</strong> Develop referral relationships with EHR implementation consultants, healthcare attorneys, MSPs, and practice managers.</li>
             </ul>
-        </nav>
-    </header>
+        </div>
+        <div class="job-section">
+            <h3>Who You Are</h3>
+            <ul>
+                <li>Proven B2B closer — you have sold hardware, software, or services into regulated industries (healthcare or legal preferred).</li>
+                <li>Comfortable talking to a CISO about air-gap architecture and a practice manager about time reclamation in the same week.</li>
+                <li>You want a foundational role with meaningful equity upside, not just a quota.</li>
+            </ul>
+        </div>
+        <div class="comp-box">
+            <h4>Compensation</h4>
+            <p><strong>Structure:</strong> Base + commission on closed deployments, with <strong>equity (ownership shares in Pocono AI, LLC)</strong> offered to early team members in lieu of above-market cash compensation. Not a capital investment requirement — sweat equity only.</p>
+            <p style="margin-top:10px;"><strong>Stage:</strong> Ground-floor — compensation scales with the first funded round, currently in progress.</p>
+        </div>
+        <a href="mailto:marcus@poconoai.com?subject=Sales%20Lead%20Inquiry%20%E2%80%94%20Pocono%20AI" class="cta-button">Express Interest</a>
+    </section>
 
-    <main id="main-content">
-        <section class="hero-section">
-            <span class="hero-tagline">Build The Future of Sovereignty</span>
-            <h1>Join Pocono AI</h1>
-            <p>We are engineering the standard for air-gapped, zero-telemetry enterprise AI. We need operators who can execute.</p>
-        </section>
+    <!-- ROLE 2: Junior DBA — Multiple -->
+    <section class="active-job" data-dept="database">
+        <h2>Junior DBA — Field Deployment Specialist <span class="opening-count">(Multiple Openings)</span></h2>
+        <div class="job-meta">
+            <span class="meta-tag">🗄️ Database / IT Operations</span>
+            <span class="meta-tag">📍 East Stroudsburg, PA — Field Travel: NJ · NYC · Philly</span>
+            <span class="meta-tag">🚗 Client-Site Travel Required</span>
+        </div>
+        <div class="job-section">
+            <h3>The Role</h3>
+            <p>We are building a team of junior DBAs who thrive being in the field — hands on hardware, on-site at client locations, solving real problems in real environments. Sentinel Node™ deployments live inside the walls of medical practices and law firms in the Pennsylvania Poconos, throughout New Jersey, greater Philadelphia, and the New York City metro area. You will be the person who makes that deployment sing on-location.</p>
+            <p>This is not a remote-only, ticket-queue role. We need people who want to drive, show up, and own the outcome. We are hiring multiple people for this role as we scale across the Mid-Atlantic. If you have DBA fundamentals, a valid driver's license, and genuine curiosity for how AI infrastructure fits into secure regulated environments — we want to hear from you.</p>
+        </div>
+        <div class="job-section">
+            <h3>What You Will Own</h3>
+            <ul>
+                <li><strong>On-Site Deployment:</strong> Travel to client locations to physically rack, configure, and validate Sentinel Node™ hardware and software stack.</li>
+                <li><strong>Database Ops:</strong> Qdrant vector database initialization, local SQL schema setup, and indexing pipeline configuration tailored to each client's document environment.</li>
+                <li><strong>Client Handoff &amp; Training:</strong> Walk clients through their system post-deployment — making sure staff are confident before you leave the site.</li>
+                <li><strong>Troubleshooting:</strong> Field calls and site visits for post-deployment issues; own first-line resolution, escalate to senior engineering as needed.</li>
+                <li><strong>MSP Coordination:</strong> Many clients have existing MSP relationships. You will coordinate directly with their IT partners on network integration and support handoffs. Our <a href="partners.html" style="color:var(--teal);">MSP Partner Program</a> is central to how we scale — you'll work alongside those partners in the field.</li>
+            </ul>
+        </div>
+        <div class="job-section">
+            <h3>Who You Are</h3>
+            <ul>
+                <li>Some hands-on DBA or IT experience — formal degree not required, demonstrated competence required.</li>
+                <li>Comfortable with Linux environments, basic SQL, and command-line tooling.</li>
+                <li>Valid driver's license and willingness to travel across PA, NJ, and NY regularly.</li>
+                <li>You like being on-site solving real problems — not just tickets.</li>
+                <li>You communicate clearly and professionally in client-facing situations. You represent the brand on the ground.</li>
+            </ul>
+        </div>
+        <div class="comp-box">
+            <h4>Compensation</h4>
+            <p><strong>Structure:</strong> Hourly or salary commensurate with experience, with <strong>equity (ownership shares in Pocono AI, LLC)</strong> available to early team members. Mileage reimbursement for field travel.</p>
+            <p style="margin-top:10px;"><strong>Stage:</strong> Multiple seats available now and expanding with funding milestone.</p>
+        </div>
+        <a href="mailto:marcus@poconoai.com?subject=Junior%20DBA%20Field%20Role%20%E2%80%94%20Pocono%20AI" class="cta-button">Express Interest</a>
+    </section>
 
-        <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
-            <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
-            <div class="trust-badges-row">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+    <!-- ── MSP CALLOUT ── -->
+    <div class="callout-msp">
+        <h3>🤝 A Note on Our MSP Partnerships</h3>
+        <p>Our <a href="partners.html" class="msp-link">MSP Partner Program</a> is foundational to how Sentinel Node™ deployments succeed — not an afterthought. Independent practices already trust their MSP. We work <em>with</em> those partners, not around them. Many of our field and engineering roles involve close MSP coordination, and candidates who come from an MSP background are especially well-positioned here. If you are an MSP professional considering a career move — or an MSP firm interested in partnering — we want that conversation.</p>
+        <a href="partners.html" class="msp-link">Learn about the MSP Partner Program &rarr;</a>
+    </div>
+
+    <hr class="section-rule">
+
+    <!-- ════════════════════════════════════════
+         PIPELINE — TIMELINE-GROUPED
+    ════════════════════════════════════════ -->
+    <div class="pipeline-section">
+
+        <h2 class="section-header" style="margin-top:0; max-width:900px; margin-left:auto; margin-right:auto;">Growth Roadmap — Roles Pipeline</h2>
+        <p style="color:var(--light-text); font-size:1em; margin-bottom:40px; line-height:1.8; max-width:900px; margin-left:auto; margin-right:auto;">
+            We are projecting $1.5M ARR in year one and doubling in year two. That means a structured hiring roadmap — not a wishlist. Every role below maps to a real operational need at a specific growth milestone. Roles are grouped by when we anticipate they will open based on our deployment and funding timeline.
+        </p>
+
+        <!-- Q1 / 0-3 Months -->
+        <div class="timeline-group">
+            <div class="timeline-label">
+                <span class="timeline-label-text q1">&#9679; Now — 3 Months &nbsp;·&nbsp; Immediate Priority</span>
+                <span class="timeline-line"></span>
             </div>
-        </section>
+            <div class="pipeline-grid">
 
+                <div class="pipeline-card" data-dept="engineering">
+                    <div class="card-dept">Engineering</div>
+                    <span class="status-badge q1">Now — 3 Mo</span>
+                    <h3>Full-Stack Web Developer</h3>
+                    <p>Own the development of our secure Python/FastAPI-backed customer portal and client-facing web tooling. React or Vue front-end. You will ship features that physicians and attorneys use daily.</p>
+                </div>
 
-        <section class="active-job">
-            <h2>Enterprise Sales &amp; Revenue Operations Lead</h2>
-            <div class="job-meta">
-                <span class="meta-tag">💼 Sales / Business Development</span>
-                <span class="meta-tag">📍 PA / NJ / NY (Hybrid/Remote)</span>
-                <span class="meta-tag">🤝 B2B Enterprise</span>
-            </div>
+                <div class="pipeline-card" data-dept="design">
+                    <div class="card-dept">UI/UX &amp; Design</div>
+                    <span class="status-badge q1">Now — 3 Mo</span>
+                    <h3>UI/UX Designer</h3>
+                    <p>Design interfaces that work for people under clinical and legal time pressure. You will own the user experience of the Sentinel Node™ portal, the demo environment, and client-facing onboarding flows. Healthcare + legal UX chops are a significant plus.</p>
+                </div>
 
-            <div class="job-section">
-                <h3>The Role</h3>
-                <p>Independent medical and legal practices are desperate for AI that reclaims their time without leaking sensitive data to the cloud. The Sentinel Node™ is built, priced, and ready. We need a closer who speaks both the language of physicians and the language of procurement.</p>
-            </div>
+                <div class="pipeline-card" data-dept="sales">
+                    <div class="card-dept">Sales</div>
+                    <span class="status-badge q1">Now — 3 Mo</span>
+                    <h3>Sales Development Rep (SDR)</h3>
+                    <p>Build the top of the funnel. You will identify, qualify, and warm independent practices and law firms before handing off to the Enterprise Sales Lead. Based in or near East Stroudsburg, PA with territory across Mid-Atlantic.</p>
+                </div>
 
-            <div class="job-section">
-                <h3>What You Will Own</h3>
-                <ul>
-                    <li><strong>Pipeline Development:</strong> Identify and qualify independent clinics and law firms (2–10 providers) for Paid Proof-of-Value engagements.</li>
-                    <li><strong>Technical Demos:</strong> Run live walkthroughs of the Sentinel Node alongside our engineering team — no cold decks, real hardware.</li>
-                    <li><strong>Deal Closure:</strong> Shepherd prospects from first call through architecture assessment to signed SLA.</li>
-                    <li><strong>Partner Outreach:</strong> Develop referral relationships with EHR implementation consultants, healthcare attorneys, and practice managers.</li>
-                </ul>
-            </div>
+                <div class="pipeline-card" data-dept="engineering">
+                    <div class="card-dept">Engineering</div>
+                    <span class="status-badge q1">Now — 3 Mo</span>
+                    <h3>AI / Python Engineer</h3>
+                    <p>Manage local LLM integrations (Llama, Gemma, BioMistral), optimize RAG pipelines via LangChain/LlamaIndex, and fine-tune open-weight models for healthcare and legal domain specificity.</p>
+                </div>
 
-            <div class="job-section">
-                <h3>Who You Are</h3>
-                <ul>
-                    <li>Proven B2B closer — you have sold hardware, software, or services into regulated industries (healthcare or legal preferred).</li>
-                    <li>Comfortable talking to a CISO about air-gap architecture and a practice manager about time reclamation in the same week.</li>
-                    <li>You want a foundational role with meaningful equity upside, not just a quota.</li>
-                </ul>
-            </div>
-
-            <div class="comp-box">
-                <h4>Compensation</h4>
-                <p><strong>Structure:</strong> Base + commission on closed deployments, with <strong>equity (ownership shares in Pocono AI, LLC)</strong> offered to early team members in lieu of above-market cash compensation. Not a capital investment requirement — sweat equity only.</p>
-                <p style="margin-top: 10px;"><strong>Stage:</strong> Ground-floor — compensation scales with the first funded round, currently in progress.</p>
-            </div>
-
-            <a href="mailto:marcus@poconoai.com?subject=Sales%20Lead%20Inquiry%20%E2%80%94%20Pocono%20AI" class="cta-button">Express Interest</a>
-        </section>
-
-        <h2 class="section-header">Upcoming Roles Pipeline</h2>
-        <p style="color: var(--light-text); font-size: 1.1em; margin-bottom: 30px;">As we secure our pre-seed funding and expand our pilot programs, we will be rapidly scaling our operational and engineering core. Roles currently in the pipeline:</p>
-
-        <div class="pipeline-grid">
-            <div class="pipeline-card">
-                <span class="status-badge">Opening Post-Funding</span>
-                <h3>Senior DBA / Data Architect</h3>
-                <p>Focusing on Qdrant vector database optimization, enterprise SQL schema management, and automated local indexing pipelines.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="status-badge">Opening Post-Funding</span>
-                <h3>AI / Python Specialist</h3>
-                <p>Managing local LLM integrations (Llama, Gemma), optimizing RAG pipelines via LangChain/LlamaIndex, and fine-tuning open-weight models.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="status-badge">Opening Post-Funding</span>
-                <h3>Full-Stack Developer</h3>
-                <p>Driving the development of our secure, Python/FastAPI-backed customer support portal and localized client-side UI tools.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="status-badge">Opening Post-Funding</span>
-                <h3>Enterprise Sales Executive</h3>
-                <p>Scaling our outreach to regional health networks and Am Law 200 firms. Managing the pilot-to-purchase lifecycle.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="status-badge">Future Pipeline</span>
-                <h3>HR &amp; Operations Manager</h3>
-                <p>Building our internal culture, managing compliance training, and streamlining logistics for hardware procurement and shipping.</p>
             </div>
         </div>
-    </main>
 
-                <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
-                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
-                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
-                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        <!-- Q2 / 3-6 Months -->
+        <div class="timeline-group">
+            <div class="timeline-label">
+                <span class="timeline-label-text q2">&#9679; 3 — 6 Months &nbsp;·&nbsp; Scaling Operations</span>
+                <span class="timeline-line"></span>
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">For Practitioners</p>
-                <a href="for-physicians.html">For Physicians</a>
-                <a href="for-attorneys.html">For Attorneys</a>
-                <a href="use-cases.html">Use Cases</a>
-                <a href="solutions.html">Solutions Overview</a>
-                <a href="pricing.html">Pricing &amp; Financing</a>
-                <a href="architecture.html">For IT &amp; MSPs</a>
-            </div>
-            <div class="footer-col">
-                <p class="footer-heading">Technology &amp; Tools</p>
-                <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
-                <a href="simulation.html">&#9878; 12-Panel Simulation</a>
-                <a href="breach-calculator.html">Breach Calculator</a>
-                <a href="shadow-audit.html">Shadow IT Audit</a>
-                <a href="compliance.html">Compliance Attestation</a>
-                <a href="competitive-analysis.html">Competitive Analysis</a>
-                <a href="comparison.html">Comparison</a>
-                <a href="deployment.html">Deployment Timeline</a>
-                <a href="trust.html">Trust &amp; Security</a>
-            </div>
-            <div class="footer-col">
-                <p class="footer-heading">Research</p>
-                <a href="research.html">Research Hub</a>
-                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
-                <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                <a href="patient-advocacy.html">Patient Safety</a>
-                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
-            </div>
-            <div class="footer-col">
-                <p class="footer-heading">Company &amp; Legal</p>
-                <a href="about.html">About the Founder</a>
-                <a href="careers.html">Careers</a>
-                <a href="partners.html">Partners</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="sla.html">SLA</a>
-                <a href="investors.html" class="footer-subtle">Investor Relations</a>
+            <div class="pipeline-grid">
+
+                <div class="pipeline-card" data-dept="database">
+                    <div class="card-dept">Database / Architecture</div>
+                    <span class="status-badge q2">3 — 6 Mo</span>
+                    <h3>Senior DBA / Data Architect</h3>
+                    <p>Take ownership of Qdrant vector database optimization, enterprise SQL schema design, automated local indexing pipelines, and immutable audit log architecture at scale across multiple client deployments.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="security">
+                    <div class="card-dept">Security</div>
+                    <span class="status-badge q2">3 — 6 Mo</span>
+                    <h3>Red Team / Blue Team Security Lead</h3>
+                    <p>Own adversarial testing (red team) and defensive hardening (blue team) across our hardware and software stack. Validate that our zero-telemetry, air-gapped sovereignty claims hold under real attack conditions. HIPAA, zero-exfiltration, NIST 800-53 are table stakes.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="sales">
+                    <div class="card-dept">Sales</div>
+                    <span class="status-badge q2">3 — 6 Mo</span>
+                    <h3>Enterprise Sales Executive — Health Networks</h3>
+                    <p>Scale outreach to regional health networks and Am Law 200 firms. Manage the pilot-to-purchase lifecycle with higher-complexity, multi-site accounts.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="engineering">
+                    <div class="card-dept">Engineering</div>
+                    <span class="status-badge q2">3 — 6 Mo</span>
+                    <h3>DevOps / Infrastructure Engineer</h3>
+                    <p>Build and maintain deployment automation, hardware provisioning pipelines, and monitoring infrastructure for on-premises Sentinel Node deployments. No cloud dependency by design — this is local-first engineering.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="people">
+                    <div class="card-dept">People &amp; Ethics</div>
+                    <span class="status-badge q2">3 — 6 Mo</span>
+                    <h3>HR Director — People, Culture &amp; Neurodiversity</h3>
+                    <p>Build a neurodiversity-first hiring and workplace framework by design, not checkbox. Develop accommodations infrastructure, inclusive hiring practices, and a culture that actively recruits and retains neurodivergent talent. HR compliance experience in regulated industries is ideal.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="leadership">
+                    <div class="card-dept">Leadership</div>
+                    <span class="status-badge q2">3 — 6 Mo</span>
+                    <h3>Director of IT &amp; Infrastructure</h3>
+                    <p>Own the full technical operations stack — deployment standards, hardware procurement, field engineering management, and client SLA uptime. This leader sets the engineering culture and owns accountability across all deployments.</p>
+                </div>
+
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
-                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
-                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
-            </p>
-            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
-        </div>
-    </footer>
 
-    <script src="nav.js"></script>
+        <!-- Q3 / 6-12 Months -->
+        <div class="timeline-group">
+            <div class="timeline-label">
+                <span class="timeline-label-text q3">&#9679; 6 — 12 Months &nbsp;·&nbsp; $1.5M ARR Target Band</span>
+                <span class="timeline-line"></span>
+            </div>
+            <div class="pipeline-grid">
+
+                <div class="pipeline-card" data-dept="leadership">
+                    <div class="card-dept">Leadership</div>
+                    <span class="status-badge q3">6 — 12 Mo</span>
+                    <h3>Director of Ethics &amp; AI Governance</h3>
+                    <p>We touch medical records and legal documents. Ethics is an engineering requirement here, not a marketing layer. This director will own our AI ethics framework, bias mitigation standards, audit processes, and external accountability commitments. We expect this role to shape industry norms, not just internal policy. Philosophy, medical ethics, law, or AI governance backgrounds all welcome.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="design">
+                    <div class="card-dept">Design &amp; Brand</div>
+                    <span class="status-badge q3">6 — 12 Mo</span>
+                    <h3>Brand &amp; Content Strategist</h3>
+                    <p>Own the editorial voice, brand positioning, and content strategy at scale. Translate complex AI architecture into plain language for physicians, attorneys, and compliance officers. Writing samples will be required.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="engineering">
+                    <div class="card-dept">Engineering</div>
+                    <span class="status-badge q3">6 — 12 Mo</span>
+                    <h3>QA / Compliance Engineer</h3>
+                    <p>Own automated testing, audit log integrity verification, and HIPAA/HITECH technical compliance validation across all deployment configurations. You will be the person who certifies that zero-exfiltration is actually zero.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="sales">
+                    <div class="card-dept">Sales / Partnerships</div>
+                    <span class="status-badge q3">6 — 12 Mo</span>
+                    <h3>MSP Channel Manager</h3>
+                    <p>As our MSP Partner Program scales nationally, we will need a dedicated channel manager to onboard, train, and manage MSP partners across regions. Technical fluency in networking and IT infrastructure is essential.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="database">
+                    <div class="card-dept">Database / Support</div>
+                    <span class="status-badge q3">6 — 12 Mo</span>
+                    <h3>DBA Field Team Lead</h3>
+                    <p>As the junior DBA field team grows, we will need a lead to own scheduling, quality standards, client escalation management, and cross-training. Must have prior field deployment experience.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="people">
+                    <div class="card-dept">People &amp; Operations</div>
+                    <span class="status-badge q3">6 — 12 Mo</span>
+                    <h3>Operations &amp; Finance Manager</h3>
+                    <p>Own internal operations, vendor management, hardware procurement logistics, and financial reporting as we approach the $1.5M revenue milestone and prepare for a Series A process.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Year 2 / Future -->
+        <div class="timeline-group">
+            <div class="timeline-label">
+                <span class="timeline-label-text future">&#9679; Year 2 &amp; Beyond &nbsp;·&nbsp; $3M ARR &amp; National Expansion</span>
+                <span class="timeline-line"></span>
+            </div>
+            <div class="pipeline-grid">
+
+                <div class="pipeline-card" data-dept="leadership">
+                    <div class="card-dept">Leadership</div>
+                    <span class="status-badge future">Year 2</span>
+                    <h3>Chief Revenue Officer (CRO)</h3>
+                    <p>Unify sales, marketing, and partnership channels under one revenue leader as we scale toward national deployment footprint and a Series A.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="engineering">
+                    <div class="card-dept">Engineering</div>
+                    <span class="status-badge future">Year 2</span>
+                    <h3>ML / Fine-Tuning Engineer</h3>
+                    <p>Own domain-specific model fine-tuning at scale — clinical, legal, and compliance-focused model variants trained on properly anonymized local data. Federated learning research experience is a differentiator here.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="security">
+                    <div class="card-dept">Security</div>
+                    <span class="status-badge future">Year 2</span>
+                    <h3>CISO / Security Director</h3>
+                    <p>As client scale demands it, we will bring security leadership in-house. Own enterprise security posture, HIPAA compliance certification, penetration testing governance, and vendor risk management.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="design">
+                    <div class="card-dept">Design</div>
+                    <span class="status-badge future">Year 2</span>
+                    <h3>Head of Product Design</h3>
+                    <p>Lead product design across the Sentinel Node™ user experience, client portal, and new product lines as we expand into adjacent verticals. Build and manage a small design team.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="people">
+                    <div class="card-dept">People &amp; Ethics</div>
+                    <span class="status-badge future">Year 2</span>
+                    <h3>Neurodiversity Program Coordinator</h3>
+                    <p>Dedicated coordinator to run our neurodiversity hiring pipeline, accommodation management, community partnerships, and internal advocacy programs as our team scales past 25 people.</p>
+                </div>
+
+                <div class="pipeline-card" data-dept="leadership">
+                    <div class="card-dept">Leadership</div>
+                    <span class="status-badge future">Year 2</span>
+                    <h3>General Counsel / Legal Operations</h3>
+                    <p>In-house legal for BAA management, IP strategy, data privacy compliance, and contract governance as we serve regulated industries at national scale.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /.pipeline-section -->
+
+    <hr class="section-rule">
+
+    <!-- ── ETHICS + NEURODIVERSITY ── -->
+    <div class="callout-ethics">
+        <h3>Ethics First. Neurodiversity First. Zero Trust. Always.</h3>
+        <p>Pocono AI is built on principled decisions: zero data exfiltration, hardware you own, and a team that reflects the full diversity of human cognition. We actively recruit neurodivergent professionals — ADHD, autism spectrum, dyslexia, and beyond — because unconventional thinking builds better security, better systems, and a better company. Our zero-trust architecture is not just a technical posture. It is an organizational one. We do not ask you to leave your whole self at the door. We are building the kind of company that earns the trust it sells. Every role we hire for is evaluated through that lens — from the Director of Ethics to the field DBA who shows up at a physician's office on a Tuesday morning.</p>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology &amp; Tools</p>
+            <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+            <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+            <a href="shadow-audit.html">Shadow IT Audit</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="comparison.html">Comparison</a>
+            <a href="deployment.html">Deployment Timeline</a>
+            <a href="trust.html">Trust &amp; Security</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company &amp; Legal</p>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+    // ── FILTER LOGIC ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const activeJobs = document.querySelectorAll('.active-job');
+    const pipelineCards = document.querySelectorAll('.pipeline-card');
+    const timelineGroups = document.querySelectorAll('.timeline-group');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter active jobs
+            activeJobs.forEach(job => {
+                if (filter === 'all' || job.dataset.dept === filter) {
+                    job.classList.remove('hidden');
+                } else {
+                    job.classList.add('hidden');
+                }
+            });
+
+            // Filter pipeline cards
+            pipelineCards.forEach(card => {
+                if (filter === 'all' || card.dataset.dept === filter) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Hide empty timeline groups
+            timelineGroups.forEach(group => {
+                const visibleCards = group.querySelectorAll('.pipeline-card:not(.hidden)');
+                group.style.display = visibleCards.length > 0 ? '' : 'none';
+            });
+        });
+    });
+</script>
 </body>
 </html>
