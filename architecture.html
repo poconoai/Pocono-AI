@@ -81,110 +81,17 @@
                 <li class="nav-dropdown">
                     <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="solutions.html">Solutions Overview</a>
-                        <a href="deployment.html">Deployment Timeline</a>
-                        <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
-                        <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
-                        <a href="compliance.html">&#128274; Compliance Attestation</a>
-                        <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="research.html">Research Hub</a>
-                        <a href="about.html">About the Founder</a>
-                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    
-    </header>
-
-    <main id="main-content">
-
-        <section class="hero-section">
-            <span class="hero-tagline">Sentinel Node™ · Architecture</span>
-            <h1>Sovereign by Design</h1>
-            <p>Every component of the Sentinel Node runs inside your building, under your control.</p>
-        </section>
-
-        <!-- ARCHITECTURE DIAGRAM — CS Panel Reviewed 6/6 -->
-        <div style="margin: 0 0 40px 0; border: 1px solid rgba(24,139,150,0.3); border-radius: 12px; overflow: hidden; background: #051622;">
-            <div style="padding: 14px 20px; border-bottom: 1px solid rgba(24,139,150,0.2); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-                <span style="color: var(--teal); font-size: 0.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;">EAA™ Pipeline — Full Architecture Diagram</span>
-                <span style="color: var(--muted); font-size: 0.75em;">CS Architecture Panel · 6/6 Pass</span>
-            </div>
-            <div style="padding: 16px; overflow-x: auto;">
-                <img src="architecture-diagram.svg" alt="Sentinel Node Enterprise Autonomy Architecture diagram showing the full data sovereignty pipeline from document ingestion through OCR sanitization, Qdrant vectorization, Ollama private inference, and output nodes — all within an air-gapped network boundary with zero outbound paths" style="width: 100%; max-width: 900px; display: block; margin: 0 auto;" loading="lazy"/>
-            </div>
-        </div>
-
-        
-        <!-- ═══════════════════════════════════════════
-             TRUST BADGES — v67 "we play nice" row
-             Subtle grayscale wordmarks of the enterprise stack we run on.
-        ═══════════════════════════════════════════ -->
-        <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
-            <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
-            <div class="trust-badges-row">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
-            </div>
-        </section>
-
-        <h2 class="section-header" style="margin-top: 0;">01 · Data Sovereignty Pipeline</h2>
-        <div class="feature-grid">
-            <div class="feature-card" style="border-top-color: var(--teal);">
-                <div style="font-size: 0.8em; color: var(--teal); font-weight: bold; letter-spacing: 1px; margin-bottom: 10px;">PHASE 01</div>
-                <h3>Local Ingestion</h3>
-                <p>Direct read-only bridges for EHR and Discovery documentation.</p>
-            </div>
-            <div class="feature-card" style="border-top-color: var(--ai-blue);">
-                <div style="font-size: 0.8em; color: var(--ai-blue); font-weight: bold; letter-spacing: 1px; margin-bottom: 10px;">PHASE 02</div>
-                <h3>Local Vectorization</h3>
-                <p>Encrypted mapping within the local vector database.</p>
-                <span class="tag-badge">Engine: Qdrant</span>
-            </div>
-            <div class="feature-card" style="border-top-color: var(--teal);">
-                <div style="font-size: 0.8em; color: var(--teal); font-weight: bold; letter-spacing: 1px; margin-bottom: 10px;">PHASE 03</div>
-                <h3>Private Inference</h3>
-                <p>Processed entirely on-device with zero cloud telemetry.</p>
-                <span class="tag-badge tag-badge-teal">Ollama / Gemma | Llama 3 / 4</span>
-                <div style="margin-top:12px;font-size:0.82em;color:var(--muted);line-height:1.65;">
-                    <strong style="color:var(--light-text);display:block;margin-bottom:12px;">Full Technical Stack — Model & Infrastructure</strong>
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px;">
-                        <div style="background:rgba(10,115,210,0.06);border:1px solid rgba(10,115,210,0.2);border-radius:8px;padding:14px 16px;">
-                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">LLM — Phase I (16 GB VRAM)</div>
-                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Gemma 3 12B · Q5_K_M GGUF</div>
-                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">Llama 3.1 8B alt configuration</div>
-                        </div>
-                        <div style="background:rgba(10,115,210,0.06);border:1px solid rgba(10,115,210,0.2);border-radius:8px;padding:14px 16px;">
-                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">LLM — Phase II (32 GB VRAM)</div>
-                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Gemma 3 27B · Q4_K_M GGUF</div>
-                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">Llama 3.3 70B alt configuration</div>
-                        </div>
-                        <div style="background:rgba(24,139,150,0.06);border:1px solid rgba(24,139,150,0.2);border-radius:8px;padding:14px 16px;">
-                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">Vector Database</div>
-                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Qdrant (Rust-native)</div>
-                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">Semantic chunking · cosine similarity</div>
-                        </div>
-                        <div style="background:rgba(24,139,150,0.06);border:1px solid rgba(24,139,150,0.2);border-radius:8px;padding:14px 16px;">
-                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">Embedding Model</div>
-                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">nomic-embed-text-v1.5</div>
-                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">768-dim · fully local · no API calls</div>
-                        </div>
-                        <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:14px 16px;">
-                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">Inference Runtime</div>
-                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Ollama · llama.cpp backend</div>
-                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">CUDA-accelerated · NVIDIA Ada GPU</div>
-                        </div>
-                        <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:14px 16px;">
-                            <div style="color:var(--muted);font-size:0.68em;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">OCR Pipeline</div>
-                            <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:0.9em;font-weight:700;">Tesseract + NVIDIA Ada vision</div>
-                            <div style="color:var(--muted);font-size:0.72em;margin-top:4px;">95% confidence threshold · local</div>
-                        </div>
-                    </div>
-                    <p style="color:var(--muted);font-size:0.76em;line-height:1.6;">All models run locally via Ollama on Dell Precision hardware. No model weights or inference calls leave the local network. RAG-constrained generation anchors every output to retrieved document chunks — not open-ended parametric recall — which is the primary architectural hallucination mitigation. <span style="color:var(--ai-blue);">Last validated: April 2026.</span></p>
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="about.html">About the Founder</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
                 </div>
             </div>
         </div>
@@ -327,6 +234,17 @@
             </div>
         </section>
 
+        <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+            <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+            <div class="trust-badges-row">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+            </div>
+        </section>
+
+
         <section id="contact" class="cta-container">
             <h2 style="color: white; border-bottom: none; margin-top: 0;">Review the Deployment Specs</h2>
             <p style="color: var(--light-text); max-width: 500px; margin: 0 auto 30px;">Download the Sentinel Node spec sheet or reach out directly to discuss your facility.</p>
@@ -360,6 +278,8 @@
                 <a href="trust.html">Trust &amp; Security</a>
                 <a href="partners.html">Partners</a>
                 <a href="competitive-analysis.html">Competitive Analysis</a>
+                <a href="deployment.html">60-Day Deployment</a>
+                <a href="breach-calculator.html">Breach Calculator</a>
                 <a href="compliance.html">Compliance Attestation</a>
                 <a href="shadow-audit.html">Shadow IT Audit</a>
                 <a href="why-pocono-ai.html">Why Pocono AI</a>
