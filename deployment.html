@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v72 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="From signed contract to first productive AI query in 60 days. See exactly what happens, who does what, and what your practice needs to do — day by day. No surprises.">
+    <title>60-Day Deployment Timeline | Pocono AI, LLC</title>
+    <meta property="og:title" content="60-Day Deployment Timeline | Pocono AI">
+    <meta property="og:description" content="From signed contract to first productive query in 60 days. Transparent, milestone-by-milestone. See exactly what you're signing up for.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:url" content="https://poconoai.com/deployment.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://poconoai.com/deployment.html">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        /* ── Timeline core ─────────────────────────────────── */
+        .timeline-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 48px 0 8px;
+        }
+
+        .phase-badge {
+            background: var(--teal);
+            color: white;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 0.72em;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .phase-badge.phase-2 { background: var(--ai-blue); }
+        .phase-badge.phase-3 { background: #7C3AED; }
+        .phase-badge.phase-4 { background: #059669; }
+
+        .phase-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15em;
+            font-weight: 800;
+            color: var(--white);
+            margin: 0;
+        }
+
+        .phase-days {
+            font-size: 0.8em;
+            color: var(--muted);
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        /* The vertical line */
+        .timeline-track {
+            position: relative;
+            padding-left: 36px;
+            border-left: 2px solid rgba(255,255,255,0.08);
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        /* Dot on the line */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -42px;
+            top: 22px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--card-dark);
+            border: 2px solid rgba(255,255,255,0.15);
+            transition: all 0.2s ease;
+        }
+
+        .timeline-item.active::before,
+        .timeline-item:hover::before {
+            background: var(--teal);
+            border-color: var(--teal);
+            box-shadow: 0 0 10px rgba(24,139,150,0.5);
+        }
+
+        .timeline-item.phase-2-item::before { border-color: var(--ai-blue); }
+        .timeline-item.phase-2-item.active::before { background: var(--ai-blue); box-shadow: 0 0 10px rgba(59,130,246,0.5); }
+
+        .timeline-item.phase-3-item::before { border-color: #7C3AED; }
+        .timeline-item.phase-3-item.active::before { background: #7C3AED; box-shadow: 0 0 10px rgba(124,58,237,0.5); }
+
+        .timeline-item.phase-4-item::before { border-color: #059669; }
+        .timeline-item.phase-4-item.active::before { background: #059669; box-shadow: 0 0 10px rgba(5,150,105,0.5); }
+
+        .milestone-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s ease, transform 0.15s ease;
+            user-select: none;
+        }
+
+        .milestone-card:hover {
+            border-color: rgba(24,139,150,0.3);
+            transform: translateX(4px);
+        }
+
+        .timeline-item.active .milestone-card {
+            border-color: var(--teal);
+            background: rgba(24,139,150,0.08);
+        }
+
+        .timeline-item.phase-2-item.active .milestone-card { border-color: var(--ai-blue); background: rgba(59,130,246,0.08); }
+        .timeline-item.phase-3-item.active .milestone-card { border-color: #7C3AED; background: rgba(124,58,237,0.08); }
+        .timeline-item.phase-4-item.active .milestone-card { border-color: #059669; background: rgba(5,150,105,0.08); }
+
+        .milestone-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0;
+        }
+
+        .milestone-day {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72em;
+            font-weight: 700;
+            color: var(--teal);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            min-width: 64px;
+        }
+
+        .phase-2-item .milestone-day { color: var(--ai-blue); }
+        .phase-3-item .milestone-day { color: #A78BFA; }
+        .phase-4-item .milestone-day { color: #34D399; }
+
+        .milestone-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: var(--white);
+            flex: 1;
+        }
+
+        .milestone-owner {
+            font-size: 0.72em;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .owner-pocono { background: rgba(24,139,150,0.18); color: var(--teal); }
+        .owner-practice { background: rgba(255,180,50,0.15); color: #FFC850; }
+        .owner-msp { background: rgba(167,139,250,0.15); color: #A78BFA; }
+        .owner-joint { background: rgba(255,255,255,0.08); color: var(--muted); }
+
+        .milestone-detail {
+            display: none;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 12px;
+        }
+
+        .timeline-item.active .milestone-detail {
+            display: block;
+        }
+
+        .milestone-detail p {
+            color: var(--light-text);
+            font-size: 0.88em;
+            line-height: 1.7;
+            margin: 0 0 8px;
+        }
+
+        .milestone-deliverable {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--light-text);
+            font-size: 0.82em;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        .milestone-deliverable::before {
+            content: '→';
+            color: var(--teal);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Progress bar */
+        .progress-bar-wrapper {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 32px 0 48px;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-label span {
+            font-size: 0.8em;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .progress-label strong {
+            color: var(--teal);
+            font-family: 'Syne', sans-serif;
+        }
+
+        .progress-track {
+            height: 8px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--ai-blue));
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-phases {
+            display: flex;
+            gap: 0;
+            margin-top: 8px;
+        }
+
+        .progress-phase-label {
+            font-size: 0.68em;
+            color: var(--muted);
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Owner legend */
+        .owner-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin: 16px 0 32px;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 4%;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78em;
+            color: var(--light-text);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Day selector */
+        .day-input-wrapper {
+            max-width: 860px;
+            margin: 0 auto 32px;
+            padding: 0 4%;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .day-input-label {
+            font-size: 0.85em;
+            color: var(--light-text);
+            white-space: nowrap;
+        }
+
+        .day-slider {
+            flex: 1;
+            min-width: 200px;
+            -webkit-appearance: none;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .day-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--teal);
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(24,139,150,0.5);
+        }
+
+        .day-display {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: var(--teal);
+            font-size: 1em;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* CTA section */
+        .timeline-cta {
+            max-width: 860px;
+            margin: 48px auto 0;
+            padding: 32px;
+            background: var(--card-dark);
+            border: 1px solid rgba(24,139,150,0.3);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .milestone-top { flex-wrap: wrap; }
+            .phase-days { display: none; }
+            .timeline-track { padding-left: 24px; }
+            .timeline-item::before { left: -30px; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="about.html">About the Founder</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <span class="hero-tagline">Sentinel Node&trade; &middot; Deployment Timeline</span>
+        <h1>From Signed Contract to First Productive Query.<br>60 Days. No Surprises.</h1>
+        <p class="hero-plain">Most AI vendors hand you a contract and disappear into a black box implementation. We show you every milestone, who owns each one, and exactly what your practice needs to do — before you sign anything.</p>
+        <div class="hero-ctas">
+            <a href="#timeline" class="cta-button">See the Full Timeline</a>
+            <a href="pricing.html" class="cta-button cta-button-light">HaaS Pricing</a>
+        </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+        <div class="trust-badges-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+        </div>
+    </section>
+
+    <!-- SUMMARY STATS -->
+    <section style="max-width:860px;margin:0 auto 8px;padding:0 4%;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px;">
+            <div class="feature-card" style="text-align:center;padding:20px 16px;">
+                <div style="font-family:'Syne',sans-serif;font-size:2.4em;font-weight:800;color:var(--teal);line-height:1;">60</div>
+                <div style="color:var(--light-text);font-size:0.82em;margin-top:4px;">days to live</div>
+            </div>
+            <div class="feature-card" style="text-align:center;padding:20px 16px;">
+                <div style="font-family:'Syne',sans-serif;font-size:2.4em;font-weight:800;color:var(--white);line-height:1;">4</div>
+                <div style="color:var(--light-text);font-size:0.82em;margin-top:4px;">deployment phases</div>
+            </div>
+            <div class="feature-card" style="text-align:center;padding:20px 16px;">
+                <div style="font-family:'Syne',sans-serif;font-size:2.4em;font-weight:800;color:var(--white);line-height:1;">~8</div>
+                <div style="color:var(--light-text);font-size:0.82em;margin-top:4px;">hours your time total</div>
+            </div>
+            <div class="feature-card" style="text-align:center;padding:20px 16px;">
+                <div style="font-family:'Syne',sans-serif;font-size:2.4em;font-weight:800;color:var(--teal);line-height:1;">0</div>
+                <div style="color:var(--light-text);font-size:0.82em;margin-top:4px;">IT queue approvals</div>
+            </div>
+            <div class="feature-card" style="text-align:center;padding:20px 16px;">
+                <div style="font-family:'Syne',sans-serif;font-size:2.4em;font-weight:800;color:var(--white);line-height:1;">0</div>
+                <div style="color:var(--light-text);font-size:0.82em;margin-top:4px;">FHIR integrations</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar-wrapper" id="timeline">
+        <div class="progress-label">
+            <span>Deployment Progress</span>
+            <strong id="progress-text">Day 0 — Pre-Launch</strong>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-phases">
+            <span class="progress-phase-label" style="color:var(--teal);">Phase 1<br>Days 1–14</span>
+            <span class="progress-phase-label" style="color:var(--ai-blue);">Phase 2<br>Days 15–30</span>
+            <span class="progress-phase-label" style="color:#A78BFA;">Phase 3<br>Days 31–45</span>
+            <span class="progress-phase-label" style="color:#34D399;">Phase 4<br>Days 46–60</span>
+        </div>
+    </div>
+
+    <!-- OWNER LEGEND -->
+    <div class="owner-legend">
+        <span style="font-size:0.8em;color:var(--muted);font-weight:600;margin-right:4px;">Who does it:</span>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--teal);"></div> Pocono AI</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FFC850;"></div> Your Practice</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#A78BFA;"></div> Your MSP / IT Partner</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.3);"></div> Joint</div>
+        <span style="font-size:0.78em;color:var(--muted);margin-left:auto;">Click any milestone to expand</span>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-wrapper">
+
+        <!-- PHASE 1 -->
+        <div class="phase-header">
+            <span class="phase-badge">Phase 1</span>
+            <h2 class="phase-title">Foundations &amp; Hardware</h2>
+            <span class="phase-days">Days 1–14</span>
+        </div>
+
+        <div class="timeline-track">
+
+            <div class="timeline-item" data-day="1" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 1</span>
+                        <span class="milestone-title">Contract Signed &amp; POV Fee Processed</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Mutual NDA executed, Proof-of-Value agreement signed, $5,000 POV engagement fee processed. This fee is credited in full toward your implementation fee at contract conversion. You receive a welcome packet, deployment checklist, and your dedicated deployment contact.</p>
+                        <div class="milestone-deliverable">Signed POV Agreement + NDA</div>
+                        <div class="milestone-deliverable">Welcome packet + deployment checklist sent to practice</div>
+                        <div class="milestone-deliverable">BAA executed (Pocono AI as Business Associate)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-day="2" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 2–3</span>
+                        <span class="milestone-title">Practice Environment Assessment</span>
+                        <span class="milestone-owner owner-pocono">Pocono AI</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Marcus or a certified deployment technician conducts a 45-minute remote assessment of your network environment. We need to understand your current EHR system, existing network topology, available rack or floor space, and power configuration. No PHI is shared during this call.</p>
+                        <div class="milestone-deliverable">Network topology review (remote, read-only)</div>
+                        <div class="milestone-deliverable">Hardware placement recommendation</div>
+                        <div class="milestone-deliverable">VLAN isolation requirements documented</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-day="4" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 4–5</span>
+                        <span class="milestone-title">MSP / IT Partner Briefing</span>
+                        <span class="milestone-owner owner-msp">MSP / IT</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Your existing IT partner or MSP receives our technical onboarding documentation: VLAN configuration guide, network requirements checklist, power specs, and installation manual. If you don't have an MSP, Pocono AI handles this directly. This call is typically 30 minutes.</p>
+                        <div class="milestone-deliverable">VLAN setup guide delivered to IT partner</div>
+                        <div class="milestone-deliverable">Network port requirements confirmed</div>
+                        <div class="milestone-deliverable">Physical installation date scheduled</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-day="7" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 7</span>
+                        <span class="milestone-title">Hardware Ships</span>
+                        <span class="milestone-owner owner-pocono">Pocono AI</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>The Sentinel Node appliance ships from our configuration facility. Hardware is pre-configured: Dell Precision workstation with NVIDIA RTX Ada GPU, Qdrant installed and initialized, Ollama configured with your tier's model weights (Gemma 3 12B for Phase I, Gemma 3 27B for Phase II), and base RAG pipeline ready for document ingestion.</p>
+                        <div class="milestone-deliverable">Sentinel Node ships pre-configured</div>
+                        <div class="milestone-deliverable">Model weights pre-loaded (no internet download needed at site)</div>
+                        <div class="milestone-deliverable">Tracking number + estimated arrival sent</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-day="10" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 10–12</span>
+                        <span class="milestone-title">Physical Installation &amp; Network Configuration</span>
+                        <span class="milestone-owner owner-msp">MSP / IT</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Hardware arrives and is physically installed. Your IT partner or MSP connects the Sentinel Node to your network using the VLAN configuration guide provided on Day 4–5. Network isolation is tested. Pocono AI joins remotely via a one-time, read-only secure connection to verify configuration. Total on-site time: 2–4 hours.</p>
+                        <div class="milestone-deliverable">Hardware racked/placed and powered on</div>
+                        <div class="milestone-deliverable">VLAN isolation confirmed and tested</div>
+                        <div class="milestone-deliverable">Network packet capture (tcpdump) baseline run — zero exfiltration verified</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-day="14" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 14</span>
+                        <span class="milestone-title">Phase 1 Checkpoint — Hardware Verified</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>30-minute checkpoint call. Sentinel Node is physically installed, network-isolated, and confirmed to be running the local inference stack. GPU utilization tested. Qdrant confirmed operational. First test query run against a blank index to verify end-to-end pipeline health. Sign-off before Phase 2 begins.</p>
+                        <div class="milestone-deliverable">Hardware installation sign-off</div>
+                        <div class="milestone-deliverable">Zero-exfiltration verification complete</div>
+                        <div class="milestone-deliverable">Phase 2 document ingestion schedule confirmed</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /phase 1 track -->
+
+        <!-- PHASE 2 -->
+        <div class="phase-header">
+            <span class="phase-badge phase-2">Phase 2</span>
+            <h2 class="phase-title">Document Ingestion &amp; RAG Configuration</h2>
+            <span class="phase-days">Days 15–30</span>
+        </div>
+
+        <div class="timeline-track">
+
+            <div class="timeline-item phase-2-item" data-day="15" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 15–16</span>
+                        <span class="milestone-title">Document Corpus Planning</span>
+                        <span class="milestone-owner owner-practice">Your Practice</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Your practice identifies the initial document set for ingestion. For medical practices, this is typically the last 12–24 months of patient charts exported as PDFs from your EHR. For legal practices, this is your active matter files. No documents leave your building at any point — all exports go directly onto the local Sentinel Node from within your network.</p>
+                        <div class="milestone-deliverable">Document export list agreed (scope, time range, patient cohort)</div>
+                        <div class="milestone-deliverable">EHR export format confirmed (PDF standard)</div>
+                        <div class="milestone-deliverable">Staging folder created on local network share</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-2-item" data-day="17" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 17–22</span>
+                        <span class="milestone-title">Document Sanitization Pipeline Run</span>
+                        <span class="milestone-owner owner-pocono">Pocono AI</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>The Sentinel Node's document sanitization pipeline processes your exported PDFs: OCR (Tesseract + NVIDIA vision at 95% confidence threshold), chunking strategy calibration, metadata tagging, and quality verification. Chunking is tuned to your document types — clinical notes require different chunk boundaries than legal discovery documents. This is where the quality of your future queries is determined.</p>
+                        <div class="milestone-deliverable">OCR quality report generated (per-document confidence scores)</div>
+                        <div class="milestone-deliverable">Chunking strategy calibrated to your document structure</div>
+                        <div class="milestone-deliverable">Documents flagged for re-export if below confidence threshold</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-2-item" data-day="23" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 23–26</span>
+                        <span class="milestone-title">Vector Embedding &amp; Qdrant Index Build</span>
+                        <span class="milestone-owner owner-pocono">Pocono AI</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Sanitized documents are embedded using nomic-embed-text-v1.5 (768-dimensional, fully local — no API calls) and stored in the Qdrant vector database. Each chunk is tagged with patient/matter ID, source document, page number, timestamp, and encounter date (for medical) or matter number (for legal). This is your provenance layer — every future answer will cite back to this metadata.</p>
+                        <div class="milestone-deliverable">Full document corpus vectorized and indexed in Qdrant</div>
+                        <div class="milestone-deliverable">Metadata schema confirmed (chunk ID, source, page, date, entity ID)</div>
+                        <div class="milestone-deliverable">Index integrity verified — no orphaned chunks</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-2-item" data-day="28" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 28–29</span>
+                        <span class="milestone-title">RAG Pipeline Tuning &amp; Test Queries</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Pocono AI runs 20–30 test queries against your actual indexed documents with a clinician or attorney from your practice present (remote session). Retrieval quality is assessed, chunk overlap and similarity thresholds are adjusted, and the Human-in-the-Loop output format is calibrated to match how your team reads and acts on information.</p>
+                        <div class="milestone-deliverable">20–30 real test queries run and evaluated by your team</div>
+                        <div class="milestone-deliverable">Retrieval quality score documented (target: &gt;90% relevant chunks in top-3)</div>
+                        <div class="milestone-deliverable">Output format calibrated (citation style, summary length, confidence display)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-2-item" data-day="30" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 30</span>
+                        <span class="milestone-title">Phase 2 Checkpoint — RAG Live</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>The Sentinel Node is now running live queries against your real document corpus. Phase 2 sign-off call confirms retrieval quality, reviews the test query log, and schedules the HITL workflow training session that begins Phase 3.</p>
+                        <div class="milestone-deliverable">RAG pipeline confirmed operational on your document corpus</div>
+                        <div class="milestone-deliverable">Retrieval quality report delivered to practice</div>
+                        <div class="milestone-deliverable">Phase 3 HITL training sessions scheduled</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /phase 2 track -->
+
+        <!-- PHASE 3 -->
+        <div class="phase-header">
+            <span class="phase-badge phase-3">Phase 3</span>
+            <h2 class="phase-title">HITL Training &amp; Workflow Calibration</h2>
+            <span class="phase-days">Days 31–45</span>
+        </div>
+
+        <div class="timeline-track">
+
+            <div class="timeline-item phase-3-item" data-day="31" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 31–33</span>
+                        <span class="milestone-title">Human-in-the-Loop Workflow Design Session</span>
+                        <span class="milestone-owner owner-pocono">Pocono AI</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>A 90-minute working session with your lead physician or attorney to map the exact HITL workflow for your practice. We identify the 3–5 highest-volume query types your team will use (e.g., "prior auth history for Drug X," "summarize last 3 encounters for this patient"), design the review-and-verify step, and establish the citation verification habit. This is not a demo — it is a calibration session with your actual workflows.</p>
+                        <div class="milestone-deliverable">Top 5 use cases documented and configured</div>
+                        <div class="milestone-deliverable">HITL review protocol defined for your practice</div>
+                        <div class="milestone-deliverable">Citation verification workflow trained</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-3-item" data-day="35" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 35–38</span>
+                        <span class="milestone-title">Staff Training — Clinical / Legal Staff</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Two 60-minute remote training sessions for your clinical staff (MAs, nurses, practice managers) or legal staff (paralegals, legal assistants). Training covers: how to submit a query, how to interpret citations, how to verify answers against source documents before acting, and what to do if a citation doesn't match. We train for skepticism, not dependency.</p>
+                        <div class="milestone-deliverable">Session 1: Query formation and output interpretation</div>
+                        <div class="milestone-deliverable">Session 2: Citation verification and escalation protocol</div>
+                        <div class="milestone-deliverable">Quick-reference card printed and posted at workstations</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-3-item" data-day="40" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 40–43</span>
+                        <span class="milestone-title">Supervised Live Use — First Real Queries</span>
+                        <span class="milestone-owner owner-practice">Your Practice</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Your staff begins using the Sentinel Node for real queries with Pocono AI available for same-day support. Any query that returns unexpected results is flagged to the deployment team within 24 hours for RAG tuning. This is your supervised live period — the system is running in production but with a safety net.</p>
+                        <div class="milestone-deliverable">First 50 real production queries run by your staff</div>
+                        <div class="milestone-deliverable">Any retrieval issues flagged and resolved within 24 hours</div>
+                        <div class="milestone-deliverable">Query log reviewed at end of period for tuning opportunities</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-3-item" data-day="45" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 45</span>
+                        <span class="milestone-title">Phase 3 Checkpoint — Workflow Calibrated</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Review of first 50 production queries. Retrieval quality assessed, any recurring gaps addressed. Staff confidence survey completed. SLA terms reviewed. Final tuning adjustments made before full independent operation begins in Phase 4.</p>
+                        <div class="milestone-deliverable">Production query quality report reviewed</div>
+                        <div class="milestone-deliverable">Staff confidence confirmed</div>
+                        <div class="milestone-deliverable">Any final RAG tuning completed</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /phase 3 track -->
+
+        <!-- PHASE 4 -->
+        <div class="phase-header">
+            <span class="phase-badge phase-4">Phase 4</span>
+            <h2 class="phase-title">Full Operation &amp; POV Evaluation</h2>
+            <span class="phase-days">Days 46–60</span>
+        </div>
+
+        <div class="timeline-track">
+
+            <div class="timeline-item phase-4-item" data-day="46" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 46–55</span>
+                        <span class="milestone-title">Independent Full Operation</span>
+                        <span class="milestone-owner owner-practice">Your Practice</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Your practice runs the Sentinel Node fully independently. Pocono AI is available via SLA support but not actively supervising. This is your real-world evaluation period. You are experiencing the actual time savings, the actual citation quality, and the actual workflow integration. Track your hours — we'll use the numbers in the Day 60 review.</p>
+                        <div class="milestone-deliverable">Full independent operation — no hand-holding</div>
+                        <div class="milestone-deliverable">Time-savings log maintained by practice manager</div>
+                        <div class="milestone-deliverable">SLA support available: 24-hour response (Phase I) / 8-hour response (Phase II)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-4-item" data-day="57" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 57–59</span>
+                        <span class="milestone-title">POV Outcomes Review</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>A structured 60-minute outcomes review. We look at: time reclaimed per day, query volume, query types, staff satisfaction, any compliance or workflow issues, and your practice's ROI picture. This data forms the basis of the conversion conversation. No pressure — the numbers should speak for themselves.</p>
+                        <div class="milestone-deliverable">Time-savings analysis (target: 1.5–3 hrs/day reclaimed)</div>
+                        <div class="milestone-deliverable">Query volume and quality report</div>
+                        <div class="milestone-deliverable">ROI projection built from your actual usage data</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item phase-4-item" data-day="60" onclick="toggleMilestone(this)">
+                <div class="milestone-card">
+                    <div class="milestone-top">
+                        <span class="milestone-day">Day 60</span>
+                        <span class="milestone-title">&#127881; First Query Milestone &amp; Conversion Decision</span>
+                        <span class="milestone-owner owner-joint">Joint</span>
+                    </div>
+                    <div class="milestone-detail">
+                        <p>Day 60 is the formal end of the Proof-of-Value period. Three paths: (1) Convert to a long-term SLA contract — the $5,000 POV fee is credited in full toward your implementation fee. (2) Extend the POV period by 30 days if you need more time. (3) End the engagement — you keep the hardware you purchased, and the model weights remain functional as configured at end of POV.</p>
+                        <div class="milestone-deliverable">POV outcomes documented and signed off</div>
+                        <div class="milestone-deliverable">Conversion offer presented (POV fee credited in full)</div>
+                        <div class="milestone-deliverable">Next steps agreed regardless of conversion decision</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /phase 4 track -->
+
+    </div><!-- /timeline-wrapper -->
+
+    <!-- WHAT YOUR PRACTICE NEEDS TO DO -->
+    <section style="max-width:860px;margin:48px auto 0;padding:0 4%;">
+        <h2 style="color:var(--teal);">What Your Practice Actually Needs to Do</h2>
+        <p style="color:var(--light-text);line-height:1.8;">The most common objection we hear is "this sounds complicated." Here is the honest breakdown of your team's time investment:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:20px;">
+            <div class="feature-card">
+                <h3 style="color:var(--white);margin:0 0 8px;">Practice Manager</h3>
+                <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">~3 hours total. Coordinate the hardware delivery and placement, identify the initial document export scope, and attend the Phase 3 checkpoint calls. No technical knowledge required.</p>
+            </div>
+            <div class="feature-card">
+                <h3 style="color:var(--white);margin:0 0 8px;">Lead Physician / Attorney</h3>
+                <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">~2 hours total. The HITL workflow design session (90 min) and the Day 60 outcomes review (60 min). Your input here is what makes the system work for your specific practice patterns.</p>
+            </div>
+            <div class="feature-card">
+                <h3 style="color:var(--white);margin:0 0 8px;">Clinical / Legal Staff</h3>
+                <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">~2 hours training in Phase 3. Two 60-minute sessions. After that, daily use takes seconds per query. Most staff report the system is faster to learn than a new EHR module.</p>
+            </div>
+            <div class="feature-card">
+                <h3 style="color:var(--white);margin:0 0 8px;">IT Partner / MSP</h3>
+                <p style="color:var(--light-text);font-size:0.85em;line-height:1.7;margin:0;">~4 hours. Brief on Day 4–5, physical installation on Day 10–12. Standard VLAN configuration. No custom code, no integrations, no EHR API work. Follows the provided checklist.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="timeline-cta">
+        <h2 style="color:var(--white);margin:0 0 8px;border:none;">Ready to Start the Clock?</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">Q2 POV cohort has 3 slots available. The $5,000 engagement fee is credited in full at contract conversion. Your data never leaves your building — from Day 1 to Day 60 and beyond.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="mailto:marcus@poconoai.com?subject=60-Day%20POV%20Inquiry%20%E2%80%94%20PoconoAI.com&body=Hi%20Marcus%2C%0A%0AI%27m%20interested%20in%20the%2060-Day%20POV.%0A%0APractice%20type%3A%20%0ANumber%20of%20providers%3A%20%0AEHR%20system%3A%20%0ABest%20time%20to%20connect%3A%20" class="cta-button">&#9993; Start the Conversation</a>
+            <a href="pricing.html" class="cta-button cta-button-light">See HaaS Pricing</a>
+        </div>
+        <p style="color:var(--muted);font-size:0.78em;margin-top:14px;">No third-party form processors. Your inquiry goes directly to Marcus.</p>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="specs.html">Hardware Specs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology</p>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="partners.html">Partners</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="why-pocono-ai.html">Why Pocono AI</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company</p>
+            <a href="portal.html">Client Portal</a>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="simulation.html">12-Panel Simulation</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+    function toggleMilestone(el) {
+        const wasActive = el.classList.contains('active');
+        // Close all
+        document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
+        // Open this one if it wasn't already open
+        if (!wasActive) {
+            el.classList.add('active');
+            updateProgress(parseInt(el.dataset.day) || 1);
+        } else {
+            updateProgress(0);
+        }
+    }
+
+    function updateProgress(day) {
+        const fill = document.getElementById('progress-fill');
+        const text = document.getElementById('progress-text');
+        const pct = Math.min(100, Math.round((day / 60) * 100));
+        fill.style.width = pct + '%';
+
+        const labels = {
+            0: 'Day 0 — Pre-Launch',
+            1: 'Day 1 — Contract Signed',
+            2: 'Day 2–3 — Environment Assessment',
+            4: 'Day 4–5 — MSP Briefing',
+            7: 'Day 7 — Hardware Ships',
+            10: 'Day 10–12 — Installation',
+            14: 'Day 14 — Phase 1 Complete ✓',
+            15: 'Day 15–16 — Document Planning',
+            17: 'Day 17–22 — Sanitization Pipeline',
+            23: 'Day 23–26 — Vector Index Build',
+            28: 'Day 28–29 — RAG Tuning',
+            30: 'Day 30 — Phase 2 Complete ✓',
+            31: 'Day 31–33 — HITL Workflow Design',
+            35: 'Day 35–38 — Staff Training',
+            40: 'Day 40–43 — Supervised Live Use',
+            45: 'Day 45 — Phase 3 Complete ✓',
+            46: 'Day 46–55 — Full Independent Operation',
+            57: 'Day 57–59 — POV Outcomes Review',
+            60: 'Day 60 — 🎉 Live & Converting',
+        };
+        text.textContent = labels[day] || `Day ${day}`;
+    }
+
+    // Open first item by default
+    document.addEventListener('DOMContentLoaded', () => {
+        const first = document.querySelector('.timeline-item');
+        if (first) {
+            first.classList.add('active');
+            updateProgress(1);
+        }
+    });
+</script>
+</body>
+</html>

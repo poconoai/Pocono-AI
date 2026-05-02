@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v72 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your practice's real financial exposure from a cloud AI data breach. HIPAA penalties, malpractice liability, settlement costs, and business interruption — personalized to your practice size.">
+    <title>Breach Cost Calculator | Pocono AI, LLC</title>
+    <meta property="og:title" content="What Would a Cloud AI Breach Cost Your Practice?">
+    <meta property="og:description" content="Calculate your real financial exposure from a cloud AI data breach. HIPAA penalties, settlement costs, malpractice liability. Runs locally — no data sent anywhere.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:url" content="https://poconoai.com/breach-calculator.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://poconoai.com/breach-calculator.html">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        /* ── Calculator layout ──────────────────────────────── */
+        .calc-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 4%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        @media (max-width: 720px) {
+            .calc-wrapper { grid-template-columns: 1fr; }
+        }
+
+        .calc-inputs {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 28px 24px;
+        }
+
+        .calc-results {
+            position: sticky;
+            top: 80px;
+        }
+
+        .calc-input-group {
+            margin-bottom: 22px;
+        }
+
+        .calc-label {
+            display: block;
+            font-size: 0.8em;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 6px;
+        }
+
+        .calc-label span {
+            color: var(--teal);
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15em;
+            font-weight: 800;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .calc-select, .calc-range-input {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.9em;
+            font-family: inherit;
+            padding: 10px 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+        }
+
+        .calc-select:focus {
+            border-color: var(--teal);
+        }
+
+        .calc-select option {
+            background: #0B1F3A;
+        }
+
+        .range-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .calc-range {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .calc-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--teal);
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(24,139,150,0.4);
+        }
+
+        .range-val {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: var(--teal);
+            font-size: 0.95em;
+            min-width: 48px;
+            text-align: right;
+        }
+
+        /* Results panel */
+        .results-panel {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 28px 24px;
+            overflow: hidden;
+        }
+
+        .results-total {
+            text-align: center;
+            padding: 20px 16px 16px;
+            background: rgba(192,57,43,0.08);
+            border: 1px solid rgba(192,57,43,0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .results-total-label {
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .results-total-amount {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.8em;
+            font-weight: 800;
+            color: #FF6B5B;
+            line-height: 1;
+        }
+
+        .results-total-sub {
+            font-size: 0.75em;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .result-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .result-line:last-child {
+            border-bottom: none;
+        }
+
+        .result-line-label {
+            font-size: 0.85em;
+            color: var(--light-text);
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .result-line-label small {
+            display: block;
+            font-size: 0.8em;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .result-line-amount {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 0.95em;
+            text-align: right;
+            min-width: 90px;
+        }
+
+        .result-line-amount.high { color: #FF6B5B; }
+        .result-line-amount.mid  { color: #FFC850; }
+        .result-line-amount.low  { color: var(--teal); }
+
+        /* Probability bar */
+        .prob-bar-wrapper {
+            margin: 20px 0;
+            padding: 16px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .prob-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78em;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .prob-val {
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .prob-track {
+            height: 10px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .prob-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease, background 0.3s ease;
+        }
+
+        /* Sentinel comparison */
+        .sentinel-compare {
+            margin-top: 20px;
+            padding: 16px;
+            background: rgba(24,139,150,0.07);
+            border: 1px solid rgba(24,139,150,0.2);
+            border-radius: 10px;
+        }
+
+        .sentinel-compare-label {
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--teal);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .sentinel-compare-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+        }
+
+        .sentinel-compare-row span:first-child { color: var(--light-text); }
+        .sentinel-compare-row span:last-child { 
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .payback-highlight {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(24,139,150,0.12);
+            border-radius: 8px;
+            font-size: 0.82em;
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Source notes */
+        .source-notes {
+            max-width: 960px;
+            margin: 32px auto 0;
+            padding: 0 4%;
+        }
+
+        .source-note {
+            font-size: 0.75em;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+
+        /* Warning banner */
+        .breach-warning {
+            max-width: 960px;
+            margin: 0 auto 24px;
+            padding: 16px 20px;
+            background: rgba(192,57,43,0.08);
+            border: 1px solid rgba(192,57,43,0.25);
+            border-radius: 10px;
+            font-size: 0.88em;
+            color: var(--light-text);
+            line-height: 1.7;
+        }
+
+        .breach-warning strong { color: #FF6B5B; }
+
+        /* Animate results */
+        .result-line-amount {
+            transition: all 0.3s ease;
+        }
+
+        @keyframes pulse-red {
+            0% { color: #FF6B5B; }
+            50% { color: #FF9B8B; }
+            100% { color: #FF6B5B; }
+        }
+
+        .results-total-amount.updating {
+            animation: pulse-red 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="about.html">About the Founder</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <span class="hero-tagline" style="color:#FF6B5B;">&#9888; Cloud AI Breach Risk Calculator</span>
+        <h1>What Would a Cloud AI Breach<br>Cost Your Practice?</h1>
+        <p class="hero-plain">The risk is not theoretical. Healthcare is the most-breached industry in the US, eight years running. Enter your practice details and see your real financial exposure — HIPAA penalties, settlement costs, malpractice liability, and business interruption.</p>
+        <p style="font-size:0.8em;color:var(--muted);margin-top:8px;">&#128274; This calculator runs entirely in your browser. No data is sent anywhere.</p>
+    </section>
+
+    <!-- BADGES -->
+    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+        <div class="trust-badges-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+        </div>
+    </section>
+
+    <div class="breach-warning" style="max-width:960px;margin:0 auto 24px;padding:16px 20px 16px calc(4% + 16px);">
+        <strong>Healthcare is the most breached industry in the US — 8 years running.</strong> The average healthcare breach costs $10.9 million (IBM 2024). Cloud AI tools transmit your PHI to third-party servers where it can be intercepted, subpoenaed, or stolen. The Sentinel Node eliminates the transmission entirely.
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="calc-wrapper">
+
+        <!-- INPUTS -->
+        <div class="calc-inputs">
+            <h2 style="color:var(--white);margin:0 0 20px;font-size:1.1em;">Your Practice Profile</h2>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="practice-type">Practice Type</label>
+                <select class="calc-select" id="practice-type" onchange="calculate()">
+                    <option value="medical">Independent Medical Practice</option>
+                    <option value="legal">Independent Law Firm</option>
+                    <option value="dental">Dental Practice</option>
+                    <option value="mental">Mental / Behavioral Health</option>
+                </select>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="providers">Number of Providers / Attorneys
+                    <span id="providers-display">3</span>
+                </label>
+                <div class="range-wrapper">
+                    <input type="range" class="calc-range" id="providers" min="1" max="10" value="3"
+                        oninput="document.getElementById('providers-display').textContent=this.value; calculate()">
+                    <span class="range-val" style="min-width:32px;">10</span>
+                </div>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="patients">Active Patients / Clients
+                    <span id="patients-display">2,500</span>
+                </label>
+                <div class="range-wrapper">
+                    <input type="range" class="calc-range" id="patients" min="500" max="15000" value="2500" step="500"
+                        oninput="document.getElementById('patients-display').textContent=Number(this.value).toLocaleString(); calculate()">
+                    <span class="range-val" style="min-width:48px;">15K</span>
+                </div>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="cloud-tools">Cloud AI Tools Currently in Use</label>
+                <select class="calc-select" id="cloud-tools" onchange="calculate()">
+                    <option value="none">None — evaluating options</option>
+                    <option value="one">1 tool (e.g. Nuance DAX, ChatGPT)</option>
+                    <option value="two">2 tools</option>
+                    <option value="three">3 or more tools</option>
+                </select>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="state">State</label>
+                <select class="calc-select" id="state" onchange="calculate()">
+                    <option value="standard">Standard HIPAA state</option>
+                    <option value="high">High-penalty state (CA, NY, TX, FL)</option>
+                    <option value="strict">Strictest state (CA CMIA + HIPAA)</option>
+                </select>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="annual-revenue">Estimated Annual Revenue
+                    <span id="revenue-display">$1.2M</span>
+                </label>
+                <div class="range-wrapper">
+                    <input type="range" class="calc-range" id="annual-revenue" min="200000" max="5000000" value="1200000" step="100000"
+                        oninput="document.getElementById('revenue-display').textContent='$'+formatM(this.value); calculate()">
+                    <span class="range-val" style="min-width:44px;">$5M</span>
+                </div>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="malpractice">Malpractice Insurance Coverage
+                    <span id="malpractice-display">$1M / $3M</span>
+                </label>
+                <select class="calc-select" id="malpractice" onchange="calculate()">
+                    <option value="1_3">$1M / $3M (common solo)</option>
+                    <option value="2_6">$2M / $6M (common group)</option>
+                    <option value="3_10">$3M / $10M (high-coverage)</option>
+                    <option value="none">No coverage / self-insured</option>
+                </select>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label" for="prior-breach">Prior HIPAA Violations or Investigations</label>
+                <select class="calc-select" id="prior-breach" onchange="calculate()">
+                    <option value="none">None</option>
+                    <option value="minor">Minor — corrective action plan</option>
+                    <option value="major">Major — prior penalty paid</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="calc-results">
+            <div class="results-panel">
+                <h2 style="color:var(--white);margin:0 0 16px;font-size:1.1em;">Your Breach Exposure</h2>
+
+                <!-- Total -->
+                <div class="results-total">
+                    <div class="results-total-label">Estimated Total Exposure</div>
+                    <div class="results-total-amount" id="total-amount">$0</div>
+                    <div class="results-total-sub">Conservative estimate · worst-case scenario below</div>
+                </div>
+
+                <!-- Breach probability -->
+                <div class="prob-bar-wrapper">
+                    <div class="prob-bar-label">
+                        <span>5-Year Breach Probability (cloud AI users)</span>
+                        <span class="prob-val" id="prob-val">0%</span>
+                    </div>
+                    <div class="prob-track">
+                        <div class="prob-fill" id="prob-fill" style="width:0%;background:#FF6B5B;"></div>
+                    </div>
+                </div>
+
+                <!-- Line items -->
+                <div class="result-line">
+                    <div class="result-line-label">
+                        HIPAA Civil Penalty
+                        <small>OCR fine based on violation tier &amp; patient count</small>
+                    </div>
+                    <div class="result-line-amount high" id="hipaa-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Patient Notification Costs
+                        <small>Required breach notification to all affected individuals</small>
+                    </div>
+                    <div class="result-line-amount mid" id="notification-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Credit Monitoring &amp; Remediation
+                        <small>Industry standard: 2 years of monitoring per patient</small>
+                    </div>
+                    <div class="result-line-amount mid" id="monitoring-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Legal Defense &amp; Settlement
+                        <small>Plaintiff class actions + regulatory defense counsel</small>
+                    </div>
+                    <div class="result-line-amount high" id="legal-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Malpractice Liability (AI hallucination)
+                        <small>AI-generated clinical/legal errors cited in court</small>
+                    </div>
+                    <div class="result-line-amount high" id="malpractice-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Business Interruption
+                        <small>Practice closure during investigation: avg 21 days</small>
+                    </div>
+                    <div class="result-line-amount mid" id="interruption-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Reputation &amp; Patient Attrition
+                        <small>Est. 15–30% patient loss post-breach (12-month impact)</small>
+                    </div>
+                    <div class="result-line-amount high" id="reputation-amount">—</div>
+                </div>
+
+                <div class="result-line">
+                    <div class="result-line-label">
+                        Forensic Investigation &amp; Remediation
+                        <small>DFIR firm, system audit, security upgrade</small>
+                    </div>
+                    <div class="result-line-amount low" id="forensic-amount">—</div>
+                </div>
+
+                <!-- Sentinel comparison -->
+                <div class="sentinel-compare">
+                    <div class="sentinel-compare-label">&#128274; Sentinel Node Alternative</div>
+                    <div class="sentinel-compare-row">
+                        <span>Your breach exposure above</span>
+                        <span id="compare-breach" style="color:#FF6B5B;">—</span>
+                    </div>
+                    <div class="sentinel-compare-row">
+                        <span>Sentinel Node (5-year HaaS cost)</span>
+                        <span id="compare-sentinel">—</span>
+                    </div>
+                    <div class="sentinel-compare-row">
+                        <span>Breach probability with Sentinel Node</span>
+                        <span>~0% <small style="font-weight:400;color:var(--muted);">(no transmission)</small></span>
+                    </div>
+                    <div class="payback-highlight" id="payback-text">
+                        Enter your practice details to see the comparison.
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:16px;text-align:center;">
+                <a href="mailto:marcus@poconoai.com?subject=Breach%20Calculator%20%E2%80%94%20Schedule%20a%20Call&body=Hi%20Marcus%2C%0A%0AI%20ran%20the%20breach%20calculator%20and%20want%20to%20discuss%20my%20practice%27s%20exposure.%0A%0APractice%20type%3A%20%0AProviders%3A%20%0A%0ABest%20time%20to%20connect%3A%20" class="cta-button" style="display:inline-block;width:100%;box-sizing:border-box;text-align:center;">&#9993; Discuss My Risk with Marcus</a>
+                <p style="color:var(--muted);font-size:0.75em;margin-top:8px;">No obligation. No sales pitch. Just an honest conversation about your exposure.</p>
+            </div>
+        </div>
+
+    </div><!-- /calc-wrapper -->
+
+    <!-- METHODOLOGY -->
+    <div class="source-notes">
+        <h3 style="color:var(--muted);font-size:0.85em;font-weight:700;margin:32px 0 8px;">Methodology &amp; Sources</h3>
+        <p class="source-note">&#185; HIPAA civil penalties: OCR tiered penalty structure. Tier 1 (unknown): $100–$50,000/violation. Tier 2 (reasonable cause): $1,000–$100,000. Tier 3 (willful neglect, corrected): $10,000–$250,000. Tier 4 (willful neglect, not corrected): $50,000–$1.9M. Annual cap: $1.9M per violation category. Source: HHS Office for Civil Rights 2024.</p>
+        <p class="source-note">&#178; Average healthcare breach cost: $10.93M (IBM Cost of a Data Breach Report 2024). Healthcare has been the highest-cost industry for 14 consecutive years.</p>
+        <p class="source-note">&#179; Breach probability: 1-in-3 healthcare organizations experienced a breach in 2023 (Ponemon Institute 2024). Cloud AI tools represent a new transmission vector not accounted for in legacy threat models.</p>
+        <p class="source-note">&#8308; AI hallucination liability: <em>Raine v. OpenAI</em> — $110,000 federal penalty for AI-fabricated citations. <em>Mata v. Avianca</em> — attorney sanctions. Cloud AI models generate from parametric memory; local RAG generates from retrieved document chunks only.</p>
+        <p class="source-note">&#8309; Business interruption: Average healthcare practice closure during breach investigation: 21 days (AHA 2023). Calculation based on daily revenue ÷ 365 × 21.</p>
+        <p class="source-note"><strong>Disclaimer:</strong> This calculator provides estimates based on published industry averages and regulatory penalty structures. It is not legal or financial advice. Your actual exposure may be higher or lower. Consult legal counsel for a formal risk assessment. All calculations run locally in your browser — no data is transmitted.</p>
+    </div>
+
+    <!-- WHAT STOPS A BREACH -->
+    <section style="max-width:960px;margin:40px auto 0;padding:0 4%;">
+        <h2>What Actually Stops a Breach</h2>
+        <p style="color:var(--light-text);line-height:1.8;max-width:680px;">The cloud AI industry's answer to breach risk is a Business Associate Agreement — a contract that promises careful handling of your data <em>after</em> it has already left your building. A BAA does not prevent a breach. It determines liability after one happens.</p>
+        <div class="feature-grid" style="margin-top:20px;">
+            <div class="feature-card">
+                <h3>Cloud AI Approach</h3>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.7;">Sign a BAA. Your PHI travels over the internet to a remote server. The vendor promises to handle it carefully. When a breach occurs, the BAA determines who pays. <strong style="color:#FF6B5B;">The breach still happened.</strong></p>
+            </div>
+            <div class="feature-card" style="border-top:2px solid var(--teal);">
+                <h3 style="color:var(--teal);">Sentinel Node Approach</h3>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.7;">No transmission. PHI is processed locally on hardware in your building. There is no journey over the internet. There is no remote server. A BAA is still executed — but the compliance case is architectural, not contractual. <strong style="color:var(--teal);">The breach cannot happen remotely.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-container" style="margin-top:40px;">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">Your Data Doesn't Have to Leave Your Building</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">The Sentinel Node eliminates the transmission entirely. No cloud. No breach vector. No BAA hoping the vendor doesn't get hacked. Just local AI that runs in your office.</p>
+        <a href="deployment.html" class="cta-button">See the 60-Day Deployment Timeline</a>
+        <a href="pricing.html" class="cta-button cta-button-light" style="margin-left:12px;">HaaS Pricing</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="specs.html">Hardware Specs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology</p>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="partners.html">Partners</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="why-pocono-ai.html">Why Pocono AI</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company</p>
+            <a href="portal.html">Client Portal</a>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="simulation.html">12-Panel Simulation</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+    function formatM(v) {
+        const n = parseInt(v);
+        if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n/1000).toFixed(0) + 'K';
+        return n.toLocaleString();
+    }
+
+    function fmt(n) {
+        if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+        if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+        return '$' + Math.round(n).toLocaleString();
+    }
+
+    function calculate() {
+        const practiceType = document.getElementById('practice-type').value;
+        const providers    = parseInt(document.getElementById('providers').value);
+        const patients     = parseInt(document.getElementById('patients').value);
+        const cloudTools   = document.getElementById('cloud-tools').value;
+        const state        = document.getElementById('state').value;
+        const revenue      = parseInt(document.getElementById('annual-revenue').value);
+        const malCoverage  = document.getElementById('malpractice').value;
+        const priorBreach  = document.getElementById('prior-breach').value;
+
+        // ── HIPAA Penalty ──────────────────────────────────────
+        // Tier based on prior violations and willfulness
+        let hipaaPerRecord = 100;
+        if (priorBreach === 'none')  hipaaPerRecord = 1000;
+        if (priorBreach === 'minor') hipaaPerRecord = 10000;
+        if (priorBreach === 'major') hipaaPerRecord = 50000;
+
+        // Cloud tool multiplier — more tools = more exposure
+        let toolMult = { none: 0.3, one: 1.0, two: 1.4, three: 1.8 }[cloudTools];
+
+        // State multiplier
+        let stateMult = { standard: 1.0, high: 1.35, strict: 1.75 }[state];
+
+        // HIPAA: capped at $1.9M per violation category but can stack
+        const hipaaBase = Math.min(patients * hipaaPerRecord * 0.4, 1900000);
+        const hipaa = Math.round(hipaaBase * stateMult * toolMult);
+
+        // ── Notification ───────────────────────────────────────
+        const notification = Math.round(patients * 3.5 * toolMult); // ~$3.50/patient
+
+        // ── Credit Monitoring ──────────────────────────────────
+        const monitoring = Math.round(patients * 20 * toolMult); // ~$20/patient/2yr
+
+        // ── Legal ──────────────────────────────────────────────
+        // Defense counsel + class action settlement
+        const legalBase = (practiceType === 'legal') ? 180000 : 120000;
+        const legal = Math.round((legalBase + patients * 8) * toolMult * stateMult);
+
+        // ── Malpractice Liability ──────────────────────────────
+        // AI hallucination risk — applies more to cloud tools in active use
+        const malBase = { none: 0, one: 50000, two: 120000, three: 250000 }[cloudTools];
+        const malCap = { '1_3': 1000000, '2_6': 2000000, '3_10': 3000000, none: 500000 }[malCoverage];
+        const malpractice = Math.round(Math.min(malBase * providers * stateMult, malCap * 0.6));
+
+        // ── Business Interruption ──────────────────────────────
+        const dailyRevenue = revenue / 365;
+        const interruption = Math.round(dailyRevenue * 21); // avg 21 days closure
+
+        // ── Reputation / Patient Attrition ────────────────────
+        const attritionRate = 0.20; // 20% patient/client loss
+        const revenueImpact = Math.round(revenue * attritionRate * 0.75); // 9 months impact
+
+        // ── Forensic Investigation ─────────────────────────────
+        const forensic = Math.round(15000 + providers * 2000);
+
+        // ── Total ──────────────────────────────────────────────
+        const total = hipaa + notification + monitoring + legal +
+                      malpractice + interruption + revenueImpact + forensic;
+
+        // ── Breach Probability (5-year) ────────────────────────
+        let baseProbability = 0.28; // 28% for cloud AI users (healthcare baseline ~32%)
+        if (cloudTools === 'none')  baseProbability = 0.08;
+        if (cloudTools === 'one')   baseProbability = 0.28;
+        if (cloudTools === 'two')   baseProbability = 0.38;
+        if (cloudTools === 'three') baseProbability = 0.52;
+        if (priorBreach !== 'none') baseProbability *= 1.3;
+        baseProbability = Math.min(baseProbability, 0.85);
+        const prob = Math.round(baseProbability * 100);
+
+        // ── Sentinel Node cost (5 years) ───────────────────────
+        const sentinelMonthly = providers <= 3 ? 950 : (providers <= 7 ? 1450 : 2200);
+        const sentinel5yr = sentinelMonthly * 60 + 5000; // 5yr HaaS + POV fee
+
+        // ── Update DOM ─────────────────────────────────────────
+        const totalEl = document.getElementById('total-amount');
+        totalEl.textContent = fmt(total);
+        totalEl.classList.add('updating');
+        setTimeout(() => totalEl.classList.remove('updating'), 400);
+
+        document.getElementById('hipaa-amount').textContent        = fmt(hipaa);
+        document.getElementById('notification-amount').textContent = fmt(notification);
+        document.getElementById('monitoring-amount').textContent   = fmt(monitoring);
+        document.getElementById('legal-amount').textContent        = fmt(legal);
+        document.getElementById('malpractice-amount').textContent  = fmt(malpractice);
+        document.getElementById('interruption-amount').textContent = fmt(interruption);
+        document.getElementById('reputation-amount').textContent   = fmt(revenueImpact);
+        document.getElementById('forensic-amount').textContent     = fmt(forensic);
+
+        // Probability bar
+        document.getElementById('prob-val').textContent = prob + '%';
+        const fill = document.getElementById('prob-fill');
+        fill.style.width = prob + '%';
+        fill.style.background = prob > 40 ? '#FF4444' : prob > 20 ? '#FF9B5B' : '#FFC850';
+
+        // Sentinel compare
+        document.getElementById('compare-breach').textContent   = fmt(total);
+        document.getElementById('compare-sentinel').textContent = fmt(sentinel5yr);
+
+        const savings = total * baseProbability - sentinel5yr;
+        const payback = document.getElementById('payback-text');
+        if (cloudTools === 'none') {
+            payback.innerHTML = `The Sentinel Node costs <strong>${fmt(sentinel5yr)}</strong> over 5 years and makes a remote breach architecturally impossible — not just contractually promised.`;
+        } else if (savings > 0) {
+            payback.innerHTML = `Given your ${prob}% breach probability, the <strong>expected value of a breach</strong> for your practice is <strong style="color:#FF6B5B;">${fmt(Math.round(total * baseProbability))}</strong>. The Sentinel Node costs <strong>${fmt(sentinel5yr)}</strong> over 5 years — a <strong style="color:var(--teal);">${fmt(Math.round(savings))} expected savings</strong> over the same period.`;
+        } else {
+            payback.innerHTML = `The Sentinel Node costs <strong>${fmt(sentinel5yr)}</strong> over 5 years and reduces your breach probability to ~0%. Your cloud breach exposure: <strong style="color:#FF6B5B;">${fmt(total)}</strong>.`;
+        }
+    }
+
+    // Run on load
+    document.addEventListener('DOMContentLoaded', calculate);
+</script>
+</body>
+</html>
