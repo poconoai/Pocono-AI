@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v72 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Is your staff sending patient records to ChatGPT without you knowing? Discover every place PHI is leaking from your practice right now. Free Shadow IT Audit — runs in your browser.">
+    <title>Shadow IT Audit — Where Is Your PHI Going? | Pocono AI</title>
+    <meta property="og:title" content="Is Your Patient Data Leaking Right Now? Take the Shadow IT Audit.">
+    <meta property="og:description" content="Staff using personal ChatGPT accounts. Voice assistants in exam rooms. Cloud fax services. Discover every place PHI is leaking from your practice — before a regulator does.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:url" content="https://poconoai.com/shadow-audit.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://poconoai.com/shadow-audit.html">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+
+    <style>
+        .audit-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .audit-progress-wrap {
+            background: var(--card-dark);
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .audit-progress-label {
+            font-size: 0.78em;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .audit-progress-track {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .audit-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--ai-blue));
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .audit-progress-pct {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--teal);
+            font-size: 0.9em;
+            min-width: 36px;
+            text-align: right;
+        }
+
+        /* Question card */
+        .audit-question {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 24px 24px 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .audit-question.answered { border-color: rgba(24,139,150,0.25); }
+        .audit-question.answered-risk { border-color: rgba(239,68,68,0.3); }
+
+        .audit-q-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .audit-q-num {
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 0.82em;
+            color: var(--muted);
+        }
+
+        .audit-q-category {
+            font-size: 0.68em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .audit-q-text {
+            font-weight: 700;
+            font-size: 0.95em;
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        .audit-q-sub {
+            font-size: 0.8em;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin-top: 4px;
+        }
+
+        .audit-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .audit-opt {
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: transparent;
+            color: var(--light-text);
+            font-size: 0.85em;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .audit-opt:hover { border-color: var(--teal); color: var(--white); }
+        .audit-opt.selected-safe { background: rgba(5,150,105,0.15); border-color: #059669; color: #34D399; font-weight: 700; }
+        .audit-opt.selected-risk { background: rgba(239,68,68,0.12); border-color: #EF4444; color: #FF6B5B; font-weight: 700; }
+        .audit-opt.selected-warn { background: rgba(245,158,11,0.12); border-color: #F59E0B; color: #FFC850; font-weight: 700; }
+
+        .audit-finding {
+            display: none;
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.82em;
+            line-height: 1.6;
+        }
+
+        .audit-finding.risk {
+            background: rgba(239,68,68,0.08);
+            border: 1px solid rgba(239,68,68,0.2);
+            color: var(--light-text);
+            display: block;
+        }
+
+        .audit-finding.warn {
+            background: rgba(245,158,11,0.08);
+            border: 1px solid rgba(245,158,11,0.2);
+            color: var(--light-text);
+            display: block;
+        }
+
+        .audit-finding.safe {
+            background: rgba(5,150,105,0.08);
+            border: 1px solid rgba(5,150,105,0.2);
+            color: var(--light-text);
+            display: block;
+        }
+
+        /* Results panel */
+        .audit-results {
+            display: none;
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 28px 24px;
+            margin-top: 24px;
+        }
+
+        .risk-score-display {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .risk-score-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 5em;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .risk-score-label {
+            font-size: 0.9em;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .risk-finding-list { margin-top: 20px; }
+
+        .risk-finding-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            align-items: flex-start;
+        }
+
+        .risk-finding-icon {
+            flex-shrink: 0;
+            font-size: 1.1em;
+            margin-top: 1px;
+        }
+
+        .risk-finding-text {
+            flex: 1;
+            font-size: 0.85em;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .risk-finding-text strong { color: var(--white); }
+
+        .risk-priority {
+            flex-shrink: 0;
+            font-size: 0.68em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .priority-critical { background: rgba(239,68,68,0.2); color: #FF6B5B; }
+        .priority-high     { background: rgba(245,158,11,0.2); color: #FFC850; }
+        .priority-medium   { background: rgba(59,130,246,0.2); color: #93C5FD; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="about.html">About the Founder</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <section class="hero-section">
+        <span class="hero-tagline" style="color:#FF6B5B;">&#128270; Shadow IT PHI Audit</span>
+        <h1>Is Your Staff Sending Patient Data to the Cloud Without You Knowing?</h1>
+        <p class="hero-plain">Shadow IT — staff using personal AI accounts, cloud tools, and consumer apps to handle patient or client data — is the fastest-growing HIPAA breach vector. This 12-question audit finds every leak point in your practice before a regulator does.</p>
+        <p style="font-size:0.8em;color:var(--muted);margin-top:8px;">&#128274; All answers stay in your browser. Nothing sent anywhere.</p>
+        <div class="hero-ctas">
+            <a href="#audit" class="cta-button">Start the Audit</a>
+            <a href="breach-calculator.html" class="cta-button cta-button-light">&#9888; Calculate Breach Cost</a>
+        </div>
+    </section>
+
+    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+        <div class="trust-badges-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+        </div>
+    </section>
+
+    <!-- AUDIT -->
+    <div id="audit" class="audit-wrapper">
+
+        <div class="audit-progress-wrap">
+            <span class="audit-progress-label">Audit Progress</span>
+            <div class="audit-progress-track"><div class="audit-progress-fill" id="audit-progress-fill" style="width:0%"></div></div>
+            <span class="audit-progress-pct" id="audit-progress-pct">0%</span>
+        </div>
+
+        <!-- Questions -->
+        <div id="audit-questions"></div>
+
+        <!-- Results -->
+        <div class="audit-results" id="audit-results">
+            <div class="risk-score-display">
+                <div class="risk-score-num" id="risk-score-num">0</div>
+                <div class="risk-score-label" id="risk-score-label">Shadow IT Risk Score</div>
+                <div id="risk-score-verdict" style="margin-top:8px;font-weight:700;font-size:0.95em;"></div>
+            </div>
+            <div class="risk-finding-list" id="risk-finding-list"></div>
+            <div style="margin-top:24px;text-align:center;">
+                <a href="mailto:marcus@poconoai.com?subject=Shadow%20IT%20Audit%20Results%20%E2%80%94%20PoconoAI.com" class="cta-button">&#9993; Discuss My Results with Marcus</a>
+                <p style="color:var(--muted);font-size:0.75em;margin-top:8px;">Free 30-minute conversation. No sales pitch if the Sentinel Node isn't the right fit.</p>
+            </div>
+            <div style="margin-top:16px;text-align:center;">
+                <button class="cta-button cta-button-light" onclick="resetAudit()">&#8635; Retake Audit</button>
+            </div>
+        </div>
+
+    </div>
+
+    <section id="contact" class="cta-container" style="margin-top:48px;">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">The Only Zero-Risk Answer Is No Transmission</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">The Sentinel Node eliminates every shadow IT risk by giving your staff a fast, capable, local AI that runs inside the building. No cloud accounts to manage. No consumer tools to ban. Just one system that works — without touching the internet.</p>
+        <a href="pricing.html" class="cta-button">See HaaS Pricing</a>
+        <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">60-Day Timeline</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="specs.html">Hardware Specs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology</p>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="partners.html">Partners</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="why-pocono-ai.html">Why Pocono AI</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company</p>
+            <a href="portal.html">Client Portal</a>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="deployment.html">60-Day Deployment Timeline</a>
+            <a href="simulation.html">12-Panel Simulation</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+const QUESTIONS = [
+    { cat: 'Staff AI Use', q: 'Do any staff members use personal ChatGPT, Claude.ai, or Gemini accounts to help with work tasks?', opts: [
+        { label: 'Yes — definitely', val: 'risk', score: 25, finding: { text: 'Personal ChatGPT/Claude.ai/Gemini use for work tasks is a critical HIPAA breach vector. These accounts have no BAA, use consumer data retention policies, and may use your inputs to train future models.', pri: 'critical' }},
+        { label: 'Probably — hard to enforce', val: 'warn', score: 15, finding: { text: 'Suspected but unenforced consumer AI use means you have a breach vector you cannot document or control. OCR treats uncontrolled PHI transmission as negligence.', pri: 'high' }},
+        { label: "I don't know", val: 'warn', score: 12, finding: { text: "If you don't know, assume yes. Studies show 42% of employees use unapproved AI tools at work (Salesforce 2024). Not knowing is not a defense.", pri: 'high' }},
+        { label: 'No — policy enforced', val: 'safe', score: 0, finding: { text: '✓ Good. Document your AI use policy and confirm it covers new tools as they emerge.', type:'safe' }},
+    ]},
+    { cat: 'Voice Assistants', q: 'Are Alexa, Google Home, Siri, or other voice assistants present in clinical or consultation spaces?', opts: [
+        { label: 'Yes', val: 'risk', score: 20, finding: { text: 'Consumer voice assistants continuously listen and transmit audio to cloud servers. Any patient conversations overheard in clinical spaces is potential PHI exfiltration with no BAA.', pri: 'critical' }},
+        { label: 'Possibly — personal devices', val: 'warn', score: 12, finding: { text: 'Staff personal phones with always-on assistants in exam rooms represent a passive PHI exfiltration risk. HIPAA requires reasonable safeguards for incidental disclosures.', pri: 'high' }},
+        { label: 'No', val: 'safe', score: 0, finding: { text: '✓ No voice assistant risk identified. Consider adding this to your security policy explicitly.', type:'safe' }},
+    ]},
+    { cat: 'Dictation Tools', q: 'What dictation or transcription tools does your practice use for clinical notes?', opts: [
+        { label: 'Cloud AI (Nuance DAX, Nabla, Abridge)', val: 'warn', score: 8, finding: { text: 'Cloud AI dictation tools require BAAs and transmit audio containing PHI to remote servers. Verify your BAA is current and the vendor has not changed their data retention policies.', pri: 'medium' }},
+        { label: 'Consumer tools (Otter.ai, personal Siri)', val: 'risk', score: 22, finding: { text: 'Consumer transcription tools have no BAA and are not HIPAA compliant. Any clinical audio transcribed through these tools is a violation.', pri: 'critical' }},
+        { label: 'On-premises / local only', val: 'safe', score: 0, finding: { text: '✓ Local dictation carries no cloud PHI exfiltration risk.', type:'safe' }},
+        { label: 'None / manual documentation', val: 'safe', score: 0, finding: { text: '✓ No dictation-related PHI transmission risk.', type:'safe' }},
+    ]},
+    { cat: 'Cloud Fax & Communication', q: 'How does your practice send and receive medical records and referrals?', opts: [
+        { label: 'Cloud fax service (eFax, HelloFax, FaxBetter)', val: 'warn', score: 10, finding: { text: 'Cloud fax services store fax content on vendor servers. Verify BAA is executed and the service meets HIPAA encryption requirements for documents in transit and at rest.', pri: 'high' }},
+        { label: 'Direct email (Gmail, Outlook, Yahoo)', val: 'risk', score: 20, finding: { text: 'Unencrypted email transmission of PHI is a HIPAA violation. Consumer email services (Gmail, Yahoo) are not HIPAA compliant even with BAAs in many configurations.', pri: 'critical' }},
+        { label: 'HIPAA-compliant encrypted platform', val: 'safe', score: 0, finding: { text: '✓ Compliant communication channel in use. Ensure BAA is current.', type:'safe' }},
+        { label: 'Physical fax / POTS', val: 'safe', score: 2, finding: { text: 'Traditional fax carries minimal cloud risk. Ensure fax machines are in secure areas not accessible to patients.', type:'safe' }},
+    ]},
+    { cat: 'Cloud Storage', q: 'Do staff use personal cloud storage (Google Drive, Dropbox, iCloud) for work files?', opts: [
+        { label: 'Yes — commonly used', val: 'risk', score: 22, finding: { text: 'Personal cloud storage for patient files is a critical HIPAA violation. Google Drive, Dropbox, and iCloud consumer accounts have no BAA and are not HIPAA compliant.', pri: 'critical' }},
+        { label: 'Sometimes — unofficial practice', val: 'warn', score: 14, finding: { text: 'Informal use of personal cloud storage for convenience represents uncontrolled PHI exfiltration. Even temporary copies in personal accounts are violations.', pri: 'high' }},
+        { label: 'No — IT-managed storage only', val: 'safe', score: 0, finding: { text: '✓ Controlled storage environment. Verify IT has cloud storage policies documented.', type:'safe' }},
+    ]},
+    { cat: 'Clinical Documentation AI', q: 'Has your practice evaluated or deployed any AI tools for clinical documentation assistance?', opts: [
+        { label: 'Yes — cloud AI with BAA', val: 'warn', score: 5, finding: { text: 'Cloud clinical AI with BAA is compliant if properly configured. Verify the BAA covers current use cases and the vendor has not changed data practices.', pri: 'medium' }},
+        { label: 'Yes — cloud AI, no BAA confirmed', val: 'risk', score: 24, finding: { text: 'Clinical AI tool in use without a confirmed BAA is a critical HIPAA violation. PHI processed through these tools is unprotected.', pri: 'critical' }},
+        { label: 'Evaluating options', val: 'safe', score: 0, finding: { text: '✓ Evaluating before deployment is the right approach. Ensure any deployment includes BAA review or consider an on-premises solution that eliminates BAA requirements.', type:'safe' }},
+        { label: 'No AI tools deployed', val: 'safe', score: 0, finding: { text: '✓ No current clinical AI PHI risk. Document your evaluation criteria for future decisions.', type:'safe' }},
+    ]},
+    { cat: 'Staff Training', q: 'When did your practice last complete HIPAA security training that specifically covered AI tools and cloud applications?', opts: [
+        { label: 'Never / not sure', val: 'risk', score: 18, finding: { text: 'Without AI-specific HIPAA training, staff cannot make compliant decisions about tool use. OCR expects covered entities to train staff on current technology risks.', pri: 'critical' }},
+        { label: 'More than 2 years ago', val: 'warn', score: 10, finding: { text: 'AI tool risks have changed dramatically in 2 years. Training that predates ChatGPT (November 2022) does not address current shadow IT risks.', pri: 'high' }},
+        { label: 'Within the last 12 months', val: 'safe', score: 0, finding: { text: '✓ Recent training. Verify it specifically covers AI tool policies and consumer app use.', type:'safe' }},
+    ]},
+    { cat: 'Remote Work', q: 'Do staff access patient records or work on clinical documentation from personal devices or home networks?', opts: [
+        { label: 'Yes — no restrictions', val: 'risk', score: 16, finding: { text: 'Uncontrolled remote access to PHI on personal devices and home networks creates multiple breach vectors: unsecured Wi-Fi, personal device malware, no MDM controls.', pri: 'critical' }},
+        { label: 'Yes — via VPN and managed devices', val: 'safe', score: 0, finding: { text: '✓ Controlled remote access with VPN and device management is an acceptable HIPAA remote work configuration.', type:'safe' }},
+        { label: 'No — office access only', val: 'safe', score: 0, finding: { text: '✓ Physical access controls reduce remote breach surface area.', type:'safe' }},
+    ]},
+    { cat: 'Prior Auth Process', q: 'How does your staff handle prior authorization documentation and submission?', opts: [
+        { label: 'Manual chart review + fax', val: 'warn', score: 3, finding: { text: 'Manual prior auth processes are time-intensive but carry moderate PHI risk through fax transmission. Consider the Sentinel Node for local chart review acceleration.', pri: 'medium' }},
+        { label: 'Cloud AI tool helps compile documentation', val: 'warn', score: 10, finding: { text: 'Cloud AI assistance for prior auth documentation may involve PHI transmission. Verify BAA covers this specific use case.', pri: 'high' }},
+        { label: 'Fully manual, no AI', val: 'safe', score: 0, finding: { text: '✓ No AI-related PHI risk in prior auth process. Time cost is high but compliance risk is low.', type:'safe' }},
+    ]},
+    { cat: 'Vendor Management', q: "Do you have a current, signed BAA with every vendor who accesses or processes patient data?", opts: [
+        { label: 'Yes — all BAAs current and on file', val: 'safe', score: 0, finding: { text: '✓ Strong BAA program. Review annually and upon any vendor contract renewal.', type:'safe' }},
+        { label: 'Partially — some may be missing', val: 'warn', score: 12, finding: { text: 'Missing BAAs with any vendor that accesses PHI is a HIPAA violation. Conduct an immediate vendor inventory and execute missing agreements.', pri: 'high' }},
+        { label: 'Unknown — never audited', val: 'risk', score: 18, finding: { text: 'An unaudited BAA inventory is a systematic compliance failure. OCR expects covered entities to know exactly who processes their PHI.', pri: 'critical' }},
+    ]},
+    { cat: 'Patient Communication', q: 'How does your practice communicate with patients about appointments, results, or care instructions?', opts: [
+        { label: 'HIPAA-compliant patient portal only', val: 'safe', score: 0, finding: { text: '✓ Controlled patient communication channel. No PHI exfiltration risk through messaging.', type:'safe' }},
+        { label: 'Standard SMS / text message', val: 'warn', score: 8, finding: { text: 'Unencrypted SMS containing PHI (including appointment reminders that identify conditions) may violate HIPAA. Use HIPAA-compliant messaging with patient acknowledgment.', pri: 'medium' }},
+        { label: 'WhatsApp or consumer messaging apps', val: 'risk', score: 18, finding: { text: 'WhatsApp and consumer messaging apps are not HIPAA compliant and do not support BAAs. PHI transmitted through these channels is unprotected.', pri: 'critical' }},
+    ]},
+    { cat: 'Incident History', q: 'Has your practice experienced any suspected or confirmed data incidents, complaints, or OCR inquiries in the last 3 years?', opts: [
+        { label: 'Yes — confirmed incident', val: 'risk', score: 20, finding: { text: 'Prior incidents significantly increase OCR penalty exposure for subsequent violations. Repeat violations move to higher penalty tiers automatically.', pri: 'critical' }},
+        { label: 'Yes — suspected but not confirmed', val: 'warn', score: 10, finding: { text: 'Unconfirmed incidents should be investigated and documented. Self-reporting mitigates penalties significantly compared to regulatory discovery.', pri: 'high' }},
+        { label: 'No — clean history', val: 'safe', score: 0, finding: { text: '✓ Clean history. Document this for your compliance records and maintain it through proactive controls.', type:'safe' }},
+    ]},
+];
+
+let answers = {};
+let findings = [];
+
+function buildQuestions() {
+    const container = document.getElementById('audit-questions');
+    container.innerHTML = '';
+    QUESTIONS.forEach((q, qi) => {
+        const div = document.createElement('div');
+        div.className = 'audit-question';
+        div.id = 'q-' + qi;
+        div.innerHTML = `
+            <div class="audit-q-header">
+                <span class="audit-q-num">${qi+1} / ${QUESTIONS.length}</span>
+                <div>
+                    <div class="audit-q-category">${q.cat}</div>
+                    <div class="audit-q-text">${q.q}</div>
+                </div>
+            </div>
+            <div class="audit-options">
+                ${q.opts.map((o,oi) => `<button class="audit-opt" onclick="selectOpt(${qi},${oi})">${o.label}</button>`).join('')}
+            </div>
+            <div class="audit-finding" id="finding-${qi}"></div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function selectOpt(qi, oi) {
+    const q = QUESTIONS[qi];
+    const opt = q.opts[oi];
+    answers[qi] = { opt: oi, score: opt.score, val: opt.val, finding: opt.finding };
+
+    // Update button styles
+    const btns = document.querySelectorAll(`#q-${qi} .audit-opt`);
+    btns.forEach((b,bi) => {
+        b.classList.remove('selected-safe','selected-risk','selected-warn');
+        if (bi === oi) {
+            b.classList.add('selected-' + opt.val);
+        }
+    });
+
+    // Show finding
+    const findingEl = document.getElementById('finding-' + qi);
+    findingEl.className = 'audit-finding';
+    if (opt.finding) {
+        findingEl.className = 'audit-finding ' + (opt.val === 'safe' ? 'safe' : opt.val === 'risk' ? 'risk' : 'warn');
+        findingEl.innerHTML = opt.finding.text;
+    }
+
+    // Update question border
+    const qEl = document.getElementById('q-' + qi);
+    qEl.classList.remove('answered','answered-risk');
+    qEl.classList.add(opt.val === 'safe' ? 'answered' : 'answered-risk');
+
+    updateProgress();
+
+    // Auto-show results when all answered
+    if (Object.keys(answers).length === QUESTIONS.length) {
+        setTimeout(showResults, 500);
+    }
+}
+
+function updateProgress() {
+    const pct = Math.round((Object.keys(answers).length / QUESTIONS.length) * 100);
+    document.getElementById('audit-progress-fill').style.width = pct + '%';
+    document.getElementById('audit-progress-pct').textContent = pct + '%';
+}
+
+function showResults() {
+    const total = Object.values(answers).reduce((s,a) => s + a.score, 0);
+    const maxScore = 225; // approximate max if all worst answers
+    const normalized = Math.round(Math.min(100, (total / maxScore) * 100));
+
+    const scoreEl = document.getElementById('risk-score-num');
+    scoreEl.textContent = normalized;
+    scoreEl.style.color = normalized < 20 ? '#34D399' : normalized < 50 ? '#FFC850' : '#FF6B5B';
+
+    const labels = {
+        low: 'Low Risk — Good Compliance Posture',
+        medium: 'Moderate Risk — Action Items Identified',
+        high: 'High Risk — Immediate Review Required',
+        critical: 'Critical — Active Breach Vectors Detected',
+    };
+
+    const tier = normalized < 15 ? 'low' : normalized < 35 ? 'medium' : normalized < 60 ? 'high' : 'critical';
+    document.getElementById('risk-score-label').textContent = 'Shadow IT Risk Score (out of 100)';
+    const verdict = document.getElementById('risk-score-verdict');
+    verdict.textContent = labels[tier];
+    verdict.style.color = tier === 'low' ? '#34D399' : tier === 'medium' ? '#FFC850' : '#FF6B5B';
+
+    // Build findings list
+    const findingList = document.getElementById('risk-finding-list');
+    findingList.innerHTML = '<h3 style="color:var(--white);margin:0 0 16px;">Your Findings</h3>';
+
+    const riskFindings = Object.values(answers)
+        .filter(a => a.finding && a.val !== 'safe' && a.finding.pri)
+        .sort((a,b) => {
+            const order = {critical:0, high:1, medium:2};
+            return (order[a.finding.pri]||3) - (order[b.finding.pri]||3);
+        });
+
+    if (riskFindings.length === 0) {
+        findingList.innerHTML += '<p style="color:var(--teal);font-weight:700;">No significant risk vectors identified. Strong compliance posture.</p>';
+    } else {
+        riskFindings.forEach(a => {
+            const f = a.finding;
+            const priLabel = {critical:'Critical',high:'High',medium:'Medium'}[f.pri] || '';
+            const priClass = {critical:'priority-critical',high:'priority-high',medium:'priority-medium'}[f.pri] || '';
+            const icon = {critical:'🚨',high:'⚠️',medium:'📋'}[f.pri] || '•';
+            findingList.innerHTML += `
+                <div class="risk-finding-item">
+                    <span class="risk-finding-icon">${icon}</span>
+                    <div class="risk-finding-text">${f.text}</div>
+                    <span class="risk-priority ${priClass}">${priLabel}</span>
+                </div>
+            `;
+        });
+    }
+
+    document.getElementById('audit-results').style.display = 'block';
+    document.getElementById('audit-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetAudit() {
+    answers = {};
+    document.getElementById('audit-results').style.display = 'none';
+    document.getElementById('audit-progress-fill').style.width = '0%';
+    document.getElementById('audit-progress-pct').textContent = '0%';
+    buildQuestions();
+    window.scrollTo({ top: document.getElementById('audit').offsetTop - 100, behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', buildQuestions);
+</script>
+</body>
+</html>

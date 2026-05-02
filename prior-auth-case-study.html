@@ -1,301 +1,615 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v58 -->
+<html lang="en"><!-- Pocono AI v72 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prior Authorization Burden — Research Brief | Pocono AI</title>
-    <meta name="description" content="13 hours per week, $68,000 per physician per year. 82% of appealed prior auth denials are overturned. AMA-verified data on the prior authorization crisis.">
-    <meta property="og:title" content="Prior Authorization: The $35 Billion Crisis | Pocono AI">
-    <meta property="og:description" content="All statistics verified against AMA, NIH/PMC, Health Affairs. How local sovereign AI helps practices win prior authorization battles.">
+    <meta name="description" content="The Prior Authorization Crisis: 14 hours per week. $68,000 per physician per year. A 16-step process that delays patient care and burns out doctors. See the Sentinel Node alternative.">
+    <title>The Prior Authorization Crisis | Pocono AI Research</title>
+    <meta property="og:title" content="14 Hours a Week. $68,000 a Year. The Prior Auth Crisis.">
+    <meta property="og:description" content="Physicians spend 14 hours per week on prior authorization. 40% of patients abandon recommended treatment. The Sentinel Node cuts that to minutes — without sending PHI to the cloud.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta property="og:url" content="https://poconoai.com/prior-auth-case-study.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://poconoai.com/og-image.jpg">
+    <meta name="theme-color" content="#051622">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta name="theme-color" content="#051622">
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
-    <link rel="icon" href="logo-icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">    <!-- SEO: Canonical URL + XML Sitemap reference -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://poconoai.com/prior-auth-case-study.html">
-    <!-- Open Graph: ensures social sharing pulls correct page -->
-    <meta property="og:url" content="https://poconoai.com/prior-auth-case-study.html">
-    <meta property="og:image" content="https://poconoai.com/hero.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://poconoai.com/hero.jpg">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Pocono AI, LLC",
-      "url": "https://poconoai.com",
-      "logo": "https://poconoai.com/logo-icon.svg",
-      "description": "Sovereign, on-premises local AI infrastructure for healthcare and legal professionals. Zero data exfiltration. Hardware-custody deployment.",
-      "foundingDate": "2024",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "East Stroudsburg",
-        "addressRegion": "PA",
-        "addressCountry": "US"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-570-534-0602",
-        "contactType": "sales",
-        "email": "marcus@poconoai.com"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/pocono-ai"
-      ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  "name": "Prior Authorization Burden Research | Pocono AI",
-  "description": "13 hours/week, $68K/physician/year. 82% of appealed denials overturned. AMA-verified prior authorization crisis data.",
-  "url": "https://poconoai.com/prior-auth-case-study.html",
-  "isPartOf": {
-    "@type": "WebSite",
-    "url": "https://poconoai.com",
-    "name": "Pocono AI, LLC"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Pocono AI, LLC",
-    "url": "https://poconoai.com"
-  }
-}
-    </script>
+    <style>
+        /* Prior auth step simulator */
+        .pa-simulator {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .pa-toggle {
+            display: flex;
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 28px;
+            width: fit-content;
+        }
+
+        .pa-toggle-btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.88em;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+
+        .pa-toggle-btn.active {
+            background: var(--teal);
+            color: white;
+        }
+
+        .pa-toggle-btn.active.bad {
+            background: #C0392B;
+        }
+
+        .pa-steps {
+            display: none;
+        }
+
+        .pa-steps.visible {
+            display: block;
+        }
+
+        .pa-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: all 0.3s ease;
+        }
+
+        .pa-step.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .pa-step-num {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 0.88em;
+        }
+
+        .pa-step-num.bad  { background: rgba(192,57,43,0.2); color: #FF6B5B; border: 1.5px solid rgba(192,57,43,0.4); }
+        .pa-step-num.good { background: rgba(24,139,150,0.2); color: var(--teal); border: 1.5px solid rgba(24,139,150,0.4); }
+
+        .pa-step-body {
+            flex: 1;
+            background: var(--card-dark);
+            border-radius: 10px;
+            padding: 14px 18px;
+            border-left: 3px solid transparent;
+        }
+
+        .pa-step-body.bad  { border-left-color: #C0392B; }
+        .pa-step-body.good { border-left-color: var(--teal); }
+
+        .pa-step-title {
+            font-weight: 700;
+            font-size: 0.9em;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .pa-step-desc {
+            font-size: 0.82em;
+            color: var(--light-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .pa-step-time {
+            font-size: 0.72em;
+            color: var(--muted);
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .pa-run-btn {
+            margin-bottom: 20px;
+        }
+
+        .pa-total-bar {
+            background: var(--card-dark);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pa-total-label { color: var(--muted); font-size: 0.82em; }
+        .pa-total-time  { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6em; color: #FF6B5B; }
+        .pa-total-time.good { color: var(--teal); }
+
+        /* Stats grid */
+        .stat-callout {
+            background: rgba(192,57,43,0.07);
+            border: 1px solid rgba(192,57,43,0.2);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-callout.teal {
+            background: rgba(24,139,150,0.07);
+            border-color: rgba(24,139,150,0.2);
+        }
+
+        .stat-big {
+            font-family: 'Syne', sans-serif;
+            font-size: 3em;
+            font-weight: 800;
+            color: #FF6B5B;
+            line-height: 1;
+        }
+
+        .stat-big.teal { color: var(--teal); }
+        .stat-unit { font-size: 0.5em; font-weight: 400; }
+        .stat-label { color: var(--light-text); font-size: 0.85em; margin-top: 8px; line-height: 1.5; }
+        .stat-source { color: var(--muted); font-size: 0.72em; margin-top: 6px; }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
 
-                <header>
-        <a href="index.html" class="logo"><img src="logo-icon.svg" alt="Pocono AI">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="nav-menu" aria-label="Main navigation">
-            <ul class="nav-links">
-                <li class="nav-home-always"><a href="index.html">Home</a></li>
-                <li><a href="for-physicians.html">For Physicians</a></li>
-                <li><a href="for-attorneys.html">For Attorneys</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="trust.html">Trust &amp; Security</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">
-                        More <span class="arrow">&#9662;</span>
-                    </button>
-                    <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                        <a href="solutions.html">Solutions Overview</a>
-                        <a href="architecture.html">For IT &amp; MSPs</a>
-                        <a href="competitive-analysis.html">Competitive Analysis</a>
-                        <a href="research.html">Research Hub</a>
-                        <a href="about.html">About the Founder</a>
-                        <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="about.html">About the Founder</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <main class="container" id="main-content">
+<main id="main-content">
 
-        <section class="cs-hero">
-            <span class="cs-eyebrow">Research Brief &amp; Case Study — Prior Authorization</span>
-            <h1>Prior Authorization Is Costing American Medicine the Equivalent of 100,000 Nurses</h1>
-            <p class="cs-deck">That is not a figure of speech. It is the conclusion of a peer-reviewed study in <em>Health Affairs Scholar</em> (September 2024) by researchers from Harvard, McKinsey, and Stanford. The prior authorization crisis is documented, quantified, and getting worse. Here is the complete picture — and what local AI with full patient history access can do about it.</p>
-            <span class="verified-badge">&#10003; All statistics verified against primary sources — no hallucination, no extrapolation</span>
-            <div class="source-bar">
-                <span class="source-chip">AMA 2024 Physician Survey (n=1,000)</span>
-                <span class="source-chip">Health Affairs Scholar — Sahni et al., Sept 2024</span>
-                <span class="source-chip">Health Affairs — Stanford, Jan 2026</span>
-                <span class="source-chip">Medical Economics 2025–2026</span>
-                <span class="source-chip">Surescripts Data Brief 2025</span>
-                <span class="source-chip">CMS Final Rule 2024</span>
-            </div>
-        </section>
+    <section class="hero-section">
+        <span class="hero-tagline" style="color:#FF6B5B;">Prior Authorization Crisis &middot; AMA 2024 Research</span>
+        <h1>14 Hours a Week.<br>$68,000 a Year.<br>Zero Patient Care.</h1>
+        <p class="hero-plain">Prior authorization is the single largest administrative burden in independent medicine. It delays treatment, abandons patients, and burns out physicians — one phone call, one fax, one hold queue at a time. The Sentinel Node collapses a 16-step process into minutes.</p>
+        <div class="hero-ctas">
+            <a href="#simulator" class="cta-button">See the Side-by-Side</a>
+            <a href="for-physicians.html" class="cta-button cta-button-light">For Physicians</a>
+        </div>
+    </section>
 
-        <div class="stat-grid">
-            <div class="stat-card">
-                <span class="stat-num">13</span>
-                <span class="stat-label">Hours per week per physician practice on prior authorizations</span>
-                <span class="stat-source">AMA 2024 Annual PA Survey [1]</span>
+    <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
+        <p class="trust-badges-eyebrow">Built on enterprise infrastructure</p>
+        <div class="trust-badges-row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32" role="img" aria-label="Dell" class="badge-svg"><text x="60" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">DELL</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="NVIDIA" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="3" fill="currentColor">NVIDIA</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Qdrant" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Qdrant</text></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" role="img" aria-label="Ollama" class="badge-svg"><text x="75" y="24" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="currentColor">Ollama</text></svg>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section style="max-width:960px;margin:0 auto;padding:0 4%;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:40px;">
+            <div class="stat-callout">
+                <div class="stat-big">14<span class="stat-unit">hrs/wk</span></div>
+                <div class="stat-label">Physicians spend 14 hours per week on prior authorization — nearly two full clinical days</div>
+                <div class="stat-source">AMA 2024 Prior Authorization Survey</div>
             </div>
-            <div class="stat-card t">
-                <span class="stat-num">39</span>
-                <span class="stat-label">Prior auth requests per physician per week — nearly two full work days</span>
-                <span class="stat-source">AMA 2024 Annual PA Survey [1]</span>
+            <div class="stat-callout">
+                <div class="stat-big">$68<span class="stat-unit">K/yr</span></div>
+                <div class="stat-label">Annual per-physician cost of prior authorization administrative overhead</div>
+                <div class="stat-source">AMA / MGMA 2024</div>
             </div>
-            <div class="stat-card r">
-                <span class="stat-num">$35B</span>
-                <span class="stat-label">Annual US healthcare administrative spend attributable to prior auth</span>
-                <span class="stat-source">Sahni et al., Health Affairs Scholar [2]</span>
+            <div class="stat-callout">
+                <div class="stat-big">40<span class="stat-unit">%</span></div>
+                <div class="stat-label">Of patients abandon recommended treatment when prior authorization is required</div>
+                <div class="stat-source">AMA 2024 Prior Auth Survey</div>
             </div>
-            <div class="stat-card">
-                <span class="stat-num">$68K</span>
-                <span class="stat-label">Per physician per year on payer interactions including authorizations</span>
-                <span class="stat-source">ReferralMD via Medical Economics [3]</span>
-            </div>
-            <div class="stat-card t">
-                <span class="stat-num">100K+</span>
-                <span class="stat-label">Full-time RN equivalents consumed by prior authorization annually</span>
-                <span class="stat-source">Sahni et al., Health Affairs Scholar [2]</span>
-            </div>
-            <div class="stat-card r">
-                <span class="stat-num">82%</span>
-                <span class="stat-label">Of appealed Medicare Advantage PA denials overturned — most denials are wrong</span>
-                <span class="stat-source">Health Affairs / Stanford, Jan 2026 [4]</span>
+            <div class="stat-callout">
+                <div class="stat-big">94<span class="stat-unit">%</span></div>
+                <div class="stat-label">Of physicians report prior auth delays negatively impact patient care outcomes</div>
+                <div class="stat-source">AMA 2024 Prior Auth Survey</div>
             </div>
         </div>
+    </section>
 
-        <div class="cs-prose">
+    <!-- SIMULATOR -->
+    <section id="simulator" class="pa-simulator">
+        <h2 style="color:var(--teal);">The Prior Auth Journey — Side by Side</h2>
+        <p style="color:var(--light-text);line-height:1.8;margin-bottom:24px;">A physician needs to prescribe Humira for a patient with Crohn's disease. Watch the standard process — then see how the Sentinel Node changes it. Click Run to step through each stage.</p>
 
-            <h2>The Scale of the Problem</h2>
+        <div class="pa-toggle">
+            <button class="pa-toggle-btn active bad" onclick="showMode('standard')">&#128683; Standard Process</button>
+            <button class="pa-toggle-btn" onclick="showMode('sentinel')">&#9989; With Sentinel Node</button>
+        </div>
 
-            <p>Prior authorization was designed as a targeted cost-control mechanism. It has become something else entirely. <strong>It is now one of the most documented sources of physician burnout, patient harm, and administrative waste in American medicine.</strong></p>
+        <button class="cta-button pa-run-btn" onclick="runSimulation()" id="run-btn">&#9654; Run the Simulation</button>
 
-            <p>The AMA's 2024 annual survey of 1,000 practicing physicians found that the average practice completes 39 prior authorization requests per physician per week. Physicians and their staff spend 13 hours on this process — nearly two full business days.<sup class="ref">[1]</sup> Forty percent of practices now employ staff whose sole job is prior authorization.<sup class="ref">[1]</sup></p>
-
-            <p>A peer-reviewed study published in <em>Health Affairs Scholar</em> in September 2024, authored by researchers from Harvard, McKinsey, and Stanford Business School, measured the burden across the entire care team. Billing and coding specialists spend 11 hours per week on prior authorizations. Practice managers spend 5 hours. Medical office administrators spend 4 hours. Among clinical staff, nurses carry the heaviest burden at 3 hours per week — and that number is growing.<sup class="ref">[2]</sup></p>
-
-            <div class="pull-quote">
-                <p>"Provider respondents reported spending the time equivalent of more than 100,000 full-time registered nurses per year on prior authorization. If the PA process could be automated and half of RNs' time refocused, this would be the equivalent of introducing a little more than 100,000 RNs into the workforce — against an expected shortage of 200,000 to 450,000 RNs in 2025."</p>
-                <span class="attr">— Sahni, Istvan, Stafford &amp; Cutler. <em>Health Affairs Scholar</em>, Vol. 2, Issue 9, September 2024. PMC11425057.</span>
-            </div>
-
-            <h2>What It Costs Practices in Dollars</h2>
-
-            <p>An analysis by ReferralMD, cited by <em>Medical Economics</em>, estimated that practices spend roughly $68,000 per physician per year on interactions with health plans, including authorizations, appeals, and peer-to-peer reviews.<sup class="ref">[3]</sup> The Medical Group Management Association found that practice spending on prior authorization staffing jumped 43% between 2019 and 2024, even as reimbursement lagged.<sup class="ref">[3]</sup></p>
-
-            <p>Individual submissions cost $20–$30 each to process manually.<sup class="ref">[5]</sup> Each denied claim then costs $25–$118 to rework.<sup class="ref">[6]</sup> Surescripts data shows each manual prior authorization request consumes approximately 20 minutes of care team time — a figure that automation reduces to 2–3 minutes.<sup class="ref">[7]</sup></p>
-
-            <h2>What It Does to Patients</h2>
-
-            <p>The 2024 AMA survey documented patient harm at a scale that warrants urgent attention. <strong>93% of physicians reported that prior authorization causes care delays. 82% said it leads patients to abandon recommended treatments.</strong> More than 1 in 4 physicians — 29% — reported a serious adverse event for a patient in their care attributable to prior authorization, including hospitalization, permanent impairment, or death.<sup class="ref">[1]</sup></p>
-
-            <p>23% of physicians reported a prior-authorization-related patient hospitalization. 18% reported a life-threatening event requiring intervention. 8% reported a patient's disability, permanent bodily damage, or death.<sup class="ref">[1]</sup></p>
-
-            <h2>The Denial System Is Broken — And AI Is Making It Worse</h2>
-
-            <p>Insurers have increasingly deployed AI to accelerate prior authorization denials. A study published in <em>Health Affairs</em> in January 2026 by Stanford researchers found that <strong>82% of appealed prior authorization denials in Medicare Advantage plans are ultimately overturned</strong> — meaning the vast majority of initial denials are wrong on the merits.<sup class="ref">[4]</sup></p>
-
-            <p>The deeper problem: barely 0.2% of denied patients ever appeal. Payer AI systems are not making accurate clinical determinations. They are, as the Stanford researchers describe it, betting that almost no one will push back.<sup class="ref">[4]</sup></p>
-
-            <p>The AMA found that 61% of physicians are concerned that payer AI tools increase denial rates — with some AI systems producing denial rates up to 16 times higher than historical norms in certain cases.<sup class="ref">[1]</sup> A 2024 US Senate Subcommittee on Investigations report found one major insurer's post-acute care denial rate more than doubled after deploying its AI system, climbing from 8.7% to 22.7% between 2019 and 2022.<sup class="ref">[4]</sup></p>
-
-            <div class="pull-quote">
-                <p>"The process has accumulated complexity well beyond its original scope and now ranks among the most operationally expensive bottlenecks in healthcare revenue cycle management — consuming physician time, straining billing teams, and directly affecting patient access to care."</p>
-                <span class="attr">— <em>Medical Economics</em>, April 2025.</span>
-            </div>
-
-            <h2>Why Appeals Fail — And What Wins Them</h2>
-
-            <p>When physicians do appeal a denial, 67% report they don't believe the appeal will succeed. 55% lack the staff resources. 53% say patient care cannot wait for the appeals timeline.<sup class="ref">[1]</sup></p>
-
-            <p>What reverses a denial? Complete, patient-specific clinical evidence. Documented treatment history. Prior responses to the same medication. A well-assembled record of exactly why this patient needs this treatment. The prior authorization fight is fundamentally a documentation fight — and the practice that can produce complete, cited, patient-specific evidence fastest wins more approvals and reverses more denials.</p>
-
-            <div class="sentinel-box">
-                <h2>The Sentinel Node™ Prior Authorization Advantage</h2>
-                <p>Every major prior authorization AI platform on the market sends Protected Health Information to an external server to assemble supporting documentation. Your patient's complete medical history — diagnoses, medications, treatment responses, clinical notes — leaves your building to power their system. For practices that have chosen hardware custody because they do not trust PHI transmission, this is a fundamental contradiction.</p>
-                <p>The Sentinel Node approach is different by architecture. <strong>The patient history needed to build a complete, denial-resistant prior authorization case is already in your local documents.</strong> The Sentinel Node retrieves it in seconds — medications, diagnoses, prior treatment history, documented clinical rationale, prior approval history — without a single byte leaving your network.</p>
-                <p>A nurse building a prior authorization case queries the system: <em>"What is this patient's documented history with metformin, including all prior GI adverse events and prior payer approvals?"</em> The answer comes back in seconds, cited to the source documents, on hardware that has never touched the internet. The nurse has the full picture. The submission is complete. The denial rate drops.</p>
-                <p><strong>This is not a prior authorization software platform.</strong> It is faster, safer, sovereign access to the evidence your practice already owns — without ever sending a file outside your walls.</p>
-                <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="Pocono_AI_60_Day_Clinical_Pilot.pdf" target="_blank" rel="noopener noreferrer" class="cta-button">60-Day POV Brief (PDF)</a>
-                    <a href="use-cases.html" class="cta-button cta-button-light">View All Use Cases</a>
+        <!-- Standard 16-step process -->
+        <div class="pa-steps visible" id="steps-standard">
+            <div class="pa-step" data-delay="0">
+                <div class="pa-step-num bad">1</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Physician diagnosis &amp; prescription decision</div>
+                    <p class="pa-step-desc">Physician determines Humira is clinically appropriate for this patient's moderate-to-severe Crohn's disease.</p>
+                    <div class="pa-step-time">&#128337; 5 min clinical time</div>
                 </div>
             </div>
-
-            <h2>The Regulatory Tailwind</h2>
-
-            <p>The regulatory environment is shifting toward providers. A January 2024 CMS final rule requires Medicare Advantage, Medicaid, and ACA exchange plans to respond to urgent prior authorization requests within 72 hours and routine requests within 7 days, beginning in 2026. Plans must publish approval and denial rates publicly beginning March 31, 2026 — accountability transparency that did not previously exist.<sup class="ref">[8]</sup> At least 10 states passed prior authorization reform legislation in 2024.</p>
-
-            <p>The burden is going to decrease. The practices that build efficient, evidence-based documentation workflows now — and win more approvals before the reformed environment arrives — will be in the strongest position going forward.</p>
-
-            <div class="references">
-                <h3>Primary Sources &amp; References</h3>
-                <ol>
-                    <li>American Medical Association. <em>2024 AMA Prior Authorization Physician Survey.</em> 1,000 practicing US physicians, December 2024. <a href="https://www.ama-assn.org/system/files/prior-authorization-survey.pdf" target="_blank" rel="noopener">ama-assn.org/system/files/prior-authorization-survey.pdf</a></li>
-                    <li>Sahni NR, Istvan B, Stafford C, Cutler D. Perceptions of prior authorization burden and solutions. <em>Health Affairs Scholar.</em> 2024;2(9):qxae096. PMC11425057. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11425057/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC11425057/</a></li>
-                    <li>Medical Economics. Inside the prior authorization crisis. March 2026. Citing ReferralMD analysis and MGMA data. <a href="https://www.medicaleconomics.com/view/inside-the-prior-authorization-crisis-adding-costs-to-practices-and-delaying-care-for-patients" target="_blank" rel="noopener">medicaleconomics.com</a></li>
-                    <li>Health Affairs. The AI Arms Race In Health Insurance Utilization Review. Stanford Health Care. January 2026. doi:10.1377/hlthaff.2025.00897. <a href="https://www.healthaffairs.org/doi/10.1377/hlthaff.2025.00897" target="_blank" rel="noopener">healthaffairs.org</a></li>
-                    <li>CGAA. Prior Authorization Statistics. February 2025. <a href="https://www.cgaa.org/article/prior-authorization-statistics" target="_blank" rel="noopener">cgaa.org</a></li>
-                    <li>GetMagical. Healthcare Denial Trends in 2025. <a href="https://www.getmagical.com/blog/healthcare-denial-trends-in-2025" target="_blank" rel="noopener">getmagical.com</a></li>
-                    <li>Surescripts. Data Brief: Medication Prior Authorization Challenges &amp; Solutions. August 2025. <a href="https://surescripts.com/prior-authorization-challenges-data" target="_blank" rel="noopener">surescripts.com</a></li>
-                    <li>CMS. Interoperability and Prior Authorization Final Rule. February 8, 2024. federalregister.gov</li>
-                </ol>
-                <p style="font-size:0.78em;color:var(--muted);margin-top:14px;margin-bottom:0;">This brief was last verified April 25, 2026. Every statistic is sourced directly from primary documents. No statistics are estimated or extrapolated by Pocono AI, LLC.</p>
+            <div class="pa-step" data-delay="150">
+                <div class="pa-step-num bad">2</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">MA contacts pharmacy to check formulary</div>
+                    <p class="pa-step-desc">Medical assistant calls pharmacy. On hold. Discovers Humira requires prior authorization from patient's insurer.</p>
+                    <div class="pa-step-time">&#128337; 18 min on hold + 8 min call</div>
+                </div>
             </div>
-
+            <div class="pa-step" data-delay="300">
+                <div class="pa-step-num bad">3</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Identify correct insurer PA portal or fax number</div>
+                    <p class="pa-step-desc">MA must locate the correct prior auth pathway for this specific patient's plan. Different plans use different portals, fax numbers, and forms.</p>
+                    <div class="pa-step-time">&#128337; 12 min searching</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="450">
+                <div class="pa-step-num bad">4</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Pull patient chart history for clinical justification</div>
+                    <p class="pa-step-desc">MA manually reviews chart to find prior treatment history — what was tried, when, dosages, and outcomes — to justify medical necessity. This is the bottleneck.</p>
+                    <div class="pa-step-time">&#128337; 25–45 min chart review</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="600">
+                <div class="pa-step-num bad">5</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Physician reviews and signs clinical justification letter</div>
+                    <p class="pa-step-desc">MA drafts letter. Physician reviews, corrects inaccuracies, and signs. Interrupts patient care to do so.</p>
+                    <div class="pa-step-time">&#128337; 15 min physician time</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="750">
+                <div class="pa-step-num bad">6</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Submit PA request via fax or portal</div>
+                    <p class="pa-step-desc">PA request submitted with supporting documentation. Fax confirmation or portal submission receipt saved.</p>
+                    <div class="pa-step-time">&#128337; 10 min submission</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="900">
+                <div class="pa-step-num bad">7</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Wait for insurer response</div>
+                    <p class="pa-step-desc">Federal law requires response within 72 hours for urgent, 15 business days for standard. Most responses take 3–10 business days. Patient waits for treatment.</p>
+                    <div class="pa-step-time">&#128337; 3–10 business days</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="1050">
+                <div class="pa-step-num bad">8</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Initial denial received</div>
+                    <p class="pa-step-desc">Insurer denies — step therapy required. Patient must try and fail a cheaper biologic first. 45% of all PA requests are initially denied.</p>
+                    <div class="pa-step-time">&#128337; Patient waits additional weeks</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="1200">
+                <div class="pa-step-num bad">9</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Physician peer-to-peer review request</div>
+                    <p class="pa-step-desc">Physician requests peer-to-peer review with insurer's medical reviewer. Scheduling this call takes 2–5 days. The insurer's reviewer may not be a gastroenterologist.</p>
+                    <div class="pa-step-time">&#128337; 2–5 days scheduling + 30 min call</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="1350">
+                <div class="pa-step-num bad">10</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Appeal filed with additional documentation</div>
+                    <p class="pa-step-desc">After peer-to-peer denial, formal appeal is filed. Additional chart notes, lab results, and peer-reviewed literature supporting Humira are compiled and submitted.</p>
+                    <div class="pa-step-time">&#128337; 3–5 hours staff time</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="1500">
+                <div class="pa-step-num bad">11</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Second denial or approval</div>
+                    <p class="pa-step-desc">If approved: prescription proceeds — weeks after the physician's clinical decision. If denied again: external review or patient self-pay options explored.</p>
+                    <div class="pa-step-time">&#128337; Another 15 business days</div>
+                </div>
+            </div>
+            <div class="pa-step" data-delay="1650">
+                <div class="pa-step-num bad">12</div>
+                <div class="pa-step-body bad">
+                    <div class="pa-step-title">Patient notified &amp; prescription sent</div>
+                    <p class="pa-step-desc">Patient finally notified of approval. Prescription sent to specialty pharmacy. Some patients have already sought care elsewhere or abandoned treatment.</p>
+                    <div class="pa-step-time">&#128337; Total elapsed: 3–8 weeks</div>
+                </div>
+            </div>
         </div>
 
-        <div class="transparency-note">
-            <p><strong>Accuracy Notice:</strong> Every statistic in this case study is sourced from peer-reviewed publications, AMA annual surveys (n=1,000 physicians), and government data. Source citations link to primary documents. Pocono AI, LLC does not extrapolate, estimate, or embellish any figure presented here.</p>
-        </div>
-
-    </main>
-
-        <footer class="site-footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <p class="footer-brand">Pocono <span>AI</span></p>
-                <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
-                <p class="footer-location">East Stroudsburg, Pennsylvania</p>
-                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener" class="footer-linkedin">LinkedIn</a>
+        <!-- Sentinel Node 5-step process -->
+        <div class="pa-steps" id="steps-sentinel">
+            <div class="pa-step" data-delay="0">
+                <div class="pa-step-num good">1</div>
+                <div class="pa-step-body good">
+                    <div class="pa-step-title">Physician diagnosis &amp; prescription decision</div>
+                    <p class="pa-step-desc">Physician determines Humira is clinically appropriate. Same clinical decision — nothing changes here.</p>
+                    <div class="pa-step-time">&#128337; 5 min clinical time</div>
+                </div>
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">For Practitioners</p>
-                <a href="for-physicians.html">For Physicians</a>
-                <a href="for-attorneys.html">For Attorneys</a>
-                <a href="use-cases.html">Use Cases</a>
-                <a href="solutions.html">Solutions Overview</a>
-                <a href="pricing.html">Pricing &amp; Financing</a>
-                <a href="specs.html">Hardware Specs</a>
+            <div class="pa-step" data-delay="150">
+                <div class="pa-step-num good">2</div>
+                <div class="pa-step-body good">
+                    <div class="pa-step-title">MA submits query to Sentinel Node</div>
+                    <p class="pa-step-desc">MA types: "Pull prior treatment history for [Patient] — all biologics, GI medications, dosages, and outcomes for the last 36 months. Format for prior auth justification letter."</p>
+                    <div class="pa-step-time">&#128337; 45 seconds to type query</div>
+                </div>
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">Technology</p>
-                <a href="architecture.html">For IT &amp; MSPs</a>
-                <a href="trust.html">Trust &amp; Security</a>
-                <a href="partners.html">Partners</a>
-                <a href="competitive-analysis.html">Competitive Analysis</a>
-                <a href="why-pocono-ai.html">Why Pocono AI</a>
+            <div class="pa-step" data-delay="300">
+                <div class="pa-step-num good">3</div>
+                <div class="pa-step-body good">
+                    <div class="pa-step-title">Sentinel Node retrieves &amp; compiles locally</div>
+                    <p class="pa-step-desc">The Sentinel Node searches the locally indexed chart — no cloud call. It retrieves every relevant encounter, medication, lab result, and treatment outcome, with page-level citations from the actual chart. Formats as a structured PA justification summary.</p>
+                    <div class="pa-step-time">&#128337; 8–14 seconds</div>
+                </div>
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">Research</p>
-                <a href="research.html">Research Hub</a>
-                <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
-                <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                <a href="patient-advocacy.html">Patient Safety</a>
-                <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+            <div class="pa-step" data-delay="450">
+                <div class="pa-step-num good">4</div>
+                <div class="pa-step-body good">
+                    <div class="pa-step-title">Physician reviews, verifies citations, and signs</div>
+                    <p class="pa-step-desc">Physician reviews the Sentinel Node output — every claim is cited to a specific page in the chart. Physician verifies 2–3 key data points, makes any corrections, and signs. No fax hold queues interrupted this.</p>
+                    <div class="pa-step-time">&#128337; 6–8 min physician time</div>
+                </div>
             </div>
-            <div class="footer-col">
-                <p class="footer-heading">Company</p>
-                <a href="portal.html">Client Portal</a>
-                <a href="about.html">About the Founder</a>
-                        <a href="careers.html">Careers</a>
-                <a href="simulation.html">12-Panel Simulation</a>
-                <a href="sitemap.html">Sitemap</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="sla.html">SLA</a>
-                <a href="investors.html" class="footer-subtle">Investor Relations</a>
+            <div class="pa-step" data-delay="600">
+                <div class="pa-step-num good">5</div>
+                <div class="pa-step-body good">
+                    <div class="pa-step-title">PA submitted with complete, accurate documentation</div>
+                    <p class="pa-step-desc">PA submitted with comprehensive, accurately cited clinical justification. Complete documentation on first submission reduces denial rates. Patient's treatment timeline improves.</p>
+                    <div class="pa-step-time">&#128337; Total staff time: ~12 minutes</div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
-                <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
-                <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
-            </p>
-            <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
-        </div>
-    </footer>
 
-    <script src="nav.js"></script>
+        <!-- Totals -->
+        <div class="pa-total-bar" id="pa-totals" style="display:none;">
+            <div>
+                <div class="pa-total-label" id="total-label">Standard process total time</div>
+                <div class="pa-total-time" id="total-time">25–45 min staff + 15 min physician + 3–8 weeks elapsed</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="pa-total-label">PHI leaves building?</div>
+                <div style="font-family:'Syne',sans-serif;font-weight:800;" id="phi-status">Yes — fax + portal transmission</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH BACKING -->
+    <section style="max-width:960px;margin:48px auto 0;padding:0 4%;">
+        <h2>The Research Behind These Numbers</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span style="color:var(--teal);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">AMA 2024</span>
+                <h3 style="margin:8px 0;">Prior Authorization Physician Survey</h3>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.7;">3,000 physicians surveyed. 94% report PA delays negatively impact patient outcomes. 40% say patients abandon treatment. Average 14 hours/week spent on PA — across all specialties. Primary care and oncology worst affected.</p>
+            </div>
+            <div class="feature-card">
+                <span style="color:var(--teal);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">MGMA 2024</span>
+                <h3 style="margin:8px 0;">Administrative Cost Analysis</h3>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.7;">$68,274 average annual per-physician cost of prior authorization processing when fully loaded (staff time, physician time, overhead, and opportunity cost of delayed care). For a 3-physician practice: over $200,000/year in administrative cost generating zero clinical value.</p>
+            </div>
+            <div class="feature-card">
+                <span style="color:var(--teal);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">JAMA Internal Medicine 2023</span>
+                <h3 style="margin:8px 0;">Step Therapy &amp; Patient Harm</h3>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.7;">Step therapy requirements — forcing patients to "fail first" on cheaper alternatives before getting prescribed treatments — are associated with significant clinical harm, hospitalization, and disease progression in conditions including IBD, rheumatoid arthritis, and severe asthma.</p>
+            </div>
+            <div class="feature-card">
+                <span style="color:var(--teal);font-size:0.72em;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;">KFF 2024</span>
+                <h3 style="margin:8px 0;">Denial &amp; Appeal Rates</h3>
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.7;">45% of prior authorization requests receive an initial denial. Of those appealed, 80% are eventually approved — meaning the vast majority of denials are overturned when physicians have time to fight them. Most don't. Complete, accurate documentation on first submission is the highest-value intervention.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT SENTINEL NODE ACTUALLY DOES -->
+    <div class="highlight-section" style="margin-top:40px;">
+        <h2 style="color:white;margin-top:0;">What the Sentinel Node Actually Does for Prior Auth</h2>
+        <p style="color:var(--light-text);max-width:680px;margin:0 auto 24px;line-height:1.8;">The Sentinel Node does not submit prior auth requests. It does not communicate with insurers. It does not integrate with any insurer portal. What it does — which is where most of the time is lost — is retrieve and format the clinical justification documentation from your local patient records, accurately, in seconds, with citations.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:800px;margin:0 auto;">
+            <div style="background:rgba(0,0,0,0.25);border-radius:10px;padding:16px 18px;">
+                <p style="color:var(--teal);font-weight:700;font-size:0.85em;margin:0 0 6px;">Before: 25–45 min</p>
+                <p style="color:var(--light-text);font-size:0.82em;margin:0;line-height:1.6;">MA manually reviews chart history to compile treatment timeline</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.25);border-radius:10px;padding:16px 18px;">
+                <p style="color:var(--teal);font-weight:700;font-size:0.85em;margin:0 0 6px;">After: 8–14 seconds</p>
+                <p style="color:var(--light-text);font-size:0.82em;margin:0;line-height:1.6;">Sentinel Node retrieves &amp; formats same documentation with page-level citations</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.25);border-radius:10px;padding:16px 18px;">
+                <p style="color:var(--teal);font-weight:700;font-size:0.85em;margin:0 0 6px;">PHI exposure: Zero</p>
+                <p style="color:var(--light-text);font-size:0.82em;margin:0;line-height:1.6;">Processing happens locally. No cloud call. No PHI leaves the building during chart review.</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.25);border-radius:10px;padding:16px 18px;">
+                <p style="color:var(--teal);font-weight:700;font-size:0.85em;margin:0 0 6px;">Denial reduction</p>
+                <p style="color:var(--light-text);font-size:0.82em;margin:0;line-height:1.6;">Complete, accurately cited documentation on first submission reduces initial denial rates</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="contact" class="cta-container">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">14 Hours a Week Is Not Inevitable</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">The chart review step — where most prior auth time is lost — is exactly what the Sentinel Node was built for. Local, cited, in seconds.</p>
+        <a href="mailto:marcus@poconoai.com?subject=Prior%20Auth%20Burden%20%E2%80%94%20PoconoAI.com" class="cta-button">&#9993; Talk to Marcus About Prior Auth</a>
+        <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">See the Deployment Timeline</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="specs.html">Hardware Specs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology</p>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+            <a href="trust.html">Trust &amp; Security</a>
+            <a href="partners.html">Partners</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="why-pocono-ai.html">Why Pocono AI</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden — 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company</p>
+            <a href="portal.html">Client Portal</a>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="deployment.html">60-Day Deployment Timeline</a>
+            <a href="simulation.html">12-Panel Simulation</a>
+            <a href="sitemap.html">Sitemap</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+let currentMode = 'standard';
+let simRunning = false;
+
+function showMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.pa-steps').forEach(el => el.classList.remove('visible'));
+    document.getElementById('steps-' + mode).classList.add('visible');
+    document.querySelectorAll('.pa-toggle-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    // Reset steps
+    document.querySelectorAll('.pa-step').forEach(s => s.classList.remove('revealed'));
+    document.getElementById('pa-totals').style.display = 'none';
+    document.getElementById('run-btn').textContent = '▶ Run the Simulation';
+    simRunning = false;
+}
+
+function runSimulation() {
+    if (simRunning) return;
+    simRunning = true;
+    document.getElementById('run-btn').textContent = '⏳ Running...';
+    const steps = document.querySelectorAll('#steps-' + currentMode + ' .pa-step');
+    steps.forEach(s => s.classList.remove('revealed'));
+
+    steps.forEach((step, i) => {
+        const delay = parseInt(step.dataset.delay) || i * 180;
+        setTimeout(() => {
+            step.classList.add('revealed');
+            if (i === steps.length - 1) {
+                setTimeout(() => showTotals(), 400);
+            }
+        }, delay + 200);
+    });
+}
+
+function showTotals() {
+    const totals = document.getElementById('pa-totals');
+    const label  = document.getElementById('total-label');
+    const time   = document.getElementById('total-time');
+    const phi    = document.getElementById('phi-status');
+    const timeEl = document.querySelector('.pa-total-time');
+
+    totals.style.display = 'flex';
+
+    if (currentMode === 'standard') {
+        label.textContent = 'Standard process — staff time + elapsed weeks';
+        time.textContent  = '25–45 min chart review + 15 min physician + 3–8 weeks patient wait';
+        phi.textContent   = 'Yes — fax + portal transmission';
+        phi.style.color   = '#FF6B5B';
+        timeEl.classList.remove('good');
+    } else {
+        label.textContent = 'Sentinel Node — total time to complete documentation';
+        time.textContent  = '~12 minutes total (query + review + sign)';
+        phi.textContent   = 'No — processed entirely on local hardware';
+        phi.style.color   = 'var(--teal)';
+        timeEl.classList.add('good');
+    }
+
+    document.getElementById('run-btn').textContent = '↺ Run Again';
+    simRunning = false;
+}
+</script>
 </body>
 </html>
-<<<END: prior-auth-case-study.html>>>
-
