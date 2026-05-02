@@ -7,7 +7,7 @@
     <meta name="description" content="Live Sentinel Node RAG workflow demonstration. Ask any question about a clinical note, legal memo, or compliance report. Watch cited answers appear in real time.">
     <title>Live Demo — Sentinel Node RAG Workflow | Pocono AI</title>
     <meta property="og:title" content="Watch the Sentinel Node Answer a Question — Live">
-    <meta property="og:description" content="191 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything — watch RAG citation in action.">
+    <meta property="og:description" content="222 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything — watch RAG citation in action.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://poconoai.com/og-image.jpg">
     <meta property="og:url" content="https://poconoai.com/sentinel-demo.html">
@@ -143,7 +143,7 @@
 <section class="hero-section">
     <span class="hero-tagline" style="color:var(--teal);">&#9654; Live Workflow Demonstration</span>
     <h1>Ask It a Question.<br>Watch It Cite the Answer.</h1>
-    <p class="hero-plain">This is the Sentinel Node RAG workflow — demonstrated in your browser with 191 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything. Watch cited retrieval in action.</p>
+    <p class="hero-plain">This is the Sentinel Node RAG workflow — demonstrated in your browser with 222 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything. Watch cited retrieval in action.</p>
 </section>
 
 <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
@@ -367,11 +367,17 @@ const DOCS = {
     },
     attorney: {
         title: 'Case Memorandum — Synthetic Demo',
-        suggestions: ['What is the key liability theory in this case?','Summarize the damages claimed by plaintiff','What discovery is outstanding?','When is the statute of limitations and has it run?','What are the strongest defense arguments?','What does the security footage show?','What evidence do we have?','What is the OSHA violation?'],
+        suggestions: ['Were there any witnesses to the incident?','What physical evidence was collected?','What does the security footage show?','What is the key liability theory in this case?','How strong is our case?','What are the strongest defense arguments?','What discovery is outstanding?','What are the damages?'],
         content: `<h4>CASE MEMORANDUM — SYNTHETIC DEMO RECORD</h4>
 <p style="font-size:.78em;color:var(--muted);margin-bottom:14px;">Entirely fictional. No real clients or legal proceedings.</p>
 <div class="doc-section"><div class="doc-section-label">Matter Information</div>
 <p><span class="doc-chunk" data-chunk="matter">Holloway v. Meridian Construction Group, LLC &nbsp;|&nbsp; File: DEMO-2024-0318<br>Type: Personal Injury — Premises Liability &nbsp;|&nbsp; Client: Patricia Holloway<br>Attorney: J. Rivera, Esq. &nbsp;|&nbsp; Opened: 03/18/2024 &nbsp;|&nbsp; Jurisdiction: EDPA</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Client Intake &amp; Background</div>
+<p><span class="doc-chunk" data-chunk="intake">Client: Patricia Holloway, DOB 06/14/1971 (age 54). Occupation: Office Manager, Stroudsburg Medical Associates. Intake date: 11/14/2023 — 10 days post-incident. Referred by: Dr. Angela Marsh (treating physician). Contact: (570) 555-0192. Incident reported to: Meridian on-site supervisor immediately after fall. Police report: filed same day — Monroe County PD Report #2023-11043. Incident report filed with Meridian property management within 24 hours.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Witnesses</div>
+<p><span class="doc-chunk" data-chunk="witnesses">Witness 1 — Thomas Garrity: Meridian maintenance employee who mopped the floor. Identified from Meridian's internal maintenance log (Exhibit D). Did not post wet floor signage per internal protocol. Available for deposition — subpoena in process. Witness 2 — Sandra Kowalski: Co-worker of plaintiff, present at incident location approximately 2 minutes after fall. Provided written statement 11/06/2023 confirming absence of signage and plaintiff on ground. Witness 3 — Delivery driver (unidentified): Visible on security footage entering building 4 minutes before incident. License plate captured — Meridian has not produced identity despite discovery request (outstanding item). No defense witnesses have been disclosed as of this memo.</span></p></div>
+<div class="doc-section"><div class="doc-section-label">Physical Evidence &amp; Scene Documentation</div>
+<p><span class="doc-chunk" data-chunk="evidence">Security footage (Exhibit A): Cameras at 400 Commerce Drive captured the full incident sequence — floor mopped at 14:03, no signage placed, plaintiff falls at 14:15. Footage obtained via subpoena. Chain of custody: maintained by plaintiff's counsel since 04/02/2024. Maintenance log (Exhibit D): Subpoenaed from Meridian. Shows floor mopped 14:03, next entry 15:00 — no notation of signage posted. Prior entry shows floor dry as of 13:18. OSHA inspection report (Exhibit E): Post-incident inspection conducted 11/09/2023. Inspector documented absence of wet floor signage equipment at point of incident. Report obtained 02/14/2024. Meridian safety protocol (Exhibit C, §4.2): Internal policy requiring signage within 5 minutes of any wet surface. Obtained via document production. Plaintiff's footwear: Black flat dress shoes, preserved by plaintiff. Defense cited in deposition — counter-argument: shoes compliant with reasonable office attire standard. Medical imaging: L4-L5 MRI (11/06/2023) and follow-up (03/15/2026) showing progressive disc herniation. Radiology reports filed as Exhibit F.</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Facts &amp; Liability Theory</div>
 <p><span class="doc-chunk" data-chunk="facts">On November 4, 2023, Plaintiff slipped on unmarked wet floor at Meridian's property, 400 Commerce Drive, Stroudsburg, PA. Maintenance had mopped 12 min prior without posting signage — violation of OSHA 29 CFR 1910.22(a)(1) and Meridian's internal safety protocol (Exhibit C, §4.2). Security footage confirms absent signage. Theories: negligence per se + ordinary negligence.</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Damages</div>
@@ -379,13 +385,13 @@ const DOCS = {
 <div class="doc-section"><div class="doc-section-label">Statute of Limitations</div>
 <p><span class="doc-chunk" data-chunk="sol">PA SOL: 2 years from injury (42 Pa.C.S. §5524). Injury: 11/04/2023. Deadline: 11/04/2025. Complaint filed: 03/18/2024 — timely. SOL not implicated.</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Discovery Status</div>
-<p><span class="doc-chunk" data-chunk="discovery">Completed: Plaintiff deposition (06/14/2024), security footage, maintenance log (Exhibit D), OSHA inspection report.<br>Outstanding: Defendant 30(b)(6) deposition — 05/20/2026. Expert report (biomechanics) — 06/01/2026. Defense medical expert — 06/15/2026. Trial: 09/08/2026.</span></p></div>
+<p><span class="doc-chunk" data-chunk="discovery">Completed: Plaintiff deposition (06/14/2024), security footage, maintenance log (Exhibit D), OSHA inspection report.<br>Outstanding: Defendant 30(b)(6) deposition — 05/20/2026. Expert report (biomechanics) — 06/01/2026. Defense medical expert — 06/15/2026. Unidentified delivery driver ID (pending Meridian production). Trial: 09/08/2026.</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Defense Arguments &amp; Counter-Strategy</div>
 <p><span class="doc-chunk" data-chunk="defense">Expected: (1) Comparative negligence — plaintiff footwear (from depo). (2) Open and obvious — inapplicable, wet surface not visible. (3) Lack of notice — maintenance log shows floor dry 45 min prior. Counter: 12-min window = constructive notice. Security footage dispositive on signage issue.</span></p></div>`
     },
     msp: {
         title: 'IT Compliance Assessment — Synthetic Demo',
-        suggestions: ['What HIPAA gaps were identified in this assessment?','What is the highest priority remediation item?','Summarize the current AI tool risk exposure','What are the recommended next steps?','Is ChatGPT being used in this practice?','What hardware is currently deployed?','What are the OCR penalty exposure amounts?','How do we fix the ChatGPT problem?'],
+        suggestions: ['What is the practice\'s biggest single risk right now?','Is this a reportable breach?','How do I explain this to the practice owner without scaring them?','What are the recommended next steps?','How do we find out what other shadow AI is being used?','What are the OCR penalty exposure amounts?','What is the Sentinel Node and should we recommend it here?','Can we bill for the VLAN work?'],
         content: `<h4>IT COMPLIANCE ASSESSMENT — SYNTHETIC DEMO</h4>
 <p style="font-size:.78em;color:var(--muted);margin-bottom:14px;">Fictional practice. No real PHI or organizations.</p>
 <div class="doc-section"><div class="doc-section-label">Practice Information</div>
