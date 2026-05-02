@@ -1048,9 +1048,10 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 .sim-hero h1 { font-size: clamp(2rem, 7vw, 3.2rem); color: var(--white); line-height: 1.1; margin: 0 0 16px; }
 .sim-hero p { font-size: 1.05em; color: var(--light-text); max-width: 680px; margin: 0 auto 10px; line-height: 1.8; }
 .offline-badge { display: inline-block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--success); font-size: 0.75em; font-weight: 700; padding: 5px 14px; border-radius: 20px; margin-top: 10px; letter-spacing: 0.06em; }
-.scenario-bar { display: flex; gap: 10px; flex-wrap: wrap; margin: 32px 0 24px; -webkit-overflow-scrolling: touch; }
-.scenario-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: var(--light-text); padding: 10px 20px; border-radius: 20px; font-family: 'Syne', 'Trebuchet MS', system-ui, sans-serif; font-size: 0.82em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: var(--transition); touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;  min-height: 44px; }
+.scenario-bar { display: flex; gap: 10px; flex-wrap: nowrap; overflow-x: auto; overflow-y: visible; margin: 32px 0 24px; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: rgba(24,139,150,0.4) transparent; }
+.scenario-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: var(--light-text); padding: 10px 20px; border-radius: 20px; font-family: 'Syne', 'Trebuchet MS', system-ui, sans-serif; font-size: 0.82em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: var(--transition); touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;  min-height: 44px;  flex-shrink: 0; white-space: nowrap; scroll-snap-align: start; }
 .scenario-btn:hover { background: rgba(24,139,150,0.35); border-color: rgba(24,139,150,0.6); color: var(--white); }
+.scenario-btn:first-child { /* Default active look before JS */ }
 .scenario-btn.active { background: var(--teal); border-color: var(--teal); color: var(--white); }
 .scenario-btn.sim-locked { opacity: 0.35; cursor: not-allowed; pointer-events: none; } /* class-based lock: no attr/property conflicts */
 .scenario-btn.active.sim-locked { opacity: 0.6; } /* active+locked: slightly more visible */
@@ -1189,7 +1190,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 
     /* ── Panel grid (simulation) ── */
     .panel-grid { grid-template-columns: 1fr 1fr !important; }
-    .scenario-bar { gap: 6px; flex-wrap: nowrap !important; }
+    .scenario-bar { gap: 6px; flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
     .scenario-btn { font-size: 0.7em; padding: 7px 12px; flex-shrink: 0; white-space: nowrap; }
     .scenario-desc h3 { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
     .scenario-icon { flex-shrink: 0; }
@@ -1399,4 +1400,30 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 .trust-badges-row { display: flex; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 0 48px; color: var(--muted); }
 .trust-badges-row .badge-svg { display: inline-block; height: 18px; width: auto; flex-shrink: 0; opacity: 0.5; color: var(--muted); transition: opacity 0.25s ease, color 0.25s ease; overflow: visible; }
 .trust-badges-row .badge-svg:hover { opacity: 1; color: var(--ai-blue); cursor: default; }
+
+/* ── Chamber empty / intro states (required by simulation engine) ── */
+.chamber-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 200px;
+    color: var(--muted);
+    text-align: center;
+    padding: 32px 20px;
+    line-height: 1.6;
+}
+.chamber-intro {
+    background: rgba(24,139,150,0.06);
+    border: 1px solid rgba(24,139,150,0.15);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    color: var(--light-text);
+    font-size: 0.88em;
+    line-height: 1.7;
+}
+.chamber-intro strong { color: var(--teal); }
+
 @media (max-width: 640px) { .trust-badges-row { flex-wrap: wrap; gap: 10px 24px; } .trust-badges-row .badge-svg { height: 14px; } }

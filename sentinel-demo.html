@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v76 -->
+<html lang="en"><!-- Pocono AI v80 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -95,7 +95,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
-<div id="reading-progress" role="progressbar" aria-label="Reading progress"></div>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 <header>
     <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
     <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -175,7 +175,7 @@
                 <div class="suggested-queries" id="suggested-queries"></div>
             </div>
             <div class="query-input-area">
-                <textarea class="query-textarea" id="query-input" placeholder="Ask anything about the document... or click a suggestion above" rows="4" style="min-height:72px;"></textarea>
+                <textarea class="query-textarea" id="query-input" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Ask anything about the document... or click a suggestion above" rows="4" style="min-height:72px;"></textarea>
                 <div class="query-footer">
                     <span class="query-privacy-note">&#128274; <span>Zero network calls.</span> Fully local response library.</span>
                     <button class="cta-button" onclick="runQuery()" id="ask-btn" style="padding:8px 20px;font-size:.88em;touch-action:manipulation;min-height:44px;-webkit-tap-highlight-color:transparent;">Ask &#9654;</button>
