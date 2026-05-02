@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v77 -->
+<html lang="en"><!-- Pocono AI v76 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Live Sentinel Node RAG workflow demonstration. Ask any question about a clinical note, legal memo, or compliance report. Watch cited answers appear in real time. 256 pre-computed responses including allergies, vitals, and clinical workflows.">
+    <meta name="description" content="Live Sentinel Node RAG workflow demonstration. Ask any question about a clinical note, legal memo, or compliance report. Watch cited answers appear in real time.">
     <title>Live Demo — Sentinel Node RAG Workflow | Pocono AI</title>
     <meta property="og:title" content="Watch the Sentinel Node Answer a Question — Live">
-    <meta property="og:description" content="256 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything — watch RAG citation in action.">
+    <meta property="og:description" content="191 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything — watch RAG citation in action.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://poconoai.com/og-image.jpg">
     <meta property="og:url" content="https://poconoai.com/sentinel-demo.html">
@@ -27,7 +27,7 @@
         .demo-disclosure-icon{font-size:1.3em;flex-shrink:0;margin-top:1px}
         .demo-wrapper{max-width:1100px;margin:0 auto;padding:0 4%}
         .demo-mode-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-        .demo-mode-btn{padding:10px 22px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--muted);font-size:.88em;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+        .demo-mode-btn{padding:10px 22px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--muted);font-size:.88em;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:44px;user-select:none}
         .demo-mode-btn.active{background:var(--teal);border-color:var(--teal);color:#fff}
         .demo-mode-btn:hover:not(.active){border-color:var(--teal);color:var(--white)}
         .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
@@ -36,7 +36,7 @@
         .doc-panel-header{background:rgba(0,0,0,.3);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
         .doc-panel-title{font-size:.78em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
         .doc-label{font-size:.7em;padding:3px 8px;border-radius:10px;font-weight:700;background:rgba(24,139,150,.15);color:var(--teal)}
-        .doc-content{padding:18px 20px;font-family:Georgia,serif;font-size:.81em;color:var(--light-text);line-height:1.8;max-height:440px;overflow-y:auto}
+        .doc-content{padding:18px 20px;font-family:Georgia,serif;font-size:.81em;color:var(--light-text);line-height:1.8;max-height:320px;overflow-y:auto;-webkit-overflow-scrolling:touch}
         .doc-content h4{font-family:'Syne',sans-serif;font-size:.88em;color:var(--white);margin:0 0 8px;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:6px}
         .doc-section{margin-bottom:14px}
         .doc-section-label{font-size:.75em;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
@@ -45,7 +45,7 @@
         .query-panel{display:flex;flex-direction:column;gap:14px}
         .suggested-label{font-size:.72em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
         .suggested-queries{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
-        .suggested-query{padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--light-text);font-size:.75em;cursor:pointer;font-family:inherit;transition:all .15s;text-align:left}
+        .suggested-query{padding:8px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--light-text);font-size:.78em;cursor:pointer;font-family:inherit;transition:all .15s;text-align:left;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:36px;display:inline-flex;align-items:center}
         .suggested-query:hover{border-color:var(--teal);color:var(--white);background:rgba(24,139,150,.08)}
         .query-input-area{background:var(--card-dark);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px;transition:border-color .2s}
         .query-input-area:focus-within{border-color:var(--teal)}
@@ -75,7 +75,7 @@
         .demo-stat-val{font-family:'Syne',sans-serif;font-size:1.6em;font-weight:800;color:var(--teal);line-height:1}
         .demo-stat-val.red{color:#FF6B5B}
         .demo-stat-label{font-size:.7em;color:var(--muted);margin-top:4px;line-height:1.4}
-        .demo-reset{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:.78em;padding:6px 14px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s}
+        .demo-reset{background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:.78em;padding:8px 16px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:36px}
         .demo-reset:hover{border-color:var(--muted);color:var(--light-text)}
         .retention-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
         .retention-card{background:var(--card-dark);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px 18px}
@@ -131,7 +131,7 @@
 <section class="hero-section">
     <span class="hero-tagline" style="color:var(--teal);">&#9654; Live Workflow Demonstration</span>
     <h1>Ask It a Question.<br>Watch It Cite the Answer.</h1>
-    <p class="hero-plain">This is the Sentinel Node RAG workflow — demonstrated in your browser with 256 pre-computed responses across physician, attorney, and MSP scenarios — including allergies, vitals, BMI, blood pressure, drug interactions, and more. Ask anything. Watch cited retrieval in action.</p>
+    <p class="hero-plain">This is the Sentinel Node RAG workflow — demonstrated in your browser with 191 pre-computed responses across physician, attorney, and MSP scenarios. Ask anything. Watch cited retrieval in action.</p>
 </section>
 
 <section class="trust-badges-section" aria-label="Built on enterprise infrastructure">
@@ -147,7 +147,7 @@
 <div class="demo-wrapper">
     <div class="demo-disclosure">
         <span class="demo-disclosure-icon">&#128161;</span>
-        <div><strong>How this works:</strong> 256 RAG-style responses were generated by Claude AI from the synthetic demo documents, then pre-loaded into a JavaScript file served with the page — zero API calls, zero network requests, zero data transmitted. The citation behavior is identical to what the Sentinel Node does locally. The hardware makes it private. <a href="deployment.html">Hardware ships next week →</a></div>
+        <div><strong>How this works:</strong> 191 RAG-style responses were generated by Claude AI from the synthetic demo documents, then pre-loaded into a 120KB JavaScript file served with the page — zero API calls, zero network requests, zero data transmitted. The citation behavior is identical to what the Sentinel Node does locally. The hardware makes it private. <a href="deployment.html">Hardware ships next week →</a></div>
     </div>
 </div>
 
@@ -175,10 +175,10 @@
                 <div class="suggested-queries" id="suggested-queries"></div>
             </div>
             <div class="query-input-area">
-                <textarea class="query-textarea" id="query-input" placeholder="Ask anything about the document... or click a suggestion" rows="3"></textarea>
+                <textarea class="query-textarea" id="query-input" placeholder="Ask anything about the document... or click a suggestion above" rows="4" style="min-height:72px;"></textarea>
                 <div class="query-footer">
-                    <span class="query-privacy-note">&#128274; <span>Zero network calls.</span> Fully local. <span style="opacity:.6;">Ctrl+Enter to ask</span></span>
-                    <button class="cta-button" onclick="runQuery()" id="ask-btn" style="padding:8px 20px;font-size:.88em;">Ask &#9654;</button>
+                    <span class="query-privacy-note">&#128274; <span>Zero network calls.</span> Fully local response library.</span>
+                    <button class="cta-button" onclick="runQuery()" id="ask-btn" style="padding:8px 20px;font-size:.88em;touch-action:manipulation;min-height:44px;-webkit-tap-highlight-color:transparent;">Ask &#9654;</button>
                 </div>
             </div>
             <div class="response-area">
@@ -222,7 +222,7 @@
         <div class="demo-stat"><div class="demo-stat-val" id="stat-time">—</div><div class="demo-stat-label">Simulated retrieval<br>time (ms)</div></div>
         <div class="demo-stat"><div class="demo-stat-val">0</div><div class="demo-stat-label">API calls made<br>by this page</div></div>
         <div class="demo-stat"><div class="demo-stat-val">0</div><div class="demo-stat-label">PHI in demo<br>documents</div></div>
-        <div class="demo-stat"><div class="demo-stat-val" id="stat-responses">—</div><div class="demo-stat-label">Pre-computed<br>responses loaded</div></div>
+        <div class="demo-stat"><div class="demo-stat-val" id="stat-responses">191</div><div class="demo-stat-label">Pre-computed<br>responses loaded</div></div>
         <div class="demo-stat"><div class="demo-stat-val" id="stat-citations">—</div><div class="demo-stat-label">Source citations<br>in this response</div></div>
     </div>
 </div>
@@ -334,7 +334,7 @@
 const DOCS = {
     physician: {
         title: 'Patient Clinical Note — Synthetic Demo',
-        suggestions: ['What medications is this patient currently taking?','Does this patient have any drug allergies?','What is the patient\'s blood pressure reading?','What lab values are outside normal range?','What is the patient\'s BMI?','Draft a prior auth justification for Empagliflozin','What is the patient\'s kidney function?','Generate a clinical summary'],
+        suggestions: ['What medications is this patient currently taking?','What lab values are outside normal range?','Summarize the prior authorization history for Metformin','What follow-up is required and by when?','Draft a prior auth justification for Empagliflozin','What is the patient\'s kidney function?','Is this patient diabetic?','What symptoms is the patient experiencing?'],
         content: `<h4>PATIENT CLINICAL NOTE — SYNTHETIC DEMO RECORD</h4>
 <p style="font-size:.78em;color:var(--muted);margin-bottom:14px;">Entirely fictional synthetic data. No real patient is represented.</p>
 <div class="doc-section"><div class="doc-section-label">Patient Information</div>
@@ -343,10 +343,6 @@ const DOCS = {
 <p><span class="doc-chunk" data-chunk="complaint">Patient presents for 3-month follow-up of Type 2 Diabetes Mellitus (E11.9), established 2019. Reports fatigue and increased thirst over past 6 weeks. Denies chest pain, shortness of breath. No hypoglycemic episodes since last visit.</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Current Medications</div>
 <p><span class="doc-chunk" data-chunk="medications">1. Metformin HCl 1000mg PO BID — T2DM. PA renewed 01/12/2026.<br>2. Lisinopril 10mg PO daily — Hypertension (I10), est. 2021.<br>3. Atorvastatin 40mg PO nightly — Hyperlipidemia (E78.5).<br>4. Aspirin 81mg PO daily — cardiovascular prophylaxis.<br>5. Vitamin D3 2000 IU PO daily — deficiency (E55.9).</span></p></div>
-<div class="doc-section"><div class="doc-section-label">Allergies &amp; Adverse Reactions</div>
-<p><span class="doc-chunk" data-chunk="allergies">Sulfonamides — SEVERE (anaphylaxis, documented 2017). Penicillin — MODERATE (rash, urticaria). Codeine — MILD (nausea, vomiting). Latex — MILD (contact dermatitis). NKDA for contrast agents, NSAIDs noted as tolerated. Last reviewed: 04/28/2026.</span></p></div>
-<div class="doc-section"><div class="doc-section-label">Vital Signs — 04/28/2026</div>
-<p><span class="doc-chunk" data-chunk="vitals">BP: 138/84 mmHg (elevated) &nbsp;|&nbsp; HR: 76 bpm &nbsp;|&nbsp; RR: 16/min &nbsp;|&nbsp; Temp: 98.4°F<br>SpO2: 98% RA &nbsp;|&nbsp; Weight: 192 lbs &nbsp;|&nbsp; Height: 5'4" &nbsp;|&nbsp; BMI: 33.0 (Obese Class I)<br>Pain: 2/10 (mild lower back)</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Laboratory Results — 04/28/2026</div>
 <p><span class="doc-chunk" data-chunk="labs">HbA1c: 8.1% (H — target &lt;7.0%) &nbsp;|&nbsp; Fasting Glucose: 182 mg/dL (H)<br>eGFR: 61 mL/min/1.73m² (borderline G3a) &nbsp;|&nbsp; Creatinine: 1.2 (H)<br>Na: 138 &nbsp;|&nbsp; K: 4.1 &nbsp;|&nbsp; LDL: 94 mg/dL &nbsp;|&nbsp; HDL: 48 mg/dL<br>Triglycerides: 187 mg/dL (H) &nbsp;|&nbsp; Urine ACR: 42 mg/g (moderately elevated)</span></p></div>
 <div class="doc-section"><div class="doc-section-label">Assessment &amp; Plan</div>
@@ -409,7 +405,6 @@ function setMode(mode) {
 
 function useSuggestion(btn) {
     document.getElementById('query-input').value = btn.textContent;
-    runQuery();
 }
 
 function resetDemo() {
@@ -531,15 +526,7 @@ function highlightChunk(sectionOrKey, silent = false) {
         const target = sectionOrKey.toLowerCase().replace(/[^a-z]/g,' ').split(/\s+/)[0];
         if (key && (key === target || target.includes(key) || key.includes(target))) {
             chunk.classList.add('highlighted');
-            if (!silent) {
-            const panel = document.getElementById('doc-content');
-            if (panel) {
-                const panelRect = panel.getBoundingClientRect();
-                const chunkRect = chunk.getBoundingClientRect();
-                const offset = chunkRect.top - panelRect.top + panel.scrollTop - (panel.clientHeight / 2) + (chunkRect.height / 2);
-                panel.scrollTo({ top: offset, behavior: 'smooth' });
-            }
-        }
+            if (!silent) chunk.scrollIntoView({ behavior: 'smooth', block: 'center' });
             found = true;
         }
     });
@@ -548,11 +535,6 @@ function highlightChunk(sectionOrKey, silent = false) {
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // Set dynamic response count
-    if (typeof DEMO_RESPONSES !== 'undefined') {
-        const total = Object.values(DEMO_RESPONSES).reduce((sum, bank) => sum + Object.keys(bank).length, 0);
-        document.getElementById('stat-responses').textContent = total;
-    }
     setMode('physician');
     document.getElementById('query-input').addEventListener('keydown', e => {
         if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) runQuery();
