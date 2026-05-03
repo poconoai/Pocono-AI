@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v85 -->
+<html lang="en"><!-- Pocono AI v88 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -23,7 +23,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=88">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/simulation.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
@@ -73,6 +73,9 @@
 }
     </script>
     <style id="v66-tco-calc-styles">
+  /* === Mobile overflow guard — prevents horizontal scroll on 375px viewport === */
+  html, body { overflow-x: hidden; max-width: 100%; }
+  .sim-shell, .sim-main, #scenario-bar, .chamber-section, .vote-section { max-width: 100%; box-sizing: border-box; }
   /* === v66 — Universal TCO Calculator === */
   .tco-calc-section { margin: 32px 0 48px; }
   .tco-calc-shell {
@@ -269,7 +272,7 @@
 <div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
 <header>
-        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -604,8 +607,8 @@
           setText(out.savings, fmt(savings));
           setText(out.payback, paybackText);
         } catch (e) {
-          if (window.console && console.warn) {
-            console.warn('[v66 TCO ' + prefix + '] update failed:', e);
+          if (window.console && (window.__debug ? console.warn : function(){})) {
+            (window.__debug ? console.warn : function(){})('[v66 TCO ' + prefix + '] update failed:', e);
           }
         }
       }
@@ -620,8 +623,8 @@
       }
       update();
     } catch (e) {
-      if (window.console && console.warn) {
-        console.warn('[v66 TCO] init failed for prefix "' + prefix + '":', e);
+      if (window.console && (window.__debug ? console.warn : function(){})) {
+        (window.__debug ? console.warn : function(){})('[v66 TCO] init failed for prefix "' + prefix + '":', e);
       }
     }
   }
@@ -634,8 +637,8 @@
         if (prefix) initROICalculator(prefix);
       }
     } catch (e) {
-      if (window.console && console.warn) {
-        console.warn('[v66 TCO] autoInit failed:', e);
+      if (window.console && (window.__debug ? console.warn : function(){})) {
+        (window.__debug ? console.warn : function(){})('[v66 TCO] autoInit failed:', e);
       }
     }
   }
@@ -1102,7 +1105,7 @@ const REACTIONS = {
       /* drop self from queue when fired */
       var i = STATE.timers.indexOf(h);
       if (i >= 0) STATE.timers.splice(i, 1);
-      try { fn(); } catch (err) { console.error('[sim] timer error:', err); }
+      try { fn(); } catch (err) { (window.__debug ? console.error : function(){})('[sim] timer error:', err); }
     }, delay);
     STATE.timers.push(h);
     return h;
@@ -1598,6 +1601,6 @@ const REACTIONS = {
 }());
 </script>
 
-<script src="nav.js"></script>
+<script src="nav.js?v=88"></script>
 </body>
 </html>

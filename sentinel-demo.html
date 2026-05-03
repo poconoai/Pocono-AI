@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v85 -->
+<html lang="en"><!-- Pocono AI v88 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=88">
     <link rel="canonical" href="https://poconoai.com/sentinel-demo.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     <style>
@@ -101,13 +101,13 @@
         .match-fuzzy{background:rgba(255,255,255,.08);color:var(--muted)}
     </style>
     <!-- demo-responses.js MUST be in <head> so DEMO_RESPONSES is defined before any body script executes -->
-    <script src="demo-responses.js"></script>
+    <script src="demo-responses.js?v=88"></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 <header>
-        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -214,7 +214,7 @@
                         <button class="demo-reset" onclick="resetDemo()" id="reset-btn" style="display:none;">&#8635; Reset</button>
                     </div>
                 </div>
-                <div class="response-body" id="response-body">
+                <div class="response-body" id="response-body" aria-live="polite" aria-atomic="true" role="region" aria-label="Sentinel Node response">
                     <span class="response-placeholder">Click a suggestion or type a question, then press Ask.</span>
                 </div>
             </div>
@@ -352,7 +352,7 @@
     </footer>
 
 <!-- nav loaded after content -->
-<script src="nav.js"></script>
+<script src="nav.js?v=88"></script>
 <script>
 // ── Document content ─────────────────────────────────────────────────────────
 const DOCS = {

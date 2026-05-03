@@ -53,7 +53,7 @@ header { background-color: var(--bg-black); display: flex; justify-content: spac
 .logo span { color: var(--ai-blue); margin-left: 3px; }
 
 /* ── HAMBURGER ── */
-.menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
+.menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 10px; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: all 0.3s ease; }
 
 /* ── MOBILE NAV v43 (bulletproof) ── */

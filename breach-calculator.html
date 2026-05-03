@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v85 -->
+<html lang="en"><!-- Pocono AI v88 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=88">
     <link rel="canonical" href="https://poconoai.com/breach-calculator.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
@@ -337,7 +337,7 @@
 <div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
 <header>
-        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -497,7 +497,7 @@
 
         <!-- RESULTS -->
         <div class="calc-results">
-            <div class="results-panel">
+            <div class="results-panel" aria-live="polite" aria-atomic="true" role="region" aria-label="Breach cost calculation results">
                 <h2 style="color:var(--white);margin:0 0 16px;font-size:1.1em;">Your Breach Exposure</h2>
 
                 <!-- Total -->
@@ -707,7 +707,7 @@
         </div>
     </footer>
 
-<script src="nav.js"></script>
+<script src="nav.js?v=88"></script>
 <script>
     function formatM(v) {
         const n = parseInt(v);

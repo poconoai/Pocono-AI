@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v85 -->
+<html lang="en"><!-- Pocono AI v88 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -28,7 +28,7 @@
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=88">
 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -352,7 +352,7 @@
 <div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
 <header>
-    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
     <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
     </button>
@@ -407,7 +407,18 @@
         <span class="tr-eyebrow">&#10003; Trust Receipts</span>
         <h1>Most security companies <em>handwave</em>.<br>We publish the receipt.</h1>
         <p class="lede">Every claim on this site has a mechanism, a code reference, and a citation. Below: the engineering and the regulations behind each promise we make. If we can't show our work, we don't make the claim.</p>
-        <p class="disclosure">Last updated: <time datetime="2026-05-02">May 2, 2026</time> &nbsp;·&nbsp; Sentinel Node™ audit wrapper version 2.1 &nbsp;·&nbsp; <a href="https://github.com/pocono-ai" style="color:var(--teal);">github.com/pocono-ai</a></p>
+        <p class="disclosure">Last updated: <time id="trust-receipt-date" datetime="">Loading…</time> &nbsp;·&nbsp; Sentinel Node™ audit wrapper version 2.1 &nbsp;·&nbsp; <a href="https://github.com/pocono-ai" style="color:var(--teal);">github.com/pocono-ai</a></p>
+        <script>
+        (function(){
+          var el = document.getElementById('trust-receipt-date');
+          if (!el) return;
+          var now = new Date();
+          var iso = now.toISOString().split('T')[0];
+          var display = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+          el.setAttribute('datetime', iso);
+          el.textContent = display;
+        })();
+        </script>
     </section>
 
     <!-- ════════════════════════════════════════
@@ -777,6 +788,6 @@
     </div>
 </footer>
 
-<script src="nav.js"></script>
+<script src="nav.js?v=88"></script>
 </body>
 </html>

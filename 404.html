@@ -19,14 +19,14 @@
     <link rel="canonical" href="https://poconoai.com/404.html">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=88">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
 <header>
-        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async">Pocono <span>AI</span></a>
+        <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
         <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -86,7 +86,15 @@
         <div style="background:var(--card-dark);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px 28px;max-width:500px;width:100%;text-align:left;">
             <p style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 10px;">Looking for something specific?</p>
             <p style="color:var(--light-text);font-size:0.88em;margin:0 0 12px;line-height:1.7;">Email Marcus directly and he'll get you to the right place.</p>
-            <a href="mailto:marcus@poconoai.com?subject=Broken%20Link%20on%20PoconoAI.com" style="color:var(--teal);font-weight:700;font-size:0.88em;text-decoration:none;">marcus@poconoai.com &rarr;</a>
+            <a id="report-broken-link" href="mailto:marcus@poconoai.com?subject=Broken%20Link%20on%20PoconoAI.com" style="color:var(--teal);font-weight:700;font-size:0.88em;text-decoration:none;">marcus@poconoai.com &rarr;</a>
+            <script>
+            (function(){
+              var a = document.getElementById('report-broken-link');
+              if (!a) return;
+              var body = 'Broken link report\n\nBroken URL: ' + window.location.href + '\nReferrer: ' + (document.referrer || '(direct / unknown)') + '\nTime: ' + new Date().toISOString();
+              a.href = 'mailto:marcus@poconoai.com?subject=Broken%20Link%20Report%20%E2%80%94%20PoconoAI.com&body=' + encodeURIComponent(body);
+            })();
+            </script>
         </div>
     </section>
 
@@ -160,6 +168,6 @@
         </div>
     </footer>
 
-    <script src="nav.js"></script>
+    <script src="nav.js?v=88"></script>
 </body>
 </html>
