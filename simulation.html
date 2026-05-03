@@ -74,8 +74,8 @@
     </script>
     <style id="v66-tco-calc-styles">
   /* === Mobile overflow guard — prevents horizontal scroll without breaking sticky header === */
-  /* overflow on body/html breaks position:sticky — use wrapper approach instead */
-  html { overflow-x: clip; } /* 'clip' is safe for sticky unlike 'hidden' */
+  /* overflow-x:hidden on body/html breaks position:sticky — clip is safe, hidden is not */
+  html, body { overflow-x: clip; } /* 'clip' clips without creating a scroll container — sticky works */
   .sim-shell, .sim-main, #scenario-bar, .chamber-section, .vote-section { max-width: 100%; box-sizing: border-box; overflow-x: hidden; }
   /* === v66 — Universal TCO Calculator === */
   .tco-calc-section { margin: 32px 0 48px; }
