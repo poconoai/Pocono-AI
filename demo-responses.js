@@ -1460,8 +1460,7 @@ const DEMO_RESPONSES = {
     "What is the practice's biggest single risk right now?": {
       "answer": "The single highest-risk finding is the unauthorized PHI transmission via personal ChatGPT accounts — rated CRITICAL [Section: AI Tool Risk Assessment, HIPAA Gap Analysis]. Three staff members are currently transmitting clinical documentation to OpenAI's consumer infrastructure without a Business Associate Agreement [Section: AI Tool Risk Assessment]. This is an active ongoing exposure, not a theoretical future risk [Section: AI Tool Risk Assessment]. Under 45 CFR §164.502, this is an unauthorized disclosure of PHI [Section: HIPAA Gap Analysis]. OCR penalty exposure per incident: $10,000 to $50,000 [Section: HIPAA Gap Analysis]. This requires action today — not in 30 or 60 days [Section: Recommended Next Steps].",
       "chunks": ["airisk","hipaa","nextsteps"]
-    }
-      },
+    },
     "Is there a VPN in place?": {
       "answer": "The assessment documents a Cisco Meraki MX68 as the primary firewall [Section: Current Hardware Inventory]. The Meraki MX68 includes built-in VPN capability (site-to-site and client VPN via AnyConnect or Meraki Client VPN) [Section: Current Hardware Inventory]. However, whether VPN is currently configured and actively used for remote access is not documented in this assessment — it is listed as an open item for follow-up [Section: Current Hardware Inventory]. Given the unmanaged TP-Link switches and lack of VLAN segmentation, remote access security should be validated during the 30-day network remediation phase [Section: Recommended Next Steps].",
       "chunks": ["hardware","nextsteps"]
