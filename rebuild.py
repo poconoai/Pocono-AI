@@ -23,11 +23,11 @@ from datetime import datetime
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 HEADER_FILE = os.path.join(SCRIPT_DIR, 'components', 'header.html')
 FOOTER_FILE = os.path.join(SCRIPT_DIR, 'components', 'footer.html')
-NAV_JS      = 'nav.js?v=92'
+NAV_JS      = 'nav.js?v=94'
 
 # ── Version token in HTML comments ─────────────────────────────────
 VERSION_PATTERN = re.compile(r'<!-- Pocono AI v(\d+\w*) -->')
-CURRENT_VERSION = '92'
+CURRENT_VERSION = '94'
 
 def read_component(path):
     with open(path, encoding='utf-8') as f:
