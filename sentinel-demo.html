@@ -41,8 +41,11 @@
         .doc-content h4{font-family:'Syne',sans-serif;font-size:.88em;color:var(--white);margin:0 0 8px;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:6px}
         .doc-section{margin-bottom:14px}
         .doc-section-label{font-size:.75em;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-        .doc-chunk{transition:background .35s ease;border-radius:3px;padding:1px 2px;margin:-1px -2px}
-        .doc-chunk.highlighted{background:rgba(24,139,150,.28);color:var(--white)}
+        .doc-chunk{transition:background .35s ease,outline .35s ease;border-radius:3px;padding:1px 2px;margin:-1px -2px}
+        .doc-chunk.highlighted{background:rgba(79,209,197,.22);outline:2px solid rgba(79,209,197,.6);color:var(--white)}
+        @keyframes chunkFlash{0%{background:rgba(79,209,197,.55)}50%{background:rgba(79,209,197,.12)}100%{background:rgba(79,209,197,.22)}}
+        .doc-chunk.chunk-flash{animation:chunkFlash .6s ease 2}
+        #doc-content{overflow-y:auto;max-height:420px;scroll-behavior:smooth}
         .query-panel{display:flex;flex-direction:column;gap:14px}
         .suggested-label{font-size:.72em;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
         .suggested-queries{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
@@ -63,7 +66,11 @@
         .thinking-ring{display:inline-block;width:16px;height:16px;border:2px solid rgba(24,139,150,.3);border-top-color:var(--teal);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
         @keyframes spin{to{transform:rotate(360deg)}}
         .citation-chip{display:inline-flex;align-items:center;gap:4px;background:rgba(24,139,150,.12);border:1px solid rgba(24,139,150,.25);color:var(--teal);font-size:.72em;font-weight:700;padding:2px 8px;border-radius:10px;cursor:pointer;transition:all .15s;vertical-align:middle}
-        .citation-chip:hover{background:rgba(24,139,150,.25)}
+        .citation-chip:hover{background:rgba(24,139,150,.25);transform:translateY(-1px)}
+        .citation-linked{border-color:rgba(79,209,197,.5)}
+        .citation-linked:hover{background:rgba(79,209,197,.2);border-color:var(--teal)}
+        .citation-linked::after{content:'↗';font-size:.7em;opacity:.6}
+        .citation-unlinked{opacity:.65;cursor:default}
         .compare-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
         @media(max-width:500px){.compare-strip{grid-template-columns:1fr}}
         .compare-cloud{background:rgba(192,57,43,.07);border:1px solid rgba(192,57,43,.2);border-radius:8px;padding:12px 14px;font-size:.74em;font-family:'Courier New',monospace;color:var(--light-text);line-height:1.7}
@@ -412,6 +419,57 @@ const DOCS = {
 // ── State ─────────────────────────────────────────────────────────────────────
 let currentMode = 'physician';
 
+// ── Section label → chunk key map ────────────────────────────────────────────
+// Bridges the gap between [Section: X] strings in answers and data-chunk="y" in DOM
+const SECTION_MAP = {
+  // Physician
+  'patient information':                      'demographics',
+  'chief complaint & hpi':                    'complaint',
+  'chief complaint and hpi':                  'complaint',
+  'current medications':                      'medications',
+  'laboratory results':                       'labs',
+  'laboratory results — 04/28/2026':          'labs',
+  'assessment & plan':                        'plan',
+  'assessment and plan':                      'plan',
+  'prior authorization history':              'priorauth',
+  // Attorney
+  'matter information':                       'matter',
+  'client intake & background':               'intake',
+  'client intake and background':             'intake',
+  'witnesses':                                'witnesses',
+  'physical evidence & scene documentation':  'evidence',
+  'physical evidence and scene documentation':'evidence',
+  'facts & liability theory':                 'facts',
+  'facts and liability theory':               'facts',
+  'damages':                                  'damages',
+  'statute of limitations':                   'sol',
+  'discovery status':                         'discovery',
+  'defense arguments & counter-strategy':     'defense',
+  'defense arguments and counter-strategy':   'defense',
+  // MSP
+  'practice information':                     'practice',
+  'current hardware inventory':               'hardware',
+  'ai tool risk assessment':                  'airisk',
+  'hipaa gap analysis':                       'hipaa',
+  'recommended next steps':                   'nextsteps',
+};
+
+function resolveChunkKey(sectionOrKey) {
+  const norm = sectionOrKey.toLowerCase().trim();
+  // Direct map hit
+  if (SECTION_MAP[norm]) return SECTION_MAP[norm];
+  // Already a raw chunk key
+  if (document.querySelector(`[data-chunk="${norm}"]`)) return norm;
+  // Partial match on map keys
+  for (const [label, key] of Object.entries(SECTION_MAP)) {
+    if (norm.includes(label) || label.includes(norm)) return key;
+  }
+  // Fallback: first word match against chunk keys
+  const firstWord = norm.replace(/[^a-z]/g,' ').trim().split(/\s+/)[0];
+  const el = document.querySelector(`[data-chunk*="${firstWord}"]`);
+  return el ? el.dataset.chunk : null;
+}
+
 // ── Mode setup ────────────────────────────────────────────────────────────────
 function setMode(mode) {
     currentMode = mode;
@@ -512,10 +570,15 @@ function runQuery() {
             body.innerHTML = `<span style="color:var(--muted);font-style:italic;">No matching response found in the demo library for this exact query. Try a suggested question, or <a href="mailto:marcus@poconoai.com?subject=Demo%20Question" style="color:var(--teal);">ask Marcus directly →</a></span>`;
             badgeEl.style.display = 'none';
         } else {
-            // Format answer with citation chips
+            // Format answer with citation chips that resolve to real doc chunks
             const formatted = result.answer.replace(
                 /\[Section:\s*([^\]]+)\]/g,
-                (match, section) => `<span class="citation-chip" onclick="highlightChunk('${section.trim()}')" title="Click to highlight in document">&#128203; ${section.trim()}</span>`
+                (match, section) => {
+                    const key = resolveChunkKey(section.trim());
+                    const resolvable = key ? 'citation-chip citation-linked' : 'citation-chip citation-unlinked';
+                    const tooltip = key ? `Click to highlight "${section.trim()}" in document` : `Section: ${section.trim()}`;
+                    return `<span class="${resolvable}" onclick="highlightChunk('${section.trim()}')" title="${tooltip}">&#128203; ${section.trim()}</span>`;
+                }
             );
             body.innerHTML = `<div style="line-height:1.8;">${formatted}</div>`;
 
@@ -545,19 +608,31 @@ function runQuery() {
 }
 
 function highlightChunk(sectionOrKey, silent = false) {
-    document.querySelectorAll('.doc-chunk.highlighted').forEach(el => el.classList.remove('highlighted'));
-    const chunks = document.querySelectorAll('.doc-chunk');
-    let found = false;
-    chunks.forEach(chunk => {
-        const key = (chunk.dataset.chunk || '').toLowerCase();
-        const target = sectionOrKey.toLowerCase().replace(/[^a-z]/g,' ').split(/\s+/)[0];
-        if (key && (key === target || target.includes(key) || key.includes(target))) {
-            chunk.classList.add('highlighted');
-            if (!silent) chunk.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            found = true;
-        }
+    // Clear previous highlights
+    document.querySelectorAll('.doc-chunk.highlighted').forEach(el => {
+        el.classList.remove('highlighted', 'chunk-flash');
     });
-    return found;
+
+    const key = resolveChunkKey(sectionOrKey);
+    if (!key) return false;
+
+    const target = document.querySelector(`[data-chunk="${key}"]`);
+    if (!target) return false;
+
+    target.classList.add('highlighted');
+
+    if (!silent) {
+        // Scroll the doc panel so the chunk is visible
+        const docPanel = document.getElementById('doc-content');
+        if (docPanel) {
+            const chunkTop = target.offsetTop - docPanel.offsetTop;
+            docPanel.scrollTo({ top: chunkTop - 40, behavior: 'smooth' });
+        }
+        // Flash animation to draw the eye
+        target.classList.add('chunk-flash');
+        setTimeout(() => target.classList.remove('chunk-flash'), 1200);
+    }
+    return true;
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
