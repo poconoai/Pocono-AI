@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', 'Trebuchet MS', syste
 
 /* ── BASE ── */
 *, *::before, *::after { box-sizing: border-box; }
-body { font-family: 'DM Mono', monospace; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+body { font-family: 'DM Mono', monospace; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; overflow-x: clip; /* 'clip' prevents horiz scroll without breaking position:sticky — 'hidden' creates a scroll container and kills sticky */ }
 h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', sans-serif; }
 img { max-width: 100%; height: auto; }
 
