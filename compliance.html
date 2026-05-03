@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v88 -->
+<html lang="en"><!-- Pocono AI v89 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
-    <link rel="stylesheet" href="styles.css?v=88">
+    <link rel="stylesheet" href="styles.css?v=89">
     <link rel="canonical" href="https://poconoai.com/compliance.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
@@ -221,7 +221,7 @@
 
 <header>
         <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
         <nav id="nav-menu" aria-label="Main navigation">
@@ -232,7 +232,7 @@
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="trust.html">Trust &amp; Security</a></li>
                 <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                    <button type="button" class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
                     <div class="nav-dropdown-menu" id="more-menu" role="menu">
                         <span class="nav-group-label">Tools</span>
                         <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
@@ -289,7 +289,7 @@
 
             <div class="att-group">
                 <label class="att-label" for="prac-name">Practice / Firm Name</label>
-                <input class="att-input" id="prac-name" type="text" placeholder="e.g. Pocono Family Medicine" oninput="generate()">
+                <input class="att-input" id="prac-name" type="text" autocomplete="organization" placeholder="e.g. Pocono Family Medicine" oninput="generate()">
             </div>
 
             <div class="att-group">
@@ -304,12 +304,12 @@
 
             <div class="att-group">
                 <label class="att-label" for="signatory">Authorized Signatory Name &amp; Title</label>
-                <input class="att-input" id="signatory" type="text" placeholder="e.g. Dr. Jane Smith, MD — Practice Owner" oninput="generate()">
+                <input class="att-input" id="signatory" type="text" autocomplete="name" placeholder="e.g. Dr. Jane Smith, MD — Practice Owner" oninput="generate()">
             </div>
 
             <div class="att-group">
                 <label class="att-label" for="prac-address">Practice Address</label>
-                <input class="att-input" id="prac-address" type="text" placeholder="e.g. 123 Main St, East Stroudsburg, PA 18301" oninput="generate()">
+                <input class="att-input" id="prac-address" type="text" autocomplete="street-address" placeholder="e.g. 123 Main St, East Stroudsburg, PA 18301" oninput="generate()">
             </div>
 
             <h2 style="color:var(--white);margin:24px 0 16px;font-size:1.05em;">AI System Configuration</h2>
@@ -348,7 +348,7 @@
 
             <div class="att-group">
                 <label class="att-label" for="intended-recipient">This Letter Is Addressed To</label>
-                <input class="att-input" id="intended-recipient" type="text" placeholder="e.g. HHS Office for Civil Rights, Insurance Carrier, Opposing Counsel" oninput="generate()">
+                <input class="att-input" id="intended-recipient" type="text" autocomplete="off" placeholder="e.g. HHS Office for Civil Rights, Insurance Carrier, Opposing Counsel" oninput="generate()">
             </div>
 
             <div class="att-group">
@@ -507,15 +507,16 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <p>&copy; <span id="footer-year">2026</span> Pocono AI, LLC &nbsp;&middot;&nbsp;
                 <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
                 <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
             </p>
             <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
         </div>
-    </footer>
+    <script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
+</footer>
 
-<script src="nav.js?v=88"></script>
+<script src="nav.js?v=89"></script>
 <script>
 function v(id) { return document.getElementById(id).value.trim(); }
 function set(id, html) { document.getElementById(id).innerHTML = html; }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v88 -->
+<html lang="en"><!-- Pocono AI v89 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -26,7 +26,7 @@
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
 
-    <link rel="stylesheet" href="styles.css?v=88">
+    <link rel="stylesheet" href="styles.css?v=89">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="canonical" href="https://poconoai.com/careers.html">
@@ -367,7 +367,7 @@
 
 <header>
     <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
-    <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
     </button>
     <nav id="nav-menu" aria-label="Main navigation">
@@ -378,7 +378,7 @@
             <li><a href="pricing.html">Pricing</a></li>
             <li><a href="trust.html">Trust &amp; Security</a></li>
             <li class="nav-dropdown">
-                <button class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <button type="button" class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
                 <div class="nav-dropdown-menu" id="more-menu" role="menu">
                     <span class="nav-group-label">Tools</span>
                     <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
@@ -817,15 +817,16 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2026 Pocono AI, LLC &nbsp;&middot;&nbsp;
+        <p>&copy; <span id="footer-year">2026</span> Pocono AI, LLC &nbsp;&middot;&nbsp;
             <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
             <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
         </p>
         <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
     </div>
+<script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
 </footer>
 
-<script src="nav.js?v=88"></script>
+<script src="nav.js?v=89"></script>
 <script>
     // ── FILTER LOGIC ──
     const filterBtns = document.querySelectorAll('.filter-btn');
