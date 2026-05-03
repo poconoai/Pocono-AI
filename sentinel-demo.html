@@ -93,6 +93,8 @@
         .match-close{background:rgba(245,158,11,.12);color:#FFC850}
         .match-fuzzy{background:rgba(255,255,255,.08);color:var(--muted)}
     </style>
+    <!-- demo-responses.js MUST be in <head> so DEMO_RESPONSES is defined before any body script executes -->
+    <script src="demo-responses.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -342,8 +344,7 @@
         </div>
     </footer>
 
-<!-- Response library loaded separately — no API key, no network calls -->
-<script src="demo-responses.js"></script>
+<!-- nav loaded after content -->
 <script src="nav.js"></script>
 <script>
 // ── Document content ─────────────────────────────────────────────────────────
@@ -485,14 +486,6 @@ function runQuery() {
     const body = document.getElementById('response-body');
     const timerEl = document.getElementById('response-timer');
     const badgeEl = document.getElementById('match-badge');
-
-    // Guard: if DEMO_RESPONSES hasn't loaded, show clear error and re-enable
-    if (typeof DEMO_RESPONSES === 'undefined') {
-        body.innerHTML = '<span style="color:#FF6B5B;">Response library not loaded. Please refresh the page.</span>';
-        btn.disabled = false;
-        btn.textContent = 'Ask ▶';
-        return;
-    }
 
     body.innerHTML = '<span class="thinking-ring"></span> Retrieving relevant sections...';
 
