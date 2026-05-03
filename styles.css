@@ -46,7 +46,9 @@ img { max-width: 100%; height: auto; }
 /* ── READING PROGRESS BAR ── */
 #reading-progress { position: fixed; top: 70px; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); z-index: 999; transition: width 0.1s linear; }
 
-/* ── HEADER v90 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
+/* ── HEADER v91 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
+/* ── FOUC guard: placeholder reserves header height before component loads ── */
+#site-header-placeholder:empty { height: 70px; background: var(--bg-black); position: sticky; top: 0; z-index: 1000; }
 header {
     background-color: var(--bg-black);
     display: flex;
