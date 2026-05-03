@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v93 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Market Validation — Pocono AI. Real traction data, published research, and LinkedIn content documenting organic growth in sovereign AI infrastructure for healthcare and law.">
+    <title>Market Validation | Pocono AI</title>
+    <meta property="og:title" content="Market Validation | Pocono AI">
+    <meta property="og:description" content="Organic market signal, published articles, and traction data for Pocono AI — sovereign on-premises AI for independent medical and legal practices.">
+    <meta property="og:url" content="https://poconoai.com/market-research.html">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="canonical" href="https://poconoai.com/market-research.html">
+    <link rel="stylesheet" href="styles.css?v=93">
+    <style>
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        @media (max-width: 700px) {
+            .split-grid { grid-template-columns: 1fr; }
+        }
+        .content-card {
+            background: var(--card-dark);
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.07);
+            display: flex;
+            flex-direction: column;
+        }
+        .content-card.red-top { border-top: 3px solid #EF4444; }
+        .content-card.blue-top { border-top: 3px solid #0A73D2; }
+        .content-card.teal-top { border-top: 3px solid var(--teal); }
+        .content-card.purple-top { border-top: 3px solid #A78BFA; }
+        .card-label {
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .card-title {
+            color: var(--white);
+            font-size: 1.05em;
+            line-height: 1.45;
+            margin: 0 0 12px;
+        }
+        .card-body {
+            color: var(--light-text);
+            font-size: 0.87em;
+            line-height: 1.8;
+            margin: 0 0 20px;
+            flex: 1;
+        }
+        .li-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8em;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            align-self: flex-start;
+        }
+        .li-btn-red { background: rgba(239,68,68,0.15); border: 1.5px solid #EF4444; color: #FF6B5B; }
+        .li-btn-blue { background: rgba(10,115,210,0.15); border: 1.5px solid #0A73D2; color: #60AEFF; }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            max-width: 960px;
+            margin: 0 auto 32px;
+        }
+        .stat-card {
+            background: var(--card-dark);
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.07);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-bar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .stat-num {
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-size: 2.4em;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 6px 0 4px;
+        }
+        .stat-sub {
+            color: var(--muted);
+            font-size: 0.75em;
+            line-height: 1.5;
+        }
+        .section-eyebrow {
+            color: var(--muted);
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-weight: 700;
+        }
+        .section-heading {
+            color: var(--white);
+            margin: 8px 0 6px;
+            border-bottom: none;
+            font-size: 1.35em;
+        }
+        .section-sub {
+            color: var(--light-text);
+            font-size: 0.88em;
+            max-width: 600px;
+            margin: 0 auto 28px;
+            line-height: 1.75;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <span class="nav-group-label">Tools</span>
+                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <span class="nav-group-label">Technology</span>
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="comparison.html">Comparison</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <span class="nav-group-label">Research</span>
+                    <a href="research.html">Research Hub</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+                    <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                    <a href="patient-advocacy.html">Patient Safety</a>
+                    <span class="nav-group-label">Company</span>
+                    <a href="about.html">About the Founder</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="how-we-hire.html" style="color:var(--teal);font-weight:700;">&#9670; Neurodiversity-First Hiring</a>
+                    <a href="partners.html">Partners</a>
+                    <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <span class="hero-tagline" style="color:var(--teal);">&#128200; Market Validation</span>
+        <h1>The Market Is Responding.<br>Here Is the Evidence.</h1>
+        <p class="hero-plain">Organic traction, published research, and real analytics documenting early demand for sovereign on-premises AI in healthcare and law. No ad spend. No boosting. No spin.</p>
+        <div class="hero-ctas">
+            <a href="investors.html" class="cta-button">Investor Relations</a>
+            <a href="shadow-audit.html" class="cta-button cta-button-light">&#128270; Shadow IT Audit</a>
+        </div>
+    </section>
+
+    <main style="max-width:960px;margin:0 auto;padding:0 4% 64px;">
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1 — TRACTION ANALYTICS
+    ══════════════════════════════════════════ -->
+    <section class="fade-in-section" style="margin:48px 0 40px;">
+        <div style="text-align:center;margin-bottom:28px;">
+            <span class="section-eyebrow">Early Market Signal — April 2026</span>
+            <h2 class="section-heading">LinkedIn Traction: Week One</h2>
+            <p class="section-sub">A 5-year-dormant account reactivated around a single thesis — sovereign AI for high-liability industries. These are raw LinkedIn Creator Analytics from the first 7 days. Zero dollars spent.</p>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-bar" style="background:linear-gradient(90deg,#0A73D2,#188B96);"></div>
+                <div class="stat-num">4,518</div>
+                <div class="stat-label" style="color:var(--ai-blue);">Impressions</div>
+                <div class="stat-sub">Organic reach<br>first 7 days of posting</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-bar" style="background:linear-gradient(90deg,#188B96,#22C55E);"></div>
+                <div class="stat-num">1,240</div>
+                <div class="stat-label" style="color:var(--teal);">Members Reached</div>
+                <div class="stat-sub">Physicians, attorneys,<br>IT directors, investors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-bar" style="background:linear-gradient(90deg,#22C55E,#A78BFA);"></div>
+                <div class="stat-num">5 yrs</div>
+                <div class="stat-label" style="color:var(--success);">Account Dormancy</div>
+                <div class="stat-sub">Cold start — no existing<br>audience to lean on</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-bar" style="background:linear-gradient(90deg,#A78BFA,#0A73D2);"></div>
+                <div class="stat-num">$0</div>
+                <div class="stat-label" style="color:#A78BFA;">Ad Spend</div>
+                <div class="stat-sub">100% organic —<br>no boosting, no paid reach</div>
+            </div>
+        </div>
+
+        <div style="max-width:960px;margin:0 auto;background:rgba(10,115,210,0.06);border:1px solid rgba(10,115,210,0.2);border-radius:12px;padding:20px 28px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#0A73D2" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.226 1.445-2.226 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 22.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <div style="flex:1;min-width:220px;">
+                <p style="color:var(--light-text);font-size:0.88em;line-height:1.75;margin:0 0 10px;"><strong style="color:var(--white);">What this means:</strong> A 5-year-dormant account posting about sovereign AI infrastructure reached 1,240 verified professionals in 7 days without a single dollar of advertising. The market is not waiting to be educated — it already knows this problem exists. It has been waiting for the right solution.</p>
+                <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" style="color:var(--ai-blue);font-size:0.82em;font-weight:700;text-decoration:none;">Follow Pocono AI on LinkedIn &rarr;</a>
+            </div>
+        </div>
+
+        <div style="margin-top:12px;text-align:center;">
+            <p style="color:var(--muted);font-size:0.72em;font-style:italic;">7-day LinkedIn analytics reported April 2026. Sourced directly from LinkedIn Creator Analytics. Site traffic trending positively per Umami analytics — privacy-first, no cookies, no personal data collected.</p>
+        </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.07);max-width:960px;margin:0 auto 48px;">
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — PUBLISHED CONTENT (SPLIT LAYOUT)
+    ══════════════════════════════════════════ -->
+    <section class="fade-in-section" style="margin:0 0 48px;">
+        <div style="text-align:center;margin-bottom:28px;">
+            <span class="section-eyebrow">Published Research &amp; LinkedIn Content</span>
+            <h2 class="section-heading">The Thesis, In Writing</h2>
+            <p class="section-sub">Articles and posts that document the market problem, the architectural solution, and the philosophy behind how Pocono AI operates. Content driving organic reach.</p>
+        </div>
+
+        <div class="split-grid">
+
+            <!-- Card 1: Pulse Article — PRIMARY, red accent -->
+            <div class="content-card red-top">
+                <p class="card-label" style="color:#FF6B5B;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn Article &middot; Marcus O'Dell</p>
+                <h3 class="card-title">&#128274; The $670,000 Blind Spot: Why Shadow AI is Destroying Enterprise Data Sovereignty</h3>
+                <p class="card-body">Most practices believe a Business Associate Agreement protects their data. It doesn't. Shadow AI — staff using personal ChatGPT accounts, consumer transcription apps, and cloud tools with patient records — bypasses every BAA, every firewall, and every compliance audit. This article traces how $670,000 in average breach exposure builds, why traditional IT controls can't stop it, and why the only real answer is eliminating the transmission path entirely.</p>
+                <a href="https://www.linkedin.com/pulse/670000-blind-spot-why-shadow-ai-destroying-enterprise-marcus-o-dell-rjyje" target="_blank" rel="noopener noreferrer" class="li-btn li-btn-red"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Read Full Article</a>
+            </div>
+
+            <!-- Card 2: Ethical AI Post — blue accent -->
+            <div class="content-card blue-top">
+                <p class="card-label" style="color:#60AEFF;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn Post &middot; Marcus O'Dell</p>
+                <h3 class="card-title">Ethical AI by Architecture. Neurodiversity by Design. Neither is a marketing gimmick.</h3>
+                <p class="card-body">When you build for high-liability sectors, "ethical AI first" has to be structural — not a tagline. The Sentinel Node runs entirely on-premises: records never leave the building because there is no path for them to travel. The platform was also built under the reality of genuine neurodiversity — engineered to eliminate the invisible friction and cognitive overload of administrative work. These principles weren't added at the end. The company was built around them.</p>
+                <a href="https://www.linkedin.com/posts/marcus-o-dell-7a7b8352_how-we-hire-pocono-ai-neurodiversity-first-activity-7456626630522966016--pCM" target="_blank" rel="noopener noreferrer" class="li-btn li-btn-blue"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Read Full Post</a>
+            </div>
+
+        </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.07);max-width:960px;margin:0 auto 48px;">
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — WHY THIS MATTERS (MARKET CONTEXT)
+    ══════════════════════════════════════════ -->
+    <section class="fade-in-section" style="margin:0 0 48px;">
+        <div style="text-align:center;margin-bottom:28px;">
+            <span class="section-eyebrow">Market Context</span>
+            <h2 class="section-heading">Why the Signal Is Real</h2>
+            <p class="section-sub">The demand isn't manufactured. Three structural forces are converging that make on-premises sovereign AI not just preferable but necessary for independent practices.</p>
+        </div>
+
+        <div class="split-grid">
+            <div class="content-card teal-top">
+                <p class="card-label" style="color:var(--teal);">&#9888; Regulatory Pressure</p>
+                <h3 class="card-title">HIPAA Enforcement Is Accelerating</h3>
+                <p class="card-body">OCR penalties for PHI breaches reached record levels in 2024. Shadow AI use by clinical and administrative staff is now the fastest-growing breach vector — and regulators have begun explicitly referencing AI tool usage in enforcement actions. Independent practices are the least-defended target in the ecosystem.</p>
+            </div>
+            <div class="content-card teal-top">
+                <p class="card-label" style="color:var(--teal);">&#128200; Market Gap</p>
+                <h3 class="card-title">Enterprise Tools Don't Fit Independent Practices</h3>
+                <p class="card-body">Epic, Nuance, and Azure OpenAI are built for hospital systems with dedicated IT staff and six-figure implementation budgets. A solo family medicine practice or a two-attorney firm cannot operationalize those tools. The Sentinel Node is the first on-premises AI system architected specifically for practices of 2–10 providers — sovereign by design, not by configuration.</p>
+            </div>
+            <div class="content-card purple-top">
+                <p class="card-label" style="color:#A78BFA;">&#9679; Founder Signal</p>
+                <h3 class="card-title">Authenticity Drives Organic Reach</h3>
+                <p class="card-body">The traction metrics above came from a founder posting with genuine expertise in a niche that the broader AI industry ignores. No growth hacking. No manufactured virality. The posts that performed best were the most technically honest. That is a product signal, not just a marketing one: the audience recognizes the problem because they are living it.</p>
+            </div>
+            <div class="content-card purple-top">
+                <p class="card-label" style="color:#A78BFA;">&#128279; Competitive Position</p>
+                <h3 class="card-title">Zero Cloud Exfiltration Is a Moat</h3>
+                <p class="card-body">Any cloud AI vendor can sign a BAA. None of them can eliminate the transmission. Pocono AI's Enterprise Autonomy Architecture&#8482; is the only HIPAA-targeted solution that removes the data journey entirely — making the compliance case architectural rather than contractual. That is not a feature. It is the product category.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-container" style="margin-top:40px;">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">Ready to See the Architecture Behind the Traction?</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">The Sentinel Node is deployable in 60 days. Patient and client records never leave the building. No cloud. No breach vector. No BAA hoping the vendor doesn't get hacked.</p>
+        <a href="investors.html" class="cta-button">Investor Relations</a>
+        <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">60-Day Deployment</a>
+    </section>
+
+    </main>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology &amp; Tools</p>
+            <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+            <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+            <a href="shadow-audit.html">Shadow IT Audit</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="trust-receipts.html">&#10003; Trust Receipts</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="comparison.html">Comparison</a>
+            <a href="deployment.html">Deployment Timeline</a>
+            <a href="trust.html">Trust &amp; Security</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company &amp; Legal</p>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="how-we-hire.html">Neurodiversity-First Hiring</a>
+            <a href="partners.html">Partners</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2026</span> Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+    <script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
+</footer>
+
+<script src="components/loader.js"></script>
+</body>
+</html>
