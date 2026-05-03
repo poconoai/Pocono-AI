@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v84 -->
+<html lang="en"><!-- Pocono AI v85 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -427,7 +427,10 @@ function setMode(mode) {
 }
 
 function useSuggestion(btn) {
-    document.getElementById('query-input').value = btn.textContent;
+    const input = document.getElementById('query-input');
+    input.value = btn.textContent;
+    input.focus();
+    runQuery();
 }
 
 function resetDemo() {
@@ -537,6 +540,7 @@ function runQuery() {
 
         btn.disabled = false;
         btn.textContent = 'Ask ▶';
+        document.getElementById('query-input').focus();
     }, delay);
 }
 
@@ -560,7 +564,7 @@ function highlightChunk(sectionOrKey, silent = false) {
 document.addEventListener('DOMContentLoaded', () => {
     setMode('physician');
     document.getElementById('query-input').addEventListener('keydown', e => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) runQuery();
+        if (e.key === 'Enter') { e.preventDefault(); runQuery(); }
     });
     // Dynamically count loaded responses from DEMO_RESPONSES
     try {
