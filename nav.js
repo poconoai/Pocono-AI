@@ -259,6 +259,22 @@
         if (d.item.classList.contains('is-open')) { closeDrop(d); hideBd(); }
         else openDrop(d);
       });
+
+      /* Protect dropdown <a> links: let the click complete before closing menu.
+         stopPropagation prevents backdrop from receiving the click.
+         We let navigation happen naturally — the page will unload anyway. */
+      if (d.menu) {
+        d.menu.addEventListener('click', function(e) {
+          e.stopPropagation(); // don't let click reach backdrop/document
+          // If clicking an actual link, close menu but allow navigation
+          var link = e.target.closest('a[href]');
+          if (link && link.href) {
+            closeDrop(d);
+            hideBd();
+            // Navigation happens naturally via the <a> click
+          }
+        });
+      }
       d.toggle.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -483,18 +499,13 @@
       }, { passive: true });
     }
 
-    /* ── Layer 3: pointerup blur (pre-empts focus assignment) ── */
-    document.addEventListener('pointerup', function(e) {
-      var tag = e.target ? e.target.tagName : '';
-      if (tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
-        requestAnimationFrame(function() {
-          var ae = document.activeElement;
-          if (ae && ae !== document.body && !ae.closest('#search-panel')) {
-            ae.blur();
-          }
-        });
-      }
-    });
+    /* ── Layer 3: iOS focus ring — handled entirely by CSS ──────────────
+       The :focus:not(:focus-visible) rule in nav-v2026.css suppresses
+       all touch/pointer-triggered focus rings at the paint level.
+       We deliberately do NOT blur() on pointerup because calling blur()
+       during the mouseup phase cancels the subsequent click event on <a>
+       tags in Firefox — this was the bug causing dropdown links to highlight
+       but not navigate on pages after the first load. */
 
     /* ── RUN TESTS ── */
     runTests();
