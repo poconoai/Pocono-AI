@@ -13,6 +13,20 @@
 }
 *:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
 
+/* ── CRITICAL: body overflow-x fix ──────────────────────────────────────────
+   styles.css sets body{overflow-x:clip}. In Chrome 90+ and Firefox 92+, 
+   overflow-x:clip on body creates a CONTAINING BLOCK for position:fixed elements.
+   This breaks dropdown positioning — menus render relative to body, not viewport.
+   Fix: set body to overflow-x:visible so fixed elements use correct viewport coords.
+   We compensate by clipping overflow on main and section containers instead. */
+body {
+  overflow-x: visible !important;
+}
+main, .container, .hero-section, .sovereignty-proof, .page-hero,
+.cta-container, .fade-in-section, section {
+  overflow-x: clip;
+}
+
 /* Kill iOS tap flash on all interactive elements */
 a, button, [role="button"], [tabindex] {
   -webkit-tap-highlight-color: transparent;
@@ -147,8 +161,8 @@ header.scrolled {
    from approximate toggle positions.
    ──────────────────────────────────────────────────────────── */
 .nav-dropdown {
-  position: absolute;
-  top: 0;              /* relative to nav-drop-root which is already at header bottom */
+  position: fixed;
+  top: 70px;           /* viewport-relative now that body overflow-x:visible */
   z-index: 1100;
   background: rgba(3,14,24,0.98);
   backdrop-filter: blur(20px);
@@ -182,24 +196,10 @@ header.scrolled {
     visibility 0s linear 0s;
 }
 
-/* nav-drop-root: sticky row at header bottom, zero height, overflow visible.
-   This is the positioning ancestor for all dropdown menus.
-   position:absolute children are offset from THIS element, not the viewport.
-   This completely bypasses the body{overflow-x:clip} containing-block trap
-   that was breaking position:fixed dropdowns in Chrome/Firefox. */
+/* nav-drop-root: now just a semantic wrapper, position not relied upon.
+   Dropdowns use position:fixed (correct now that body overflow-x:visible). */
 #nav-drop-root {
-  position: sticky;
-  top: 70px;           /* flush under header */
-  height: 0;           /* takes zero layout space */
-  overflow: visible;   /* dropdowns can extend below */
-  z-index: 1050;       /* above page content, below mobile panel */
-  pointer-events: none; /* root itself is invisible to mouse */
-}
-
-/* All 4 dropdown menus: absolute within nav-drop-root */
-#menu-platform, #menu-why-local, #menu-research, #menu-company {
-  pointer-events: auto; /* menus ARE clickable */
-  left: 0; /* overridden by JS positionDrop() on every open */
+  display: contents; /* renders as if not there — children flow to parent */
 }
 
 .nav-dropdown a {

@@ -155,21 +155,28 @@
     }).filter(function(d) { return d.toggle && d.menu; });
 
     /* UNIT TESTS for dropdown wiring */
-    test('positionDrop: root-relative math is correct', function() {
-      // Simulate: rootRect.left=200, btnRect.left=640, vw=1280, mw=220
-      var btnLeft = 640; var rootLeft = 200; var vw = 1280; var mw = 220;
-      var idealLeft = btnLeft - rootLeft;           // = 440
-      var maxLeft   = vw - rootLeft - mw - 8;      // = 1280-200-220-8 = 852
-      var finalLeft = Math.max(0, Math.min(idealLeft, maxLeft));
-      assert(finalLeft === 440, 'should align under toggle: got ' + finalLeft);
+    test('positionDrop v115: viewport-relative math', function() {
+      // body{overflow-x:visible} means fixed=viewport. btn.left IS menu.left.
+      var btnLeft = 640; var vw = 1280; var mw = 220;
+      var idealLeft = btnLeft;                      // = 640 (viewport coords)
+      var maxLeft   = vw - mw - 8;                 // = 1052
+      var finalLeft = Math.max(8, Math.min(idealLeft, maxLeft));
+      assert(finalLeft === 640, 'dropdown should align at 640px: got ' + finalLeft);
     });
-    test('positionDrop: clamps when toggle near right edge', function() {
-      // Toggle at x=1150, root at x=200, mw=220, vw=1280
-      var btnLeft = 1150; var rootLeft = 200; var vw = 1280; var mw = 220;
-      var idealLeft = btnLeft - rootLeft;           // = 950
-      var maxLeft   = vw - rootLeft - mw - 8;      // = 852
-      var finalLeft = Math.max(0, Math.min(idealLeft, maxLeft));
-      assert(finalLeft === 852, 'should clamp to maxLeft: got ' + finalLeft);
+    test('positionDrop v115: clamps Company dropdown at right edge', function() {
+      // Company toggle at x=1100, vw=1280, mw=220
+      var btnLeft = 1100; var vw = 1280; var mw = 220;
+      var idealLeft = btnLeft;
+      var maxLeft   = vw - mw - 8;                 // = 1052
+      var finalLeft = Math.max(8, Math.min(idealLeft, maxLeft));
+      assert(finalLeft === 1052, 'should clamp right: got ' + finalLeft);
+    });
+    test('positionDrop v115: Platform toggle at left stays put', function() {
+      var btnLeft = 580; var vw = 1280; var mw = 220;
+      var idealLeft = btnLeft;
+      var maxLeft   = vw - mw - 8;
+      var finalLeft = Math.max(8, Math.min(idealLeft, maxLeft));
+      assert(finalLeft === 580, 'Platform should stay at 580: got ' + finalLeft);
     });
     test('nav: desktop nav items found', function() {
       // Can't test DOM elements before they exist in test harness,
@@ -177,50 +184,48 @@
       assert(Array.isArray(drops), 'drops should be an array');
     });
 
-    /* ── positionDrop ─────────────────────────────────────────────────
-       WHY THIS WORKS:
-       - Dropdowns are position:absolute inside #nav-drop-root
-       - nav-drop-root is position:sticky, so it's a real positioned ancestor
-       - This COMPLETELY bypasses body{overflow-x:clip} which was trapping
-         position:fixed elements and causing the misalignment bug
-       - We measure toggle position relative to nav-drop-root's own left edge
-         so the dropdown aligns exactly under its button at any viewport width
+    /* ── positionDrop v115 ────────────────────────────────────────────
+       ROOT CAUSE (now fixed): body{overflow-x:clip} in styles.css was
+       creating a containing block for position:fixed elements in Chrome 90+
+       and Firefox 92+. This made fixed-positioned menus render relative to
+       the BODY box, not the viewport — so getBoundingClientRect() coords
+       (which are always viewport-relative) were wrong.
+       
+       FIX: nav-v2026.css sets body{overflow-x:visible!important}.
+       JS belt: we also set it imperatively here before measuring.
+       Now position:fixed uses true viewport coordinates as intended.
+       
+       Math: btn.left (viewport) = desired menu left (viewport) = correct.
     ──────────────────────────────────────────────────────────────── */
-    var dropRoot = document.getElementById('nav-drop-root');
-
     function positionDrop(d) {
       var menu = d.menu;
       var btn  = d.toggle;
-      if (!menu || !btn || !dropRoot) return;
+      if (!menu || !btn) return;
 
-      var btnRect  = btn.getBoundingClientRect();
-      var rootRect = dropRoot.getBoundingClientRect();
-      var vw       = window.innerWidth;
+      // Belt: ensure body is not clipping our fixed-positioned menus
+      // (CSS !important should handle this, but JS ensures no race condition)
+      document.body.style.overflowX = 'visible';
 
-      // Measure real dropdown width — briefly force render at opacity:0
-      var prevVis = menu.style.visibility;
-      var prevOp  = menu.style.opacity;
-      var prevPtr = menu.style.pointerEvents;
-      menu.style.visibility    = 'hidden';
-      menu.style.opacity       = '0';
-      menu.style.pointerEvents = 'none';
-      menu.style.display       = 'block';
+      var r  = btn.getBoundingClientRect();
+      var vw = window.innerWidth;
+
+      // Measure actual dropdown width while invisible
+      menu.style.cssText += ';visibility:hidden;opacity:0;display:block;pointer-events:none';
       var mw = menu.offsetWidth || 220;
-      menu.style.display       = '';
-      menu.style.visibility    = prevVis;
-      menu.style.opacity       = prevOp;
-      menu.style.pointerEvents = prevPtr;
+      menu.style.cssText = menu.style.cssText
+        .replace(/;?visibility:hidden/g, '')
+        .replace(/;?opacity:0/g, '')
+        .replace(/;?display:block/g, '')
+        .replace(/;?pointer-events:none/g, '');
 
-      // Toggle left edge, expressed as offset FROM nav-drop-root left edge
-      var idealLeft = btnRect.left - rootRect.left;
-
-      // Clamp: prevent right overflow (8px gutter from viewport edge)
-      // rootRect.left is the absolute position of our origin
-      var maxLeft = vw - rootRect.left - mw - 8;
-      var finalLeft = Math.max(0, Math.min(idealLeft, maxLeft));
+      // Align dropdown left edge to toggle left edge, clamp at right viewport edge
+      var idealLeft = r.left;
+      var maxLeft   = vw - mw - 8;
+      var finalLeft = Math.max(8, Math.min(idealLeft, maxLeft));
 
       menu.style.left  = finalLeft + 'px';
       menu.style.right = 'auto';
+      menu.style.top   = '70px'; // reinforce — never let it drift
     }
 
     function openDrop(d) {
