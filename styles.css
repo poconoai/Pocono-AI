@@ -45,7 +45,7 @@ img { max-width: 100%; height: auto; }
 /* ── READING PROGRESS BAR ── */
 #reading-progress { position: fixed; top: 70px; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); z-index: 999; transition: width 0.1s linear; }
 
-/* ── HEADER v104 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
+/* ── HEADER v103 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
 /* ── FOUC guard: placeholder reserves header height before component loads ── */
 #site-header-placeholder:empty { height: 70px; background: var(--bg-black); position: sticky; top: 0; z-index: 1000; }
 header {
@@ -85,7 +85,7 @@ header.scrolled {
 
 /* ── MOBILE NAV v43 (bulletproof) ── */
 /* header creates a new stacking context so z-index is relative to it */
-/* isolation removed v104 — was trapping search dropdown in stacking context */
+header { isolation: isolate; }
 #nav-menu {
     display: none;
     position: absolute;
@@ -1547,83 +1547,97 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 .audit-spec ul li { margin-bottom: 6px; }
 
 /* ═══════════════════════════════════════
-   SITE SEARCH v104 — Full-width overlay, zero z-index conflicts
-   Strategy: search bar slides DOWN from header into viewport.
-   No position:absolute trickery. No stacking context fights.
-   Works on every mobile browser, every Android/iOS version.
+   SITE SEARCH v103
 ═══════════════════════════════════════ */
 
-/* The search button in the header */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative; /* anchor for absolutely-positioned input */
+}
+
 #search-toggle {
     background: none;
     border: none;
     cursor: pointer;
     color: rgba(255,255,255,0.75);
-    padding: 8px;
+    padding: 7px 8px;
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: color .15s, background .15s;
     flex-shrink: 0;
+    /* v103: iOS touch fixes — eliminates 300ms tap delay and ghost highlight */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 36px;
+    min-height: 36px;
     user-select: none;
     -webkit-user-select: none;
 }
 #search-toggle:hover,
-#search-toggle.active { color: var(--teal); background: rgba(24,139,150,0.15); }
+#search-toggle[aria-expanded="true"] { color: var(--teal); background: rgba(24,139,150,0.1); }
 
-/* Full-width search overlay — slides down from top, sits OUTSIDE header */
-#search-overlay {
-    position: fixed;
-    top: 70px;        /* just below sticky header */
-    left: 0;
-    right: 0;
-    z-index: 10000;   /* above everything */
-    background: #051622;
-    border-bottom: 2px solid var(--teal, #4fd1c5);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.8);
-    padding: 10px 16px;
-    display: none;    /* shown by JS — no class toggling needed */
-    flex-direction: column;
-    gap: 0;
-}
-#search-overlay.open {
-    display: flex;
-}
-
-/* The actual text input inside the overlay */
 #search-input {
-    width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(79,209,197,0.4);
-    border-radius: 8px;
-    padding: 12px 16px;
+    /* Absolutely positioned so it expands LEFTWARD from the button
+       without pushing anything in the flex layout. */
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    min-width: 0;
+    padding: 6px 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    background: var(--bg-black, #051622);
     color: #fff;
     font-family: 'DM Mono', monospace;
-    font-size: 1em;
-    outline: none;
-    caret-color: var(--teal, #4fd1c5);
+    font-size: 0.85em;
+    transition: width .22s ease, padding .22s ease, border-color .22s ease, opacity .22s ease;
+    caret-color: var(--teal);
+    opacity: 0;
+    pointer-events: none;
     -webkit-appearance: none;
-    box-sizing: border-box;
+    white-space: nowrap;
+    /* v103: removed overflow:hidden — was clipping input at width:0 and not needed with opacity:0 */
+    z-index: 1001;
 }
 #search-input::placeholder { color: rgba(255,255,255,0.35); }
 #search-input::-webkit-search-cancel-button { display: none; }
-#search-input:focus { border-color: var(--teal, #4fd1c5); background: rgba(255,255,255,0.09); }
 
-/* Results list — inside the overlay, right below the input */
+.search-form.open #search-input {
+    width: min(200px, 38vw);
+    padding: 6px 8px;
+    border-bottom-color: var(--teal);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Dropdown — fixed to viewport, positioned by JS */
 #search-drop {
     display: none;
-    margin-top: 6px;
-    max-height: 60vh;
+    position: fixed;
+    width: min(400px, calc(100vw - 24px));
+    max-height: 65vh;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 8px;
-    border: 1px solid rgba(79,209,197,0.2);
     background: #0b1929;
+    border: 1px solid rgba(24,139,150,0.4);
+    border-radius: 12px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.75);
+    z-index: 99999;
+    padding: 6px;
+    -webkit-overflow-scrolling: touch;
 }
 #search-drop.visible { display: block; }
 
@@ -1631,17 +1645,14 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     display: flex;
     gap: 10px;
     text-decoration: none;
-    padding: 12px 14px;
-    border-radius: 0;
+    padding: 11px 13px;
+    border-radius: 8px;
     transition: background .1s;
     align-items: flex-start;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    color: #fff;
 }
-.search-result-item:last-child { border-bottom: none; }
 .search-result-item:hover,
-.search-result-item:active { background: rgba(24,139,150,0.15); }
+.search-result-item:active { background: rgba(24,139,150,0.14); }
 
 .result-num {
     color: rgba(255,255,255,0.2);
@@ -1671,7 +1682,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 }
 .result-url {
     display: block;
-    color: var(--teal, #4fd1c5);
+    color: var(--teal);
     font-family: 'DM Mono', monospace;
     font-size: 0.65em;
     opacity: 0.65;
@@ -1690,12 +1701,6 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     padding: 0 2px;
 }
 
-/* Dim the page content behind the overlay */
-#search-backdrop {
-    display: none;
-    position: fixed;
-    inset: 70px 0 0 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 9999;
+@media (max-width: 500px) {
+    .search-form.open #search-input { width: min(150px, 38vw); }
 }
-#search-backdrop.open { display: block; }

@@ -28,7 +28,7 @@
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
 
-    <link rel="stylesheet" href="styles.css?v=104">
+    <link rel="stylesheet" href="styles.css?v=103">
     <link rel="canonical" href="https://poconoai.com/trust.html">
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
 
@@ -54,9 +54,12 @@
 <header>
     <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
     <div class="header-right">
-        <button type="button" id="search-toggle" aria-label="Search site" aria-expanded="false">
+        <form class="search-form" id="search-form" role="search" action="javascript:void(0)">
+            <input id="search-input" type="search" placeholder="Search…" autocomplete="off" spellcheck="false" aria-label="Search site" enterkeyhint="search" />
+            <button type="button" id="search-toggle" aria-label="Search site" aria-expanded="false">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </button>
+        </form>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
@@ -322,8 +325,8 @@
     </div>
     <script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
 </footer>
-    <script src="nav.js?v=104"></script>
-    <script src="search-index.js?v=104"></script>
-    <script src="search.js?v=104"></script>
+    <script src="nav.js?v=103"></script>
+    <script src="search-index.js?v=103"></script>
+    <script src="search.js?v=103"></script>
 </body>
 </html>
