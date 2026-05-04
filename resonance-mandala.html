@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v120 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Resonance Mandala — a living visualization of neurodiversity. Thousands of particles responding to invisible frequencies, forming perfect geometric harmony. Pocono AI, LLC.">
+    <title>The Resonance Mandala | Neurodiversity | Pocono AI, LLC</title>
+
+    <meta property="og:title" content="The Resonance Mandala | Pocono AI">
+    <meta property="og:description" content="Neurodiversity is not a broken system. It simply operates on a different, highly complex frequency that creates its own perfect, beautiful structure.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://poconoai.com/resonance-mandala.html">
+    <meta property="og:image" content="https://poconoai.com/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Resonance Mandala | Pocono AI">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
+    <meta name="theme-color" content="#0b0f19">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <link rel="stylesheet" href="styles.css?v=100">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e4a41bc9-845b-46c1-86e7-cf9053dbc544"></script>
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="canonical" href="https://poconoai.com/resonance-mandala.html">
+    <link rel="stylesheet" href="nav-v2026.css?v=120">
+
+    <style>
+        /* ─── RESONANCE MANDALA PAGE ─── */
+        body {
+            background: #0b0f19;
+            overflow-x: hidden;
+        }
+
+        /* ─── CANVAS SECTION ─── */
+        .mandala-wrapper {
+            position: relative;
+            width: 100%;
+            background: #0b0f19;
+        }
+
+        .mandala-canvas-container {
+            position: relative;
+            width: 100%;
+            height: clamp(480px, 75vh, 820px);
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        #resonance-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ─── OVERLAY TEXT on canvas ─── */
+        .mandala-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 36px 20px 0;
+            text-align: center;
+        }
+
+        .mandala-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            color: rgba(0, 212, 168, 0.9);
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border: 1px solid rgba(0, 212, 168, 0.25);
+            border-radius: 30px;
+            background: rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            margin-bottom: 18px;
+        }
+
+        .mandala-title {
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 600;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1.1;
+            margin: 0 0 14px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 40px rgba(0, 163, 255, 0.3), 0 2px 20px rgba(0,0,0,0.7);
+        }
+
+        .mandala-subtitle {
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            color: rgba(208, 221, 230, 0.7);
+            letter-spacing: 0.04em;
+            max-width: 560px;
+            line-height: 1.7;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+        }
+
+        /* ─── FREQUENCY INDICATOR ─── */
+        .freq-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7em;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .freq-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 212, 168, 0.6);
+            animation: freq-pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes freq-pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.4); }
+        }
+
+        /* ─── PROSE BELOW CANVAS ─── */
+        .mandala-prose {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 64px 24px 80px;
+        }
+
+        .mandala-prose-eyebrow {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--teal, #188B96);
+            margin: 0 0 10px;
+        }
+
+        .mandala-prose h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+            line-height: 1.15;
+            color: #ffffff;
+            margin: 0 0 24px;
+            border: none;
+            letter-spacing: -0.015em;
+        }
+
+        .mandala-prose h2 em {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            color: #00A3FF;
+        }
+
+        .mandala-prose p {
+            color: #D0DDE6;
+            font-size: 1.05em;
+            line-height: 1.85;
+            margin: 0 0 20px;
+            font-family: 'DM Mono', monospace;
+            font-weight: 300;
+        }
+
+        .mandala-prose strong {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        /* ─── METAPHOR CARDS ─── */
+        .metaphor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .metaphor-card {
+            background: rgba(255,255,255,0.02);
+            padding: 28px 26px;
+            border-right: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            transition: background 0.3s;
+        }
+
+        .metaphor-card:hover {
+            background: rgba(0, 163, 255, 0.04);
+        }
+
+        .metaphor-glyph {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68em;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #00d4a8;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .metaphor-card h3 {
+            color: #ffffff;
+            font-family: 'Syne', sans-serif;
+            font-size: 1em;
+            margin: 0 0 8px;
+            line-height: 1.3;
+            border: none;
+        }
+
+        .metaphor-card p {
+            color: rgba(208, 221, 230, 0.75);
+            font-size: 0.87em;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* ─── PULL QUOTE ─── */
+        .mandala-quote {
+            margin: 48px 0;
+            padding: 36px 40px;
+            background: linear-gradient(135deg, rgba(0,163,255,0.05), rgba(0,212,168,0.03));
+            border-left: 3px solid rgba(0, 163, 255, 0.5);
+            border-radius: 0 12px 12px 0;
+            position: relative;
+        }
+
+        .mandala-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -20px;
+            left: 28px;
+            font-family: 'Fraunces', serif;
+            font-size: 6em;
+            color: rgba(0,163,255,0.25);
+            line-height: 1;
+        }
+
+        .mandala-quote p {
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-size: 1.25em;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1.6;
+            margin: 0 0 14px;
+            font-weight: 300;
+            padding-left: 8px;
+        }
+
+        .mandala-quote cite {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75em;
+            font-style: normal;
+            color: rgba(208,221,230,0.5);
+            letter-spacing: 0.08em;
+            display: block;
+            padding-left: 8px;
+        }
+
+        /* ─── CTA ─── */
+        .mandala-cta {
+            text-align: center;
+            margin-top: 56px;
+            padding: 44px 28px;
+            background: linear-gradient(135deg, rgba(0,212,168,0.05), rgba(0,163,255,0.04));
+            border: 1px solid rgba(0,212,168,0.18);
+            border-radius: 14px;
+        }
+
+        .mandala-cta h2 {
+            color: #ffffff;
+            font-size: 1.55em;
+            margin: 0 0 12px;
+            border: none;
+        }
+
+        .mandala-cta p {
+            margin: 0 auto 24px;
+            max-width: 520px;
+            font-size: 0.92em;
+        }
+
+        /* ─── MOBILE ─── */
+        @media (max-width: 600px) {
+            .mandala-canvas-container {
+                height: 420px;
+            }
+            .mandala-quote { padding: 26px 24px; margin-left: 0; margin-right: 0; }
+            .mandala-quote::before { font-size: 4em; }
+            .mandala-prose { padding: 44px 16px 60px; }
+        }
+
+        /* ─── REDUCED MOTION: disable canvas animation, show static gradient ─── */
+        @media (prefers-reduced-motion: reduce) {
+            .mandala-canvas-container {
+                background: radial-gradient(ellipse at 50% 50%,
+                    rgba(0, 163, 255, 0.12) 0%,
+                    rgba(0, 212, 168, 0.06) 40%,
+                    #0b0f19 70%);
+            }
+            #resonance-canvas { display: none; }
+            .freq-dot { animation: none; }
+        }
+    </style>
+</head>
+<body>
+<a href="index.html" class="skip-link">Skip to main content</a>
+<div id="reading-progress" aria-hidden="true"></div>
+
+<header role="banner">
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="Pocono AI Home">
+      <img src="logo.svg" alt="" width="36" height="36" decoding="async" loading="eager" aria-hidden="true">
+      Pocono <span>AI</span>
+    </a>
+    <nav id="desktop-nav" aria-label="Main navigation">
+      <div class="nav-item" data-dropdown="menu-platform">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-platform">Platform
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+      <div class="nav-item" data-dropdown="menu-why-local">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-why-local">Why Local
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+      <div class="nav-item" data-dropdown="menu-research">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-research">Research
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+      <div class="nav-item" data-dropdown="menu-company">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-company">Company
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="header-icon-btn" id="search-icon-btn" aria-label="Open search" aria-expanded="false" aria-controls="search-panel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button type="button" class="header-icon-btn" id="mobile-menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav-panel">
+        <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="nav-drop-root">
+<div id="menu-platform" class="nav-dropdown" role="menu" aria-label="Platform">
+  <span class="nav-section-label">Tools</span>
+  <a href="sentinel-demo.html" class="nav-featured" role="menuitem">&#9654; Live RAG Demo</a>
+  <a href="simulation.html" class="nav-featured" role="menuitem">&#9878; 12-Panel Simulation</a>
+  <a href="breach-calculator.html" class="nav-hot" role="menuitem">&#9888; Breach Calculator</a>
+  <a href="shadow-audit.html" class="nav-hot" role="menuitem">&#128270; Shadow IT Audit</a>
+  <span class="nav-section-label">Technology</span>
+  <a href="sentinel-specs.html" class="nav-featured" role="menuitem">&#128274; Sentinel Node Specs</a>
+  <a href="architecture.html" role="menuitem">For IT &amp; MSPs</a>
+  <a href="solutions.html" role="menuitem">Solutions Overview</a>
+  <a href="deployment.html" role="menuitem">Deployment Timeline</a>
+  <a href="compliance.html" role="menuitem">&#128274; Compliance Attestation</a>
+</div>
+<div id="menu-why-local" class="nav-dropdown" role="menu" aria-label="Why Local">
+  <span class="nav-section-label">For Clinicians</span>
+  <a href="for-physicians.html" class="nav-featured" role="menuitem">For Physicians</a>
+  <a href="prior-auth-case-study.html" role="menuitem">Prior Auth Crisis</a>
+  <a href="ehr-burden-research.html" role="menuitem">EHR Burden &mdash; 5.9 Hrs</a>
+  <span class="nav-section-label">For Legal</span>
+  <a href="for-attorneys.html" class="nav-featured" role="menuitem">For Attorneys</a>
+  <a href="legal-admin-burden.html" role="menuitem">Legal Admin Burden</a>
+  <span class="nav-section-label">Security &amp; Trust</span>
+  <a href="trust.html" role="menuitem">Trust &amp; Security</a>
+  <a href="patient-advocacy.html" role="menuitem">Patient Safety</a>
+  <a href="pricing.html" role="menuitem">Pricing</a>
+</div>
+<div id="menu-research" class="nav-dropdown" role="menu" aria-label="Research">
+  <span class="nav-section-label">Market Intelligence</span>
+  <a href="market-research.html" class="nav-featured" role="menuitem">&#128200; Market Validation</a>
+  <a href="research.html" role="menuitem">Research Hub</a>
+  <a href="competitive-analysis.html" role="menuitem">Competitive Analysis</a>
+  <a href="comparison.html" role="menuitem">Head-to-Head Comparison</a>
+</div>
+<div id="menu-company" class="nav-dropdown" role="menu" aria-label="Company">
+  <span class="nav-section-label">About</span>
+  <a href="about.html" role="menuitem">About the Founder</a>
+  <a href="how-we-hire.html" role="menuitem">&#9670; How We Hire</a>
+  <a href="resonance-mandala.html" class="nav-featured" role="menuitem">&#10024; The Resonance Mandala</a>
+  <a href="careers.html" role="menuitem">Careers</a>
+  <span class="nav-section-label">Partners &amp; Investors</span>
+  <a href="partners.html" role="menuitem">Partners</a>
+  <a href="investors.html" role="menuitem" style="color:var(--muted,rgba(255,255,255,0.4))">Investor Relations</a>
+</div>
+</div>
+
+<div id="search-panel" role="search" aria-label="Site search" aria-hidden="true">
+  <div class="search-panel-inner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" id="search-panel-input" placeholder="Search Pocono AI&hellip;" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-label="Search site" aria-autocomplete="list" aria-controls="search-results-drop">
+    <button type="button" class="search-submit-btn" aria-label="Submit search">Search</button>
+    <button type="button" id="search-panel-close" aria-label="Close search">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="1" y1="1" x2="12" y2="12"/><line x1="12" y1="1" x2="1" y2="12"/></svg>
+    </button>
+    <div id="search-results-drop" role="listbox" aria-label="Search results"></div>
+  </div>
+</div>
+
+<nav id="mobile-nav-panel" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mob-static-links"><a href="index.html">Home</a></div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">Platform
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="sentinel-demo.html" class="mob-featured">&#9654; Live RAG Demo</a>
+      <a href="simulation.html" class="mob-featured">&#9878; 12-Panel Simulation</a>
+      <a href="breach-calculator.html">&#9888; Breach Calculator</a>
+      <a href="shadow-audit.html">&#128270; Shadow IT Audit</a>
+      <a href="sentinel-specs.html" class="mob-featured">&#128274; Sentinel Node Specs</a>
+      <a href="architecture.html">For IT &amp; MSPs</a>
+      <a href="solutions.html">Solutions Overview</a>
+      <a href="deployment.html">Deployment Timeline</a>
+      <a href="compliance.html">&#128274; Compliance Attestation</a>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">Why Local
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="for-physicians.html" class="mob-featured">For Physicians</a>
+      <a href="for-attorneys.html" class="mob-featured">For Attorneys</a>
+      <a href="trust.html">Trust &amp; Security</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+      <a href="patient-advocacy.html">Patient Safety</a>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">Research
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="market-research.html" class="mob-featured">&#128200; Market Validation</a>
+      <a href="research.html">Research Hub</a>
+      <a href="competitive-analysis.html">Competitive Analysis</a>
+      <a href="comparison.html">Head-to-Head Comparison</a>
+      <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+      <a href="legal-admin-burden.html">Legal Admin Burden</a>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">Company
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="about.html">About the Founder</a>
+      <a href="how-we-hire.html" class="mob-featured">&#9670; How We Hire</a>
+      <a href="resonance-mandala.html" class="mob-featured">&#10024; The Resonance Mandala</a>
+      <a href="careers.html">Careers</a>
+      <a href="partners.html">Partners</a>
+      <a href="investors.html">Investor Relations</a>
+    </div>
+  </div>
+  <a href="sentinel-demo.html" class="mob-cta">Book a 15-Min Call</a>
+</nav>
+
+
+<main id="main-content">
+
+    <!-- ═══ CANVAS HERO ═══ -->
+    <section class="mandala-wrapper" aria-label="Resonance Mandala visualization">
+        <div class="mandala-canvas-container" id="canvas-container">
+            <canvas id="resonance-canvas" aria-hidden="true"></canvas>
+
+            <div class="mandala-overlay">
+                <span class="mandala-eyebrow">
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true"><circle cx="4" cy="4" r="3.5" fill="#00d4a8" opacity="0.8"/></svg>
+                    Cymatic Sand Mandala
+                </span>
+                <h1 class="mandala-title">The Resonance Mandala</h1>
+                <p class="mandala-subtitle">Move your cursor to shift the frequency &mdash; watch order emerge from chaos.</p>
+            </div>
+
+            <div class="freq-indicator" aria-hidden="true">
+                <span class="freq-dot"></span>
+                <span id="freq-label">Attractor: Clifford</span>
+                <span class="freq-dot" style="animation-delay:0.8s"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROSE ═══ -->
+    <section class="mandala-prose">
+        <p class="mandala-prose-eyebrow">The Metaphor</p>
+        <h2>A different frequency. <em>A perfect structure.</em></h2>
+
+        <p>Cymatics is the study of visible sound. Pour sand onto a metal plate and strike a tone — the grains leap, scatter, appear to go wild. Then the frequency locks, and the sand resolves into a precise, intricate geometric mandala. The chaos was never random. It was the process of finding its own perfect form.</p>
+
+        <p>That is neurodiversity. <strong>Not a broken system. A different frequency.</strong> What looks like scattered, non-linear, difficult-to-read behavior is often a mind running on a substrate that produces extraordinary precision — when given the right surface to resonate on.</p>
+
+        <p>The particles in this visualization respond to a set of mathematical strange attractors: Clifford, Peter de Jong, Dadras, Lorenz — chaotic systems that never repeat, but never become formless. Each one is a different cognitive style, elegant in its own mathematical space.</p>
+
+        <div class="mandala-quote">
+            <p>Neurodiversity is not a broken system; it simply operates on a different, highly complex frequency that creates its own perfect, beautiful structure.</p>
+            <cite>— The founding principle behind how we hire</cite>
+        </div>
+
+        <div class="metaphor-grid">
+            <div class="metaphor-card">
+                <span class="metaphor-glyph">Particle</span>
+                <h3>Each particle is a mind</h3>
+                <p>Thousands of individual agents, each following its own internal logic. No single particle controls the pattern. The pattern emerges from all of them at once.</p>
+            </div>
+            <div class="metaphor-card">
+                <span class="metaphor-glyph">Attractor</span>
+                <h3>The attractor is the environment</h3>
+                <p>Change the frequency — the attractor — and the same particles resolve into a completely different mandala. The particles didn't change. The conditions did.</p>
+            </div>
+            <div class="metaphor-card">
+                <span class="metaphor-glyph">Chaos</span>
+                <h3>Chaos is the transition</h3>
+                <p>When the frequency shifts, the particles scatter before they cohere. That scatter is not failure. It is the necessary state before a new, more complex order locks in.</p>
+            </div>
+            <div class="metaphor-card">
+                <span class="metaphor-glyph">Harmony</span>
+                <h3>Harmony is the outcome</h3>
+                <p>Given the right conditions, the pattern that emerges is always more intricate than any single particle could have planned. That's what a neurodiversity-first team produces.</p>
+            </div>
+        </div>
+
+        <p>At Pocono AI, we build enterprise hardware for zero-exfiltration local AI — systems that are designed to hold complexity, handle sensitive data without leaking it, and produce reliable output under constraint. That work requires minds that see differently. We built our hiring process to find them.</p>
+
+        <p>The mandala above has no preset shape. It is computing in real time. So are the people we hire.</p>
+
+        <!-- ─── CTA ─── -->
+        <div class="mandala-cta">
+            <h2>Read how we actually hire.</h2>
+            <p>The process, the accommodations baked in by default, the communication norms — published in full, so you can decide if we're a real fit before spending a week finding out.</p>
+            <a href="how-we-hire.html" class="cta-button">How We Hire &rarr;</a>
+            <a href="careers.html" class="cta-button cta-button-light" style="margin-left:12px;">Open Roles</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology &amp; Tools</p>
+            <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+            <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+            <a href="shadow-audit.html">Shadow IT Audit</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="trust-receipts.html">&#10003; Trust Receipts</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="comparison.html">Comparison</a>
+            <a href="deployment.html">Deployment Timeline</a>
+            <a href="trust.html">Trust &amp; Security</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company &amp; Legal</p>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="how-we-hire.html">Neurodiversity-First Hiring</a>
+            <a href="resonance-mandala.html">The Resonance Mandala</a>
+            <a href="partners.html">Partners</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2026</span> Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+    <script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
+</footer>
+
+<script src="search-index.js?v=120" defer></script>
+<script src="nav.js?v=120" defer></script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     THE RESONANCE MANDALA — Canvas Engine
+     Strange Attractor Particle System
+     Accessibility: respects prefers-reduced-motion
+     Performance: target 60fps via rAF + typed arrays
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+    'use strict';
+
+    // ─── Bail out for reduced-motion preference ───
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const canvas = document.getElementById('resonance-canvas');
+    const container = document.getElementById('canvas-container');
+    const freqLabel = document.getElementById('freq-label');
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    // ─── CONFIG ───
+    const PARTICLE_COUNT = 3800;
+    const TRAIL_ALPHA    = 0.035;   // fade speed — lower = longer trails
+    const BASE_SPEED     = 0.0018;
+    const GLOW_RADIUS    = 2.2;
+
+    // ─── STATE ───
+    let W = 0, H = 0, CX = 0, CY = 0;
+    let mouseX = 0.5, mouseY = 0.5;  // normalized [0,1]
+    let targetMouseX = 0.5, targetMouseY = 0.5;
+    let attractorIndex = 0;
+    let transitionProgress = 1.0;    // 0 = mid-chaos, 1 = fully settled
+    let lastAttractorSwitch = 0;
+    let frameCount = 0;
+    let raf = null;
+
+    // ─── TYPED ARRAYS for particles (cache-friendly) ───
+    // px, py = attractor coords [-2,2] space
+    // vx, vy = velocity (used during transition)
+    // hue, sat, lgt per particle
+    const px  = new Float32Array(PARTICLE_COUNT);
+    const py  = new Float32Array(PARTICLE_COUNT);
+    const vx  = new Float32Array(PARTICLE_COUNT);
+    const vy  = new Float32Array(PARTICLE_COUNT);
+    const hue = new Float32Array(PARTICLE_COUNT);
+
+    // ─── COLOR PALETTE: neuro-friendly oceanic/violet/amber ───
+    // hue ranges: 170-220 (cyan-blue), 220-260 (violet), 30-55 (amber), 160-185 (teal)
+    function assignHue(i) {
+        const roll = Math.random();
+        if (roll < 0.38) hue[i] = 170 + Math.random() * 50; // cyan→blue
+        else if (roll < 0.66) hue[i] = 220 + Math.random() * 40; // blue→violet
+        else if (roll < 0.82) hue[i] = 30  + Math.random() * 25;  // amber
+        else                  hue[i] = 160 + Math.random() * 25;  // teal
+    }
+
+    // ─── STRANGE ATTRACTORS ───
+    // Each returns {nx, ny} — next position in [-1,1] normalized space
+
+    const ATTRACTORS = [
+        {
+            name: 'Clifford',
+            fn: function(x, y, mx, my) {
+                // Clifford attractor — params driven by mouse
+                const a = -1.4 + mx * 0.8;
+                const b =  1.6 + my * 0.6;
+                const c =  1.0 - mx * 0.4;
+                const d =  0.7 + my * 0.5;
+                return {
+                    nx: Math.sin(a * y) + c * Math.cos(a * x),
+                    ny: Math.sin(b * x) + d * Math.cos(b * y)
+                };
+            }
+        },
+        {
+            name: 'Peter de Jong',
+            fn: function(x, y, mx, my) {
+                const a = -2.0 + mx * 1.2;
+                const b = -2.0 + my * 1.2;
+                const c =  1.2 - mx * 0.6;
+                const d =  2.0 - my * 0.8;
+                return {
+                    nx: Math.sin(a * y) - Math.cos(b * x),
+                    ny: Math.sin(c * x) - Math.cos(d * y)
+                };
+            }
+        },
+        {
+            name: 'Dadras',
+            fn: function(x, y, mx, my) {
+                // Simplified Dadras in 2D projection
+                const a = 3.0 + mx * 0.9;
+                const b = 2.7 + my * 0.9;
+                const r = 1.7 - mx * 0.3;
+                const e = 4.0 + my * 0.5;
+                return {
+                    nx: (y - a) * x - b * (0.6 + mx * 0.3),
+                    ny: r * y - x * (0.1 + my * 0.1) + e * 0.1
+                };
+            }
+        },
+        {
+            name: 'Lorenz (2D)',
+            fn: function(x, y, mx, my) {
+                const sigma = 10.0 + mx * 5.0;
+                const rho   = 28.0 - my * 6.0;
+                const dt    = 0.006;
+                const z     = 0.5; // project out Z
+                return {
+                    nx: x + dt * sigma * (y - x),
+                    ny: y + dt * (x * (rho - z) - y)
+                };
+            }
+        },
+        {
+            name: 'Henon',
+            fn: function(x, y, mx, my) {
+                const a = 1.4 - mx * 0.6;
+                const b = 0.3 + my * 0.2;
+                return {
+                    nx: 1.0 - a * x * x + y,
+                    ny: b * x
+                };
+            }
+        },
+        {
+            name: 'Bedhead',
+            fn: function(x, y, mx, my) {
+                const a = -0.81 + mx * 0.5;
+                const b =  0.92 - my * 0.4;
+                return {
+                    nx: Math.sin(x * y / b) * y + Math.cos(a * x - y),
+                    ny: x + Math.sin(y) / b
+                };
+            }
+        }
+    ];
+
+    // ─── INIT particles ───
+    function initParticles() {
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            px[i] = (Math.random() - 0.5) * 0.5;
+            py[i] = (Math.random() - 0.5) * 0.5;
+            vx[i] = 0;
+            vy[i] = 0;
+            assignHue(i);
+        }
+    }
+
+    // ─── RESIZE ───
+    function resize() {
+        const rect = container.getBoundingClientRect();
+        const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+        W = rect.width;
+        H = rect.height;
+        CX = W / 2;
+        CY = H / 2;
+        canvas.width  = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width  = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.scale(dpr, dpr);
+        // fill background on resize
+        ctx.fillStyle = '#0b0f19';
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    // ─── MAP attractor space → screen ───
+    // Attractor output roughly in [-2,2] → screen
+    const SCALE = 0.22;  // fraction of min(W,H) per unit
+    function toScreen(ax, ay) {
+        const s = Math.min(W, H) * SCALE;
+        return {
+            sx: CX + ax * s,
+            sy: CY + ay * s
+        };
+    }
+
+    // ─── NORMALIZE attractor output to prevent runaway ───
+    function clampCoord(v) {
+        // soft clamp: mirror back if too far
+        if (v >  3.5) return  3.5 - (v - 3.5) * 0.1;
+        if (v < -3.5) return -3.5 - (v + 3.5) * 0.1;
+        return v;
+    }
+
+    // ─── DRAW LOOP ───
+    let lastTime = 0;
+    function draw(timestamp) {
+        raf = requestAnimationFrame(draw);
+        frameCount++;
+
+        const dt = Math.min(timestamp - lastTime, 32); // cap at ~30fps equivalent
+        lastTime = timestamp;
+
+        // ── Lerp mouse ──
+        mouseX += (targetMouseX - mouseX) * 0.04;
+        mouseY += (targetMouseY - mouseY) * 0.04;
+
+        // ── Auto-cycle attractors every ~16s, also on large mouse move ──
+        if (timestamp - lastAttractorSwitch > 16000) {
+            switchAttractor();
+        }
+
+        // ── Fade background (trail effect, not strobe) ──
+        ctx.fillStyle = `rgba(11, 15, 25, ${TRAIL_ALPHA})`;
+        ctx.fillRect(0, 0, W, H);
+
+        const attrFn  = ATTRACTORS[attractorIndex].fn;
+        const mx = mouseX;
+        const my = mouseY;
+
+        // ── Update & draw particles ──
+        // Batch by hue range for fewer ctx state changes
+        // (small optimization — still per-particle color for richness)
+        ctx.save();
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            const x = px[i];
+            const y = py[i];
+
+            // step attractor
+            const { nx: ax, ny: ay } = attrFn(x, y, mx, my);
+
+            const nnx = clampCoord(ax);
+            const nny = clampCoord(ay);
+
+            // during transition: add slight chaos nudge
+            const chaos = Math.max(0, 1.0 - transitionProgress);
+            px[i] = nnx + (Math.random() - 0.5) * chaos * 0.08;
+            py[i] = nny + (Math.random() - 0.5) * chaos * 0.08;
+
+            const { sx, sy } = toScreen(px[i], py[i]);
+
+            // skip if off-canvas
+            if (sx < -4 || sx > W + 4 || sy < -4 || sy > H + 4) continue;
+
+            // color: hue + speed-based lightness boost
+            const speed = Math.hypot(px[i] - x, py[i] - y);
+            const lgt   = 55 + Math.min(speed * 1200, 28);
+            const sat   = 70 + Math.min(speed * 800, 25);
+            const alpha = 0.55 + transitionProgress * 0.35;
+
+            ctx.beginPath();
+            ctx.arc(sx, sy, GLOW_RADIUS, 0, 6.2832);
+            ctx.fillStyle = `hsla(${hue[i]},${sat}%,${lgt}%,${alpha})`;
+            ctx.fill();
+
+            // additive glow halo on faster particles
+            if (speed > 0.004) {
+                ctx.beginPath();
+                ctx.arc(sx, sy, GLOW_RADIUS * 2.8, 0, 6.2832);
+                ctx.fillStyle = `hsla(${hue[i]},90%,75%,${Math.min(speed * 60, 0.12)})`;
+                ctx.fill();
+            }
+        }
+
+        ctx.restore();
+
+        // ── Advance transition ──
+        if (transitionProgress < 1.0) {
+            transitionProgress = Math.min(1.0, transitionProgress + 0.006);
+        }
+    }
+
+    // ─── SWITCH ATTRACTOR ───
+    function switchAttractor() {
+        attractorIndex = (attractorIndex + 1) % ATTRACTORS.length;
+        transitionProgress = 0.0;
+        lastAttractorSwitch = performance.now();
+        if (freqLabel) freqLabel.textContent = 'Attractor: ' + ATTRACTORS[attractorIndex].name;
+        // scatter particles slightly
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            px[i] += (Math.random() - 0.5) * 0.4;
+            py[i] += (Math.random() - 0.5) * 0.4;
+        }
+    }
+
+    // ─── MOUSE/TOUCH EVENTS ───
+    container.addEventListener('mousemove', function(e) {
+        const rect = container.getBoundingClientRect();
+        targetMouseX = (e.clientX - rect.left) / rect.width;
+        targetMouseY = (e.clientY - rect.top)  / rect.height;
+        // Large movement triggers earlier attractor shift
+        const dx = Math.abs(targetMouseX - mouseX);
+        const dy = Math.abs(targetMouseY - mouseY);
+        if (dx + dy > 0.35 && performance.now() - lastAttractorSwitch > 3000) {
+            switchAttractor();
+        }
+    }, { passive: true });
+
+    container.addEventListener('touchmove', function(e) {
+        if (!e.touches.length) return;
+        const touch = e.touches[0];
+        const rect  = container.getBoundingClientRect();
+        targetMouseX = (touch.clientX - rect.left) / rect.width;
+        targetMouseY = (touch.clientY - rect.top)  / rect.height;
+    }, { passive: true });
+
+    container.addEventListener('click', function() {
+        switchAttractor();
+    });
+
+    // ─── VISIBILITY: pause when tab hidden ───
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            if (raf) { cancelAnimationFrame(raf); raf = null; }
+        } else {
+            if (!raf) { lastTime = performance.now(); raf = requestAnimationFrame(draw); }
+        }
+    });
+
+    // ─── RESIZE ───
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (raf) { cancelAnimationFrame(raf); raf = null; }
+            resize();
+            lastTime = performance.now();
+            raf = requestAnimationFrame(draw);
+        }, 120);
+    }, { passive: true });
+
+    // ─── START ───
+    resize();
+    initParticles();
+    lastAttractorSwitch = performance.now();
+    if (freqLabel) freqLabel.textContent = 'Attractor: ' + ATTRACTORS[0].name;
+    lastTime = performance.now();
+    raf = requestAnimationFrame(draw);
+
+})();
+</script>
+
+</body>
+</html>

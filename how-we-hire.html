@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><!-- Pocono AI v98 -->
+<html lang="en"><!-- Pocono AI v120 -->
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -357,6 +357,176 @@
             .hh-step:not(:last-child)::after { left: 16px; }
             .hh-honesty { margin-left: 16px; margin-right: 16px; padding: 26px 24px; }
         }
+
+        /* ─── RESONANCE MANDALA — embedded hero canvas ─── */
+        .mandala-section {
+            position: relative;
+            width: 100%;
+            margin: 0 0 0;
+            overflow: hidden;
+        }
+
+        .mandala-canvas-wrap {
+            position: relative;
+            width: 100%;
+            height: clamp(380px, 55vh, 640px);
+            cursor: crosshair;
+            background: #0b0f19;
+        }
+
+        #resonance-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* text overlay sitting on top of canvas */
+        .mandala-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .mandala-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: rgba(0, 212, 168, 0.92);
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border: 1px solid rgba(0, 212, 168, 0.22);
+            border-radius: 30px;
+            background: rgba(11, 15, 25, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-bottom: 16px;
+        }
+
+        .mandala-headline {
+            font-family: 'Fraunces', 'Georgia', serif;
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 600;
+            font-style: italic;
+            color: #ffffff;
+            line-height: 1.1;
+            margin: 0 0 12px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 48px rgba(0,163,255,0.28), 0 2px 18px rgba(0,0,0,0.8);
+            max-width: 640px;
+        }
+
+        .mandala-sub {
+            font-family: 'DM Mono', monospace;
+            font-size: clamp(0.72rem, 1.4vw, 0.86rem);
+            color: rgba(208, 221, 230, 0.65);
+            letter-spacing: 0.04em;
+            line-height: 1.65;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+        }
+
+        /* freq indicator bar at bottom of canvas */
+        .mandala-freq-bar {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.66em;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .mandala-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: rgba(0,212,168,0.6);
+            animation: mdot-pulse 2.6s ease-in-out infinite;
+        }
+        .mandala-dot:nth-child(3) { animation-delay: 0.9s; }
+
+        @keyframes mdot-pulse {
+            0%,100% { opacity:0.35; transform:scale(1); }
+            50%      { opacity:1;    transform:scale(1.5); }
+        }
+
+        /* caption below the canvas */
+        .mandala-caption {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .mandala-caption-icon {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(0,163,255,0.08);
+            border: 1px solid rgba(0,163,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1em;
+            margin-top: 2px;
+        }
+
+        .mandala-caption p {
+            color: rgba(208,221,230,0.55);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.82em;
+            line-height: 1.75;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .mandala-caption strong {
+            color: rgba(208,221,230,0.85);
+            font-style: normal;
+        }
+
+        /* click hint */
+        .mandala-click-hint {
+            pointer-events: none;
+            position: absolute;
+            bottom: 40px;
+            right: 24px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.62em;
+            color: rgba(255,255,255,0.18);
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 600px) {
+            .mandala-canvas-wrap { height: 340px; }
+            .mandala-caption { padding: 20px 16px 0; flex-direction: column; gap: 10px; }
+        }
+
+        /* Reduced motion: hide canvas, show static gradient */
+        @media (prefers-reduced-motion: reduce) {
+            .mandala-canvas-wrap {
+                background: radial-gradient(ellipse at 50% 50%,
+                    rgba(0,163,255,0.1) 0%,
+                    rgba(0,212,168,0.05) 45%,
+                    #0b0f19 70%);
+            }
+            #resonance-canvas { display: none; }
+            .mandala-dot { animation: none; }
+        }
     </style>
 <link rel="stylesheet" href="nav-v2026.css?v=119">
 </head>
@@ -524,12 +694,40 @@
 
 <main id="main-content">
 
-    <!-- ═══ HERO ═══ -->
-    <section class="hh-hero">
+    <!-- ═══ RESONANCE MANDALA HERO ═══ -->
+    <section class="mandala-section" aria-label="The Resonance Mandala — neurodiversity visualization">
+        <div class="mandala-canvas-wrap" id="mandala-wrap">
+            <canvas id="resonance-canvas" aria-hidden="true"></canvas>
+
+            <div class="mandala-overlay">
+                <span class="mandala-eyebrow">
+                    <svg width="7" height="7" viewBox="0 0 7 7" fill="none" aria-hidden="true"><circle cx="3.5" cy="3.5" r="3" fill="#00d4a8" opacity="0.85"/></svg>
+                    Cymatic Sand Mandala · Neurodiversity-First Hiring
+                </span>
+                <h1 class="mandala-headline">The hiring page<br>most companies won't publish.</h1>
+                <p class="mandala-sub">Move your cursor to shift the frequency &mdash; watch order emerge from chaos.</p>
+            </div>
+
+            <div class="mandala-freq-bar" aria-hidden="true">
+                <span class="mandala-dot"></span>
+                <span id="freq-label">Attractor: Clifford</span>
+                <span class="mandala-dot"></span>
+            </div>
+            <span class="mandala-click-hint">click to shift frequency</span>
+        </div>
+
+        <div class="mandala-caption">
+            <div class="mandala-caption-icon" aria-hidden="true">◈</div>
+            <p>This is a live <strong>Cymatic Sand Mandala</strong> — thousands of particles responding to invisible mathematical attractors. Neurodiversity is not a broken system. It simply operates on a <strong>different frequency</strong> that creates its own perfect, complex structure. Move your cursor. Watch it resolve.</p>
+        </div>
+    </section>
+
+    <!-- ═══ ORIGINAL PAGE CONTENT ═══ -->
+    <section class="hh-hero" style="padding-top:48px;">
         <span class="hh-eyebrow">Neurodiversity-First Hiring</span>
         <h1>The hiring page <em>most companies won't publish.</em></h1>
         <p class="lede">If you're neurodivergent, you've probably spent a hundred interviews trying to figure out whether a "we welcome diverse minds" page actually means anything. Here's what ours means, in detail. Read it, decide if we're a fit, and skip us if we're not. Either way, you save a week of guessing.</p>
-    </section>
+    </section><!-- end hh-hero -->
 
     <!-- ═══ PROMISE ═══ -->
     <div class="hh-promise">
@@ -774,7 +972,266 @@
     
     
 
-<script src="search-index.js?v=119" defer></script>
-<script src="nav.js?v=119" defer></script>
+<script src="search-index.js?v=120" defer></script>
+<script src="nav.js?v=120" defer></script>
+
+<!-- ═══════════════════════════════════════════════════
+     THE RESONANCE MANDALA — Strange Attractor Engine
+     Integrated into How We Hire · Pocono AI v120
+     Accessibility: respects prefers-reduced-motion
+     Performance: typed arrays, rAF, tab-visibility pause
+     ═══════════════════════════════════════════════════ -->
+<script>
+(function () {
+    'use strict';
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const canvas = document.getElementById('resonance-canvas');
+    const wrap   = document.getElementById('mandala-wrap');
+    const label  = document.getElementById('freq-label');
+    if (!canvas || !wrap) return;
+
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    // ── Config ──
+    const N          = 3600;     // particle count
+    const TRAIL      = 0.032;    // fade alpha — lower = longer silky trails
+    const GLOW_R     = 2.0;      // base particle radius
+
+    // ── State ──
+    let W, H, CX, CY;
+    let mx = 0.5, my = 0.5;      // smoothed mouse [0,1]
+    let tmx = 0.5, tmy = 0.5;    // target mouse
+    let attrIdx = 0;
+    let tProg = 1.0;             // transition progress 0→1
+    let lastSwitch = 0;
+    let raf = null;
+
+    // ── Typed arrays (cache-friendly) ──
+    const px  = new Float32Array(N);
+    const py  = new Float32Array(N);
+    const hue = new Float32Array(N);
+
+    // ── Palette: cyan-blue, violet, amber, teal ──
+    function randHue(i) {
+        const r = Math.random();
+        if      (r < 0.38) hue[i] = 170 + Math.random() * 50;  // cyan→blue
+        else if (r < 0.65) hue[i] = 220 + Math.random() * 42;  // blue→violet
+        else if (r < 0.82) hue[i] =  28 + Math.random() * 26;  // warm amber
+        else               hue[i] = 158 + Math.random() * 28;  // teal
+    }
+
+    // ── Strange Attractors ──
+    // Each fn(x, y, mx, my) → {nx, ny}  in roughly [-2, 2] space
+    const ATTRACTORS = [
+        {
+            name: 'Clifford',
+            fn(x, y, mx, my) {
+                const a = -1.4 + mx * 0.9, b = 1.6 + my * 0.7,
+                      c =  1.0 - mx * 0.5, d = 0.7 + my * 0.6;
+                return {
+                    nx: Math.sin(a * y) + c * Math.cos(a * x),
+                    ny: Math.sin(b * x) + d * Math.cos(b * y)
+                };
+            }
+        },
+        {
+            name: 'Peter de Jong',
+            fn(x, y, mx, my) {
+                const a = -2.0 + mx * 1.3, b = -2.0 + my * 1.3,
+                      c =  1.2 - mx * 0.7, d =  2.0 - my * 0.9;
+                return {
+                    nx: Math.sin(a * y) - Math.cos(b * x),
+                    ny: Math.sin(c * x) - Math.cos(d * y)
+                };
+            }
+        },
+        {
+            name: 'Bedhead',
+            fn(x, y, mx, my) {
+                const a = -0.81 + mx * 0.55, b = 0.92 - my * 0.45;
+                return {
+                    nx: Math.sin(x * y / b) * y + Math.cos(a * x - y),
+                    ny: x + Math.sin(y) / b
+                };
+            }
+        },
+        {
+            name: 'Lorenz (2D)',
+            fn(x, y, mx, my) {
+                const s = 10 + mx * 5, r = 28 - my * 6, dt = 0.007;
+                return {
+                    nx: x + dt * s * (y - x),
+                    ny: y + dt * (x * (r - 0.5) - y)
+                };
+            }
+        },
+        {
+            name: 'Hénon',
+            fn(x, y, mx, my) {
+                const a = 1.4 - mx * 0.55, b = 0.3 + my * 0.18;
+                return {
+                    nx: 1.0 - a * x * x + y,
+                    ny: b * x
+                };
+            }
+        },
+        {
+            name: 'Dadras',
+            fn(x, y, mx, my) {
+                const a = 3.0 + mx, b = 2.7 + my, e = 4.0 + my * 0.5, dt = 0.012;
+                return {
+                    nx: x + dt * ((y - a) * x - b * 0.7),
+                    ny: y + dt * (1.7 * y - x * 0.12 + e * 0.1)
+                };
+            }
+        }
+    ];
+
+    // ── Init particles ──
+    function init() {
+        for (let i = 0; i < N; i++) {
+            px[i] = (Math.random() - 0.5) * 0.4;
+            py[i] = (Math.random() - 0.5) * 0.4;
+            randHue(i);
+        }
+    }
+
+    // ── Resize ──
+    function resize() {
+        const r   = wrap.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = r.width; H = r.height; CX = W / 2; CY = H / 2;
+        canvas.width  = W * dpr; canvas.height = H * dpr;
+        canvas.style.width  = W + 'px'; canvas.style.height = H + 'px';
+        ctx.scale(dpr, dpr);
+        ctx.fillStyle = '#0b0f19';
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    // ── Map attractor space → screen (scale to ~60% of shorter side) ──
+    function toScr(ax, ay) {
+        const s = Math.min(W, H) * 0.23;
+        return { sx: CX + ax * s, sy: CY + ay * s };
+    }
+
+    function clamp(v) {
+        if (v >  3.8) return  3.8 - (v - 3.8) * 0.08;
+        if (v < -3.8) return -3.8 - (v + 3.8) * 0.08;
+        return v;
+    }
+
+    // ── Switch attractor ──
+    function switchAttractor() {
+        attrIdx     = (attrIdx + 1) % ATTRACTORS.length;
+        tProg       = 0.0;
+        lastSwitch  = performance.now();
+        if (label) label.textContent = 'Attractor: ' + ATTRACTORS[attrIdx].name;
+        // scatter
+        for (let i = 0; i < N; i++) {
+            px[i] += (Math.random() - 0.5) * 0.5;
+            py[i] += (Math.random() - 0.5) * 0.5;
+        }
+    }
+
+    // ── Draw loop ──
+    let lastT = 0;
+    function draw(t) {
+        raf = requestAnimationFrame(draw);
+
+        // lerp mouse
+        mx += (tmx - mx) * 0.045;
+        my += (tmy - my) * 0.045;
+
+        // auto-cycle
+        if (t - lastSwitch > 14500) switchAttractor();
+
+        // fade trail
+        ctx.fillStyle = 'rgba(11,15,25,' + TRAIL + ')';
+        ctx.fillRect(0, 0, W, H);
+
+        const fn    = ATTRACTORS[attrIdx].fn;
+        const chaos = Math.max(0, 1.0 - tProg);
+
+        for (let i = 0; i < N; i++) {
+            const x = px[i], y = py[i];
+            const { nx, ny } = fn(x, y, mx, my);
+
+            px[i] = clamp(nx) + (Math.random() - 0.5) * chaos * 0.07;
+            py[i] = clamp(ny) + (Math.random() - 0.5) * chaos * 0.07;
+
+            const { sx, sy } = toScr(px[i], py[i]);
+            if (sx < -6 || sx > W + 6 || sy < -6 || sy > H + 6) continue;
+
+            const speed = Math.hypot(px[i] - x, py[i] - y);
+            const lgt   = 52 + Math.min(speed * 1100, 32);
+            const sat   = 68 + Math.min(speed * 750, 28);
+            const alpha = 0.5 + tProg * 0.38;
+
+            ctx.beginPath();
+            ctx.arc(sx, sy, GLOW_R, 0, 6.2832);
+            ctx.fillStyle = 'hsla(' + hue[i] + ',' + sat + '%,' + lgt + '%,' + alpha + ')';
+            ctx.fill();
+
+            // velocity glow halo
+            if (speed > 0.003) {
+                ctx.beginPath();
+                ctx.arc(sx, sy, GLOW_R * 3.0, 0, 6.2832);
+                ctx.fillStyle = 'hsla(' + hue[i] + ',90%,78%,' + Math.min(speed * 55, 0.11) + ')';
+                ctx.fill();
+            }
+        }
+
+        if (tProg < 1.0) tProg = Math.min(1.0, tProg + 0.007);
+    }
+
+    // ── Events ──
+    wrap.addEventListener('mousemove', function(e) {
+        const r = wrap.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width;
+        const ny = (e.clientY - r.top)  / r.height;
+        if (Math.abs(nx - tmx) + Math.abs(ny - tmy) > 0.3 && performance.now() - lastSwitch > 2800) {
+            switchAttractor();
+        }
+        tmx = nx; tmy = ny;
+    }, { passive: true });
+
+    wrap.addEventListener('touchmove', function(e) {
+        if (!e.touches.length) return;
+        const r = wrap.getBoundingClientRect();
+        tmx = (e.touches[0].clientX - r.left) / r.width;
+        tmy = (e.touches[0].clientY - r.top)  / r.height;
+    }, { passive: true });
+
+    wrap.addEventListener('click', switchAttractor);
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            if (raf) { cancelAnimationFrame(raf); raf = null; }
+        } else {
+            if (!raf) { lastT = performance.now(); raf = requestAnimationFrame(draw); }
+        }
+    });
+
+    let rsz;
+    window.addEventListener('resize', function() {
+        clearTimeout(rsz);
+        rsz = setTimeout(function() {
+            if (raf) { cancelAnimationFrame(raf); raf = null; }
+            resize();
+            raf = requestAnimationFrame(draw);
+        }, 120);
+    }, { passive: true });
+
+    // ── Start ──
+    resize();
+    init();
+    lastSwitch = performance.now();
+    if (label) label.textContent = 'Attractor: ' + ATTRACTORS[0].name;
+    raf = requestAnimationFrame(draw);
+
+}());
+</script>
 </body>
 </html>
