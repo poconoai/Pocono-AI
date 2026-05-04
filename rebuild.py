@@ -121,10 +121,77 @@ def main():
         if rebuild_page(fpath, header_html, footer_html, dry_run):
             updated += 1
 
+    if not dry_run:
+        build_search_index(SCRIPT_DIR)
     print(f"\n{'Would update' if dry_run else 'Updated'}: {updated}/{len(html_files)} pages")
     if not dry_run and updated > 0:
         print("✅ Done. Deploy as normal.")
     print()
+
+
+def build_search_index(script_dir):
+    """Auto-generate search-index.js from all HTML pages."""
+    import json
+    from html.parser import HTMLParser as _HP
+
+    class _Parser(_HP):
+        def __init__(self):
+            super().__init__()
+            self.title = self.description = self._heading_buf = self._body_buf = ''
+            self.headings = []
+            self._flags = {k: False for k in ('title','heading','body','nav','footer','script','style')}
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            if tag == 'title': self._flags['title'] = True
+            if tag in ('script','style'): self._flags['script'] = True
+            if tag in ('header','nav'): self._flags['nav'] = True
+            if tag == 'footer': self._flags['footer'] = True
+            if tag in ('h1','h2','h3'): self._flags['heading'] = True; self._heading_buf = ''
+            if tag == 'main': self._flags['body'] = True
+            if tag == 'meta':
+                n = attrs.get('name','').lower()
+                if n == 'description': self.description = attrs.get('content','')
+        def handle_endtag(self, tag):
+            if tag == 'title': self._flags['title'] = False
+            if tag in ('script','style'): self._flags['script'] = False
+            if tag in ('header','nav'): self._flags['nav'] = False
+            if tag == 'footer': self._flags['footer'] = False
+            if tag in ('h1','h2','h3'):
+                t = self._heading_buf.strip()
+                if t and len(t) > 2: self.headings.append(t)
+                self._flags['heading'] = False
+        def handle_data(self, data):
+            if self._flags['title']: self.title = data.strip()
+            if self._flags['script'] or self._flags['style'] or self._flags['nav'] or self._flags['footer']: return
+            if self._flags['heading']: self._heading_buf += data
+            if self._flags['body']:
+                c = data.strip()
+                if len(c) > 3: self._body_buf += ' ' + c
+
+    SKIP = {'404.html','sitemap.xml','privacy.html','terms.html','sla.html'}
+    pages = []
+    import re as _re
+    for fname in sorted(os.listdir(script_dir)):
+        if not fname.endswith('.html') or fname in SKIP:
+            continue
+        try:
+            html = open(os.path.join(script_dir, fname), encoding='utf-8', errors='ignore').read()
+            p = _Parser(); p.feed(html)
+            body = _re.sub(r'\s+', ' ', p._body_buf).strip()[:2000]
+            pages.append({
+                'url': fname,
+                'title': p.title or fname.replace('.html','').replace('-',' ').title(),
+                'description': p.description,
+                'headings': p.headings[:8],
+                'body': body,
+            })
+        except Exception:
+            pass
+
+    idx_content = 'window.POCONO_SEARCH_INDEX = ' + json.dumps(pages, ensure_ascii=False, separators=(',',':')) + ';'
+    out_path = os.path.join(script_dir, 'search-index.js')
+    open(out_path, 'w', encoding='utf-8').write(idx_content)
+    print(f"\n🔍 Search index rebuilt: {len(pages)} pages → search-index.js")
 
 if __name__ == '__main__':
     main()

@@ -1546,3 +1546,21 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     margin: 10px 0 14px;
 }
 .audit-spec ul li { margin-bottom: 6px; }
+
+/* ── SITE SEARCH ───────────────────────────────────────── */
+#search-toggle {
+    order: -1; /* positions before hamburger in flex header */
+}
+#search-input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(24,139,150,0.18);
+}
+#search-overlay mark {
+    background: rgba(24,139,150,0.35);
+    color: #fff;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+@media (max-width: 700px) {
+    #search-overlay { padding-top: 60px; }
+}
