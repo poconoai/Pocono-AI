@@ -1,36 +1,49 @@
 /* =========================================
-   POCONO AI, LLC - NAVIGATION & SEARCH LOGIC
-   V107 - CROSS-BROWSER STABILITY (CHROME/FIREFOX)
+   POCONO AI, LLC - NAVIGATION & SEARCH
+   V108 - UNIFIED PERIMETER BUILD
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('mobile-menu');
     const navMenu    = document.getElementById('nav-menu');
 
-    // ── SEARCH ENGINE LOGIC (The Magnifying Glass Fix) ──────────────────
-    // We target the search input and button directly to break the "Blue Lock"
-    const searchInput = document.querySelector('header input[type="text"]');
-    const searchBtn   = document.querySelector('header .search-btn') || document.querySelector('header button img[src*="search"]')?.parentElement;
+    // ── THE "BLUE LOCK" KILLER ──────────────────────────────────────────
+    // Force-clears focus from ANY element clicked to prevent sticky blue rings
+    document.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+            setTimeout(() => e.target.blur(), 150);
+        }
+    });
 
-    if (searchBtn) {
-        searchBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const query = searchInput ? searchInput.value.trim() : "";
-            
-            // Trigger visual feedback
-            this.style.transform = "scale(0.95)";
-            
-            if (query !== "") {
-                console.log("Searching for:", query);
-                // Redirect to search or show results
-                // window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+    // ── SEARCH ENGINE LOGIC ─────────────────────────────────────────────
+    const searchForm = document.querySelector('.search-container');
+    const searchInput = document.querySelector('.search-input');
+    const searchBtn = document.querySelector('.search-submit');
+
+    if (searchBtn && searchInput) {
+        const executeSearch = () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                console.log("Sovereign Search Initiated:", query);
+                // Trigger visual feedback
+                searchBtn.style.color = 'var(--ai-blue)';
+                setTimeout(() => { searchBtn.style.color = ''; }, 500);
+                
+                // Add your search redirect here, e.g.:
+                // window.location.href = `https://poconoai.com/search?q=${query}`;
             }
+        };
 
-            // CRITICAL: Force-kill the blue highlight after click
-            setTimeout(() => {
-                this.style.transform = "";
-                this.blur(); // Physically removes focus for Firefox
-            }, 150);
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            executeSearch();
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeSearch();
+            }
         });
     }
 
@@ -48,14 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
             d.menu.classList.remove('open');
             d.toggle.classList.remove('open');
             d.toggle.style.removeProperty('color');
-            d.toggle.blur();
         });
         if (navMenu) navMenu.classList.remove('active');
     }
 
     dropdowns.forEach(d => {
-        d.toggle.addEventListener('click', function(e) {
-            e.preventDefault(); e.stopPropagation();
+        d.toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const isOpen = d.menu.classList.contains('open');
             closeAll();
             if (!isOpen) {
@@ -66,12 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smart detector for outside taps (Firefox & Chrome)
-    ['mousedown', 'touchstart'].forEach(evt => {
-        document.addEventListener(evt, (e) => {
-            if (!e.target.closest('.nav-dropdown') && !e.target.closest('.menu-toggle') && !e.target.closest('header form')) {
-                closeAll();
-            }
-        }, { passive: true });
-    });
+    // Mobile Hamburger
+    if (menuToggle) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close on outside tap
+    document.addEventListener('touchstart', (e) => {
+        if (!e.target.closest('header')) closeAll();
+    }, { passive: true });
 });
