@@ -1577,16 +1577,20 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     justify-content: center;
     transition: color .15s, background .15s;
     flex-shrink: 0;
+    /* v99: iOS touch fixes — eliminates 300ms tap delay and ghost highlight */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 36px;
+    min-height: 36px;
 }
 #search-toggle:hover,
 #search-toggle[aria-expanded="true"] { color: var(--teal); background: rgba(24,139,150,0.1); }
 
 #search-input {
     /* Absolutely positioned so it expands LEFTWARD from the button
-       without pushing anything in the flex layout (fixes Marc's bug:
-       input was in-flow, expansion pushed button off-screen right) */
+       without pushing anything in the flex layout. */
     position: absolute;
-    right: 100%;          /* starts flush against left edge of button */
+    right: 100%;
     top: 50%;
     transform: translateY(-50%);
     width: 0;
@@ -1605,7 +1609,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     pointer-events: none;
     -webkit-appearance: none;
     white-space: nowrap;
-    overflow: hidden;
+    /* v99: removed overflow:hidden — was clipping input at width:0 and not needed with opacity:0 */
     z-index: 1001;
 }
 #search-input::placeholder { color: rgba(255,255,255,0.35); }
