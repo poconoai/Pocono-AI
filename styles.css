@@ -1562,7 +1562,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     display: flex;
     align-items: center;
     gap: 0;
-    position: static; /* no overflow:hidden, no relative — dropdown lives in body */
+    position: relative; /* anchor for absolutely-positioned input */
 }
 
 #search-toggle {
@@ -1582,13 +1582,20 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 #search-toggle[aria-expanded="true"] { color: var(--teal); background: rgba(24,139,150,0.1); }
 
 #search-input {
+    /* Absolutely positioned so it expands LEFTWARD from the button
+       without pushing anything in the flex layout (fixes Marc's bug:
+       input was in-flow, expansion pushed button off-screen right) */
+    position: absolute;
+    right: 100%;          /* starts flush against left edge of button */
+    top: 50%;
+    transform: translateY(-50%);
     width: 0;
     min-width: 0;
     padding: 6px 0;
     border: none;
     border-bottom: 2px solid transparent;
     outline: none;
-    background: transparent;
+    background: var(--bg-black, #051622);
     color: #fff;
     font-family: 'DM Mono', monospace;
     font-size: 0.85em;
@@ -1597,6 +1604,9 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     opacity: 0;
     pointer-events: none;
     -webkit-appearance: none;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 1001;
 }
 #search-input::placeholder { color: rgba(255,255,255,0.35); }
 #search-input::-webkit-search-cancel-button { display: none; }
@@ -1687,5 +1697,5 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 }
 
 @media (max-width: 500px) {
-    .search-form.open #search-input { width: min(150px, 35vw); }
+    .search-form.open #search-input { width: min(150px, 38vw); }
 }
