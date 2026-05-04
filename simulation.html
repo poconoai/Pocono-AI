@@ -275,9 +275,13 @@
 <header>
     <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
     <div class="header-right">
-        <button type="button" id="search-toggle" aria-label="Search site" aria-expanded="false" aria-controls="search-overlay">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
+        <form class="search-form" id="search-form" role="search" action="javascript:void(0)">
+            <input id="search-input" type="search" placeholder="Search…" autocomplete="off" spellcheck="false" aria-label="Search site" />
+            <button type="button" id="search-toggle" aria-label="Search site" aria-expanded="false" aria-controls="search-results-drop">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+            <div id="search-results-drop" role="listbox" aria-label="Search results"></div>
+        </form>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
