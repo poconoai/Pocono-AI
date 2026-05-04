@@ -1,0 +1,598 @@
+/* =========================================
+   POCONO AI — HEADER / NAV / SEARCH CSS
+   V2026 Refactor — Drop-Under Search +
+   GPU-Accelerated Dropdowns + iOS Fix
+   ========================================= */
+
+/* ── LAYER 1: GLOBAL FOCUS ARCHITECTURE ──────────────────────────────────
+ *
+ * The "focus-visible" strategy is the W3C-blessed solution for the
+ * iOS sticky-blue-ring bug. The browser only applies :focus-visible
+ * when it determines the focus came from keyboard navigation, NOT
+ * from a pointer/touch event. This eliminates all touch-triggered
+ * focus rings at the CSS level — zero JavaScript required for this layer.
+ *
+ * :focus:not(:focus-visible) catches any browser that paints :focus
+ * rings on touch (older Chrome, Safari < 15.4) and hard-resets them.
+ * ────────────────────────────────────────────────────────────────────── */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ai-blue), 0 0 0 4px rgba(0,163,255,0.2);
+  border-radius: 3px;
+}
+*:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* iOS Safari: kills the blue tap-flash on ALL interactive elements */
+button, a, [role="button"], [tabindex] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* Removes 300ms click delay */
+}
+
+
+/* ── BACKDROP (Layer 2 — iOS Event Fix) ──────────────────────────────── */
+#nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 990; /* Above page, below header(1000) and panels(1001+) */
+  cursor: default;
+  /* Transparent but real — iOS fires touch events on it */
+  background: rgba(0, 0, 0, 0);
+  /* Grows to semi-opaque when menus are open */
+  transition: background 0.3s ease;
+}
+#nav-backdrop.is-active {
+  display: block;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+
+/* ── HEADER SHELL ─────────────────────────────────────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  isolation: isolate; /* New stacking context — z-index is local to header */
+  background: var(--bg-black);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s ease,
+              background 0.35s ease;
+}
+
+header.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile: hide header when scrolling down */
+header.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+
+/* ── LOGO ────────────────────────────────────────────────────────────── */
+.logo {
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s;
+}
+.logo:hover { opacity: 0.85; }
+.logo img { display: block; }
+.logo span { color: var(--ai-blue); }
+
+
+/* ── DESKTOP NAV ─────────────────────────────────────────────────────── */
+#desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  #desktop-nav { display: flex; }
+}
+
+/* Each top-level nav item */
+.nav-item {
+  position: static; /* Children position relative to header, not this item */
+}
+
+/* Top-level buttons/links */
+.nav-toggle,
+.nav-link-top {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 13px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.84em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-toggle:hover,
+.nav-link-top:hover,
+.nav-item.is-open .nav-toggle {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.nav-item.is-open .nav-toggle {
+  color: var(--ai-blue);
+}
+
+/* Animated chevron */
+.nav-chevron {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+.nav-item.is-open .nav-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+
+/* ── MEGA DROPDOWN MENUS ─────────────────────────────────────────────── */
+/* Positioned fixed to escape overflow:hidden ancestors, aligned to header bottom */
+.nav-dropdown {
+  position: fixed;
+  top: 70px; /* matches header height */
+  /* left/width set per-menu below */
+  z-index: 1001;
+  background: rgba(5, 22, 34, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid var(--ai-blue);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 8px 20px rgba(0, 163, 255, 0.06);
+  min-width: 220px;
+  padding: 8px 0 12px;
+
+  /* GPU-ACCELERATED TRANSITION — replaces display:none */
+  /* Properties: opacity (fade) + transform (slide) + visibility (pointer events) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.22s; /* delay hides AFTER animation */
+
+  /* Prevent transition on page load */
+  will-change: opacity, transform;
+}
+
+.nav-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0s; /* no delay on open */
+}
+
+/* Position each dropdown under its toggle */
+#menu-platform   { left: 24px; }
+#menu-why-local  { left: 50%; transform: translateX(-50%) translateY(-8px); min-width: 240px; }
+#menu-why-local.is-open { transform: translateX(-50%) translateY(0); }
+#menu-research   { left: 50%; transform: translateX(-15%) translateY(-8px); min-width: 240px; }
+#menu-research.is-open  { transform: translateX(-15%) translateY(0); }
+/* "Company" aligns right so it doesn't clip viewport edge */
+#menu-company    { right: 24px; left: auto; }
+
+/* Dropdown links */
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.84em;
+  font-weight: 500;
+  border: none;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
+}
+.nav-dropdown a.nav-featured {
+  color: var(--teal);
+  font-weight: 700;
+}
+.nav-dropdown a.nav-featured:hover { color: var(--ai-blue); }
+.nav-dropdown a.nav-hot {
+  color: #FF6B5B;
+  font-weight: 600;
+}
+
+/* Section label inside dropdown */
+.nav-section-label {
+  display: block;
+  padding: 12px 20px 4px;
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 4px;
+}
+.nav-section-label:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+
+
+/* ── HEADER RIGHT: SEARCH ICON + HAMBURGER ────────────────────────────── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.header-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.header-icon-btn:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+.header-icon-btn[aria-expanded="true"] { color: var(--ai-blue); }
+
+/* Hamburger lines — animated to X */
+.hamburger {
+  position: relative;
+  width: 22px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  left: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 7px; }
+.hamburger span:nth-child(3) { top: 14px; }
+
+#mobile-menu.is-open .hamburger span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+#mobile-menu.is-open .hamburger span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+#mobile-menu.is-open .hamburger span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 900px) {
+  #mobile-menu { display: none; }
+}
+
+
+/* ── DROP-UNDER SEARCH PANEL ─────────────────────────────────────────── */
+/*
+ * The search panel lives OUTSIDE the header's flex row, directly after
+ * <header> in the DOM. It slides down from under the header using
+ * position:sticky + translateY. This completely avoids the Firefox
+ * flexbox-collision bug (the input was trapped in the header flex row).
+ *
+ * Architecture: The panel is position:sticky with top:70px (header height).
+ * It starts with translateY(-100%) and opacity:0, then transitions to
+ * translateY(0) when .is-open is applied. The panel naturally sits under
+ * the header in document flow, so no z-index collision possible.
+ */
+#search-panel {
+  position: sticky;
+  top: 70px; /* Aligns flush under header */
+  left: 0;
+  right: 0;
+  z-index: 999; /* Just below header (1000) */
+  width: 100%;
+  background: rgba(2, 12, 20, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 163, 255, 0.2);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  padding: 0;
+  overflow: hidden;
+
+  /* Slide-under animation */
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.28s ease,
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+#search-panel.is-open {
+  max-height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.search-panel-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+
+#search-panel-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: var(--white);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.95em;
+  transition: border-color 0.2s, background 0.2s;
+  /* Firefox fix: explicit width prevents flex-collapse */
+  min-width: 0;
+  width: 100%;
+  /* iOS: prevents unwanted zoom on focus */
+  font-size: max(16px, 0.95em);
+}
+#search-panel-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+#search-panel-input::-webkit-search-cancel-button { display: none; }
+#search-panel-input:focus {
+  outline: none;
+  border-color: var(--ai-blue);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.15);
+}
+
+.search-submit-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: var(--ai-blue);
+  border: none;
+  border-radius: 7px;
+  color: var(--bg-black);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.search-submit-btn:hover { background: #33b8ff; transform: translateY(-1px); }
+.search-submit-btn:active { transform: translateY(0); }
+
+#search-panel-close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s, background 0.2s;
+}
+#search-panel-close:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+
+
+/* ── MOBILE NAV PANEL ────────────────────────────────────────────────── */
+#mobile-nav-panel {
+  display: block;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: var(--bg-black);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  /* Slide in from right on mobile */
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#mobile-nav-panel.is-open {
+  transform: translateX(0);
+}
+
+@media (min-width: 900px) {
+  #mobile-nav-panel { display: none !important; }
+}
+
+/* Mobile section accordion */
+.mob-section { border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+.mob-section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 24px;
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.mob-section-toggle .mob-chevron {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+  transition: transform 0.25s ease;
+}
+.mob-section.is-open .mob-chevron { transform: rotate(180deg); }
+
+.mob-section-links {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mob-section.is-open .mob-section-links {
+  max-height: 600px; /* Large enough for all links */
+}
+.mob-section-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px 12px 32px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.9em;
+  border: none;
+  transition: color 0.15s;
+}
+.mob-section-links a:hover,
+.mob-section-links a:active { color: var(--ai-blue); }
+.mob-section-links a.mob-featured { color: var(--teal); font-weight: 700; }
+
+/* Static mobile links (Home, CTA) */
+.mob-static-links { padding: 8px 0; }
+.mob-static-links a {
+  display: block;
+  padding: 14px 24px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 0.95em;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mob-cta {
+  margin: 20px 24px;
+  display: block;
+  text-align: center;
+  padding: 14px;
+  background: var(--teal);
+  color: var(--white) !important;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
+
+/* ── HEADER LINK PROTECTION (override global styles) ─────────────────── */
+header a, header button { text-decoration: none !important; }
+
+/* ── SKIP LINK ───────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  background: var(--ai-blue);
+  color: var(--bg-black);
+  padding: 10px 20px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9em;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+
+/* ── READING PROGRESS ────────────────────────────────────────────────── */
+#reading-progress {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--ai-blue));
+  z-index: 999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ── HEADER PLACEHOLDER (FOUC guard) ─────────────────────────────────── */
+#site-header-placeholder:empty {
+  height: 70px;
+  background: var(--bg-black);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}

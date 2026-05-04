@@ -73,66 +73,193 @@
   }
 }
     </script>
+<link rel="stylesheet" href="nav-v2026.css">
 </head>
 <body>
+<a href="index.html" class="skip-link">Skip to main content</a>
+<div id="reading-progress" aria-hidden="true"></div>
+
+<header role="banner">
+  <div class="header-inner">
+    <a href="index.html" class="logo" aria-label="Pocono AI — Home">
+      <img src="logo.svg" alt="" width="36" height="36" decoding="async" loading="eager" aria-hidden="true">
+      Pocono <span>AI</span>
+    </a>
+
+    <nav id="desktop-nav" aria-label="Main navigation">
+      <div class="nav-item" data-dropdown="menu-platform">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-platform">
+          Platform
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+      <div class="nav-item" data-dropdown="menu-why-local">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-why-local">
+          Why Local
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+      <div class="nav-item" data-dropdown="menu-research">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-research">
+          Research
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+      <div class="nav-item" data-dropdown="menu-company">
+        <button type="button" class="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="menu-company">
+          Company
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="header-icon-btn" id="search-icon-btn"
+              aria-label="Open search" aria-expanded="false" aria-controls="search-panel">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+      <button type="button" class="header-icon-btn" id="mobile-menu"
+              aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-panel">
+        <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="menu-platform" class="nav-dropdown" role="menu" aria-label="Platform">
+  <span class="nav-section-label">Tools</span>
+  <a href="sentinel-demo.html" class="nav-featured" role="menuitem">&#9654; Live RAG Demo</a>
+  <a href="simulation.html" class="nav-featured" role="menuitem">&#9878; 12-Panel Simulation</a>
+  <a href="breach-calculator.html" class="nav-hot" role="menuitem">&#9888; Breach Calculator</a>
+  <a href="shadow-audit.html" class="nav-hot" role="menuitem">&#128270; Shadow IT Audit</a>
+  <span class="nav-section-label">Technology</span>
+  <a href="sentinel-specs.html" class="nav-featured" role="menuitem">&#128274; Sentinel Node Specs</a>
+  <a href="architecture.html" role="menuitem">For IT &amp; MSPs</a>
+  <a href="solutions.html" role="menuitem">Solutions Overview</a>
+  <a href="deployment.html" role="menuitem">Deployment Timeline</a>
+  <a href="compliance.html" role="menuitem">&#128274; Compliance Attestation</a>
+</div>
+
+<div id="menu-why-local" class="nav-dropdown" role="menu" aria-label="Why Local">
+  <span class="nav-section-label">For Clinicians</span>
+  <a href="for-physicians.html" class="nav-featured" role="menuitem">For Physicians</a>
+  <a href="prior-auth-case-study.html" role="menuitem">Prior Auth Crisis</a>
+  <a href="ehr-burden-research.html" role="menuitem">EHR Burden &mdash; 5.9 Hrs</a>
+  <span class="nav-section-label">For Legal</span>
+  <a href="for-attorneys.html" class="nav-featured" role="menuitem">For Attorneys</a>
+  <a href="legal-admin-burden.html" role="menuitem">Legal Admin Burden</a>
+  <span class="nav-section-label">Security &amp; Trust</span>
+  <a href="trust.html" role="menuitem">Trust &amp; Security</a>
+  <a href="patient-advocacy.html" role="menuitem">Patient Safety</a>
+  <a href="pricing.html" role="menuitem">Pricing</a>
+</div>
+
+<div id="menu-research" class="nav-dropdown" role="menu" aria-label="Research">
+  <span class="nav-section-label">Market Intelligence</span>
+  <a href="market-research.html" class="nav-featured" role="menuitem">&#128200; Market Validation</a>
+  <a href="research.html" role="menuitem">Research Hub</a>
+  <a href="competitive-analysis.html" role="menuitem">Competitive Analysis</a>
+  <a href="comparison.html" role="menuitem">Head-to-Head Comparison</a>
+</div>
+
+<div id="menu-company" class="nav-dropdown" role="menu" aria-label="Company">
+  <span class="nav-section-label">About</span>
+  <a href="about.html" role="menuitem">About the Founder</a>
+  <a href="how-we-hire.html" class="nav-featured" role="menuitem">&#9670; Neurodiversity-First Hiring</a>
+  <a href="careers.html" role="menuitem">Careers</a>
+  <span class="nav-section-label">Partners &amp; Investors</span>
+  <a href="partners.html" role="menuitem">Partners</a>
+  <a href="investors.html" role="menuitem" style="color:var(--muted,rgba(255,255,255,0.4))">Investor Relations</a>
+</div>
+
+<div id="search-panel" role="search" aria-label="Site search" aria-hidden="true">
+  <div class="search-panel-inner">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="search" id="search-panel-input" placeholder="Search Pocono AI&hellip;"
+           autocomplete="off" spellcheck="false" enterkeyhint="search" aria-label="Search site">
+    <button type="button" class="search-submit-btn" aria-label="Submit search">Search</button>
+    <button type="button" id="search-panel-close" aria-label="Close search">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<nav id="mobile-nav-panel" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mob-static-links">
+    <a href="index.html">Home</a>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">
+      Platform
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="sentinel-demo.html" class="mob-featured">&#9654; Live RAG Demo</a>
+      <a href="simulation.html" class="mob-featured">&#9878; 12-Panel Simulation</a>
+      <a href="breach-calculator.html">&#9888; Breach Calculator</a>
+      <a href="shadow-audit.html">&#128270; Shadow IT Audit</a>
+      <a href="sentinel-specs.html" class="mob-featured">&#128274; Sentinel Node Specs</a>
+      <a href="architecture.html">For IT &amp; MSPs</a>
+      <a href="solutions.html">Solutions Overview</a>
+      <a href="deployment.html">Deployment Timeline</a>
+      <a href="compliance.html">&#128274; Compliance Attestation</a>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">
+      Why Local
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="for-physicians.html" class="mob-featured">For Physicians</a>
+      <a href="for-attorneys.html" class="mob-featured">For Attorneys</a>
+      <a href="trust.html">Trust &amp; Security</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+      <a href="patient-advocacy.html">Patient Safety</a>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">
+      Research
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="market-research.html" class="mob-featured">&#128200; Market Validation</a>
+      <a href="research.html">Research Hub</a>
+      <a href="competitive-analysis.html">Competitive Analysis</a>
+      <a href="comparison.html">Head-to-Head Comparison</a>
+      <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+      <a href="legal-admin-burden.html">Legal Admin Burden</a>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button type="button" class="mob-section-toggle" aria-expanded="false">
+      Company
+      <svg class="mob-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="2,3 5,7 8,3"/></svg>
+    </button>
+    <div class="mob-section-links">
+      <a href="about.html">About the Founder</a>
+      <a href="how-we-hire.html" class="mob-featured">&#9670; Neurodiversity-First Hiring</a>
+      <a href="careers.html">Careers</a>
+      <a href="partners.html">Partners</a>
+      <a href="investors.html">Investor Relations</a>
+    </div>
+  </div>
+  <a href="sentinel-demo.html" class="mob-cta">Book a 15-Min Call</a>
+</nav>
+
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
 
-<header>
-    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
-    <div class="header-right">
-        <form class="search-form" id="search-form" role="search">
-            <input id="search-input" type="search" placeholder="Search…" autocomplete="off" spellcheck="false" aria-label="Search site" enterkeyhint="search" />
-            <button type="button" id="search-toggle" aria-label="Search site" aria-expanded="false">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </button>
-        </form>
-        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-    <nav id="nav-menu" aria-label="Main navigation">
-        <ul class="nav-links">
-            <li class="nav-home-always"><a href="index.html">Home</a></li>
-            <li><a href="for-physicians.html">For Physicians</a></li>
-            <li><a href="for-attorneys.html">For Attorneys</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="trust.html">Trust &amp; Security</a></li>
-            <li class="nav-dropdown">
-                <button type="button" class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
-                <div class="nav-dropdown-menu" id="more-menu" role="menu">
-                    <span class="nav-group-label">Tools</span>
-                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
-                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
-                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
-                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
-                    <span class="nav-group-label">Technology</span>
-                    <a href="sentinel-specs.html" style="color:var(--teal);font-weight:700;">&#128274; Sentinel Node Specs</a>
-                    <a href="architecture.html">For IT &amp; MSPs</a>
-                    <a href="solutions.html">Solutions Overview</a>
-                    <a href="competitive-analysis.html">Competitive Analysis</a>
-                    <a href="comparison.html">Comparison</a>
-                    <a href="compliance.html">&#128274; Compliance Attestation</a>
-                    <a href="deployment.html">Deployment Timeline</a>
-                    <span class="nav-group-label">Research</span>
-                    <a href="market-research.html" style="color:var(--teal);font-weight:700;">&#128200; Market Validation</a>
-                    <a href="research.html">Research Hub</a>
-                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
-                    <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
-                    <a href="legal-admin-burden.html">Legal Admin Burden</a>
-                    <a href="patient-advocacy.html">Patient Safety</a>
-                    <span class="nav-group-label">Company</span>
-                    <a href="about.html">About the Founder</a>
-                    <a href="careers.html">Careers</a>
-                    <a href="how-we-hire.html" style="color:var(--teal);font-weight:700;">&#9670; Neurodiversity-First Hiring</a>
-                    <a href="partners.html">Partners</a>
-                    <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
+
 
 <main id="main-content">
 
@@ -912,8 +1039,8 @@
     </div>
     <script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
 </footer>
-    <script src="nav.js?v=100"></script>
-    <script src="search-index.js?v=100"></script>
-    <script src="search.js?v=100"></script>
+    <script src="nav.js" defer></script>
+    <script src="search-index.js" defer></script>
+    <script src="search.js" defer></script>
 </body>
 </html>
