@@ -1582,6 +1582,8 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     -webkit-tap-highlight-color: transparent;
     min-width: 36px;
     min-height: 36px;
+    user-select: none;
+    -webkit-user-select: none;
 }
 #search-toggle:hover,
 #search-toggle[aria-expanded="true"] { color: var(--teal); background: rgba(24,139,150,0.1); }
