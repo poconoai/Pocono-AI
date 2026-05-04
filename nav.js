@@ -1,121 +1,79 @@
 /* =========================================
-   POCONO AI, LLC — NAVIGATION v43
-   Bulletproof dropdown: explicit state machine,
-   single document listener, proper touch handling.
+   POCONO AI, LLC - NAVIGATION LOGIC
+   Dropdown system — click-stable, no CSS hover flicker
    ========================================= */
-(function () {
-    'use strict';
 
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 
-        /* ── Hamburger ─────────────────────────────────────── */
-        var toggle  = document.getElementById('mobile-menu');
-        var navMenu = document.getElementById('nav-menu');
-        var mOpen   = false;
+    // ── Hamburger (mobile) ────────────────────────────────────────────────
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu    = document.getElementById('nav-menu');
 
-        function setMobile(open) {
-            mOpen = open;
-            if (!navMenu || !toggle) return;
-            navMenu.classList.toggle('active', open);
-            toggle.setAttribute('aria-expanded', String(open));
-            var spans = toggle.querySelectorAll('span');
-            spans[0].style.transform = open ? 'rotate(45deg) translate(5px,6px)' : '';
-            spans[1].style.opacity   = open ? '0' : '';
-            spans[2].style.transform = open ? 'rotate(-45deg) translate(5px,-6px)' : '';
-            if (!open) closeAll();
-        }
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            const spans = menuToggle.querySelectorAll('span');
+            if (isOpen) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity   = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                spans[0].style.transform = '';
+                spans[1].style.opacity   = '';
+                spans[2].style.transform = '';
+                closeAllDropdowns();
+            }
+        });
+    }
 
-        if (toggle && navMenu) {
-            toggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                setMobile(!mOpen);
-            });
-        }
+    // ── Dropdown registry — add new dropdowns here ────────────────────────
+    const dropdowns = [
+        { toggleId: 'research-toggle', menuId: 'research-menu' },
+        { toggleId: 'more-toggle',     menuId: 'more-menu'     },
+    ]
+    .map(d => ({
+        toggle: document.getElementById(d.toggleId),
+        menu:   document.getElementById(d.menuId),
+    }))
+    .filter(d => d.toggle && d.menu);
 
-        /* ── Dropdowns ─────────────────────────────────────── */
-        var registry = [
-            { toggleId: 'more-toggle', menuId: 'more-menu' },
-        ].map(function (d) {
-            return { toggle: document.getElementById(d.toggleId),
-                     menu:   document.getElementById(d.menuId),
-                     open:   false };
-        }).filter(function (d) { return d.toggle && d.menu; });
-
-        function openDrop(d) {
-            d.open = true;
-            d.menu.classList.add('open');
-            d.toggle.classList.add('open');
-            d.toggle.setAttribute('aria-expanded', 'true');
-            d.menu.style.zIndex = '2100';
-        }
-        function closeDrop(d) {
-            d.open = false;
+    function closeAllDropdowns() {
+        dropdowns.forEach(d => {
             d.menu.classList.remove('open');
             d.toggle.classList.remove('open');
             d.toggle.setAttribute('aria-expanded', 'false');
-        }
-        function closeAll() { registry.forEach(closeDrop); }
-
-        registry.forEach(function (d) {
-            d.toggle.addEventListener('click', function (e) {
-                e.stopPropagation();
-                var was = d.open;
-                closeAll();
-                if (!was) openDrop(d);
-            });
         });
+    }
 
-        /* Single outside-click handler */
-        document.addEventListener('click', function (e) {
-            var inside = registry.some(function (d) {
-                return d.menu.contains(e.target) || d.toggle.contains(e.target);
-            });
-            if (!inside) closeAll();
-            if (!inside && mOpen && navMenu && !navMenu.contains(e.target) &&
-                toggle && !toggle.contains(e.target)) {
-                setMobile(false);
+    dropdowns.forEach(d => {
+        // Toggle on button click
+        d.toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const wasOpen = d.menu.classList.contains('open');
+            closeAllDropdowns();
+            if (!wasOpen) {
+                d.menu.classList.add('open');
+                d.toggle.classList.add('open');
+                d.toggle.setAttribute('aria-expanded', 'true');
             }
         });
 
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') { closeAll(); setMobile(false); }
+        // CRITICAL: stop propagation inside menu
+        d.menu.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
     });
 
-    /* ── Reading progress ──────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', function () {
-        var bar = document.getElementById('reading-progress');
-        if (!bar) return;
-        function upd() {
-            var d = document.documentElement;
-            var t = d.scrollHeight - d.clientHeight;
-            bar.style.width = t > 0 ? ((d.scrollTop || document.body.scrollTop) / t * 100) + '%' : '0%';
-        }
-        window.addEventListener('scroll', upd, { passive: true });
-        upd();
+    // Close on any outside click (click for desktop, touchstart for iOS/iPad bug)
+    ['click', 'touchstart'].forEach(evt => 
+        document.addEventListener(evt, closeAllDropdowns, { passive: true })
+    );
+
+    // Close on Escape from anywhere
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllDropdowns();
     });
 
-    /* ── Fade-in observer ──────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', function () {
-        if (!('IntersectionObserver' in window)) return;
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-            });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.fade-in-section').forEach(function (el) { io.observe(el); });
-    });
-
-    /* ── Back-to-top ───────────────────────────────────────── */
-    document.addEventListener('DOMContentLoaded', function () {
-        var btn = document.createElement('button');
-        btn.id = 'back-to-top'; btn.type = 'button';
-        btn.setAttribute('aria-label', 'Back to top');
-        btn.innerHTML = '&#8593;';
-        document.body.appendChild(btn);
-        btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        window.addEventListener('scroll', function () {
-            btn.classList.toggle('visible', window.scrollY > 400);
-        }, { passive: true });
-    });
-}());
+});
