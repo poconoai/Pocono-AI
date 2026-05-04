@@ -331,7 +331,7 @@
             animation: pulse-red 0.4s ease;
         }
     </style>
-<link rel="stylesheet" href="nav-v2026.css">
+<link rel="stylesheet" href="nav-v2026.css?v=114">
 </head>
 <body>
 <a href="index.html" class="skip-link">Skip to main content</a>
@@ -375,7 +375,8 @@
   </div>
 </header>
 
-<!-- Dropdowns: outside header, position:fixed, unaffected by header isolation -->
+<!-- Dropdown root: sticky+height:0 anchors absolute-positioned menus -->
+<div id="nav-drop-root">
 <div id="menu-platform" class="nav-dropdown" role="menu" aria-label="Platform">
   <span class="nav-section-label">Tools</span>
   <a href="sentinel-demo.html" class="nav-featured" role="menuitem">&#9654; Live RAG Demo</a>
@@ -417,6 +418,7 @@
   <span class="nav-section-label">Partners &amp; Investors</span>
   <a href="partners.html" role="menuitem">Partners</a>
   <a href="investors.html" role="menuitem" style="color:var(--muted,rgba(255,255,255,0.4))">Investor Relations</a>
+</div>
 </div>
 
 <!-- Search panel: sticky top:70px, outside header flex context -->
@@ -978,7 +980,7 @@
     
     
 
-<script src="search-index.js" defer></script>
-<script src="nav.js" defer></script>
+<script src="search-index.js?v=114" defer></script>
+<script src="nav.js?v=114" defer></script>
 </body>
 </html>

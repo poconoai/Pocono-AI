@@ -147,8 +147,8 @@ header.scrolled {
    from approximate toggle positions.
    ──────────────────────────────────────────────────────────── */
 .nav-dropdown {
-  position: fixed;
-  top: 70px;
+  position: absolute;
+  top: 0;              /* relative to nav-drop-root which is already at header bottom */
   z-index: 1100;
   background: rgba(3,14,24,0.98);
   backdrop-filter: blur(20px);
@@ -182,11 +182,25 @@ header.scrolled {
     visibility 0s linear 0s;
 }
 
-/* Individual dropdown positions — simple left/right, no translateX */
-#menu-platform  { left: clamp(16px, 3%, 32px); }
-#menu-why-local { left: calc(50% - 140px); }   /* center-ish, 280px wide / 2 */
-#menu-research  { left: calc(50% - 20px); }    /* slightly right of center */
-#menu-company   { right: clamp(16px, 3%, 32px); left: auto; }
+/* nav-drop-root: sticky row at header bottom, zero height, overflow visible.
+   This is the positioning ancestor for all dropdown menus.
+   position:absolute children are offset from THIS element, not the viewport.
+   This completely bypasses the body{overflow-x:clip} containing-block trap
+   that was breaking position:fixed dropdowns in Chrome/Firefox. */
+#nav-drop-root {
+  position: sticky;
+  top: 70px;           /* flush under header */
+  height: 0;           /* takes zero layout space */
+  overflow: visible;   /* dropdowns can extend below */
+  z-index: 1050;       /* above page content, below mobile panel */
+  pointer-events: none; /* root itself is invisible to mouse */
+}
+
+/* All 4 dropdown menus: absolute within nav-drop-root */
+#menu-platform, #menu-why-local, #menu-research, #menu-company {
+  pointer-events: auto; /* menus ARE clickable */
+  left: 0; /* overridden by JS positionDrop() on every open */
+}
 
 .nav-dropdown a {
   display: flex;

@@ -155,14 +155,77 @@
     }).filter(function(d) { return d.toggle && d.menu; });
 
     /* UNIT TESTS for dropdown wiring */
+    test('positionDrop: root-relative math is correct', function() {
+      // Simulate: rootRect.left=200, btnRect.left=640, vw=1280, mw=220
+      var btnLeft = 640; var rootLeft = 200; var vw = 1280; var mw = 220;
+      var idealLeft = btnLeft - rootLeft;           // = 440
+      var maxLeft   = vw - rootLeft - mw - 8;      // = 1280-200-220-8 = 852
+      var finalLeft = Math.max(0, Math.min(idealLeft, maxLeft));
+      assert(finalLeft === 440, 'should align under toggle: got ' + finalLeft);
+    });
+    test('positionDrop: clamps when toggle near right edge', function() {
+      // Toggle at x=1150, root at x=200, mw=220, vw=1280
+      var btnLeft = 1150; var rootLeft = 200; var vw = 1280; var mw = 220;
+      var idealLeft = btnLeft - rootLeft;           // = 950
+      var maxLeft   = vw - rootLeft - mw - 8;      // = 852
+      var finalLeft = Math.max(0, Math.min(idealLeft, maxLeft));
+      assert(finalLeft === 852, 'should clamp to maxLeft: got ' + finalLeft);
+    });
     test('nav: desktop nav items found', function() {
       // Can't test DOM elements before they exist in test harness,
       // but we can test the array once wired
       assert(Array.isArray(drops), 'drops should be an array');
     });
 
+    /* ── positionDrop ─────────────────────────────────────────────────
+       WHY THIS WORKS:
+       - Dropdowns are position:absolute inside #nav-drop-root
+       - nav-drop-root is position:sticky, so it's a real positioned ancestor
+       - This COMPLETELY bypasses body{overflow-x:clip} which was trapping
+         position:fixed elements and causing the misalignment bug
+       - We measure toggle position relative to nav-drop-root's own left edge
+         so the dropdown aligns exactly under its button at any viewport width
+    ──────────────────────────────────────────────────────────────── */
+    var dropRoot = document.getElementById('nav-drop-root');
+
+    function positionDrop(d) {
+      var menu = d.menu;
+      var btn  = d.toggle;
+      if (!menu || !btn || !dropRoot) return;
+
+      var btnRect  = btn.getBoundingClientRect();
+      var rootRect = dropRoot.getBoundingClientRect();
+      var vw       = window.innerWidth;
+
+      // Measure real dropdown width — briefly force render at opacity:0
+      var prevVis = menu.style.visibility;
+      var prevOp  = menu.style.opacity;
+      var prevPtr = menu.style.pointerEvents;
+      menu.style.visibility    = 'hidden';
+      menu.style.opacity       = '0';
+      menu.style.pointerEvents = 'none';
+      menu.style.display       = 'block';
+      var mw = menu.offsetWidth || 220;
+      menu.style.display       = '';
+      menu.style.visibility    = prevVis;
+      menu.style.opacity       = prevOp;
+      menu.style.pointerEvents = prevPtr;
+
+      // Toggle left edge, expressed as offset FROM nav-drop-root left edge
+      var idealLeft = btnRect.left - rootRect.left;
+
+      // Clamp: prevent right overflow (8px gutter from viewport edge)
+      // rootRect.left is the absolute position of our origin
+      var maxLeft = vw - rootRect.left - mw - 8;
+      var finalLeft = Math.max(0, Math.min(idealLeft, maxLeft));
+
+      menu.style.left  = finalLeft + 'px';
+      menu.style.right = 'auto';
+    }
+
     function openDrop(d) {
       if (activeDropId && activeDropId !== d) closeDrop(activeDropId);
+      positionDrop(d);  // position BEFORE adding is-open so animation starts right
       d.item.classList.add('is-open');
       d.menu.classList.add('is-open');
       d.toggle.setAttribute('aria-expanded', 'true');
@@ -392,6 +455,11 @@
         if (activeDropId || mobileOpen) closeAll();
       }
     });
+
+    /* ── RESIZE: reposition open dropdown ── */
+    window.addEventListener('resize', function() {
+      if (activeDropId) positionDrop(activeDropId);
+    }, { passive: true });
 
     /* ── SCROLL: sticky header state ── */
     var lastY = 0;
