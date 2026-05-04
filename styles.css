@@ -45,7 +45,7 @@ img { max-width: 100%; height: auto; }
 /* ── READING PROGRESS BAR ── */
 #reading-progress { position: fixed; top: 70px; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); z-index: 999; transition: width 0.1s linear; }
 
-/* ── HEADER v102 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
+/* ── HEADER v103 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
 /* ── FOUC guard: placeholder reserves header height before component loads ── */
 #site-header-placeholder:empty { height: 70px; background: var(--bg-black); position: sticky; top: 0; z-index: 1000; }
 header {
@@ -1547,7 +1547,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 .audit-spec ul li { margin-bottom: 6px; }
 
 /* ═══════════════════════════════════════
-   SITE SEARCH v102
+   SITE SEARCH v103
 ═══════════════════════════════════════ */
 
 .header-right {
@@ -1576,7 +1576,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     justify-content: center;
     transition: color .15s, background .15s;
     flex-shrink: 0;
-    /* v102: iOS touch fixes — eliminates 300ms tap delay and ghost highlight */
+    /* v103: iOS touch fixes — eliminates 300ms tap delay and ghost highlight */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     min-width: 36px;
@@ -1610,7 +1610,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     pointer-events: none;
     -webkit-appearance: none;
     white-space: nowrap;
-    /* v102: removed overflow:hidden — was clipping input at width:0 and not needed with opacity:0 */
+    /* v103: removed overflow:hidden — was clipping input at width:0 and not needed with opacity:0 */
     z-index: 1001;
 }
 #search-input::placeholder { color: rgba(255,255,255,0.35); }
