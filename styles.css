@@ -7,7 +7,6 @@
 
 /* v32: Google Fonts loaded with display=swap. Preconnect added to all HTML heads. */
 /* System font fallbacks (render immediately before web fonts load) */
-body { font-family: 'DM Mono', 'Cascadia Code', 'Fira Mono', 'Courier New', monospace; }
 h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', 'Trebuchet MS', system-ui, sans-serif;  touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
 /* ── CUSTOM PROPERTIES ── */
@@ -33,8 +32,8 @@ h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', 'Trebuchet MS', syste
 
 /* ── BASE ── */
 *, *::before, *::after { box-sizing: border-box; }
-body { font-family: 'DM Mono', monospace; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; overflow-x: clip; /* 'clip' prevents horiz scroll without breaking position:sticky — 'hidden' creates a scroll container and kills sticky */ }
-h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', sans-serif; }
+body { font-family: 'DM Mono', 'Cascadia Code', 'Fira Mono', 'Courier New', monospace; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--white); line-height: 1.6; overflow-x: clip; /* 'clip' prevents horiz scroll without breaking position:sticky — 'hidden' creates a scroll container and kills sticky */ }
+h1, h2, h3, h4, h5, h6, .cta-button { font-family: 'Syne', 'Trebuchet MS', system-ui, sans-serif; }
 img { max-width: 100%; height: auto; }
 
 /* ── ACCESSIBILITY: WCAG AA focus + skip link ── */
@@ -46,7 +45,7 @@ img { max-width: 100%; height: auto; }
 /* ── READING PROGRESS BAR ── */
 #reading-progress { position: fixed; top: 70px; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--teal), var(--ai-blue)); z-index: 999; transition: width 0.1s linear; }
 
-/* ── HEADER v91 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
+/* ── HEADER v100 — sticky + scroll-triggered backdrop blur (industry standard: Apple/Stripe/Linear pattern) ── */
 /* ── FOUC guard: placeholder reserves header height before component loads ── */
 #site-header-placeholder:empty { height: 70px; background: var(--bg-black); position: sticky; top: 0; z-index: 1000; }
 header {
@@ -1548,7 +1547,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
 .audit-spec ul li { margin-bottom: 6px; }
 
 /* ═══════════════════════════════════════
-   SITE SEARCH v98
+   SITE SEARCH v100
 ═══════════════════════════════════════ */
 
 .header-right {
@@ -1577,7 +1576,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     justify-content: center;
     transition: color .15s, background .15s;
     flex-shrink: 0;
-    /* v99: iOS touch fixes — eliminates 300ms tap delay and ghost highlight */
+    /* v100: iOS touch fixes — eliminates 300ms tap delay and ghost highlight */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     min-width: 36px;
@@ -1611,7 +1610,7 @@ h2.vs-header { color: var(--teal); font-size: 1.7em; margin-top: 60px; margin-bo
     pointer-events: none;
     -webkit-appearance: none;
     white-space: nowrap;
-    /* v99: removed overflow:hidden — was clipping input at width:0 and not needed with opacity:0 */
+    /* v100: removed overflow:hidden — was clipping input at width:0 and not needed with opacity:0 */
     z-index: 1001;
 }
 #search-input::placeholder { color: rgba(255,255,255,0.35); }
