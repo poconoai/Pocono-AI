@@ -1,66 +1,75 @@
-
 /* =========================================
    POCONO AI, LLC - MASTER STYLESHEET
-   v107 - Firefox & Chrome Unified Build
+   v108 - Unified Perimeter Build
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
 :root { 
-    --bg-black: #000000; --bg-dark: #051622; --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; --light-text: #D0DDE6;
+    --bg-black: #000000; --bg-dark: #051622; --card-dark: #0A2635; 
+    --ai-blue: #00A3FF; --teal: #188B96; --white: #FFFFFF; 
 }
 
 body { 
     font-family: 'DM Mono', monospace; background-color: var(--bg-dark); color: var(--white); 
-    margin: 0; overflow-x: hidden; -webkit-tap-highlight-color: transparent; 
+    margin: 0; -webkit-tap-highlight-color: transparent; 
 }
 
-/* FIREFOX SPECIFIC BUTTON RESET - Prevents the "Locked Blue" look */
-button::-moz-focus-inner { border: 0; padding: 0; }
+/* FIREFOX SPECIFIC RESET */
+button::-moz-focus-inner { border: 0; }
 *:focus { outline: none !important; }
-*:focus-visible { box-shadow: 0 0 0 2px var(--ai-blue) !important; }
 
 header {
-    background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 2.5%; position: sticky; top: 0; z-index: 1000; height: 70px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--bg-black); display: flex; align-items: center;
+    padding: 0 2.5%; position: sticky; top: 0; z-index: 1000; height: 75px;
+    border-bottom: 1px solid rgba(255,255,255,0.1); justify-content: space-between;
 }
 
-.logo { text-decoration: none; font-weight: 800; color: var(--white); display: flex; align-items: center; gap: 8px; font-family: 'Syne'; }
-.logo span { color: var(--ai-blue); }
+/* SEARCH PERIMETER FIX */
+.search-container {
+    display: flex; align-items: center; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 4px;
+    padding: 2px 10px; margin: 0 15px; flex-grow: 0; width: 160px; transition: 0.3s;
+}
+.search-container:focus-within { border-color: var(--ai-blue); background: rgba(255,255,255,0.1); }
+.search-input {
+    background: transparent; border: none; color: var(--white); font-family: 'DM Mono';
+    font-size: 0.85em; width: 100%; outline: none; padding: 6px 0;
+}
+.search-submit {
+    background: transparent; border: none; color: var(--white); cursor: pointer;
+    padding: 5px; font-size: 1.1em; transition: 0.2s;
+}
+.search-submit:hover { color: var(--ai-blue); }
 
-/* SEARCH BAR FIXES */
-header form { display: flex; align-items: center; background: rgba(255,255,255,0.05); border-radius: 4px; padding: 2px 8px; border: 1px solid rgba(255,255,255,0.1); margin-left: 15px; }
-header input[type="text"] { background: transparent; border: none; color: var(--white); font-family: 'DM Mono'; font-size: 0.85em; padding: 6px; width: 120px; outline: none; }
-header .search-btn { background: transparent; border: none; cursor: pointer; color: var(--white); padding: 5px; display: flex; align-items: center; transition: 0.2s; }
-header .search-btn:hover { color: var(--ai-blue); }
-header .search-btn:active { color: var(--ai-blue); transform: scale(0.9); }
+/* Logo & Nav */
+.logo { text-decoration: none; font-weight: 800; color: var(--white); display: flex; align-items: center; font-family: 'Syne'; font-size: 1.3rem; }
+.logo span { color: var(--ai-blue); margin-left: 4px; }
+.logo img { height: 32px; margin-right: 8px; }
 
-/* MOBILE NAVIGATION */
-.menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; background: none; border: none; }
-.menu-toggle span { width: 25px; height: 3px; background-color: var(--white); transition: 0.3s; }
+/* Mobile Menu & Dropdowns */
+.menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; }
+.menu-toggle span { width: 22px; height: 2px; background-color: var(--white); }
 
 #nav-menu {
-    display: none; position: absolute; top: 70px; right: 2.5%; background: var(--bg-black);
-    width: 240px; border-radius: 0 0 6px 6px; padding: 8px 0; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    display: none; position: absolute; top: 75px; right: 2.5%; width: 240px;
+    background: var(--bg-black); border: 1px solid rgba(255,255,255,0.1); border-radius: 0 0 6px 6px; padding: 10px 0;
 }
 #nav-menu.active { display: block; }
-
 .nav-links { list-style: none; padding: 0; margin: 0; }
 .nav-links a, .nav-dropdown-toggle {
-    text-decoration: none; color: var(--white); padding: 12px 16px; display: block; font-family: 'Syne'; font-size: 0.85em; text-transform: uppercase; border: none; background: none; width: 100%; text-align: left; cursor: pointer;
+    color: var(--white); text-decoration: none; padding: 12px 20px; display: block;
+    font-family: 'Syne'; font-size: 0.85em; text-transform: uppercase; background: none; border: none; width: 100%; text-align: left; cursor: pointer;
 }
-
-/* DROPDOWN OPEN STATES */
 .nav-dropdown-menu { display: none; background: rgba(255,255,255,0.03); }
 .nav-dropdown-menu.open { display: block; }
-.nav-dropdown-menu a { padding: 10px 30px; font-size: 0.8em; color: var(--light-text); }
+.nav-dropdown-menu a { padding: 10px 35px; color: var(--light-text); font-size: 0.8em; }
 .nav-dropdown-toggle.open { color: var(--ai-blue) !important; }
 
-/* Desktop Logic */
 @media (min-width: 900px) {
     .menu-toggle { display: none; }
-    #nav-menu { display: flex; position: static; width: auto; background: transparent; border: none; box-shadow: none; }
-    .nav-links { display: flex; gap: 10px; }
-    .nav-links a, .nav-dropdown-toggle { padding: 5px 8px; font-size: 0.78em; }
-    .nav-dropdown-menu { position: absolute; top: 100%; right: 0; background: var(--bg-black); min-width: 200px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; }
+    #nav-menu { display: flex; position: static; width: auto; background: transparent; border: none; padding: 0; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a, .nav-dropdown-toggle { padding: 5px 12px; font-size: 0.8em; }
+    .search-container { width: 220px; }
 }
