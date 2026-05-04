@@ -280,7 +280,7 @@ header.scrolled {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0,163,255,0.18);
   box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-  overflow: visible; /* allow results to overflow */
+  overflow: hidden;
 
   max-height: 0;
   opacity: 0;
@@ -296,6 +296,7 @@ header.scrolled {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+  overflow: visible; /* allow results dropdown to show below */
 }
 
 .search-panel-inner {
@@ -363,10 +364,11 @@ header.scrolled {
 /* ── SEARCH RESULTS DROPDOWN ───────────────────────────────── */
 #search-results-drop {
   display: none;
-  position: absolute;
-  top: calc(100% - 2px);
-  left: clamp(16px, 3%, 24px);
-  right: clamp(16px, 3%, 24px);
+  position: fixed;
+  top: 130px; /* below header(70px) + search panel(~60px) */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(760px, calc(100vw - 32px));
   background: rgba(3,14,24,0.99);
   border: 1px solid rgba(0,163,255,0.2);
   border-top: none;

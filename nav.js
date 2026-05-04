@@ -429,3 +429,63 @@
   }); // DOMContentLoaded
 
 })();
+
+  /* ════════════════════════════════════════════════
+     FADE-IN SECTIONS — IntersectionObserver
+     Sections use .fade-in-section (opacity:0 in CSS).
+     This adds .visible when they scroll into view.
+     CRITICAL: without this all page sections stay invisible.
+     ════════════════════════════════════════════════ */
+  (function() {
+    function initFadeIn() {
+      // Fallback: if IntersectionObserver not supported, show everything
+      if (!('IntersectionObserver' in window)) {
+        var all = document.querySelectorAll('.fade-in-section');
+        Array.prototype.forEach.call(all, function(el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-in-section').forEach(function(el) {
+        io.observe(el);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFadeIn);
+    } else {
+      initFadeIn();
+    }
+  })();
+
+  /* ════════════════════════════════════════════════
+     BACK-TO-TOP BUTTON
+     ════════════════════════════════════════════════ */
+  (function() {
+    function initBackToTop() {
+      if (document.getElementById('back-to-top')) return; // already exists
+      var btn = document.createElement('button');
+      btn.id = 'back-to-top';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Back to top');
+      btn.innerHTML = '&#8593;';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', (window.scrollY || window.pageYOffset) > 400);
+      }, { passive: true });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBackToTop);
+    } else {
+      initBackToTop();
+    }
+  })();
+
