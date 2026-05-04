@@ -209,14 +209,26 @@
       var r  = btn.getBoundingClientRect();
       var vw = window.innerWidth;
 
-      // Measure actual dropdown width while invisible
-      menu.style.cssText += ';visibility:hidden;opacity:0;display:block;pointer-events:none';
+      // Measure actual dropdown width while invisible.
+      // CRITICAL: use individual style properties, NOT cssText string manipulation.
+      // cssText is browser-normalized (adds spaces: "opacity: 0" not "opacity:0")
+      // so regex cleanup silently fails, leaving pointer-events:none stuck on the
+      // element as an inline style that overrides the CSS class — causing clicks
+      // to be ignored after the first menu open. This was the core nav bug.
+      var prevVisibility    = menu.style.visibility;
+      var prevOpacity       = menu.style.opacity;
+      var prevDisplay       = menu.style.display;
+      var prevPointerEvents = menu.style.pointerEvents;
+      menu.style.visibility    = 'hidden';
+      menu.style.opacity       = '0';
+      menu.style.display       = 'block';
+      menu.style.pointerEvents = 'none';
       var mw = menu.offsetWidth || 220;
-      menu.style.cssText = menu.style.cssText
-        .replace(/;?visibility:hidden/g, '')
-        .replace(/;?opacity:0/g, '')
-        .replace(/;?display:block/g, '')
-        .replace(/;?pointer-events:none/g, '');
+      // Restore exactly — set back to previous values (not '' which leaves empty attrs)
+      menu.style.visibility    = prevVisibility;
+      menu.style.opacity       = prevOpacity;
+      menu.style.display       = prevDisplay;
+      menu.style.pointerEvents = prevPointerEvents;
 
       // Align dropdown left edge to toggle left edge, clamp at right viewport edge
       var idealLeft = r.left;
