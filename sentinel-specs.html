@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Pocono AI v95 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sentinel Node Hardware Specifications — Pocono AI. Three tiers of enterprise-grade, zero-exfiltration AI workstations for independent medical and legal practices. Dell Precision with NVIDIA Ada Generation GPUs.">
+    <title>Sentinel Node Specifications | Pocono AI</title>
+    <meta property="og:title" content="Sentinel Node Specifications | Pocono AI">
+    <meta property="og:description" content="Tier-by-tier hardware specs for the Sentinel Node sovereign AI platform — from solo practice to hospital department.">
+    <meta property="og:url" content="https://poconoai.com/sentinel-specs.html">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&display=swap">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+    <link rel="canonical" href="https://poconoai.com/sentinel-specs.html">
+    <link rel="stylesheet" href="styles.css?v=95">
+    <style>
+        .specs-hero {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 4% 40px;
+            text-align: center;
+        }
+        .tier-section {
+            max-width: 960px;
+            margin: 0 auto 0;
+            padding: 0 4%;
+        }
+        .tier-card {
+            background: var(--card-dark);
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255,255,255,0.07);
+            position: relative;
+            overflow: hidden;
+        }
+        .tier-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+        .tier-1::before { background: linear-gradient(90deg, #188B96, #22C55E); }
+        .tier-2::before { background: linear-gradient(90deg, #0A73D2, #188B96); }
+        .tier-3::before { background: linear-gradient(90deg, #A78BFA, #0A73D2); }
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+        .tier-1 .tier-badge { background: rgba(24,139,150,0.15); color: var(--teal); border: 1px solid rgba(24,139,150,0.3); }
+        .tier-2 .tier-badge { background: rgba(10,115,210,0.15); color: var(--ai-blue); border: 1px solid rgba(10,115,210,0.3); }
+        .tier-3 .tier-badge { background: rgba(167,139,250,0.15); color: #A78BFA; border: 1px solid rgba(167,139,250,0.3); }
+        .tier-title { color: var(--white); font-family: 'Syne', sans-serif; font-size: 1.6em; font-weight: 800; margin: 0 0 6px; }
+        .tier-subtitle { color: var(--light-text); font-size: 0.88em; line-height: 1.65; margin: 0 0 28px; max-width: 640px; }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 640px) { .spec-grid { grid-template-columns: 1fr; } }
+        .spec-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 8px;
+            padding: 14px 18px;
+        }
+        .spec-label {
+            font-size: 0.68em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            margin: 0 0 4px;
+        }
+        .spec-value {
+            color: var(--white);
+            font-size: 0.92em;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        .spec-note {
+            color: var(--muted);
+            font-size: 0.78em;
+            margin-top: 3px;
+        }
+        .tier-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 8px 0 32px; max-width: 960px; margin: 8px auto 32px; }
+        .haas-callout {
+            background: rgba(10,115,210,0.07);
+            border: 1px solid rgba(10,115,210,0.2);
+            border-left: 4px solid var(--ai-blue);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .use-case-tag {
+            display: inline-block;
+            background: rgba(24,139,150,0.1);
+            border: 1px solid rgba(24,139,150,0.2);
+            color: var(--teal);
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 0.72em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin: 3px 3px 3px 0;
+        }
+        .financing-section {
+            max-width: 960px;
+            margin: 0 auto 0;
+            padding: 0 4%;
+        }
+        .financing-card {
+            background: var(--card-dark);
+            border-radius: 16px;
+            padding: 32px 40px;
+            border: 1px solid rgba(255,255,255,0.07);
+            margin-bottom: 32px;
+        }
+        .financing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.88em;
+        }
+        .financing-table th {
+            background: rgba(255,255,255,0.05);
+            color: var(--muted);
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .financing-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--light-text);
+            vertical-align: top;
+        }
+        .financing-table td:first-child { color: var(--white); font-weight: 600; }
+        .financing-table td.num { color: var(--teal); font-weight: 700; font-family: 'Syne', sans-serif; }
+        .financing-table tr:last-child td { border-bottom: none; }
+        .disclaimer-text {
+            color: var(--muted);
+            font-size: 0.75em;
+            line-height: 1.7;
+            margin-top: 16px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="reading-progress" role="progressbar" aria-label="Reading progress" style="pointer-events:none;"></div>
+
+<header>
+    <a href="index.html" class="logo"><img src="logo.svg" alt="Pocono AI" width="40" height="40" decoding="async" loading="eager">Pocono <span>AI</span></a>
+    <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li class="nav-home-always"><a href="index.html">Home</a></li>
+            <li><a href="for-physicians.html">For Physicians</a></li>
+            <li><a href="for-attorneys.html">For Attorneys</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="trust.html">Trust &amp; Security</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" id="more-toggle" aria-expanded="false" aria-controls="more-menu">More <span class="arrow">&#9662;</span></button>
+                <div class="nav-dropdown-menu" id="more-menu" role="menu">
+                    <span class="nav-group-label">Tools</span>
+                    <a href="sentinel-demo.html" style="color:var(--teal);font-weight:700;">&#9654; Live RAG Demo</a>
+                    <a href="simulation.html" style="color:var(--teal);font-weight:700;">&#9878; 12-Panel Simulation</a>
+                    <a href="breach-calculator.html" style="color:#FF6B5B;">&#9888; Breach Calculator</a>
+                    <a href="shadow-audit.html" style="color:#FF6B5B;">&#128270; Shadow IT Audit</a>
+                    <span class="nav-group-label">Technology</span>
+                    <a href="sentinel-specs.html" style="color:var(--teal);font-weight:700;">&#128274; Sentinel Node Specs</a>
+                    <a href="architecture.html">For IT &amp; MSPs</a>
+                    <a href="solutions.html">Solutions Overview</a>
+                    <a href="competitive-analysis.html">Competitive Analysis</a>
+                    <a href="comparison.html">Comparison</a>
+                    <a href="compliance.html">&#128274; Compliance Attestation</a>
+                    <a href="deployment.html">Deployment Timeline</a>
+                    <span class="nav-group-label">Research</span>
+                    <a href="market-research.html" style="color:var(--teal);font-weight:700;">&#128200; Market Validation</a>
+                    <a href="research.html">Research Hub</a>
+                    <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+                    <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+                    <a href="legal-admin-burden.html">Legal Admin Burden</a>
+                    <a href="patient-advocacy.html">Patient Safety</a>
+                    <span class="nav-group-label">Company</span>
+                    <a href="about.html">About the Founder</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="how-we-hire.html" style="color:var(--teal);font-weight:700;">&#9670; Neurodiversity-First Hiring</a>
+                    <a href="partners.html">Partners</a>
+                    <a href="investors.html" style="color:var(--muted);">Investor Relations</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main-content">
+
+    <section class="specs-hero">
+        <span style="color:var(--teal);font-size:0.72em;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;display:block;margin-bottom:12px;">&#128274; Hardware-as-a-Service &middot; Sentinel Node Platform</span>
+        <h1 style="margin-bottom:16px;">Sentinel Node<br><em style="font-style:italic;color:var(--teal);">Hardware Specifications</em></h1>
+        <p style="color:var(--light-text);font-size:1.02em;line-height:1.8;max-width:640px;margin:0 auto 24px;">Enterprise-grade, zero-exfiltration AI infrastructure engineered for HIPAA-regulated and attorney-client privilege environments. Three tiers — one mandate: patient and client records never leave the building.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="pricing.html" class="cta-button">HaaS Pricing</a>
+            <a href="deployment.html" class="cta-button cta-button-light">60-Day Deployment</a>
+            <a href="Total_Sentinel_Specs.pdf" target="_blank" rel="noopener noreferrer" class="cta-button cta-button-light">&#8595; Download PDF Spec Sheet</a>
+        </div>
+    </section>
+
+    <!-- ═══ TIER 1 ═══ -->
+    <section class="tier-section">
+        <div class="tier-card tier-1" id="tier-1-baseline">
+            <div class="tier-badge">&#9679; Tier 1</div>
+            <h2 class="tier-title">Sentinel Baseline</h2>
+            <p class="tier-subtitle">Entry-Level HaaS &mdash; Designed for solo family medicine practices, single-attorney firms, and small clinical teams requiring a full local RAG pipeline with HIPAA-compliant document processing.</p>
+            <div style="margin-bottom:16px;">
+                <span class="use-case-tag">Solo Practice</span>
+                <span class="use-case-tag">1&ndash;3 Providers</span>
+                <span class="use-case-tag">Primary Care</span>
+                <span class="use-case-tag">Solo Attorney</span>
+                <span class="use-case-tag">Small Legal</span>
+            </div>
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Chassis</div>
+                    <div class="spec-value">Dell Precision 5860 Tower</div>
+                    <div class="spec-note">Mid-tower workstation &middot; 1350W Performance Chassis &middot; 16.3"H &times; 6.8"W &times; 16.9"D</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Processor</div>
+                    <div class="spec-value">Intel Xeon w3-2423</div>
+                    <div class="spec-note">6 Cores / 12 Threads &middot; 4.2 GHz Turbo &middot; 120W TDP</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Memory</div>
+                    <div class="spec-value">64 GB DDR5 ECC RAM</div>
+                    <div class="spec-note">4800 MT/s RDIMM &middot; ECC error correction &middot; Expandable to 512 GB</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Primary GPU</div>
+                    <div class="spec-value">NVIDIA RTX 4500 Ada Generation</div>
+                    <div class="spec-note">24 GB GDDR6 ECC VRAM &middot; 7,680 CUDA Cores &middot; 250W &middot; Runs 7B&ndash;13B models natively</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">OS Storage</div>
+                    <div class="spec-value">2&times; 512 GB PCIe Gen 4 NVMe SSD</div>
+                    <div class="spec-note">RAID 1 Mirrored &middot; OS redundancy &middot; Self-Encrypting (SED) &middot; FIPS compliant</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Data Storage (Vector DB / MySQL)</div>
+                    <div class="spec-value">2&times; 4 TB PCIe Gen 4 NVMe SSD</div>
+                    <div class="spec-note">RAID 1 Mirrored &middot; 8 TB raw / 4 TB usable &middot; pgvector, Qdrant, MySQL workloads</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Networking</div>
+                    <div class="spec-value">Dual-Port 10 GbE NIC (Onboard)</div>
+                    <div class="spec-note">1 GbE + 10 GbE RJ-45 rear ports &middot; LAN-only &middot; All outbound internet routes blocked at VLAN boundary</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Power Supply</div>
+                    <div class="spec-value">1350W Platinum-Rated PSU</div>
+                    <div class="spec-note">Headroom for secondary GPU future expansion &middot; 80+ Platinum efficiency</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Operating System</div>
+                    <div class="spec-value">Ubuntu Server 22.04 LTS</div>
+                    <div class="spec-note">Headless deployment &middot; Ollama inference engine &middot; No Windows license overhead</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Support</div>
+                    <div class="spec-value">Dell ProSupport Next Business Day Onsite</div>
+                    <div class="spec-note">Hardware fault response by Dell field technician &middot; Parts + labor &middot; Pocono AI handles software layer</div>
+                </div>
+            </div>
+            <div class="haas-callout">
+                <div style="flex:1;min-width:200px;">
+                    <p style="color:var(--light-text);font-size:0.87em;line-height:1.75;margin:0 0 8px;"><strong style="color:var(--white);">Estimated List Hardware Cost:</strong> ~$14,000&ndash;$17,000 fully configured with RAID storage, GPU, ProSupport, and air-gapped installation audit. HaaS monthly payment via Dell Financial Services 36-month Technology Ownership at 3.99% APR: approximately <strong style="color:var(--teal);">$395&ndash;$480/month</strong>. End of term: purchase for $1 or return.</p>
+                    <p style="color:var(--muted);font-size:0.78em;margin:0;">Dell Precision 5860 base (~$4,200) + RTX 4500 Ada upgrade (~$2,250 delta) + 64GB RAM upgrade (~$800) + 2&times; 4TB NVMe data drives (~$1,200) + RAID 1 config + ProSupport 3yr (~$800) + Pocono AI installation, air-gap audit, RAG deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="tier-divider">
+
+    <!-- ═══ TIER 2 ═══ -->
+    <section class="tier-section">
+        <div class="tier-card tier-2" id="tier-2-standard">
+            <div class="tier-badge">&#9679;&#9679; Tier 2</div>
+            <h2 class="tier-title">Sentinel Standard</h2>
+            <p class="tier-subtitle">Mid-Market HaaS &mdash; Designed for mid-sized law firms (3&ndash;10 attorneys), multi-provider medical practices, and specialty clinics requiring higher concurrent query volumes and larger model contexts.</p>
+            <div style="margin-bottom:16px;">
+                <span class="use-case-tag">Multi-Provider Practice</span>
+                <span class="use-case-tag">3&ndash;10 Attorneys</span>
+                <span class="use-case-tag">Specialty Clinic</span>
+                <span class="use-case-tag">Urgent Care</span>
+                <span class="use-case-tag">Behavioral Health</span>
+            </div>
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Chassis</div>
+                    <div class="spec-value">Dell Precision 5860 Tower</div>
+                    <div class="spec-note">Mid-tower workstation &middot; 1350W Performance Chassis &middot; Same compact footprint as Tier 1</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Processor</div>
+                    <div class="spec-value">Intel Xeon w5-2455X</div>
+                    <div class="spec-note">12 Cores / 24 Threads &middot; 4.6 GHz Turbo &middot; 200W TDP &middot; 2&times; thread count of Tier 1</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Memory</div>
+                    <div class="spec-value">128 GB DDR5 ECC RAM</div>
+                    <div class="spec-note">4800 MT/s RDIMM &middot; ECC error correction &middot; Handles larger concurrent context windows</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Primary GPU</div>
+                    <div class="spec-value">NVIDIA RTX 5000 Ada Generation</div>
+                    <div class="spec-note">32 GB GDDR6 ECC VRAM &middot; 12,800 CUDA Cores &middot; 250W &middot; Comfortably runs 34B models &middot; 60% more VRAM than Tier 1</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">OS Storage</div>
+                    <div class="spec-value">2&times; 512 GB PCIe Gen 4 NVMe SSD</div>
+                    <div class="spec-note">RAID 1 Mirrored &middot; Self-Encrypting (SED) &middot; FIPS compliant</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Data Storage (Vector DB / MySQL)</div>
+                    <div class="spec-value">2&times; 4 TB PCIe Gen 4 NVMe SSD</div>
+                    <div class="spec-note">RAID 1 Mirrored &middot; 8 TB raw / 4 TB usable &middot; Higher throughput under concurrent load</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Networking</div>
+                    <div class="spec-value">Dual-Port 10 GbE NIC (Onboard)</div>
+                    <div class="spec-note">Supports higher-bandwidth multi-workstation LAN environments &middot; Zero outbound internet by VLAN policy</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Power Supply</div>
+                    <div class="spec-value">1350W Platinum-Rated PSU</div>
+                    <div class="spec-note">Headroom for second GPU at future scale &middot; Dual-GPU population possible with PSU upgrade</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Operating System</div>
+                    <div class="spec-value">Ubuntu Server 22.04 LTS</div>
+                    <div class="spec-note">Headless &middot; Ollama + Qdrant + pgvector + MySQL stack &middot; Configured for multi-user concurrent access</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Support</div>
+                    <div class="spec-value">Dell ProSupport Next Business Day Onsite</div>
+                    <div class="spec-note">On-site parts and labor by next business day &middot; 3-year coverage</div>
+                </div>
+            </div>
+            <div class="haas-callout">
+                <div style="flex:1;min-width:200px;">
+                    <p style="color:var(--light-text);font-size:0.87em;line-height:1.75;margin:0 0 8px;"><strong style="color:var(--white);">Estimated List Hardware Cost:</strong> ~$22,000&ndash;$27,000 fully configured. HaaS monthly payment via Dell Financial Services 36-month Technology Ownership at 3.99% APR: approximately <strong style="color:var(--ai-blue);">$625&ndash;$760/month</strong>. End of term: purchase for $1 or return.</p>
+                    <p style="color:var(--muted);font-size:0.78em;margin:0;">Dell Precision 5860 base (~$4,200) + Xeon w5-2455X upgrade (~$1,750 delta) + RTX 5000 Ada (~$4,000) + 128GB RAM (~$1,800) + 2&times; 4TB NVMe data drives (~$1,200) + ProSupport 3yr (~$900) + Pocono AI deployment, audit, integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="tier-divider">
+
+    <!-- ═══ TIER 3 ═══ -->
+    <section class="tier-section">
+        <div class="tier-card tier-3" id="tier-3-enterprise">
+            <div class="tier-badge">&#9679;&#9679;&#9679; Tier 3 &middot; Flagship</div>
+            <h2 class="tier-title">Sentinel Enterprise</h2>
+            <p class="tier-subtitle">Flagship HaaS &mdash; Designed for hospital departments, large multi-specialty groups, corporate legal teams, and high-volume document ingestion environments. GPU-expandable to 4&times; RTX 6000 Ada (192 GB total VRAM) without chassis change.</p>
+            <div style="margin-bottom:16px;">
+                <span class="use-case-tag">Hospital Department</span>
+                <span class="use-case-tag">Large Group Practice</span>
+                <span class="use-case-tag">Corporate Legal</span>
+                <span class="use-case-tag">High-Volume Ingestion</span>
+                <span class="use-case-tag">Multi-GPU Ready</span>
+            </div>
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Chassis</div>
+                    <div class="spec-value">Dell Precision 7960 Tower</div>
+                    <div class="spec-note">Flagship tower workstation &middot; 2200W Chassis &middot; Explicitly configured for multi-GPU population &middot; 8-channel memory architecture</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Processor</div>
+                    <div class="spec-value">Intel Xeon w7-3445</div>
+                    <div class="spec-note">20 Cores / 40 Threads &middot; 4.8 GHz Turbo &middot; 300W TDP &middot; W-3400 series &middot; Up to 4 TB DDR5 support</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Memory</div>
+                    <div class="spec-value">256 GB DDR5 ECC RAM</div>
+                    <div class="spec-note">8-channel architecture &middot; 16 DIMM slots &middot; Handles massive concurrent document contexts</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Primary GPU</div>
+                    <div class="spec-value">NVIDIA RTX 6000 Ada Generation</div>
+                    <div class="spec-note">48 GB GDDR6 ECC VRAM &middot; 18,176 CUDA Cores &middot; 300W &middot; Runs 70B+ models &middot; <em>Expandable to 4&times; GPUs / 192 GB total VRAM</em></div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">OS Storage</div>
+                    <div class="spec-value">2&times; 512 GB PCIe Gen 4 NVMe SSD</div>
+                    <div class="spec-note">RAID 1 Mirrored &middot; Self-Encrypting (SED) &middot; FIPS compliant &middot; Same resilient OS config across all tiers</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Data Storage (Vector DB / MySQL)</div>
+                    <div class="spec-value">2&times; 4 TB PCIe Gen 4 NVMe SSD</div>
+                    <div class="spec-note">RAID 1 Mirrored &middot; 7960 supports up to 10 additional drive bays for future expansion</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Networking</div>
+                    <div class="spec-value">Dual-Port 10 GbE NIC (Onboard)</div>
+                    <div class="spec-note">Supports high-bandwidth departmental environments &middot; Optional 25 GbE upgrade via PCIe NIC &middot; Zero outbound by design</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Power Supply</div>
+                    <div class="spec-value">2200W Chassis PSU</div>
+                    <div class="spec-note">Explicitly configured for 4-GPU population &middot; Each RTX 6000 Ada draws 300W &middot; Total GPU draw headroom: 1,200W</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Operating System</div>
+                    <div class="spec-value">Ubuntu Server 22.04 LTS</div>
+                    <div class="spec-note">Multi-GPU Ollama configuration &middot; Qdrant cluster mode &middot; pgvector + MySQL HA setup available</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Support</div>
+                    <div class="spec-value">Dell ProSupport Plus &mdash; 4-Hour Onsite</div>
+                    <div class="spec-note">4-hour on-site response for parts and labor &middot; Mission-critical SLA &middot; Pocono AI remote monitoring layer</div>
+                </div>
+            </div>
+            <div class="haas-callout" style="border-left-color:#A78BFA;background:rgba(167,139,250,0.06);border-color:rgba(167,139,250,0.25);">
+                <div style="flex:1;min-width:200px;">
+                    <p style="color:var(--light-text);font-size:0.87em;line-height:1.75;margin:0 0 8px;"><strong style="color:var(--white);">Estimated List Hardware Cost:</strong> ~$38,000&ndash;$46,000 fully configured (single GPU). Multi-GPU configuration (4&times; RTX 6000 Ada): ~$65,000&ndash;$80,000. HaaS monthly payment via Dell Financial Services 36-month Technology Ownership at 3.99% APR: approximately <strong style="color:#A78BFA;">$1,075&ndash;$1,300/month</strong> (single GPU). Multi-GPU: ~$1,850&ndash;$2,280/month.</p>
+                    <p style="color:var(--muted);font-size:0.78em;margin:0;">Dell Precision 7960 base (~$6,500) + Xeon w7-3445 (~$3,500 delta) + RTX 6000 Ada (~$6,800 MSRP) + 256GB RAM (~$4,500) + ProSupport Plus 4hr 3yr (~$2,200) + Pocono AI enterprise deployment, air-gap audit, HA configuration. Multi-GPU adds ~$6,800 per additional RTX 6000 Ada unit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="tier-divider">
+
+    <!-- ═══ DELL FINANCIAL SERVICES / APEX FINANCING ═══ -->
+    <section class="financing-section">
+        <div style="text-align:center;margin-bottom:28px;padding:0 4%;">
+            <span style="color:var(--muted);font-size:0.72em;text-transform:uppercase;letter-spacing:0.18em;font-weight:700;">Dell Financial Services &middot; Financing Options</span>
+            <h2 style="color:var(--white);margin:8px 0 8px;border-bottom:none;font-size:1.4em;">HaaS Financing via Dell Apex &amp; DFS</h2>
+            <p style="color:var(--light-text);font-size:0.88em;max-width:620px;margin:0 auto;line-height:1.75;">Pocono AI structures all Sentinel Node deployments as Hardware-as-a-Service with financing through Dell Financial Services (DFS). This converts a $14K&ndash;$80K capital expenditure into a predictable monthly operating expense.</p>
+        </div>
+
+        <div class="financing-card">
+            <h3 style="color:var(--white);margin:0 0 6px;font-size:1.1em;">Monthly Payment Estimates &mdash; 36-Month Technology Ownership (3.99% APR)</h3>
+            <p style="color:var(--muted);font-size:0.8em;margin:0 0 16px;">DFS Technology Ownership: own the hardware at end of term for $1, or return. Minimum transaction $1,500. Subject to credit approval. Rates as of May 2026 per Dell published terms.</p>
+            <table class="financing-table">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Est. Hardware Cost</th>
+                        <th>~Monthly (36mo / 3.99%)</th>
+                        <th>Total 36-Month Outlay</th>
+                        <th>End-of-Term Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&#9679; Tier 1 &mdash; Sentinel Baseline</td>
+                        <td>$14,000&ndash;$17,000</td>
+                        <td class="num">$395&ndash;$480/mo</td>
+                        <td>$14,200&ndash;$17,300</td>
+                        <td>Purchase for $1 or return</td>
+                    </tr>
+                    <tr>
+                        <td>&#9679;&#9679; Tier 2 &mdash; Sentinel Standard</td>
+                        <td>$22,000&ndash;$27,000</td>
+                        <td class="num">$625&ndash;$760/mo</td>
+                        <td>$22,500&ndash;$27,400</td>
+                        <td>Purchase for $1 or return</td>
+                    </tr>
+                    <tr>
+                        <td>&#9679;&#9679;&#9679; Tier 3 &mdash; Sentinel Enterprise (1 GPU)</td>
+                        <td>$38,000&ndash;$46,000</td>
+                        <td class="num">$1,075&ndash;$1,300/mo</td>
+                        <td>$38,700&ndash;$46,800</td>
+                        <td>Purchase for $1 or return</td>
+                    </tr>
+                    <tr>
+                        <td>&#9679;&#9679;&#9679; Tier 3 &mdash; Sentinel Enterprise (4 GPU)</td>
+                        <td>$65,000&ndash;$80,000</td>
+                        <td class="num">$1,850&ndash;$2,280/mo</td>
+                        <td>$66,600&ndash;$82,100</td>
+                        <td>Purchase for $1 or return</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="disclaimer-text">Payment estimates calculated using DFS 36-month Technology Ownership rate of 3.99% APR (published rate as of May 2026, per <a href="https://www.dell.com/en-us/lp/pay-as-you-go" target="_blank" rel="noopener noreferrer" style="color:var(--ai-blue);">dell.com/lp/pay-as-you-go</a>). Estimates include hardware, ProSupport, and Pocono AI deployment services. Actual payments subject to credit approval, final configuration quote, applicable taxes, and DFS documentation fees. Pocono AI is not a Dell Financial Services agent; customers apply directly through Dell. Dell APEX PCaaS (FMV lease) is also available at lower monthly rates with return/renew options at term end. Discounts of 10&ndash;30% are routinely available through Dell Premier accounts, volume agreements, and healthcare/education programs &mdash; request a formal Dell quote for accurate pricing.</p>
+        </div>
+
+        <div class="financing-card" style="background:rgba(24,139,150,0.06);border-color:rgba(24,139,150,0.2);">
+            <h3 style="color:var(--white);margin:0 0 16px;font-size:1.1em;">&#128274; Deployment &amp; Lifecycle Mandate</h3>
+            <p style="color:var(--light-text);font-size:0.92em;line-height:1.8;margin:0 0 14px;">All Sentinel Node units operate under Pocono AI, LLC&rsquo;s absolute zero-exfiltration mandate regardless of tier. Every deployment includes:</p>
+            <ul style="color:var(--light-text);font-size:0.9em;line-height:1.85;margin:0;padding-left:20px;">
+                <li style="margin-bottom:8px;"><strong style="color:var(--white);">Air-Gapped Installation &amp; Security Audit</strong> &mdash; On-site configuration of the dedicated VLAN, BIOS hardening, drive encryption validation, and zero-exfiltration network policy enforcement.</li>
+                <li style="margin-bottom:8px;"><strong style="color:var(--white);">RAG Stack Deployment</strong> &mdash; Ollama inference engine, Qdrant vector database, pgvector/MySQL data layer, and Pocono AI application software installed and validated against clinical or legal document corpus.</li>
+                <li style="margin-bottom:8px;"><strong style="color:var(--white);">Dell ProSupport Hardware Coverage</strong> &mdash; Hardware fault response by Dell&rsquo;s field service organization. Pocono AI handles the software and AI layer; Dell handles the iron.</li>
+                <li style="margin-bottom:8px;"><strong style="color:var(--white);">Ongoing Monitoring &amp; Updates</strong> &mdash; Model updates, RAG index refreshes, and security patches delivered via secure local network connection. No remote access to patient or client data.</li>
+                <li><strong style="color:var(--white);">HIPAA BAA / Attorney-Client Privilege Documentation</strong> &mdash; Business Associate Agreement executed at deployment. Compliance posture is architectural, not contractual &mdash; but documentation is included.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta-container" style="margin-top:48px;">
+        <h2 style="color:white;border-bottom:none;margin-top:0;">Ready to spec your deployment?</h2>
+        <p style="color:var(--light-text);max-width:520px;margin:0 auto 24px;line-height:1.8;">Every deployment starts with a 15-minute architecture call to match your practice size, concurrent user count, and document volume to the right tier.</p>
+        <a href="pricing.html" class="cta-button">HaaS Pricing &amp; Plans</a>
+        <a href="deployment.html" class="cta-button cta-button-light" style="margin-left:12px;">60-Day Deployment Timeline</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="footer-logo" aria-label="Pocono AI home"><img src="logo-mono.svg" alt="" width="36" height="36" decoding="async" loading="lazy"><span class="footer-brand">Pocono <span>AI</span></span></a>
+            <p class="footer-tagline">Sovereign on-premises AI for independent medical practices and law firms. Zero data exfiltration. Hardware you own.</p>
+            <p class="footer-location">East Stroudsburg, Pennsylvania</p>
+            <a href="https://www.linkedin.com/company/pocono-ai" target="_blank" rel="noopener noreferrer" class="footer-linkedin">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">For Practitioners</p>
+            <a href="for-physicians.html">For Physicians</a>
+            <a href="for-attorneys.html">For Attorneys</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="solutions.html">Solutions Overview</a>
+            <a href="pricing.html">Pricing &amp; Financing</a>
+            <a href="architecture.html">For IT &amp; MSPs</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Technology &amp; Tools</p>
+            <a href="sentinel-demo.html">&#9654; Live RAG Demo</a>
+            <a href="simulation.html">&#9878; 12-Panel Simulation</a>
+            <a href="breach-calculator.html">Breach Calculator</a>
+            <a href="shadow-audit.html">Shadow IT Audit</a>
+            <a href="compliance.html">Compliance Attestation</a>
+            <a href="trust-receipts.html">&#10003; Trust Receipts</a>
+            <a href="competitive-analysis.html">Competitive Analysis</a>
+            <a href="comparison.html">Comparison</a>
+            <a href="deployment.html">Deployment Timeline</a>
+            <a href="trust.html">Trust &amp; Security</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Research</p>
+            <a href="research.html">Research Hub</a>
+            <a href="prior-auth-case-study.html">Prior Auth Crisis</a>
+            <a href="ehr-burden-research.html">EHR Burden &mdash; 5.9 Hrs</a>
+            <a href="legal-admin-burden.html">Legal Admin Burden</a>
+            <a href="patient-advocacy.html">Patient Safety</a>
+            <a href="The_Malpractice_Trap_Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Malpractice Trap (PDF)</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Company &amp; Legal</p>
+            <a href="about.html">About the Founder</a>
+            <a href="careers.html">Careers</a>
+            <a href="how-we-hire.html">Neurodiversity-First Hiring</a>
+            <a href="partners.html">Partners</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="sla.html">SLA</a>
+            <a href="investors.html" class="footer-subtle">Investor Relations</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; <span id="footer-year">2026</span> Pocono AI, LLC &nbsp;&middot;&nbsp;
+            <a href="tel:+15705340602">(570) 534-0602</a> &nbsp;&middot;&nbsp;
+            <a href="mailto:marcus@poconoai.com">marcus@poconoai.com</a>
+        </p>
+        <p class="footer-legal">Built for independent practices of 2&ndash;10 providers. Not for hospital systems. Sentinel Node&trade; &bull; Enterprise Autonomy Architecture&trade;</p>
+    </div>
+    <script>(function(){var e=document.getElementById("footer-year");if(e)e.textContent=new Date().getFullYear();})()</script>
+</footer>
+    <script src="nav.js?v=94"></script>
+
+</body>
+</html>
