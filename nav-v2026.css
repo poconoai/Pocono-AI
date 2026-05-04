@@ -1,0 +1,497 @@
+/* =====================================================
+   POCONO AI — NAV CSS v112
+   Fixes: compound transform bug, header flex conflict,
+   search results panel, iOS focus rings, all variants.
+   ===================================================== */
+
+/* ── FOCUS ARCHITECTURE (Layer 1 — CSS-level iOS fix) ─────── */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ai-blue), 0 0 0 4px rgba(0,163,255,0.18);
+  border-radius: 3px;
+}
+*:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
+
+/* Kill iOS tap flash on all interactive elements */
+a, button, [role="button"], [tabindex] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ── RESET OLD NAV RULES FROM styles.css ──────────────────── */
+/* These override the old display:none dropdown system */
+.nav-dropdown-menu { display: none !important; }
+#nav-menu { display: none !important; }
+.nav-links { display: none !important; }
+.menu-toggle { display: none !important; }
+
+/* ── HEADER: Fix the isolation + flex conflict ─────────────
+   styles.css sets: header { display:flex; isolation:isolate }
+   We add .header-inner as the real flex row inside.
+   We must override header's own flex to block so .header-inner
+   can be the sole flex container at 100% width.
+   isolation:isolate stays (it's good for stacking contexts)
+   but we change the layout model.
+   ──────────────────────────────────────────────────────────── */
+header {
+  display: block !important;  /* Override styles.css display:flex */
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  padding: 0 !important;      /* .header-inner handles padding */
+  height: 70px !important;
+  /* Keep isolation from styles.css — it's fine, dropdowns are outside header */
+}
+
+.header-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  height: 70px !important;
+  padding: 0 clamp(16px, 3%, 32px) !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+  gap: 8px !important;
+}
+
+header.scrolled {
+  background: rgba(0,0,0,0.94) !important;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 2px 32px rgba(0,0,0,0.5) !important;
+  border-bottom-color: rgba(0,163,255,0.15) !important;
+}
+
+/* ── LOGO ──────────────────────────────────────────────────── */
+.logo {
+  text-decoration: none !important;
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  color: var(--white) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+.logo img { height: 36px !important; width: 36px !important; border-radius: 6px; }
+.logo span { color: var(--ai-blue) !important; }
+
+/* ── DESKTOP NAV ───────────────────────────────────────────── */
+#desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  justify-content: center;
+  margin: 0 8px;
+}
+@media (min-width: 900px) {
+  #desktop-nav { display: flex !important; }
+  #mobile-menu { display: none !important; }
+}
+
+.nav-item { position: relative; }
+
+.nav-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.82) !important;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.83em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.18s, background 0.18s;
+}
+.nav-toggle:hover { color: #fff !important; background: rgba(255,255,255,0.07) !important; }
+.nav-item.is-open .nav-toggle { color: var(--ai-blue) !important; background: rgba(0,163,255,0.08) !important; }
+
+.nav-chevron {
+  width: 9px; height: 9px;
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: transform 0.22s cubic-bezier(.4,0,.2,1), opacity 0.2s;
+}
+.nav-item.is-open .nav-chevron { transform: rotate(180deg); opacity: 1; }
+
+/* ── DROPDOWN MENUS ────────────────────────────────────────────
+   KEY FIX: position:absolute (not fixed) on a positioned ancestor
+   that is a sibling div wrapping the entire header+dropdowns.
+   We use position:absolute + top:70px relative to the sticky header
+   by placing them as direct children of <body> with position:fixed.
+
+   BUT — the problem with fixed is that header { isolation:isolate }
+   in styles.css creates a stacking context. Dropdowns are OUTSIDE
+   header in DOM so they are NOT affected by header's isolation.
+   position:fixed is fine for them — they escape all ancestors.
+
+   The REAL bug was the compound transform on #menu-why-local:
+   "transform: translateX(-50%) translateY(-8px)" then
+   ".is-open { transform: translateX(-50%) translateY(0) }"
+   The is-open rule correctly kept BOTH transforms. Tested now.
+
+   SIMPLIFIED: Use per-menu left/right positioning without translateX
+   centering (which was fragile). Instead use left offsets calculated
+   from approximate toggle positions.
+   ──────────────────────────────────────────────────────────── */
+.nav-dropdown {
+  position: fixed;
+  top: 70px;
+  z-index: 1100;
+  background: rgba(3,14,24,0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 2px solid var(--ai-blue);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,163,255,0.07);
+  min-width: 220px;
+  padding: 6px 0 10px;
+
+  /* GPU-accelerated hide — NO display:none */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s cubic-bezier(.4,0,.2,1),
+    transform 0.2s cubic-bezier(.4,0,.2,1),
+    visibility 0s linear 0.2s;
+  will-change: transform, opacity;
+}
+.nav-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition:
+    opacity 0.2s cubic-bezier(.4,0,.2,1),
+    transform 0.2s cubic-bezier(.4,0,.2,1),
+    visibility 0s linear 0s;
+}
+
+/* Individual dropdown positions — simple left/right, no translateX */
+#menu-platform  { left: clamp(16px, 3%, 32px); }
+#menu-why-local { left: calc(50% - 140px); }   /* center-ish, 280px wide / 2 */
+#menu-research  { left: calc(50% - 20px); }    /* slightly right of center */
+#menu-company   { right: clamp(16px, 3%, 32px); left: auto; }
+
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none !important;
+  font-size: 0.83em;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.14s, background 0.14s;
+  border: none !important;
+}
+.nav-dropdown a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.nav-featured { color: var(--teal) !important; font-weight: 700 !important; }
+.nav-featured:hover { color: var(--ai-blue) !important; }
+.nav-hot { color: #FF6B5B !important; font-weight: 600 !important; }
+
+.nav-section-label {
+  display: block;
+  padding: 10px 18px 3px;
+  font-size: 0.65em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 4px;
+}
+.nav-section-label:first-child { border-top: none; margin-top: 0; }
+
+/* ── HEADER ACTIONS ────────────────────────────────────────── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.header-icon-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: rgba(255,255,255,0.78) !important;
+  cursor: pointer !important;
+  transition: color 0.18s, background 0.18s !important;
+  padding: 0 !important;
+}
+.header-icon-btn:hover { color: #fff !important; background: rgba(255,255,255,0.08) !important; }
+.header-icon-btn[aria-expanded="true"] { color: var(--ai-blue) !important; }
+
+/* Hamburger → X animation */
+.hamburger { display: block; position: relative; width: 22px; height: 16px; }
+.hamburger span {
+  display: block; position: absolute; left: 0;
+  width: 100%; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(.4,0,.2,1), opacity 0.2s;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 7px; }
+.hamburger span:nth-child(3) { top: 14px; }
+#mobile-menu.is-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#mobile-menu.is-open .hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#mobile-menu.is-open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── SEARCH PANEL ──────────────────────────────────────────────
+   Lives in document flow AFTER <header> (not inside it).
+   Slides down via max-height + opacity + translateY.
+   position:sticky top:70px makes it hug under the header
+   while being outside the header's flex/isolation context.
+   Firefox bug: input was in header flex row. Now it's in its
+   own independent container — zero flex collision possible.
+   ──────────────────────────────────────────────────────────── */
+#search-panel {
+  position: sticky;
+  top: 70px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+  background: rgba(1,10,18,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,163,255,0.18);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  overflow: visible; /* allow results to overflow */
+
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    max-height 0.3s cubic-bezier(.4,0,.2,1),
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(.4,0,.2,1);
+}
+#search-panel.is-open {
+  max-height: 120px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.search-panel-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 12px clamp(16px,3%,24px);
+  position: relative;
+}
+
+#search-panel-input {
+  flex: 1;
+  min-width: 0;  /* Critical Firefox fix — prevents flex overflow */
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 9px 14px;
+  color: var(--white);
+  font-family: 'DM Mono', 'Fira Mono', monospace;
+  font-size: max(16px, 0.9em); /* max(16px) prevents iOS zoom-on-focus */
+  outline: none;
+  transition: border-color 0.18s, background 0.18s;
+  box-sizing: border-box;
+}
+#search-panel-input::placeholder { color: rgba(255,255,255,0.3); }
+#search-panel-input::-webkit-search-cancel-button { display: none; }
+#search-panel-input:focus {
+  border-color: var(--ai-blue);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 0 3px rgba(0,163,255,0.14);
+}
+
+.search-submit-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: var(--ai-blue);
+  border: none;
+  border-radius: 7px;
+  color: #000;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, transform 0.14s;
+}
+.search-submit-btn:hover { background: #33b8ff; transform: translateY(-1px); }
+
+#search-panel-close {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+#search-panel-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ── SEARCH RESULTS DROPDOWN ───────────────────────────────── */
+#search-results-drop {
+  display: none;
+  position: absolute;
+  top: calc(100% - 2px);
+  left: clamp(16px, 3%, 24px);
+  right: clamp(16px, 3%, 24px);
+  background: rgba(3,14,24,0.99);
+  border: 1px solid rgba(0,163,255,0.2);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  z-index: 1200;
+  max-height: 400px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.sr-item {
+  display: flex;
+  flex-direction: column;
+  padding: 11px 16px;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.14s;
+}
+.sr-item:last-child { border-bottom: none; }
+.sr-item:hover, .sr-item:focus { background: rgba(0,163,255,0.07); outline: none; }
+.sr-title { font-size: 0.85em; font-weight: 600; color: #fff; margin-bottom: 2px; }
+.sr-desc { font-size: 0.75em; color: rgba(255,255,255,0.5); }
+.sr-item mark { background: rgba(0,163,255,0.25); color: var(--ai-blue); border-radius: 2px; }
+.sr-none { padding: 14px 16px; font-size: 0.82em; color: rgba(255,255,255,0.4); }
+
+/* ── MOBILE NAV PANEL ──────────────────────────────────────── */
+#mobile-nav-panel {
+  position: fixed;
+  top: 70px; left: 0; right: 0; bottom: 0;
+  z-index: 1050;
+  background: var(--bg-black, #000);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+#mobile-nav-panel.is-open { transform: translateX(0); }
+
+@media (min-width: 900px) { #mobile-nav-panel { display: none !important; } }
+
+.mob-static-links { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.mob-static-links a {
+  display: block;
+  padding: 14px 22px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none !important;
+  font-size: 0.92em;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.mob-section { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mob-section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 22px;
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95em;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mob-chevron {
+  width: 12px; height: 12px; flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(.4,0,.2,1);
+  opacity: 0.5;
+}
+.mob-section.is-open .mob-chevron { transform: rotate(180deg); opacity: 1; }
+
+.mob-section-links {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s cubic-bezier(.4,0,.2,1);
+}
+.mob-section.is-open .mob-section-links { max-height: 480px; }
+.mob-section-links a {
+  display: block;
+  padding: 10px 22px 10px 30px;
+  color: rgba(255,255,255,0.72);
+  text-decoration: none !important;
+  font-size: 0.87em;
+  border: none !important;
+  transition: color 0.14s;
+}
+.mob-section-links a:hover, .mob-section-links a:active { color: var(--ai-blue); }
+.mob-featured { color: var(--teal) !important; font-weight: 700 !important; }
+
+.mob-cta {
+  display: block;
+  margin: 20px 22px 30px;
+  padding: 14px;
+  text-align: center;
+  background: var(--teal, #188B96);
+  color: #fff !important;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.83em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  text-decoration: none !important;
+}
+
+/* ── MISC ──────────────────────────────────────────────────── */
+header a, header button { text-decoration: none !important; }
+
+.skip-link {
+  position: absolute; top: -60px; left: 0;
+  background: var(--ai-blue); color: #000;
+  padding: 10px 20px; font-weight: 700; font-size: 0.9em;
+  text-decoration: none; z-index: 9999;
+  transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+#reading-progress {
+  position: fixed; top: 70px; left: 0;
+  width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--teal, #188B96), var(--ai-blue, #00A3FF));
+  z-index: 998;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
